@@ -1,0 +1,163 @@
+/*
+	red = #e52c3f
+	yellow = #f9a72b
+*/
+body 			{ background-color:#fff; 
+				  color:#4d4d4d;
+				  font-family:arial,helvetica,clean,sans-serif;
+				  margin: 5px 5px 5px 0px;
+				  padding: 0;
+				  border: 0;
+				  height:100%;
+				  text-align:left;
+				}
+img 			{ border:none;}
+a 				{ text-decoration:none;
+				  color:#4d4d4d;
+				}
+a:hover		{ color:#e52c3f; }
+* html body{ /*IE6 hack*/ padding: 0 0 0 210px; /*Set value to (0 0 0 WidthOfFrameDiv)*/}
+* html #maincontent{ /*IE6 hack*/ height: 100%; width: 100%; }
+th,td 		{ border:none; }
+table			{ margin:0; }
+table.topalign td { vertical-align:top; }
+table.layout td {vertical-align:top; padding:0; border:none; }
+li				{ margin-bottom:5px; }
+ul.compact	{ margin:0; }
+.hidden 		{ display:none; }
+#leftmenu	{
+				/*position: absolute;*/
+				float:left;
+				width: 210px;
+}
+#contentcontainer{
+			/*position:absolute;*/
+			margin-left: 205px;
+			right: 10px;
+			background: #fff;
+}
+#menu {
+			text-align:center;
+			font-size:24px;
+			margin:5px;
+}
+#menurss {
+			margin:10px 5px;
+}
+#menurss ul {
+			margin:0;
+}
+
+#menurss li {
+			list-style-type:none;
+			list-style-position:outside;
+}
+
+fieldset{
+			padding: 1em;
+  			font-size: 11px;
+  			border:1px solid #f9a72b
+}
+
+legend{
+		  padding: 0.2em 0.5em;
+		  border:1px solid #f9a72b;
+		  color:#f9a72b;
+		  text-align:left;
+}
+
+
+#header {
+			height:54px;
+			background:url('http://cmubuggy.org/img/headerbg.gif') repeat-x;
+			color:#fff;
+			margin:0 0 0 -5px;
+			font-size:40px;
+}
+.subnav { font-weight:bold; color:#fff; font-size:14px; }
+#content {
+			/*background:url('http://cmubuggy.org/img/coursebg.jpg') repeat;*/
+			background:#eee;			
+			margin:0px 40px 0 5px;
+			padding:10px;
+			height:100%;
+}
+.box {
+			background:url('http://cmubuggy.org/img/55blackbg.png') repeat;
+			margin:10px;
+			padding:10px 20px;
+			color:#fff;
+			border:1px solid #fff;
+}
+.box a { color:#fff; }
+.box a:hover { color:#f9a72b;	}
+.box .bigtitle { font-size:30px; font-style:italic;}
+.whitebox {
+			background:url('http://cmubuggy.org/img/70whitebg.png') repeat;
+			color:#4d4d4d;
+			border:1px solid #000;	
+}
+.whitebox a {color:#4d4d4d;}
+.box .title {
+			font-size:24px;
+			margin:0 0 0px -10px;
+}
+
+.title .rightDetail {
+	font-size:12px;
+	float:right;
+}
+
+.terms {
+	width:100px;
+}
+
+.keyPic {
+	//background:url('http://cmubuggy.org/img/55blackbg.png') repeat;
+	margin:10px 0 0 0;
+}
+
+.keyPic img {
+	//margin:-5px 0 0 -5px;
+	border:1px solid #fff;
+}
+
+table.data td,th {
+	padding:2px 9px;
+	text-align:left;
+}
+
+.data td {
+	border-bottom: 1px solid #999;
+}
+
+.data th {
+	border-bottom:3px solid #ccc;
+}
+
+td.newcol, th.newcol {
+	border-left:1px solid #999;
+}
+
+#footer {
+	clear:both;
+	padding:20px 5px 5px 5px;
+	margin:5px -10px -10px -10px;
+	background:#fff;
+	color:#999;
+	font-size:10px;
+	text-align:right;
+}
+#footer hr {
+	color: #f9a72b;
+	background-color: #f9a72b;
+	border: 0;
+	height: 3px;
+}
+
+a.edit {
+	color:#f9a72b;
+}
+#bidtotalbar {
+	height:20px; background-color: #f9a72b; color:#333; font-weight:bold; text-align:left; padding-top:5px;
+}
