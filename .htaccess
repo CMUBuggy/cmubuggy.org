@@ -1,0 +1,79 @@
+php_flag display_errors off
+# BEGIN Gzip
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+</IfModule>
+# END Gzip
+
+RewriteEngine On    # Turn on the rewriting engine
+
+#top level sections
+RewriteRule		^about[/]*$						index.php?s=about					[NC,L]
+RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]
+RewriteRule		^auction[/]*$					index.php?s=auction				[NC,L]
+RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
+RewriteRule		^join[/]*$						index.php?s=membership			[NC,L]
+RewriteRule		^membership[/]*$				index.php?s=membership			[NC,L]
+RewriteRule		^raceday[/]*$					index.php?s=raceday				[NC,L]
+RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
+RewriteRule		^seniors[/]*$					index.php?s=seniors				[NC,L]
+RewriteRule		^store[/]*$						index.php?s=store					[NC,L]
+RewriteRule		^user[/]*$						index.php?s=user					[NC,L]
+RewriteRule		^video[/]*$						index.php?s=videolist			[NC,L]
+
+#admin section
+RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1								[NC,L]
+RewriteRule    ^admin/buggy/([a-z0-9]+)/?$    					index.php?s=admin&p=buggy&urlkey=$1    		[NC,L]
+
+#history section: specific objects
+RewriteRule		^history/buggy/([a-z0-9]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
+RewriteRule		^history/heats/([0-9]+)?$							index.php?s=history&p=heats&year=$1				[NC,L]
+RewriteRule 	^history/heat/([0-9]+)/([^/]*)/([^/]*)$ 		index.php?s=history&p=heat&rdid=$1&raceclass=$2&heat=$3 [NC,L]
+RewriteRule		^history/org/([a-z]+)/?$							index.php?s=history&p=org&urlkey=$1				[NC,L]
+RewriteRule		^history/org/([0-9]+)/?$							index.php?s=history&p=org&id=$1					[NC,L]
+RewriteRule		^history/person/([0-9]+)/?$						index.php?s=history&p=person&id=$1				[NC,L]
+RewriteRule		^history/raceday/([0-9]+)/?$						index.php?s=history&p=raceday&year=$1			[NC,L]
+RewriteRule		^history/roster/([0-9]+)/?$						index.php?s=history&p=rosters&year=$1			[NC,L]
+RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
+RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
+
+#hitory section: categories
+RewriteRule		^history/admin[/]*$									index.php?s=history&p=admin 						[NC,L]
+RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 						[NC,L]
+RewriteRule		^history/broadcast[/]*$								index.php?s=history&p=broadcast					[NC,L]
+RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC,L]
+RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
+RewriteRule		^history/comment[/]*$								index.php?s=history&p=comments					[NC,L]
+RewriteRule		^history/contribute[/]*$							index.php?s=history&p=contribute 				[NC,L]
+RewriteRule		^history/leaderboard[/]*$							index.php?s=history&p=leaderboard				[NC,L]
+RewriteRule		^history/org[/]*$										index.php?s=history&p=orglist						[NC,L]
+RewriteRule		^history/person[/]*$									index.php?s=history&p=personlist					[NC,L]
+RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
+RewriteRule		^history/record[/]*$									index.php?s=history&p=records 					[NC,L]
+RewriteRule		^history/sweepstakes[/]*$							index.php?s=history&p=sweepstakes 				[NC,L]
+RewriteRule		^history/team[/]*$									index.php?s=history&p=entry						[NC,L]
+
+#raceday section
+RewriteRule		^raceday/buzz[/]*$									index.php?s=raceday&p=buzz 						[NC,L]
+RewriteRule		^raceday/rosters[/]*$								index.php?s=raceday&p=rosters						[NC,L]
+RewriteRule		^raceday/heats[/]*$									index.php?s=raceday&p=heats						[NC,L]
+RewriteRule		^raceday/leaderboard[/]*$							index.php?s=raceday&p=leaderboard				[NC,L]
+RewriteRule		^raceday/askthebroadcasters[/]*$					index.php?s=raceday&p=askthebroadcasters		[NC,L]
+
+#reference section
+RewriteRule ^reference/(.*)$ /mediawiki/index.php?title=$1 [PT,L,QSA]
+RewriteRule ^reference/*$ /mediawiki/index.php [L,QSA]
+
+#user section
+RewriteRule		^user/login/([0-9]+)?$								index.php?s=user&p=login&e=$1						[NC,L]
+RewriteRule		^user/login[/]*$										index.php?s=user&p=login 							[NC,L]
+RewriteRule		^user/logout[/]*$										index.php?s=user&p=logout 							[NC,L]
+RewriteRule		^user/register[/]*$									index.php?s=user&p=register						[NC,L]
+RewriteRule		^user/passwordrecovery[/]*$						index.php?s=user&p=passwordrecovery				[NC,L]
+RewriteRule		^user/newsiteactivation/([a-z0-9]+)/?$			index.php?s=user&p=newsiteactivation&urlkey=$1 [NC,L]
+RewriteRule		^user/newsiteactivation[/]*$						index.php?s=user&p=newsiteactivation			[NC,L]
+RewriteRule		^user/([a-z0-9]+)/?$									index.php?s=user&p=user&urlkey=$1				[NC,L]
+
+#video section
+RewriteRule		^video/([a-z0-9]+)/?$		index.php?s=video&urlkey=$1	[NC,L]
+
