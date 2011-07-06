@@ -1,0 +1,20 @@
+This is the git repo for the source code running cmubuggy.org.
+cmubuggy.org is the public website for the Carnegie Mellon University affiliated Buggy Alumni Association.
+
+cmubuggy.org was first launched in October of 2008.  The majority of the original code and design were by Sam Swift (samswift@cmubuggy.org).  
+Adam McCue and Scott Ziolko helped considerably with data structure and population.  Refinements were made in an un-managed and as-needed basis for 2+ years.
+
+The first major overhaul of the site was "completed" just in time for raceday 2011.  This version of the site was committed to the repo in the summer of 2011 to allow greater community involvement in coding the site.  Please, if you're reading this, do not hesitate to get involved.
+
+The site is built around a number of 3rd party platforms and tools.  If you want to set up a local dev version of the site, cloning the repo is a start, but depending on your project you may need additional pieces of the puzzle:
+
+ --> Data:  Contact samswift@cmubuggy.org or the current administrator to get access to an exported version of the relevant data.
+ --> Forum: /forum runs phpBB (http://www.phpbb.com/).  version info is available in /forum/README
+ --> Gallery: /gallery runs gallery3 (http://gallery.menalto.com/). version info is available in /gallery/README
+ --> Wiki: /reference runs Mediawiki (http://www.mediawiki.org/). version info is available in /mediawiki/README
+ --> News: /news runs Wordpress (http://wordpress.org/).  version info is available in /news/README
+ 
+ 
+ 
+
+  

@@ -1,0 +1,6 @@
+cmubuggy.org/news runs Wordpress (http://wordpress.org/)
+
+The live site uses Wordpress 3.1.2 which is available here:
+http://wordpress.org/news/2011/04/wordpress-3-1-2/
+
+The cmubuggy theme is included in the cmubuggy repo at /news/wp-content/themes/cmubuggy
