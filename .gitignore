@@ -1,7 +1,7 @@
 *~
 basicbackdoorscriptfinder.php
 bid2011/
-content/cache/
+content/cache/*
 dbconfig.inc
 files/
 forum/
@@ -11,6 +11,7 @@ img/mediaicons/
 img/news/
 lib/pChart/
 lib/pog/setup/
+lib/pog/configuration.php
 mediawiki/
 news/
 
