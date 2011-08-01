@@ -1,8 +1,8 @@
 <ul class="tabs">
 	<li><a id="t1" href="#about">About</a></li>
 	<li><a id="t2" href="#people">People</a></li>
-	<li><a id="t3" href="#finances">Finances</a></li>	
-	<!--<li><a id="t4" href="#getinvolved">Get Involved</a></li>-->
+	<!--<li><a id="t3" href="#finances">Finances</a></li>-->
+	<li><a id="t4" href="#getinvolved">Get Involved</a></li>
 	<li><a id="t4" href="#website">This Website</a></li>
 </ul>
 
