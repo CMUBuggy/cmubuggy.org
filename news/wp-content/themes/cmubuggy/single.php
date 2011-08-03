@@ -18,6 +18,7 @@ get_header(); ?>
 				</ul>
 			</li>
 			<li><a href="#comment">Comment</a></li>
+			<li><a target="_blank"  href="http://feedburner.google.com/fb/a/mailverify?uri=BuggyAlumniAssociationNews&amp;loc=en_US">Subscribe to News by Email</a></li>
 		</ul>
 	</div>
 
