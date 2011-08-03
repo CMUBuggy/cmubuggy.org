@@ -44,8 +44,8 @@
 		</div>
 		<div class="yui3-u-2-5">
 			<h3>Participate</h3>
-			<div class="item"><a href="/seniors"><div class="icon" style="background-image:url('/img/icon_grad-cap.png')"></div></a><a href="/seniors">Seniors!</a> Become a 2012 member now for free.</div> 
-			<div class="item" style="margin-top:30px;"><a href="/reference/"><div class="icon referenceicon">Reference<img src="img/icon_book.png"></div></a>Use some of that post-raceday energy to add to the reference section.</div>  
+			<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon"><img src="img/icon_reddit.png"></div></a>Check out the <a href="http://reddit.com/r/cmubuggy" target="__blank" >experimental new project ideas site</a></div>
+			<div class="item" style="margin-top:10px;"><a href="/reference/How_to_participate_in_buggy"><div class="icon referenceicon">Reference<img src="img/icon_book.png"></div></a>Let's get the <a href="/reference/How_to_participate_in_buggy">How to participate in buggy</a> page finished for the freshman.</div>  
 		</div>
 	</div>
 	<?php include_once("featurepic.inc"); ?>
