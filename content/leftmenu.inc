@@ -6,6 +6,7 @@
 		<li><a href="/gallery">Gallery</a></li>
 		<li><a href="/history">History</a></li>
 		<li><a href="/about">About Us</a></li>
+		<li><a href="http://reddit.com/r/cmubuggy" target="_blank">Projects</a><img style="margin:0 0 2px 2px;" src="/img/icon-new-window.gif"></li>		
 		<li><a href="/reference">Reference</a></li>
 		<li><a href="/membership">Membership</a></li>
 		<!--<li><a href="/store">Merchandise</a></li>-->

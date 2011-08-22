@@ -5,7 +5,6 @@ $newsitems = array();
 $cutoff = time()-(60*60*24*10);
 $cutoffDate = date("Y-m-d",$cutoff);
 $cutoffWiki = date("Ymd",$cutoff)."000000";
-$cutoffVanilla = "'".date("Y-m-d",$cutoff)." 00:00:01'";
 
 ##NEWS ITEMS## 
 $newsSQL     	= "SELECT wp_posts.ID,wp_posts.post_date,wp_users.display_name,wp_posts.post_name,wp_posts.post_title,wp_posts.comment_count 
@@ -41,7 +40,7 @@ if($newsResults){
 		if($count < 3){
 			array_push($newsitems,$a);
 		} else {
-			array_push($items,$a);	
+			//array_push($items,$a);	
 		}		
 		$count++;
 	}
@@ -92,7 +91,7 @@ if($galleryResults){
 		}
 	}
 	foreach($galleryClusterItems as $a){
-		array_push($items,$a);
+		//array_push($items,$a);
 	}
 }
 
@@ -132,7 +131,7 @@ if($forumResults){
 		}
 	}
 	foreach($forumClusterItems as $a){
-		array_push($items,$a);
+		//array_push($items,$a);
 	}
 }
 
@@ -172,7 +171,7 @@ if($gcommentResults){
 		}
 	}
 	foreach($gcommentClusterItems as $a){
-		array_push($items,$a);
+		//array_push($items,$a);
 	}
 }
 
@@ -222,7 +221,7 @@ if($ncommentResults){
 		}
 	}
 	foreach($ncommentClusterItems as $a){
-		array_push($items,$a);
+		//array_push($items,$a);
 	}
 }
 
@@ -269,9 +268,80 @@ if($referenceResults){
 		}
 	}
 	foreach($referenceClusterItems as $a){
-		array_push($items,$a);
+		//array_push($items,$a);
 	}
-}	
+}
+
+##reddit.com/r/cmubuggy ITEMS and COMMENTS##
+$posts = json_decode(file_get_contents("http://www.reddit.com/r/cmubuggy/new.json?sort=new"));
+$postList = $posts->data->children;
+$redditClusterItems = array();
+
+function recurseComments($commentObj){
+	$commentArr = array();
+	
+	if(isset($commentObj->data)){
+		$data = $commentObj->data;
+		if(isset($data->children)){
+			foreach($data->children as $child){
+				if($child->kind == "t1"){
+					array_push($commentArr, $child->data);
+					if(!empty($child->data->replies)){
+						//print_r($child->data->replies);
+						//echo("<br /><br />");			
+						//echo(count(recurseComments($child->data->replies))." - ");	
+						array_merge($commentArr, recurseComments($child->data->replies));
+					}
+				}
+			}
+		}
+	}
+	return $commentArr;
+}
+
+foreach($postList as $post){
+	$pData = $post->data;
+	$href = $pData->url;
+	$line1 = "New project from ".$pData->author;
+	if(strlen($line1)>25){$line1 = substr($line1,0,27)."...";}
+	$line2 = "<a target=\"_blank\" href=\"".$href."\">".substr($pData->title,0,27)."... <img src=\"/img/icon-new-window.gif\"></a>";
+	$a = array(
+		"timestamp"=>$pData->created,
+		"content"=>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon\">Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$line1."<br />".$line2,
+		"type"=>"reddit"
+	);
+	//array_push($items,$a);
+	
+	#get comments for that post if it has any
+	if($pData->num_comments > 0){
+		$commentsObj = json_decode(file_get_contents("http://www.reddit.com/r/cmubuggy/comments/".$pData->id."/new.json"));
+		$commentArr = array();		
+		foreach($commentsObj as $commentObj){
+			$commentArr = array_merge($commentArr, recurseComments($commentsObj));
+		}
+		
+		foreach($commentArr as $cData){
+			$clusterKey = $cData->link_id.date("ymd",$cData->created);
+			if(array_key_exists($clusterKey , $redditClusterItems)){
+				
+				$redditClusterItems[$clusterKey]["count"]++;
+				$redditClusterItems[$clusterKey]["content"] = "<a target=\"_blank\" href=\"".$href."\"><div class=\"icon redditcommenticon\">Projects<img class=\"commenticon\" src=\"/img/icon_comment.png\" /><img src=\"/img/icon_reddit.png\" /></div></a>".$redditClusterItems[$clusterKey]["count"]." new comments on<br />".$line2;
+			} else {
+				$redditClusterItems[$clusterKey] = array(
+																	"timestamp"=>$cData->created,
+																	"count"=>1,
+																	"content"=>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon redditcommenticon\">Projects<img class=\"commenticon\" src=\"/img/icon_comment.png\" /><img src=\"/img/icon_reddit.png\" /></div></a>".$cData->author." commented on<br />".$line2,
+																	"type"=>"redditcomment"
+																);				
+			}	
+		}
+	}
+}
+foreach($redditClusterItems as $a){
+	array_push($items,$a);
+}
+
+
 		
 ?>
 <div id="contentfeed">
@@ -320,57 +390,3 @@ $(function() {
 	$(".scrollable").scrollable({ vertical: true, speed:700, next:".feednext", prev:".feedprev" });	
 });
 </script>
-
-
-<?php
-/*
-##VANILLA FORUM ITEMS ##
-
-$vforumSQL 		= "SELECT GDN_Comment.CommentID, GDN_Comment.DateInserted, GDN_Comment.InsertUserID, GDN_Discussion.Name, GDN_Discussion.DiscussionID, GDN_User.Name
-						FROM GDN_Comment
-						JOIN GDN_User
-						ON GDN_Comment.InsertUserID=GDN_User.UserID
-						JOIN GDN_Discussion
-						ON GDN_Comment.DiscussionID=GDN_Discussion.DiscussionID
-						WHERE DateDeleted IS NULL
-						ORDER BY GDN_Comment.DateInserted DESC
-						LIMIT 0,150";
-						//AND GDN_Comment.DateInserted > $cutoffVanilla
-$forumResults 	= dbQuery("cmubuggy_vanillaforum",$vforumSQL);
-//echo($vforumSQL);
-
-$forumClusterItems = array();
-if($forumResults){		
-	while ($post = mysql_fetch_row($forumResults)) {
-		//date format: YYYY-MM-DD HH:MM:SS
-		$timestamp = $post[1];
-		$year = substr($timestamp, 0, 4);
-	   $month = substr($timestamp, 5, 2);
-	   $day = substr($timestamp, 8, 2);
-	   $hour = substr($timestamp, 11, 2);
-	   $minute = substr($timestamp, 14, 2);
-	   $second = substr($timestamp, 17, 2);
-	  	$timestamp = mktime($hour, $minute, $second, $month, $day, $year);
-		$clusterKey = $post[4].date("md",$timestamp);
-		$threadtitle = htmlspecialchars_decode($post[3]);
-		$href = "/forum/discussion/".$post[4];
-		if(strlen($threadtitle)>29){$threadtitle = substr($threadtitle, 0, 26)."...";}
-		if(array_key_exists($clusterKey, $forumClusterItems)){
-			$forumClusterItems[$clusterKey]["count"]++;
-			$forumClusterItems[$clusterKey]["content"] = "<a href=\"".$href."\"><div class=\"icon forumicon\">Forum<img src=\"/img/icon_forum.png\" /></div></a>".$forumClusterItems[$clusterKey]["count"]." new posts in the thread <br /><a href=\"".$href."\">".$threadtitle."</a>.";
-			$forumClusterItems[$clusterKey]["person"] = "people";
-		} else {
-			$forumClusterItems[$clusterKey] = array(
-																"timestamp"=>$timestamp,
-																"count"=>1,
-																"content" => "<a href=\"".$href."\"><div class=\"icon forumicon\">Forum<img src=\"/img/icon_forum.png\" /></div></a>".$post[5]." posted in<br /><a href=\"".$href."\">".$threadtitle."</a>",
-																"type"=>"forum"
-															);
-		}
-	}
-	foreach($forumClusterItems as $a){
-		array_push($items,$a);
-	}
-}
-*/
-?>

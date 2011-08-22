@@ -387,6 +387,7 @@ img[rel] {cursor: pointer; }
 .newsicon img						{ margin-top: 3px; }
 .newscommenticon img				{ margin-top: 3px; }
 .newscommenticon img.commenticon	{ margin-top:30px; z-index: 2; position: absolute; left:47px; }
+.redditcommenticon img.commenticon	{ margin-top:30px; z-index: 2; position: absolute; left:47px; }
 .forumicon img						{ width:25px; height: 25px; margin-top: 2px;}
 .galleryicon img 					{ margin:30px -47px 0 0}
 .referenceicon 	{ font-size: 9px; }
