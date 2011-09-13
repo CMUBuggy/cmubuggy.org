@@ -10,15 +10,15 @@
 		$s = $_GET["s"];
 	}
 	$title = "CMU Buggy Alumni Association";
-	$headline = "Congrats Fringe and SDC!";
+	$headline = "Welcome, Class of 2015";
 	switch($s){
 		case "about":
 			$title = "About | ".$title;
-			$headline = "About";	
+			$headline = "About";
 			break;
 		case "auction":
 			$title = "Lead Truck Auction | ".$title;
-			$headline = "Lead Truck Auction";	
+			$headline = "Lead Truck Auction";
 			break;
 		case "admin":
 			$title = "Admin | ".$title;

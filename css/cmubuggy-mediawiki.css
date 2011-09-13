@@ -49,6 +49,7 @@ h1, h2, h3, h4, h5, h6 {
 	padding-top: 1em;
 	padding-bottom: .17em;
 	//border-bottom: 1px solid #aaa;
+	clear: left;
 }
 h1 { padding-top:0; }
 .editsection {float: right; font-size: 10px; color: #888;}

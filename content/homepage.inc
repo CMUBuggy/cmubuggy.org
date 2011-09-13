@@ -1,51 +1,13 @@
 <div id="homepage">
 	<?php include_once("contentfeed.inc");?> 	 
 	<div class="yui3-g" style="width:500px; height:145px;">
-		<div class="yui3-u-3-5">
-			<table class="datacompact" style="margin-top:0px;">
-				<tr>
-					<th colspan="2"><h3 style="margin:0;"><a href="/raceday/leaderboard">2011 Results</a></h3></th>
-					<th colspan="1" style="text-align:right; font-size:1em;"><b>Men's</b></th>
-					<th colspan="2" style="text-align:right; font-size:1em;"><b>Women's</b></th>
-				</tr>
-				<tr>
-					<td><b>1<sup>st</sup></b></td>
-					<td>Fringe A</td>
-					<td>2:05.082</td>
-					<td class="newcol">SDC A</td>
-					<td>2:34.963</td>	
-				</tr>
-				<tr>
-					<td><b>2<sup>nd</sup></b></td>
-					<td>SDC A</td>
-					<td>2:06.189</td>
-					<td class="newcol">Fringe A</td>
-					<td>2:35.075</td>	
-				</tr>
-				<tr>
-					<td><b>3<sup>rd</sup></b></td>
-					<td>SDC B</td>
-					<td>2:09.671</td>
-					<td class="newcol">PiKA A</td>
-					<td>2:41.124</td>	
-				</tr>
-				<tr>
-					<td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> <a href="/history/buggy/ascension">Ascension</a>, 2<sup>nd</sup> <a href="/history/buggy/bonsai">Bonsai</a>, 3<sup>rd</sup> <a href="/history/buggy/borealis">Borealis</a></td>
-				</tr>
-				<tr>
-					<td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> <a href="/history/buggy/zuke">Zuke</a></td>
-					<td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Spirit of Buggy:</span> CIA</td>			
-				</tr>
-				<tr>
-					<td colspan="3" style="font-size:11px;"><span style="font-size:11px;">Chairman's Choice</span>: KapSig </td>
-					<td colspan="2" style="font-size:11px;"><span style="font-size:11px;">TShirt</span>: <a href="/gallery/Shirts/DSC_9369">Fringe</a></td>	
-				</tr>	
-			</table>
-		</div>
 		<div class="yui3-u-2-5">
+			<?php include_once("freerollstatus.inc"); ?>			
+		</div>
+		<div class="yui3-u-3-5">
 			<h3>Participate</h3>
-			<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon"><img src="img/icon_reddit.png"></div></a>Check out the <a href="http://reddit.com/r/cmubuggy" target="__blank" >experimental new project ideas site</a></div>
-			<div class="item" style="margin-top:10px;"><a href="/reference/How_to_participate_in_buggy"><div class="icon referenceicon">Reference<img src="img/icon_book.png"></div></a>Let's get the <a href="/reference/How_to_participate_in_buggy">How to participate in buggy</a> page finished for the freshman.</div>  
+			<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon"><img src="img/icon_reddit.png"></div></a>What do you think we should be working on? <a href="http://reddit.com/r/cmubuggy" target="__blank" >Propose, vote on, and discuss projects in the new "BAA project zone"</a></div>
+			<div class="item" style="clear:left;"><a href="/about#getinvolved"><div class="icon" style="background:url('/img/icon_unclesam.jpg');"></div>We need You!</a> Volunteer to write a rolls report, curate the reference section, nominate yourself for the committee. Do it now! (especially you recent grads)</div>  
 		</div>
 	</div>
 	<?php include_once("featurepic.inc"); ?>
@@ -62,8 +24,7 @@
 <?php
 /////unused pieces//////
 
-//Freeroll status
-//include_once("freerollstatus.inc");
+
 
 //participate inducements
 //Also, our new <a href="/reference">Reference wiki</a> needs content; take a moment and add something you know about buggy.
@@ -166,5 +127,49 @@
 			<b>Summary Auction Stats</b><br />
 			Number of bids: <?php echo($bidcount); ?><br />
 			Highest bid: $<?php echo($highbid); ?><br />
+*/
+
+//Compact Raceday Results
+/*
+			<table class="datacompact" style="margin-top:0px;">
+				<tr>
+					<th colspan="2"><h3 style="margin:0;"><a href="/raceday/leaderboard">2011 Results</a></h3></th>
+					<th colspan="1" style="text-align:right; font-size:1em;"><b>Men's</b></th>
+					<th colspan="2" style="text-align:right; font-size:1em;"><b>Women's</b></th>
+				</tr>
+				<tr>
+					<td><b>1<sup>st</sup></b></td>
+					<td>Fringe A</td>
+					<td>2:05.082</td>
+					<td class="newcol">SDC A</td>
+					<td>2:34.963</td>	
+				</tr>
+				<tr>
+					<td><b>2<sup>nd</sup></b></td>
+					<td>SDC A</td>
+					<td>2:06.189</td>
+					<td class="newcol">Fringe A</td>
+					<td>2:35.075</td>	
+				</tr>
+				<tr>
+					<td><b>3<sup>rd</sup></b></td>
+					<td>SDC B</td>
+					<td>2:09.671</td>
+					<td class="newcol">PiKA A</td>
+					<td>2:41.124</td>	
+				</tr>
+				<tr>
+					<td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> <a href="/history/buggy/ascension">Ascension</a>, 2<sup>nd</sup> <a href="/history/buggy/bonsai">Bonsai</a>, 3<sup>rd</sup> <a href="/history/buggy/borealis">Borealis</a></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> <a href="/history/buggy/zuke">Zuke</a></td>
+					<td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Spirit of Buggy:</span> CIA</td>			
+				</tr>
+				<tr>
+					<td colspan="3" style="font-size:11px;"><span style="font-size:11px;">Chairman's Choice</span>: KapSig </td>
+					<td colspan="2" style="font-size:11px;"><span style="font-size:11px;">TShirt</span>: <a href="/gallery/Shirts/DSC_9369">Fringe</a></td>	
+				</tr>	
+			</table>
+
 */
 ?>

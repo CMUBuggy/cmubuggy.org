@@ -54,10 +54,11 @@
 		<br />
 		Some areas are always in need of help:
 		<ul>
-			<li><a href="http://github.com/swiftsam/cmubuggy.org"><b>Web Development</b></a> - Document bugs, contribute code, invent entirely new functions.  You can do all the above through our github site.</li>
+			<li><a href="http://github.com/swiftsam/cmubuggy.org"><b>Web Development</b></a> - Document bugs, contribute code, invent entirely new functions.  You can do all the above through our github site.  It's also very helpful if you report any problems you find with the site through the github issues section.</li>
 			<li><a href="/news"><b>News</b></a> - We try to be the best source for all buggy news.  This means writing a "Rolls Report" each weekend of rolls as well as covering anything else that happens.  Want to write about buggy?  We'd be happy to have you on the News team.</li>
 			<li><a href="/gallery"><b>Pictures</b></a> - Current pictures of freerolls and raceday keep the site current, and old pictures give the site historical depth.  We want both.  Scanning and uploading are time consuming but very much appreciated.</li>
 			<li><a href="/reference"><b>Reference</b></a> - the reference wiki could cover 10 times as many topics as it does currently.  Find a gap in the knowledge and fill it.  New teams and new fans will thank you.	
+			<li><a href="http://reddit.com/r/cmubuggy"><b>Project Zone</b></a> - Check out our "Project Zone" to suggest a new project, vote on, or discuss existing ideas.  This section of the site makes use of the popular site reddit.  Let us know what you think.
 		</ul>
 	</div>
 	<div class="pane">
