@@ -328,7 +328,7 @@ img[rel] {cursor: pointer; }
 	text-align: center;	
 }
 
-#homepage h3 {font-weight: bold; font-size: 1.1em; margin-bottom: 15px;}
+#homepage h3 {font-weight: bold; font-size: 1.1em; margin-bottom: 5px;}
 #homepage .pane {overflow: visible; }
 
 /*  ___Homepage Rotating FeaturePic___   */
@@ -367,31 +367,46 @@ img[rel] {cursor: pointer; }
 	margin:225px 0 0 0;	
 }
 
-
-/*  ___Homepage Scrollable Content Feed___   */
-#contentfeed 		 		{ float:right; margin-left: 5px; width:255px;}
-#contentfeed #actions 	{ padding:10px 0 0 0; }
-#recentnews 				{ margin:0 0 13px 0; }
-#recentactivity 			{ height:590px; position:relative; overflow:hidden; }
-#recentactivity .items 	{ position:absolute; margin: 0px; height:20000em; }
-#actions a					{ cursor: pointer; }
-.next, .feednext 			{ float:right;}
-
-
-#contentfeed .item 		{ height: 49px; width:247px; padding: 3px; margin:4px;}
-#contentfeed .detail 	{ font-size: .9em; color: #777; text-align: right;}
-.icon		{ width:45px; height: 45px; background-color: #eee; color:#888; float:left; border:2px solid #ccc;
+/*  ___Homepage Content Items___   */
+.item 						{ height: 49px; padding: 3px; margin:4px 4px 4px 0;}
+.icon							{ width:45px; height: 45px; background-color: #eee; color:#888; float:left; border:2px solid #ccc;
 								  margin-right:8px; font-size: 2em; text-align: center; -moz-border-radius: 5px;
 								  border-radius: 5px; font-size: 10px; }
-.newsicon			{ background:#f6ab1e; }
-.newsicon img						{ margin-top: 3px; }
-.newscommenticon img				{ margin-top: 3px; }
+.newsicon					{ background:#f6ab1e; }
+.newsicon img				{ margin-top: 3px; }
+.newscommenticon img		{ margin-top: 3px; }
 .newscommenticon img.commenticon	{ margin-top:30px; z-index: 2; position: absolute; left:47px; }
-.forumicon img						{ width:25px; height: 25px; margin-top: 2px;}
-.galleryicon img 					{ margin:30px -47px 0 0}
-.referenceicon 	{ font-size: 9px; }
-.referenceicon img				{ width:30px; height: 30px; }
-.galleryicon 						{ border:0; width:49px; height:49px; -moz-background-size:100% 100%; background-size:100% 100%;}
+.forumicon img				{ width:25px; height: 25px; margin-top: 2px;}
+.galleryicon img 			{ margin:30px -47px 0 0}
+.referenceicon 			{ font-size: 9px; }
+.referenceicon img		{ width:30px; height: 30px; }
+.galleryicon 				{ border:0; width:49px; height:49px; -moz-background-size:100% 100%; background-size:100% 100%;}
+.dateicon .dayofweek		{ text-transform:uppercase; font-weight:bold; font-size:13px;}
+.dateicon .day				{ font-size:14px; font-weight:bold;}
+.detail 						{ font-size: .9em; color: #777; text-align: right;}
+.status_neg					{ color:#ff3300;}
+.status_pos					{ color:#339900;}
+.status_disabled			{ font-style:italic; color:#888;}
+.actions a					{ cursor: pointer; }
+
+
+
+/*  ___Homepage Scrollable Content Feed___   */
+#contentfeed 		 		{ float:right; margin: 0 0 0 5px; width:255px;}
+#contentfeed .item		{ width:247px; }
+#recentnews 				{ margin:0 0 13px 0; }
+#recentactivityh3			{ margin-top: 23px; }
+#recentactivity 			{ height:472px; position:relative; overflow:hidden; }
+#recentactivity .items 	{ position:absolute; margin: 0px; height:20000em; }
+
+#contentfeed .actions 	{ padding:10px 0 0 0; }
+#contentfeed .feednext	{ float:right;}
+
+/*  ___Freeroll Status Scrollable Content___   */
+#rollslist					{ height:114px; position:relative; overflow:hidden; }
+#rollslist .group			{ height:114px; }
+#rollslist .items			{ position:absolute; margin: 0px; height:20000em; width:190px;}
+#rollschedule .feednext { padding-left:40px; }
 
 
 

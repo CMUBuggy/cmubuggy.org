@@ -286,7 +286,7 @@ if($referenceResults){
 	</div>
 	<h3 id="recentactivityh3">Recent Activity</h3>
 
-	<div id="recentactivity" class="scrollable vertical">
+	<div id="recentactivity">
 		<div class="items">
 				<?php
 				##OVERALL DISPLAY##
@@ -295,7 +295,7 @@ if($referenceResults){
 				$itemcount = 0;
 				echo("<div>");
 				foreach($items as $item){
-					if($itemcount<10){
+					if($itemcount<8){
 						echo("<div class=\"item\">".$item['content']."<div class=\"detail\">".timeago($item['timestamp'])."</div></div>");
 						$itemcount++;
 					} else {
@@ -308,7 +308,7 @@ if($referenceResults){
 				?>
 		</div>
 	</div>
-		<div id="actions"> 
+	<div class="actions"> 
 		<a class="feedprev">&laquo; Back</a> 
 		<a class="feednext">More &raquo;</a> 
 	</div> 
@@ -317,7 +317,7 @@ if($referenceResults){
 
 <script type="text/javascript">
 $(function() {		
-	$(".scrollable").scrollable({ vertical: true, speed:700, next:".feednext", prev:".feedprev" });	
+	$("#recentactivity").scrollable({ vertical: true, speed:700, next:".feednext", prev:".feedprev" });	
 });
 </script>
 
