@@ -199,8 +199,8 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 	foreach($entrytypes as $et){
 		$filename.=$et;
 	}
-	if(file_exists("/content/cache/".$filename)){
-		echo("<img src=\"/content/cache/".$filename.".png\" alt=\"\">");
+	if(file_exists("/content/cache/graph/".$filename)){
+		echo("<img src=\"/content/cache/graph/".$filename.".png\" alt=\"\">");
 	} else {
 		for($year=$firstyear;$year<=$lastyear;$year++){
 			$chartData->addPoints($year,"Year"); 

@@ -6,8 +6,8 @@
 		</div>
 		<div class="yui3-u-3-5">
 			<h3>Participate</h3>
-			<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon"><img src="img/icon_reddit.png"></div></a>What do you think we should be working on? <a href="http://reddit.com/r/cmubuggy" target="__blank" >Propose, vote on, and discuss projects in the new "BAA project zone"</a></div>
-			<div class="item" style="clear:left;"><a href="/about#getinvolved"><div class="icon" style="background:url('/img/icon_unclesam.jpg');"></div>We need You!</a> Volunteer to write a rolls report, curate the reference section, nominate yourself for the committee. Do it now! (especially you recent grads)</div>  
+			<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon">Projects<img src="img/icon_reddit.png"></div></a>What do you think we should be working on? <a href="http://reddit.com/r/cmubuggy" target="__blank" >Propose, vote on, and discuss projects in the new "BAA project zone"</a></div>
+			<div class="item" style="clear:left;"><a href="/about#getinvolved"><div class="icon" style="background:url('/img/icon_unclesam.jpg');"></div>We need You!</a> Volunteer to write a rolls report, curate the reference section, nominate yourself for the committee. Do it now! (especially you recent grads)</div>
 		</div>
 	</div>
 	<?php include_once("featurepic.inc"); ?>

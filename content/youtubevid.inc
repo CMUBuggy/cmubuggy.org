@@ -3,12 +3,12 @@ if($video){
 	$id=$video->youtubeID;
 	
 	//Check for cached youtube thumb, if found use, if not found get and save
-	if(file_exists("content/cache/vidthumb-".$id.".jpg")){
-		$thumbsrc = "/content/cache/vidthumb-".$id.".jpg";
+	if(file_exists("content/cache/youtube/vidthumb-".$id.".jpg")){
+		$thumbsrc = "/content/cache/youtube/vidthumb-".$id.".jpg";
 	} else {
 		$thumbsrc = "http://i4.ytimg.com/vi/".$id."/default.jpg";
 		$thumb = file_get_contents("http://i4.ytimg.com/vi/".$id."/default.jpg");
-		file_put_contents("content/cache/vidthumb-".$id.".jpg", $thumb);
+		file_put_contents("content/cache/youtube/vidthumb-".$id.".jpg", $thumb);
 	}
 	
 	if(!isset($vidmode)){ $vidmode = "popup"; }

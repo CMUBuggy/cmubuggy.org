@@ -389,8 +389,6 @@ img[rel] {cursor: pointer; }
 .status_disabled			{ font-style:italic; color:#888;}
 .actions a					{ cursor: pointer; }
 
-
-
 /*  ___Homepage Scrollable Content Feed___   */
 #contentfeed 		 		{ float:right; margin: 0 0 0 5px; width:255px;}
 #contentfeed .item		{ width:247px; }
@@ -407,6 +405,7 @@ img[rel] {cursor: pointer; }
 #rollslist .group			{ height:114px; }
 #rollslist .items			{ position:absolute; margin: 0px; height:20000em; width:190px;}
 #rollschedule .feednext { padding-left:40px; }
+
 
 
 
