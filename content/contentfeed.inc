@@ -273,31 +273,18 @@ if($referenceResults){
 }
 
 ##reddit.com/r/cmubuggy ITEMS and COMMENTS##
-$posts = json_decode(file_get_contents("http://www.reddit.com/r/cmubuggy/new.json?sort=new"));
+
+#cache /r/cmubuggy json file for 5 minutes
+if(file_exists("content/cache/reddit/reddit.json") && time()-filemtime("content/cache/reddit/reddit.json") < 300){
+	$posts = file_get_contents("content/cache/reddit/reddit.json");
+} else {
+	$posts = file_get_contents("http://www.reddit.com/r/cmubuggy/new.json?sort=new");
+	file_put_contents("content/cache/reddit/reddit.json",$posts);
+}
+$posts = json_decode($posts);
 $postList = $posts->data->children;
 $redditClusterItems = array();
 
-function recurseComments($commentObj){
-	$commentArr = array();
-	
-	if(isset($commentObj->data)){
-		$data = $commentObj->data;
-		if(isset($data->children)){
-			foreach($data->children as $child){
-				if($child->kind == "t1"){
-					array_push($commentArr, $child->data);
-					if(!empty($child->data->replies)){
-						//print_r($child->data->replies);
-						//echo("<br /><br />");			
-						//echo(count(recurseComments($child->data->replies))." - ");	
-						array_merge($commentArr, recurseComments($child->data->replies));
-					}
-				}
-			}
-		}
-	}
-	return $commentArr;
-}
 
 foreach($postList as $post){
 	$pData = $post->data;
@@ -310,11 +297,31 @@ foreach($postList as $post){
 		"content"=>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon\">Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$line1."<br />".$line2,
 		"type"=>"reddit"
 	);
-	//array_push($items,$a);
+	array_push($items,$a);
 	
 	#get comments for that post if it has any
 	if($pData->num_comments > 0){
-		$commentsObj = json_decode(file_get_contents("http://www.reddit.com/r/cmubuggy/comments/".$pData->id."/new.json"));
+		$count = $pData->num_comments;
+		$count_current = array(time()=>$count);
+		$count_prev = 0;
+		
+		$filename = "content/cache/reddit/".$pData->id;
+		if(file_exists($filename)){
+			$comment_hist = unserialize(file_get_contents($filename));
+			sort($comment_hist);
+			$count_prev = end($comment_hist);
+			if($count > $count_prev){
+				$comment_hist = array_merge($comment_hist,$count_current);
+				file_put_contents($filename, $comment_hist);
+			}
+		} else {
+			$comment_hist = $count_current;
+			file_put_contents($filename, $comment_hist);
+		}
+		
+		/*
+		
+		$commentsObj = json_decode($posts);
 		$commentArr = array();		
 		foreach($commentsObj as $commentObj){
 			$commentArr = array_merge($commentArr, recurseComments($commentsObj));
@@ -335,6 +342,7 @@ foreach($postList as $post){
 																);				
 			}	
 		}
+		*/
 	}
 }
 foreach($redditClusterItems as $a){
