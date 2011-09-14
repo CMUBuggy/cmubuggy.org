@@ -288,12 +288,14 @@ $redditClusterItems = array();
 
 foreach($postList as $post){
 	$pData = $post->data;
-	$href = $pData->url;
+	$href = utf8_decode($pData->url);
 	$line1 = "New project from ".$pData->author;
 	if(strlen($line1)>25){$line1 = substr($line1,0,27)."...";}
-	$line2 = "<a target=\"_blank\" href=\"".$href."\">".substr($pData->title,0,27)."... <img src=\"/img/icon-new-window.gif\"></a>";
+	$line2 = "<a target=\"_blank\" href=\"".$href."\">".utf8_decode(substr($pData->title,0,27))."... <img src=\"/img/icon-new-window.gif\"></a>";
+  	#TODO: Generalize this so that it doesn't screw up when daylight savings starts	
+	$created = $pData->created - 6*60*60;
 	$a = array(
-		"timestamp"=>$pData->created,
+		"timestamp"=>$created,
 		"content"=>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon\">Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$line1."<br />".$line2,
 		"type"=>"reddit"
 	);
