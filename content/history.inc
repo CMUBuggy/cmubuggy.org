@@ -28,8 +28,8 @@
 </div>
 <?php
 $cachefile = str_replace("/","_",$_SERVER['REQUEST_URI'].".inc");
-if(file_exists("content/cache/".$cachefile)){
-	include_once("content/cache/".$cachefile);
+if(file_exists("content/cache/history/".$cachefile)){
+	include_once("content/cache/history/".$cachefile);
 } else {
 	$page = "intro";
 	if(isset($_GET['p'])){
@@ -37,7 +37,7 @@ if(file_exists("content/cache/".$cachefile)){
   	}
 	ob_start();
   	include_once("content/history/".$page.".inc");
- 	file_put_contents("content/cache/".$cachefile,ob_get_contents());
+ 	file_put_contents("content/cache/history/".$cachefile,ob_get_contents());
  	ob_end_flush();
 }
 ?>
