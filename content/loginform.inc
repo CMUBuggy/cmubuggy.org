@@ -1,7 +1,7 @@
 <div id="login">
 <?php
-$file = file_get_contents("/var/www/cmubuggy.org/content/cache/userstats.json","r");
-$userstats = json_decode($file);
+//$file = file_get_contents("/var/www/cmubuggy.org/content/cache/userstats.json","r");
+//$userstats = json_decode($file);
 
 if (isset($_COOKIE["cmubuggy_auth"])){
 	$uservars = getuservars($_COOKIE["cmubuggy_auth"]);
