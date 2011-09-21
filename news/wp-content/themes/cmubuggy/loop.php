@@ -47,6 +47,14 @@
 		<?php endif; ?>
 
 		<footer class="entry-meta">
+			<div class="sociallinks">
+				<table>
+					<tr>
+						<td><?php echo do_shortcode('[fb_count]'); ?></td>
+						<td><?php echo do_shortcode('[google1]'); ?></td>
+					</tr>								
+				</table>
+			</div>		
 			<span class="cat-links"><span class="entry-utility-prep entry-utility-prep-cat-links"><?php _e( 'Posted in ', 'toolbox' ); ?></span><?php the_category( ', ' ); ?></span>
 			<span class="sep"> | </span>
 			<?php the_tags( '<span class="tag-links">' . __( 'Tagged ', 'toolbox' ) . '</span>', ', ', '<span class="sep"> | </span>' ); ?>

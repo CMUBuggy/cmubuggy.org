@@ -33,8 +33,15 @@ get_header(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<header class="entry-header">
 						<h1 class="entry-title"><?php the_title(); ?></h1>
-
 						<div class="entry-meta">
+							<div class="sociallinks">
+								<table>
+									<tr>
+										<td><?php echo do_shortcode('[fb_count]'); ?></td>
+										<td><?php echo do_shortcode('[google1]'); ?></td>
+									</tr>								
+								</table>
+							</div>
 							<?php
 								printf( __( '<span class="meta-prep meta-prep-author">Posted on </span><a href="%1$s" rel="bookmark"><time class="entry-date" datetime="%2$s" pubdate>%3$s</time></a> <span class="meta-sep"> by </span> <span class="author vcard"><a class="url fn n" href="%4$s" title="%5$s">%6$s</a></span>', 'themename' ),
 									get_permalink(),
@@ -54,6 +61,14 @@ get_header(); ?>
 					</div><!-- .entry-content -->
 
 					<footer class="entry-meta">
+						<div class="sociallinks">
+							<table>
+								<tr>
+									<td><?php echo do_shortcode('[fb_count]'); ?></td>
+									<td><?php echo do_shortcode('[google1]'); ?></td>
+								</tr>								
+							</table>
+						</div>
 						<?php
 							$tag_list = get_the_tag_list( '', ', ' );
 							if ( '' != $tag_list ) {
@@ -65,7 +80,7 @@ get_header(); ?>
 								$utility_text,
 								get_the_category_list( ', ' ),
 								$tag_list,
-								get_permalink(),
+								//get_permalink(),
 								the_title_attribute( 'echo=0' )
 							);
 						?>

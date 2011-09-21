@@ -1,5 +1,7 @@
 nav, header, footer, article {display: block; }
 
+footer {clear:both; }
+
 #nav-above .section-heading {display: none; }
 .screen-reader-text {display: none; }
 .nav-prev {float:left;}
@@ -26,6 +28,10 @@ img.aligncenter {
 
 
 .entry-title {font-size: 2em; }
+
+.sociallinks {float: right; margin: -2px -35px 0 0;}
+.sociallinks #plusone {margin: 4px 0 0 0; }
+
 article.post {
 	background-color: #f8f8f8;
 	border:1px solid #ccc;
