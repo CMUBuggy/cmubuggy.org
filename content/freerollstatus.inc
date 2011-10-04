@@ -27,7 +27,7 @@
 					if($galleryURL != ""){ $galleryURL = "<a style=\"float:right\" href=\"/gallery/".$galleryURL."\"><img alt=\"Gallery\" height=\"22px\" src=\"/img/icon_camera.gif\" /></a>"; }
 					$links = "<div style=\"float:right; height:22px;\">".$newsURL.$galleryURL."</div>";
 					
-					if($display_group == NULL && strtotime($freeroll->date) > time()){
+					if($display_group == NULL && strtotime($freeroll->date) > time()-48*60*60){
 						$display_group = $group_count;	
 					}
 					
