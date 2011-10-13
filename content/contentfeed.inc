@@ -272,7 +272,7 @@ if($referenceResults){
 	}
 }
 
-##reddit.com/r/cmubuggy ITEMS and COMMENTS##
+##reddit.com/r/cmubuggy ITEMS##
 
 #cache /r/cmubuggy json file for 5 minutes
 if(file_exists("content/cache/reddit/reddit.json") && time()-filemtime("content/cache/reddit/reddit.json") < 300){
@@ -283,17 +283,18 @@ if(file_exists("content/cache/reddit/reddit.json") && time()-filemtime("content/
 }
 $posts = json_decode($posts);
 $postList = $posts->data->children;
-$redditClusterItems = array();
-
 
 foreach($postList as $post){
 	$pData = $post->data;
 	$href = utf8_decode($pData->url);
-	$line1 = "New project from ".$pData->author;
+	$author = $pData->author;
+	if(strlen($author)>12){
+		$author = substr($author, 0, 12)."...";
+	}
+	$line1 = "New project from ".$author;
 	if(strlen($line1)>25){$line1 = substr($line1,0,27)."...";}
 	$line2 = "<a target=\"_blank\" href=\"".$href."\">".utf8_decode(substr($pData->title,0,27))."... <img src=\"/img/icon-new-window.gif\"></a>";
-  	#TODO: Generalize this so that it doesn't screw up when daylight savings starts	
-	$created = $pData->created - 6*60*60;
+	$created = $pData->created - 6*60*60;  #TODO: Generalize this so that it doesn't screw up when daylight savings starts
 	$a = array(
 		"timestamp"=>$created,
 		"content"=>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon\">Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$line1."<br />".$line2,
@@ -302,6 +303,49 @@ foreach($postList as $post){
 	array_push($items,$a);
 
 }
+
+
+##reddit.com/r/cmubuggy COMMENTS #
+
+#cache /r/cmubuggy/comments.json for 5 minutes
+if(file_exists("content/cache/reddit/reddit.comments.json") && time()-filemtime("content/cache/reddit/reddit.comments.json") < 300){
+	$comments = file_get_contents("content/cache/reddit/reddit.comments.json");
+} else {
+	$comments = file_get_contents("http://www.reddit.com/r/cmubuggy/comments.json");
+	file_put_contents("content/cache/reddit/reddit.comments.json",$comments);
+}
+
+$comments = json_decode($comments);
+$commentList = $comments->data->children;
+$rcommentClusterItems = array();
+foreach($commentList as $comment){
+	$cData = $comment->data;
+	$parentid = substr($cData->link_id, 3);
+	$clusterKey = $parentid.date("md",$cData->created);
+	$author = $cData->author;
+	if(strlen($author)>12){ $author = substr($author, 0, 12)."...";	}
+	$href = "http://reddit.com/r/cmubuggy/comments/".$parentid;
+	$title = utf8_decode(substr($cData->link_title,0,27));
+	$created = $cData->created - 6*60*60;  #TODO: Generalize this so that it doesn't screw up when daylight savings starts
+	$line1 = $author." commented on";
+	$line2 = "<a target=\"_blank\" href=\"".$href."\">".$title."... <img src=\"/img/icon-new-window.gif\"></a>";
+	
+	if(array_key_exists($clusterKey, $rcommentClusterItems)){
+		$rcommentClusterItems[$clusterKey]["count"]++;
+		$rcommentClusterItems[$clusterKey]["content"] = "<a href=\"".$href."\"><div class=\"icon\">Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$rcommentClusterItems[$clusterKey]["count"]." new comments on <br /><a href=\"".$href."\">".$title."</a>";
+	} else {
+		$rcommentClusterItems[$clusterKey] = array(
+															"timestamp"=>$created,															
+															"count"=>1,
+															"content" =>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon\">Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$line1." ".$line2,
+															"type"=>"rcomment"
+														);
+	}
+}
+foreach($rcommentClusterItems as $a){
+	array_push($items,$a);
+}
+
 		
 ?>
 <div id="contentfeed">
