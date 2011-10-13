@@ -274,13 +274,17 @@ if($referenceResults){
 
 ##reddit.com/r/cmubuggy ITEMS##
 
-#cache /r/cmubuggy json file for 5 minutes
-if(file_exists("content/cache/reddit/reddit.json") && time()-filemtime("content/cache/reddit/reddit.json") < 300){
+#This should never need to actually run.  The script in /scripts/update_reddit_cache.php should refresh the files every 5 minutes via a cron job.
+#These calls are slow and if they're being done at page load, check the cron job and make sure it's set up.
+#cache /r/cmubuggy json file for 15 minutes
+if(file_exists("content/cache/reddit/reddit.json") && time()-filemtime("content/cache/reddit/reddit.json") < 900){
 	$posts = file_get_contents("content/cache/reddit/reddit.json");
 } else {
 	$posts = file_get_contents("http://www.reddit.com/r/cmubuggy/new.json?sort=new");
 	file_put_contents("content/cache/reddit/reddit.json",$posts);
 }
+#end should-be-run-via-cron section
+
 $posts = json_decode($posts);
 $postList = $posts->data->children;
 
@@ -307,13 +311,16 @@ foreach($postList as $post){
 
 ##reddit.com/r/cmubuggy COMMENTS #
 
-#cache /r/cmubuggy/comments.json for 5 minutes
-if(file_exists("content/cache/reddit/reddit.comments.json") && time()-filemtime("content/cache/reddit/reddit.comments.json") < 300){
+#This should never need to actually run.  The script in /scripts/update_reddit_cache.php should refresh the files every 5 minutes via a cron job.
+#These calls are slow and if they're being done at page load, check the cron job and make sure it's set up.
+#cache /r/cmubuggy/comments.json for 15 minutes
+if(file_exists("content/cache/reddit/reddit.comments.json") && time()-filemtime("content/cache/reddit/reddit.comments.json") < 900){
 	$comments = file_get_contents("content/cache/reddit/reddit.comments.json");
 } else {
 	$comments = file_get_contents("http://www.reddit.com/r/cmubuggy/comments.json");
 	file_put_contents("content/cache/reddit/reddit.comments.json",$comments);
 }
+#end should-be-run-via-cron section
 
 $comments = json_decode($comments);
 $commentList = $comments->data->children;
