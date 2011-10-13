@@ -296,8 +296,8 @@ foreach($postList as $post){
 		$author = substr($author, 0, 12)."...";
 	}
 	$line1 = "New project from ".$author;
-	if(strlen($line1)>25){$line1 = substr($line1,0,27)."...";}
-	$line2 = "<a target=\"_blank\" href=\"".$href."\">".utf8_decode(substr($pData->title,0,27))."... <img src=\"/img/icon-new-window.gif\"></a>";
+	if(strlen($line1)>25){$line1 = substr($line1,0,24)."...";}
+	$line2 = "<a target=\"_blank\" href=\"".$href."\">".utf8_decode(substr($pData->title,0,24))."... <img src=\"/img/icon-new-window.gif\"></a>";
 	$created = $pData->created - 6*60*60;  #TODO: Generalize this so that it doesn't screw up when daylight savings starts
 	$a = array(
 		"timestamp"=>$created,
@@ -332,7 +332,7 @@ foreach($commentList as $comment){
 	$author = $cData->author;
 	if(strlen($author)>12){ $author = substr($author, 0, 12)."...";	}
 	$href = "http://reddit.com/r/cmubuggy/comments/".$parentid;
-	$title = utf8_decode(substr($cData->link_title,0,27));
+	$title = utf8_decode(substr($cData->link_title,0,24));
 	$created = $cData->created - 6*60*60;  #TODO: Generalize this so that it doesn't screw up when daylight savings starts
 	$line1 = $author." commented on";
 	$line2 = "<a target=\"_blank\" href=\"".$href."\">".$title."... <img src=\"/img/icon-new-window.gif\"></a>";
