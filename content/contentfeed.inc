@@ -339,12 +339,12 @@ foreach($commentList as $comment){
 	
 	if(array_key_exists($clusterKey, $rcommentClusterItems)){
 		$rcommentClusterItems[$clusterKey]["count"]++;
-		$rcommentClusterItems[$clusterKey]["content"] = "<a href=\"".$href."\"><div class=\"icon\">Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$rcommentClusterItems[$clusterKey]["count"]." new comments on <br /><a href=\"".$href."\">".$title."</a>";
+		$rcommentClusterItems[$clusterKey]["content"] = "<a href=\"".$href."\"><div class=\"icon redditicon\"><img class=\"commenticon\" src=\"/img/icon_comment.png\" />Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$rcommentClusterItems[$clusterKey]["count"]." new comments on <br /><a href=\"".$href."\">".$title."</a>";
 	} else {
 		$rcommentClusterItems[$clusterKey] = array(
 															"timestamp"=>$created,															
 															"count"=>1,
-															"content" =>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon\">Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$line1." ".$line2,
+															"content" =>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon redditicon\"><img class=\"commenticon\" src=\"/img/icon_comment.png\" />Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$line1." ".$line2,
 															"type"=>"rcomment"
 														);
 	}
