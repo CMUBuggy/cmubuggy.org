@@ -163,7 +163,7 @@ fieldset label{
 
 
 .data td 				{ border-bottom:1px solid #999; padding:2px 9px; text-align:left;}
-.data th 				{ border-bottom:3px solid #ccc; padding:2px 9px; text-align:left; }
+.data th 				{ border-bottom:3px solid #ccc; padding:2px 9px; text-align:left; font-weight: bold;}
 td.newcol, th.newcol { border-left:1px solid #999; }
 
 .datacompact td 				{ border-bottom:1px solid #999; padding:2px 6px; text-align:left;}
@@ -251,12 +251,12 @@ div.pane {
 .pane .title,
 .pane h3 {
 	font-size:1.6em;
-	margin: 5px 0 10px 0;
+	margin: 10px 0 10px 0;
 }
 .pane h4 {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin: 0 0 5px 0;	
+	margin: 5px 0 5px 0;	
 }
 
 

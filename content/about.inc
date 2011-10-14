@@ -1,9 +1,10 @@
 <ul class="tabs">
-	<li><a id="t1" href="#about">About</a></li>
-	<li><a id="t2" href="#people">People</a></li>
+	<li><a id="t1" href="#basics">The Basics</a></li>
+	<li><a id="t2" href="#accomplishments">Accomplishments</a></li>
+	<li><a id="t3" href="#people">People</a></li>
 	<!--<li><a id="t3" href="#finances">Finances</a></li>-->
 	<li><a id="t4" href="#getinvolved">Get Involved</a></li>
-	<li><a id="t4" href="#website">This Website</a></li>
+	<li><a id="t5" href="#website">This Website</a></li>
 </ul>
 
 <div class="panes">
@@ -21,7 +22,70 @@
 		</ol>
 		<h3>What are we?</h3>
 		We are an Alumni Interest Group from Carnegie Mellon University.  That means we are non-profit, officially recognized by Carnegie Mellon, and generally based in Pittsburgh.  We are open to anyone who is interested in buggy; you need not be a "Buggy Alumni" to get involved.  We work with plenty of current CMU students and other buggy fans.   
-	</div>		
+	</div>
+	<div class="pane">
+		Having a club is all well and good, but what have we done?<br />
+		<br />
+		<h4>This website</h4>
+		You're here, so no need to spend much time describing this one, but we're pretty proud of it and hope you like it.  It is central to our mission(s) though, that current buggy folks, alumni, and fans can gather to follow, discuss, and support the sport online.<br />
+		<br />
+		The website itself is cool, but the content it has allowed us to gather is a bigger part of what this group has been able to accomplish.  Our history section is the most complete record of race results and participants that exists.  Our gallery is goes way back.  Our reference section is ... off to a good start. All of the above is thanks to the many contributions from members. 
+		<h4>Publications</h4>
+		Our schedule of publications has changed a bit year to year, but each has been a pretty awesome summary of the current state of buggy for our members near and far.  Lucky you, you can still download them here:
+		<ul style="margin-left:10px;">
+			<li><b>2009</b>
+				<ul style="margin-left:10px;">
+					<li><a href="/files/FallWrapup2009.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Fall Wrapup</li>
+					<li><a href="/files/RacedayPreview2009.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Preview</a></li>
+					<li><a href="/files/RacedayGuide2009Prelims.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Guide (Prelims)</a></li>
+					<li><a href="/files/RacedayGuide2009Finals.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Guide (Finals)</a></li>
+					<li><a href="/files/RacedayWrapup2009.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Wrapup</a></li>								
+				</ul>			
+			</li>
+			<li><b>2010</b>
+				<ul style="margin-left:10px;">
+					<li><a href="/files/Newsletter20100106.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">January Newsletter</a></li>
+					<li><a href="/files/RacedayPreview2010.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Preview</a></li>
+					<li><a href="/files/RacedayGuide2010Prelims.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Guide (Prelims)</a></li>				
+				</ul>
+			</li>
+			<li><b>2011</b>
+				<ul style="margin-left:10px;">
+					<li><a href="/files/RacedayPreview2011.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Preview</a></li>	
+					<li><a href="/files/RacedayGuide2011.pdf"  target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Guide</a></li>
+				</ul>		
+			</li>
+		</ul>
+		<h4>Raceday video archive</h4>
+		In 2011, the BAA unveiled an archive of buggy videos with an initial collection of over 200 videos from the 1950's up to complete coverage of 2003-2010 racedays.  Previously the fine coverage produced by cmuTV was unavailable online.  This project was costless, but many hours went into transcoding, sorting, and uploading videos to youtube.		
+		<a href="/gallery/2009-2010/prelims/finishline" ><img style="float:right" src="http://cmubuggy.org/gallery/var/thumbs/2009-2010/prelims/finishline/Result%202-w2-SDCB-SpiritB-CIAB.jpg?m=1302290137" alt="Timing system" ></a>
+		<h4>Raceday timing system upgrades</h4>
+		In 2009, the company that had been hired to run buggy timing for years showed up short-staffed so BAA members filled in in critical roles.  What we saw gave us enough information to confirm that buggy was due for an upgrade in the sophistication of its timing system.  We worked with sweepstakes in the 2009-2010 season and made it happen.<br />
+		<br />
+		The BAA contributed $1,200 to sweepstakes for raceday 2010 to enable a month-long rental of a FinishLynx digital photofinish and timing system to fully test and vet the system before raceday.  Ongoing rental prices are within Sweepstakes' normal budget.<br />
+		<br />
+		For the 2010 and 2011 races, the system was operated by BAA members.<br />
+		<br />
+		More info on the timing system project as it developed here in the news section:<br />
+		<ul style="margin-left:10px;">
+			<li><a href="http://cmubuggy.org/news/2010/02/raceday-timing-system-upgrade/" >Raceday timing system upgrade (Feb 18, 2010)</a></li>
+			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-in-hand-and-working/" >Timing System in hand and working (March 17, 2010)</a></li>
+			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-test-at-rolls-a-success/" >Timing System test at rolls a success (March 27, 2010)</a></li>
+		</ul>
+		<a href="http://cmubuggy.org/gallery/2008-2009/Finals/atmosphere/DSC_0255" ><img style="float:right" src="http://cmubuggy.org/gallery/var/thumbs/2008-2009/Finals/atmosphere/DSC_0255.JPG?m=1302290126" alt="Timing system" ></a>
+		<h4>Jumbotrons</h4>
+		One of the original pie-in-the-sky project ideas for the BAA was to get a jumbotron for raceday.  The geography of the course makes it tough to follow everything that's going on and besides it would just be awesome.<br />
+		<br />
+		In 2009, a CMU spin-off provided a jumbotron at no cost to Sweepstakes and proved it was a valuable addition to raceday.  In 2010 and 2011, the BAA contributed $1000 to subsidize the cost of not one, but two jumbotrons.  Money was raised by running the now-annual Lead Truck auction in which bidders compete to ride in the lead truck during the races.<br />
+		<br />
+		More info on the jumbotron and lead truck auction projects:<br />
+		<ul style="margin-left:10px;">
+			<li><a href="http://cmubuggy.org/news/2010/03/lead-truck-auction-2010-2-jumbotrons/" >Lead Truck Auction 2010 -> 2 Jumbotrons! (Mar 26, 2010)</a></li>
+			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-in-hand-and-working/" >Timing System in hand and working (March 17, 2010)</a></li>
+			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-test-at-rolls-a-success/" >Timing System test at rolls a success (March 27, 2010)</a></li>
+		</ul>
+		
+	</div>
 	<div class="pane">
 		Members of the Buggy Alumni Association board are elected to 2 year terms by the rest of the BAA community.  Ideally, the terms are staggered so that 2 positions are elected each year.<br />
 		<br />
@@ -41,6 +105,8 @@
 			<tr><td>Enthusiasm / Web</td><td><a href="/history/person/542">Adam McCue</a></td></tr>
 			<tr><td>Productive enthusiasm</td><td><a href="#">Abby Sullivan</a></td></tr>
 		</table>
+		<br />
+		Of course when it comes to people, it's really all about the supporting members who are listed in the <a href="/membership#roster">membership section</a>.
 	</div>
 	<!--
 	<div class="pane">
