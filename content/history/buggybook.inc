@@ -1,7 +1,7 @@
 <div class="pane">
 	<div class="title">Buggy Books</div>
 <?php
-	for($year=1965;$year<2011;$year++){
+	for($year=1965;$year<2012;$year++){
 		echo("<a href=\"/files/buggybooks/buggybook_".$year.".pdf\"  
 					target=\"_blank\" onclick=\"_gaq.push(['_trackEvent','Download','PDF',this.href]);\">
 				<img alt=\"".$year." buggy book\" 

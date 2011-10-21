@@ -1,4 +1,4 @@
-php_flag display_errors off
+php_flag display_errors on
 # BEGIN Gzip
 <IfModule mod_deflate.c>
 	AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
@@ -11,6 +11,7 @@ RewriteEngine On    # Turn on the rewriting engine
 RewriteRule		^about[/]*$						index.php?s=about					[NC,L]
 RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]
 RewriteRule		^auction[/]*$					index.php?s=auction				[NC,L]
+RewriteRule		^fantasy[/]*$					index.php?s=fantasy				[NC,L]
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^join[/]*$						index.php?s=membership			[NC,L]
 RewriteRule		^membership[/]*$				index.php?s=membership			[NC,L]
@@ -25,6 +26,11 @@ RewriteRule		^video[/]*$						index.php?s=videolist			[NC,L]
 RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1								[NC,L]
 RewriteRule    ^admin/buggy/([a-z0-9]+)/?$    					index.php?s=admin&p=buggy&urlkey=$1    		[NC,L]
 
+#fantasy section
+RewriteRule		^fantasy/enter[/]*$									index.php?s=fantasy&p=enter 						[NC,L]
+RewriteRule		^fantasy/stats[/]*$									index.php?s=fantasy&p=stats 						[NC,L]
+RewriteRule		^fantasy/results[/]*$								index.php?s=fantasy&p=results 					[NC,L]
+
 #history section: specific objects
 RewriteRule		^history/buggy/([a-z0-9]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
 RewriteRule		^history/heats/([0-9]+)?$							index.php?s=history&p=heats&year=$1				[NC,L]
@@ -37,7 +43,7 @@ RewriteRule		^history/roster/([0-9]+)/?$						index.php?s=history&p=rosters&year
 RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
 
-#hitory section: categories
+#history section: categories
 RewriteRule		^history/admin[/]*$									index.php?s=history&p=admin 						[NC,L]
 RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 						[NC,L]
 RewriteRule		^history/broadcast[/]*$								index.php?s=history&p=broadcast					[NC,L]

@@ -34,7 +34,7 @@
 		Our schedule of publications has changed a bit year to year, but each has been a pretty awesome summary of the current state of buggy for our members near and far.  Lucky you, you can still download them here:
 		<ul style="margin-left:10px;">
 			<li><b>2009</b>
-				<ul style="margin-left:10px;">
+				<ul class="list">
 					<li><a href="/files/FallWrapup2009.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Fall Wrapup</li>
 					<li><a href="/files/RacedayPreview2009.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Preview</a></li>
 					<li><a href="/files/RacedayGuide2009Prelims.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Guide (Prelims)</a></li>
@@ -43,14 +43,14 @@
 				</ul>			
 			</li>
 			<li><b>2010</b>
-				<ul style="margin-left:10px;">
+				<ul class="list">
 					<li><a href="/files/Newsletter20100106.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">January Newsletter</a></li>
 					<li><a href="/files/RacedayPreview2010.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Preview</a></li>
 					<li><a href="/files/RacedayGuide2010Prelims.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Guide (Prelims)</a></li>				
 				</ul>
 			</li>
 			<li><b>2011</b>
-				<ul style="margin-left:10px;">
+				<ul class="list">
 					<li><a href="/files/RacedayPreview2011.pdf" target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Preview</a></li>	
 					<li><a href="/files/RacedayGuide2011.pdf"  target="_blank" onclick="_gaq.push(['_trackEvent','Download','PDF',this.href]);">Raceday Guide</a></li>
 				</ul>		
@@ -67,7 +67,7 @@
 		For the 2010 and 2011 races, the system was operated by BAA members.<br />
 		<br />
 		More info on the timing system project as it developed here in the news section:<br />
-		<ul style="margin-left:10px;">
+		<ul class="list">
 			<li><a href="http://cmubuggy.org/news/2010/02/raceday-timing-system-upgrade/" >Raceday timing system upgrade (Feb 18, 2010)</a></li>
 			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-in-hand-and-working/" >Timing System in hand and working (March 17, 2010)</a></li>
 			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-test-at-rolls-a-success/" >Timing System test at rolls a success (March 27, 2010)</a></li>
@@ -79,7 +79,7 @@
 		In 2009, a CMU spin-off provided a jumbotron at no cost to Sweepstakes and proved it was a valuable addition to raceday.  In 2010 and 2011, the BAA contributed $1000 to subsidize the cost of not one, but two jumbotrons.  Money was raised by running the now-annual Lead Truck auction in which bidders compete to ride in the lead truck during the races.<br />
 		<br />
 		More info on the jumbotron and lead truck auction projects:<br />
-		<ul style="margin-left:10px;">
+		<ul class="list">
 			<li><a href="http://cmubuggy.org/news/2010/03/lead-truck-auction-2010-2-jumbotrons/" >Lead Truck Auction 2010 -> 2 Jumbotrons! (Mar 26, 2010)</a></li>
 			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-in-hand-and-working/" >Timing System in hand and working (March 17, 2010)</a></li>
 			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-test-at-rolls-a-success/" >Timing System test at rolls a success (March 27, 2010)</a></li>
@@ -119,7 +119,7 @@
 		If you have time, expertise, or resources you can help further the effort.  Don't assume we know what we're doing and have it covered. If you see something that could be done, let us know and let's make it happen.  Post your idea in the forum, or email committee@cmubuggy.org<br />
 		<br />
 		Some areas are always in need of help:
-		<ul>
+		<ul class="list">
 			<li><a href="http://github.com/swiftsam/cmubuggy.org"><b>Web Development</b></a> - Document bugs, contribute code, invent entirely new functions.  You can do all the above through our github site.  It's also very helpful if you report any problems you find with the site through the github issues section.</li>
 			<li><a href="/news"><b>News</b></a> - We try to be the best source for all buggy news.  This means writing a "Rolls Report" each weekend of rolls as well as covering anything else that happens.  Want to write about buggy?  We'd be happy to have you on the News team.</li>
 			<li><a href="/gallery"><b>Pictures</b></a> - Current pictures of freerolls and raceday keep the site current, and old pictures give the site historical depth.  We want both.  Scanning and uploading are time consuming but very much appreciated.</li>
@@ -137,7 +137,7 @@
 		<br />
 		The site is built around a number of 3rd party platforms and tools.  They are all free, open-source php projects and each has been super useful in making this website as useful as it is to buggy fans so they deserve some recognition:<br />
 		<br />
-		<ul>
+		<ul class="list">
 			<li>Data Objects: all custom data objects make use of the <a href="http://www.phpobjectgenerator.com/">PHP Object Generator library</a></li>
 			<li>Forum: /forum runs <a href="http://www.phpbb.com/">phpBB</a></li>
 			<li>Gallery: /gallery runs <a href="http://gallery.menalto.com/">gallery3</a></li>

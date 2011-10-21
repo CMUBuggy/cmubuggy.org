@@ -26,7 +26,7 @@
 		<h3>Wow! How do I join?</h3>
 		To become an official member of the Buggy Alumni Association for the year, <b>all you have to do is give a gift of any size</b>.  Any amount is fine, we just want to know that you've got our back.  All gifts are tax-deductible and funds go directly to the CMU Buggy Alumni Association allowing us to rent timing systems, jumbotrons, and have receptions.<br />
 		<br />		
-		<div class="button"><a target="_blank" href="https://www.cmu.edu/campaign/ways/online.html?designation=Buggy%20Alumni%20Association&PCH=A0661">Join (or Renew) Now</a></div><br />
+		<div class="button"><a target="_blank"  onclick="_gaq.push(['_trackEvent','Outbound','Membership',this.href]);" href="https://www.cmu.edu/campaign/ways/online.html?designation=Buggy%20Alumni%20Association&PCH=A0661">Join (or Renew) Now</a></div><br />
 		<br />
 		<b>Notes</b>:
 		<ul class="list">

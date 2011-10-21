@@ -64,8 +64,8 @@ a:hover {color:#f6ab1e}
 ul {margin:0; }
 ol {list-style-type: decimal;}
 ol li {list-style-type: decimal; margin: 0 0 5px 25px;}
-ul.list {list-style-type:disc; }
-ul.list li {list-style: disc; margin-left: 18px; }
+ul.list {}
+ul.list li {padding: 1px 0 0 15px;	margin: 5px 0 0 15px;list-style: none;	background: url('images/orange_bullet.gif') no-repeat 0px 7px; }
 strong {font-weight: bold; color:#111; }
 sub {font-size: .8em; padding: 0 0 0 2px; }
 sub {font-size: .5em; padding: 0 0 0 2px; }
@@ -123,6 +123,7 @@ fieldset label{
 */
 .button,
 #ref input[type="submit"] {
+	font-weight: bold;
 	border: 1px solid #ccc;
 	padding: 5px;
 	display:inline;
@@ -140,7 +141,13 @@ fieldset label{
 	background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#cccccc));
 	background: -moz-linear-gradient(top,  #eeeeee,  #cccccc);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#cccccc');
+	cursor:pointer;
 	}
+
+.button:hover,
+#ref input[type="submit"]:hover {
+	color: #e22335;	
+} 
 
 .rounded {
 	-moz-border-radius:15px;

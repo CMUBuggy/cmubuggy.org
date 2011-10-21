@@ -24,6 +24,10 @@
 			$title = "Admin | ".$title;
 			$headline = "Admin";	
 			break;
+		case "fantasy":
+			$title = "Fantasy Buggy | ".$title;
+			$headline = "Fantasy Buggy Fall '11";	
+			break;						
 		case "history": 
 			$title = "History | ".$title;
 			$headline = "History";
