@@ -3,7 +3,7 @@
 	Ready for some details?  Here they come. (Details are subject to change until the game opens)
 	<h4>Timeline</h4>
 	<ul class="list">
-		<li>Fri Oct 21, 11:59pm : Game open to entries</li>	
+		<li>Fri Oct 21, 8:00am : Game open to entries</li>	
 		<li>Fri Oct 28, 11:59pm : All entries must be in</li>
 		<li>Sat Oct 29, 7:30-9:00am: Homecoming rolls and times collected</li>
 		<li>Sun Oct 30: Winner is announced</li>
@@ -51,6 +51,7 @@
 		<li>Roll values will be restricted to 1-3.  It's possible 4th rolls will happen, but unlikely a 4th roll will be completed for all orgs.</li>
 		<li>If rolls are rained out on Oct 29th, times from the next day of rolls that do occur will be used for the game.</li>
 		<li>When making a pick, roll X refers to the Xth time that org has sent buggies down the hill.  If SDC rolls only Rage on their first roll of the day, and then sends all buggies the second time SDC comes up in the roll order, that is Roll 2 for each of their buggies.</li>
+		<li>If the timers fail to record a time for any segment, the time awarded will be the median time on that segment by that buggy.  If the buggy had no other rolls, the median for the org will be used.  If the org had no other rolls, the median for all orgs will be used.</li>
 		<li>Delta Force and SN will be lumped together into a single org for the purpose of the game.  We're not sure either will roll.  Both have only one buggy, so no buggy selection is necessary.  If both orgs roll, the times from the faster org for each roll will be used for scoring. If neither org rolls, those picks will be dropped from everyone's entry.</li>
 		<li>The BAA judges may throw out a freeroll or backhills time that is more than 2 SD slower than the median freeroll / backhill if something funny happened or it seems like they were going intentionally slow for some reason.  If this is necessary, the segment will be scored as if it did not occur (i.e. worst remaining time + 1 second)</li>
 		<li>Women's freerolls are those that follow a female hill 2.  Women's backhills are those with 3 female pushers.  Any co-ed backhills entry will be scored as a Men's entry.</li>
