@@ -42,7 +42,7 @@
 		</tr>
 		<tr>
 			<td style="width:250px; padding:32px 0 0 0;">This isn't actually required, but it would mean a lot.  Any gift $1 or larger makes you a member! You're not going to get better odds on a $250 prize anywhere else.</td>
-			<td style="width:250px;">The game opens to picks on Fri Oct 21, 11:59pm</td>
+			<td style="width:250px;">The game is open, make your picks!</td>
 		</tr>
 	</table>
 	<h4>Fine Print</h4>
