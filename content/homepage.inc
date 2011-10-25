@@ -7,7 +7,21 @@
 		<div class="yui3-u-3-5">
 			<h3><a href="news/2011/10/get-ready-for-some-ceilidh-homecoming/">Ceilidh Fun: Sat Oct 29th</a></h3>
 			<ul class="list">
-				<li><b><a href="/fantasy">Fantasy Buggy</a></b> - Win $250 by picking the fastest freerolls and backhills of the weekend.  Picks due Fri Oct, 28 @ 11:59pm.</li>
+				<li>
+					<b><a href="/fantasy">Fantasy Buggy</a></b> - Win $250 by picking the fastest freerolls and backhills of the weekend.
+					<?php
+						$deadline = mktime(23,59, 0, 10, 28, 2011);
+						$unit = "hours";
+   					$timeleft = floor(($deadline - time())/(60*60));
+   					if(($deadline - time())/(60*60)<1){
+   						$unit = "mins";
+   						$timeleft = floor(($deadline - time())/(60));
+   					}
+   					$fe = new fantasyentry();
+						$feList = $fe->GetList(null,"timestamp",FALSE);   						
+   					echo("<span style=\"font-size:1.3em; font-weight:bold;\">".count($feList)."</span> entries submitted.  Only <span style=\"font-size:1.3em; font-weight:bold;\">".$timeleft."</span> ".$unit." to get in!");
+					?>
+				</li>
 				<li>Coffee and Donuts at Rolls courtesy of us!  Come by and visit at the top of the hill</li>
 				<li>History of Buggy.  Get educated courtesy of Tom Wood.  UC, Rangos I&II, 2-3:30p</li>		
 			</ul>
