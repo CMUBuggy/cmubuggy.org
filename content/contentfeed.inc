@@ -366,7 +366,6 @@ foreach($rcommentClusterItems as $a){
 		?>
 	</div>
 	<h3 id="recentactivityh3">Recent Activity</h3>
-
 	<div id="recentactivity">
 		<div class="items">
 				<?php

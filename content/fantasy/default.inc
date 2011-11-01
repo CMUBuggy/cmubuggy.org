@@ -4,9 +4,9 @@
 	<h4>Timeline</h4>
 	<ul class="list">
 		<li>Fri Oct 21, 8:00am : Game open to entries</li>	
-		<li>Fri Oct 28, 11:59pm : All entries must be in</li>
-		<li>Sat Oct 29, 7:30-9:00am: Homecoming rolls and times collected</li>
-		<li>Sun Oct 30: Winner is announced</li>
+		<li>Fri Nov 4, 11:59pm : All entries must be in</li>
+		<li>Sun Nov 6, 7:00-9:00am: Rolls and times are collected</li>
+		<li>Soon thereafter: Winner is announced</li>
 	</ul>
 	<h4>Descriptives</h4>
 	<ul class="list">

@@ -5,12 +5,12 @@
 			<?php include_once("freerollstatus.inc"); ?>			
 		</div>
 		<div class="yui3-u-3-5">
-			<h3><a href="news/2011/10/get-ready-for-some-ceilidh-homecoming/">Ceilidh Fun: Sat Oct 29th</a></h3>
+			<h3>Get Involved</h3>
 			<ul class="list">
 				<li>
 					<b><a href="/fantasy">Fantasy Buggy</a></b> - Win $250 by picking the fastest freerolls and backhills of the weekend.
 					<?php
-						$deadline = mktime(23,59, 0, 10, 28, 2011);
+						$deadline = mktime(23,59, 0, 11, 4, 2011);
 						$unit = "hours";
    					$timeleft = floor(($deadline - time())/(60*60));
    					if(($deadline - time())/(60*60)<1){
@@ -19,11 +19,10 @@
    					}
    					$fe = new fantasyentry();
 						$feList = $fe->GetList(null,"timestamp",FALSE);   						
-   					echo("<span style=\"font-size:1.3em; font-weight:bold;\">".count($feList)."</span> entries submitted.  Only <span style=\"font-size:1.3em; font-weight:bold;\">".$timeleft."</span> ".$unit." to get in!");
+   					echo("<span style=\"font-size:1.3em; font-weight:bold;\">".count($feList)."</span> entries.  Only <span style=\"font-size:1.3em; font-weight:bold;\">".$timeleft."</span> ".$unit." to get in!");
 					?>
 				</li>
-				<li>Coffee and Donuts at Rolls courtesy of us!  Come by and visit at the top of the hill</li>
-				<li>History of Buggy.  Get educated courtesy of Tom Wood.  UC, Rangos I&II, 2-3:30p</li>		
+				<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon">Projects<img src="img/icon_reddit.png"></div></a>What do you think we should be working on? <a href="http://reddit.com/r/cmubuggy" target="__blank" >Propose, vote on, and discuss projects in the new "BAA project zone"</a></div>
 			</ul>
 		</div>
 	</div>
@@ -42,8 +41,7 @@
 /////unused pieces//////
 
 //Reddit project zone
-//			<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon">Projects<img src="img/icon_reddit.png"></div></a>What do you think we should be working on? <a href="http://reddit.com/r/cmubuggy" target="__blank" >Propose, vote on, and discuss projects in the new "BAA project zone"</a></div>
-//We need you
+//			//We need you
 //			<div class="item" style="clear:left;"><a href="/about#getinvolved"><div class="icon" style="background:url('/img/icon_unclesam.jpg');"></div>We need You!</a> Volunteer to write a rolls report, curate the reference section, nominate yourself for the committee. Do it now! (especially you recent grads)</div>
 
 

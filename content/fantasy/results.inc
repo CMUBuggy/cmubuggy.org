@@ -7,7 +7,7 @@
 <h3>Results</h3>
 So far there have been <?php echo(count($feList)); ?> entries.<br />
 <br />
-The content of the picks will be revealed once rolls start on Saturday.<br />
+The content of the picks will be revealed once rolls start on Sunday.<br />
 All picks and their owners will be revealed once rolls are over and the scores have been calculated.<br />
 
 <!--
