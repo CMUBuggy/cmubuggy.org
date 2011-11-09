@@ -6,24 +6,8 @@
 		</div>
 		<div class="yui3-u-3-5">
 			<h3>Get Involved</h3>
-			<ul class="list">
-				<li>
-					<b><a href="/fantasy">Fantasy Buggy</a></b> - Win $250 by picking the fastest freerolls and backhills of the weekend.
-					<?php
-						$deadline = mktime(23,59, 0, 11, 4, 2011);
-						$unit = "hours";
-   					$timeleft = floor(($deadline - time())/(60*60));
-   					if(($deadline - time())/(60*60)<1){
-   						$unit = "mins";
-   						$timeleft = floor(($deadline - time())/(60));
-   					}
-   					$fe = new fantasyentry();
-						$feList = $fe->GetList(null,"timestamp",FALSE);   						
-   					echo("<span style=\"font-size:1.3em; font-weight:bold;\">".count($feList)."</span> entries.  Only <span style=\"font-size:1.3em; font-weight:bold;\">".$timeleft."</span> ".$unit." to get in!");
-					?>
-				</li>
-				<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon">Projects<img src="img/icon_reddit.png"></div></a>What do you think we should be working on? <a href="http://reddit.com/r/cmubuggy" target="__blank" >Propose, vote on, and discuss projects in the new "BAA project zone"</a></div>
-			</ul>
+			<b><a href="/news/2011/11/congratulations-jake-mohin-fantasy-buggy-champion/">Fantasy Buggy</a></b> - Congrats to Jake Mohin, champion of our first Fantasy Buggy game.  See the link for full data and results.
+			<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon">Projects<img src="img/icon_reddit.png"></div></a>What do you think we should be working on? <a href="http://reddit.com/r/cmubuggy" target="__blank" >Propose, vote on, and discuss projects in the new "BAA project zone"</a></div>
 		</div>
 	</div>
 	<?php include_once("featurepic.inc"); ?>
