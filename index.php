@@ -10,7 +10,7 @@
 		$s = $_GET["s"];
 	}
 	$title = "CMU Buggy Alumni Association";
-	$headline = "Céilidh (it's pronounced ka-le)";
+	$headline = "Come on weather, hang in there";
 	switch($s){
 		case "about":
 			$title = "About | ".$title;
