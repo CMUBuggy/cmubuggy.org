@@ -5,12 +5,20 @@
 
 
 <h3>Results</h3>
-So far there have been <?php echo(count($feList)); ?> entries.<br />
+Congrats to Jake Mohin who won our first ever Fantasy Buggy game, and to Numberfire.com for sponsoring the grand prize.<br />
 <br />
-The content of the picks will be revealed once rolls start on Saturday.<br />
-All picks and their owners will be revealed once rolls are over and the scores have been calculated.<br />
+The full results are below.  Don't forget to check the 4 tabs at the bottom for more details, or follow this <a target="_blank" href="https://docs.google.com/spreadsheet/ccc?key=0AuJqrzitvsWSdEsxWkczcUF3Y0VNcGNPM2NRSmpJUnc">Google Docs direct link for easier viewing or download.</a>
+<iframe width='750' height='1000' frameborder='0' src='https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AuJqrzitvsWSdEsxWkczcUF3Y0VNcGNPM2NRSmpJUnc&output=html&widget=true'></iframe>
+
 
 <!--
+So far there have been <?php echo(count($feList)); ?> entries.<br />
+<br />
+The content of the picks will be revealed once rolls start on Sunday.<br />
+All picks and their owners will be revealed once rolls are over and the scores have been calculated.<br />
+
+<?php if (time() > mktime(07,30, 0, 11, 06, 2011)){ ?>
+
 <table class="data" style="font-size:.85em">
 	<tr>
 		<td></td>
@@ -41,4 +49,5 @@ All picks and their owners will be revealed once rolls are over and the scores h
 	}		
 	?>		
 </table>
+<?php } ?>
 -->
