@@ -11,9 +11,11 @@ RewriteEngine On    # Turn on the rewriting engine
 RewriteRule		^about[/]*$						index.php?s=about					[NC,L]
 RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]
 RewriteRule		^auction[/]*$					index.php?s=auction				[NC,L]
+RewriteRule		^buzz[/]*$						index.php?s=buzz					[NC,L]
 RewriteRule		^fantasy[/]*$					index.php?s=fantasy				[NC,L]
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^join[/]*$						index.php?s=membership			[NC,L]
+RewriteRule		^live[/]*$						index.php?s=live					[NC,L]
 RewriteRule		^membership[/]*$				index.php?s=membership			[NC,L]
 RewriteRule		^raceday[/]*$					index.php?s=raceday				[NC,L]
 RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
@@ -44,7 +46,6 @@ RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepsta
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
 
 #history section: categories
-RewriteRule		^history/admin[/]*$									index.php?s=history&p=admin 						[NC,L]
 RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 						[NC,L]
 RewriteRule		^history/broadcast[/]*$								index.php?s=history&p=broadcast					[NC,L]
 RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC,L]

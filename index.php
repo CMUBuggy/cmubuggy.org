@@ -24,6 +24,10 @@
 			$title = "Admin | ".$title;
 			$headline = "Admin";	
 			break;
+		case "buzz":
+			$title = "Buzz | ".$title;
+			$headline = "Live Buggy Chat";
+			break;
 		case "fantasy":
 			$title = "Fantasy Buggy | ".$title;
 			$headline = "Fantasy Buggy Fall '11";	
@@ -32,6 +36,10 @@
 			$title = "History | ".$title;
 			$headline = "History";
 			$dbname = "cmubuggy_pog";
+			break;
+		case "live":
+			$title = "Live! | ".$title;
+			$headline = "Live Streaming Buggy";
 			break;
 		case "membership":
 		case "join": 
