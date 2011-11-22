@@ -13,12 +13,12 @@
 			foreach($freerollList as $freeroll){
 					$sunrise 	= date('g:i a',strtotime($freeroll->sunrise));
 					$dayofweek	= date('D', strtotime($freeroll->date));
-					$day 			= date('d', strtotime($freeroll->date));
-					$month 		= date('M', strtotime($freeroll->date));
-					$status 		= $freeroll->status;
-					$newsURL		= $freeroll->newsURL;
-					$galleryURL = $freeroll->galleryURL;
-					$item_class = "status_pos";
+					$day 		= date('d', strtotime($freeroll->date));
+					$month		= date('M', strtotime($freeroll->date));
+					$status	= $freeroll->status;
+					$newsURL	= $freeroll->newsURL;
+					$galleryURL	= $freeroll->galleryURL;
+					$item_class 	= "status_pos";
 					
 					if($status == "Canceled") { $item_class="status_neg"; }
 					if($status == "No Rolls") { $item_class="status_disabled"; }
@@ -68,13 +68,18 @@
 		<a class="feednext">Future &raquo;</a> 
 	</div> 
 </div>
-
-
+<?php 
+	$seekto = $group_count;
+	if(isset($display_group)){
+		$seekto = $displaygroup;
+	}  
+?>
 <script type="text/javascript">
+
 $(function() {		
 	$("#rollslist").scrollable({ vertical: true, speed:400, next:".feednext", prev:".feedprev" });
 	var rollslistAPI = $("#rollslist").data("scrollable");
-	rollslistAPI.seekTo(<?php echo($display_group); ?>,0);
+	rollslistAPI.seekTo(<?php echo($seekto-1); ?>,0);
 });
 
 </script>
