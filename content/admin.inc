@@ -4,7 +4,10 @@
 	</ul>
 </div>
 <?php
-	$p = $_GET["p"];
+	$p = null;
+	if(isset($_GET["p"])) {
+		$p = $_GET["p"];
+	}
 	if(empty($p)){
 		include_once("content/admin/default.inc");
 	}else { 
