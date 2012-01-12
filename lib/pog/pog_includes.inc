@@ -2,6 +2,7 @@
 	include "configuration.php";
 	include "objects/class.pog_base.php";
 	include "objects/class.database.php";
+	include "objects/class.dataedit.php";
 	include "objects/class.awardType.php";	
 	include "objects/class.broadcasterq.php";
 	include "objects/class.buggy.php";
