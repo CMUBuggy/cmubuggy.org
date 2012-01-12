@@ -32,7 +32,7 @@ if(count($_POST)>0) {
 				$de->oldvalue = $object->$objAttr;
 				$object->$objAttr = $newval;
 				$object->Save();
-			
+				echo($object->$objAttr);
 				break;
 			default: echo("no default data handler");	
 		}
