@@ -4,19 +4,39 @@ include_once("lib/pog/pog_includes.inc");
 
 if(count($_POST)>0) {
 	if(isset($_POST["type"])){
-		switch($_POST["type"]) {
-			case "admin":
-				$id = $_POST["id"];
+		$type = $_POST["type"];
+		
+		$de = new dataedit();
+		$de->edittype = $type;
+		$de->timestamp = time();
+		
+		$id = null;
+		$newval = null;
+		if(isset($_POST["element_id"]))	{ $id = $_POST["element_id"]; }
+		if(isset($_POST["update_value"])){ $newval = $_POST["update_value"];}
+	
+		switch($type) {
+			case "update":
 				$idvals = explode("-",$id);
-				$newval = $_POST["newval"];
+				$objType = $idvals[0];
+				$objId = $idvals[1];
+				$objAttr = $idvals[2];
+			
+				$de->objtype = $objType;
+				$de->objid = $objId;
+				$de->objattr = $objAttr;
+				$de->newvalue = $newval;
 				
-				$object = new $idvals[0]();
-				$object->Get($idvals[1]);
-				$object->$idvals[2] = $newval;
+				$object = new $objType();
+				$object->Get($objId);
+				$de->oldvalue = $object->$objAttr;
+				$object->$objAttr = $newval;
 				$object->Save();
+			
 				break;
 			default: echo("no default data handler");	
-		}			
+		}
+		$de->Save();
 	}
 } else {
 	echo("go away");	

@@ -6,12 +6,19 @@ $(document).ready(function(){
 			if($(this).is(':checked')){
 				newval = 1;	
 			}
-			
-			$.post("/data.php", { type: "admin", id: $(this).attr("id"), newval:  newval },
+			$.post("/data.php", { type: "update", element_id: $(this).attr("id"), updated_value: newval },
 			   function(data) {
 			     alert("success");
 			   });
 		});
+	$(".eip").editInPlace({
+		default_text: "- - - -",
+		callback:function(enteredText){
+			return enteredText;		
+		},
+		params:"type=update",
+		url: "/data.php"
+	})
 })
 
 </script>
@@ -41,8 +48,7 @@ $(document).ready(function(){
 			if($member->mem2011){$mem2011 = "checked=\"checked\"";}			
 			if($member->mem2012){$mem2012 = "checked=\"checked\"";}
 			echo("<tr><td>".$member->firstname." ".$member->lastname."</td>");
-			
-			echo("<td>".$member->gradyear."</td>");
+			echo("<td><div class=\"eip\" id=\"member-".$member->memberId."-gradyear\">".$member->gradyear."</div></td>");
 			echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2009\" class=\"memberyear\"".$mem2009." /></td>");
 			echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2010\" class=\"memberyear\"".$mem2010." /></td>");
 			echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2011\" class=\"memberyear\"".$mem2011." /></td>");
