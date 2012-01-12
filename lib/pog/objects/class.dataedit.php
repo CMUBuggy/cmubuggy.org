@@ -10,7 +10,8 @@
 	`oldvalue` VARCHAR(255) NOT NULL,
 	`newvalue` VARCHAR(255) NOT NULL,
 	`timestamp` VARCHAR(255) NOT NULL,
-	`userid` int(11) NOT NULL, INDEX(`userid`), PRIMARY KEY  (`dataeditid`)) ENGINE=MyISAM;
+	`userid` int(11) NOT NULL,
+	`objattr` VARCHAR(255) NOT NULL, INDEX(`userid`), PRIMARY KEY  (`dataeditid`)) ENGINE=MyISAM;
 */
 
 /**
@@ -18,7 +19,7 @@
 * @author Php Object Generator
 * @version POG 3.0f / PHP5
 * @copyright Free for personal & commercial use. (Offered under the BSD license)
-* @link http://www.phpobjectgenerator.com/?language=php5&wrapper=pog&objectName=dataedit&attributeList=array+%28%0A++0+%3D%3E+%27edittype%27%2C%0A++1+%3D%3E+%27objtype%27%2C%0A++2+%3D%3E+%27objid%27%2C%0A++3+%3D%3E+%27oldvalue%27%2C%0A++4+%3D%3E+%27newvalue%27%2C%0A++5+%3D%3E+%27timestamp%27%2C%0A++6+%3D%3E+%27user%27%2C%0A%29&typeList=array+%28%0A++0+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++1+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++2+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++3+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++4+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++5+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++6+%3D%3E+%27BELONGSTO%27%2C%0A%29
+* @link http://www.phpobjectgenerator.com/?language=php5&wrapper=pog&objectName=dataedit&attributeList=array+%28%0A++0+%3D%3E+%27edittype%27%2C%0A++1+%3D%3E+%27objtype%27%2C%0A++2+%3D%3E+%27objid%27%2C%0A++3+%3D%3E+%27oldvalue%27%2C%0A++4+%3D%3E+%27newvalue%27%2C%0A++5+%3D%3E+%27timestamp%27%2C%0A++6+%3D%3E+%27user%27%2C%0A++7+%3D%3E+%27objattr%27%2C%0A%29&typeList=array+%28%0A++0+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++1+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++2+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++3+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++4+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++5+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++6+%3D%3E+%27BELONGSTO%27%2C%0A++7+%3D%3E+%27VARCHAR%28255%29%27%2C%0A%29
 */
 include_once('class.pog_base.php');
 class dataedit extends POG_Base
@@ -60,6 +61,11 @@ class dataedit extends POG_Base
 	 */
 	public $userId;
 	
+	/**
+	 * @var VARCHAR(255)
+	 */
+	public $objattr;
+	
 	public $pog_attribute_type = array(
 		"dataeditId" => array('db_attributes' => array("NUMERIC", "INT")),
 		"edittype" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
@@ -69,6 +75,7 @@ class dataedit extends POG_Base
 		"newvalue" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"timestamp" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"user" => array('db_attributes' => array("OBJECT", "BELONGSTO")),
+		"objattr" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		);
 	public $pog_query;
 	
@@ -89,7 +96,7 @@ class dataedit extends POG_Base
 		}
 	}
 	
-	function dataedit($edittype='', $objtype='', $objid='', $oldvalue='', $newvalue='', $timestamp='')
+	function dataedit($edittype='', $objtype='', $objid='', $oldvalue='', $newvalue='', $timestamp='', $objattr='')
 	{
 		$this->edittype = $edittype;
 		$this->objtype = $objtype;
@@ -97,6 +104,7 @@ class dataedit extends POG_Base
 		$this->oldvalue = $oldvalue;
 		$this->newvalue = $newvalue;
 		$this->timestamp = $timestamp;
+		$this->objattr = $objattr;
 	}
 	
 	
@@ -120,6 +128,7 @@ class dataedit extends POG_Base
 			$this->newvalue = $this->Unescape($row['newvalue']);
 			$this->timestamp = $this->Unescape($row['timestamp']);
 			$this->userId = $row['userid'];
+			$this->objattr = $this->Unescape($row['objattr']);
 		}
 		return $this;
 	}
@@ -212,6 +221,7 @@ class dataedit extends POG_Base
 			$dataedit->newvalue = $this->Unescape($row['newvalue']);
 			$dataedit->timestamp = $this->Unescape($row['timestamp']);
 			$dataedit->userId = $row['userid'];
+			$dataedit->objattr = $this->Unescape($row['objattr']);
 			$dataeditList[] = $dataedit;
 		}
 		return $dataeditList;
@@ -236,18 +246,20 @@ class dataedit extends POG_Base
 			`oldvalue`='".$this->Escape($this->oldvalue)."', 
 			`newvalue`='".$this->Escape($this->newvalue)."', 
 			`timestamp`='".$this->Escape($this->timestamp)."', 
-			`userid`='".$this->userId."' where `dataeditid`='".$this->dataeditId."'";
+			`userid`='".$this->userId."', 
+			`objattr`='".$this->Escape($this->objattr)."' where `dataeditid`='".$this->dataeditId."'";
 		}
 		else
 		{
-			$this->pog_query = "insert into `dataedit` (`edittype`, `objtype`, `objid`, `oldvalue`, `newvalue`, `timestamp`, `userid` ) values (
+			$this->pog_query = "insert into `dataedit` (`edittype`, `objtype`, `objid`, `oldvalue`, `newvalue`, `timestamp`, `userid`, `objattr` ) values (
 			'".$this->Escape($this->edittype)."', 
 			'".$this->Escape($this->objtype)."', 
 			'".$this->Escape($this->objid)."', 
 			'".$this->Escape($this->oldvalue)."', 
 			'".$this->Escape($this->newvalue)."', 
 			'".$this->Escape($this->timestamp)."', 
-			'".$this->userId."' )";
+			'".$this->userId."', 
+			'".$this->Escape($this->objattr)."' )";
 		}
 		$insertId = Database::InsertOrUpdate($this->pog_query, $connection);
 		if ($this->dataeditId == "")
