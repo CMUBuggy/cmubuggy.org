@@ -6,18 +6,19 @@ $(document).ready(function(){
 			if($(this).is(':checked')){
 				newval = 1;	
 			}
-			$.post("/data.php", { type: "update", element_id: $(this).attr("id"), updated_value: newval },
+			$.post("/data.php", { type: "update", element_id: $(this).attr("id"), update_value: newval },
 			   function(data) {
-			     alert("success");
+			     //alert("success");
 			   });
 		});
 	$(".eip").editInPlace({
 		default_text: "- - - -",
-		callback:function(enteredText){
-			return enteredText;		
-		},
 		params:"type=update",
-		url: "/data.php"
+		url: "/data.php",
+		success:function(enteredText){
+			$(this).html(enteredText);
+			//alert ("success");
+		}
 	})
 })
 
@@ -33,6 +34,7 @@ $(document).ready(function(){
 ?>
 
 <div class="pane">
+	<div id="message"></div>
 	<h2>Manage Membership Records</h2>
 	<table class="data">
 	<tr><th>Member</th><th>Grad<br />Year</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th></tr>
