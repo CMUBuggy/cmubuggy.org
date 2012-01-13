@@ -1,15 +1,17 @@
+<?php
+	$freeroll = new freeroll();
+	$freerollList = $freeroll->GetList(null,"date");
+
+	$group_open = FALSE;
+	$group_count = 0;
+	$display_group = NULL;
+?>
+
 <h3>Freeroll Schedule</h3>
 <div id="rollschedule">
 	<div id="rollslist">
 		<div class="items">
 		<?php
-		
-			$freeroll = new freeroll();
-			$freerollList = $freeroll->GetList(null,"date");
-
-			$group_open = FALSE;
-			$group_count = 0;
-			$display_group = NULL;
 			foreach($freerollList as $freeroll){
 					$sunrise 	= date('g:i a',strtotime($freeroll->sunrise));
 					$dayofweek	= date('D', strtotime($freeroll->date));
@@ -27,8 +29,9 @@
 					if($galleryURL != ""){ $galleryURL = "<a style=\"float:right\" href=\"/gallery/".$galleryURL."\"><img alt=\"Gallery\" height=\"22px\" src=\"/img/icon_camera.gif\" /></a>"; }
 					$links = "<div style=\"float:right; height:22px;\">".$newsURL.$galleryURL."</div>";
 					
+					//Pick the current group if the date was less than 48 hours ago 
 					if($display_group == NULL && strtotime($freeroll->date) > time()-48*60*60){
-						$display_group = $group_count;	
+						$display_group = $group_count;
 					}
 					
 					if($dayofweek == "Sat"){
@@ -71,12 +74,12 @@
 <?php 
 	$seekto = $group_count;
 	if(isset($display_group)){
-		$seekto = $displaygroup;
+		$seekto = $display_group;
 	}  
 ?>
 <script type="text/javascript">
 
-$(function() {		
+$(document).ready(function() {		
 	$("#rollslist").scrollable({ vertical: true, speed:400, next:".feednext", prev:".feedprev" });
 	var rollslistAPI = $("#rollslist").data("scrollable");
 	rollslistAPI.seekTo(<?php echo($seekto-1); ?>,0);
