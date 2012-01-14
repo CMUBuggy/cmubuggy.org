@@ -1,6 +1,7 @@
 <div id="topnav">
 	<ul class="sf-menu">
 		<li><a href="/admin">Admin Home</a></li>
+		<li><a href="/admin/changelog">Change Log</a></li>
 	</ul>
 </div>
 <?php
