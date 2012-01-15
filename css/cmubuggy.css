@@ -81,6 +81,7 @@ sub {font-size: .5em; padding: 0 0 0 2px; }
 
 form {
 	margin: 10px 0;
+	display: block;
 }
 
 input{
@@ -111,6 +112,7 @@ fieldset .detail{
 
 .button,
 #ref input[type="submit"] {
+	float: none;
 	font-weight: bold;
 	font-size: 1em;
 	border: 1px solid #ccc;
