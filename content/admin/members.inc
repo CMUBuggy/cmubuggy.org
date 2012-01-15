@@ -1,6 +1,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+	//Edit membership years
 	$("input.memberyear").change(function(){
 			var newval = 0;
 			if($(this).is(':checked')){
@@ -11,6 +12,8 @@ $(document).ready(function(){
 			     //alert("success");
 			   });
 		});
+		
+	//Edit GradYear
 	$(".eip").editInPlace({
 		default_text: "- - - -",
 		params:"type=update",
@@ -20,9 +23,18 @@ $(document).ready(function(){
 			//alert ("success");
 		}
 	})
+	
+	//Add Member
 	$("#InitAddMember").click(function(){
 		$("#addmember").slideToggle();
 	});
+	
+	$("#AddMemberSubmit").click(function(){
+		var data = $("#addmember input.val").serializeArray();
+		$.post("/data.php", data, function(data){
+			alert("success");
+		});
+	});	
 })
 
 </script>
@@ -45,15 +57,17 @@ $(document).ready(function(){
 		<fieldset>
 			<legend></legend>
 			<label for="firstname">First Name</label>
-			<input type="text" name="firstname" />
+			<input type="text" class="val" name="firstname" />
 			<label for="lastname">Last Name</label>
-			<input type="text" name="lastname" />
+			<input type="text" class="val" name="lastname" />
 			<label for="email">E-mail</label>
-			<input type="email" name="email" />
+			<input type="email" class="val" name="email" />
 			<label for="gradyear">Graduation Year<div class="detail">(YYYY)</div></label>
-			<input type="text" name="gradyear" size="5" />
+			<input type="text" class="val" name="gradyear" size="5" />
+			<input type="hidden" class="val" name="type" value="add" />
+			<input type="hidden" class="val" name="objtype" value="member" />
 		</fieldset>
-		<input type="button" class="button" value="Add Member" style="margin:10px 0 0 190px" />		
+		<input type="button" class="button" value="Add Member" id="AddMemberSubmit" style="margin:10px 0 0 190px" />		
 	</form>	
 	</div>
 	<div id="memberlist">
@@ -81,29 +95,4 @@ $(document).ready(function(){
 		?>		
 		</table>	
 	</div>
-	<div class="pane">
-	<div id="message"></div>
-	<h2>Manage Membership Records</h2>
-	<table class="data">
-	<tr><th>Member</th><th>Grad<br />Year</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th></tr>
-	<tr><th>Total Members</th><th></th><th><?php echo(count($list09)); ?></th><th><?php echo(count($list10)); ?></th><th><?php echo(count($list11)); ?></th><th><?php echo(count($list12)); ?></th></tr>
-	<?php
-		foreach($memberList as $member){
-			$mem2009 = "";
-			$mem2010 = "";
-			$mem2011 = "";
-			$mem2012 = "";
-			if($member->mem2009){$mem2009 = "checked=\"checked\"";}
-			if($member->mem2010){$mem2010 = "checked=\"checked\"";}
-			if($member->mem2011){$mem2011 = "checked=\"checked\"";}			
-			if($member->mem2012){$mem2012 = "checked=\"checked\"";}
-			echo("<tr><td>".$member->firstname." ".$member->lastname."</td>");
-			echo("<td><div class=\"eip\" id=\"member-".$member->memberId."-gradyear\">".$member->gradyear."</div></td>");
-			echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2009\" class=\"memberyear\"".$mem2009." /></td>");
-			echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2010\" class=\"memberyear\"".$mem2010." /></td>");
-			echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2011\" class=\"memberyear\"".$mem2011." /></td>");
-			echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2012\" class=\"memberyear\"".$mem2012." /></td></tr>");
-		}
-	?>		
-	</table>
 </div>

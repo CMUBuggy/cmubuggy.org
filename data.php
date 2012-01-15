@@ -16,6 +16,23 @@ if(count($_POST)>0) {
 		if(isset($_POST["update_value"])){ $newval = $_POST["update_value"];}
 	
 		switch($type) {
+			case "add":
+				$objType = $_POST["objtype"];
+				$newobj = new $objType();
+				
+				$ignore = array("type","objtype",);
+				$keys = array_keys($_POST);
+				foreach($keys as $key){
+					if(!array_key_exists($key, $ignore)){
+						$newobj->$key = $_POST[$key];
+						echo($_POST[$key]."<br />");
+					}
+				}
+				$objId = $newobj->Save();
+				$de->objtype = $objType;
+				$de->objid = $objId;				
+				
+			break;
 			case "update":
 				$idvals = explode("-",$id);
 				$objType = $idvals[0];
