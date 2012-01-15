@@ -11,7 +11,7 @@ if (isset($_COOKIE["cmubuggy_auth"])){
 	<form action="/login.php" method="post" accept-charset="utf-8">
 		<fieldset>
 			<label for="username">Username</label>
-			<input type="text" name="username" value="" id="username"><br />
+			<input type="text" name="username" value="" id="username">
 			<label for="password">Password</label>
 			<input type="password" name="password" value="" id="password">
 		</fieldset>
@@ -21,11 +21,4 @@ if (isset($_COOKIE["cmubuggy_auth"])){
 		<a style="margin-left:10px;" href="/user/register">Register</a>
 	</form>
 <?php } ?>
-<!--
-<br />
-<span class="detail">
-<a href="/user"><? echo $userstats->usercount ?> Members</a><br />
-Welcome <a href="/user/<? echo $userstats->newestuser ?>"><? echo $userstats->newestuser ?></a>,<br />our newest member
-</span>
--->
 </div>

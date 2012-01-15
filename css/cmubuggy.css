@@ -76,54 +76,43 @@ sub {font-size: .5em; padding: 0 0 0 2px; }
 .bad { color: #D8000C; background-color: #FFF;}
 .good { color: #4F8A10; background-color: #F4FBEA; }
 
+
+/*  ___FORMS___     */
+
+form {
+	margin: 10px 0;
+}
+
 input{
-    font-size: .9em;
-    margin: 5px 0;
-    //display: block;
-    padding: 2px;
+    font-size: 1.1em;
+    margin: 10px 5px;
+    display: block;
+    padding: 5px 5px;
     border: solid 1px #ccc;
     background-color: #fff;
+    float: left;
 }
 
 fieldset label{
 	display: block;
-	margin: 8px 0 -5px 0;	
-}
-
-/*
-.form form p 			{ position: relative; margin: 10px 0;}
-.form form p label 	{ position: absolute; top: 0; left: 0; text-align:left;}
-.form form p br 		{ display: none;}
-
-.form form fieldset p input,
-.form form fieldset p textarea {
-	text-align: left;
-	display: block;
-	padding: 3px;
-	width:130px; 
-	margin: 0 auto;
-}
-.form form fieldset p label {
+	float: left;
+	text-align:right;
+	clear: left;
+	margin: 15px 5px 0 0;	
 	width: 180px;
-	display: block;
-	margin: 3px 5px 5px 28px;
-	padding: 0;
+	font-size: 1.2em;
 }
-.form form fieldset p textarea {
-	padding: 2px;
-	width: 404px;
+
+fieldset .detail{
+	font-size: .8em;
+	color: #444;
+	margin:-3px 0 0 0;
 }
-.form form fieldset p textarea,
-.form form fieldset p input {
-	border: solid 1px #ccc;
-}
-.form form fieldset p label {
-	color: #777;
-}
-*/
+
 .button,
 #ref input[type="submit"] {
 	font-weight: bold;
+	font-size: 1em;
 	border: 1px solid #ccc;
 	padding: 5px;
 	display:inline;
@@ -311,22 +300,31 @@ img[rel] {cursor: pointer; }
 #left li {list-style:none; margin:2px 0; }
 #mainnav {font-size: 1.3em; text-align:center; margin:10px 0;}
 
-#googlesearch {
-	margin:25px 0;
-	text-align: center;
-	width:180px;		
+#leftmenu input {
+	float: none;	
 }
-#leftmenu #login{
-	//margin:25px 0;
+
+#googlesearch {
 	text-align: center;
-	width:170px;
+	width:180px;
+}
+
+#login{
+	text-align: center;
 	background:#f8f8f8;
 	border: 1px solid #ccc;
-	padding:10px 0;
+	padding:5px 10px
 }
-#form .detail{
+
+#login label {
+	font-size: 1em;
+	text-align: left;
+	margin:0 0 3px 5px;
+	width: 50px	
+}
+
+#login input[type="text"], #login input[type="password"] {
 	font-size: .9em;
-	color:#777;	
 }
 
 #socialmedia {
