@@ -6,7 +6,12 @@
 if (isset($_COOKIE["cmubuggy_auth"])){
 	$uservars = getuservars($_COOKIE["cmubuggy_auth"]);
 	echo("Logged in as <a href=\"/user/".$uservars["urlkey"]."\">".$uservars["username"]."</a><br />");
-	echo("<a href=\"/logout.php\">Logout</a><br />");
+	echo("<a href=\"/logout.php\">Logout</a>");
+	if (isset($uservars["adminlevel"])){
+		if($uservars["adminlevel"] > 0){
+			echo(" | <a href=\"/admin\">Admin</a>");
+		}
+	}
 } else { ?>
 	<form action="/login.php" method="post" accept-charset="utf-8">
 		<fieldset>

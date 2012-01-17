@@ -8,6 +8,7 @@
 	<tr>
 		<th>Type</th>
 		<th>Object</th>
+		<th>Attribute</th>
 		<th>ID</th>
 		<th>Old Value</th>
 		<th>New Value</th>
@@ -20,10 +21,11 @@ foreach($editList as $edit){
 	echo("<tr>");
 	echo("<td>".$edit->edittype."</td>");
 	echo("<td>".$edit->objtype."</td>");
+	echo("<td>".$edit->objattr."</td>");
 	echo("<td>".$edit->objid."</td>");
 	echo("<td>".$edit->oldvalue."</td>");
 	echo("<td>".$edit->newvalue."</td>");
-	echo("<td>".$edit->timestamp."</td>");
+	echo("<td>".strftime("%b %d %Y %X",$edit->timestamp)."</td>");
 	echo("<td>".$user->username."</td>");
  	echo("</tr>");
 }
