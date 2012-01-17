@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 <div class="pane admin">
 	<h2>Manage Membership Records</h2>
-	<input type="button" class="button" value="Add a Member" id="InitAddMember"  />		
+	<input type="button" class="button" value="Add a Member?" id="InitAddMember"  />		
 	<div id="message"></div>
 	<div id="addmember" class="hidden">
 	<form action="" method="">
@@ -70,6 +70,7 @@ $(document).ready(function(){
 		<input type="button" class="button" value="Add Member" id="AddMemberSubmit" style="margin:10px 0 0 190px" />		
 	</form>	
 	</div>
+	<br />
 	<div id="memberlist">
 		<h3>Current and Past Members</h3>
 		<table class="data">
