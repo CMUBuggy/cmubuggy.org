@@ -11,6 +11,7 @@
 	<!--<script type="text/javascript" src="/js/jquery.autocomplete.min.js" ></script>-->
 	<!--<script type="text/javascript" src="/js/jquery.infieldlabel.min.js" ></script>-->
 	<script type="text/javascript" src="/js/jquery.tools.min.js" ></script>
+	<script type="text/javascript" src="/js/jquery.editinplace.js" ></script>
 	<script type="text/javascript" src="/js/superfish-menu.js" ></script>
 	<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 	<script type="text/javascript">

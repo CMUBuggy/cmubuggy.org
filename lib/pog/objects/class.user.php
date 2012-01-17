@@ -16,7 +16,8 @@
 	`registerip` VARCHAR(255) NOT NULL,
 	`lastloginip` VARCHAR(255) NOT NULL,
 	`lastlogintime` INT NOT NULL,
-	`registerhumantest` VARCHAR(255) NOT NULL, PRIMARY KEY  (`userid`)) ENGINE=MyISAM;
+	`registerhumantest` VARCHAR(255) NOT NULL,
+	`adminlevel` TINYINT NOT NULL, PRIMARY KEY  (`userid`)) ENGINE=MyISAM;
 */
 
 /**
@@ -25,7 +26,7 @@
 * @version POG 3.0f / PHP5.1 MYSQL
 * @see http://www.phpobjectgenerator.com/plog/tutorials/45/pdo-mysql
 * @copyright Free for personal & commercial use. (Offered under the BSD license)
-* @link http://www.phpobjectgenerator.com/?language=php5.1&wrapper=pdo&pdoDriver=mysql&objectName=user&attributeList=array+%28%0A++0+%3D%3E+%27username%27%2C%0A++1+%3D%3E+%27password%27%2C%0A++2+%3D%3E+%27email%27%2C%0A++3+%3D%3E+%27realname%27%2C%0A++4+%3D%3E+%27membersince%27%2C%0A++5+%3D%3E+%27gradyear%27%2C%0A++6+%3D%3E+%27org%27%2C%0A++7+%3D%3E+%27person%27%2C%0A++8+%3D%3E+%27note%27%2C%0A++9+%3D%3E+%27salt%27%2C%0A++10+%3D%3E+%27urlkey%27%2C%0A++11+%3D%3E+%27emailvalidatekey%27%2C%0A++12+%3D%3E+%27member%27%2C%0A++13+%3D%3E+%27registerip%27%2C%0A++14+%3D%3E+%27lastloginip%27%2C%0A++15+%3D%3E+%27lastlogintime%27%2C%0A++16+%3D%3E+%27registerhumantest%27%2C%0A%29&typeList=array%2B%2528%250A%2B%2B0%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B1%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B2%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B3%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B4%2B%253D%253E%2B%2527INT%2527%252C%250A%2B%2B5%2B%253D%253E%2B%2527SMALLINT%2527%252C%250A%2B%2B6%2B%253D%253E%2B%2527JOIN%2527%252C%250A%2B%2B7%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B8%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B9%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B10%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B11%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B12%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B13%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B14%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B15%2B%253D%253E%2B%2527INT%2527%252C%250A%2B%2B16%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2529
+* @link http://www.phpobjectgenerator.com/?language=php5.1&wrapper=pdo&pdoDriver=mysql&objectName=user&attributeList=array+%28%0A++0+%3D%3E+%27username%27%2C%0A++1+%3D%3E+%27password%27%2C%0A++2+%3D%3E+%27email%27%2C%0A++3+%3D%3E+%27realname%27%2C%0A++4+%3D%3E+%27membersince%27%2C%0A++5+%3D%3E+%27gradyear%27%2C%0A++6+%3D%3E+%27org%27%2C%0A++7+%3D%3E+%27person%27%2C%0A++8+%3D%3E+%27note%27%2C%0A++9+%3D%3E+%27salt%27%2C%0A++10+%3D%3E+%27urlkey%27%2C%0A++11+%3D%3E+%27emailvalidatekey%27%2C%0A++12+%3D%3E+%27member%27%2C%0A++13+%3D%3E+%27registerip%27%2C%0A++14+%3D%3E+%27lastloginip%27%2C%0A++15+%3D%3E+%27lastlogintime%27%2C%0A++16+%3D%3E+%27registerhumantest%27%2C%0A++17+%3D%3E+%27dataedit%27%2C%0A++18+%3D%3E+%27adminlevel%27%2C%0A%29&typeList=array%2B%2528%250A%2B%2B0%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B1%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B2%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B3%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B4%2B%253D%253E%2B%2527INT%2527%252C%250A%2B%2B5%2B%253D%253E%2B%2527SMALLINT%2527%252C%250A%2B%2B6%2B%253D%253E%2B%2527JOIN%2527%252C%250A%2B%2B7%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B8%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B9%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B10%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B11%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B12%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B13%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B14%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B15%2B%253D%253E%2B%2527INT%2527%252C%250A%2B%2B16%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B17%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B18%2B%253D%253E%2B%2527TINYINT%2527%252C%250A%2529
 */
 include_once('class.pog_base.php');
 include_once('class.orgusermap.php');
@@ -118,6 +119,16 @@ class user extends POG_Base
 	 */
 	public $registerhumantest;
 	
+	/**
+	 * @var private array of dataedit objects
+	 */
+	private $_dataeditList = array();
+	
+	/**
+	 * @var TINYINT
+	 */
+	public $adminlevel;
+	
 	public $pog_attribute_type = array(
 		"userId" => array('db_attributes' => array("NUMERIC", "INT")),
 		"username" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
@@ -137,6 +148,8 @@ class user extends POG_Base
 		"lastloginip" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"lastlogintime" => array('db_attributes' => array("NUMERIC", "INT")),
 		"registerhumantest" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
+		"dataedit" => array('db_attributes' => array("OBJECT", "HASMANY")),
+		"adminlevel" => array('db_attributes' => array("NUMERIC", "TINYINT")),
 		);
 	public $pog_query;
 	
@@ -157,7 +170,7 @@ class user extends POG_Base
 		}
 	}
 	
-	function user($username='', $password='', $email='', $realname='', $membersince='', $gradyear='', $salt='', $urlkey='', $emailvalidatekey='', $registerip='', $lastloginip='', $lastlogintime='', $registerhumantest='')
+	function user($username='', $password='', $email='', $realname='', $membersince='', $gradyear='', $salt='', $urlkey='', $emailvalidatekey='', $registerip='', $lastloginip='', $lastlogintime='', $registerhumantest='', $adminlevel='')
 	{
 		$this->username = $username;
 		$this->password = $password;
@@ -176,6 +189,8 @@ class user extends POG_Base
 		$this->lastloginip = $lastloginip;
 		$this->lastlogintime = $lastlogintime;
 		$this->registerhumantest = $registerhumantest;
+		$this->_dataeditList = array();
+		$this->adminlevel = $adminlevel;
 	}
 	
 	
@@ -205,6 +220,7 @@ class user extends POG_Base
 			$this->lastloginip = $this->Unescape($row['lastloginip']);
 			$this->lastlogintime = $this->Unescape($row['lastlogintime']);
 			$this->registerhumantest = $this->Unescape($row['registerhumantest']);
+			$this->adminlevel = $this->Unescape($row['adminlevel']);
 		}
 		return $this;
 	}
@@ -303,6 +319,7 @@ class user extends POG_Base
 			$user->lastloginip = $this->Unescape($row['lastloginip']);
 			$user->lastlogintime = $this->Unescape($row['lastlogintime']);
 			$user->registerhumantest = $this->Unescape($row['registerhumantest']);
+			$user->adminlevel = $this->Unescape($row['adminlevel']);
 			$userList[] = $user;
 		}
 		return $userList;
@@ -333,11 +350,12 @@ class user extends POG_Base
 			`registerip`='".$this->Escape($this->registerip)."', 
 			`lastloginip`='".$this->Escape($this->lastloginip)."', 
 			`lastlogintime`='".$this->Escape($this->lastlogintime)."', 
-			`registerhumantest`='".$this->Escape($this->registerhumantest)."' where `userid`='".$this->userId."'";
+			`registerhumantest`='".$this->Escape($this->registerhumantest)."', 
+			`adminlevel`='".$this->Escape($this->adminlevel)."' where `userid`='".$this->userId."'";
 		}
 		else
 		{
-			$this->pog_query = "insert into `user` (`username`, `password`, `email`, `realname`, `membersince`, `gradyear`, `salt`, `urlkey`, `emailvalidatekey`, `registerip`, `lastloginip`, `lastlogintime`, `registerhumantest` ) values (
+			$this->pog_query = "insert into `user` (`username`, `password`, `email`, `realname`, `membersince`, `gradyear`, `salt`, `urlkey`, `emailvalidatekey`, `registerip`, `lastloginip`, `lastlogintime`, `registerhumantest`, `adminlevel` ) values (
 			'".$this->Escape($this->username)."', 
 			'".$this->Escape($this->password)."', 
 			'".$this->Escape($this->email)."', 
@@ -350,7 +368,8 @@ class user extends POG_Base
 			'".$this->Escape($this->registerip)."', 
 			'".$this->Escape($this->lastloginip)."', 
 			'".$this->Escape($this->lastlogintime)."', 
-			'".$this->Escape($this->registerhumantest)."' )";
+			'".$this->Escape($this->registerhumantest)."', 
+			'".$this->Escape($this->adminlevel)."' )";
 		}
 		$insertId = Database::InsertOrUpdate($this->pog_query, $connection);
 		if ($this->userId == "")
@@ -379,6 +398,11 @@ class user extends POG_Base
 			{
 				$member->userId = $this->userId;
 				$member->Save($deep);
+			}
+			foreach ($this->_dataeditList as $dataedit)
+			{
+				$dataedit->userId = $this->userId;
+				$dataedit->Save($deep);
 			}
 		}
 		return $this->userId;
@@ -418,6 +442,11 @@ class user extends POG_Base
 			foreach ($memberList as $member)
 			{
 				$member->Delete($deep, $across);
+			}
+			$dataeditList = $this->GetDataeditList();
+			foreach ($dataeditList as $dataedit)
+			{
+				$dataedit->Delete($deep, $across);
 			}
 		}
 		if ($across)
@@ -800,6 +829,63 @@ class user extends POG_Base
 		if (!$found)
 		{
 			$this->_memberList[] = $member;
+		}
+	}
+	
+	
+	/**
+	* Gets a list of dataedit objects associated to this one
+	* @param multidimensional array {("field", "comparator", "value"), ("field", "comparator", "value"), ...} 
+	* @param string $sortBy 
+	* @param boolean $ascending 
+	* @param int limit 
+	* @return array of dataedit objects
+	*/
+	function GetDataeditList($fcv_array = array(), $sortBy='', $ascending=true, $limit='')
+	{
+		$dataedit = new dataedit();
+		$fcv_array[] = array("userId", "=", $this->userId);
+		$dbObjects = $dataedit->GetList($fcv_array, $sortBy, $ascending, $limit);
+		return $dbObjects;
+	}
+	
+	
+	/**
+	* Makes this the parent of all dataedit objects in the dataedit List array. Any existing dataedit will become orphan(s)
+	* @return null
+	*/
+	function SetDataeditList(&$list)
+	{
+		$this->_dataeditList = array();
+		$existingDataeditList = $this->GetDataeditList();
+		foreach ($existingDataeditList as $dataedit)
+		{
+			$dataedit->userId = '';
+			$dataedit->Save(false);
+		}
+		$this->_dataeditList = $list;
+	}
+	
+	
+	/**
+	* Associates the dataedit object to this one
+	* @return 
+	*/
+	function AddDataedit(&$dataedit)
+	{
+		$dataedit->userId = $this->userId;
+		$found = false;
+		foreach($this->_dataeditList as $dataedit2)
+		{
+			if ($dataedit->dataeditId > 0 && $dataedit->dataeditId == $dataedit2->dataeditId)
+			{
+				$found = true;
+				break;
+			}
+		}
+		if (!$found)
+		{
+			$this->_dataeditList[] = $dataedit;
 		}
 	}
 }
