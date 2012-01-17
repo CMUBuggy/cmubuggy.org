@@ -19,13 +19,16 @@
 		<h3>Benefits of being a member</h3>
 		<ol>
 			<li><b>Supporting our mission</b>: The most important reason to become a member is that we can't operate without a budget.  Most of our services are all-volunteer and low-cost.  When we do spend money we try to ensure we get the most bang for our buck.  For example, we paid 50% of the cost of renting a new timing system in 2010 so that Sweepstakes could test it out for a full month before races and ensure it would be the revolutionary improvement we expected.  Ongoing rental of the timing system fits within Sweepstake's annual budget. More info about our goals and our activities can be found in the <a href="/about">About Us</a> section.</li>
-			<li><b>Special communications</b>: We contact our members directly a couple of times per year with in-depth updates on the buggy world.  No more coming back for carnival and wondering who is good these days, or what big drama is unfolding.  Check out the <a onclick="javascript: pageTracker._trackPageview('/files/RacedayPreview2009.pdf');" href="/files/RacedayPreview2009.pdf">2009</a> and <a onclick="javascript: pageTracker._trackPageview('/files/RacedayPreview2010.pdf');" href="/files/RacedayPreview2010.pdf">2010</a> Raceday Previews for example.  You're going to want one of those in your inbox.
-			<li><b>Raceday Reception</b>: Each year we host a reception after the races on Friday for fans and alumni to meet up (in real life for once, not just on the internet), have some food, and talk about the morning's races.  It's suggested that you become a member if you come to the reception since the food ain't free. 
+			<li><b>Special communications</b>: We contact our members directly a couple of times per year with in-depth updates on the buggy world.  No more coming back for carnival and wondering who is good these days, or what big drama is unfolding.  Check out the <a onclick="javascript: pageTracker._trackPageview('/files/RacedayPreview2009.pdf');" href="/files/RacedayPreview2009.pdf">2009</a> and <a onclick="javascript: pageTracker._trackPageview('/files/RacedayPreview2010.pdf');" href="/files/RacedayPreview2010.pdf">2010</a> Raceday Previews for example.  You're going to want one of those in your inbox.</li>
+			<li><b>Raceday Reception</b>: Each year we host a reception after the races on Friday for fans and alumni to meet up (in real life for once, not just on the internet), have some food, and talk about the morning's races.  It's suggested that you become a member if you come to the reception since the food ain't free.</li>
+			<li><b>Members-only Specials</b>:  We're constantly trying to think of ways to entertain and help out our members.  You'll be first in line for prizes, discounts, and anything else can put together.</li> 
 		</ol>
 		<br />
 		<h3>Wow! How do I join?</h3>
 		To become an official member of the Buggy Alumni Association for the year, <b>all you have to do is give a gift of any size</b>.  Any amount is fine, we just want to know that you've got our back.  All gifts are tax-deductible and funds go directly to the CMU Buggy Alumni Association allowing us to rent timing systems, jumbotrons, and have receptions.<br />
-		<br />		
+		<br />
+		Being a member of the Buggy Alumni Association is an annual commitment, and our "year" starts and ends at Raceday.  All gifts received before and during carnival make you a member of the BAA team for that race-year.  For example, gifts received May 2011-April 2012 make you a member of the 2012 team.<br />
+		<br /> 
 		<div class="button"><a target="_blank"  onclick="_gaq.push(['_trackEvent','Outbound','Membership',this.href]);" href="https://www.cmu.edu/campaign/ways/online.html?designation=Buggy%20Alumni%20Association&PCH=A0661">Join (or Renew) Now</a></div><br />
 		<br />
 		<b>Notes</b>:
