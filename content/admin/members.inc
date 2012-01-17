@@ -74,8 +74,8 @@ $(document).ready(function(){
 	<div id="memberlist">
 		<h3>Current and Past Members</h3>
 		<table class="data">
-		<tr><th>Member</th><th>Grad<br />Year</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th></tr>
-		<tr><th>Total Members</th><th></th><th><?php echo(count($list09)); ?></th><th><?php echo(count($list10)); ?></th><th><?php echo(count($list11)); ?></th><th><?php echo(count($list12)); ?></th></tr>
+		<tr><th>Member</th><th>Email</th><th>Grad<br />Year</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th></tr>
+		<tr><th>Total Members</th><th></th><th></th><th><?php echo(count($list09)); ?></th><th><?php echo(count($list10)); ?></th><th><?php echo(count($list11)); ?></th><th><?php echo(count($list12)); ?></th></tr>
 		<?php
 			foreach($memberList as $member){
 				$mem2009 = "";
@@ -87,6 +87,7 @@ $(document).ready(function(){
 				if($member->mem2011){$mem2011 = "checked=\"checked\"";}			
 				if($member->mem2012){$mem2012 = "checked=\"checked\"";}
 				echo("<tr><td>".$member->firstname." ".$member->lastname."</td>");
+				echo("<td><div class=\"eip\"id=\"member-".$member->memberId."-email\">".$member->email."</div></td>");
 				echo("<td><div class=\"eip\" id=\"member-".$member->memberId."-gradyear\">".$member->gradyear."</div></td>");
 				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2009\" class=\"memberyear\"".$mem2009." /></td>");
 				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2010\" class=\"memberyear\"".$mem2010." /></td>");
