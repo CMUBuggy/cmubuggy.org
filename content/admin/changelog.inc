@@ -4,15 +4,15 @@
 ?>
 
 <div class="pane">
-<table class="data" summary="" >
+<table class="editable" summary="" >
 	<tr>
 		<th>Type</th>
 		<th>Object</th>
 		<th>Attribute</th>
 		<th>ID</th>
-		<th>Old Value</th>
-		<th>New Value</th>
-		<th>Time</th>
+		<th>Old<br />Value</th>
+		<th>New<br />Value</th>
+		<th style="width:115px;">Time</th>
 		<th>User</th>	
 	</tr>
 <?php
@@ -25,7 +25,7 @@ foreach($editList as $edit){
 	echo("<td>".$edit->objid."</td>");
 	echo("<td>".$edit->oldvalue."</td>");
 	echo("<td>".$edit->newvalue."</td>");
-	echo("<td>".strftime("%b %d %Y %X",$edit->timestamp)."</td>");
+	echo("<td>".strftime("%m/%d/%y %X",$edit->timestamp)."</td>");
 	echo("<td>".$user->username."</td>");
  	echo("</tr>");
 }
