@@ -1,5 +1,9 @@
 <script type="text/javascript">
 
+function dispmsg(valence, msg){
+	$("#message").addClass(valence).html(msg).fadeIn().delay(800).fadeOut();
+}
+
 $(document).ready(function(){
 	//Edit membership years
 	$("input.memberyear").change(function(){
@@ -9,7 +13,7 @@ $(document).ready(function(){
 			}
 			$.post("/data.php", { type: "update", element_id: $(this).attr("id"), update_value: newval },
 			   function(data) {
-			     //alert("success");
+			     dispmsg("good", "Membership status updated");
 			   });
 		});
 		
@@ -20,7 +24,7 @@ $(document).ready(function(){
 		url: "/data.php",
 		success:function(enteredText){
 			$(this).html(enteredText);
-			//alert ("success");
+			dispmsg("good", "Graduation year updated");
 		}
 	})
 	
@@ -32,7 +36,8 @@ $(document).ready(function(){
 	$("#AddMemberSubmit").click(function(){
 		var data = $("#addmember input.val").serializeArray();
 		$.post("/data.php", data, function(data){
-			alert("success");
+			dispmsg("good", "Member added");
+			$("#addmember input.val").val("");
 		});
 	});	
 })
@@ -48,10 +53,10 @@ $(document).ready(function(){
 	$list12 = $member->GetList(array(array("mem2012","=","1")));
 ?>
 
-<div class="pane admin">
+<div class="pane">
+	<div id="message" class="msg hidden floatright"></div>
 	<h2>Manage Membership Records</h2>
 	<input type="button" class="button" value="Add a Member?" id="InitAddMember"  />		
-	<div id="message"></div>
 	<div id="addmember" class="hidden">
 	<form action="" method="">
 		<fieldset>
@@ -73,8 +78,16 @@ $(document).ready(function(){
 	<br />
 	<div id="memberlist">
 		<h3>Current and Past Members</h3>
-		<table class="data">
-		<tr><th>Member</th><th>Email</th><th>Grad<br />Year</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th></tr>
+		<table class="editable">
+		<tr>
+			<th>Member</th>
+			<th>Email</th>
+			<th style="width:60px">Grad<br />Year</th>
+			<th style="width:50px;">2009</th>
+			<th style="width:50px;">2010</th>
+			<th style="width:50px;">2011</th>
+			<th style="width:50px;">2012</th>
+		</tr>
 		<tr><th>Total Members</th><th></th><th></th><th><?php echo(count($list09)); ?></th><th><?php echo(count($list10)); ?></th><th><?php echo(count($list11)); ?></th><th><?php echo(count($list12)); ?></th></tr>
 		<?php
 			foreach($memberList as $member){

@@ -160,7 +160,7 @@ fieldset .detail{
 /*  ___Data Tables___   */
 
 
-.data td 				{ border-bottom:1px solid #999; padding:2px 9px; text-align:left;}
+.data td 				{ border-bottom:1px solid #ccc; padding:2px 9px; text-align:left;}
 .data th 				{ border-bottom:3px solid #ccc; padding:2px 9px; text-align:left; font-weight: bold;}
 td.newcol, th.newcol { border-left:1px solid #999; }
 
@@ -414,6 +414,15 @@ img[rel] {cursor: pointer; }
 #rollslist .items			{ position:absolute; margin: 0px; height:20000em; width:190px;}
 #rollschedule .feednext { padding-left:40px; }
 
+/*  ___Edit in place forms____  */
+
+table.editable 	{ width:725px;table-layout:fixed; }
+table.editable tr { height:1em;  }
+table.editable td { overflow:hidden;white-space:nowrap;  }
+table.editable td { border-bottom:1px solid #ccc; padding:0px 6px; text-align:left;}
+table.editable th { border-bottom:3px solid #ccc; padding:2px 6px; text-align:left; font-weight: bold;}
+
+.inplace_form input { padding:0; margin:0; font-size: 1em;}
 
 
 
