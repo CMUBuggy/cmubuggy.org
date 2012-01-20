@@ -94,6 +94,10 @@ input{
     float: left;
 }
 
+form input[type="checkbox"]{
+	margin:17px 5px 0px 5px;	
+}
+
 fieldset label{
 	display: block;
 	float: left;

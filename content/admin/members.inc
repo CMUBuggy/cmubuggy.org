@@ -34,10 +34,11 @@ $(document).ready(function(){
 	});
 	
 	$("#AddMemberSubmit").click(function(){
-		var data = $("#addmember input.val").serializeArray();
+		var data = $("#addmember input").serializeArray();
 		$.post("/data.php", data, function(data){
+			$("#addmember input:text").val("");
+			$("#addmember input:checkbox").removeAttr('checked');
 			dispmsg("good", "Member added");
-			$("#addmember input.val").val("");
 		});
 	});	
 })
@@ -66,11 +67,14 @@ $(document).ready(function(){
 			<label for="lastname">Last Name</label>
 			<input type="text" class="val" name="lastname" />
 			<label for="email">E-mail</label>
-			<input type="email" class="val" name="email" />
+			<input type="text" class="val" name="email" />
 			<label for="gradyear">Graduation Year<div class="detail">(YYYY)</div></label>
 			<input type="text" class="val" name="gradyear" size="5" />
-			<input type="hidden" class="val" name="type" value="add" />
-			<input type="hidden" class="val" name="objtype" value="member" />
+			<!-- TODO: Generalize to current (race) year -->
+			<label for="mem2012">Mebership 2012</label>
+			<input type="checkbox" class="val" name="mem2012" value="1">
+			<input type="hidden" name="type" value="add" />
+			<input type="hidden" name="objtype" value="member" />
 		</fieldset>
 		<input type="button" class="button" value="Add Member" id="AddMemberSubmit" style="margin:10px 0 0 190px" />		
 	</form>	
