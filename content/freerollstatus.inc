@@ -1,6 +1,6 @@
 <?php
 	$freeroll = new freeroll();
-	$freerollList = $freeroll->GetList(null,"date");
+	$freerollList = $freeroll->GetList(array(array("date",">",date("y-m-d",time()-60*60*24*365))),"date");
 
 	$group_open = FALSE;
 	$group_count = 0;
@@ -29,8 +29,8 @@
 					if($galleryURL != ""){ $galleryURL = "<a style=\"float:right\" href=\"/gallery/".$galleryURL."\"><img alt=\"Gallery\" height=\"22px\" src=\"/img/icon_camera.gif\" /></a>"; }
 					$links = "<div style=\"float:right; height:22px;\">".$newsURL.$galleryURL."</div>";
 					
-					//Pick the current group if the date was less than 48 hours ago 
-					if($display_group == NULL && strtotime($freeroll->date) > time()-48*60*60){
+					//Pick the current group if the date was less than 48 hours ago
+					if(strtotime($freeroll->date) > time()-60*60*48 && $display_group == NULL){
 						$display_group = $group_count;
 					}
 					
@@ -82,7 +82,7 @@
 $(document).ready(function() {		
 	$("#rollslist").scrollable({ vertical: true, speed:400, next:".feednext", prev:".feedprev" });
 	var rollslistAPI = $("#rollslist").data("scrollable");
-	rollslistAPI.seekTo(<?php echo($seekto-1); ?>,0);
+	rollslistAPI.seekTo(<?php echo($seekto); ?>,0);
 });
 
 </script>
