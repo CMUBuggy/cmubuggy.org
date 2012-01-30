@@ -6,8 +6,13 @@
 		</div>
 		<div class="yui3-u-3-5">
 			<h3>Get Involved</h3>
-			<b><a href="/news/2011/11/congratulations-jake-mohin-fantasy-buggy-champion/">Fantasy Buggy</a></b> - Congrats to Jake Mohin, champion of our first Fantasy Buggy game.  See the link for full data and results.
-			<div class="item"><a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon">Projects<img src="img/icon_reddit.png"></div></a>What do you think we should be working on? <a href="http://reddit.com/r/cmubuggy" target="__blank" >Propose, vote on, and discuss projects in the new "BAA project zone"</a></div>
+			<div class="item newsitem"><a href="/news/baa-member-perk-carnival-hotel-deal"><div class="icon newsicon"><img src="/img/icon_news.png"></div></a>Get $50 off/night at the Hampton Inn during Carnival. <a href="/membership">Become a member</a> and <a href="/news/baa-member-perk-carnival-hotel-deal">make your reservation</a> now.</div>
+			<div class="item">
+				<a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon">Projects<img src="img/icon_reddit.png"></div></a>
+				 - <a href="http://reddit.com/r/cmubuggy/comments/j7ut9/idea_recruit_sponsors_to_help_fund_the_raceday/" target="__blank" >Corporate sponsorships for jumbotrons</a><br />
+				 - <a href="http://reddit.com/r/cmubuggy/comments/kf1x2/tshirts_in_time_for_cèilidh_homecoming/" target="__blank" >BAA T-shirts for Carnival</a><br />
+				 - <a href="http://reddit.com/r/cmubuggy/comments/m8db3/live_webcast_of_rolls/" target="__blank" >Live Webcasts of Rolls</a>
+			</div>
 		</div>
 	</div>
 	<?php include_once("featurepic.inc"); ?>
@@ -38,6 +43,10 @@
 //			<h3>Participate!</h3>
 //			The website is still brand new, so let us know what you think in the <a href="forum/viewtopic.php?f=3&t=374" >Forum</a><br /><br />
 //			Pictures are now easier to upload.  Add your raceday pics in the <a href="/gallery/2010-2011">Gallery</a>.
+
+//fantasy buggy winner
+//			<b><a href="/news/2011/11/congratulations-jake-mohin-fantasy-buggy-champion/">Fantasy Buggy</a></b> - Congrats to Jake Mohin, champion of our first Fantasy Buggy game.  See the link for full data and results.
+
 
 
 //Auction countdown
