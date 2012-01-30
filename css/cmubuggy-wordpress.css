@@ -43,7 +43,7 @@ article.post {
 	padding:10px;
 	float: left;
 }
-.entry-meta {border-bottom: 1px #ccc solid; background-color: #eee; border-top: 1px #ccc solid; padding:5px 10px; margin:5px 0;}
+.entry-meta {border-bottom: 1px #ccc solid; background-color: #eee; border-top: 1px #ccc solid; padding:5px 10px; margin:5px 0; height: 18px;}
 
 
 .entry-content p {
