@@ -133,8 +133,6 @@
   <?= $theme->messages() ?>
   <?= $content ?>
   </div>
-  <span class="detail">(If you were expecting to see a picture and you don't, you've encountered a bug we're working to fix. Sorry about that.<br />In the mean time, to see the picture, simply click "Gallery" in the left menu, and then click "Back" in your browser.</span><br />
-  <br />
   <div id="g-sidebar" class="" style="">
     <? if ($theme->page_subtype != "login"): ?>
     <?= new View("sidebar.html") ?>
