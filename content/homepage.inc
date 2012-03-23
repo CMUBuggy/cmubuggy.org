@@ -6,13 +6,18 @@
 		</div>
 		<div class="yui3-u-3-5">
 			<h3>Get Involved</h3>
-			<div class="item newsitem"><a href="/news/baa-member-perk-carnival-hotel-deal"><div class="icon newsicon"><img src="/img/icon_news.png"></div></a>Get $50 off/night at the Hampton Inn during Carnival. <a href="/membership">Become a member</a> and <a href="/news/baa-member-perk-carnival-hotel-deal">make your reservation</a> now.</div>
-			<div class="item">
-				<a href="http://reddit.com/r/cmubuggy" target="__blank" ><div class="icon">Projects<img src="img/icon_reddit.png"></div></a>
-				 - <a href="http://reddit.com/r/cmubuggy/comments/j7ut9/idea_recruit_sponsors_to_help_fund_the_raceday/" target="__blank" >Corporate sponsorships for jumbotrons</a><br />
-				 - <a href="http://reddit.com/r/cmubuggy/comments/kf1x2/tshirts_in_time_for_cèilidh_homecoming/" target="__blank" >BAA T-shirts for Carnival</a><br />
-				 - <a href="http://reddit.com/r/cmubuggy/comments/m8db3/live_webcast_of_rolls/" target="__blank" >Live Webcasts of Rolls</a>
+			<div class="item newsitem">
+				<a href="/news/2012/03/ask-your-employer-dont-you-want-to-sponsor-buggy/">
+				<div class="icon newsicon">
+					<img src="/img/icon_news.png">
+				</div>
+				Help us find sponsors</a> to finance the jumbotrons and raceday guides.  Commitments due by April 6th.
 			</div>
+			<a href="/news/raceday-is-sneaking-up-how-are-you-getting-ready">
+			<div class="icon galleryicon" style="background-image:url('/gallery/var/thumbs/Shirts/baa-tshirt-spring12-back.png')"></div>
+			</a>
+			Pre-order the 2012 Buggy Alumni Association T-shirt<br />
+			<a href="/news/raceday-is-sneaking-up-how-are-you-getting-ready">Description</a>  |  <a href="https://docs.google.com/spreadsheet/viewform?pli=1&formkey=dFBiVHRPVjFyNDNYY1FaU2xoU2Z0SFE6MQ#gid=0">Pre-Order Form</a>
 		</div>
 	</div>
 	<?php include_once("featurepic.inc"); ?>
