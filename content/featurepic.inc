@@ -20,6 +20,9 @@
 <div id="featurepic" class="scroll shadow">
 	<div class="scrollitems">
 		<?php
+			if(file_exists("img/featurepics/promo.jpg")){
+				echo("<div class=\"item\" style=\"background-image:url(/img/featurepics/promo.jpg)\"></div>");
+			}
 			foreach($pics as $pic){
 				echo("<div class=\"item\" style=\"background-image:url(/img/featurepics/".$pic[0].")\"><div class=\"caption hidden\">".$pic[1]."</div></div>");
 			}
