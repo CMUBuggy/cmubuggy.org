@@ -57,7 +57,7 @@
 					<span class="detail"><?php echo($freeroll->note); ?>	</span>
 				</div>	
 			<?php
-				if($dayofweek == "Sun") {
+				if($dayofweek == "Sun" && $group_open == TRUE) {
 					echo("</div>");
 					$group_open = FALSE;
 					$group_count++;
