@@ -3,7 +3,7 @@
 	$freerollList = $freeroll->GetList(array(array("date",">",date("y-m-d",time()-60*60*24*365))),"date");
 
 	$group_open = FALSE;
-	$group_count = 1;
+	$group_count = 0;
 	$display_group = NULL;
 ?>
 
