@@ -35,7 +35,7 @@
 				<th>People's Choice</th>			
 			</tr>
 		<?php
-			for($year = 2010; $year >= 1920; $year--){
+			for($year = 2011; $year >= 1920; $year--){
 				$buggy1 = new buggy();
 				$buggy2 = new buggy();
 				$buggy3 = new buggy();
@@ -98,7 +98,7 @@
 				<th>T-Shirt Award</th>
 			</tr>
 		<?php
-			for($year = 2010; $year >= 1965; $year--){
+			for($year = 2011; $year >= 1965; $year--){
 				if(array_key_exists($year,$orgAwardArr)){
 					$orgCC = new org();
 					$orgSP = new org();
