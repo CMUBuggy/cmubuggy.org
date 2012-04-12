@@ -6,13 +6,11 @@
 		</div>
 		<div class="yui3-u-3-5">
 			<h3>Get Involved</h3>
-			<div class="item newsitem">
-				<a href="/news/2012/03/ask-your-employer-dont-you-want-to-sponsor-buggy/">
-				<div class="icon newsicon">
-					<img src="/img/icon_news.png">
-				</div>
-				Help us find sponsors</a> to finance the jumbotrons and raceday guides.  Commitments due by April 6th.
-			</div>
+			<div class="item" style="clear:left;">
+				<a href="/join">
+					<div class="icon" style="background:url('/img/icon_unclesam.jpg');">
+			</div>Join!</a> 
+			Become a supporting member now before you miss out on the Members-only Raceday Preview, out on Monday.</div>
 			<a href="/news/raceday-is-sneaking-up-how-are-you-getting-ready">
 			<div class="icon galleryicon" style="background-image:url('/gallery/var/thumbs/Shirts/baa-tshirt-spring12-back.png')"></div>
 			</a>
