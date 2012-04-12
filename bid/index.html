@@ -1,0 +1,986 @@
+
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
+    <title>History | CMU Buggy Alumni Association</title>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="http://24.3.194.181:1235/css/yui3.3-reset-fronts-grids.css" />
+    <link rel="stylesheet" type="text/css" href="http://24.3.194.181:1235/css/cmubuggy.css" />
+    <link rel="stylesheet" type="text/css" href="http://24.3.194.181:1235/css/superfish-menu.css" />
+    <link  href="http://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" type="text/css" href="auction.2.css" />
+    <link type="text/css" href="development-bundle/themes/ui-lightness/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />
+    <!--<link  href="http://fonts.googleapis.com/css?family=Permanent+Marker:regular" rel="stylesheet" type="text/css" >-->
+
+
+    <!--JS-->
+    <!--<script type="text/javascript" src="/js/jquery.autocomplete.min.js" ></script>-->
+    <!--<script type="text/javascript" src="/js/jquery.infieldlabel.min.js" ></script>-->
+    <script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.editinplace.js" ></script>
+    <script type="text/javascript" src="/js/superfish-menu.js" ></script>
+    <script type="text/javascript" src="/js/googleanalytics.js"></script>
+    <script type="text/javascript" src="development-bundle/ui/jquery-ui-1.8.18.custom.js"></script>
+    <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+
+    <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <script type="text/javascript" src="buggyGridRow.2.js" ></script>
+    <script type="text/javascript">
+
+//Utility Functions
+
+var qsParm = new Array();
+
+function qs() {
+    var query = window.location.search.substring(1);
+    var parms = query.split('&');
+    for (var i=0; i<parms.length; i++) {
+	var pos = parms[i].indexOf('=');
+	if (pos > 0) {
+	    var key = parms[i].substring(0,pos);
+	    var val = parms[i].substring(pos+1);
+	    qsParm[key] = val;
+  	}
+    }
+}
+
+
+function createCookie(name,value,days) {
+			if (days) {
+			var date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			var expires = "; expires="+date.toGMTString();
+			}
+			else var expires = "";
+			document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+					var c = ca[i];
+					while (c.charAt(0)==' ') c = c.substring(1,c.length);
+					if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+					}
+					return null;
+}
+
+function eraseCookie(name) {
+					createCookie(name,"",-1);
+}
+
+function displayBidResult(auctionId,resultMsg,result){
+    if(result==1){
+	color="black";
+    } else {
+	color="red";
+    }
+    positionToMoveTo=$("#bidBlock"+auctionId).offset().top;
+    leftPositionToMoveTo=$("#bidBlock"+auctionId).offset().left;
+    positionToMoveTo=    positionToMoveTo+90;
+    leftPositionToMoveTo=    leftPositionToMoveTo+47;
+    $("#bidResult").html("<center>"+resultMsg+"</center>");
+    $("#bidResult").css("visibility","visible");
+    $("#bidResult").css("top",positionToMoveTo+"px");
+    $("#bidResult").css("left",leftPositionToMoveTo+"px");
+    $("#bidResult").css("color",color);
+//    $("#bidResult").css("top","0");
+}
+
+String.prototype.format = function() {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{'+i+'\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
+
+
+//Global Vars
+mostRecentBidUidCache=-1;
+mostRecentBidUid=-1;
+initialized=0;
+auctionsInfo=Array();
+auctionsInfoDownloaded=Array();
+downloading=0;
+downloadingWaits=0;
+getFullInfoWait=2500;
+getChangesWait=1000;
+updateThreadWait=1000;
+loginId="";
+orgNameWidths=Array();
+stopBidding=0;
+
+/*
+
+ Description :
+ Global Variables Touched :
+ Dom Elements Touched :
+ Arguments :
+ Returns :
+
+ Overview of data flow :
+
+
+
+ * client gets new bids and displays them :
+  * every 1 second, set downloading variable (timestamp of current time) and...
+   * if the global loading variable is set,
+    * if the value of the loading variable ( a timestamp ) is less than 5 seconds difference from the current time, bail ( and wait for next firing of check )
+    * if the timestamp is greater than 5 seconds, assume the download failed, and reset the download variable
+   * client asks for most recently changed auctionUid
+  * get time left/highest bid/lowestBid from server response
+  * if it matches client most recently changedUid(changedUidCache), do nothing and unset downloading variable
+  * if it doesn't...
+   * if the clients version of latest bid uid is -1
+    * we have initialized ( gotten all auctions ) already, and this is the first time we are getting changes, so we can assume our data is current
+      so set client latest bid uid to the one we just got from the server, unset downloading
+   * loop through client side array representing bids ( downloaded initially during init from server )
+     and create an array with a list of top bidUids for each auction
+    * keys are auctionUid, values are top bid uid for the auction
+    * auctions[<auctionUid>][<topBidAmount>]
+    * if no bid for that auction, do not create element for that auction
+   * convert array to JSON, send to server
+   * server creates returnArray with elements for each auction ( this will eventually be sent to client )
+    * array of bids will be added to each element, so no need to key off of auctionId ( bids have auctionId )
+   * server decodes JSON array and loops through it
+    * foreach server side auction
+     *if client and server top bids match, do nothing for that auction
+     *if top no element is set for that auction, the client has gotten no bids yet for this auction
+      *all server side bids for that auction added to element for that auction in returnArray
+     *if top bids don't match
+      *match top client bid to a server side bid
+      *add all bids more recent than top bid of client for that auction to returnArray
+   * return returnArray to client
+   * on recieve, client sets downloading to 0, client version of most recent bid uid to server version
+   * foreach element in returnArray
+    * foreach bid in element
+     * client prepends bid to begining of bids list for auction ( based on auctionId in bid )
+     * client removes final bid in bid list if there are now more than X bids
+      * X is dependent on if its a final or prelim
+     * bid gets prepended to clients array representing all auctions
+      * auctions[<auctionId>]['bids']
+
+
+
+ Features to add :
+  -show reserve bids that exist for current user
+   - reformat make bid/auto bid/bid status
+  -login/check for login on bid
+   - login check when making autobids
+    - launch dialog
+      - shows results in dialog if fails
+
+   - login.php needs to actually check user ids
+   - login.php should check if you are logged into cmubuggy.org
+   - register
+    - launch dialog that takes email address and gives instructions
+    - php page which takes random id argument ( email contains link to page with arg )
+     - asks for optional info
+   - add "cancel" button to register and login dialog
+  -don't display lower bids from same person
+  -send results of autobids (passed/failed)
+  -fade out results of bids/autobids
+  -formatting/design
+  -progress bar for initial load and bid submit
+
+*/
+
+
+function showBids(auctionId){
+    $("#bidResult").css("visibility","hidden");
+    if($("#bidBlock"+auctionId).css("display") == "block"){
+	$("#makeBidLink"+auctionId).html("Make Bids");
+	$("#bidBlock"+auctionId).css("display","none");
+    } else {
+	$("#bidBlock"+auctionId).css("display","block");
+	$("#makeBidLink"+auctionId).html("Hide Bids");
+    }
+    return 0;
+}
+
+/*
+
+ writeLoginDiv()
+
+ Description : changes content of login div based on login cookie
+ Global Variables Touched : loginId
+ Dom Elements Touched : login
+ Arguments : none
+ Returns : none
+
+*/
+
+function writeLoginDiv() {
+    //get login cookie
+    loginCookie = readCookie("buggyAuctionCookie");
+
+    //if login cookie has contents, set login div to logged in state
+    if(loginCookie){
+	$("#login").html("logged in as "+loginCookie+"<br>Click <a onClick='logout()'> here </a> to logout.");
+	loginId=loginCookie;
+
+    //otherwise, set login div to unlogged in state
+    } else {
+	$("#login").html("You are not logged in.<br><a onClick='$(\"#loginDialog\").dialog(\"open\");'>Login</a>")
+	$("#login").append("<br><a onClick='$(\"#registerDialog\").dialog(\"open\");'>Register</a>")
+	loginId=""
+    }
+}
+
+
+/*
+
+ logout()
+ Description : erases login cookies, unsets loginId, and changes the login div
+ Global Variables Touched : loginId
+ Dom Elements Touched
+ Arguments : none
+ Returns : none
+
+ */
+
+function logout(){
+    eraseCookie("buggyAuctionCookie")
+    loginId = ""
+    writeLoginDiv()
+}
+
+/*
+
+ loginWhileBidding()
+
+ Description : submits the login info while in the middle of a bid (auto or manual)
+ Global Variables Touched : none
+ Dom Elements Touched : loginUsernameWhileBidding,loginWhileBiddingDialog.auctionId
+ Arguments : none
+ Returns : none
+
+ */
+
+function loginWhileBidding(){
+
+    //get username and auctionId from dialog
+    username=$("#loginUsernameWhileBidding").val();
+    auctionId=$("#loginWhileBiddingDialog").attr("auctionId");
+
+    //submit login info (username) to server
+    $.ajax({
+	       url: "login.php",
+               data: {userId:username},
+	       dataType: "json"
+	   }).done(function( msg ) {
+                       //process server response to login
+                       //FIXME : we are assuming a good login, need to handle bad login
+                       loginWhileBiddingHandler(msg,auctionId,"Manual");
+		   });
+  return;
+}
+
+/*
+loginWhileBiddingHandler()
+
+Description : process login info submitted while in the middle of a bid (manual or auto),
+              then submit bid user was making before being forced to log in
+Global Variables Touched : loginId
+Dom Elements Touched : loginWhileBiddingDialog
+Arguments : msg : the string we get back from the server, auctionId : the auction id being bid in, typeOfBid : Manual or Auto
+Returns : none
+*/
+
+function loginWhileBiddingHandler(msg,auctionId,typeOfBid){
+    // note : for now, server just accepts everything
+
+    if(msg.loginId == "FuckThatNoise"){
+	//login Fail
+    } else {
+	//login succeded - set cookies, loginId, and update login div
+	createCookie("buggyAuctionCookie",msg['loginId'],"30");
+	loginId=msg['loginId'];
+	writeLoginDiv();
+	//submit bid user was in the middle of when forced to login
+	if(typeOfBid=="Manual"){
+	    makeManualBid(auctionId);
+	}
+    }
+
+    //close the login dialog
+    $("#loginWhileBiddingDialog").dialog("close");
+}
+
+
+/*
+
+ login()
+
+ Description : send login info to server
+ Global Variables Touched : none
+ Dom Elements Touched : loginUserName
+ Arguments : none
+ Returns : none
+
+ */
+
+function login(){
+
+    username=$("#loginUsername").val();
+
+    $.ajax({
+	       url: "login.php",
+               data: {userId:username},
+	       dataType: "json"
+	   }).done(function( msg ) {
+                       loginHandler(msg);
+		   });
+
+}
+
+
+
+function register(){
+
+    username=$("#registerUsername").val();
+
+    $.ajax({
+	       url: "register.php",
+               data: {userId:username},
+	       dataType: "json"
+	   }).done(function( msg ) {
+                       registerHandler(msg);
+		   });
+ 
+}
+
+
+/*
+
+ login()
+
+ Description : process login info feom server, and login if login info was good
+ Global Variables Touched : loginId
+ Dom Elements Touched : loginUserName
+ Arguments : msg : serverLogin object returned from server
+ Returns : none
+
+*/
+
+function loginHandler(msg){
+    // for now, server just accepts it no matter what
+    if(msg.loginId == "FuckThatNoise"){
+	//login Fail
+    } else {
+	//create oookie, set loginId, set login div
+	createCookie("buggyAuctionCookie",msg['loginId'],"30");
+	loginId=msg['loginId'];
+	writeLoginDiv();
+    }
+    $("#loginDialog").dialog("close");
+}
+
+function registerHandler(msg){
+    $("#registerDialogStatus").html("<br>You should recieve an email shortly with a link to complete the registration.  Following the link will complete the registration");
+//    $("#registerDialog").dialog("close");
+}
+
+/*
+
+ launchBids()
+
+ Description : make the bids visible
+ Global Variables Touched : none
+ Dom Elements Touched : bids<auctionUid>
+ Arguments : auction : auctionUid
+ Returns : none
+
+ */
+
+function launchBids(auction){
+
+    // toggle bids<auctionUid> between display:none and display:block
+
+    if($("#bids"+(auction)).css("display") == "block"){
+	$("#bids"+(auction)).css("display","none");
+    } else {
+	$("#bids"+(auction)).css("display","block");
+    }
+}
+
+function initOrgNameWidths(){
+        $.ajax({
+	       url: "getAllOrgNames.php",
+	       async: false,
+	       dataType: "json",
+	   }).done(function(msg){
+		   for(x=0;x<msg.length;x++){
+		       $("body").append("<span id='removeMe'>"+msg[x]+"</span>");
+		       orgNameWidths[msg[x]]=$("#removeMe").width();
+		       $("#removeMe").remove();
+		   }
+		   });
+}
+
+function getOrgNameWidth(orgName){
+    return orgNameWidths[orgName];
+}
+
+/*
+ getAllAuctionsInfoInitCallback()
+
+ Description : initialize page
+ Global Variables Touched : auctionsInfo, buggyGridRow
+ Dom Elements Touched :
+ Arguments :
+ Returns :
+
+*/
+
+function getAllAuctionsInfoInitCallback(msg){
+
+    //0 - relative spacing, 1 - heat num, 2 - amount, 3 - quick bid, 4 - org 1, 5 - org 1 buggy, 6 - org 2 , 7 - org 2 buggy, 8 - org 3, 9 - org 3 buggy, 10 - spacing for org names, 11 - unformatted x(used for div ids), 12 - gender, 13 - auctionUid
+
+    auctionsInfo=msg;
+    initialized=1;
+
+    mensHeats=0;
+    womensHeats=0;
+
+    for (x=0;x<auctionsInfo.length;x++){
+
+//	highBid=auctionsInfo[x]['highBid'];
+	highBid=0;
+	if(auctionsInfo[x]['bids'].length>0){
+	    highBid=auctionsInfo[x]['bids'][0]['bidAmount']
+	}
+
+
+	if(highBid<10){
+	    highBid=highBid+"&nbsp;&nbsp;&nbsp;";
+	}
+
+	if(highBid<100 && highBid > 9){
+	    highBid=highBid+"&nbsp;";
+	}
+
+	heatNum=auctionsInfo[x]['heatNum'];
+
+	if(heatNum<10){
+	    heatNum='&nbsp;'+heatNum;
+	}
+
+
+
+	if(auctionsInfo[x]['day'] == "Prelims"){
+	    if(auctionsInfo[x]['gender'] == "Mens"){
+		curHeat=mensHeats;
+		mensHeats++;
+	    }
+
+	    if(auctionsInfo[x]['gender'] == "Womens"){
+		curHeat=womensHeats;
+		womensHeats++;
+	    }
+
+	    bidAmount=highBid;
+
+	    formatArg0 = auctionsInfo[x]['auctionUid'];
+	    formatArg1 = heatNum;
+	    formatArg2 = highBid;
+	    formatArg3 = auctionsInfo[x]['org1'];
+	    formatArg4 = auctionsInfo[x]['buggy1'];
+	    formatArg5 = auctionsInfo[x]['org2'];
+	    formatArg6 = auctionsInfo[x]['buggy2'];
+	    formatArg7 = auctionsInfo[x]['org3'];
+	    formatArg8 = auctionsInfo[x]['buggy3'];
+	    formatArg9 = auctionsInfo[x]['gender']+" Preliminarys, Heat "+heatNum+" <br> Scheduled Start Time - "+auctionsInfo[x]['startTime'];
+	    formatArg10 = curHeat*33
+            formatArg11 = "";
+            formatArg12 = "";
+	    if ( curHeat > 0 ) {
+		formatArg10 = formatArg10*-1;
+	    }
+	    if (auctionsInfo[x]['heatNum'] <10){
+		formatArg11 = "margin-right:12px;";
+
+	    }
+
+	    $("#"+auctionsInfo[x]['gender']+"AuctionListDiv").append(buggyGridRow.format(formatArg0,formatArg1,formatArg2,formatArg3,formatArg4,formatArg5,formatArg6,formatArg7,formatArg8,formatArg9,formatArg10,formatArg11));
+	    diffWidth = 50-orgNameWidths[formatArg3];
+	    $("#Org1"+formatArg0).css("padding-right",diffWidth+"px")
+	    diffWidth = 50-orgNameWidths[formatArg5];
+	    $("#Org2"+formatArg0).css("padding-right",diffWidth+"px")
+	    diffWidth = 50-orgNameWidths[formatArg7];
+	    $("#Org3"+formatArg0).css("padding-right",diffWidth+"px")
+
+
+	} else {
+	    formatArg0 = auctionsInfo[x]['auctionUid'];
+	    formatArg10 = 0;
+	    $("#"+auctionsInfo[x]['gender']+"FinalsAuctionListDiv").append(buggyBlock.format(formatArg0,formatArg10));
+	}
+
+        bidsArray = auctionsInfo[x]['bids'];
+
+	maxBidsToDisplay=9;				      
+
+	if(auctionsInfo[x]['day'] == "Prelims"){
+          maxBidsToDisplay=99; 
+	}
+	for(y=0;y<bidsArray.length;y++){
+	    if(y>maxBidsToDisplay){
+		break;
+	    }
+	    bidToAdd=bidsArray[y];
+	    auctionUid=bidToAdd['auctionUid'];
+	    formatArg0=bidToAdd['bidAmount'];
+	    formatArg1=bidToAdd['userId'];
+	    $("#addBidsHere"+auctionUid).append(buggyBidRow.format(formatArg0,formatArg1));
+	}
+
+
+//	auctionsInfo[x]['auctionUid'];
+//	formatArg0=$("#manAutoInput"+auctionId).val();
+//	$("#biddingControlsReserve"+auctionsInfo[x]['auctionUid']).html("Make Reserve Bid "+buggyReserveRow.format(formatArg0));
+        if(auctionsInfo[x]['autoBids'].length > 0){
+	 for(xzx=0;xzx<auctionsInfo[x]['autoBids'].length;xzx++){
+ 	  if(auctionsInfo[x]['autoBids'][xzx]['userId'] == loginId){
+           $("#biddingControlsReserve"+auctionUid).html("Make Reserve Bid "+buggyReserveRow.format(auctionsInfo[x]['autoBids'][xzx]['bidAmount']));
+          }
+         }
+        }					      
+    }
+    mainUpdateThread();
+}
+
+function mainUpdateThread(){
+
+// $("#debug").html("<br>mainUpdateThreadLoop"+$("#debug").html());
+ getMostRecentBid();
+ window.setTimeout('mainUpdateThread()',updateThreadWait);
+
+}
+
+function compareAndUpdateAuctions(){
+
+}
+
+function getAllAuctionsInfoInitAjax(){
+
+    $.ajax({
+	       url: "getAllAuctions.php",
+	       data: {userId:loginId},
+	       dataType: "json",
+	   }).done(getAllAuctionsInfoInitCallback);
+}
+
+function getMostRecentBid(){
+    tempDate=new Date();
+    if(downloading != 0){
+		     //FIXME : shouldn't this be < 5000?
+	if ( tempDate.getTime() - downloading > 5000 ) {
+	    return;
+	}
+    }
+
+    downloading=tempDate.getTime();
+
+    $.ajax({
+	       url: "getMostRecentBid.php",
+	       dataType: "json"
+	   }).done(function( msg ) {
+	               if(mostRecentBidUidCache==-1){
+		        mostRecentBidUidCache=msg['mostRecentBid'];
+		        mostRecentBidUid=msg['mostRecentBid'];
+		        downloading=0;
+		       }
+		       mostRecentBidUid = msg['mostRecentBid'];
+		       $("#timeLeft").html(msg['timeLeft']);
+		       $("#totalRaised").html("Total Raised : $"+msg['totalRaised']);
+		       $("#cheapestHeat").html("Cheapest Heat : "+msg['cheapestHeat']);
+		       if(mostRecentBidUid!=mostRecentBidUidCache){
+			   //mostRecentBidUidCache=mostRecentBidUid;
+			   //$("#debug").html("<br> found new bids"+mostRecentBidUid+" "+mostRecentBidUidCache+" "+$("#debug").html());
+			   getAuctionsWithChanges();
+
+		       } else {
+			   downloading=0;
+		       }
+		   });
+}
+
+function makeManualBid(auctionId){
+    if(stopBidding==1){
+     alert("Sorry! The auction has closed or has not started yet!");
+     return;	    
+    }
+    if(loginId == ""){
+     $("#loginWhileBiddingDialog").attr("auctionId",auctionId);
+     $("#loginWhileBiddingDialog").dialog("open");
+     return;
+    }
+    $.ajax({
+	       url: "makeManualBid.php",
+	       data: {userId:loginId,amount:$("#manBidInput"+auctionId).val(),auctionUid:auctionId},
+	       dataType: "json"
+	   }).done(function(msg){
+		       displayBidResult(auctionId,msg['resultString'],msg['result']);
+//                       $("#manBidResults"+auctionId).html(msg['resultString']);
+//		       $("#bidStatus"+auctionsInfo[auctionId]['auctionUid']).html(msg['resultString']);		       	 
+		       getMostRecentBid();
+		   });
+
+}
+
+function makeAutoBid(auctionId){
+    if(stopBidding==1){
+     alert("Sorry! The auction has closed or has not started yet!");
+     return;	    
+    }
+//    $("#manBidInput"+auctionId).val("hi");
+
+    $.ajax({
+	       url: "makeAutoBid.php",
+	       data: {userId:loginId,amount:$("#manAutoInput"+auctionId).val(),auctionUid:auctionId},
+	       dataType: "json"
+	   }).done(function(msg){
+		       // alert(msg[0][0]['bidAmount']);
+		       if(msg['result']==1){
+			   formatArg0=$("#manAutoInput"+auctionId).val();
+			   $("#biddingControlsReserve"+auctionId).html("Make Reserve Bid "+buggyReserveRow.format(formatArg0));
+		       } else {
+                         //alert(msg['result']);
+
+		       }
+		       getMostRecentBid();
+		   });
+
+}
+
+
+function getAuctionsWithChanges(){
+    clientAuctionHighBids = Array();
+
+    for(x=0;x<auctionsInfo.length;x++){
+        if(auctionsInfo[x]['bids'].length>0){
+ 	 clientAuctionHighBids[auctionsInfo[x]['auctionUid']]=auctionsInfo[x]['bids'][0]['bidUid'];
+        } else {
+         //clientAuctionHighBids[auctionsInfo[x]['auctionUid']]=-1;
+        }
+    }
+
+//    $("#debug").html("<br>"+JSON.stringify(clientAuctionHighBids)+"<br>"+$("#debug").html());
+
+
+    $.ajax({
+	       url: "getAuctionsWithChanges.php",
+	       data: {"clientAuctionHighBids":JSON.stringify(clientAuctionHighBids)},
+	       dataType: "json"
+	   }).done(function(msg){
+		       if(msg.length > 0){
+			  // alert(msg[0][0]['bidAmount']);
+			   updateAuctionRows(msg);
+		       } else {
+		         //downloading=0;
+		       }
+		   });
+
+}
+
+function updateFinalsBids(auctionUid,bids){
+    $("#addBidsHere"+auctionUid+" > .buggybuggybuggy").remove();
+    for(xx=(bids.length-1);xx>=0;xx--){
+	bidToAdd=bids[xx];
+	formatArg0=bidToAdd['bidAmount'];
+	formatArg1=bidToAdd['userId'];
+	$("#addBidsHere"+auctionUid).prepend(buggyBidRow.format(formatArg0,formatArg1));
+    }
+}
+
+function updateBids(auctionUid,bids){
+
+    for(xx=(bids.length-1);xx>=0;xx--){
+	bidToAdd=bids[xx];
+//        $("#debug").html("<br>prepending bids -  "+bidToAdd['bidAmount']+"<br>"+tempDate.toString()+"<br>"+$("#debug").html());
+
+/*	if(auctionsInfo[auctionUid]['day']=="Finals"){
+		$("#addBidsHere"+auctionUid+" > .buggybuggybuggy").each(function(index){
+			if(loginId==$(this).attr("userId")){
+			       $(this).remove();
+			}
+		})	
+	}*/
+
+
+	formatArg0=bidToAdd['bidAmount'];
+	formatArg1=bidToAdd['userId'];
+	$("#addBidsHere"+auctionUid).prepend(buggyBidRow.format(formatArg0,formatArg1));
+
+	// LIMIT 10 ENTRIES PER AUCTION HERE
+/*        if($("#bidsTable"+auctionsInfo[auctionUid]['gender']+auctionsInfo[auctionUid]['auctionUid']+">div").length > 21){
+	    $("#bidsTable"+auctionsInfo[auctionUid]['gender']+auctionsInfo[auctionUid]['auctionUid']+">div:last-child").remove();
+	    $("#bidsTable"+auctionsInfo[auctionUid]['gender']+auctionsInfo[auctionUid]['auctionUid']+">div:last-child").remove();
+	}*/
+	if(auctionsInfo[auctionUid]['day']=="Prelims"){		
+	 if($("#addBidsHere"+auctionUid+">div").length > 21 ){
+	     $("#addBidsHere"+auctionUid+">div:last-child").remove();
+	     $("#addBidsHere"+auctionUid+">div:last-child").remove();
+ 	 }
+        }
+
+    }
+//    $("#debug").html("<br>prepended new bid"+$("#debug").html());    
+
+    //FIXME : this should be in updateAuctionRows()
+    mostRecentBidUidCache=mostRecentBidUid;
+    downloading=0;
+}
+
+function updateAuctionRows(msg){
+    for(xz=0;xz<msg.length;xz++){
+//      alert(msg[xz].length+" "+xz);
+
+        if(msg[xz].length>0){
+	 bidAmount=msg[xz][0]['bidAmount'];
+         auctionUid=msg[xz][0]['auctionUid'];
+	 if(bidAmount<10){
+	    bidAmount=bidAmount+"&nbsp;&nbsp;&nbsp;";
+	 }
+
+ 	 if(bidAmount<100 && bidAmount > 9){
+	    bidAmount=bidAmount+"&nbsp;";
+	 }
+ 	 $("#auctionContainer"+auctionUid+"amount").html("$"+bidAmount);
+	 if(auctionsInfo[auctionUid]['day']=="Prelims"){	 	
+	  updateBids(auctionUid,msg[xz]);
+	  for(y=msg[xz].length-1;y>=0;y--){
+	      auctionsInfo[msg[xz][0]['auctionUid']]['bids'].unshift(msg[xz][y]);
+	  }
+         } else {
+	  updateFinalsBids(auctionUid,msg[xz]);
+         }
+        }
+    }
+
+}
+
+
+
+$(document).ready(function() {
+	              $( "#registerCompleteDialog" ).dialog({
+		       title: "Register Complete",			
+                       height: 350,
+		       width: 400,
+                       modal: true,
+		       autoOpen: false,
+                       close:function(event,ui){window.location="index.demo.UiComplete.4.html";}
+                      });
+		      qs();			
+		      if(qsParm['mode']=="register"){
+		        $("#registerCompleteDialog").dialog("open");
+		      }			
+		      initOrgNameWidths();
+
+	              $( "#loginDialog" ).dialog({
+		       title: "Login",			
+                       height: 350,
+		       width: 400,
+                       modal: true,
+		       autoOpen: false
+                      });
+	              $( "#registerDialog" ).dialog({
+		       title: "Register",			
+                       height: 350,
+		       width: 400,
+                       modal: true,
+		       autoOpen: false
+                      });
+
+	              $( "#registerWhileBiddingDialog" ).dialog({
+		       title: "registerWhileBidding",			
+                       height: 350,
+		       width: 400,
+                       modal: true,
+		       autoOpen: false
+                      });
+                      $( "#loginWhileBiddingDialog" ).dialog({
+		       title: "loginWhileBidding",			
+                       height: 350,
+		       width: 400,
+                       modal: true,
+		       autoOpen: false
+                      });
+		      if(qsParm['mode']=="register"){
+                       return;
+                      }
+		      //superfish drop down menus
+		      jQuery(function(){
+				 jQuery('ul.sf-menu').superfish();
+			     });
+
+		      //jquerytools overlays
+		      $("img[rel]").overlay({onClose: function(){}});
+
+		      //jquerytools tabs
+
+
+		      //jquerytools accordion
+		      //$("#accordion").tabs("#accordion div.pane", {tabs: 'h2', effect: 'slide', initialIndex: null});
+		      $(".tabs").tabs(".panes > div", {history:false});
+		      $(".tabs").bind("onClick", function() {
+					  $("#bidResult").css("visibility","hidden");
+				      });
+	              
+        $.ajax({
+	       url: "isAuctionOpen.php",
+	       async: false,
+	       dataType: "json",
+	   }).done(function(msg){
+                   if(msg['auctionGo'] == 0){
+	            stopBidding=1;
+                 }
+           });
+
+		      getMostRecentBid();
+		      getAllAuctionsInfoInitAjax();
+		      writeLoginDiv();
+           });
+</script>
+    </head>
+    <body id="doc">
+
+    <div id="hd">
+    <img id="end" src="/img/headerend.gif" alt="" />
+    <div id="title">2012 Lead Truck Auction</div>
+
+</div>
+
+    <div id="bd" class="yui3-g">
+    <div id="left" class="yui3-u">
+    <a href="/"><img id="logo" alt="CMU Buggy Alumni Association logo" src="/img/logo-web.png" /></a>
+    <div id="leftmenu">
+    <ul id="mainnav">
+    <li><a href="/news">News</a></li>
+    <li><a href="/forum/viewforum.php?f=3">Forum</a></li>
+    <li><a href="/video">Videos</a></li>
+    <li><a href="/gallery">Gallery</a></li>
+    <li><a href="/history">History</a></li>
+    <li><a href="/about">About Us</a></li>
+    <li><a href="http://reddit.com/r/cmubuggy" target="_blank">Projects</a><img style="margin:0 0 2px 2px;" src="/img/icon-new-window.gif"></li>
+    <li><a href="/reference">Reference</a></li>
+    <li><a href="/membership">Membership</a></li>
+    <!--<li><a href="/store">Merchandise</a></li>-->
+    </ul>
+    <div id="googlesearch">
+    <form action="http://cmubuggy.org/search" id="cse-search-box">
+    <input type="hidden" name="cx" value="partner-pub-0853691456815687:qemwh6-hd6k" />
+    <input type="hidden" name="cof" value="FORID:9" />
+		           <input type="hidden" name="ie" value="ISO-8859-1" />
+			       <input type="text" name="q" class="input" style="width:140px; margin:10px auto;"/>
+			           <input type="submit" name="sa" value="Search" class="button" />
+				   </form>
+</div>
+<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+<div id="login">
+  <!--
+  <form action="/login.php" method="post" accept-charset="utf-8">
+    <fieldset>
+      <label for="username">Username</label>
+      <input type="text" name="username" value="" id="username">
+      <label for="password">Password</label>
+      <input type="password" name="password" value="" id="password">
+      </fieldset>
+    <input id="loginbtn" type="submit" value="Login" class="button">
+    <input type="hidden" name="loginsubmit" value="true" id="loginsubmit">
+    <input type="hidden" name="redirecturl" value="/history" id="loginsubmit">
+    <a style="margin-left:10px;" href="/user/register">Register</a>
+    </form>
+   -->
+</div><div id="socialmedia">
+  <a href="http://www.facebook.com/pages/Carnegie-Mellon-Buggy-Alumni-Association/279568438094"><img src="/img/mediaicons/24/facebook.png"></a>
+  <a href="http://feeds.feedburner.com/BuggyAlumniAssociationUltimate"><img src="/img/mediaicons/24/feed.png"></a>
+  <a href="http://twitter.com/CMUBuggy"><img src="/img/mediaicons/24/twitter.png"></a>
+  </div>
+	 </div>
+     </div>
+     <div id="content" class="yui3-u">
+
+
+<div id="topnav">
+  <ul class="sf-menu">
+    <li><p id='cheapestHeat' class='customMenuItem'>Cheapest Auction : Mens 1 / 5$</p></li>
+    <li><p id='totalRaised' class='customMenuItem'>Total Money Raised : $999 / 5$</p></li>
+    <li><p id='timeLeft' class='customMenuItem'>6 days 23 hours 59 minutes left</p></li>
+  </ul>
+</div>
+<ul class="tabs">
+  <li><a id="t1" href="#mens">Mens Prelims</a></li>
+  <li><a id="t2" href="#womens">Womens Prelims</a></li>
+  <li><a id="t3" href="#mensfinals">Mens Finals</a></li>
+  <li><a id="t4" href="#womensfinals">Womens Finals</a></li>
+</ul>
+<div class="panes">
+  <div class="pane" style="margin-top:0px;">
+    <div id='bidsContainer' class='bidsContainer'>
+      <div id='MensAuctionListDiv' class='bidsTable'>
+      </div>
+    </div>
+  </div>
+  <div class="pane" style="margin-top:0px;">
+    <div id='bidsContainer' class='bidsContainer'>
+      <div id='WomensAuctionListDiv' class='bidsTable'>
+      </div>
+    </div>
+  </div>
+  <div class="pane" style="margin-top:0px;">
+    <div id='bidsContainer' class='bidsContainer'>
+      <div id='MensFinalsAuctionListDiv' class='bidsTable'>
+      </div>
+    </div>
+  </div>
+  <div class="pane" style="margin-top:0px;">
+    <div id='bidsContainer' class='bidsContainer'>
+      <div id='WomensFinalsAuctionListDiv' class='bidsTable'>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="ft" class="yui3-u">
+  <br style="clear:right;"/>
+       <div class="floatleft">
+</div>
+The CMU Buggy Alumni Association is an Alumni Interest Group<br />from Carnegie Mellon University in Pittsburgh, PA<br />
+Please contact <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> with any questions.<br />
+       CMU Buggy Alumni Association &copy; 2008-2108</div>
+
+<div style='position:absolute;left:0;top:0;width:500px;' id=debug></div>
+<div id="loginDialog">
+<br>
+Please login with the email address you registered with
+<br>
+email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='loginUsername'/> <input style='float:none;display:inline;' type='button' onClick='login()' value='Login'/>
+</div>
+<div id="registerCompleteDialog">
+You have completed registration!  Please close this dialog and click on the login link to login.
+</div>
+<div id="registerDialog">
+Please enter your email address - a confirmation email will be sent to that email address.
+<br>
+Email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='registerUsername'/> <input style='float:none;display:inline;' type='button' onClick='register()' value='Register'/>
+<div id="registerDialogStatus"></div>
+</div>
+<div id="loginWhileBiddingDialog">
+<h2> Login Dialog </h2>
+Please login with the email address you registered with<br>
+You need to login before you can bid!<br>email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='loginUsernameWhileBidding'/> <input style='float:none;display:inline;' type='button' onClick='loginWhileBidding()' value='Login And Bid'/>
+</div>
+<div id='bidResult' style='padding-5px;padding-left:10px;padding-right:10px;background-color:white;visibility:hidden;position:absolute;border-radius:25px;border-style:solid;border-width:1px;opacity:.5'>
+</div>
+</body>
+</html>
