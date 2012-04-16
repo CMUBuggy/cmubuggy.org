@@ -1,6 +1,6 @@
 buggyReserveRow=["<span  class='bubbleWbackgroundYellowNoPadding' style='padding-right:5px;padding-left:5px'>",
 		  "<img src='http://cdn1.iconfinder.com/data/icons/softwaredemo/PNG/16x16/DrawingPin1_Blue.png'>",
-		  "{0}",
+		  "${0}",
 		 "</span>"].join("");
 buggyBlock=["<div id=\'bidBlock{0}\' class='bidBlock' style='position:relative;px;margin-left:auto;margin-right:auto;margin-left:50px;width:625px;display:block;border-width:5px;border-style:solid'>",
                  "<center>",
@@ -29,10 +29,10 @@ buggyBlock=["<div id=\'bidBlock{0}\' class='bidBlock' style='position:relative;p
                 "</div>"].join("");
 
 buggyBidRow=["<div style='display:table-row;' userId='{1}' class='buggybuggybuggy'>",
-	      "<div style='display:table-cell' class='bidRowFirstCell bidRowCell'>",
+	      "<div style='display:table-cell;padding-top:3px;padding-bottom:3px' class='bidRowFirstCell bidRowCell'>",
 	      "${0}",
  	      "</div>",
-	      "<div class='bidRowCell bidRowLastCell' style='display:table-cell'>",
+	      "<div class='bidRowCell bidRowLastCell' style='display:table-cell;padding-right:7px'>",
 	      "{1}",
 	      "</div>",
 	     "</div>",
@@ -53,21 +53,21 @@ buggyGridRow=["<div class='rowSpacer'></div>",
 	           "{3}",//{3} = org 1 name
 	          "</span>",
 	          "<span  style='position:relative;top:{10}px' class='bidRowCell bidRowOrg1' >",
-	           "<img  class='buggyImg' width=125 height=48 src='http://24.3.194.181:1235/buggy_auction/buggy/{4}.png'>",
+	           "<img  class='buggyImg' width=125 height=48 src='buggy/{4}.png'>",
 	          // {4} buggy 1 png name
    	          "</span>",
 	          "<span   id='Org2{0}'  style='position:relative;top:{10}px' class='bidRowCell bidRowOrg2'>",
  	            "{5}",//org 2 name
 	           "</span>",
 	           "<span  style='position:relative;top:{10}px' class='bidRowCell bidRowOrg2'>",
-	            "<img class='buggyImg' width=125 height=48 src='http://24.3.194.181:1235/buggy_auction/buggy/{6}.png'>",
+	            "<img class='buggyImg' width=125 height=48 src='buggy/{6}.png'>",
 	           //{6} = org 2 png name
 	           "</span>",
 	           "<span   id='Org3{0}'  style='position:relative;top:{10}px' class='bidRowCell bidRowOrg2'>",
 	            "{7}",//{7} = org 3 name
 	           "</span>",
 	           "<span style='position:relative;top:{10}px'  class='bidRowCell bidRowOrg3'>",
-	            "<img class='buggyImg' width=125 height=48 src='http://24.3.194.181:1235/buggy_auction/buggy/{8}.png'>",
+	            "<img class='buggyImg' width=125 height=48 src='buggy/{8}.png'>",
 	            //{8} = buggy 3 png name
  	            "&nbsp;",
 	           "</span>",

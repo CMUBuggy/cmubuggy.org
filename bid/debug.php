@@ -8,4 +8,12 @@ include "functions.php";
   $auctions = $memcache->get("cheapestPrelimHeat");
 
   echo json_encode($auctions);
+
+  $users = $memcache->get("usersOptional");
+
+  foreach($users as $userName=>$userRegisterNum){
+   echo "$userName --$userRegisterNum--\n";
+  }
+
+
 ?>

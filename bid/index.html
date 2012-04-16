@@ -8,9 +8,9 @@
     <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
     <title>History | CMU Buggy Alumni Association</title>
     <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="http://24.3.194.181:1235/css/yui3.3-reset-fronts-grids.css" />
-    <link rel="stylesheet" type="text/css" href="http://24.3.194.181:1235/css/cmubuggy.css" />
-    <link rel="stylesheet" type="text/css" href="http://24.3.194.181:1235/css/superfish-menu.css" />
+    <link rel="stylesheet" type="text/css" href="/css/yui3.3-reset-fronts-grids.css" />
+    <link rel="stylesheet" type="text/css" href="cmubuggy.custom.css" />
+    <link rel="stylesheet" type="text/css" href="/css/superfish-menu.css" />
     <link  href="http://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" type="text/css" href="auction.2.css" />
     <link type="text/css" href="development-bundle/themes/ui-lightness/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />
@@ -224,13 +224,13 @@ function writeLoginDiv() {
 
     //if login cookie has contents, set login div to logged in state
     if(loginCookie){
-	$("#login").html("logged in as "+loginCookie+"<br>Click <a onClick='logout()'> here </a> to logout.");
+	$("#loginTop").html("You are logged in to the auction as <b>"+loginCookie+"</b> - Start your bidding! Click <a onClick='logout()'> here </a> to logout.");
 	loginId=loginCookie;
 
     //otherwise, set login div to unlogged in state
     } else {
-	$("#login").html("You are not logged in.<br><a onClick='$(\"#loginDialog\").dialog(\"open\");'>Login</a>")
-	$("#login").append("<br><a onClick='$(\"#registerDialog\").dialog(\"open\");'>Register</a>")
+	$("#loginTop").html("You are not logged in to the auction. <a onClick='$(\"#loginDialog\").dialog(\"open\");'>Login</a>")
+	$("#loginTop").append(" or <a onClick='$(\"#registerDialog\").dialog(\"open\");'>Register</a>")
 	loginId=""
     }
 }
@@ -343,8 +343,27 @@ function login(){
 }
 
 
+function registerOptional(){
+
+$("#registerOptionalStatus").html("Thank you for entering the optional information!  Please close this dialog box and click the login link to login ");
+
+ userIdEmail=qsParm['userId'];
+ firstName=$("#registerFirstName").val();
+ lastName=$("#registerLastName").val();
+ phoneNum=$("#registerPhoneNum").val();
+  
+ $.ajax({
+	       url: "registerOptional.php",
+               data: {userId:userIdEmail,registerFirstName:firstName,registerLastName:lastName,registerPhoneNum:phoneNum},
+	       dataType: "json"
+	   }).done(function( msg ) {
+
+		   });
+}
 
 function register(){
+
+    $("#registerDialogStatus").html("<br>You should recieve an email shortly with a link to complete the registration.  Following the link will complete the registration");
 
     username=$("#registerUsername").val();
 
@@ -374,18 +393,19 @@ function register(){
 function loginHandler(msg){
     // for now, server just accepts it no matter what
     if(msg.loginId == "FuckThatNoise"){
-	//login Fail
+	$("#loginStatus").html("<br>Sorry - your login failed.  Please check that you have registered for this years auction, and that you entered the email address correctly.");		
     } else {
+	$("#loginStatus").html("<br>");		
 	//create oookie, set loginId, set login div
 	createCookie("buggyAuctionCookie",msg['loginId'],"30");
 	loginId=msg['loginId'];
 	writeLoginDiv();
+        $("#loginDialog").dialog("close");
     }
-    $("#loginDialog").dialog("close");
 }
 
 function registerHandler(msg){
-    $("#registerDialogStatus").html("<br>You should recieve an email shortly with a link to complete the registration.  Following the link will complete the registration");
+//    $("#registerDialogStatus").html("<br>You should recieve an email shortly with a link to complete the registration.  Following the link will complete the registration");
 //    $("#registerDialog").dialog("close");
 }
 
@@ -683,7 +703,7 @@ function getAuctionsWithChanges(){
 	       dataType: "json"
 	   }).done(function(msg){
 		       if(msg.length > 0){
-			  // alert(msg[0][0]['bidAmount']);
+//			   alert(msg[0][0]['bidAmount']);
 			   updateAuctionRows(msg);
 		       } else {
 		         //downloading=0;
@@ -778,12 +798,24 @@ $(document).ready(function() {
 		       width: 400,
                        modal: true,
 		       autoOpen: false,
-                       close:function(event,ui){window.location="index.demo.UiComplete.4.html";}
+                       close:function(event,ui){window.location="index.html";}
                       });
-		      qs();			
+		      qs();
 		      if(qsParm['mode']=="register"){
-		        $("#registerCompleteDialog").dialog("open");
-		      }			
+		       $.ajax({
+				 url: "registerConfirm.php",
+				 data: {randomNum:qsParm['randomNum']},
+				 dataType: "json",
+				 async:false
+		       }).done(function( msg ) {
+					 if(msg.registered){
+          		                  $("#registerCompleteDialog").dialog("open");
+					 } else {
+					 }
+		       });			
+                      }
+
+
 		      initOrgNameWidths();
 
 	              $( "#loginDialog" ).dialog({
@@ -886,8 +918,9 @@ $(document).ready(function() {
 				   </form>
 </div>
 <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
-<div id="login">
   <!--
+<div id="login">
+
   <form action="/login.php" method="post" accept-charset="utf-8">
     <fieldset>
       <label for="username">Username</label>
@@ -900,8 +933,8 @@ $(document).ready(function() {
     <input type="hidden" name="redirecturl" value="/history" id="loginsubmit">
     <a style="margin-left:10px;" href="/user/register">Register</a>
     </form>
-   -->
-</div><div id="socialmedia">
+
+</div>--><div id="socialmedia">
   <a href="http://www.facebook.com/pages/Carnegie-Mellon-Buggy-Alumni-Association/279568438094"><img src="/img/mediaicons/24/facebook.png"></a>
   <a href="http://feeds.feedburner.com/BuggyAlumniAssociationUltimate"><img src="/img/mediaicons/24/feed.png"></a>
   <a href="http://twitter.com/CMUBuggy"><img src="/img/mediaicons/24/twitter.png"></a>
@@ -918,11 +951,17 @@ $(document).ready(function() {
     <li><p id='timeLeft' class='customMenuItem'>6 days 23 hours 59 minutes left</p></li>
   </ul>
 </div>
+
+<div id="loginTop" style='color:black;margin:5px;border-color:#F9A72B;padding:5px;text-align:center;border-width:3px;border-style:solid'>
+You are not logged in.  
+</div>
+
 <ul class="tabs">
   <li><a id="t1" href="#mens">Mens Prelims</a></li>
   <li><a id="t2" href="#womens">Womens Prelims</a></li>
   <li><a id="t3" href="#mensfinals">Mens Finals</a></li>
   <li><a id="t4" href="#womensfinals">Womens Finals</a></li>
+  <li><a id="t5" href="#help">Help And Rules</a></li>
 </ul>
 <div class="panes">
   <div class="pane" style="margin-top:0px;">
@@ -949,6 +988,14 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
+  <div class="pane" style="margin-top:0px;">
+    <h2><u>Help</u></h2>
+    <h3>The Rules</h3>
+     <a href="/auction">Rules and auction details are here</a>
+    <h3>Reserve Bids</h3>
+     Placing a reserve bid is the equivilant to saying "I'm willing to pay up to this amount" - anytime someone else makes a bid, the auction will automatically bid one higher than that (assuming your reserve bid is greater than the new bid ).  For example : if you have placed a reserve bid of 20 dollars, and the current high bid is 10 dollars, an 11 dollar bid will automatically be placed for you.  If someone else makes a 12 dollar bid, a 13 dollar bid will automatically be placed for you.<br><br>
+Once you have placed a reserve bid, that amount will be noted in the "Reserve Bid" section at the top of the auction.  Note that it is still possible to place a normal bid while you have a reserve bid placed - if you are the highest in an auction, the reserve bid will not force an automatic bid against yourself.    
+  </div>
 </div>
 
 <div id="ft" class="yui3-u">
@@ -962,12 +1009,23 @@ Please contact <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> with a
 <div style='position:absolute;left:0;top:0;width:500px;' id=debug></div>
 <div id="loginDialog">
 <br>
-Please login with the email address you registered with
+Please login with the email address you registered for the auction with.<br><br>
+<b>NOTE</b> : The auction site uses a login system that is seperate from the rest of cmubuggy.org. If you haven't registered your email for this years auction, you must <a style='color:red;cursor:default' onClick='$("loginDialog").dialog("close");$("#registerDialog").dialog("open")'>register your email address</a> before you can login
 <br>
-email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='loginUsername'/> <input style='float:none;display:inline;' type='button' onClick='login()' value='Login'/>
+Email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='loginUsername'/> <input style='float:none;display:inline;' type='button' onClick='login()' value='Login'/>
+<span id='loginStatus'></span>
 </div>
 <div id="registerCompleteDialog">
-You have completed registration!  Please close this dialog and click on the login link to login.
+You are now registered and can login!
+<br><br>
+Before you login, please take the time to enter the following information.  It is optional, but if you will not have email access while in Pittsburgh, we will have no way of contacting you if you win!<br><br>    
+Once you are done with entering the information, please close this dialog and click on the login link to login.<br><br>
+
+First Name : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='registerFirstName'/><br>
+Last Name &nbsp;: <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='registerLastName'/><br>
+Phone Number : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='registerPhoneNum'/> <br><input style='float:none;display:inline;' type='button' onClick='registerOptional()' value='Submit'/>
+<br>
+<span id='registerOptionalStatus'></span>
 </div>
 <div id="registerDialog">
 Please enter your email address - a confirmation email will be sent to that email address.
@@ -980,7 +1038,7 @@ Email address : <input style='float:none;clear:both;margin:0;padding:0;display:i
 Please login with the email address you registered with<br>
 You need to login before you can bid!<br>email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='loginUsernameWhileBidding'/> <input style='float:none;display:inline;' type='button' onClick='loginWhileBidding()' value='Login And Bid'/>
 </div>
-<div id='bidResult' style='padding-5px;padding-left:10px;padding-right:10px;background-color:white;visibility:hidden;position:absolute;border-radius:25px;border-style:solid;border-width:1px;opacity:.5'>
+<div id='bidResult' style='padding-5px;padding-left:10px;padding-right:10px;background-color:white;visibility:hidden;position:absolute;border-radius:25px;border-style:solid;border-width:1px;opacity:1'>
 </div>
 </body>
 </html>
