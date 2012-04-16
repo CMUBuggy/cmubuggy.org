@@ -1,5 +1,5 @@
 <?php
-	$year = "2011";
+	$year = "2012";
 	$raceyear = new raceyear();
 	$raceyear = $raceyear->Get($year);
 

@@ -1,1 +1,1 @@
-<iframe width='700' height='700' frameborder='0' src='https://spreadsheets.google.com/pub?hl=en&hl=en&key=0AuJqrzitvsWSdENfQW9TeEd0bmJxb091eGYyc2FTTmc&output=html&widget=true'></iframe>
+Live on Friday

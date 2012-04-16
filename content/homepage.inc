@@ -1,21 +1,66 @@
 <div id="homepage">
 	<?php include_once("contentfeed.inc");?> 	 
-	<div class="yui3-g" style="width:500px; height:145px;">
+	<div  class="yui3-g"  style="width:500px; height:145px;">
 		<div class="yui3-u-2-5">
-			<?php include_once("freerollstatus.inc"); ?>			
+			<h3><a href="/auction">Lead Truck Auction</h3></a>
+		<?php
+				date_default_timezone_set('America/New_York');
+				$auctionstart = mktime(9, 0, 0, 4,17, 2012);
+   			$auctionend = mktime(21, 0, 0, 4,18, 2012);
+   			$hourstilstart = floor(($auctionstart - time())/(60*60));
+   			$hourstilend = floor(($auctionend - time())/(60*60));
+			?>
+		
+			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 0;">
+				<div style="font-size:2.5em; font-family:impact;"><?echo $hourstilstart ?></div>
+				<div style="font-size:.8em; font-weight: bold; margin-top: -5px;">hours until<br />bidding starts</div>
+			</div>
+			<div style="clear:left; padding-right:6px;">The <a href="/auction">4th annual lead truck auction</a> starts Tue @9am. Winners ride in the lead truck, and proceeds support <a href="/about">our mission</a></div>
 		</div>
 		<div class="yui3-u-3-5">
-			<h3>Get Involved</h3>
-			<div class="item" style="clear:left;">
-				<a href="/join">
-					<div class="icon" style="background:url('/img/icon_unclesam.jpg');">
-			</div>Join!</a> 
-			Become a supporting member now before you miss out on the Members-only Raceday Preview, out on Monday.</div>
-			<a href="/news/raceday-is-sneaking-up-how-are-you-getting-ready">
-			<div class="icon galleryicon" style="background-image:url('/gallery/var/thumbs/Shirts/baa-tshirt-spring12-back.png')"></div>
-			</a>
-			Pre-order the 2012 Buggy Alumni Association T-shirt<br />
-			<a href="/news/raceday-is-sneaking-up-how-are-you-getting-ready">Description</a>  |  <a href="https://docs.google.com/spreadsheet/viewform?pli=1&formkey=dFBiVHRPVjFyNDNYY1FaU2xoU2Z0SFE6MQ#gid=0">Pre-Order Form</a>
+			<h3><a href="/raceday">Everything Raceday</a></h3>
+			
+			We've got everything you need for raceday in one place.  Schedules, chats, feeds, and downloads.  <a href="/raceday">Get it.</a><br />
+			<br />
+			<b>Coming Up</b>: (<a href="/raceday">full details here</a>)<br />
+			<?php
+				$auctionstart	= mktime( 9, 0,0,4,17,2012);
+				$auctionend 	= mktime(21, 0,0,4,18,2012);
+				$designcomp 	= mktime(10, 0,0,4,19,2012);
+				$bartime 		= mktime(20, 0,0,4,19,2012);
+				$prelims 		= mktime( 8, 0,0,4,20,2012);
+				$reception 	= mktime(12,30,0,4,20,2012);
+				$innovation	= mktime(13,30,0,4,20,2012);
+				$patentlaw   	= mktime(15,00,0,4,20,2012);
+				$exhibitions 	= mktime( 8, 0,0,4,21,2012);
+				$finals 			= mktime( 9, 0,0,4,21,2012);
+				$awards 			= mktime(18, 0,0,4,21,2012);
+				$breakfast 	= mktime(10, 0,0,4,22,2012);
+
+				$events = array(
+					$auctionstart	=> "Tue, 9am: <a href=\"/auction\">Lead Truck auction</a> starts",							
+					$auctionend  	=> "Wed, 9pm: <a href=\"/auction\">Lead Truck auction</a> closes",	
+					$designcomp  	=> "Thur, 9am: Design Comp",
+					$bartime 	 	=> "Thur, 8pm: Hang out at a bar",	
+					$prelims 	 	=> "Fri, 8am: Prelims",
+					$reception 	=> "Fri, 12:30pm: BAA reception",	
+					$innovation	=> "Fri, 1:30pm: Everything I know about innovation ...",
+					$patentlaw   	=> "Fri, 3:00pm: Buggy and Patent Law? Really? ...",
+					$exhibitions 	=> "Sat, 8am: Exhibitions",
+					$finals 			=> "Sat, 9am: Finals",
+					$awards 		 	=> "Sat, 6pm: Awards Ceremony",	
+					$breakfast 	=> "Sun, 10am: Morning after breakfast"	
+				);
+				
+				$currenttime = time();
+				$dispcount = 0;
+				foreach ($events as $eventtime => $desc){
+					if($currenttime-60*60 < $eventtime && $dispcount < 3){
+						echo($desc."<br />");
+						$dispcount++;	
+					}
+				}
+			?>
 		</div>
 	</div>
 	<?php include_once("featurepic.inc"); ?>
@@ -84,17 +129,17 @@
 			<br />
 			<b>Coming Up</b>: (<a href="/raceday">full details here</a>)<br />
 			<!-- open php
-				$auctionstart 	= mktime( 9, 0,0,4,12,2011);
-				$auctionend 	= mktime(21, 0,0,4,13,2011);
-				$designcomp 	= mktime( 9, 0,0,4,14,2011);
-				$bartime 		= mktime(20, 0,0,4,14,2011);
-				$prelims 		= mktime( 8, 0,0,4,15,2011);
-				$reception 		= mktime(12,30,0,4,15,2011);
-				$hob 				= mktime(13,30,0,4,15,2011);
-				$exhibitions 	= mktime( 8, 0,0,4,16,2011);
-				$finals 			= mktime( 9, 0,0,4,16,2011);
-				$awards 			= mktime(18, 0,0,4,16,2011);
-				$breakfast 		= mktime(10, 0,0,4,17,2011);
+				$auctionstart 	= mktime( 9, 0,0,4,12,2012);
+				$auctionend 	= mktime(21, 0,0,4,13,2012);
+				$designcomp 	= mktime( 9, 0,0,4,14,2012);
+				$bartime 		= mktime(20, 0,0,4,14,2012);
+				$prelims 		= mktime( 8, 0,0,4,15,2012);
+				$reception 		= mktime(12,30,0,4,15,2012);
+				$hob 				= mktime(13,30,0,4,15,2012);
+				$exhibitions 	= mktime( 8, 0,0,4,16,2012);
+				$finals 			= mktime( 9, 0,0,4,16,2012);
+				$awards 			= mktime(18, 0,0,4,16,2012);
+				$breakfast 		= mktime(10, 0,0,4,17,2012);
 
 				$events = array(
 					$auctionstart	=> "Tue, 9am: <a href=\"/auction\">Lead Truck auction</a> starts",							
@@ -121,30 +166,6 @@
 			--> close php	
 */
 
-//During Auction
-/*
-			<h3>Lead Truck Auction</h3>
-			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 10px 0 0;">
-				<div style="font-size:2.5em; font-family:impact;">Auction</div>
-				<div style="font-size:.8em; font-weight: bold; margin-top: -5px;">OVER</div>
-			</div>
-			<?php
-							date_default_timezone_set('America/New_York');
-   			$auctionend = mktime(21, 0, 0, 4, 13, 2011);
-   			$hoursleft = floor(($auctionend - time())/(60*60));
- 				//echo("<a href=\"/auction\">Bid now!</a> Do it for the<br />jumbotrons.<br /> Only ".$hoursleft." hours left!");
- 				
- 				$sql = "SELECT bid_amount FROM bids ORDER BY bid_amount DESC";
- 				$result = dbQuery("cmubuggy_auction",$sql);
- 				$rows = mysql_fetch_array($result);
- 				$highbid = $rows[0];
- 				$bidcount = mysql_num_rows($result);
-			?>
-			<br /><br /><br /><br />
-			<b>Summary Auction Stats</b><br />
-			Number of bids: <?php echo($bidcount); ?><br />
-			Highest bid: $<?php echo($highbid); ?><br />
-*/
 
 //Compact Raceday Results
 /*

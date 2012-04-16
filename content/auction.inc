@@ -1,20 +1,32 @@
+<?php
+	date_default_timezone_set('America/New_York');
+	$auctionstart = mktime(9, 0, 0, 4,17, 2012);
+	$auctionend = mktime(21, 0, 0, 4,18, 2012);
+	$hourstilstart = floor(($auctionstart - time())/(60*60));
+	$hourstilend = floor(($auctionend - time())/(60*60));
+ 	//echo("<a href=\"/auction\">Bid now!</a> Do it for the<br />jumbotrons.<br /> Only ".$hoursleft." hours left!");
+?>
+
+
 <div class="pane">
-		<img style="float:left; margin:0 15px 15px 0;" class="aligncenter" title="Lead Truck" src="http://cmubuggy.org/img/news/baaleadtruck.jpg" alt="Lead Truck" width="224" height="149" />				
-		<div class="title">See the WHOLE race this year!</div>
-		Sweepstakes has given us the opportunity to hold our 3rd annual auction for rides in the official sweepstakes lead truck for each heat of the prelim and final races. Auction winners will ride in the bed of the pickup truck with the head judge, sweepstakes chairman, and other race officials to get the absolute best seat in the house.<br />
+		<img style="float:right; margin:15px;" class="aligncenter" title="Lead Truck" src="http://cmubuggy.org/img/news/baaleadtruck.JPG" alt="Lead Truck" width="224" height="149" />				
+		<h2>See the WHOLE race this year!</h2>
+		We'll be having our 4th annual auction for rides in the official sweepstakes lead truck for each heat of the prelim and final races. Auction winners will ride in the bed of the pickup truck with the head judge, sweepstakes chairman, and other race officials to get the absolute best seat in the house.<br />
 		<br />
 		The auction is the Buggy Alumni Association's largest source of fund-raising each year, allowing us to pursue our <a style="font-weight:bold;" href="http://cmubuggy.org/about/">mission to support buggy.</a>  Last year's auction allowed us to upgrade the timing technology and help rent jumbotrons for raceday!</a>
- 					<div class="box" style="margin:0 auto; border:3px solid white; text-align:center;">
- 						<span style="font-size:24px"><a style="color:#f9a72b;" href="http://www.cmubuggy.org/bid2011/">Click Here to Bid!</a></span>
- 					</div>						
+		<br />
+		<br />
+		<div style="text-align:center; margin:15px;">
+		 	<div class="button" style="margin:0 auto; font-size:1.4em;"><?php echo("Bidding Starts in ".$hourstilstart." hours"); ?></div>	
+		</div>					
 		<br />
 		The details of the auction go like this:
 		<ul>
 			<li><br /><b>General</b>
 				<ul class="list">
 					<li>All heats will be auctioned simultaneously</li>
-					<li>The bidding will start at 9am EDT Tuesday April 12th</li>
-					<li>Bidding will end at 9pm EDT Wednesday April 13th</li>
+					<li>The bidding will start at 9am EDT Tuesday April 17th</li>
+					<li>Bidding will end at 9pm EDT Wednesday April 18th</li>
 					<li>Each heat will have a $10 minimum bid</li>
 					<li>The minimum bidding increment is $1</li>
 					<li>You may specify a maximum amount you wish to bid for any heat.  The site will automatically increase your bid in $1 increments as needed until your maximum is exceeded by someone else.</li>
