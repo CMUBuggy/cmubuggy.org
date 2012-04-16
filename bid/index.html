@@ -663,6 +663,10 @@ function makeAutoBid(auctionId){
      return;	    
     }
 //    $("#manBidInput"+auctionId).val("hi");
+    if(loginId == ""){
+     alert("Sorry!  You must first be logged in to the auction site!");
+     return;
+    }
 
     $.ajax({
 	       url: "makeAutoBid.php",
@@ -792,23 +796,27 @@ function updateAuctionRows(msg){
 
 
 $(document).ready(function() {
+		      qs();
 	              $( "#registerCompleteDialog" ).dialog({
 		       title: "Register Complete",			
                        height: 350,
 		       width: 400,
                        modal: true,
 		       autoOpen: false,
-                       close:function(event,ui){window.location="index.html";}
+                       close:function(event,ui){
+                       window.location="index.html";}
                       });
-		      qs();
 		      if(qsParm['mode']=="register"){
 		       $.ajax({
 				 url: "registerConfirm.php",
-				 data: {randomNum:qsParm['randomNum']},
+				 data: {randomNum:qsParm['randomNum'],userIdFull:qsParm['userId']},
 				 dataType: "json",
 				 async:false
 		       }).done(function( msg ) {
 					 if(msg.registered){
+                                         createCookie("buggyAuctionCookie",msg.shortName,"30");
+	                                 loginId=msg['shortName'];
+	                                 writeLoginDiv();
           		                  $("#registerCompleteDialog").dialog("open");
 					 } else {
 					 }
@@ -1010,7 +1018,7 @@ Please contact <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> with a
 <div id="loginDialog">
 <br>
 Please login with the email address you registered for the auction with.<br><br>
-<b>NOTE</b> : The auction site uses a login system that is seperate from the rest of cmubuggy.org. If you haven't registered your email for this years auction, you must <a style='color:red;cursor:default' onClick='$("loginDialog").dialog("close");$("#registerDialog").dialog("open")'>register your email address</a> before you can login
+<b>NOTE</b> : The auction site uses a login system that is seperate from the rest of cmubuggy.org. If you haven't registered your email for this years auction, you must <a style='color:red;cursor:default' onClick='$("#loginDialog").dialog("close");$("#registerDialog").dialog("open")'>register your email address</a> before you can login
 <br>
 Email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='loginUsername'/> <input style='float:none;display:inline;' type='button' onClick='login()' value='Login'/>
 <span id='loginStatus'></span>
@@ -1035,8 +1043,9 @@ Email address : <input style='float:none;clear:both;margin:0;padding:0;display:i
 </div>
 <div id="loginWhileBiddingDialog">
 <h2> Login Dialog </h2>
-Please login with the email address you registered with<br>
-You need to login before you can bid!<br>email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='loginUsernameWhileBidding'/> <input style='float:none;display:inline;' type='button' onClick='loginWhileBidding()' value='Login And Bid'/>
+Please login to the auction with the email address you registered with<br><br>
+<b>NOTE</b> : The auction site uses a login system that is seperate from the rest of cmubuggy.org. If you haven't registered your email for this years auction, you must <a style='color:red;cursor:default' onClick='$("#loginWhileBiddingDialog").dialog("close");$("#registerDialog").dialog("open")'>register your email address</a> before you can login
+<br><br>email address : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='loginUsernameWhileBidding'/> <input style='float:none;display:inline;' type='button' onClick='loginWhileBidding()' value='Login And Bid'/>
 </div>
 <div id='bidResult' style='padding-5px;padding-left:10px;padding-right:10px;background-color:white;visibility:hidden;position:absolute;border-radius:25px;border-style:solid;border-width:1px;opacity:1'>
 </div>
