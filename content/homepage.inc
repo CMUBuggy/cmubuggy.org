@@ -12,8 +12,8 @@
 			?>
 		
 			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 0;">
-				<div style="font-size:2.5em; font-family:impact;"><?echo $hourstilstart ?></div>
-				<div style="font-size:.8em; font-weight: bold; margin-top: -5px;">hours until<br />bidding starts</div>
+				<div style="font-size:2.5em; font-family:impact;"><?echo $hourstilend ?></div>
+				<div style="font-size:.8em; font-weight: bold; margin-top: -5px;">hours left<br />to bid</div>
 			</div>
 			<div style="clear:left; padding-right:6px;">The <a href="/auction">4th annual lead truck auction</a> starts Tue @9am. Winners ride in the lead truck, and proceeds support <a href="/about">our mission</a></div>
 		</div>

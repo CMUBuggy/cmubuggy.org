@@ -531,13 +531,13 @@ function makeManualBid($userId,$amount,$auctionUid,$fireAuto){
       if($auctions[$za]->gender == "Mens"){
 	for($zb=0;$zb<count($auctions[$za]->bids) && $zb<10;$zb++){
 	  if(count($auctions[$za]->bids)>0){
-	    $totalCollected=$totalCollected+$auctions[$za]->bids[$zb]->bidAmount;
+	    //$totalCollected=$totalCollected+$auctions[$za]->bids[$zb]->bidAmount;
 	  }
 	}
       } else {
 	for($zb=0;$zb<count($auctions[$za]->bids) && $zb<5;$zb++){
 	  if(count($auctions[$za]->bids)>0){
-	    $totalCollected=$totalCollected+$auctions[$za]->bids[$zb]->bidAmount;
+	    //$totalCollected=$totalCollected+$auctions[$za]->bids[$zb]->bidAmount;
 	  }
 	}
       }
