@@ -1,12 +1,3 @@
-<?php
-	date_default_timezone_set('America/New_York');
-	$auctionstart = mktime(9, 0, 0, 4,17, 2012);
-	$auctionend = mktime(21, 0, 0, 4,18, 2012);
-	$hourstilstart = floor(($auctionstart - time())/(60*60));
-	$hourstilend = floor(($auctionend - time())/(60*60));
- 	//echo("<a href=\"/auction\">Bid now!</a> Do it for the<br />jumbotrons.<br /> Only ".$hoursleft." hours left!");
-?>
-
 
 <div class="pane">
 		<img style="float:right; margin:15px;" class="aligncenter" title="Lead Truck" src="http://cmubuggy.org/img/news/baaleadtruck.JPG" alt="Lead Truck" width="224" height="149" />				
@@ -17,7 +8,7 @@
 		<br />
 		<br />
 		<div style="text-align:center; margin:15px;">
-		 	<div class="button" style="margin:0 auto; font-size:1.4em;"><?php echo("Bidding Starts in ".$hourstilstart." hours"); ?></div>	
+			<a href="/bid"><div class="button" style="margin:0 auto; font-size:1.4em;">Bid Now!</div></a>
 		</div>					
 		<br />
 		The details of the auction go like this:
@@ -45,14 +36,14 @@
 					<li>There will be only two things to bid on for finals: Men's Finals and Women's Finals</li>
 					<li>The top 5 bidders for the Men's Finals will have the opportunity to select a heat in order of their bids</li>
 					<li>The top 3 bidders for the Women's Finals will have the opportunity to select a heat in order of their bids</li>
-					<li>The top 5 bidders for the Exhibition heats will have the opportunity to select a heat in order of their bids</li>
+					<!--<li>The top 5 bidders for the Exhibition heats will have the opportunity to select a heat in order of their bids</li>-->
 					<li>You may not place a bid that is equal to an existing bid</li>
 					<li>You may place a bid lower than the current top bid so long as it is higher than the current 5th (Men's) or 3rd (Women's) place bid.</li>
 				</ul>
 			</li>	
 		</ul>
 		<br />
-		<b><a href="http://cmubuggy.org/forum/viewtopic.php?f=3&t=378">Suggestions, discussion, and requests for clarification can be made in the forum</a></b><br />
+		<b><a href="cmubuggy.org/forum/viewtopic.php?f=3&t=412&p=4139">Suggestions, discussion, and requests for clarification can be made in the forum</a></b><br />
 		<br />
 		We are, of course extremely thankful to sweepstakes for giving us the opportunity to use a spot in the lead truck to create this opportunity and to raise some money so that the Buggy Alumni Association can pursue <b><a href="http://cmubuggy.org/about/">its mission to support buggy</a></b>.<br />
 		<br />
@@ -61,7 +52,7 @@
 			<li>All winning bids will be considered a gift to the Buggy Alumni Association. We have worked closely with the university to make sure that your gift to the BAA is also credited as a gift to Carnegie Mellon. Be assured that 100% of your gift will go to the Buggy Alumni Association. Also, if you're an alum celebrating a reunion, your gift to the BAA will be counted towards your class totals.</li>
 			<li>For tax recognition purposes the donor can only claim their gift amount above the Fair Market Value of the Ride Auction. The fair market value of the Buggy Alumni Association Ride Auction is $10.00. Only the amount of your donation above the fair market value of the EVENT is tax deductible. Please consult your tax advisor for more information.</li>
 			<li>If two people specify the same maximum bid, and the auction ends without any higher bids, the person that entered their maximum bid first will be the winner.</li>						
-			<li>The end time (10pm EDT Monday April 11th) is fixed.  There will be no extensions to allow for last minute bids.  Get your bids in early and make use of the max bid feature!</li>							
+			<li>The end time (9pm EDT Wednesday April 18th) is fixed.  There will be no extensions to allow for last minute bids.  Get your bids in early and make use of the max bid feature!</li>							
 			<li>Any heats that get rained out or otherwise cancelled will just void the auction for those heats.  Of course, if winners of cancelled heats want to make their donations anyway, we won't complain.</li>
 			<li>Winners should be present at the top of hill 2 at the end of the preceding heat.  Failure to show up in a timely manner will result in forfeiting the ride.  We can't be the cause of any delays, so the Buggy Alumni Association will have to be conservative in our estimation of "timely manner."  Be there!</li>
 			<li>The Buggy Alumni Association and Sweepstakes reserve the right to refund donations from and refuse a ride to anyone that is drunk or otherwise unable to safely ride in the back of a truck.</li>

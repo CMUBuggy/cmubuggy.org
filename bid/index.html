@@ -2,7 +2,7 @@
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
@@ -197,7 +197,7 @@ stopBidding=0;
 function showBids(auctionId){
     $("#bidResult").css("visibility","hidden");
     if($("#bidBlock"+auctionId).css("display") == "block"){
-	$("#makeBidLink"+auctionId).html("Make Bids");
+	$("#makeBidLink"+auctionId).html("Make Bid");
 	$("#bidBlock"+auctionId).css("display","none");
     } else {
 	$("#bidBlock"+auctionId).css("display","block");
@@ -345,7 +345,7 @@ function login(){
 
 function registerOptional(){
 
-$("#registerOptionalStatus").html("Thank you for entering the optional information!  Please close this dialog box and click the login link to login ");
+$("#registerOptionalStatus").html("Thank you for entering the optional information!  You're logged-in and ready to start bidding.");
 
  userIdEmail=qsParm['userId'];
  firstName=$("#registerFirstName").val();
@@ -621,7 +621,7 @@ function getMostRecentBid(){
 		       }
 		       mostRecentBidUid = msg['mostRecentBid'];
 		       $("#timeLeft").html(msg['timeLeft']);
-		       $("#totalRaised").html("Total Raised : $"+msg['totalRaised']);
+		       $("#totalRaised").html("Total Raised on Prelim Heats: $"+msg['totalRaised']);
 		       $("#cheapestHeat").html("Cheapest Heat : "+msg['cheapestHeat']);
 		       if(mostRecentBidUid!=mostRecentBidUidCache){
 			   //mostRecentBidUidCache=mostRecentBidUid;

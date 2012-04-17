@@ -12,8 +12,8 @@
 			?>
 		
 			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 0;">
-				<div style="font-size:2.5em; font-family:impact;"><?echo $hourstilstart ?></div>
-				<div style="font-size:.8em; font-weight: bold; margin-top: -5px;">hours until<br />bidding starts</div>
+				<div style="font-size:2.5em; font-family:impact;"><?echo $hourstilend ?></div>
+				<div style="font-size:.8em; font-weight: bold; margin-top: -5px;">hours left<br />to bid</div>
 			</div>
 			<div style="clear:left; padding-right:6px;">The <a href="/auction">4th annual lead truck auction</a> starts Tue @9am. Winners ride in the lead truck, and proceeds support <a href="/about">our mission</a></div>
 		</div>
@@ -41,7 +41,7 @@
 					$auctionstart	=> "Tue, 9am: <a href=\"/auction\">Lead Truck auction</a> starts",							
 					$auctionend  	=> "Wed, 9pm: <a href=\"/auction\">Lead Truck auction</a> closes",	
 					$designcomp  	=> "Thur, 9am: Design Comp",
-					$bartime 	 	=> "Thur, 8pm: Hang out at a bar",	
+					$bartime 	 	=> "Thur, 8pm: <a href=\"http://houghspgh.com\">Hough's Bar</a> (<a href=\"http://g.co/maps/a3qqk\">563 Greenfield Ave</a>)",	
 					$prelims 	 	=> "Fri, 8am: Prelims",
 					$reception 	=> "Fri, 12:30pm: BAA reception",	
 					$innovation	=> "Fri, 1:30pm: Everything I know about innovation ...",
