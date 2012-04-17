@@ -41,7 +41,7 @@
 					$auctionstart	=> "Tue, 9am: <a href=\"/auction\">Lead Truck auction</a> starts",							
 					$auctionend  	=> "Wed, 9pm: <a href=\"/auction\">Lead Truck auction</a> closes",	
 					$designcomp  	=> "Thur, 9am: Design Comp",
-					$bartime 	 	=> "Thur, 8pm: Hang out at a bar",	
+					$bartime 	 	=> "Thur, 8pm: <a href=\"http://houghspgh.com\">Hough's Bar</a> (<a href=\"http://g.co/maps/a3qqk\">563 Greenfield Ave</a>)",	
 					$prelims 	 	=> "Fri, 8am: Prelims",
 					$reception 	=> "Fri, 12:30pm: BAA reception",	
 					$innovation	=> "Fri, 1:30pm: Everything I know about innovation ...",
