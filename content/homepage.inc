@@ -13,7 +13,11 @@
 		
 			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 0;">
 				<div style="font-size:2.5em; font-family:impact;"><?echo $hourstilend ?></div>
-				<div style="font-size:.8em; font-weight: bold; margin-top: -5px;">hours left<br />to bid</div>
+				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;">Hours Left<br />to Bid</div>
+			</div>
+			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 10px;">
+				<div style="font-size:2.5em; font-family:impact;">$<?php echo(file_get_contents("http://dev.cmubuggy.org/bid/getTotalRaised.php"));?></div>
+				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;">Total Amount<br />Raised</div>
 			</div>
 			<div style="clear:left; padding-right:6px;">The <a href="/auction">4th annual lead truck auction</a> starts Tue @9am. Winners ride in the lead truck, and proceeds support <a href="/about">our mission</a></div>
 		</div>
@@ -56,7 +60,7 @@
 				$dispcount = 0;
 				foreach ($events as $eventtime => $desc){
 					if($currenttime-60*60 < $eventtime && $dispcount < 3){
-						echo($desc."<br />");
+						echo("<img src=\"/css/images/orange_bullet.gif\" /> ".$desc."<br />");
 						$dispcount++;	
 					}
 				}

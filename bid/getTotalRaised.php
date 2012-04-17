@@ -1,5 +1,5 @@
 <?
-// include "functions.php";
+include "functions.php";
 
 function calculateTotalRaised(){
 
