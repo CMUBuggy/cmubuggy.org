@@ -9,11 +9,28 @@
    			$auctionend = mktime(21, 0, 0, 4,18, 2012);
    			$hourstilstart = floor(($auctionstart - time())/(60*60));
    			$hourstilend = floor(($auctionend - time())/(60*60));
+   			$minutestilend = floor(($auctionend - time())/60);
+ 				$displayend = $hourstilend;
+ 				$displayunit = "Hours";
+ 				
+ 				if($hourstilend == 1){
+						$displayunit = "Hour"; 					
+ 					}
+ 								
+ 				if($hourstilend < 1){
+ 					$displayend = $minutestilend;
+ 					$displayunit = "Minutes";	
+ 				}
+ 				
+ 				if($minutestilend < 0){
+						$displayend = "0";
+						$displayunit = "Time"; 					
+ 					}
 			?>
 		
 			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 0;">
-				<div style="font-size:2.5em; font-family:impact;"><?echo $hourstilend ?></div>
-				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;">Hours Left<br />to Bid</div>
+				<div style="font-size:2.5em; font-family:impact;"><?echo $displayend ?></div>
+				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;"><? echo $displayunit ?> Left<br />to Bid</div>
 			</div>
 			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 10px;">
 				<div style="font-size:2.5em; font-family:impact;">$<?php echo(file_get_contents("http://dev.cmubuggy.org/bid/getTotalRaised.php"));?></div>
