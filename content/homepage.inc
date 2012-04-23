@@ -36,7 +36,7 @@
 				<div style="font-size:2.5em; font-family:impact;">$<?php echo(file_get_contents("http://dev.cmubuggy.org/bid/getTotalRaised.php"));?></div>
 				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;">Total Amount<br />Raised</div>
 			</div>
-			<div style="clear:left; padding-right:6px;">The <a href="/auction">4th annual lead truck auction</a> starts Tue @9am. Winners ride in the lead truck, and proceeds support <a href="/about">our mission</a></div>
+			<div style="clear:left; padding-right:6px;">Thanks to all of our bidders! Emails to winners going out soon.  <a href="/bid">Check results here.</a></div>
 		</div>
 		<div class="yui3-u-3-5">
 			<h3><a href="/raceday">Everything Raceday</a></h3>
