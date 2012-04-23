@@ -1,87 +1,59 @@
 <div id="homepage">
 	<?php include_once("contentfeed.inc");?> 	 
 	<div  class="yui3-g"  style="width:500px; height:145px;">
-		<div class="yui3-u-2-5">
-			<h3><a href="/auction">Lead Truck Auction</h3></a>
-		<?php
-				date_default_timezone_set('America/New_York');
-				$auctionstart = mktime(9, 0, 0, 4,17, 2012);
-   			$auctionend = mktime(21, 0, 0, 4,18, 2012);
-   			$hourstilstart = floor(($auctionstart - time())/(60*60));
-   			$hourstilend = floor(($auctionend - time())/(60*60));
-   			$minutestilend = floor(($auctionend - time())/60);
- 				$displayend = $hourstilend;
- 				$displayunit = "Hours";
- 				
- 				if($hourstilend == 1){
-						$displayunit = "Hour"; 					
- 					}
- 								
- 				if($hourstilend < 1){
- 					$displayend = $minutestilend;
- 					$displayunit = "Minutes";	
- 				}
- 				
- 				if($minutestilend < 0){
-						$displayend = "0";
-						$displayunit = "Time"; 					
- 					}
-			?>
-		
-			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 0;">
-				<div style="font-size:2.5em; font-family:impact;"><?echo $displayend ?></div>
-				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;"><? echo $displayunit ?> Left<br />to Bid</div>
-			</div>
-			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 10px;">
-				<div style="font-size:2.5em; font-family:impact;">$<?php echo(file_get_contents("http://dev.cmubuggy.org/bid/getTotalRaised.php"));?></div>
-				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;">Total Amount<br />Raised</div>
-			</div>
-			<div style="clear:left; padding-right:6px;">Thanks to all of our bidders! Emails to winners going out soon.  <a href="/bid">Check results here.</a></div>
-		</div>
 		<div class="yui3-u-3-5">
-			<h3><a href="/raceday">Everything Raceday</a></h3>
-			
-			We've got everything you need for raceday in one place.  Schedules, chats, feeds, and downloads.  <a href="/raceday">Get it.</a><br />
-			<br />
-			<b>Coming Up</b>: (<a href="/raceday">full details here</a>)<br />
-			<?php
-				$auctionstart	= mktime( 9, 0,0,4,17,2012);
-				$auctionend 	= mktime(21, 0,0,4,18,2012);
-				$designcomp 	= mktime(10, 0,0,4,19,2012);
-				$bartime 		= mktime(20, 0,0,4,19,2012);
-				$prelims 		= mktime( 8, 0,0,4,20,2012);
-				$reception 	= mktime(12,30,0,4,20,2012);
-				$innovation	= mktime(13,30,0,4,20,2012);
-				$patentlaw   	= mktime(15,00,0,4,20,2012);
-				$exhibitions 	= mktime( 8, 0,0,4,21,2012);
-				$finals 			= mktime( 9, 0,0,4,21,2012);
-				$awards 			= mktime(18, 0,0,4,21,2012);
-				$breakfast 	= mktime(10, 0,0,4,22,2012);
-
-				$events = array(
-					$auctionstart	=> "Tue, 9am: <a href=\"/auction\">Lead Truck auction</a> starts",							
-					$auctionend  	=> "Wed, 9pm: <a href=\"/auction\">Lead Truck auction</a> closes",	
-					$designcomp  	=> "Thur, 9am: Design Comp",
-					$bartime 	 	=> "Thur, 8pm: <a href=\"http://houghspgh.com\">Hough's Bar</a> (<a href=\"http://g.co/maps/a3qqk\">563 Greenfield Ave</a>)",	
-					$prelims 	 	=> "Fri, 8am: Prelims",
-					$reception 	=> "Fri, 12:30pm: BAA reception",	
-					$innovation	=> "Fri, 1:30pm: Everything I know about innovation ...",
-					$patentlaw   	=> "Fri, 3:00pm: Buggy and Patent Law? Really? ...",
-					$exhibitions 	=> "Sat, 8am: Exhibitions",
-					$finals 			=> "Sat, 9am: Finals",
-					$awards 		 	=> "Sat, 6pm: Awards Ceremony",	
-					$breakfast 	=> "Sun, 10am: Morning after breakfast"	
-				);
-				
-				$currenttime = time();
-				$dispcount = 0;
-				foreach ($events as $eventtime => $desc){
-					if($currenttime-60*60 < $eventtime && $dispcount < 3){
-						echo("<img src=\"/css/images/orange_bullet.gif\" /> ".$desc."<br />");
-						$dispcount++;	
-					}
-				}
-			?>
+			<table class="datacompact" style="margin-top:0px;">
+				<tr>
+					<th colspan="2"><h3 style="margin:0;"><a href="/raceday/leaderboard">2012 Results</a></h3></th>
+					<th colspan="1" style="text-align:right; font-size:1em;"><b>Men's</b></th>
+					<th colspan="2" style="text-align:right; font-size:1em;"><b>Women's</b></th>
+				</tr>
+				<tr>
+					<td><b>1<sup>st</sup></b></td>
+					<td>SDC A</td>
+					<td>2:05.841</td>
+					<td class="newcol">SDC A</td>
+					<td>2:30.903</td>	
+				</tr>
+				<tr>
+					<td><b>2<sup>nd</sup></b></td>
+					<td>Fringe A</td>
+					<td>2:07.134</td>
+					<td class="newcol">SDC B</td>
+					<td>2:37.346</td>	
+				</tr>
+				<tr>
+					<td><b>3<sup>rd</sup></b></td>
+					<td>SDC B</td>
+					<td>2:08.212</td>
+					<td class="newcol">SigEp A</td>
+					<td>2:41.147</td>	
+				</tr>
+				<tr>
+					<td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> <a href="/history/buggy/bissa">Bissa</a>, 2<sup>nd</sup> <a href="/history/buggy/bonsai">Bonsai</a>, 3<sup>rd</sup> <a href="/history/buggy/ascension">Ascension</a></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> <a href="/history/buggy/zuke">Zuke</a></td>
+					<td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Spirit of Buggy:</span> Apex</td>			
+				</tr>
+				<tr>
+					<td colspan="3" style="font-size:11px;"><span style="font-size:11px;">Chairman's Choice</span>: Spirit </td>
+					<td colspan="2" style="font-size:11px;"><span style="font-size:11px;">TShirt</span>: Fringe</td>	
+				</tr>	
+			</table>
+		</div>
+		<div class="yui3-u-2-5">
+			<h3>Get Invloved</h3>
+			<div class="item"><a href="/seniors"><div class="icon" style="background-image:url('/img/icon_grad-cap.png')"></div></a><a href="/seniors">Seniors!</a> Become a 2013 member now for free.</div>
+			<div class="item">			
+				<a href="/gallery/2011-2012/Prelims-April-20">
+					<div class="icon galleryicon" style="background-image:url('/gallery/var/thumbs/2011-2012/Prelims-April-20/DSCF2398.JPG')"></div>			
+				</a>
+				Share your favorite pics from Raceday! 
+				<a href="/gallery/2011-2012/Design-April-19">Design Comp</a>, 
+				<a href="/gallery/2011-2012/Prelims-April-20">Prelims</a>, or 
+				<a href="gallery/2011-2012/Finals-April-21">Finals</a>
+			</div> 
 		</div>
 	</div>
 	<?php include_once("featurepic.inc"); ?>
@@ -229,6 +201,43 @@
 					<td colspan="2" style="font-size:11px;"><span style="font-size:11px;">TShirt</span>: <a href="/gallery/Shirts/DSC_9369">Fringe</a></td>	
 				</tr>	
 			</table>
+
+			<h3><a href="/auction">Lead Truck Auction</h3></a>
+		<?php
+				date_default_timezone_set('America/New_York');
+				$auctionstart = mktime(9, 0, 0, 4,17, 2012);
+   			$auctionend = mktime(21, 0, 0, 4,18, 2012);
+   			$hourstilstart = floor(($auctionstart - time())/(60*60));
+   			$hourstilend = floor(($auctionend - time())/(60*60));
+   			$minutestilend = floor(($auctionend - time())/60);
+ 				$displayend = $hourstilend;
+ 				$displayunit = "Hours";
+ 				
+ 				if($hourstilend == 1){
+						$displayunit = "Hour"; 					
+ 					}
+ 								
+ 				if($hourstilend < 1){
+ 					$displayend = $minutestilend;
+ 					$displayunit = "Minutes";	
+ 				}
+ 				
+ 				if($minutestilend < 0){
+						$displayend = "0";
+						$displayunit = "Time"; 					
+ 					}
+			?>
+		
+			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 0;">
+				<div style="font-size:2.5em; font-family:impact;"><?echo $displayend ?></div>
+				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;"><? echo $displayunit ?> Left<br />to Bid</div>
+			</div>
+			<div style="float:left; text-align:center; color:#f6ab1e; margin:-6px 11px 12px 10px;">
+				<div style="font-size:2.5em; font-family:impact;">$<?php echo(file_get_contents("http://dev.cmubuggy.org/bid/getTotalRaised.php"));?></div>
+				<div style="font-size:.8em; font-weight: bold; margin-top: -2px;">Total Amount<br />Raised</div>
+			</div>
+			<div style="clear:left; padding-right:6px;">The <a href="/auction">4th annual lead truck auction</a> starts Tue @9am. Winners ride in the lead truck, and proceeds support <a href="/about">our mission</a></div>
+
 
 */
 ?>
