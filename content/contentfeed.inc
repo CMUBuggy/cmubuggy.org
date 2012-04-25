@@ -137,7 +137,7 @@ if($forumResults){
 
 
 ##GALLERY COMMENTS##
-$gcommentSQL 	= "SELECT comments.id, comments.created, users.name,items.relative_path_cache,comments.text,items.title,items.relative_url_cache
+$gcommentSQL 	= "SELECT comments.id,comments.created,users.name,items.relative_path_cache,comments.text,items.title,items.relative_url_cache, comments.guest_name
 						FROM comments
 						JOIN users
 						ON comments.author_id=users.id
@@ -156,6 +156,10 @@ if($gcommentResults){
 		$commentDate = date("md",$post[1]);
 		$clusterKey = $parent_id.$commentDate;
 		$commenttext = $post[5];
+		$username = $post[2];
+		if($username == "guest" && !is_null($post[7])){
+			$username = $post[7];	
+		}
 		$href = "/gallery/".$post[6]."#comments";
 		$thumburl = "/gallery/var/thumbs/".$post[3];
 		if(strlen($commenttext)>29){$commenttext = substr($commenttext, 0, 26)."...";}
@@ -166,7 +170,7 @@ if($gcommentResults){
 			$gcommentClusterItems[$clusterKey] = array(
 																"timestamp"=>$post[1],															
 																"count"=>1,
-																"content" => "<a href=\"".$href."\"><div class=\"icon galleryicon\" style=\"background-image:url('".$thumburl."')\"><img src=\"/img/icon_comment.png\" /></div></a>".$post[2]." commented on <br /><a href=\"".$href."\">".$commenttext."</a>",
+																"content" => "<a href=\"".$href."\"><div class=\"icon galleryicon\" style=\"background-image:url('".$thumburl."')\"><img src=\"/img/icon_comment.png\" /></div></a>".$username." commented on <br /><a href=\"".$href."\">".$commenttext."</a>",
 																"type"=>"gcomment"
 															);
 		}
