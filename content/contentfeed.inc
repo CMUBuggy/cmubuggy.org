@@ -152,8 +152,9 @@ $gcommentClusterItems = array();
 
 if($gcommentResults){
 	while ($post = mysql_fetch_row($gcommentResults)) {
-		$parent_id = $post[5];	
-		$clusterKey = $parent_id; //."-".date("md",$post[1]);
+		$parent_id = $post[5];
+		$commentDate = date("md",$post[1]);
+		$clusterKey = $parent_id.$commentDate;
 		$commenttext = $post[5];
 		$href = "/gallery/".$post[6]."#comments";
 		$thumburl = "/gallery/var/thumbs/".$post[3];
