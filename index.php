@@ -52,7 +52,7 @@
 			break;
 		case "seniors":
 			$title = "Seniors | ".$title;
-			$headline = "You're alumni now, class of 2011";
+			$headline = "You're alumni now, class of ".date('Y');
 			break;
 		case "store": 
 			$title = "Store | ".$title;
