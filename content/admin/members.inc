@@ -52,6 +52,7 @@ $(document).ready(function(){
 	$list10 = $member->GetList(array(array("mem2010","=","1")));
 	$list11 = $member->GetList(array(array("mem2011","=","1")));
 	$list12 = $member->GetList(array(array("mem2012","=","1")));
+	$list13 = $member->GetList(array(array("mem2013","=","1")));
 ?>
 
 <div class="pane">
@@ -71,8 +72,8 @@ $(document).ready(function(){
 			<label for="gradyear">Graduation Year<div class="detail">(YYYY)</div></label>
 			<input type="text" class="val" name="gradyear" size="5" />
 			<!-- TODO: Generalize to current (race) year -->
-			<label for="mem2012">Mebership 2012</label>
-			<input type="checkbox" class="val" name="mem2012" value="1">
+			<label for="mem2013">Mebership 2013</label>
+			<input type="checkbox" class="val" name="mem2013" value="1">
 			<input type="hidden" name="type" value="add" />
 			<input type="hidden" name="objtype" value="member" />
 		</fieldset>
@@ -91,25 +92,28 @@ $(document).ready(function(){
 			<th style="width:50px;">2010</th>
 			<th style="width:50px;">2011</th>
 			<th style="width:50px;">2012</th>
+			<th style="width:50px;">2013</th>
 		</tr>
-		<tr><th>Total Members</th><th></th><th></th><th><?php echo(count($list09)); ?></th><th><?php echo(count($list10)); ?></th><th><?php echo(count($list11)); ?></th><th><?php echo(count($list12)); ?></th></tr>
-		<?php
+		<tr><th>Total Members</th><th></th><th></th><th><?php echo(count($list09)); ?></th><th><?php echo(count($list10)); ?></th><th><?php echo(count($list11)); ?></th><th><?php echo(count($list12)); ?></th><th><?php echo(count($list13)); ?></th></tr>		<?php
 			foreach($memberList as $member){
 				$mem2009 = "";
 				$mem2010 = "";
 				$mem2011 = "";
 				$mem2012 = "";
+				$mem2013 = "";
 				if($member->mem2009){$mem2009 = "checked=\"checked\"";}
 				if($member->mem2010){$mem2010 = "checked=\"checked\"";}
 				if($member->mem2011){$mem2011 = "checked=\"checked\"";}			
 				if($member->mem2012){$mem2012 = "checked=\"checked\"";}
+				if($member->mem2013){$mem2013 = "checked=\"checked\"";}
 				echo("<tr><td>".$member->firstname." ".$member->lastname."</td>");
 				echo("<td><div class=\"eip\"id=\"member-".$member->memberId."-email\">".$member->email."</div></td>");
 				echo("<td><div class=\"eip\" id=\"member-".$member->memberId."-gradyear\">".$member->gradyear."</div></td>");
 				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2009\" class=\"memberyear\"".$mem2009." /></td>");
 				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2010\" class=\"memberyear\"".$mem2010." /></td>");
 				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2011\" class=\"memberyear\"".$mem2011." /></td>");
-				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2012\" class=\"memberyear\"".$mem2012." /></td></tr>");
+				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2012\" class=\"memberyear\"".$mem2012." /></td>");
+				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2013\" class=\"memberyear\"".$mem2013." /></td></tr>");
 			}
 		?>		
 		</table>	
