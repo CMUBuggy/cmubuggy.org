@@ -26,7 +26,7 @@ $(document).ready(function(){
 			$(this).html(enteredText);
 			dispmsg("good", "Graduation year updated");
 		}
-	})
+	});
 	
 	//Add Member
 	$("#InitAddMember").click(function(){
