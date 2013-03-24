@@ -1,6 +1,7 @@
 <div class="pane">
 	<h2>Edit content</h2>
 	<ul class="list">
+		<li><a href="/admin/misc" >Misc. Settings</a></li>
 		<li><a href="/admin/members" >Members</a></li>
 	</ul>
 	<h2>Admin Links</h2>

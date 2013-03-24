@@ -13,6 +13,7 @@
 	include "objects/class.freeroll.php";
 	include "objects/class.heat.php";
 	include "objects/class.member.php";
+ include "objects/class.miscvar.php";
 	include "objects/class.note.php";
 	include "objects/class.org.php";
 	include "objects/class.orgAward.php";			
