@@ -47,7 +47,7 @@ function sendRegEmail($to,$randomNum){
 	$mail = array(
 	 "to" => $to,
 	 "subject" => "CMUBuggy.org Auction account confirmation",
-	 "body" => "Thanks for registering for the cmubuggy.org 2012 lead-truck auction!\n\nYour username is ".$to.".\n\nTo confirm your account, just click this link and you'll be on your way:\nhttp://dev.cmubuggy.org/bid/index.demo.UiComplete.4.html?randomNum=$randomNum&mode=register\n\n If you have any trouble logging in, just reply to this e-mail.");
+	 "body" => "Thanks for registering for the cmubuggy.org 2013 lead-truck auction!\n\nYour username is ".$to.".\n\nTo confirm your account, just click this link and you'll be on your way:\nhttp://dev.cmubuggy.org/bid/index.demo.UiComplete.4.html?randomNum=$randomNum&mode=register\n\n If you have any trouble logging in, just reply to this e-mail.");
 	send($mail);											
 }
 
