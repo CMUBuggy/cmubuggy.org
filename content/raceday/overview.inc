@@ -11,7 +11,7 @@
         <tr><td style="border-bottom:none;">Friday</td><td>8a-12p</td><td>Prelim Races</td><td>Tech and Frew</td></tr>
         <tr><td style="border-bottom:none;"></td><td>12:30p</td><td>Buggy Alumni Association Reception (Food!)</td>
             <td>Baker Hall coffee lounge just off hill 4</td></tr>
-        <tr><td style="border-bottom:none;"></td><td>1:30-2:30p</td><td>History of Buggy Presented by Tom Wood (E’74)</td><td>Baker Hall, Giant Eagle Auditorium</td></tr>
+        <tr><td style="border-bottom:none;"></td><td>1:30-2:30p</td><td>History of Buggy Presented by Tom Wood (E'74)</td><td>Baker Hall, Giant Eagle Auditorium</td></tr>
         <tr><td style="border-bottom:none;">Saturday</td><td>8-9a</td><td>Alumni & Exhibition Heats</td><td>Tech and Frew</td></tr>
         <tr><td style="border-bottom:none;"></td><td>9a-12p</td><td>Final Races</td><td>Tech and Frew</td></tr>
         <tr><td></td><td>6-7p</td><td>Awards Ceremony</td><td>Morewood parking lot</td></tr>
