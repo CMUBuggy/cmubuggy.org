@@ -124,15 +124,24 @@ $buggysMens[8][0] = "blizzard";
 $buggysMens[8][1] = "bungaruskrait";
 $buggysMens[8][2] = "barracuda";
 
+$orgsMens[9] = array();
+$orgsMens[9][0] = "SDC A";
+$orgsMens[9][1] = "CIA A";
+$orgsMens[9][2] = "Aepi A";
+$buggysMens[9]=array();
+$buggysMens[9][0] = "malice";
+$buggysMens[9][1] = "freyja";
+$buggysMens[9][2] = "aether";
+
 $orgsWoMens = array();
 $orgsWoMens[0] = array();
-$orgsWoMens[0][0] = "SDC A";
-$orgsWoMens[0][1] = "CIA A";
-$orgsWoMens[0][2] = "Aepi A";
+$orgsWoMens[0][0] = "Pika A";
+$orgsWoMens[0][1] = "SigEp B";
+$orgsWoMens[0][2] = "CIA B";
 $buggysWoMens[0]=array();
-$buggysWoMens[0][0] = "malice";
-$buggysWoMens[0][1] = "freyja";
-$buggysWoMens[0][2] = "aether";
+$buggysWoMens[0][0] = "zeus";
+$buggysWoMens[0][1] = "barracuda";
+$buggysWoMens[0][2] = "freyja";
 
 $orgsWoMens[1] = array();
 $orgsWoMens[1][0] = "Spirit A";
