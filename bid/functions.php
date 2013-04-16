@@ -36,151 +36,151 @@ class Auction {
 }
 
 $gender = array("Mens","Womens");
-$buggys = array("aether","avarice","banyan","barracuda","bedlam","blizzard","borealis","brazen","bristol","bungaruskrait","camo","celerity","chaos","chimera","envy","freyja","fuko","haraka","kamikaze","king_of_spades","knightfall","malice","nemesis09","pandora06","barracuda","perun","polaris","powder","problem_child09","problemchild","psychosis","quasar","renaissance09","rubicon","schadenfreude","seraph","skua","svengali","volos","zephyrus","zeus");
+$buggys = array("aether","avarice","banyan","barracuda","bedlam","blizzard","borealis","brazen","bristol","bungaruskrait","camo","celerity","chaos","chimera","envy","freyja","fuko","haraka","kamikaze","king_of_spades","knightfall","malice","nemesis09","pandora06","barracuda","perun","polaris","powder","problem_child09","problemchild","psychosis","quasar","renaissance09","rubicon","schadenfreude","seraph","skua","svengali","volos","zephyrus","zeus","empty");
 
 $buggysMens = array();
 $buggyWoMens = array();
 $orgsMens = array();
 
 $orgsMens[0] = array();
-$orgsMens[0][0] = "Fringe B";
-$orgsMens[0][1] = "SigEp C";
-$orgsMens[0][2] = "Spirit C";
+$orgsMens[0][0] = "Pika B";
+$orgsMens[0][1] = "Spirit C";
+$orgsMens[0][2] = "CIA C";
 $buggysMens[0] = array();
-$buggysMens[0][0] = "blizzard";
-$buggysMens[0][1] = "barracuda";
-$buggysMens[0][2] = "seraph";
+$buggysMens[0][0] = "zeus";
+$buggysMens[0][1] = "seraph";
+$buggysMens[0][2] = "freyja";
 
 $orgsMens[1] = array();
-$orgsMens[1][0] = "Pika B";
-$orgsMens[1][1] = "SDC D";
-$orgsMens[1][2] = "CIA D";
+$orgsMens[1][0] = "SigEp B";
+$orgsMens[1][1] = "Apex A";
+$orgsMens[1][2] = "SAE B";
 
 $buggysMens[1]=array();
-$buggysMens[1][0] = "zeus";
-$buggysMens[1][1] = "malice";
-$buggysMens[1][2] = "freyja";
+$buggysMens[1][0] = "barracuda";
+$buggysMens[1][1] = "insite";
+$buggysMens[1][2] = "rubicon";
 
 $orgsMens[2] = array();
-$orgsMens[2][0] = "Spirit A";
-$orgsMens[2][1] = "Apex A";
-$orgsMens[2][2] = "Fringe D";
+$orgsMens[2][0] = "Fringe B";
+$orgsMens[2][1] = "SDC D";
+$orgsMens[2][2] = "ROTC A";
 $buggysMens[2]=array();
-$buggysMens[2][0] = "seraph";
-$buggysMens[2][1] = "insite";
-$buggysMens[2][2] = "blizzard";
+$buggysMens[2][0] = "blizzard";
+$buggysMens[2][1] = "malice";
+$buggysMens[2][2] = "barracuda";
 
 $orgsMens[4] = array();
-$orgsMens[4][0] = "SigEp A";
-$orgsMens[4][1] = "Aepi B";
-$orgsMens[4][2] = "Fringe C";
+$orgsMens[4][0] = "Spirit A";
+$orgsMens[4][1] = "CIA B";
+$orgsMens[4][2] = "Empty";
 $buggysMens[4]=array();
-$buggysMens[4][0] = "barracuda";
-$buggysMens[4][1] = "kamikaze";
-$buggysMens[4][2] = "blizzard";
+$buggysMens[4][0] = "seraph";
+$buggysMens[4][1] = "freyja";
+$buggysMens[4][2] = "empty";
 
 $orgsMens[3] = array();
 $orgsMens[3][0] = "SDC C";
-$orgsMens[3][1] = "SigNu A";
-$orgsMens[3][2] = "CIA B";
+$orgsMens[3][1] = "Fringe C";
+$orgsMens[3][2] = "Empty";
 $buggysMens[3]=array();
 $buggysMens[3][0] = "malice";
-$buggysMens[3][1] = "bungaruskrait";
-$buggysMens[3][2] = "freyja";
+$buggysMens[3][1] = "blizzard";
+$buggysMens[3][2] = "empty";
 
 $orgsMens[5] = array();
-$orgsMens[5][0] = "SDC B";
-$orgsMens[5][1] = "SAE A";
-$orgsMens[5][2] = "CIA C";
+$orgsMens[5][0] = "SigEp A";
+$orgsMens[5][1] = "Spirit B";
+$orgsMens[5][2] = "CIA D";
 $buggysMens[5]=array();
-$buggysMens[5][0] = "malice";
-$buggysMens[5][1] = "rubicon";
+$buggysMens[5][0] = "barracuda";
+$buggysMens[5][1] = "seraph";
 $buggysMens[5][2] = "freyja";
 
 $orgsMens[6] = array();
 $orgsMens[6][0] = "Pika A";
-$orgsMens[6][1] = "SigEp D";
-$orgsMens[6][2] = "Spirit B";
+$orgsMens[6][1] = "SAE A";
+$orgsMens[6][2] = "Fringe D";
 $buggysMens[6]=array();
 $buggysMens[6][0] = "zeus";
-$buggysMens[6][1] = "barracuda";
-$buggysMens[6][2] = "seraph";
+$buggysMens[6][1] = "rubicon";
+$buggysMens[6][2] = "blizzard";
 
 $orgsMens[7] = array();
-$orgsMens[7][0] = "Fringe A";
-$orgsMens[7][1] = "CIA A";
-$orgsMens[7][2] = "DF A";
+$orgsMens[7][0] = "SDC B";
+$orgsMens[7][1] = "SigEp C";
+$orgsMens[7][2] = "Spirit D";
 $buggysMens[7]=array();
-$buggysMens[7][0] = "blizzard";
-$buggysMens[7][1] = "freyja";
-$buggysMens[7][2] = "perun";
+$buggysMens[7][0] = "malice";
+$buggysMens[7][1] = "barracuda";
+$buggysMens[7][2] = "seraph";
 
 $orgsMens[8] = array();
-$orgsMens[8][0] = "SDC A";
-$orgsMens[8][1] = "Aepi A";
-$orgsMens[8][2] = "SigEp B";
+$orgsMens[8][0] = "Fringe A";
+$orgsMens[8][1] = "SigNu A";
+$orgsMens[8][2] = "SigEp D";
 $buggysMens[8]=array();
-$buggysMens[8][0] = "malice";
-$buggysMens[8][1] = "kamikaze";
+$buggysMens[8][0] = "blizzard";
+$buggysMens[8][1] = "bungaruskrait";
 $buggysMens[8][2] = "barracuda";
 
 $orgsWoMens = array();
 $orgsWoMens[0] = array();
-$orgsWoMens[0][0] = "SDC C";
-$orgsWoMens[0][1] = "CIA C";
-$orgsWoMens[0][2] = "Fringe C";
+$orgsWoMens[0][0] = "SDC A";
+$orgsWoMens[0][1] = "CIA A";
+$orgsWoMens[0][2] = "Aepi A";
 $buggysWoMens[0]=array();
 $buggysWoMens[0][0] = "malice";
 $buggysWoMens[0][1] = "freyja";
-$buggysWoMens[0][2] = "blizzard";
+$buggysWoMens[0][2] = "aether";
 
 $orgsWoMens[1] = array();
 $orgsWoMens[1][0] = "Spirit A";
 $orgsWoMens[1][1] = "SDC D";
-$orgsWoMens[1][2] = "Apex A";
+$orgsWoMens[1][2] = "CIA D";
 $buggysWoMens[1]=array();
 $buggysWoMens[1][0] = "seraph";
 $buggysWoMens[1][1] = "malice";
-$buggysWoMens[1][2] = "insite";
+$buggysWoMens[1][2] = "freyja";
 
 $orgsWoMens[2] = array();
-$orgsWoMens[2][0] = "SigEp A";
-$orgsWoMens[2][1] = "Fringe B";
-$orgsWoMens[2][2] = "CIA B";
+$orgsWoMens[2][0] = "SDC C";
+$orgsWoMens[2][1] = "SAE A";
+$orgsWoMens[2][2] = "Empty";
 $buggysWoMens[2]=array();
-$buggysWoMens[2][0] = "barracuda";
-$buggysWoMens[2][1] = "blizzard";
-$buggysWoMens[2][2] = "freyja";
+$buggysWoMens[2][0] = "malice";
+$buggysWoMens[2][1] = "rubicon";
+$buggysWoMens[2][2] = "empty";
 
 
 $orgsWoMens[3] = array();
-$orgsWoMens[3][0] = "Pika A";
-$orgsWoMens[3][1] = "DF A";
-$orgsWoMens[3][2] = "SigEp B";
+$orgsWoMens[3][0] = "SigEp A";
+$orgsWoMens[3][1] = "Fringe C";
+$orgsWoMens[3][2] = "Empty";
 $buggysWoMens[3]=array();
-$buggysWoMens[3][0] = "zeus";
-$buggysWoMens[3][1] = "perun";
-$buggysWoMens[3][2] = "barracuda";
+$buggysWoMens[3][0] = "barracuda";
+$buggysWoMens[3][1] = "blizzard";
+$buggysWoMens[3][2] = "empty";
 
 
 $orgsWoMens[4] = array();
 $orgsWoMens[4][0] = "SDC B";
-$orgsWoMens[4][1] = "CIA D";
-$orgsWoMens[4][2] = "Spirit B";
+$orgsWoMens[4][1] = "CIA C";
+$orgsWoMens[4][2] = "Fringe B";
 $buggysWoMens[4]=array();
 $buggysWoMens[4][0] = "malice";
 $buggysWoMens[4][1] = "freyja";
-$buggysWoMens[4][2] = "seraph";
+$buggysWoMens[4][2] = "blizzard";
 
 
 $orgsWoMens[5] = array();
 $orgsWoMens[5][0] = "Fringe A";
-$orgsWoMens[5][1] = "SigEp C";
-$orgsWoMens[5][2] = "SAE A";
+$orgsWoMens[5][1] = "Spirit B";
+$orgsWoMens[5][2] = "Apex A";
 $buggysWoMens[5]=array();
 $buggysWoMens[5][0] = "blizzard";
-$buggysWoMens[5][1] = "barracuda";
-$buggysWoMens[5][2] = "rubicon";
+$buggysWoMens[5][1] = "seraph";
+$buggysWoMens[5][2] = "insite";
 
 $orgsWoMens[6] = array();
 $orgsWoMens[6][0] = "SDC A";
@@ -192,7 +192,7 @@ $buggysWoMens[6][1] = "freyja";
 $buggysWoMens[6][2] = "kamikaze";
 
 
-$orgs = array("CIA A","CIA B","CIA C","CIA D","Fringe A","Fringe B","Fringe C", "SigEp A", "SigEp B", "SigEp C", "SigEp D","Spirit A","Spirit B","Spirit C","Spirit D","Pika A", "Pika B", "Pika C", "Pika D", "SDC A", "SDC B", "SDC C", "SDC D", "SigNu A", "SigNu B", "Apex A", "SAE A", "SAE B", "DF A","Aepi A","Aepi B","Aepi C");
+$orgs = array("CIA A","CIA B","CIA C","CIA D","Fringe A","Fringe B","Fringe C", "SigEp A", "SigEp B", "SigEp C", "SigEp D","Spirit A","Spirit B","Spirit C","Spirit D","Pika A", "Pika B", "Pika C", "Pika D", "SDC A", "SDC B", "SDC C", "SDC D", "SigNu A", "SigNu B", "Apex A", "SAE A", "SAE B", "DF A","Aepi A","Aepi B","Aepi C","ROTC A","Empty");
 
 $validUserids=array("agoldman","samswift","ckline","carl","40dog","nirunuke","twood","theBoss");
 $validBids = array();
@@ -478,7 +478,7 @@ function calculateTotalRaised(){
 function getMostRecentBid(){
   $memcache = new Memcache;
   $memcache->connect('localhost', 11211) or die ("Could not connect");
-  $auctionEnd = date_create('2012-04-18 21:00:00');
+  $auctionEnd = date_create('2013-04-17 21:00:00');
   $currentDate = date_create();
   $timeTillRaces=date_diff($auctionEnd, $currentDate); 
   $timeTillRaces->format("%d days");
@@ -487,6 +487,61 @@ function getMostRecentBid(){
   //  $timeLeft=$timeTillRaces->m." months, ".$timeTillRaces->d." days, ".$timeTillRaces->h." hours, ".$timeTillRaces->i." minutes, ".$timeTillRaces->s." seconds" ;
   $timeLeft = $timeTillRaces->format("%a days %h hours %i minutes left");
   return array('mostRecentBid'=>$memcache->get("mostRecentBid"),'timeLeft'=>$timeLeft,'totalRaised'=>$totalRaised,'cheapestHeat'=>$cheapestPrelimHeat,'curTime'=>$currentDate->getTimestamp()); 
+}
+
+function loadMemcacheFromFile(){
+	 $auctions = unserialize(file_get_contents("auctions.txt"));
+	 $users = unserialize(file_get_contents("users.txt"));
+	 $usersoptional = unserialize(file_get_contents("usersoptional.txt"));
+	 $recent = unserialize(file_get_contents("mostrecentbid.txt"));
+
+	 $memcache = new Memcache;
+         $memcache->connect('localhost', 11211) or die ("Could not connect");
+
+         $memcache->set("auctions", $auctions, false, 2592000);
+         $memcache->set("users", $users, false, 2592000);
+         $memcache->set("usersOptional", $usersoptional, false, 2592000);
+         $memcache->set("mostRecentBid", $recent, false, 2592000);
+}
+
+function getMemcacheKeys() { 
+
+    $memcache = new Memcache; 
+    $memcache->connect('localhost', 11211) or die ("Could not connect to memcache server"); 
+
+    $auctions = $memcache->get("auctions"); 
+    $users = $memcache->get("users"); 
+    $usersoptional = $memcache->get("usersoptional"); 
+    $mostRecentBid = $memcache->get("mostRecentBid"); 
+
+    file_put_contents("auctions.txt", serialize($auctions));
+    file_put_contents("users.txt", serialize($users));
+    file_put_contents("usersoptional.txt", serialize($usersoptional));
+    file_put_contents("mostrecentbid.txt", serialize($mostRecentBid));
+
+    
+    foreach($auctions as $keys => $auction){
+    // echo "$keys --  ".serialize($auction)."<br>";
+    }
+
+    $list = array(); 
+    $allSlabs = $memcache->getExtendedStats('slabs'); 
+    $items = $memcache->getExtendedStats('items'); 
+    foreach($allSlabs as $server => $slabs) { 
+        foreach($slabs AS $slabId => $slabMeta) { 
+           $cdump = $memcache->getExtendedStats('cachedump',(int)$slabId); 
+            foreach($cdump AS $keys => $arrVal) { 
+	        if($arrVal){
+                    foreach($arrVal AS $k => $v) {                    
+		    	foreach($v as $newKey => $newVal){	    
+                          //echo "$k : ".serialize($v).'<br>';	
+			  //echo "$k $newKey ".serialize($newVal)."<br>";
+			}
+                    } 
+	        }
+           } 
+        } 
+    }    
 }
 
 function getAllAuctions(){
