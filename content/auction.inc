@@ -1,8 +1,7 @@
-
 <div class="pane">
 		<img style="float:right; margin:15px;" class="aligncenter" title="Lead Truck" src="http://cmubuggy.org/img/news/baaleadtruck.JPG" alt="Lead Truck" width="224" height="149" />				
 		<h2>See the WHOLE race this year!</h2>
-		We'll be having our 4th annual auction for rides in the official sweepstakes lead truck for each heat of the prelim and final races. Auction winners will ride in the bed of the pickup truck with the head judge, sweepstakes chairman, and other race officials to get the absolute best seat in the house.<br />
+		We'll be having our 5th annual auction for rides in the official sweepstakes lead truck for each heat of the prelim and final races. Auction winners will ride in the bed of the pickup truck with the head judge, sweepstakes chairman, and other race officials to get the absolute best seat in the house.<br />
 		<br />
 		The auction is the Buggy Alumni Association's largest source of fund-raising each year, allowing us to pursue our <a style="font-weight:bold;" href="http://cmubuggy.org/about/">mission to support buggy.</a>  Last year's auction allowed us to upgrade the timing technology and help rent jumbotrons for raceday!</a>
 		<br />
