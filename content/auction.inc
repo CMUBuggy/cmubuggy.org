@@ -7,7 +7,7 @@
 		<br />
 		<br />
 		<div style="text-align:center; margin:15px;">
-			<div class="button" style="margin:0 auto; font-size:1.4em;">Bidding starts at 9am Apr 16</div>
+			<a href="/bid"><div class="button" style="margin:0 auto; font-size:1.4em;">Bidding starts at 9am Apr 16</div></a>
 		</div>					
 		<br />
 		The details of the auction go like this:
