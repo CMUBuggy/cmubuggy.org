@@ -1,7 +1,7 @@
 <?
 include "functions.php";
 
-function calculateTotalRaised(){
+/*function calculateTotalRaised(){
 
   $memcache = new Memcache;
   $memcache->connect('localhost', 11211) or die ("Could not connect");
@@ -43,7 +43,7 @@ function calculateTotalRaised(){
     }
   }
  return $totalCollected;
-}
+}*/
 
 
  echo calculateTotalRaised();
