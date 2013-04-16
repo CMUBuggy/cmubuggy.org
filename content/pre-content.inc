@@ -1,19 +1,14 @@
 <?php
 	date_default_timezone_set('America/New_York');
-	
-	$miscvar = new miscvar();
-	$miscVarList = $miscvar->GetList(array(array("key","=","NextRacedayDate")));
-	if(count($miscVarList)>0){
-		$rddate = strtotime($miscVarList[0]->value);
-	}	
-	$currenttime = time();
-	$hoursleft = floor(($rddate - $currenttime)/(60*60));
-	$daysleft = floor($hoursleft/24);
-	$weeksleft = floor($daysleft/7);
-	$monthsleft = floor($daysleft/30);
-	$count = $monthsleft;
-	$unit = "MONTHS";
-	if($count < 4){
+   $rddate = mktime(9, 0, 0, 4, 19, 2013);
+   $currenttime = time();
+   $hoursleft = floor(($rddate - $currenttime)/(60*60));
+   $daysleft = floor($hoursleft/24);
+   $weeksleft = floor($daysleft/7);
+   $monthsleft = floor($daysleft/30);
+   $count = $monthsleft;
+   $unit = "MONTHS";
+   if($count < 4){
 	   $count = $weeksleft;
 	   $unit = "WEEKS";
 	   if($count < 4){

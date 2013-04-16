@@ -10,15 +10,7 @@
 		$s = $_GET["s"];
 	}
 	$title = "CMU Buggy Alumni Association";
-	
-	$miscvar = new miscvar();
-	$miscVarList = $miscvar->GetList(array(array("key","=","HomeHeadline")));
-	if(count($miscVarList)>0){
-		$headline = $miscVarList[0]->value;
-	}	 else {
-		$headline = "CMU Buggy";
-	}
-		
+	$headline = "Punxsutawney Phil says ROLL";
 	switch($s){
 		case "about":
 			$title = "About | ".$title;
