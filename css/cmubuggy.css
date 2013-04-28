@@ -290,7 +290,7 @@ img[rel] {cursor: pointer; }
 
 
 /*  ___HEADER___ */
-#hd #title { font-family: 'Permanent Marker', Arial; font-size: 45px; line-height: 40px; color:#fff; }
+#hd #title { font-family: 'Lobster', serif; font-size: 45px; color:#fff; line-height: 1.1; letter-spacing: .03em; }
 
 
 #hd img#end {float: right; }
