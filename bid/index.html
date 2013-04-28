@@ -230,7 +230,7 @@ function writeLoginDiv() {
     //otherwise, set login div to unlogged in state
     } else {
 	$("#loginTop").html("You are not logged in to the auction. <a onClick='$(\"#loginDialog\").dialog(\"open\");'>Login</a>")
-	$("#loginTop").append(" or <a onClick='$(\"#registerDialog\").dialog(\"open\");'>Register</a>")
+	$("#loginTop").append(" or <a onClick='$(\"#registerDialog\").dialog(\"open\");'>Register</a>.<br><hr>Having trouble logging in? Some auction accounts created Tue morning may need to be re-registered.  Sorry about that, but a quick re-register should fix it. Existing bids should be fine.")
 	loginId=""
     }
 }
@@ -620,7 +620,8 @@ function getMostRecentBid(){
 		        downloading=0;
 		       }
 		       mostRecentBidUid = msg['mostRecentBid'];
-		       $("#timeLeft").html(msg['timeLeft']);
+		       //$("#timeLeft").html(msg['timeLeft']);
+		       $("#timeLeft").html("Time's Up!")
 		       $("#totalRaised").html("Total Raised on Prelim Heats: $"+msg['totalRaised']);
 		       $("#cheapestHeat").html("Cheapest Heat : "+msg['cheapestHeat']);
 		       if(mostRecentBidUid!=mostRecentBidUidCache){
@@ -992,7 +993,7 @@ You are not logged in.
     </div>
   </div>
   <div class="pane" style="margin-top:0px;">
-  	The top 3 bidders pick the women's finals heat of their choice in that order.  You may bid anything higher than the current 3rd highest.
+  	The top 4 bidders pick the women's finals heat of their choice in that order.  You may bid anything higher than the current 4th highest.
     <div id='bidsContainer' class='bidsContainer'>
       <div id='WomensFinalsAuctionListDiv' class='bidsTable'>
       </div>

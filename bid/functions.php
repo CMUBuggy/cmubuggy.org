@@ -70,23 +70,23 @@ $buggysMens[2][0] = "blizzard";
 $buggysMens[2][1] = "malice";
 $buggysMens[2][2] = "barracuda";
 
-$orgsMens[4] = array();
-$orgsMens[4][0] = "Spirit A";
-$orgsMens[4][1] = "CIA B";
-$orgsMens[4][2] = "Empty";
-$buggysMens[4]=array();
-$buggysMens[4][0] = "seraph";
-$buggysMens[4][1] = "freyja";
-$buggysMens[4][2] = "empty";
-
 $orgsMens[3] = array();
-$orgsMens[3][0] = "SDC C";
-$orgsMens[3][1] = "Fringe C";
+$orgsMens[3][0] = "Spirit A";
+$orgsMens[3][1] = "CIA B";
 $orgsMens[3][2] = "Empty";
 $buggysMens[3]=array();
-$buggysMens[3][0] = "malice";
-$buggysMens[3][1] = "blizzard";
+$buggysMens[3][0] = "seraph";
+$buggysMens[3][1] = "freyja";
 $buggysMens[3][2] = "empty";
+
+$orgsMens[4] = array();
+$orgsMens[4][0] = "SDC C";
+$orgsMens[4][1] = "Fringe C";
+$orgsMens[4][2] = "Empty";
+$buggysMens[4]=array();
+$buggysMens[4][0] = "malice";
+$buggysMens[4][1] = "blizzard";
+$buggysMens[4][2] = "empty";
 
 $orgsMens[5] = array();
 $orgsMens[5][0] = "SigEp A";
@@ -258,6 +258,89 @@ function registerUser($emailAddress){
   return $registerNum;
 }
 
+function initHeatsMemoryStuff(){
+  global $orgs,$buggys,$buggysMens,$buggysWoMens,$orgsMens,$orgsWoMens,$gender,$validBids,$validUserids;
+  
+  $memcache = new Memcache;
+  $memcache->connect('localhost', 11211) or die ("Could not connect");
+
+  $auctions = array();
+
+  $y=0; 
+  $yy=0;
+
+  for($x=0;$x<10;$x++){
+    $temp = new Auction();
+    $temp->auctionUid=$y;
+    $temp->startTime="10:00am";
+    $temp->org1=$orgsMens[$x][0];//rand(0,count($orgs)-1)];
+    $temp->org2=$orgsMens[$x][1];//rand(0,count($orgs)-1)];
+    $temp->org3=$orgsMens[$x][2];//rand(0,count($orgs)-1)];
+    $temp->buggy1=$buggysMens[$x][0];//[rand(0,count($buggys)-1)];
+    $temp->buggy2=$buggysMens[$x][1];//rand(0,count($buggys)-1)];
+    $temp->buggy3=$buggysMens[$x][2];//rand(0,count($buggys)-1)];
+    $temp->heatNum=$x+1;
+    $temp->day="Prelims";
+    $temp->gender="Mens";  
+    $numBids=0;
+    $curBidIndex=0;
+    $auctions[$y]=$temp;  
+    $y++;
+  }
+
+  for($x=0;$x<7;$x++){
+    $temp = new Auction();
+    $temp->auctionUid=$y;
+    $temp->startTime="10:00am";
+    $temp->org1=$orgsWoMens[$x][0];//rand(0,count($orgs)-1)];
+    $temp->org2=$orgsWoMens[$x][1];//rand(0,count($orgs)-1)];
+    $temp->org3=$orgsWoMens[$x][2];//rand(0,count($orgs)-1)];
+    $temp->buggy1=$buggysWoMens[$x][0];//[rand(0,count($buggys)-1)];
+    $temp->buggy2=$buggysWoMens[$x][1];//rand(0,count($buggys)-1)];
+    $temp->buggy3=$buggysWoMens[$x][2];//rand(0,count($buggys)-1)];
+    $temp->heatNum=$x+1;
+    $temp->gender="Womens";    
+    $temp->day="Prelims";
+    $curBidIndex=0;
+    $auctions[$y]=$temp;  
+    $y++;
+  }
+  
+  $temp = new Auction();
+  $temp->auctionUid=$y;
+  $temp->startTime=microtime();
+  $temp->org1=$orgs[rand(0,count($orgs)-1)];
+  $temp->org2=$orgs[rand(0,count($orgs)-1)];
+  $temp->org3=$orgs[rand(0,count($orgs)-1)];
+  $temp->buggy1=$buggys[rand(0,count($buggys)-1)];
+  $temp->buggy2=$buggys[rand(0,count($buggys)-1)];
+  $temp->buggy3=$buggys[rand(0,count($buggys)-1)];
+  $temp->heatNum=1;
+  $temp->gender="Womens";    
+  $temp->day="Finals";
+
+  $auctions[$y]=$temp;  
+  $y++;
+
+  $temp = new Auction();
+  $temp->auctionUid=$y;
+  $temp->startTime=microtime();
+  $temp->org1=$orgs[rand(0,count($orgs)-1)];
+  $temp->org2=$orgs[rand(0,count($orgs)-1)];
+  $temp->org3=$orgs[rand(0,count($orgs)-1)];
+  $temp->buggy1=$buggys[rand(0,count($buggys)-1)];
+  $temp->buggy2=$buggys[rand(0,count($buggys)-1)];
+  $temp->buggy3=$buggys[rand(0,count($buggys)-1)];
+  $temp->heatNum=1;
+  $temp->gender="Mens";    
+  $temp->day="Finals";
+
+  $auctions[$y]=$temp;  
+  $y++;
+
+  $memcache->set("auctions", $auctions, false, 2592000);
+}
+
 function initMemoryStuff(){
   global $orgs,$buggys,$buggysMens,$buggysWoMens,$orgsMens,$orgsWoMens,$gender,$validBids,$validUserids;
   
@@ -278,7 +361,7 @@ function initMemoryStuff(){
   $yy=0;
 
   
-  for($x=0;$x<9;$x++){
+  for($x=0;$x<10;$x++){
     $temp = new Auction();
     $temp->auctionUid=$y;
     $temp->startTime="10:00am";
@@ -297,7 +380,7 @@ function initMemoryStuff(){
     $y++;
   }
 
-  for($x=0;$x<7;$x++){
+  for($x=0;$x<8;$x++){
     $temp = new Auction();
     $temp->auctionUid=$y;
     $temp->startTime="10:00am";
@@ -472,7 +555,7 @@ function calculateTotalRaised(){
       } else {
 	for($zb=0;$zb<count($auctions[$za]->bids);$zb++){
 	  $bidUser=$auctions[$za]->bids[$zb]->userId;
-	  if(count($auctions[$za]->bids)>0 && !isset($womensWinners["$bidUser"]) && $totalWomensBids<4){
+	  if(count($auctions[$za]->bids)>0 && !isset($womensWinners["$bidUser"]) && $totalWomensBids<5){
 	    $totalCollected=$totalCollected+$auctions[$za]->bids[$zb]->bidAmount;
 	    $totalWomensBids++;
 	    $womensWinners["$bidUser"]="bid";
@@ -520,7 +603,7 @@ function getMemcacheKeys() {
 
     $auctions = $memcache->get("auctions"); 
     $users = $memcache->get("users"); 
-    $usersoptional = $memcache->get("usersoptional"); 
+    $usersoptional = $memcache->get("usersOptional"); 
     $mostRecentBid = $memcache->get("mostRecentBid"); 
 
     file_put_contents("auctions.txt", serialize($auctions));
