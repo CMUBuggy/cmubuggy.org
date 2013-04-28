@@ -34,7 +34,7 @@
 					<li>Because the specifics of the finals heats are unknown, bidders will be bidding for the right to have first pick of the finals heats.  Runners up will have 2nd, 3rd pick, etc.</li>
 					<li>There will be only two things to bid on for finals: Men's Finals and Women's Finals</li>
 					<li>The top 5 bidders for the Men's Finals will have the opportunity to select a heat in order of their bids</li>
-					<li>The top 3 bidders for the Women's Finals will have the opportunity to select a heat in order of their bids</li>
+					<li>The top 4 bidders for the Women's Finals will have the opportunity to select a heat in order of their bids</li>
 					<!--<li>The top 5 bidders for the Exhibition heats will have the opportunity to select a heat in order of their bids</li>-->
 					<li>You may not place a bid that is equal to an existing bid</li>
 					<li>You may place a bid lower than the current top bid so long as it is higher than the current 5th (Men's) or 3rd (Women's) place bid.</li>
