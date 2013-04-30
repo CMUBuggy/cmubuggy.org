@@ -1,6 +1,6 @@
 <?php
 	date_default_timezone_set('America/New_York');
-   $rddate = mktime(9, 0, 0, 4, 19, 2013);
+   $rddate = mktime(9, 0, 0, 4, 11, 2014);
    $currenttime = time();
    $hoursleft = floor(($rddate - $currenttime)/(60*60));
    $daysleft = floor($hoursleft/24);
@@ -28,7 +28,7 @@
 <body id="doc">
 	<div id="hd">
 		<img id="end" src="/img/headerend.gif" alt="" />
-		<div id="rddate">Raceday 2013<br/>April 19-20 </div>
+		<div id="rddate">Raceday 2014<br/>April 11-12 </div>
 		<div id="countdown">
 			<div id="count"><?echo $count ?></div>
 			<div id="unit"><? echo $unit ?></div>
