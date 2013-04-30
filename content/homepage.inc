@@ -33,7 +33,7 @@
 					<td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> Ascension, 2<sup>nd</sup> Beacon, 3<sup>rd</sup> Barracuda</td>
 				</tr>
 				<tr>
-					<td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> Zuke</td>
+					<td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> Kingpin II</td>
 					<td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Spirit of Buggy:</span> CIA</td>			
 				</tr>
 				<tr>
