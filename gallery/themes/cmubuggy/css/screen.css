@@ -199,6 +199,8 @@ input[type=radio] {
   margin: 0 auto;
 }
 
+#g-fullsize { position: absolute;}
+
 /* Footer content ~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #g-footer #g-credits li {
