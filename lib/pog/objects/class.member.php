@@ -14,15 +14,16 @@
 	`mem2011` VARCHAR(255) NOT NULL,
 	`mem2012` VARCHAR(255) NOT NULL,
 	`userid` int(11) NOT NULL,
-	`mem2013` VARCHAR(255) NOT NULL, INDEX(`userid`), PRIMARY KEY  (`memberid`)) ENGINE=MyISAM;
+	`mem2013` VARCHAR(255) NOT NULL,
+	`mem2014` VARCHAR(255) NOT NULL, INDEX(`userid`), PRIMARY KEY  (`memberid`)) ENGINE=MyISAM;
 */
 
 /**
 * <b>member</b> class with integrated CRUD methods.
 * @author Php Object Generator
-* @version POG 3.0f / PHP5
+* @version POG 3.2 / PHP5
 * @copyright Free for personal & commercial use. (Offered under the BSD license)
-* @link http://www.phpobjectgenerator.com/?language=php5&wrapper=pog&objectName=member&attributeList=array+%28%0A++0+%3D%3E+%27firstname%27%2C%0A++1+%3D%3E+%27lastname%27%2C%0A++2+%3D%3E+%27email%27%2C%0A++3+%3D%3E+%27gradyear%27%2C%0A++4+%3D%3E+%27org%27%2C%0A++5+%3D%3E+%27school%27%2C%0A++6+%3D%3E+%27mem2009%27%2C%0A++7+%3D%3E+%27mem2010%27%2C%0A++8+%3D%3E+%27mem2011%27%2C%0A++9+%3D%3E+%27mem2012%27%2C%0A++10+%3D%3E+%27user%27%2C%0A++11+%3D%3E+%27mem2013%27%2C%0A%29&typeList=array+%28%0A++0+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++1+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++2+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++3+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++4+%3D%3E+%27JOIN%27%2C%0A++5+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++6+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++7+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++8+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++9+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++10+%3D%3E+%27BELONGSTO%27%2C%0A++11+%3D%3E+%27VARCHAR%28255%29%27%2C%0A%29
+* @link http://www.phpobjectgenerator.com/?language=php5&wrapper=pog&objectName=member&attributeList=array+%28%0A++0+%3D%3E+%27firstname%27%2C%0A++1+%3D%3E+%27lastname%27%2C%0A++2+%3D%3E+%27email%27%2C%0A++3+%3D%3E+%27gradyear%27%2C%0A++4+%3D%3E+%27org%27%2C%0A++5+%3D%3E+%27school%27%2C%0A++6+%3D%3E+%27mem2009%27%2C%0A++7+%3D%3E+%27mem2010%27%2C%0A++8+%3D%3E+%27mem2011%27%2C%0A++9+%3D%3E+%27mem2012%27%2C%0A++10+%3D%3E+%27user%27%2C%0A++11+%3D%3E+%27mem2013%27%2C%0A++12+%3D%3E+%27mem2014%27%2C%0A%29&typeList=array+%28%0A++0+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++1+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++2+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++3+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++4+%3D%3E+%27JOIN%27%2C%0A++5+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++6+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++7+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++8+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++9+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++10+%3D%3E+%27BELONGSTO%27%2C%0A++11+%3D%3E+%27VARCHAR%28255%29%27%2C%0A++12+%3D%3E+%27VARCHAR%28255%29%27%2C%0A%29
 */
 include_once('class.pog_base.php');
 include_once('class.memberorgmap.php');
@@ -90,6 +91,11 @@ class member extends POG_Base
 	 */
 	public $mem2013;
 	
+	/**
+	 * @var VARCHAR(255)
+	 */
+	public $mem2014;
+	
 	public $pog_attribute_type = array(
 		"memberId" => array('db_attributes' => array("NUMERIC", "INT")),
 		"firstname" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
@@ -104,6 +110,7 @@ class member extends POG_Base
 		"mem2012" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"user" => array('db_attributes' => array("OBJECT", "BELONGSTO")),
 		"mem2013" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
+		"mem2014" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		);
 	public $pog_query;
 	
@@ -124,7 +131,7 @@ class member extends POG_Base
 		}
 	}
 	
-	function member($firstname='', $lastname='', $email='', $gradyear='', $school='', $mem2009='', $mem2010='', $mem2011='', $mem2012='', $mem2013='')
+	function member($firstname='', $lastname='', $email='', $gradyear='', $school='', $mem2009='', $mem2010='', $mem2011='', $mem2012='', $mem2013='', $mem2014='')
 	{
 		$this->firstname = $firstname;
 		$this->lastname = $lastname;
@@ -137,6 +144,7 @@ class member extends POG_Base
 		$this->mem2011 = $mem2011;
 		$this->mem2012 = $mem2012;
 		$this->mem2013 = $mem2013;
+		$this->mem2014 = $mem2014;
 	}
 	
 	
@@ -164,6 +172,7 @@ class member extends POG_Base
 			$this->mem2012 = $this->Unescape($row['mem2012']);
 			$this->userId = $row['userid'];
 			$this->mem2013 = $this->Unescape($row['mem2013']);
+			$this->mem2014 = $this->Unescape($row['mem2014']);
 		}
 		return $this;
 	}
@@ -260,6 +269,7 @@ class member extends POG_Base
 			$member->mem2012 = $this->Unescape($row['mem2012']);
 			$member->userId = $row['userid'];
 			$member->mem2013 = $this->Unescape($row['mem2013']);
+			$member->mem2014 = $this->Unescape($row['mem2014']);
 			$memberList[] = $member;
 		}
 		return $memberList;
@@ -273,8 +283,11 @@ class member extends POG_Base
 	function Save($deep = true)
 	{
 		$connection = Database::Connect();
-		$this->pog_query = "select `memberid` from `member` where `memberid`='".$this->memberId."' LIMIT 1";
-		$rows = Database::Query($this->pog_query, $connection);
+		$rows = 0;
+		if ($this->memberId!=''){
+			$this->pog_query = "select `memberid` from `member` where `memberid`='".$this->memberId."' LIMIT 1";
+			$rows = Database::Query($this->pog_query, $connection);
+		}
 		if ($rows > 0)
 		{
 			$this->pog_query = "update `member` set 
@@ -288,11 +301,12 @@ class member extends POG_Base
 			`mem2011`='".$this->Escape($this->mem2011)."', 
 			`mem2012`='".$this->Escape($this->mem2012)."', 
 			`userid`='".$this->userId."', 
-			`mem2013`='".$this->Escape($this->mem2013)."' where `memberid`='".$this->memberId."'";
+			`mem2013`='".$this->Escape($this->mem2013)."', 
+			`mem2014`='".$this->Escape($this->mem2014)."' where `memberid`='".$this->memberId."'";
 		}
 		else
 		{
-			$this->pog_query = "insert into `member` (`firstname`, `lastname`, `email`, `gradyear`, `school`, `mem2009`, `mem2010`, `mem2011`, `mem2012`, `userid`, `mem2013` ) values (
+			$this->pog_query = "insert into `member` (`firstname`, `lastname`, `email`, `gradyear`, `school`, `mem2009`, `mem2010`, `mem2011`, `mem2012`, `userid`, `mem2013`, `mem2014` ) values (
 			'".$this->Escape($this->firstname)."', 
 			'".$this->Escape($this->lastname)."', 
 			'".$this->Escape($this->email)."', 
@@ -303,7 +317,8 @@ class member extends POG_Base
 			'".$this->Escape($this->mem2011)."', 
 			'".$this->Escape($this->mem2012)."', 
 			'".$this->userId."', 
-			'".$this->Escape($this->mem2013)."' )";
+			'".$this->Escape($this->mem2013)."', 
+			'".$this->Escape($this->mem2014)."' )";
 		}
 		$insertId = Database::InsertOrUpdate($this->pog_query, $connection);
 		if ($this->memberId == "")

@@ -6,6 +6,7 @@
 	$list11 = $member->GetList(array(array("mem2011","=","1")));
 	$list12 = $member->GetList(array(array("mem2012","=","1")));
 	$list13 = $member->GetList(array(array("mem2013","=","1")));
+    $list14 = $member->GetList(array(array("mem2014","=","1")));
 ?>
 
 <ul class="tabs">
@@ -45,8 +46,8 @@
 		Our record keeping hasn't always been impeccable, so if you think you have been omitted from this list, we sincerely apologize, and by all means let us know.  Just send an e-mail to join@cmubuggy.org and we'll straighten it out.<br />
 		<br />
 		<table class="data">
-			<tr><th>Member</th><th>Grad<br />Year</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th><th>2013</th></tr>
-			<tr><th>Total Members</th><th></th><th><?php echo(count($list09)); ?></th><th><?php echo(count($list10)); ?></th><th><?php echo(count($list11)); ?></th><th><?php echo(count($list12)); ?></th><th><?php echo(count($list13)); ?></th></tr>
+			<tr><th>Member</th><th>Grad<br />Year</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th><th>2013</th><th>2014</th></tr>
+			<tr><th>Total Members</th><th></th><th><?php echo(count($list09)); ?></th><th><?php echo(count($list10)); ?></th><th><?php echo(count($list11)); ?></th><th><?php echo(count($list12)); ?></th><th><?php echo(count($list13)); ?></th><th><?php echo(count($list14)); ?></th></tr>
 			<?php
 				foreach($memberList as $member){
 					$icon = "<img src=\"/img/icon_buggy.gif\" />";	
@@ -55,11 +56,13 @@
 					$mem2011 = "";
 					$mem2012 = "";
 					$mem2013 = "";	
+					$mem2014 = "";	
 					if($member->mem2009){$mem2009 = $icon;}
 					if($member->mem2010){$mem2010 = $icon;}
 					if($member->mem2011){$mem2011 = $icon;}			
 					if($member->mem2012){$mem2012 = $icon;}
 					if($member->mem2013){$mem2013 = $icon;}
+					if($member->mem2014){$mem2014 = $icon;}
 					echo("<tr><td>".$member->firstname." ".$member->lastname."</td>");
 					
 					echo("<td>".$member->gradyear."</td>");
@@ -67,7 +70,8 @@
 					echo("<td>".$mem2010."</td>");
 					echo("<td>".$mem2011."</td>");
 					echo("<td>".$mem2012."</td>");
-					echo("<td>".$mem2013."</td></tr>");
+					echo("<td>".$mem2013."</td>");
+					echo("<td>".$mem2014."</td></tr>");
 				}
 			?>		
 		</table>	
