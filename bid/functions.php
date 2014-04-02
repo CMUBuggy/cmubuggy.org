@@ -38,23 +38,26 @@ class Auction {
 $gender = array("Mens","Womens");
 $buggys = array("aether","avarice","banyan","barracuda","bedlam","blizzard","borealis","brazen","bristol","bungaruskrait","camo","celerity","chaos","chimera","envy","freyja","fuko","haraka","kamikaze","king_of_spades","knightfall","malice","nemesis09","pandora06","barracuda","perun","polaris","powder","problem_child09","problemchild","psychosis","quasar","renaissance09","rubicon","schadenfreude","seraph","skua","svengali","volos","zephyrus","zeus","empty");
 
+$orgBuggys = array("Aepi"=>"aether","SDC"=>"envy","Spirit"=>"seraph","Fringe"=>"blizzard","CIA"=>"freyja","SigNu"=>"bungaruskrait","SigEp"=>"perun","SAE"=>"rubicon","Pika"=>"zeus","Apex"=>"barracuda");
+
+
 $buggysMens = array();
 $buggyWoMens = array();
 $orgsMens = array();
 
 $orgsMens[0] = array();
-$orgsMens[0][0] = "Pika B";
-$orgsMens[0][1] = "Spirit C";
-$orgsMens[0][2] = "CIA C";
+$orgsMens[0][0] = "SDC C";
+$orgsMens[0][1] = "Spirit B";
+$orgsMens[0][2] = "Fringe D";
 $buggysMens[0] = array();
 $buggysMens[0][0] = "zeus";
 $buggysMens[0][1] = "seraph";
 $buggysMens[0][2] = "freyja";
 
 $orgsMens[1] = array();
-$orgsMens[1][0] = "SigEp B";
-$orgsMens[1][1] = "Apex A";
-$orgsMens[1][2] = "SAE B";
+$orgsMens[1][0] = "CIA A";
+$orgsMens[1][1] = "SigNu A";
+$orgsMens[1][2] = "SigEp B";
 
 $buggysMens[1]=array();
 $buggysMens[1][0] = "barracuda";
@@ -64,7 +67,7 @@ $buggysMens[1][2] = "rubicon";
 $orgsMens[2] = array();
 $orgsMens[2][0] = "Fringe B";
 $orgsMens[2][1] = "SDC D";
-$orgsMens[2][2] = "ROTC A";
+$orgsMens[2][2] = "SigEp D";
 $buggysMens[2]=array();
 $buggysMens[2][0] = "blizzard";
 $buggysMens[2][1] = "malice";
@@ -72,43 +75,43 @@ $buggysMens[2][2] = "barracuda";
 
 $orgsMens[3] = array();
 $orgsMens[3][0] = "Spirit A";
-$orgsMens[3][1] = "CIA B";
-$orgsMens[3][2] = "Empty";
+$orgsMens[3][1] = "SigEp C";
+$orgsMens[3][2] = "CIA C";
 $buggysMens[3]=array();
 $buggysMens[3][0] = "seraph";
 $buggysMens[3][1] = "freyja";
 $buggysMens[3][2] = "empty";
 
 $orgsMens[4] = array();
-$orgsMens[4][0] = "SDC C";
+$orgsMens[4][0] = "SDC B";
 $orgsMens[4][1] = "Fringe C";
-$orgsMens[4][2] = "Empty";
+$orgsMens[4][2] = "SAE B";
 $buggysMens[4]=array();
 $buggysMens[4][0] = "malice";
 $buggysMens[4][1] = "blizzard";
 $buggysMens[4][2] = "empty";
 
 $orgsMens[5] = array();
-$orgsMens[5][0] = "SigEp A";
-$orgsMens[5][1] = "Spirit B";
-$orgsMens[5][2] = "CIA D";
+$orgsMens[5][0] = "Pika A";
+$orgsMens[5][1] = "Aepi A";
+$orgsMens[5][2] = "Apex B";
 $buggysMens[5]=array();
 $buggysMens[5][0] = "barracuda";
 $buggysMens[5][1] = "seraph";
 $buggysMens[5][2] = "freyja";
 
 $orgsMens[6] = array();
-$orgsMens[6][0] = "Pika A";
-$orgsMens[6][1] = "SAE A";
-$orgsMens[6][2] = "Fringe D";
+$orgsMens[6][0] = "SigEp A";
+$orgsMens[6][1] = "Spirit C";
+$orgsMens[6][2] = "SAE A";
 $buggysMens[6]=array();
 $buggysMens[6][0] = "zeus";
 $buggysMens[6][1] = "rubicon";
 $buggysMens[6][2] = "blizzard";
 
 $orgsMens[7] = array();
-$orgsMens[7][0] = "SDC B";
-$orgsMens[7][1] = "SigEp C";
+$orgsMens[7][0] = "Fringe A";
+$orgsMens[7][1] = "CIA B";
 $orgsMens[7][2] = "Spirit D";
 $buggysMens[7]=array();
 $buggysMens[7][0] = "malice";
@@ -116,28 +119,28 @@ $buggysMens[7][1] = "barracuda";
 $buggysMens[7][2] = "seraph";
 
 $orgsMens[8] = array();
-$orgsMens[8][0] = "Fringe A";
-$orgsMens[8][1] = "SigNu A";
-$orgsMens[8][2] = "SigEp D";
+$orgsMens[8][0] = "SDC A";
+$orgsMens[8][1] = "Pika B";
+$orgsMens[8][2] = "Apex A";
 $buggysMens[8]=array();
 $buggysMens[8][0] = "blizzard";
 $buggysMens[8][1] = "bungaruskrait";
 $buggysMens[8][2] = "barracuda";
 
-$orgsMens[9] = array();
-$orgsMens[9][0] = "SDC A";
-$orgsMens[9][1] = "CIA A";
-$orgsMens[9][2] = "Aepi A";
-$buggysMens[9]=array();
-$buggysMens[9][0] = "malice";
-$buggysMens[9][1] = "freyja";
-$buggysMens[9][2] = "aether";
+for($x=0;$x<9;$x++){
+ for($y=0;$y<3;$y++){
+  preg_match("/^(.+)\ (A|B|C|D)$/",$orgsMens[$x][$y],$result);     
+  $orgName = $result[1];
+//  echo $orgName."<br>";
+  $buggysMens[$x][$y] = $orgBuggys[$orgName];
+ }	
+}
 
 $orgsWoMens = array();
 $orgsWoMens[0] = array();
-$orgsWoMens[0][0] = "Pika A";
-$orgsWoMens[0][1] = "SigEp B";
-$orgsWoMens[0][2] = "CIA B";
+$orgsWoMens[0][0] = "SDC A";
+$orgsWoMens[0][1] = "Apex A";
+$orgsWoMens[0][2] = "CIA C";
 $buggysWoMens[0]=array();
 $buggysWoMens[0][0] = "zeus";
 $buggysWoMens[0][1] = "barracuda";
@@ -145,17 +148,17 @@ $buggysWoMens[0][2] = "freyja";
 
 $orgsWoMens[1] = array();
 $orgsWoMens[1][0] = "Spirit A";
-$orgsWoMens[1][1] = "SDC D";
-$orgsWoMens[1][2] = "CIA D";
+$orgsWoMens[1][1] = "SigEp C";
+$orgsWoMens[1][2] = "Fringe D";
 $buggysWoMens[1]=array();
 $buggysWoMens[1][0] = "seraph";
 $buggysWoMens[1][1] = "malice";
 $buggysWoMens[1][2] = "freyja";
 
 $orgsWoMens[2] = array();
-$orgsWoMens[2][0] = "SDC C";
-$orgsWoMens[2][1] = "SAE A";
-$orgsWoMens[2][2] = "Empty";
+$orgsWoMens[2][0] = "CIA A";
+$orgsWoMens[2][1] = "Pika A";
+$orgsWoMens[2][2] = "SDC D";
 $buggysWoMens[2]=array();
 $buggysWoMens[2][0] = "malice";
 $buggysWoMens[2][1] = "rubicon";
@@ -164,8 +167,8 @@ $buggysWoMens[2][2] = "empty";
 
 $orgsWoMens[3] = array();
 $orgsWoMens[3][0] = "SigEp A";
-$orgsWoMens[3][1] = "Fringe C";
-$orgsWoMens[3][2] = "Empty";
+$orgsWoMens[3][1] = "Spirit C";
+$orgsWoMens[3][2] = "Fringe B";
 $buggysWoMens[3]=array();
 $buggysWoMens[3][0] = "barracuda";
 $buggysWoMens[3][1] = "blizzard";
@@ -174,8 +177,8 @@ $buggysWoMens[3][2] = "empty";
 
 $orgsWoMens[4] = array();
 $orgsWoMens[4][0] = "SDC B";
-$orgsWoMens[4][1] = "CIA C";
-$orgsWoMens[4][2] = "Fringe B";
+$orgsWoMens[4][1] = "Spirit B";
+$orgsWoMens[4][2] = "Apex B";
 $buggysWoMens[4]=array();
 $buggysWoMens[4][0] = "malice";
 $buggysWoMens[4][1] = "freyja";
@@ -184,8 +187,8 @@ $buggysWoMens[4][2] = "blizzard";
 
 $orgsWoMens[5] = array();
 $orgsWoMens[5][0] = "Fringe A";
-$orgsWoMens[5][1] = "Spirit B";
-$orgsWoMens[5][2] = "Apex A";
+$orgsWoMens[5][1] = "SigEp B";
+$orgsWoMens[5][2] = "Aepi A";
 $buggysWoMens[5]=array();
 $buggysWoMens[5][0] = "blizzard";
 $buggysWoMens[5][1] = "seraph";
@@ -193,12 +196,22 @@ $buggysWoMens[5][2] = "insite";
 
 $orgsWoMens[6] = array();
 $orgsWoMens[6][0] = "SDC A";
-$orgsWoMens[6][1] = "CIA A";
-$orgsWoMens[6][2] = "Aepi A";
+$orgsWoMens[6][1] = "CIA B";
+$orgsWoMens[6][2] = "Fringe C";
 $buggysWoMens[6]=array();
 $buggysWoMens[6][0] = "malice";
 $buggysWoMens[6][1] = "freyja";
 $buggysWoMens[6][2] = "kamikaze";
+
+for($x=0;$x<7;$x++){
+ for($y=0;$y<3;$y++){
+  preg_match("/^(.+)\ (A|B|C|D)$/",$orgsMens[$x][$y],$result);     
+  $orgName = $result[1];
+//  echo $orgName."<br>";
+  $buggysWoMens[$x][$y] = $orgBuggys[$orgName];
+ }	
+}
+
 
 
 $orgs = array("CIA A","CIA B","CIA C","CIA D","Fringe A","Fringe B","Fringe C", "SigEp A", "SigEp B", "SigEp C", "SigEp D","Spirit A","Spirit B","Spirit C","Spirit D","Pika A", "Pika B", "Pika C", "Pika D", "SDC A", "SDC B", "SDC C", "SDC D", "SigNu A", "SigNu B", "Apex A", "SAE A", "SAE B", "DF A","Aepi A","Aepi B","Aepi C","ROTC A","Empty");
@@ -269,7 +282,7 @@ function initHeatsMemoryStuff(){
   $y=0; 
   $yy=0;
 
-  for($x=0;$x<10;$x++){
+  for($x=0;$x<9;$x++){
     $temp = new Auction();
     $temp->auctionUid=$y;
     $temp->startTime="10:00am";
@@ -361,7 +374,7 @@ function initMemoryStuff(){
   $yy=0;
 
   
-  for($x=0;$x<10;$x++){
+  for($x=0;$x<9;$x++){
     $temp = new Auction();
     $temp->auctionUid=$y;
     $temp->startTime="10:00am";
@@ -380,7 +393,7 @@ function initMemoryStuff(){
     $y++;
   }
 
-  for($x=0;$x<8;$x++){
+  for($x=0;$x<7;$x++){
     $temp = new Auction();
     $temp->auctionUid=$y;
     $temp->startTime="10:00am";
@@ -570,7 +583,7 @@ function calculateTotalRaised(){
 function getMostRecentBid(){
   $memcache = new Memcache;
   $memcache->connect('localhost', 11211) or die ("Could not connect");
-  $auctionEnd = date_create('2013-04-17 21:00:00');
+  $auctionEnd = date_create('2014-04-6 21:00:00');
   $currentDate = date_create();
   $timeTillRaces=date_diff($auctionEnd, $currentDate); 
   $timeTillRaces->format("%d days");

@@ -230,7 +230,7 @@ function writeLoginDiv() {
     //otherwise, set login div to unlogged in state
     } else {
 	$("#loginTop").html("You are not logged in to the auction. <a onClick='$(\"#loginDialog\").dialog(\"open\");'>Login</a>")
-	$("#loginTop").append(" or <a onClick='$(\"#registerDialog\").dialog(\"open\");'>Register</a>.<br><hr>Having trouble logging in? Some auction accounts created Tue morning may need to be re-registered.  Sorry about that, but a quick re-register should fix it. Existing bids should be fine.")
+	$("#loginTop").append(" or <a onClick='$(\"#registerDialog\").dialog(\"open\");'>Register</a>.<br><hr>Unfortunately, accounts from 2013 were deleted while loading this years heats in.  If you are a returning bidder from last year, you'll need to re-create your account in order to log in.")
 	loginId=""
     }
 }
@@ -620,8 +620,8 @@ function getMostRecentBid(){
 		        downloading=0;
 		       }
 		       mostRecentBidUid = msg['mostRecentBid'];
-		       //$("#timeLeft").html(msg['timeLeft']);
-		       $("#timeLeft").html("Time's Up!")
+		       $("#timeLeft").html(msg['timeLeft']);
+		       //$("#timeLeft").html("Time's Up!")
 		       $("#totalRaised").html("Total Raised on Prelim Heats: $"+msg['totalRaised']);
 		       $("#cheapestHeat").html("Cheapest Heat : "+msg['cheapestHeat']);
 		       if(mostRecentBidUid!=mostRecentBidUidCache){
@@ -897,7 +897,7 @@ $(document).ready(function() {
 
     <div id="hd">
     <img id="end" src="/img/headerend.gif" alt="" />
-    <div id="title">2013 Lead Truck Auction</div>
+    <div id="title">2014 Lead Truck Auction</div>
 
 </div>
 
