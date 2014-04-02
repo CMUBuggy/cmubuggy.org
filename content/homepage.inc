@@ -13,7 +13,7 @@
 					Wait, what is "buggy"??? <br /> Visit our <a href="/reference">Reference section</a> for a quick explanation, or <a href="/video" />watch some videos</a>.
 				</div>
 				<ul class="list">
-					<li><a href="/leaderboard">2013 Official results</a></li>
+					<li><a href="/raceday/leaderboard">2013 Official results</a></li>
 					<li>Want to help out with <a href="/news/category/rolls-reports/" >rolls reports</a> this fall? E-mail committee@cmubuggy.org to get started.</li>		
 				</ul>
 		</div>
