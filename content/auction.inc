@@ -42,7 +42,7 @@
 			</li>	
 		</ul>
 		<br />
-		<b><a href="cmubuggy.org/forum/viewtopic.php?f=3&t=412&p=4139">Suggestions, discussion, and requests for clarification can be made in the forum</a></b><br />
+		Please send any suggestions, questions, and requests for clarification to admin@cmubuggy.org and we'll post resolutions to the <a href="/news/2014/04/auction-is-live-at-9am/">news section</a>
 		<br />
 		We are, of course extremely thankful to sweepstakes for giving us the opportunity to use a spot in the lead truck to create this opportunity and to raise some money so that the Buggy Alumni Association can pursue <b><a href="http://cmubuggy.org/about/">its mission to support buggy</a></b>.<br />
 		<br />
