@@ -1,13 +1,13 @@
 <div class="pane">
 		<img style="float:right; margin:15px;" class="aligncenter" title="Lead Truck" src="http://cmubuggy.org/img/news/baaleadtruck.JPG" alt="Lead Truck" width="224" height="149" />				
 		<h2>See the WHOLE race this year!</h2>
-		We'll be having our 5th annual auction for rides in the official sweepstakes lead truck for each heat of the prelim and final races. Auction winners will ride in the bed of the pickup truck with the head judge, sweepstakes chairman, and other race officials to get the absolute best seat in the house.<br />
+		We'll be having our 6th annual auction for rides in the official sweepstakes lead truck for each heat of the prelim and final races. Auction winners will ride in the bed of the pickup truck with the head judge, sweepstakes chairman, and other race officials to get the absolute best seat in the house.<br />
 		<br />
-		The auction is the Buggy Alumni Association's largest source of fund-raising each year, allowing us to pursue our <a style="font-weight:bold;" href="http://cmubuggy.org/about/">mission to support buggy.</a>  Last year's auction allowed us to upgrade the timing technology and help rent jumbotrons for raceday!</a>
+		The auction is the Buggy Alumni Association's largest source of fund-raising each year, allowing us to pursue our <a style="font-weight:bold;" href="http://cmubuggy.org/about/">mission to support buggy.</a>  These auctions have allowed us to upgrade the timing technology and help rent jumbotrons for raceday in past years.  We'll continue to invest to support sweepstakes and make buggy better and better.</a>
 		<br />
 		<br />
 		<div style="text-align:center; margin:15px;">
-			<a href="/bid"><div class="button" style="margin:0 auto; font-size:1.4em;">Bidding starts at 9am Apr 16</div></a>
+			<a href="/bid"><div class="button" style="margin:0 auto; font-size:1.4em;">Start Bidding</div></a>
 		</div>					
 		<br />
 		The details of the auction go like this:
@@ -15,13 +15,13 @@
 			<li><br /><b>General</b>
 				<ul class="list">
 					<li>All heats will be auctioned simultaneously</li>
-					<li>The bidding will start at 9am EDT Tuesday April 16th</li>
-					<li>Bidding will end at 9pm EDT Wednesday April 17th</li>
+					<li>The bidding will start at 9am EDT Wednesday April 2nd</li>
+					<li>Bidding will end at 9pm EDT Sunday April 6th</li>
 					<li>Each heat will have a $10 minimum bid</li>
 					<li>The minimum bidding increment is $1</li>
 					<li>You may specify a maximum amount you wish to bid for any heat.  The site will automatically increase your bid in $1 increments as needed until your maximum is exceeded by someone else.</li>
 					<li>Payment must be received before winners take their rides.  Credit card payment will be available and is strongly preferred.  Cash and Check will also be accepted at the races.</li>
-					<li>Lead truck rides are transferable.  If you can't be in town or don't like trucks, feel free to bid on an auction and then tell us who gets to take the ride.  You can also just will it to your organization of choice and we'll let the lucky team pick who gets to ride.</li>
+					<li>Lead truck rides are transferable.  If you can't be in town or don't like trucks, feel free to bid on an auction and then tell us who gets to take the ride.  You can also just will it to your organization of choice and we'll let the lucky team pick who gets to ride. All riders must be at least 18 years old.</li>
 				</ul>
 			</li>
 			<li><br /><b>Prelim Heat specifics</b>
