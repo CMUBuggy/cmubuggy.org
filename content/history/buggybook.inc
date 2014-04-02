@@ -7,7 +7,7 @@
 				<img alt=\"".$year." buggy book\" 
 					  title=\"Download a PDF of the ".$year." buggy book\" 
 					  style=\"margin:10px; border:1px solid white;\" 
-					  src=\"/files/buggybooks/thumb_200/buggybook_".$year.".jpg\" />
+					  src=\"/files/buggybooks/thumb_200/buggybook_".$year.".pdf.jpg\" />
 				</a>");
 	}
 ?>
