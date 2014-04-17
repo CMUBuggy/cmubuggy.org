@@ -1,70 +1,61 @@
 <div id="homepage">
     <?php include_once("contentfeed.inc");   ?> 	 
-    <div  class="yui3-g"  style="width:510px; height:145px;">
-        <div class="yui3-u-1-2">
-            <div style="margin-right:10px">
-                <h3><a href="/raceday">Everything Raceday</a></h3>      
-                Quick Links:
-                <ul class="list">
-                    <li><a href="/raceday/heats">Heat Schedule</a></li>
-                    <li><a href="/raceday/leaderboard">2014 Leaderboard</a></li>
-                    <li>Streams <a href="http://wrct.org">WRCT</a> | cmuTV</li>
-                </ul>
-            </div>
+        <div  class="yui3-g"  style="width:500px; height:145px;">
+        <div class="yui3-u-3-5">
+            <table class="datacompact" style="margin-top:0px;">
+                <tr>
+                    <th colspan="2"><h3 style="margin:0;"><a href="/raceday/leaderboard">2014 Results</a></h3></th>
+                    <th colspan="1" style="text-align:right; font-size:1em;"><b>Men's</b></th>
+                    <th colspan="2" style="text-align:right; font-size:1em;"><b>Women's</b></th>
+                </tr>
+                <tr>
+                    <td><b>1<sup>st</sup></b></td>
+                    <td>SDC A</td>
+                    <td>2:04.473</td>
+                    <td class="newcol">SDC A</td>
+                    <td>2:33.452</td>   
+                </tr>
+                <tr>
+                    <td><b>2<sup>nd</sup></b></td>
+                    <td>SigEp A</td>
+                    <td>2:14.618</td>
+                    <td class="newcol">Fringe A</td>
+                    <td>2:42.620</td>   
+                </tr>
+                <tr>
+                    <td><b>3<sup>rd</sup></b></td>
+                    <td>Fringe A</td>
+                    <td>2:17.010</td>
+                    <td class="newcol">SDC B</td>
+                    <td>2:49.457</td>   
+                </tr>
+                <tr>
+                    <td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> Icarus, 2<sup>nd</sup> Bissa, 3<sup>rd</sup> <i>no qualifiers</i></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> Seraph</td>
+                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Spirit of Buggy:</span> Fringe</td>            
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">Chairman's Choice</span>: CIA</td>
+                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">TShirt</span>: Spirit</td> 
+                </tr>   
+            </table>
         </div>
-        <div class="yui3-u-1-2" style="">
-             <h3><a href="/raceday">Schedule</a></h3>
-            <b>Coming Up Next</b><br />
-            <?php
-                $auctionstart   = mktime( 9, 0,0,4,2,2014);
-                $auctionend     = mktime(21, 0,0,4,6,2014);
-                $wrct           = mktime(19, 0,0,4,9,2014);
-                $designcomp 	= mktime(10, 0,0,4,10,2014);
-                $mattwagner     = mktime(11, 0,0,4,10,2014);
-                $bartime 		= mktime(20, 0,0,4,10,2014);
-                $openingcer     = mktime( 8, 0,0,4,11,2014);
-                $wprelims 		= mktime(8, 25,0,4,11,2014);
-                $mprelims       = mktime(10, 0,0,4,11,2014);
-                $reception 	    = mktime(12,30,0,4,11,2014);
-                $hob	        = mktime(13,30,0,4,11,2014);
-                $exhibitions 	= mktime( 8, 0,0,4,12,2014);
-                $mfinals 		= mktime( 9, 0,0,4,12,2014);
-                $wfinals        = mktime(10, 15,0,4,12,2014);
-                $awards 		= mktime(18, 0,0,4,12,2014);
-                $breakfast 	    = mktime(10, 0,0,4,13,2014);
-                  
-                $events = array(
-                    $auctionstart	=> "Wed, 9am:<a href=\"/auction\">Lead Truck auction</a> starts",		
-                    $auctionend  	=> "Sun, 9pm: <a href=\"/auction\">Lead Truck auction</a> closes",	
-                    $wrct           => "<code>Wed 07:00p</code> Buggy talk on <a href\"http://www.wrct.org/\">WRCT</a>",
-                    $designcomp  	=> "<code>Thu 10:00a</code> Design Comp",
-                    $mattwagner     => "<code>Thu 11:00a</code> Matt Wagner Talk",
-                    $bartime 	 	=> "<code>Thu 08:00p</code> <a href=\"http://houghspgh.com\">Hough's</a> (<a href=\"http://g.co/maps/a3qqk\">map</a>)",	
-                    $openingcer	 	=> "<code>Fri 08:00a</code> Opening Ceremonies",
-                    $wprelims       => "<code>Fri 08:25a</code> Women's Prelims",
-                    $mprelims       => "<code>Fri 10:00a</code> Men's Prelims",
-                    $reception 	    => "<code>Fri 12:30p</code> BAA reception, BH Lounge",	
-                    $hob	        => "<code>Fri 01:30p</code> The History of Buggy",
-                    $exhibitions 	=> "<code>Sat 08:00a</code> Exhibitions",
-                    $wfinals 		=> "<code>Sat 09:00a</code> Women's Finals",
-                    $mfinals        => "<code>Sat 10:15a</code> Men's Finals",
-                    $awards 		=> "<code>Sat 06:00p</code> Awards Ceremony",	
-                    $breakfast 	    => "<code>Sun 10:00a</code> Morning after breakfast"	
-                );
-                 
-                $currenttime = time();
-                $dispcount = 0;
-                foreach ($events as $eventtime => $desc){
-                    if($currenttime-60*60 < $eventtime && $dispcount < 6){
-                        echo("<img src=\"/css/images/orange_bullet.gif\" /> ".$desc."<br />");
-                        $dispcount++;	
-                    }
-                }
-            ?>  
-        </div>
+        <div class="yui3-u-2-5">
+            <h3>Get Invloved</h3>
+            <div class="item"><a href="/seniors"><div class="icon" style="background-image:url('/img/icon_grad-cap.png')"></div></a><a href="/seniors">Seniors!</a> Become a 2015 member now for free.</div>
+            <div class="item">          
+                <a href="/gallery/2013-2014">
+                    <div class="icon galleryicon" style="background-image:url('http://cmubuggy.org/gallery/var/thumbs/2013-2014/Raceday-2014---Races/GAG_1573.JPG')"></div>            
+                </a>
+                Share your favorite pics from Raceday! 
+                <a href="/gallery/2013-2014/Raceday-2014---Design-Comp">Design Comp</a>, 
+                <a href="/gallery/2013-2014/Raceday-2014---Races">Races</a>
+            </div> 
+        </div> 
     </div>
-    <br />
-    <?php include_once("twitterwidget.inc"); ?>
+    <?php include_once("featurepic.inc"); ?>
     <div class="pane clearleft" style="margin-right:270px;">
         <h3 style="margin:0">Buggy Alumni Association?</h3>
         We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know.  Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind. Find out more in <a href="/about">About Us section ...</a>	

@@ -19,6 +19,9 @@
 
 <div id="featurepic" class="scroll shadow">
 	<div class="scrollitems">
+		<div class="item">
+			<?php include_once("twitterwidget.inc"); ?>
+		</div>
 		<?php
 			if(file_exists("img/featurepics/promo.jpg")){
 				echo("<div class=\"item\" style=\"background-image:url(/img/featurepics/promo.jpg)\"></div>");
