@@ -2,6 +2,7 @@
 basicbackdoorscriptfinder.php
 bid2011/
 bid/development-bundle
+bid/backup/
 content/cache/*
 dbconfig.inc
 files/
