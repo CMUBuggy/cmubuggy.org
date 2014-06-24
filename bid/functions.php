@@ -138,7 +138,7 @@ for($x=0;$x<9;$x++){
 
 $orgsWoMens = array();
 $orgsWoMens[0] = array();
-$orgsWoMens[0][0] = "SDC A";
+$orgsWoMens[0][0] = "SDC C";
 $orgsWoMens[0][1] = "Apex A";
 $orgsWoMens[0][2] = "CIA C";
 $buggysWoMens[0]=array();

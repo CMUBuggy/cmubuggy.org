@@ -4,7 +4,7 @@
         <div class="yui3-u-3-5">
             <table class="datacompact" style="margin-top:0px;">
                 <tr>
-                    <th colspan="2"><h3 style="margin:0;"><a href="/raceday/leaderboard">2014 Results</a></h3></th>
+                    <th colspan="2"><h3 style="margin:0;"><a href="/history/raceday/2014">2014 Results</a></h3></th>
                     <th colspan="1" style="text-align:right; font-size:1em;"><b>Men's</b></th>
                     <th colspan="2" style="text-align:right; font-size:1em;"><b>Women's</b></th>
                 </tr>
@@ -30,7 +30,7 @@
                     <td>2:49.457</td>   
                 </tr>
                 <tr>
-                    <td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> Icarus, 2<sup>nd</sup> Bissa, 3<sup>rd</sup> <i>no qualifiers</i></td>
+                    <td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> Icarus, 2<sup>nd</sup> Bissa, 3<sup>rd</sup> Impulse</td>
                 </tr>
                 <tr>
                     <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> Seraph</td>
