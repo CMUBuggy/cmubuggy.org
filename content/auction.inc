@@ -7,7 +7,7 @@
 		<br />
 		<br />
 		<div style="text-align:center; margin:15px;">
-			<a href="/bid"><div class="button" style="margin:0 auto; font-size:1.4em;">Start Bidding</div></a>
+			<h3>Bidding starts Monday April 13 at 9am</h3>
 		</div>					
 		<br />
 		The details of the auction go like this:
@@ -15,8 +15,8 @@
 			<li><br /><b>General</b>
 				<ul class="list">
 					<li>All heats will be auctioned simultaneously</li>
-					<li>The bidding will start at 9am EDT Wednesday April 2nd</li>
-					<li>Bidding will end at 9pm EDT Sunday April 6th</li>
+					<li>The bidding will start at 9am EDT Monday April 13th</li>
+					<li>Bidding will end at TBD</li>
 					<li>Each heat will have a $10 minimum bid</li>
 					<li>The minimum bidding increment is $1</li>
 					<li>You may specify a maximum amount you wish to bid for any heat.  The site will automatically increase your bid in $1 increments as needed until your maximum is exceeded by someone else.</li>
@@ -24,22 +24,6 @@
 					<li>Lead truck rides are transferable.  If you can't be in town or don't like trucks, feel free to bid on an auction and then tell us who gets to take the ride.  You can also just will it to your organization of choice and we'll let the lucky team pick who gets to ride. All riders must be at least 18 years old.</li>
 				</ul>
 			</li>
-			<li><br /><b>Prelim Heat specifics</b>
-				<ul>
-					<li class="list">If any person wins the auctions for more than one heat, they will have the option of retracting their winning bids for all but the highest priced heat.  If they decide to withdraw their winning bid for one of the lower priced heats, the next highest bidder will become the winner.</li>
-				</ul>
-			</li>
-			<li><br /><b>Finals Heat specifics</b>
-				<ul class="list">
-					<li>Because the specifics of the finals heats are unknown, bidders will be bidding for the right to have first pick of the finals heats.  Runners up will have 2nd, 3rd pick, etc.</li>
-					<li>There will be only two things to bid on for finals: Men's Finals and Women's Finals</li>
-					<li>The top 5 bidders for the Men's Finals will have the opportunity to select a heat in order of their bids</li>
-					<li>The top 4 bidders for the Women's Finals will have the opportunity to select a heat in order of their bids</li>
-					<!--<li>The top 5 bidders for the Exhibition heats will have the opportunity to select a heat in order of their bids</li>-->
-					<li>You may not place a bid that is equal to an existing bid</li>
-					<li>You may place a bid lower than the current top bid so long as it is higher than the current 5th (Men's) or 3rd (Women's) place bid.</li>
-				</ul>
-			</li>	
 		</ul>
 		<br />
 		Please send any suggestions, questions, and requests for clarification to admin@cmubuggy.org and we'll post resolutions to the <a href="/news/2014/04/auction-is-live-at-9am/">news section</a>
@@ -56,6 +40,6 @@
 			<li>Winners should be present at the top of hill 2 at the end of the preceding heat.  Failure to show up in a timely manner will result in forfeiting the ride.  We can't be the cause of any delays, so the Buggy Alumni Association will have to be conservative in our estimation of "timely manner."  Be there!</li>
 			<li>The Buggy Alumni Association and Sweepstakes reserve the right to refund donations from and refuse a ride to anyone that is drunk or otherwise unable to safely ride in the back of a truck.</li>
 			<li>No rides may violate Pennsylvania's laws concerning riding in a pickup truck.  Basically this means the passenger must be over 18. (<a href="http://www.dmv.state.pa.us/pdotforms/vehicle_code/chapter37.pdf">pdf</a>)</li>
-			<li>Sweepstakes also reserves the right to cancel rides and have the us refund donations if they need to for any reason.</li>						
+			<li>Sweepstakes also reserves the right to cancel rides and have the BAA/CMU refund donations if they need to for any reason.</li>						
 		</ul>
 	</div>
