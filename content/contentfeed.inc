@@ -278,7 +278,7 @@ if($referenceResults){
 }
 
 ##reddit.com/r/cmubuggy ITEMS##
-
+/*
 #This should never need to actually run.  The script in /scripts/update_reddit_cache.php should refresh the files every 5 minutes via a cron job.
 #These calls are slow and if they're being done at page load, check the cron job and make sure it's set up.
 #cache /r/cmubuggy json file for 15 minutes
@@ -358,7 +358,7 @@ foreach($rcommentClusterItems as $a){
 	array_push($items,$a);
 }
 
-		
+*/		
 ?>
 <div id="contentfeed">
 	<h3>Recent News</h3>
