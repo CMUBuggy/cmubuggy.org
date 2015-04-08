@@ -31,7 +31,7 @@
 		<br />
 		Being a member of the Buggy Alumni Association is an annual commitment, and our "year" starts and ends at Raceday.  All gifts received before and during carnival make you a member of the BAA team for that race-year.  For example, gifts received May 2011-April 2012 make you a member of the 2012 team.<br />
 		<br /> 
-		<div class="button"><a target="_blank"  onclick="_gaq.push(['_trackEvent','Outbound','Membership',this.href]);" href="https://www.cmu.edu/campaign/ways/online.html?designation=Buggy%20Alumni%20Association&PCH=A0661">Join (or Renew) Now</a></div><br />
+		<div class="button"><a target="_blank"  onclick="_gaq.push(['_trackEvent','Outbound','Membership',this.href]);" href="https://securelb.imodules.com/s/1410/giving/form.aspx?sid=1410&gid=1&pgid=382&cid=990&appealcode=A3291&dids=98">Join (or Renew) Now</a></div><br />
 		<br />
 		<b>Notes</b>:
 		<ul class="list">
