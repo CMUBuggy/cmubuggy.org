@@ -1,24 +1,4 @@
 <div class="pane">
-    <h3>Schedule</h3>
-    <table class="data">
-        <tr><th></th><th></th><th></th><th></th></tr>
-        <tr><td style="border-bottom:none;">Thursday<td>10a-2p</td><td>Design Competition: Check out this year's fleet</td><td>Weigand Gym, UC</td></tr>
-        <tr><td style="border-bottom:none;"><td>11am</td><td>Matt Wagner's Buggy talk at Design Comp</td><td>Weigand Gym, UC</td></tr>
-        <tr><td></td><td>8p</td><td>Hang out at the only bar in Pittsburgh with a buggy on the wall.  They also have 60 beers on tap, and 300+ in total.</td>
-            <td><a href="http://houghspgh.com">Hough's Bar, 563 Greenfield Ave</a></td></tr>
-        <tr><td style="border-bottom:none;">Friday</td><td>8a-12p</td><td>Prelim Races</td><td>Tech and Frew</td></tr>
-        <tr><td style="border-bottom:none;"></td><td>12:30p</td><td>Buggy Alumni Association Reception (Food!)</td>
-            <td>Baker Hall coffee lounge just off hill 4</td></tr>
-        <tr><td style="border-bottom:none;"></td><td>1:30-2:30p</td><td>History of Buggy Presented by Tom Wood (E'74)</td><td>Baker Hall, Giant Eagle Auditorium</td></tr>
-        <tr><td style="border-bottom:none;">Saturday</td><td>8-9a</td><td>Alumni & Exhibition Heats</td><td>Tech and Frew</td></tr>
-        <tr><td style="border-bottom:none;"></td><td>9a-12p</td><td>Final Races</td><td>Tech and Frew</td></tr>
-        <tr><td></td><td>6-7p</td><td>Awards Ceremony</td><td>Morewood parking lot</td></tr>
-        <tr><td>Sunday</td><td>10a</td><td>Morning after breakfast</td>
-            <td><a href="http://www.smallmanstreetdeli.com/squirrel_hill.nxg">Smallman Street Deli, 1912 Murray Avenue</a></td></tr>
-    </table>
-</div>
-
-<div class="pane">
     <h3>Survival Tools</h3>
     <table class="aligntop padded">
         <tr>
