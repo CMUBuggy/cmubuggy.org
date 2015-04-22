@@ -103,7 +103,6 @@ $forumSQL 		= "SELECT posts.post_id, posts.post_time, users.username, topics.top
 						ON posts.poster_id=users.user_id
 						JOIN topics
 						ON posts.topic_id=topics.topic_id
-						WHERE post_approved=1
 						ORDER BY post_time DESC";
 $forumResults 	= dbQuery("cmubuggy_phpBB",$forumSQL);
 
