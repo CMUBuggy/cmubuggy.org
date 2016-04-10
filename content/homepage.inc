@@ -1,69 +1,74 @@
 <div id="homepage">
-    <?php include_once("contentfeed.inc");   ?> 	 
-        <div  class="yui3-g"  style="width:500px; height:145px;">
-          <div class="yui3-u-3-5">
-            <table class="datacompact" style="margin-top:0px;">
-                <tr>
-                    <th colspan="2"><h3 style="margin:0;"><a href="/raceday/leaderboard">2015 Results</a></h3></th>
-                    <th colspan="1" style="text-align:right; font-size:1em;"><b>Men's</b></th>
-                    <th colspan="2" style="text-align:right; font-size:1em;"><b>Women's</b></th>
-                </tr>
-                <tr>
-                    <td><b>1<sup>st</sup></b></td>
-                    <td>SDC A</td>
-                    <td>2:12.358</td>
-                    <td class="newcol">CIA A</td>
-                    <td>2:35.641</td>   
-                </tr>
-                <tr>
-                    <td><b>2<sup>nd</sup></b></td>
-                    <td>SigEp A</td>
-                    <td>2:12.706</td>
-                    <td class="newcol">Fringe A</td>
-                    <td>2:39.992</td>   
-                </tr>
-                <tr>
-                    <td><b>3<sup>rd</sup></b></td>
-                    <td>CIA A</td>
-                    <td>2:12.955</td>
-                    <td class="newcol">SDC A</td>
-                    <td>2:46.584</td>   
-                </tr>
-                <tr>
-                    <td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> Equinox, 2<sup>nd</sup> Inviscid, 3<sup>rd</sup> Balious</td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> Inviscid</td>
-                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Spirit of Buggy:</span> PhiDelt</td>            
-                </tr>
-                <tr>
-                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">Chairman's Choice</span>: SigEp</td>
-                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">TShirt</span>: SAE</td> 
-                </tr>   
-            </table>
-        </div> 
-	<div class="yui3-u-2-5">
-            <h3>Get Invloved</h3>
-            <div class="item"><a href="/seniors"><div class="icon" style="background-image:url('/img/icon_grad-cap.png')"></div></a><a href="/seniors">Seniors!</a> Become a 2016 member now for free.</div>
-            <div class="item">          
-                <a href="/gallery/2014-2015">
-                    <div class="icon galleryicon" style="background-image:url('http://cmubuggy.org/gallery/var/thumbs/2014-2015/Raceday-2015-Saturday/RacedayFinals-2015_bmatzke-046.jpg')"></div>            
-                </a>
-                Share your favorite pics from Raceday! 
-                <a href="/gallery/2014-2015/Design-Comp">Design Comp</a>, 
-                <a href="/gallery/2014-2015/Raceday-2015-Friday">Friday</a>,
-                <a href="/gallery/2014-2015/Raceday-2015-Saturday">Saturday</a>
-            </div> 
-        </div> 
+    <?php include_once("contentfeed.inc");   ?>      
+    <div  class="yui3-g"  style="width:510px; height:145px;">
+        <div class="yui3-u-1-2">
+            <div style="margin-right:10px">
+                <h3><a href="/raceday">Everything Raceday</a></h3>      
+                Quick Links:
+                <ul class="list">
+                    <li><a href="/raceday/heats">Heat Schedule</a></li>
+                    <li><a href="/raceday/leaderboard">2016 Leaderboard</a></li>
+                    <li>Streams <a href="http://wrct.org">WRCT</a> | <a href="http://livestream.com/cmuTVlive/">cmuTV</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="yui3-u-1-2" style="">
+             <h3><a href="/raceday">Schedule</a></h3>
+            <b>Coming Up Next</b><br />
+            <?php
+                $auctionstart   = mktime( 9, 0,0,4,12,2016);
+                $auctionend     = mktime(23, 59,0,4,13,2016);
+                #$wrct           = mktime(19, 0,0,4,9,2016);
+                $designcomp     = mktime(10, 0,0,4,14,2016);
+                $mattwagner     = mktime(11, 0,0,4,14,2016);
+                $bartime        = mktime(20, 0,0,4,14,2016);
+                #$openingcer     = mktime( 8, 0,0,4,11,2016);
+                $wprelims       = mktime(8, 25,0,4,15,2016);
+                $mprelims       = mktime(10, 0,0,4,15,2016);
+                $reception      = mktime(12,30,0,4,15,2016);
+                $hob            = mktime(13,30,0,4,15,2016);
+                $exhibitions    = mktime( 8, 0,0,4,16,2016);
+                $mfinals        = mktime( 9, 0,0,4,16,2016);
+                $wfinals        = mktime(10, 15,0,4,16,2016);
+                $awards         = mktime(18, 0,0,4,16,2016);
+                  
+                $events = array(
+                    $auctionstart   => "<code>Tue 09:00a</code> <a href=\"/news/2016/04/auction/\">Lead Truck auction</a> starts",       
+                    $auctionend     => "<code>Wed 11:59p</code> <a href=\"/news/2016/04/auction/\">Lead Truck auction</a> closes",  
+                    #$wrct           => "<code>Wed 07:00p</code> Buggy talk on <a href\"http://www.wrct.org/\">WRCT</a>",
+                    $designcomp     => "<code>Thu 10:00a</code> Design Comp",
+                    $mattwagner     => "<code>Thu 11:00a</code> Matt Wagner Talk",
+                    $bartime        => "<code>Thu 08:00p</code> <a href=\"http://houghspgh.com\">Hough's</a> (<a href=\"http://g.co/maps/a3qqk\">map</a>)", 
+                    #$openingcer     => "<code>Fri 08:00a</code> Opening Ceremonies",
+                    $wprelims       => "<code>Fri 08:00a</code> Women's Prelims",
+                    $mprelims       => "<code>Fri 10:00a</code> Men's Prelims",
+                    $reception      => "<code>Fri 12:30p</code> BAA reception, BH Lounge",  
+                    $hob            => "<code>Fri 01:30p</code> Alumni Panel",
+                    $exhibitions    => "<code>Sat 08:00a</code> Exhibitions",
+                    $wfinals        => "<code>Sat 09:00a</code> Women's Finals",
+                    $mfinals        => "<code>Sat 10:15a</code> Men's Finals",
+                    $awards         => "<code>Sat 04:30p</code> Awards Ceremony"    
+                );
+                 
+                $currenttime = time();
+                $dispcount = 0;
+                foreach ($events as $eventtime => $desc){
+                    if($currenttime-60*60 < $eventtime && $dispcount < 6){
+                        echo("<img src=\"/css/images/orange_bullet.gif\" /> ".$desc."<br />");
+                        $dispcount++;   
+                    }
+                }
+            ?>  
+        </div>
     </div>
-    <?php include_once("featurepic.inc"); ?>
+    <br />
+    <?php include_once("twitterwidget.inc"); ?>
     <div class="pane clearleft" style="margin-right:270px;">
         <h3 style="margin:0">Buggy Alumni Association?</h3>
-        We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know.  Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind. Find out more in <a href="/about">About Us section ...</a>	
+        We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know.  Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind. Find out more in <a href="/about">About Us section ...</a> 
     </div>
     <div class="pane" style="margin-right:270px;">
         <h3 style="margin:0">Buggy?</h3>
         Buggy (also called "Sweepstakes") is a unique race that has been held on and behind the Carnegie Mellon University campus during the spring carnival since 1920.  It is part uphill relay race (in which the baton is a vehicle and driver pushed by runners), and part downhill gravity racing with exciting sharp turns and speeds up to 40mph. Find out more in the <a href="/reference/What_is_buggy%3F">What is Buggy? section ...</a>
     </div>
 </div>
-
