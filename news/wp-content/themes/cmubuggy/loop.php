@@ -51,7 +51,6 @@
 				<table>
 					<tr>
 						<td><?php echo do_shortcode('[fb_count]'); ?></td>
-						<td><?php echo do_shortcode('[google1]'); ?></td>
 					</tr>								
 				</table>
 			</div>		
