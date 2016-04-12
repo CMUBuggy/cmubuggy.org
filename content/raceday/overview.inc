@@ -14,10 +14,10 @@
             <td><a href="/raceday/heats"><b>Heat Schedule</b></a> - Don't miss your team because you forgot the schedule.<br /><b>Live: Now</b></td>
         </tr>
         <tr>
-            <td><a href="/raceday/buzz"><img src="/img/chaticon.png" /></a></td>
-            <td><a href="/raceday/buzz"><b>Buzz</b></a> - We know there are alumni all over the world watching and listening to the coverage that would love to communicate faster than the forum will allow.  We bring you the Raceday Buzz. This year the Buzz uses IRC so feel free to jump in from any device on freenode.net#cmubuggy<br /><b>Live: now</b></td>
-            <td><a href="/files/RacedayGuide2014.pdf"><img src="/img/racedayguide.png" /></a></td>
-            <td><a href="/files/RacedayGuide2014.pdf"><b>Raceday Guide</b></a> - Ever come back after a few years and have a hard time recognizing the buggies? We've put together a full color guide to help you identify this year's buggies and know what to expect each heat.  We printed a few thousand copies to distribute, but feel free to print or save your own copy<br /><b>Live: Thur AM</td>
+            <td><a href="/raceday/chat"><img src="/img/chaticon.png" /></a></td>
+            <td><a href="/raceday/chat"><b>Chat</b></a> - We know there are alumni all over the world watching and listening to the coverage that would love to communicate faster than the forum will allow.  We bring you the Raceday Chat.<br /><b>Live: now</b></td>
+            <td><!-- <a href="/files/RacedayGuide2014.pdf"><img src="/img/racedayguide.png" /></a> --></td>
+            <td><!-- <a href="/files/RacedayGuide2014.pdf"><b>Raceday Guide</b></a> - Ever come back after a few years and have a hard time recognizing the buggies? We've put together a full color guide to help you identify this year's buggies and know what to expect each heat.  We printed a few thousand copies to distribute, but feel free to print or save your own copy<br /><b>Live: Thur AM --></td>
         </tr>
         <tr>
 <!--             <td><a href="/raceday/askthebroadcasters"><img src="/img/microphone.png" width="64" height="64" /></a></td>

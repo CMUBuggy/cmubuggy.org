@@ -9,44 +9,45 @@
                     <li><a href="/raceday/heats">Heat Schedule</a></li>
                     <li><a href="/raceday/leaderboard">2016 Leaderboard</a></li>
                     <li>Streams <a href="http://wrct.org">WRCT</a> | <a href="http://livestream.com/cmuTVlive/">cmuTV</a></li>
+                    <li><a href="/raceday/chat">Live Chat</a></li>
                 </ul>
             </div>
         </div>
         <div class="yui3-u-1-2" style="">
-             <h3><a href="/raceday">Schedule</a></h3>
+             <h3><a href="/news/2016/04/schedule-of-events-carnival-2016/">Carnival Schedule</a></h3>
             <b>Coming Up Next</b><br />
             <?php
                 $auctionstart   = mktime( 9, 0,0,4,12,2016);
+                $wrct           = mktime(19, 0,0,4,12,2016);
                 $auctionend     = mktime(23, 59,0,4,13,2016);
-                #$wrct           = mktime(19, 0,0,4,9,2016);
                 $designcomp     = mktime(10, 0,0,4,14,2016);
-                $mattwagner     = mktime(11, 0,0,4,14,2016);
+                $dctalk         = mktime(12,30,0,4,14,2016);
                 $bartime        = mktime(20, 0,0,4,14,2016);
-                #$openingcer     = mktime( 8, 0,0,4,11,2016);
                 $wprelims       = mktime(8, 25,0,4,15,2016);
                 $mprelims       = mktime(10, 0,0,4,15,2016);
                 $reception      = mktime(12,30,0,4,15,2016);
                 $hob            = mktime(13,30,0,4,15,2016);
                 $exhibitions    = mktime( 8, 0,0,4,16,2016);
                 $mfinals        = mktime( 9, 0,0,4,16,2016);
-                $wfinals        = mktime(10, 15,0,4,16,2016);
-                $awards         = mktime(18, 0,0,4,16,2016);
+                $wfinals        = mktime(10,15,0,4,16,2016);
+                $hob            = mktime(12,15,0,4,16,2016);
+                $awards         = mktime(16,30,0,4,16,2016);
                   
                 $events = array(
                     $auctionstart   => "<code>Tue 09:00a</code> <a href=\"/news/2016/04/auction/\">Lead Truck auction</a> starts",       
+                    $wrct           => "<code>Wed 08:00p</code> Buggy talk on <a href\"http://www.wrct.org/\">WRCT</a>",
                     $auctionend     => "<code>Wed 11:59p</code> <a href=\"/news/2016/04/auction/\">Lead Truck auction</a> closes",  
-                    #$wrct           => "<code>Wed 07:00p</code> Buggy talk on <a href\"http://www.wrct.org/\">WRCT</a>",
-                    $designcomp     => "<code>Thu 10:00a</code> Design Comp",
-                    $mattwagner     => "<code>Thu 11:00a</code> Matt Wagner Talk",
-                    $bartime        => "<code>Thu 08:00p</code> <a href=\"http://houghspgh.com\">Hough's</a> (<a href=\"http://g.co/maps/a3qqk\">map</a>)", 
-                    #$openingcer     => "<code>Fri 08:00a</code> Opening Ceremonies",
+                    $designcomp     => "<code>Thu 10:00a</code> Buggy Showcase",
+                    $dctalk     => "<code>Thu 12:30p</code> Buggy Data talk",
+                    $bartime        => "<code>Thu 08:00p</code> <a href=\"http://houghspgh.com\">Buggy Drinks @ Hough's</a>", 
                     $wprelims       => "<code>Fri 08:00a</code> Women's Prelims",
                     $mprelims       => "<code>Fri 10:00a</code> Men's Prelims",
-                    $reception      => "<code>Fri 12:30p</code> BAA reception, BH Lounge",  
-                    $hob            => "<code>Fri 01:30p</code> Alumni Panel",
+                    $reception      => "<code>Fri 12:30p</code> BAA Lunch",  
+                    $hob            => "<code>Fri 01:30p</code> BAA Panel",
                     $exhibitions    => "<code>Sat 08:00a</code> Exhibitions",
                     $wfinals        => "<code>Sat 09:00a</code> Women's Finals",
                     $mfinals        => "<code>Sat 10:15a</code> Men's Finals",
+                    $hob            => "<code>Sat 12:15p</code> History of Buggy",
                     $awards         => "<code>Sat 04:30p</code> Awards Ceremony"    
                 );
                  

@@ -61,7 +61,7 @@ RewriteRule		^history/sweepstakes[/]*$							index.php?s=history&p=sweepstakes 	
 RewriteRule		^history/team[/]*$									index.php?s=history&p=entry						[NC,L]
 
 #raceday section
-RewriteRule		^raceday/buzz[/]*$									index.php?s=raceday&p=buzz 						[NC,L]
+RewriteRule		^raceday/chat[/]*$									index.php?s=raceday&p=chat 						[NC,L]
 RewriteRule		^raceday/rosters[/]*$								index.php?s=raceday&p=rosters						[NC,L]
 RewriteRule		^raceday/heats[/]*$									index.php?s=raceday&p=heats						[NC,L]
 RewriteRule		^raceday/leaderboard[/]*$							index.php?s=raceday&p=leaderboard				[NC,L]
