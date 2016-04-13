@@ -20,7 +20,7 @@
                 $auctionstart   = mktime( 9, 0,0,4,12,2016);
                 $wrct           = mktime(19, 0,0,4,12,2016);
                 $auctionend     = mktime(23, 59,0,4,13,2016);
-                $designcomp     = mktime(10, 0,0,4,14,2016);
+                $designcomp     = mktime(12, 0,0,4,14,2016);
                 $dctalk         = mktime(12,30,0,4,14,2016);
                 $bartime        = mktime(20, 0,0,4,14,2016);
                 $wprelims       = mktime(8, 25,0,4,15,2016);
@@ -37,8 +37,8 @@
                     $auctionstart   => "<code>Tue 09:00a</code> <a href=\"/news/2016/04/auction/\">Lead Truck auction</a> starts",       
                     $wrct           => "<code>Wed 08:00p</code> Buggy talk on <a href\"http://www.wrct.org/\">WRCT</a>",
                     $auctionend     => "<code>Wed 11:59p</code> <a href=\"/news/2016/04/auction/\">Lead Truck auction</a> closes",  
-                    $designcomp     => "<code>Thu 10:00a</code> Buggy Showcase",
-                    $dctalk     => "<code>Thu 12:30p</code> Buggy Data talk",
+                    $designcomp     => "<code>Thu 12:00p</code> Buggy Showcase",
+                    $dctalk         => "<code>Thu 12:30p</code> Buggy Data talk",
                     $bartime        => "<code>Thu 08:00p</code> <a href=\"http://houghspgh.com\">Buggy Drinks @ Hough's</a>", 
                     $wprelims       => "<code>Fri 08:00a</code> Women's Prelims",
                     $mprelims       => "<code>Fri 10:00a</code> Men's Prelims",
