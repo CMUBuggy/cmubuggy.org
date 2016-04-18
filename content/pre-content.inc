@@ -28,7 +28,7 @@
 <body id="doc">
 	<div id="hd">
 		<img id="end" src="/img/headerend.gif" alt="" />
-		<div id="rddate">Raceday 2016<br/>April 15-16 </div>
+		<div id="rddate">Raceday 2017<br/>April 21-22 </div>
 		<div id="countdown">
 			<div id="count"><?php echo $count ?></div>
 			<div id="unit"><?php echo $unit ?></div>
