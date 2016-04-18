@@ -1,6 +1,6 @@
 <?php
-	date_default_timezone_set('America/New_York');
-   $rddate = mktime(9, 0, 0, 4, 15, 2016);
+   date_default_timezone_set('America/New_York');
+   $rddate = mktime(9, 0, 0, 4, 21, 2017);
    $currenttime = time();
    $hoursleft = floor(($rddate - $currenttime)/(60*60));
    $daysleft = floor($hoursleft/24);
