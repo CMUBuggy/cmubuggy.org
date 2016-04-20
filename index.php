@@ -10,7 +10,7 @@
 		$s = $_GET["s"];
 	}
 	$title = "CMU Buggy Alumni Association";
-	$headline = "Raceday 2016";
+	$headline = "2:02.499 &larr; New Record";
 
 	switch($s){
 		case "about":
