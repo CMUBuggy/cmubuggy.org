@@ -91,10 +91,13 @@
 		<br />
 		<table class="data">
 			<tr><th colspan="2">Current leaders</th></tr>
-			<tr><td>Chairman</td><td><a href="/history/person/1104">Janice Golenbock</a></td></tr>	
-			<tr><td>Assistant Chairman</td><td><a href="#">Shafeeq Sinnamohideen</a></td></tr>
+			<tr><td>Chairman</td><td>Ben Matzke</td></tr>	
+			<tr><td>Assistant Chairman</td><td>Jeremy Tuttle</td></tr>
 			<tr><td>Head Mechanic</td><td><a href="/history/person/1147">Sam Swift</a></td></tr>
-			<tr><td>Treasurer</td><td><a href="/history/person/1531">Chris Stengel</a></td></tr>
+			<tr><td>Head Reporter</td><td>Natalie McGuier</td></tr>
+			<tr><td>Communications Chair</td><td>Aileen Dinin</td></tr>
+			<tr><td>Treasurer</td><td>Daniel Becerra</td></tr>
+			<tr><td>Design / Content</td><td>Connor Hayes</td></tr>
 		</table>
 		<br />
 		<table class="data">
