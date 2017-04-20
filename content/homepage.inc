@@ -10,6 +10,8 @@
                     <li><a href="/raceday/leaderboard">2017 Leaderboard</a></li>
                     <li>Streams <a href="http://wrct.org">WRCT</a> | <a href="http://livestream.com/cmuTVlive/">cmuTV</a></li>
                     <li><a href="https://discordapp.com/invite/PUwuUuj">Live Chat</a></li>
+                    <li><a href="timing.cmubuggy.org">Live Course Times</a></li>
+                    <li>
                 </ul>
             </div>
         </div>
@@ -46,7 +48,7 @@
                     $exhibitions    => "<code>Sat 08:55a</code> Exhibitions",
                     $wfinals        => "<code>Sat 09:50a</code> Women's Finals",
                     $mfinals        => "<code>Sat 10:50a</code> Men's Finals",
-                    $happhr         => "<code>Sat 4:00p</code> BAA Happ Hour @Porch",
+                    $happyhr        => "<code>Sat 4:00p</code> BAA Happ Hour @Porch",
                     $awards         => "<code>Sat 04:30p</code> Awards Ceremony"    
                 );
                  
