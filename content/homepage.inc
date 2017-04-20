@@ -10,13 +10,13 @@
                     <li><a href="/raceday/leaderboard">2017 Leaderboard</a></li>
                     <li>Streams <a href="http://wrct.org">WRCT</a> | <a href="http://livestream.com/cmuTVlive/">cmuTV</a></li>
                     <li><a href="https://discordapp.com/invite/PUwuUuj">Live Chat</a></li>
-                    <li><a href="timing.cmubuggy.org">Live Course Times</a></li>
+                    <li><a href="http://timing.cmubuggy.org">Live Course Times</a> | <a href="/files/course_map_tents_2017.png">Map</a></li>
                     <li>
                 </ul>
             </div>
         </div>
         <div class="yui3-u-1-2" style="">
-             <h3><a href="/news/2016/04/schedule-of-events-carnival-2016/">Carnival Schedule</a></h3>
+             <h3><a href="/files/carnival_schedule_2017.png">Carnival Schedule</a></h3>
             <b>Coming Up Next</b><br />
             <?php
                 $auctionstart   = mktime( 9, 0,0,4,18,2017);
