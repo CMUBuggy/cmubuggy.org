@@ -19,7 +19,7 @@ $newsResults 	= dbQuery("cmubuggy_wp",$newsSQL);
 
 $count = 1;
 if($newsResults){		
-	while ($post = mysql_fetch_row($newsResults)) {
+	while ($post = mysqli_fetch_row($newsResults)) {
 		//date format: YYYY-MM-DD HH:MM:SS
 		$timestamp = $post[1];
 		$year = substr($timestamp, 0, 4);
@@ -62,7 +62,7 @@ $galleryResults= dbQuery("cmubuggy_g3",$gallerySQL);
 $galleryClusterItems = array();
 
 if($galleryResults){
-	while ($post = mysql_fetch_row($galleryResults)) {
+	while ($post = mysqli_fetch_row($galleryResults)) {
 		$clusterKey = $post[2].$post[5];
 		$parent_id = $post[5];
 		if(array_key_exists($clusterKey, $galleryClusterItems)){
@@ -74,7 +74,7 @@ if($galleryResults){
 									ON album.album_cover_item_id = cover.id
 									WHERE album.id =".$parent_id;
 				$parentResults = dbQuery("cmubuggy_g3",$parentSQL);
-				while ($parent = mysql_fetch_row($parentResults)) { 
+				while ($parent = mysqli_fetch_row($parentResults)) { 
 					$galleryParents[$parent_id]= array("title"=>$parent[0], "relative_url_cache"=>$parent[1], "thumburl"=>"/gallery/var/thumbs/".$parent[2]);
 				}
 			}
@@ -109,7 +109,7 @@ $forumResults 	= dbQuery("cmubuggy_phpBB",$forumSQL);
 $forumClusterItems = array();
 
 if($forumResults){	
-	while ($post = mysql_fetch_row($forumResults)) {
+	while ($post = mysqli_fetch_row($forumResults)) {
 		$clusterKey = $post[4].date("md",$post[1]);
 		$threadtitle = $post[3];
 		if(strlen($threadtitle)>25){$threadtitle = substr($threadtitle, 0, 23)."...";}
@@ -150,7 +150,7 @@ $gcommentResults= dbQuery("cmubuggy_g3",$gcommentSQL);
 $gcommentClusterItems = array();
 
 if($gcommentResults){
-	while ($post = mysql_fetch_row($gcommentResults)) {
+	while ($post = mysqli_fetch_row($gcommentResults)) {
 		$parent_id = $post[5];
 		$commentDate = date("md",$post[1]);
 		$clusterKey = $parent_id.$commentDate;
@@ -193,7 +193,7 @@ $ncommentResults= dbQuery("cmubuggy_wp",$ncommentSQL);
 $ncommentClusterItems = array();
 
 if($ncommentResults){
-	while ($post = mysql_fetch_row($ncommentResults)) {
+	while ($post = mysqli_fetch_row($ncommentResults)) {
 		$timestamp = $post[1];
 		$year = substr($timestamp, 0, 4);
 	   $month = substr($timestamp, 5, 2);
@@ -245,7 +245,7 @@ $referenceResults = dbQuery("cmubuggy_wiki",$referenceSQL);
 $referenceClusterItems = array();
 
 if($referenceResults){
-	while ($post = mysql_fetch_row($referenceResults)) {
+	while ($post = mysqli_fetch_row($referenceResults)) {
 	
 		$timestamp = $post[1];
 		$year = substr($timestamp, 0, 4);

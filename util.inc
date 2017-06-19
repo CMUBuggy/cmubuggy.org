@@ -30,15 +30,15 @@
 	
 	function dbQuery($dbname, $sql){
 		include("dbconfig.inc");
-		$con = mysql_connect($dbhost, $dbuser, $dbpass);
+		$con = mysqli_connect($dbhost, $dbuser, $dbpass);
 		if (!$con)	{  die('Could not connect: ' . mysql_error()); }
-		mysql_select_db($dbname, $con);
-		return mysql_query($sql);
-		mysql_close($con);		
+		mysqli_select_db($con, $dbname);
+		return mysqli_query($con, $sql);
+		mysqli_close($con);		
 	}
 	
 	function dbClose(){
-		mysql_close($con);
+		mysqli_close($con);
 	}
 	
 	function timestamp_sort($a, $b){
