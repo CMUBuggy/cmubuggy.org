@@ -1,6 +1,6 @@
 <div id="homepage">
      <?php include_once("contentfeed.inc");   ?>     
-        <div  class="yui3-g"  style="width:500px; height:145px;">
+        <div  class="yui3-g"  style="width:500px;">
         <div class="yui3-u-3-5">
             <table class="datacompact" style="margin-top:0px;">
                 <tr>
