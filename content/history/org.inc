@@ -357,8 +357,8 @@ Founded: <?php echo($yearfounded); ?><br />
 <?php if($org->isracingorg == 1){ ?>
 	<div class="pane">
 		<div class="title">Trends</div>
-		<?php	graphtrends(array("1A","1B","1C"),"2001","2016");?>
-		<?php	graphtrends(array("2A","2B"),"2001","2016");?>
+		<?php	graphtrends(array("1A","1B","1C"),"2001","2017");?>
+		<?php	graphtrends(array("2A","2B"),"2001","2017");?>
 	</div>
 <?php } ?>
 </div>

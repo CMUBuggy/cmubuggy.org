@@ -1,66 +1,67 @@
 <div id="homepage">
      <?php include_once("contentfeed.inc");   ?>     
-     <div  class="yui3-g"  style="width:510px; height:145px;">
-        <div class="yui3-u-1-2">
-            <div style="margin-right:10px">
-                <h3><a href="/raceday">Everything Raceday</a></h3>      
-                Quick Links:
-                <ul class="list">
-                    <li><a href="/raceday/heats">Heat Schedule</a></li>
-                    <li><a href="/raceday/leaderboard">2017 Leaderboard</a></li>
-                    <li>Streams <a href="http://wrct.org">WRCT</a> | <a href="http://livestream.com/cmuTVlive/">cmuTV</a></li>
-                    <li><a href="https://discordapp.com/invite/PUwuUuj">Live Chat</a></li>
-                    <li><a href="http://timing.cmubuggy.org">Live Course Times</a> | <a href="/files/course_map_tents_2017.png">Map</a></li>
-                    <li>
-                </ul>
-            </div>
+        <div  class="yui3-g"  style="width:500px; height:145px;">
+        <div class="yui3-u-3-5">
+            <table class="datacompact" style="margin-top:0px;">
+                <tr>
+                    <th colspan="2"><h3 style="margin:0;"><a href="/history/raceday/2017/">2017 Results</a></h3></th>
+                    <th colspan="1" style="text-align:right; font-size:1em;"><b>Men's</b></th>
+                    <th colspan="2" style="text-align:right; font-size:1em;"><b>Women's</b></th>
+                </tr>
+                <tr>
+                    <td><b>1<sup>st</sup></b></td>
+                    <td>SDC A</td>
+                    <td>2:02.16</td>
+                    <td class="newcol">SDC A</td>
+                    <td>2:23.27</td>
+                </tr>
+                <tr>
+                    <td><b>2<sup>nd</sup></b></td>
+                    <td>PiKA A</td>
+                    <td>2:08.42</td>
+                    <td class="newcol">SDC B</td>
+                    <td>2:32.80</td>
+                </tr>
+                <tr>
+                    <td><b>3<sup>rd</sup></b></td>
+                    <td>SigEp A</td>
+                    <td>2:09:24</td>
+                    <td class="newcol">PiKA A</td>
+                    <td>2:33.24</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> Blueshift &ndash; Fringe, 2<sup>nd</sup> Equinox &ndash; CIA, 3<sup>rd</sup> Inviscid &ndash; Spirit</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> Inviscid &ndash; Spirit</td>
+                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Spirit of Buggy:</span> Fringe</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">Chairman's Choice</span>: SigEp</td>
+                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">TShirt</span>: SigNu</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="font-size:11px;"><span style="font-size:11px;">Design Showcase Spark</span>: Beyonce &ndash; SigEp</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">King of the Hill</span>: Jacob Hoffman &ndash; SDC A</td>
+                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Queen of the Hill</span>: Mary Garrett &ndash; SDC A</td>
+                </tr>
+            </table>
         </div>
-        <div class="yui3-u-1-2" style="">
-             <h3><a href="/files/carnival_schedule_2017.png">Carnival Schedule</a></h3>
-            <b>Coming Up Next</b><br />
-            <?php
-                $auctionstart   = mktime( 9, 0,0,4,18,2017);
-                $wrct           = mktime(19, 0,0,4,19,2017);
-                $auctionend     = mktime(23, 0,0,4,19,2017);
-                $designcomp     = mktime(12, 0,0,4,20,2017);
-                $dctalk         = mktime(12,30,0,4,20,2017);
-                $bartime        = mktime(19, 0,0,4,20,2017);
-                $wprelims       = mktime(8, 20,0,4,21,2017);
-                $mprelims       = mktime(10, 0,0,4,21,2017);
-                $reception      = mktime(12,30,0,4,21,2017);
-                $hob            = mktime(13,30,0,4,21,2017);
-                $exhibitions    = mktime( 8,55,0,4,22,2017);
-                $wfinals        = mktime( 9,50,0,4,22,2017);
-                $mfinals        = mktime(10,15,0,4,22,2017);
-                $happyhr        = mktime(16,00,0,4,22,2017);
-                $awards         = mktime(16,30,0,4,22,2017);
-                  
-                $events = array(
-                    $auctionstart   => "<code>Tue 09:00a</code> <a href=\"/news/2017/04/lead-truck-auction-is-live-2/\">Lead Truck auction</a> starts",       
-                    $wrct           => "<code>Wed 08:00p</code> Buggy talk on <a href\"http://www.wrct.org/\">WRCT</a>",
-                    $auctionend     => "<code>Wed 11:59p</code> <a href=\"/news/2016/04/auction/\">Lead Truck auction</a> closes",  
-                    $designcomp     => "<code>Thu 12:00a</code> Buggy Showcase",
-                    $bartime        => "<code>Thu 07:00p</code> <a href=\"http://houghspgh.com\">Buggy Drinks @ Hough's</a>", 
-                    $wprelims       => "<code>Fri 08:20a</code> Women's Prelims",
-                    $mprelims       => "<code>Fri 10:00a</code> Men's Prelims",
-                    $reception      => "<code>Fri 12:30p</code> BAA Lunch",  
-                    $hob            => "<code>Fri 01:30p</code> History of Buggy",
-                    $exhibitions    => "<code>Sat 08:55a</code> Exhibitions",
-                    $wfinals        => "<code>Sat 09:50a</code> Women's Finals",
-                    $mfinals        => "<code>Sat 10:50a</code> Men's Finals",
-                    $happyhr        => "<code>Sat 4:00p</code> BAA Happ Hour @Porch",
-                    $awards         => "<code>Sat 04:30p</code> Awards Ceremony"    
-                );
-                 
-                $currenttime = time();
-                $dispcount = 0;
-                foreach ($events as $eventtime => $desc){
-                    if($currenttime-60*60 < $eventtime && $dispcount < 6){
-                        echo("<img src=\"/css/images/orange_bullet.gif\" /> ".$desc."<br />");
-                        $dispcount++;   
-                    }
-                }
-            ?>  
+        <div class="yui3-u-2-5">
+            <h3>Get Invloved</h3>
+            <div class="item"><a href="/seniors"><div class="icon" style="background-image:url('/img/icon_grad-cap.png')"></div></a><a href="/seniors">Seniors!</a> Become a 2018 member now for free.</div>
+            <div class="item">
+                <a href="/gallery/2016-2018">
+                    <div class="icon galleryicon" style="background-image:url('http://cmubuggy.org/gallery/var/resizes/2016-2017/Raceday---Finals/IMG_9891.JPG')"></div>
+                </a>
+                Share your favorite pics from
+                <a href="/gallery/2016-2017/Raceday---Design-Showcase">Design</a>,
+                <a href="/gallery/2016-2017/Raceday---Prelims">Prelims</a>,
+                <a href="/gallery/2016-2017/Raceday---Finals">Finals</a>
+
+            </div>
         </div>
     </div>
     <br />
