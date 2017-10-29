@@ -25,7 +25,7 @@
 					<tbody>
 						<!-- BEGIN topicrow -->
 							<tr class="row<!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ELSEIF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
-								<!-- IF topicrow.S_DELETED_TOPIC -->	
+								<!-- IF topicrow.S_DELETED_TOPIC -->
 									<td class="bg2"><strong>{L_DELETED_TOPIC}</strong></td>
 									<td><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></td>
 								<!-- ELSE -->
@@ -51,7 +51,7 @@
 					</tbody>
 				</table>
 			</div>
-			
+
 			<ul class="linklist">
 				<li class="rightside pagination">
 					<!-- IF TOTAL_TOPICS --> {TOTAL_TOPICS} <!-- ENDIF -->

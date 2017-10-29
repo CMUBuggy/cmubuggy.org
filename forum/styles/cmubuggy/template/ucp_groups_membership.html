@@ -23,7 +23,7 @@
 						<!-- IF not leader.GROUP_SPECIAL -->
 							<!-- DEFINE $SHOW_BUTTONS = 1 -->
 						<!-- ENDIF -->
-						
+
 						<tr class="row<!-- IF leader.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 							<td class="input bg2"><!-- IF S_CHANGE_DEFAULT --><input title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF leader.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{leader.GROUP_ID}" /><!-- ENDIF --></td>
 							<td class="forum">
@@ -54,7 +54,7 @@
 						<!-- IF not member.GROUP_SPECIAL -->
 							<!-- DEFINE $SHOW_BUTTONS = 1 -->
 						<!-- ENDIF -->
-						
+
 						<tr class="row<!-- IF member.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 							<!-- IF S_CHANGE_DEFAULT --><td class="input bg2"><input title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF member.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{member.GROUP_ID}" /></td><!-- ENDIF -->
 							<td class="forum">
@@ -70,12 +70,12 @@
 		</div>
 	<!-- ENDIF -->
 	<span class="corners-bottom"><span></span></span></div>
-</div>	
+</div>
 
 <!-- IF .pending -->
 <div class="panel">
-	<div class="inner"><span class="corners-top"><span></span></span>	
-		
+	<div class="inner"><span class="corners-top"><span></span></span>
+
 		<div class="forums-wrapper">
 			<table class="forums">
 				<thead>
@@ -89,7 +89,7 @@
 						<!-- IF not pending.GROUP_SPECIAL -->
 							<!-- DEFINE $SHOW_BUTTONS = 1 -->
 						<!-- ENDIF -->
-						
+
 						<tr class="row<!-- IF pending.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 							<td class="forum">
 								<h4><a href="{pending.U_VIEW_GROUP}" class="forumtitle"<!-- IF pending.GROUP_COLOUR --> style="color:#{pending.GROUP_COLOUR}"<!-- ENDIF -->>{pending.GROUP_NAME}</a></h4>
@@ -102,7 +102,7 @@
 				</tbody>
 			</table>
 		</div>
-	
+
 	<span class="corners-bottom"><span></span></span></div>
 </div>
 <!-- ENDIF -->
@@ -110,7 +110,7 @@
 <!-- IF .nonmember -->
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
-		
+
 		<div class="forums-wrapper">
 			<table class="forums">
 				<thead>
@@ -124,7 +124,7 @@
 						<!-- IF nonmember.S_CAN_JOIN -->
 							<!-- DEFINE $SHOW_BUTTONS = 1 -->
 						<!-- ENDIF -->
-						
+
 						<tr class="row<!-- IF nonmember.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 							<td class="forum">
 								<h4><a href="{nonmember.U_VIEW_GROUP}" class="forumtitle"<!-- IF nonmember.GROUP_COLOUR --> style="color:#{nonmember.GROUP_COLOUR}"<!-- ENDIF -->>{nonmember.GROUP_NAME}</a></h4>
@@ -137,11 +137,11 @@
 				</tbody>
 			</table>
 		</div>
-		
+
 	<span class="corners-bottom"><span></span></span></div>
 </div>
 <!-- ENDIF -->
-	
+
 
 	<!-- IF S_CHANGE_DEFAULT or $SHOW_BUTTONS eq 1 -->
 	<fieldset>
@@ -154,7 +154,7 @@
 
 		<!-- IF $SHOW_BUTTONS eq 1 -->
 		<div class="right-box">
-			<label for="action">{L_SELECT}:</label> 
+			<label for="action">{L_SELECT}:</label>
 			<select name="action" id="action">
 				<option value="join">{L_JOIN_SELECTED}</option>
 				<option value="resign">{L_RESIGN_SELECTED}</option>

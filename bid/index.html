@@ -351,7 +351,7 @@ $("#registerOptionalStatus").html("Thank you for entering the optional informati
  firstName=$("#registerFirstName").val();
  lastName=$("#registerLastName").val();
  phoneNum=$("#registerPhoneNum").val();
-  
+
  $.ajax({
 	       url: "registerOptional.php",
                data: {userId:userIdEmail,registerFirstName:firstName,registerLastName:lastName,registerPhoneNum:phoneNum},
@@ -374,7 +374,7 @@ function register(){
 	   }).done(function( msg ) {
                        registerHandler(msg);
 		   });
- 
+
 }
 
 
@@ -393,9 +393,9 @@ function register(){
 function loginHandler(msg){
     // for now, server just accepts it no matter what
     if(msg.loginId == "FuckThatNoise"){
-	$("#loginStatus").html("<br>Sorry - your login failed.  Please check that you have registered for this years auction, and that you entered the email address correctly.");		
+	$("#loginStatus").html("<br>Sorry - your login failed.  Please check that you have registered for this years auction, and that you entered the email address correctly.");
     } else {
-	$("#loginStatus").html("<br>");		
+	$("#loginStatus").html("<br>");
 	//create oookie, set loginId, set login div
 	createCookie("buggyAuctionCookie",msg['loginId'],"30");
 	loginId=msg['loginId'];
@@ -547,10 +547,10 @@ function getAllAuctionsInfoInitCallback(msg){
 
         bidsArray = auctionsInfo[x]['bids'];
 
-	maxBidsToDisplay=9;				      
+	maxBidsToDisplay=9;
 
 	if(auctionsInfo[x]['day'] == "Prelims"){
-          maxBidsToDisplay=99; 
+          maxBidsToDisplay=99;
 	}
 	for(y=0;y<bidsArray.length;y++){
 	    if(y>maxBidsToDisplay){
@@ -573,7 +573,7 @@ function getAllAuctionsInfoInitCallback(msg){
            $("#biddingControlsReserve"+auctionUid).html("Make Reserve Bid "+buggyReserveRow.format(auctionsInfo[x]['autoBids'][xzx]['bidAmount']));
           }
          }
-        }					      
+        }
     }
     mainUpdateThread();
 }
@@ -638,7 +638,7 @@ function getMostRecentBid(){
 function makeManualBid(auctionId){
     if(stopBidding==1){
      alert("Sorry! The auction has closed or has not started yet!");
-     return;	    
+     return;
     }
     if(loginId == ""){
      $("#loginWhileBiddingDialog").attr("auctionId",auctionId);
@@ -652,7 +652,7 @@ function makeManualBid(auctionId){
 	   }).done(function(msg){
 		       displayBidResult(auctionId,msg['resultString'],msg['result']);
 //                       $("#manBidResults"+auctionId).html(msg['resultString']);
-//		       $("#bidStatus"+auctionsInfo[auctionId]['auctionUid']).html(msg['resultString']);		       	 
+//		       $("#bidStatus"+auctionsInfo[auctionId]['auctionUid']).html(msg['resultString']);
 		       getMostRecentBid();
 		   });
 
@@ -661,7 +661,7 @@ function makeManualBid(auctionId){
 function makeAutoBid(auctionId){
     if(stopBidding==1){
      alert("Sorry! The auction has closed or has not started yet!");
-     return;	    
+     return;
     }
 //    $("#manBidInput"+auctionId).val("hi");
     if(loginId == ""){
@@ -738,7 +738,7 @@ function updateBids(auctionUid,bids){
 			if(loginId==$(this).attr("userId")){
 			       $(this).remove();
 			}
-		})	
+		})
 	}*/
 
 
@@ -751,7 +751,7 @@ function updateBids(auctionUid,bids){
 	    $("#bidsTable"+auctionsInfo[auctionUid]['gender']+auctionsInfo[auctionUid]['auctionUid']+">div:last-child").remove();
 	    $("#bidsTable"+auctionsInfo[auctionUid]['gender']+auctionsInfo[auctionUid]['auctionUid']+">div:last-child").remove();
 	}*/
-	if(auctionsInfo[auctionUid]['day']=="Prelims"){		
+	if(auctionsInfo[auctionUid]['day']=="Prelims"){
 	 if($("#addBidsHere"+auctionUid+">div").length > 21 ){
 	     $("#addBidsHere"+auctionUid+">div:last-child").remove();
 	     $("#addBidsHere"+auctionUid+">div:last-child").remove();
@@ -759,7 +759,7 @@ function updateBids(auctionUid,bids){
         }
 
     }
-//    $("#debug").html("<br>prepended new bid"+$("#debug").html());    
+//    $("#debug").html("<br>prepended new bid"+$("#debug").html());
 
     //FIXME : this should be in updateAuctionRows()
     mostRecentBidUidCache=mostRecentBidUid;
@@ -781,7 +781,7 @@ function updateAuctionRows(msg){
 	    bidAmount=bidAmount+"&nbsp;";
 	 }
  	 $("#auctionContainer"+auctionUid+"amount").html("$"+bidAmount);
-	 if(auctionsInfo[auctionUid]['day']=="Prelims"){	 	
+	 if(auctionsInfo[auctionUid]['day']=="Prelims"){
 	  updateBids(auctionUid,msg[xz]);
 	  for(y=msg[xz].length-1;y>=0;y--){
 	      auctionsInfo[msg[xz][0]['auctionUid']]['bids'].unshift(msg[xz][y]);
@@ -799,7 +799,7 @@ function updateAuctionRows(msg){
 $(document).ready(function() {
 		      qs();
 	              $( "#registerCompleteDialog" ).dialog({
-		       title: "Register Complete",			
+		       title: "Register Complete",
                        height: 350,
 		       width: 400,
                        modal: true,
@@ -821,21 +821,21 @@ $(document).ready(function() {
           		                  $("#registerCompleteDialog").dialog("open");
 					 } else {
 					 }
-		       });			
+		       });
                       }
 
 
 		      initOrgNameWidths();
 
 	              $( "#loginDialog" ).dialog({
-		       title: "Login",			
+		       title: "Login",
                        height: 350,
 		       width: 400,
                        modal: true,
 		       autoOpen: false
                       });
 	              $( "#registerDialog" ).dialog({
-		       title: "Register",			
+		       title: "Register",
                        height: 350,
 		       width: 400,
                        modal: true,
@@ -843,14 +843,14 @@ $(document).ready(function() {
                       });
 
 	              $( "#registerWhileBiddingDialog" ).dialog({
-		       title: "registerWhileBidding",			
+		       title: "registerWhileBidding",
                        height: 350,
 		       width: 400,
                        modal: true,
 		       autoOpen: false
                       });
                       $( "#loginWhileBiddingDialog" ).dialog({
-		       title: "loginWhileBidding",			
+		       title: "loginWhileBidding",
                        height: 350,
 		       width: 400,
                        modal: true,
@@ -876,7 +876,7 @@ $(document).ready(function() {
 		      $(".tabs").bind("onClick", function() {
 					  $("#bidResult").css("visibility","hidden");
 				      });
-	              
+
         $.ajax({
 	       url: "isAuctionOpen.php",
 	       async: false,
@@ -962,7 +962,7 @@ $(document).ready(function() {
 </div>
 
 <div id="loginTop" style='color:black;margin:5px;border-color:#F9A72B;padding:5px;text-align:center;border-width:3px;border-style:solid'>
-You are not logged in.  
+You are not logged in.
 </div>
 
 <ul class="tabs">
@@ -1005,7 +1005,7 @@ You are not logged in.
      <a href="/auction">Rules and auction details are here</a>
     <h3>Reserve Bids</h3>
      Placing a reserve bid is the equivilant to saying "I'm willing to pay up to this amount" - anytime someone else makes a bid, the auction will automatically bid one higher than that (assuming your reserve bid is greater than the new bid ).  For example : if you have placed a reserve bid of 20 dollars, and the current high bid is 10 dollars, an 11 dollar bid will automatically be placed for you.  If someone else makes a 12 dollar bid, a 13 dollar bid will automatically be placed for you.<br><br>
-Once you have placed a reserve bid, that amount will be noted in the "Reserve Bid" section at the top of the auction.  Note that it is still possible to place a normal bid while you have a reserve bid placed - if you are the highest in an auction, the reserve bid will not force an automatic bid against yourself.    
+Once you have placed a reserve bid, that amount will be noted in the "Reserve Bid" section at the top of the auction.  Note that it is still possible to place a normal bid while you have a reserve bid placed - if you are the highest in an auction, the reserve bid will not force an automatic bid against yourself.
   </div>
 </div>
 
@@ -1029,7 +1029,7 @@ Email address : <input style='float:none;clear:both;margin:0;padding:0;display:i
 <div id="registerCompleteDialog">
 You are now registered and can login!
 <br><br>
-Before you login, please take the time to enter the following information.  It is optional, but if you will not have email access while in Pittsburgh, we will have no way of contacting you if you win!<br><br>    
+Before you login, please take the time to enter the following information.  It is optional, but if you will not have email access while in Pittsburgh, we will have no way of contacting you if you win!<br><br>
 Once you are done with entering the information, please close this dialog and click on the login link to login.<br><br>
 
 First Name : <input style='float:none;clear:both;margin:0;padding:0;display:inline;' type="text" id='registerFirstName'/><br>

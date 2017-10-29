@@ -352,7 +352,7 @@ function register(){
 	   }).done(function( msg ) {
                        registerHandler(msg);
 		   });
- 
+
 }
 
 
@@ -524,10 +524,10 @@ function getAllAuctionsInfoInitCallback(msg){
 
         bidsArray = auctionsInfo[x]['bids'];
 
-	maxBidsToDisplay=9;				      
+	maxBidsToDisplay=9;
 
 	if(auctionsInfo[x]['day'] == "Prelims"){
-          maxBidsToDisplay=99; 
+          maxBidsToDisplay=99;
 	}
 	for(y=0;y<bidsArray.length;y++){
 	    if(y>maxBidsToDisplay){
@@ -550,7 +550,7 @@ function getAllAuctionsInfoInitCallback(msg){
            $("#biddingControlsReserve"+auctionUid).html("Make Reserve Bid "+buggyReserveRow.format(auctionsInfo[x]['autoBids'][xzx]['bidAmount']));
           }
          }
-        }					      
+        }
     }
     mainUpdateThread();
 }
@@ -623,7 +623,7 @@ function makeManualBid(auctionId){
 	   }).done(function(msg){
 		       displayBidResult(auctionId,msg['resultString'],msg['result']);
 //                       $("#manBidResults"+auctionId).html(msg['resultString']);
-//		       $("#bidStatus"+auctionsInfo[auctionId]['auctionUid']).html(msg['resultString']);		       	 
+//		       $("#bidStatus"+auctionsInfo[auctionId]['auctionUid']).html(msg['resultString']);
 		       getMostRecentBid();
 		   });
 
@@ -692,7 +692,7 @@ function updateBids(auctionUid,bids){
 			if(loginId==$(this).attr("userId")){
 			       $(this).remove();
 			}
-		})	
+		})
 	}*/
 
 
@@ -705,7 +705,7 @@ function updateBids(auctionUid,bids){
 	    $("#bidsTable"+auctionsInfo[auctionUid]['gender']+auctionsInfo[auctionUid]['auctionUid']+">div:last-child").remove();
 	    $("#bidsTable"+auctionsInfo[auctionUid]['gender']+auctionsInfo[auctionUid]['auctionUid']+">div:last-child").remove();
 	}*/
-	if(auctionsInfo[auctionUid]['day']=="Prelims"){		
+	if(auctionsInfo[auctionUid]['day']=="Prelims"){
 	 if($("#addBidsHere"+auctionUid+">div").length > 21 ){
 	     $("#addBidsHere"+auctionUid+">div:last-child").remove();
 	     $("#addBidsHere"+auctionUid+">div:last-child").remove();
@@ -713,7 +713,7 @@ function updateBids(auctionUid,bids){
         }
 
     }
-//    $("#debug").html("<br>prepended new bid"+$("#debug").html());    
+//    $("#debug").html("<br>prepended new bid"+$("#debug").html());
 
     //FIXME : this should be in updateAuctionRows()
     mostRecentBidUidCache=mostRecentBidUid;
@@ -748,28 +748,28 @@ function updateAuctionRows(msg){
 
 $(document).ready(function() {
 	              $( "#registerCompleteDialog" ).dialog({
-		       title: "Register Complete",			
+		       title: "Register Complete",
                        height: 350,
 		       width: 400,
                        modal: true,
 		       autoOpen: false,
                        close:function(event,ui){window.location="index.demo.UiComplete.4.html";}
                       });
-		      qs();			
+		      qs();
 		      if(qsParm['mode']=="register"){
 		        $("#registerCompleteDialog").dialog("open");
-		      }			
+		      }
 		      initOrgNameWidths();
 
 	              $( "#loginDialog" ).dialog({
-		       title: "Login",			
+		       title: "Login",
                        height: 350,
 		       width: 400,
                        modal: true,
 		       autoOpen: false
                       });
 	              $( "#registerDialog" ).dialog({
-		       title: "Register",			
+		       title: "Register",
                        height: 350,
 		       width: 400,
                        modal: true,
@@ -777,14 +777,14 @@ $(document).ready(function() {
                       });
 
 	              $( "#registerWhileBiddingDialog" ).dialog({
-		       title: "registerWhileBidding",			
+		       title: "registerWhileBidding",
                        height: 350,
 		       width: 400,
                        modal: true,
 		       autoOpen: false
                       });
                       $( "#loginWhileBiddingDialog" ).dialog({
-		       title: "loginWhileBidding",			
+		       title: "loginWhileBidding",
                        height: 350,
 		       width: 400,
                        modal: true,
