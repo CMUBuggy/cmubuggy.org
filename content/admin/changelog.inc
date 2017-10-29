@@ -13,7 +13,7 @@
 		<th>Old<br />Value</th>
 		<th>New<br />Value</th>
 		<th style="width:115px;">Time</th>
-		<th>User</th>	
+		<th>User</th>
 	</tr>
 <?php
 foreach($editList as $edit){
@@ -29,7 +29,7 @@ foreach($editList as $edit){
 	echo("<td>".$user->username."</td>");
  	echo("</tr>");
 }
-?>	
+?>
 </table>
 
 </div>

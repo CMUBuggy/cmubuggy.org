@@ -1,7 +1,7 @@
 <?php
 if($video){
 	$id=$video->youtubeID;
-	
+
 	//Check for cached youtube thumb, if found use, if not found get and save
 	if(file_exists("content/cache/youtube/vidthumb-".$id.".jpg")){
 		$thumbsrc = "/content/cache/youtube/vidthumb-".$id.".jpg";
@@ -10,9 +10,9 @@ if($video){
 		$thumb = file_get_contents("http://i4.ytimg.com/vi/".$id."/default.jpg");
 		file_put_contents("content/cache/youtube/vidthumb-".$id.".jpg", $thumb);
 	}
-	
+
 	if(!isset($vidmode)){ $vidmode = "popup"; }
-	
+
 	switch($vidmode) {
 		case "imagelink":
 			echo("<div class=\"vidlink\">");
@@ -29,7 +29,7 @@ if($video){
 					<param name="allowScriptAccess" value="always">
 					<embed src="http://www.youtube.com/v/<?php echo($id); ?>?version=3&enablejsapi=1" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="750" height="525">
 				</object>
-			</div>		
+			</div>
 		<?php
 			break;
 		case "embed":
@@ -40,8 +40,8 @@ if($video){
 				<param name="allowScriptAccess" value="always">
 				<embed src="http://www.youtube.com/v/<?php echo($id); ?>?version=3&enablejsapi=1" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="750" height="525">
 			</object>
-		<?php		
-		break;		
+		<?php
+		break;
 	}
 }
 

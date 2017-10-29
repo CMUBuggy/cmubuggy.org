@@ -8,7 +8,7 @@
 	}
 	if($year < date("Y")){
 		$nextlink = " | <a href=\"/history/raceday/".($year + 1)."\">".($year + 1)." &raquo</a>";
-	}	
+	}
 
 	$mentriesArr = array();
 	$wentriesArr = array();
@@ -28,7 +28,7 @@
 			$fheatsArr=$tempArr;
 		} else {
 			$pheatsArr=$tempArr;
-		}	
+		}
 	}
 	$entryList = $raceyear->GetEntryList(null,"place");
 	$noplacecounter = 100;
@@ -37,7 +37,7 @@
 		if(!($place>0)){
 			$place = $noplacecounter;
 			$noplacecounter++;
-		} 
+		}
 		switch($entry->raceclassId) {
 			case 1:
 				$mentriesArr[$place] = $entry;
@@ -47,7 +47,7 @@
 				break;
 		}
 	}
-	
+
 	function displayEntries($entryArr) {
 		global $racedayList;
 		ksort($entryArr);
@@ -69,10 +69,10 @@
 					$notes .= "DQ: ".$team->GetDQ()->description;
 				}
 			}
-			
+
 			$place = "";
-			if($entry->place>0){$place = $entry->place; }					
-			
+			if($entry->place>0){$place = $entry->place; }
+
 			$url = "/history/team/".$entry->urlkey;
 		   echo("<tr><td>".$place."</td>");
 		   echo("<td><a href=\"".$url."\">".$entrylabel."</a></td>");
@@ -86,11 +86,11 @@
 		   		echo("<td></td>");
 		   	}
 		   }
-		   echo("<td>".$notes."</td></tr>");	
+		   echo("<td>".$notes."</td></tr>");
 		}
 		echo("</table>");
 	}
-	
+
 	function displayHeats($heatArr){
 		ksort($heatArr);
 		$heattypes = array("30","20","21","10","11");
@@ -98,11 +98,11 @@
 										"11"=>"Men's Rerolls",
 										"20"=>"Women's",
 										"21"=>"Women's Rerolls",
-										"30"=>"Exhibitions");										
+										"30"=>"Exhibitions");
 		foreach($heattypes as $type){
 			if(isset($heatArr[$type])){
 				echo("<h4>".$heattypelabels[$type]."</h4>");
-				echo("<table class=\"data\"><tr><th></th><th></th><th style=\"width:100px\">Lane 1</th><th style=\"width:100px\">Lane 2</th><th>Lane 3</th style=\"width:100px\"><th>Notes</th>");			
+				echo("<table class=\"data\"><tr><th></th><th></th><th style=\"width:100px\">Lane 1</th><th style=\"width:100px\">Lane 2</th><th>Lane 3</th style=\"width:100px\"><th>Notes</th>");
 				foreach($heatArr[$type] as $heat){
 					echo("<tr><td>".$heat->number."</td><td>");
 					$videolist = $heat->GetVideoList();
@@ -110,17 +110,17 @@
 					if($videolist){ $video = reset($videolist); }
 					include("content/youtubevid.inc");
 					echo("</td>");
-					$teamsArr = array();				
+					$teamsArr = array();
 					foreach($heat->GetTeamList() as $team){
-						$teamsArr[$team->lane]=$team;	
+						$teamsArr[$team->lane]=$team;
 					}
 					for($l=1;$l<4;$l++){
 						if(isset($teamsArr[$l])){
 							$team = $teamsArr[$l];
 							$entry = $team->GetEntry();
-							echo("<td><a href=\"/history/team/".$entry->urlkey."\">".$entry->GetOrg()->shortname." ".$entry->abcd."</a><br />".displayTime($team->time)."</td>");		
+							echo("<td><a href=\"/history/team/".$entry->urlkey."\">".$entry->GetOrg()->shortname." ".$entry->abcd."</a><br />".displayTime($team->time)."</td>");
 						} else {
-							echo("<td></td>");	
+							echo("<td></td>");
 						}
 					}
 					echo("<td></td></tr>");
@@ -129,24 +129,24 @@
 			}
 		}
 	}
-	
+
 	?>
 	<div class="pane">
-		<?php 
+		<?php
 			if(file_exists("/var/www/cmubuggy.org/files/buggybooks/buggybook_".$year.".pdf")){
 				echo("<a class=\"floatright\" href=\"/files/buggybooks/buggybook_".$year.".pdf\"><img alt=\"".$year." buggy book\" height=\"100px\" title=\"Download a PDF of the ".$year." buggy book\" src=\"/files/buggybooks/thumb_100/buggybook_".$year.".jpg\" /></a>");
-			}	
-		?>	
+			}
+		?>
 		<h2>Raceday <?php echo($year);?></h2>
 		<?php echo($prevlink.$nextlink); ?>
-	</div>	
+	</div>
 	<ul class="tabs">
 		<li><a id="t1" href="#mens">Men's Results</a></li>
 		<li><a id="t2" href="#womens">Women's Results</a></li>
 		<?php if(count($pheatsArr)>0){echo("<li><a id=\"t3\" href=\"#prelimheats\">Prelim Heats</a></li>");}?>
 		<?php if(count($fheatsArr)>0){echo("<li><a id=\"t4\" href=\"#finalsheats\">Finals Heats</a></li>");}?>
 	</ul>
-	
+
 	<div class="panes">
 		<div class="pane">
 			<?php displayEntries($mentriesArr); ?>
@@ -162,7 +162,7 @@
 		</div>
 	</div>
 
-	
+
 	<?php
 	/*
 	} else {

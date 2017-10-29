@@ -4,7 +4,7 @@
 		<tr>
 			<th></th>
 			<th colspan="4"><h4>Men's</h4></th>
-			<th colspan="4"><h4>Women's</h4></th>	
+			<th colspan="4"><h4>Women's</h4></th>
 		</tr>
 		<tr>
 			<th>Year</th>
@@ -16,13 +16,13 @@
 			<th>Time</th>
 			<th>2nd Place</th>
 			<th>3rd Place</th>
-		</tr>	
+		</tr>
 
 <?php
 
 	$raceyear = new raceyear();
 	$raceyearlist = $raceyear->GetList(array(array("raceyearId",">","0")),"year",false);
-	
+
 	foreach($raceyearlist as $raceyear){
 		$m1 = $raceyear->GetEntryList(array(array("place","=","1"),array("raceclassId","=",1)));
 		$m2 = $raceyear->GetEntryList(array(array("place","=","2"),array("raceclassId","=",1)));
@@ -44,7 +44,7 @@
 					$org = $entry->GetOrg()->shortname;
 					$teamlist = $entry->GetTeamList(array(array("teamId",">","0")));
 					$time = null;
-					$colclass = null;				
+					$colclass = null;
 					foreach($teamlist as $team){
 						$time = displayTime($team->time);
 					}
@@ -52,13 +52,13 @@
 						$org.= " ".	$entry->abcd;
 					}
 					if($entry->place == 1){
-						$colclass = "newcol";	
+						$colclass = "newcol";
 					}
 					echo("<td class=\"".$colclass."\"><a href=\"/history/team/".$entry->urlkey."\">".$org."</td>");
 					if($col==1 || $col == 5){
 						echo("<td>".$time."</td>");
-						$col++;	
-					}		
+						$col++;
+					}
 				} else {
 					echo("<td></td>");
 				}

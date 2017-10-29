@@ -1,5 +1,5 @@
 <div id="homepage">
-     <?php include_once("contentfeed.inc");   ?>     
+     <?php include_once("contentfeed.inc");   ?>
         <div  class="yui3-g"  style="width:500px;">
         <div class="yui3-u-3-5">
             <table class="datacompact" style="margin-top:0px;">
@@ -68,7 +68,7 @@
     <?php include_once("twitterwidget.inc"); ?>
     <div class="pane clearleft" style="margin-right:270px;">
         <h3 style="margin:0">Buggy Alumni Association?</h3>
-        We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know.  Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind. Find out more in <a href="/about">About Us section ...</a> 
+        We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know.  Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind. Find out more in <a href="/about">About Us section ...</a>
     </div>
     <div class="pane" style="margin-right:270px;">
         <h3 style="margin:0">Buggy?</h3>

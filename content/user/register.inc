@@ -44,22 +44,22 @@ if (isset($_POST["recaptcha_response_field"])) {
 								$user->registerhumantest = $_POST["humantest"];
 								$user->emailvalidatekey = md5($user->salt.$user->email);
 								if($user->Save()){
-									
+
 									$mail = array(
 										"to" => $user->email,
 										"subject" => "CMUBuggy.org account confirmation",
 										"body" => "Thanks for registering on cmubuggy!\n\nYour username is ".$user->username.".\n\nTo confirm your account, just click this link and you'll be on your way:\nhttp://cmubuggy.org/confirm.php?key=".$user->emailvalidatekey."\n\n If you have any trouble logging in, just reply to this e-mail."
 									);
-									
+
 									if(send($mail)){
 										$successmsg = "Thank you for registering.  Your account information has been e-mailed to you.  Follow the link in your e-mail to complete your registration.";
 									} else {
 										$errormsg = "There was a problem sending the email";
-									}			
+									}
 								} else {
 									$errormsg = "Error saving new user information to the database";
 								}
-	
+
 								//$file = file_get_contents("/var/www/cmubuggy.org/content/cache/userstats.json","r");
 								//$userstats = json_decode($file);
 								//$userstats->usercount++;
@@ -68,21 +68,21 @@ if (isset($_POST["recaptcha_response_field"])) {
 								//fwrite($fp, json_encode($userstats));
 								//fclose($fp);
 							} else {
-								$errormsg = "Passwords must be at least 6 characters";	
+								$errormsg = "Passwords must be at least 6 characters";
 							}
 						}	else {
-							$errormsg = "The passwords entered did not match";	
-						}		
+							$errormsg = "The passwords entered did not match";
+						}
 					} else {
-						$errormsg = "The email \"".$_POST["email"]."\" is already in use.  Please try the password recovery tool if you've just forgotten the password."; 		
+						$errormsg = "The email \"".$_POST["email"]."\" is already in use.  Please try the password recovery tool if you've just forgotten the password.";
 					}
 				} else {
-					$errormsg = "The username \"".$_POST["username"]."\" is already in use.  Please select another username or try the password recovery tool if you've just forgotten the password."; 	
+					$errormsg = "The username \"".$_POST["username"]."\" is already in use.  Please select another username or try the password recovery tool if you've just forgotten the password.";
 				}
 			}
 		} else {
-			$errormsg = "You're not a spammer or a robot are you?  You must answer the question about CMU's location";	
-		}	
+			$errormsg = "You're not a spammer or a robot are you?  You must answer the question about CMU's location";
+		}
 	}	else {
       $errormsg = "reCaptcha human test not completed correctly, please try again";
    }
@@ -92,9 +92,9 @@ if (isset($_POST["recaptcha_response_field"])) {
 
 <div class="pane">
 <h2>Register</h2>
-<?php 
-	if(isset($successmsg)){ 
-		echo("<div class=\"msg good\">".$successmsg."</div>"); 
+<?php
+	if(isset($successmsg)){
+		echo("<div class=\"msg good\">".$successmsg."</div>");
 	}else{
 		if(isset($errormsg)){ echo("<div class=\"msg bad\">".$errormsg."</div>");}
 ?>
@@ -102,8 +102,8 @@ if (isset($_POST["recaptcha_response_field"])) {
 By registering an account on cmubuggy.org, you'll be able to post in the forums, upload pictures to the gallery, and contribute knowledge to our reference section.  We also send out 1 or 2 emails per year to all registered users so you'll know when big things are happening.  Once you complete the form, check your e-mail for a confirmation link to finish your registration.
 <form action="/user/register" method="post" accept-charset="utf-8">
 	<fieldset>
-			<div class="floatright"> 
-				<?php  echo recaptcha_get_html($publickey); ?>			
+			<div class="floatright">
+				<?php  echo recaptcha_get_html($publickey); ?>
 			</div>
 			<label for="username">Username</label>
 			<input type="text" name="username" value="<? if(isset($_POST['username'])){echo($_POST['username']);} ?>" id="username">
@@ -117,7 +117,7 @@ By registering an account on cmubuggy.org, you'll be able to post in the forums,
 			<input type="text" name="humantest" value="" id="humantest">
 			<input type="hidden" name="registrationsubmit" value="1" />
 	</fieldset>
-	<input id="registerbtn" type="submit" value="Register" class="button" style="margin:10px 0 0 190px"> 	
+	<input id="registerbtn" type="submit" value="Register" class="button" style="margin:10px 0 0 190px">
 </form>
 
 <?php } ?>

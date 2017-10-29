@@ -22,7 +22,7 @@
 	}
 	if($hoursleft < 0){
    	$count = "GO";
-   	$unit = "TIME";	
+   	$unit = "TIME";
    }
 ?>
 <body id="doc">
@@ -36,9 +36,9 @@
 		<div id="title"><?php echo($headline); ?></div>
 	</div>
 	<div id="bd" class="yui3-g">
-     <div id="left" class="yui3-u"> 
+     <div id="left" class="yui3-u">
          <a href="/"><img id="logo" alt="CMU Buggy Alumni Association logo" src="/img/logo-web.png" /></a>
-			<?php include_once("leftmenu.inc"); ?>	
-     </div> 
+			<?php include_once("leftmenu.inc"); ?>
+     </div>
      <div id="content" class="yui3-u">
-     
+

@@ -45,9 +45,9 @@ All picks and their owners will be revealed once rolls are over and the scores h
 				<td>".$fe->backhills3."</td>
 				<td>".$fe->backhills4."</td>
 				<td>".$fe->tiebreaker."</td>
-				</tr>");	
-	}		
-	?>		
+				</tr>");
+	}
+	?>
 </table>
 <?php } ?>
 -->

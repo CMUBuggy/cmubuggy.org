@@ -1,5 +1,5 @@
 <div class="floatleft">
-<?php 
+<?php
 	if(isset($footermsg)){ echo($footermsg); }
 ?>
 </div>

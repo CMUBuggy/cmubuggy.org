@@ -9,14 +9,14 @@ $(document).ready(function(){
 	$("input.memberyear").change(function(){
 			var newval = 0;
 			if($(this).is(':checked')){
-				newval = 1;	
+				newval = 1;
 			}
 			$.post("/data.php", { type: "update", element_id: $(this).attr("id"), update_value: newval },
 			   function(data) {
 			     dispmsg("good", "Membership status updated");
 			   });
 		});
-		
+
 	//Edit GradYear
 	$(".eip").editInPlace({
 		default_text: "- - - -",
@@ -27,12 +27,12 @@ $(document).ready(function(){
 			dispmsg("good", "Graduation year updated");
 		}
 	})
-	
+
 	//Add Member
 	$("#InitAddMember").click(function(){
 		$("#addmember").slideToggle();
 	});
-	
+
 	$("#AddMemberSubmit").click(function(){
 		var data = $("#addmember input").serializeArray();
 		$.post("/data.php", data, function(data){
@@ -40,7 +40,7 @@ $(document).ready(function(){
 			$("#addmember input:checkbox").removeAttr('checked');
 			dispmsg("good", "Member added");
 		});
-	});	
+	});
 })
 
 </script>
@@ -59,7 +59,7 @@ $(document).ready(function(){
 <div class="pane">
 	<div id="message" class="msg hidden floatright"></div>
 	<h2>Manage Membership Records</h2>
-	<input type="button" class="button" value="Add a Member?" id="InitAddMember"  />		
+	<input type="button" class="button" value="Add a Member?" id="InitAddMember"  />
 	<div id="addmember" class="hidden">
 	<form action="" method="">
 		<fieldset>
@@ -78,8 +78,8 @@ $(document).ready(function(){
 			<input type="hidden" name="type" value="add" />
 			<input type="hidden" name="objtype" value="member" />
 		</fieldset>
-		<input type="button" class="button" value="Add Member" id="AddMemberSubmit" style="margin:10px 0 0 190px" />		
-	</form>	
+		<input type="button" class="button" value="Add Member" id="AddMemberSubmit" style="margin:10px 0 0 190px" />
+	</form>
 	</div>
 	<br />
 	<div id="memberlist">
@@ -106,7 +106,7 @@ $(document).ready(function(){
 				$mem2014 = "";
 				if($member->mem2009){$mem2009 = "checked=\"checked\"";}
 				if($member->mem2010){$mem2010 = "checked=\"checked\"";}
-				if($member->mem2011){$mem2011 = "checked=\"checked\"";}			
+				if($member->mem2011){$mem2011 = "checked=\"checked\"";}
 				if($member->mem2012){$mem2012 = "checked=\"checked\"";}
 				if($member->mem2013){$mem2013 = "checked=\"checked\"";}
 				if($member->mem2014){$mem2014 = "checked=\"checked\"";}
@@ -120,7 +120,7 @@ $(document).ready(function(){
 				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2013\" class=\"memberyear\"".$mem2013." /></td>");
 				echo("<td><input type=\"checkbox\" id=\"member-".$member->memberId."-mem2014\" class=\"memberyear\"".$mem2014." /></td></tr>");
 			}
-		?>		
-		</table>	
+		?>
+		</table>
 	</div>
 </div>

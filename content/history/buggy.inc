@@ -22,15 +22,15 @@ $buggyAwardList = $buggy->GetBuggyawardList(array(array("buggyAwardId", ">", "0"
 ?>
 
 <div class="pane">
-	<?php 
+	<?php
 		if(file_exists("/var/www/cmubuggy.org/img/buggy/".$buggy->urlKey)){
 			echo("<img class=\"floatright\" alt=\"\" src=\"/img/buggy/".$buggy->urlKey."\" />");
-		}	
-	?>	
+		}
+	?>
 	<h2><?php echo($buggy->name);?></h2>
 	Built: <?php echo($yearBuilt); ?><br />
 	Org : <?php echo("<a href=\"/history/org/".$org->urlkey."\">".$org->shortname. "</a>"); ?>
-</div>	
+</div>
 
 
 <ul class="tabs">
@@ -77,7 +77,7 @@ $buggyAwardList = $buggy->GetBuggyawardList(array(array("buggyAwardId", ">", "0"
 				$awardType = $buggyAward->GetAwardtype();
 				echo("<tr><td>".$buggyAward->year."</td><td>$awardType->description</td></tr>");
 			}
-		?>		
+		?>
 		</table>
 	</div>
 </div>

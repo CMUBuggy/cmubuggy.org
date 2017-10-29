@@ -13,13 +13,13 @@
 			}
 			if(empty($p)){
 				include_once("content/admin/default.inc");
-			}else { 
+			}else {
 				include_once("admin/".$p.".inc");
 			}
 		} else {
-			include_once("admin/noaccess.inc");	
+			include_once("admin/noaccess.inc");
 		}
 	} else {
-		include_once("admin/noaccess.inc");		
+		include_once("admin/noaccess.inc");
 	}
 ?>

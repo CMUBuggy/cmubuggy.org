@@ -20,11 +20,11 @@
 				<tr><td></td><td><input type="submit" name="Submit" value="Login"></td></tr>
 			</table>
 			<?php echo($message); ?>
-			
+
 		</form>
 </div>
 
-<?php 
+<?php
 if (time() <= strtotime('2010-04-16 14:00')) {
   $rdid = "20101";
 } else {

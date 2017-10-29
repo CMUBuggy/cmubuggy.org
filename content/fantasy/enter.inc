@@ -16,10 +16,10 @@
 		$fantasyentry->timestamp = time();
 		$fantasyentry->ip = $_SERVER['REMOTE_ADDR'];
 		$fantasyentry->key = uniqid();
-		
+
 		$fantasyentry->Save();
 		$fe = $fantasyentry;
-		
+
 		include('Mail.php');
 		include('Mail/mime.php');
 		$to = $fe->email;
@@ -41,11 +41,11 @@
 		$from = "Buggy Alumni Association <admin@cmubuggy.org>";
 		$headers = "From:" . $from;
 		if (mail($to,$subject,$message,$headers) ) {
-	   	
+
 		} else {
 	   	echo "email could not be sent";
 		}
-		
+
 ?>
 
 
@@ -120,7 +120,7 @@
 			<tr>
 				<td></td>
 				<td colspan="3" style="text-align:center; font-size:1.3em; font-weight:bold;" width="275px">Freeroll Picks</td>
-				<td colspan="3" style="text-align:center; font-size:1.3em; font-weight:bold;" width="325px">Backhills Picks</td>			
+				<td colspan="3" style="text-align:center; font-size:1.3em; font-weight:bold;" width="325px">Backhills Picks</td>
 			</tr>
 			<tr>
 				<td style="font-size:2.8em; vertical-align:center; padding:5px; font-weight:bold;">1</td>
@@ -135,12 +135,12 @@
 						<option value="SDC">SDC</option>
 						<option value="SigEp">SigEp</option>
 						<option value="Spirit">Spirit</option>
-						<option value="SN/DF">SN / DeltaForce</option>					
+						<option value="SN/DF">SN / DeltaForce</option>
 					</select>
 				</td>
 				<td>
 					<label for="fr1buggy">Buggy</label><br />
-					<select name="fr1buggy" id="fr1buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>				
+					<select name="fr1buggy" id="fr1buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>
 				</td>
 				<td>
 					<label for="fr1roll">Roll #</label><br />
@@ -148,7 +148,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
-					</select>				
+					</select>
 				</td>
 				<td style="padding-left:50px;">
 					<label for="bh1org">Org</label><br />
@@ -161,12 +161,12 @@
 						<option value="SDC">SDC</option>
 						<option value="SigEp">SigEp</option>
 						<option value="Spirit">Spirit</option>
-						<option value="SN/DF">SN / DeltaForce</option>						
+						<option value="SN/DF">SN / DeltaForce</option>
 					</select>
 				</td>
 				<td>
 					<label for="bh1buggy">Buggy</label><br />
-					<select name="bh1buggy" id="bh1buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>				
+					<select name="bh1buggy" id="bh1buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>
 				</td>
 				<td>
 					<label for="bh1roll">Roll #</label><br />
@@ -174,7 +174,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
-					</select>				
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -190,12 +190,12 @@
 						<option value="SDC">SDC</option>
 						<option value="SigEp">SigEp</option>
 						<option value="Spirit">Spirit</option>
-						<option value="SN/DF">SN / DeltaForce</option>					
+						<option value="SN/DF">SN / DeltaForce</option>
 					</select>
 				</td>
 				<td>
 					<label for="fr2buggy">Buggy</label><br />
-					<select name="fr2buggy" id="fr2buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>				
+					<select name="fr2buggy" id="fr2buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>
 				</td>
 				<td>
 					<label for="fr2roll">Roll #</label><br />
@@ -203,7 +203,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
-					</select>				
+					</select>
 				</td>
 				<td style="padding-left:50px;">
 					<label for="bh2org">Org</label><br />
@@ -216,11 +216,11 @@
 						<option value="SDC">SDC</option>
 						<option value="SigEp">SigEp</option>
 						<option value="Spirit">Spirit</option>
-						<option value="SN/DF">SN / DeltaForce</option>		
+						<option value="SN/DF">SN / DeltaForce</option>
 				</td>
 				<td>
 					<label for="bh2buggy">Buggy</label><br />
-					<select name="bh2buggy" id="bh2buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>				
+					<select name="bh2buggy" id="bh2buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>
 				</td>
 				<td>
 					<label for="bh2roll">Roll #</label><br />
@@ -228,7 +228,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
-					</select>				
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -244,12 +244,12 @@
 						<option value="SDC">SDC</option>
 						<option value="SigEp">SigEp</option>
 						<option value="Spirit">Spirit</option>
-						<option value="SN/DF">SN / DeltaForce</option>							
+						<option value="SN/DF">SN / DeltaForce</option>
 					</select>
 				</td>
 				<td>
 					<label for="fr3buggy">Buggy</label><br />
-					<select name="fr3buggy" id="fr3buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>				
+					<select name="fr3buggy" id="fr3buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>
 				</td>
 				<td>
 					<label for="fr3roll">Roll #</label><br />
@@ -257,7 +257,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
-					</select>				
+					</select>
 				</td>
 				<td style="padding-left:50px;">
 					<label for="bh3org">Org</label><br />
@@ -270,12 +270,12 @@
 						<option value="SDC">SDC</option>
 						<option value="SigEp">SigEp</option>
 						<option value="Spirit">Spirit</option>
-						<option value="SN/DF">SN / DeltaForce</option>							
+						<option value="SN/DF">SN / DeltaForce</option>
 					</select>
 				</td>
 				<td>
 					<label for="bh3buggy">Buggy</label><br />
-					<select name="bh3buggy" id="bh3buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>				
+					<select name="bh3buggy" id="bh3buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>
 				</td>
 				<td>
 					<label for="bh3roll">Roll #</label><br />
@@ -283,7 +283,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
-					</select>				
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -299,12 +299,12 @@
 						<option value="SDC">SDC</option>
 						<option value="SigEp">SigEp</option>
 						<option value="Spirit">Spirit</option>
-						<option value="SN/DF">SN / DeltaForce</option>							
+						<option value="SN/DF">SN / DeltaForce</option>
 					</select>
 				</td>
 				<td>
 					<label for="fr4buggy">Buggy</label><br />
-					<select name="fr4buggy" id="fr4buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>				
+					<select name="fr4buggy" id="fr4buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>
 				</td>
 				<td>
 					<label for="fr4roll">Roll #</label><br />
@@ -312,7 +312,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
-					</select>				
+					</select>
 				</td>
 				<td style="padding-left:50px;">
 					<label for="bh4org">Org</label><br />
@@ -325,12 +325,12 @@
 						<option value="SDC">SDC</option>
 						<option value="SigEp">SigEp</option>
 						<option value="Spirit">Spirit</option>
-						<option value="SN/DF">SN / DeltaForce</option>							
+						<option value="SN/DF">SN / DeltaForce</option>
 					</select>
 				</td>
 				<td>
 					<label for="bh4buggy">Buggy</label><br />
-					<select name="bh4buggy" id="bh4buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>				
+					<select name="bh4buggy" id="bh4buggy" style="width:95px;" disabled="disabled"><option value="null"></option></select>
 				</td>
 				<td>
 					<label for="bh4roll">Roll #</label><br />
@@ -338,14 +338,14 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
-					</select>				
+					</select>
 				</td>
 			</tr>
 		</table>
 		<h4>In case of a tie</h4>
 		<label for="tiebreaker">Make your best guess of the fastest time of the day from the end of hill 2 to the finish line<br /></label>
 		<input type="text" name="tiebreaker" value="" id="tiebreaker" size="6"> <span class="detail">(mm:ss)</span><br />
-		<br />		
+		<br />
 		<div id="errors" style="color:red"></div>
 		<input type="hidden" name="entrysubmit" value="true">
 		<input id="" name="" type="button" value="Submit Entry" class="button" onclick="validate()">
@@ -362,12 +362,12 @@
 	orgs["SigEp"]	= new Array("Pandora","Barracuda","Mamba");
 	orgs["Spirit"] = new Array("Haraka","Fuko","Seraph","Mapambazuko");
 	orgs["SN/DF"] 	= new Array("SN/DF");
-	
+
 	$(".orgselect").change(function() {
 		var value = this.value;
 		var options = "";
 		var targid = this.id.replace("org","buggy");
-		
+
 		if(value == "null"){
 			$("#"+targid).attr("disabled","disabled");
 			$("#"+targid).html("");
@@ -380,15 +380,15 @@
 			$("#"+targid).html(options);
 		}
 	});
-	
+
 	function validate(){
 		var error = "";
 		$("#errors").empty();
-		
+
 		//check for valid email
 		var email = $("#email").val();
-		if(email==""){ 
-			error += "Please enter an email<br />"; 
+		if(email==""){
+			error += "Please enter an email<br />";
 		} else {
 			var atpos=email.indexOf("@");
 			var dotpos=email.lastIndexOf(".");
@@ -397,12 +397,12 @@
 	  			error+= "Please enter a valid email address<br />";
 	  		}
 	  	}
-	  	
+
 	  	//check for real name
 	  	if($("#name").val()==""){
-	  		error += "Please enter your real name<br />";	
-	  	} 
-	  	
+	  		error += "Please enter your real name<br />";
+	  	}
+
 	  	//check for duplicate orgs
 		var orgs = [$("#fr1org").val(),$("#fr2org").val(),$("#fr3org").val(),$("#fr4org").val(),$("#bh1org").val(),$("#bh2org").val(),$("#bh3org").val(),$("#bh4org").val()];
 		var orgs = orgs.sort();
@@ -413,9 +413,9 @@
 			}
 		}
 		if(duporgs.length>0) { var count = duporgs.length+1;  error+= "Each pick must be from a different org. You've used the same org "+count+" times. <br />"; }
-		
+
 		if(error != "") {
-			$("#errors").append(error); 
+			$("#errors").append(error);
 		} else {
 			$("#entryform").submit();
 		}

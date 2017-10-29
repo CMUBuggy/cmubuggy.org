@@ -1,5 +1,5 @@
 	<!--CSS-->
-	<link rel="stylesheet" type="text/css" href="/css/yui3.3-reset-fronts-grids.css" />	
+	<link rel="stylesheet" type="text/css" href="/css/yui3.3-reset-fronts-grids.css" />
 	<link rel="stylesheet" type="text/css" href="/css/cmubuggy.css" />
 	<link rel="stylesheet" type="text/css" href="/css/superfish-menu.css" />
 	<link  href="http://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" >
@@ -17,17 +17,17 @@
 	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			//superfish drop down menus		
+			//superfish drop down menus
 			jQuery(function(){
 				jQuery('ul.sf-menu').superfish();
 			});
-			
+
 			//jquerytools overlays
 			$("img[rel]").overlay({onClose: function(){}});
 
 			//jquerytools tabs
 			$(".tabs").tabs(".panes > div", {history:true});
-			
+
 			//jquerytools accordion
 			//$("#accordion").tabs("#accordion div.pane", {tabs: 'h2', effect: 'slide', initialIndex: null});
 		});

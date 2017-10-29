@@ -3,7 +3,7 @@
 	Ready for some details?  Here they come. (Details are subject to change until the game opens)
 	<h4>Timeline</h4>
 	<ul class="list">
-		<li>Fri Oct 21, 8:00am : Game open to entries</li>	
+		<li>Fri Oct 21, 8:00am : Game open to entries</li>
 		<li>Fri Nov 4, 11:59pm : All entries must be in</li>
 		<li>Sun Nov 6, 7:00-9:00am: Rolls and times are collected</li>
 		<li>Soon thereafter: Winner is announced</li>
@@ -55,6 +55,6 @@
 		<li>Delta Force and SN will be lumped together into a single org for the purpose of the game.  We're not sure either will roll.  Both have only one buggy, so no buggy selection is necessary.  If both orgs roll, the times from the faster org for each roll will be used for scoring. If neither org rolls, those picks will be dropped from everyone's entry.</li>
 		<li>The BAA judges may throw out a freeroll or backhills time that is more than 2 SD slower than the median freeroll / backhill if something funny happened or it seems like they were going intentionally slow for some reason.  If this is necessary, the segment will be scored as if it did not occur (i.e. worst remaining time + 1 second)</li>
 		<li>Women's freerolls are those that follow a female hill 2.  Women's backhills are those with 3 female pushers.  Any co-ed backhills entry will be scored as a Men's entry.</li>
-		<li>Prize will be paid by check or pre-paid debit card or something and doesn't actually have to be used for travel, but we do hope you'll come to carnival!</li>		
+		<li>Prize will be paid by check or pre-paid debit card or something and doesn't actually have to be used for travel, but we do hope you'll come to carnival!</li>
 		<li>Current BAA committee members may enter but may not win the prize.</li>
-	</ul>	
+	</ul>

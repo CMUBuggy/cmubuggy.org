@@ -2,12 +2,12 @@
 	function getSweepstakesByYear($year){
 		$sweepstakes = new sweepstakes();
 		$sweepstakesCommittee = $sweepstakes->GetList(array(array("year","=",$year)));
-		$committeeArr = array();				
+		$committeeArr = array();
 		foreach($sweepstakesCommittee as $sweepstakes){
 			$sweepstakesRole = $sweepstakes->GetSweepstakesrole();
 			$person = $sweepstakes->GetPerson();
 			$committeeArr[$sweepstakesRole->description] = $person;
-		}	
+		}
 		return $committeeArr;
 	}
 
@@ -16,7 +16,7 @@
 		$sweepstakesRole = new sweepstakesRole();
 		$sweepstakesRoleList = $sweepstakesRole->GetList(array(array("sweepstakesRoleId", ">", "0")));
 		$committeeArr = getSweepstakesByYear($year);
-		
+
 		echo("<div class=\"pane\">");
 		echo("<h3>Sweepstakes Committee ".$year."</h3>");
 		echo("<table class=\"data\">");
@@ -46,7 +46,7 @@
 					$personC = new person();
 					$personAC = new person();
 					$personSC = new person();
-					
+
 					if(isset($committeeArr["Sweepstakes Chairman"])){
 						$personC = $committeeArr["Sweepstakes Chairman"];
 					}
@@ -55,7 +55,7 @@
 					}
 					if(isset($committeeArr["Safety Chairman"])){
 						$personSC = $committeeArr["Safety Chairman"];
-					}				
+					}
 					echo("<tr><td><a href=\"/history/sweepstakes/".$year."\">".$year."</a></td>");
 					echo("<td><a href=\"/history/person/".$personC->personId."\">".$personC->firstName." ".$personC->lastName."</a></td>");
 					echo("<td><a href=\"/history/person/".$personAC->personId."\">".$personAC->firstName." ".$personAC->lastName."</a></td>");

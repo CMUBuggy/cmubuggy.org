@@ -20,7 +20,7 @@
 		</li>
 		<li><a href="/history/raceday">Races</a></li>
 		<li><a href="/history/record">Records</a></li>
-		<li><a href="/history/award">Awards</a></li>						
+		<li><a href="/history/award">Awards</a></li>
 		<li><a href="/history/buggy">Buggies</a></li>
 		<!--<li><a href="/history/person">People</a></li>-->
 		<li><a href="/history/buggybook">Buggy Books</a></li>

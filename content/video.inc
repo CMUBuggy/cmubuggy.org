@@ -7,14 +7,14 @@
 			$video = $videoList[0];
 		}
 	}
-	
+
 	if($video){
 		echo("<h3>".$video->title."</h3>");
 		$vidmode = "embed";
 		include("youtubevid.inc");
 	} else {
-		echo("No video found");		
+		echo("No video found");
 	}
-	
+
 	?>
 </div>

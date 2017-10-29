@@ -1,4 +1,4 @@
-<?php	
+<?php
 	if(!empty($_POST["submit"])){
 		$newdata = new newdata();
 		$newdata->timeSubmitted = time();
@@ -9,7 +9,7 @@
 		$newdata->email = $_POST["email"];
 		$newdata->source = $_POST["source"];
 		$newdata->Save();
-		
+
 		$to = "data@cmubuggy.org";
 		$subject = "Data Contribution: ".$_POST["title"];
 		$message = "Submitter: ".$_POST["name"];
@@ -24,12 +24,12 @@
 
 <div class="box whitebox">
 	Please use one of the forms below to submit addition or corrections to the data we've got.  It's just fine to submit multiple related pieces of information at once (e.g. the build dates of all your org's buggies).  If you have a large quantity of data, or if you find it easier, you can also e-mail information to <a href="mailto:data@cmubuggy.org">data@cmubuggy.org</a>
-</div>	
+</div>
 <div class="box">
 	In an effort to make it faster for us to import new data, we have added a couple of standardized forms for specific types of data:
 	<ul>
-		<li><b><a href="https://spreadsheets.google.com/viewform?hl=en&formkey=cHJrT3JoWXZvNDRlVFJTSjlCZWE4ZXc6MA..">Raceday Data</a></b> - pushers, drivers, buggies and their times and places</li>	
-		<li><b><a href="https://spreadsheets.google.com/viewform?hl=en&formkey=cHJrT3JoWXZvNDRlOElXNjRoVllOT2c6MA..">Organization Data</a></b> - mechanics, chairmen, sweepstakes and other non-pushing, non-driving participants</li>	
+		<li><b><a href="https://spreadsheets.google.com/viewform?hl=en&formkey=cHJrT3JoWXZvNDRlVFJTSjlCZWE4ZXc6MA..">Raceday Data</a></b> - pushers, drivers, buggies and their times and places</li>
+		<li><b><a href="https://spreadsheets.google.com/viewform?hl=en&formkey=cHJrT3JoWXZvNDRlOElXNjRoVllOT2c6MA..">Organization Data</a></b> - mechanics, chairmen, sweepstakes and other non-pushing, non-driving participants</li>
 		<li><b><a href="https://spreadsheets.google.com/viewform?hl=en&formkey=cHJrT3JoWXZvNDRkLTZHc1RTcGE0TkE6MA..">Buggy Data</a></b> - buggies and their years, pictures, awards</li>
 		<li>For contributions that don't fit cleanly in those forms, submit what you have right here:</li>
 	</ul>
@@ -64,7 +64,7 @@
 		<tr>
 			<td></td>
 			<td><input type="submit" name="submit" value="Submit"></td>
-		</tr>			
+		</tr>
 	</table>
 	</form>
 </div>
