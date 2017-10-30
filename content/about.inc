@@ -123,18 +123,18 @@
 		<br />
 		Some areas are always in need of help:
 		<ul class="list">
-			<li><a href="http://github.com/swiftsam/cmubuggy.org"><b>Web Development</b></a> - Document bugs, contribute code, invent entirely new functions.  You can do all the above through our github site.  It's also very helpful if you report any problems you find with the site through the github issues section.</li>
+			<li><a href="https://github.com/swiftsam/cmubuggy.org"><b>Web Development</b></a> - Document bugs, contribute code, invent entirely new functions.  You can do all the above through our github site.  It's also very helpful if you report any problems you find with the site through the github issues section.</li>
 			<li><a href="/news"><b>News</b></a> - We try to be the best source for all buggy news.  This means writing a "Rolls Report" each weekend of rolls as well as covering anything else that happens.  Want to write about buggy?  We'd be happy to have you on the News team.</li>
 			<li><a href="/gallery"><b>Pictures</b></a> - Current pictures of freerolls and raceday keep the site current, and old pictures give the site historical depth.  We want both.  Scanning and uploading are time consuming but very much appreciated.</li>
 			<li><a href="/reference"><b>Reference</b></a> - the reference wiki could cover 10 times as many topics as it does currently.  Find a gap in the knowledge and fill it.  New teams and new fans will thank you.
-			<li><a href="http://reddit.com/r/cmubuggy"><b>Project Zone</b></a> - Check out our "Project Zone" to suggest a new project, vote on, or discuss existing ideas.  This section of the site makes use of the popular site reddit.  Let us know what you think.
+			<li><a href="https://reddit.com/r/cmubuggy"><b>Project Zone</b></a> - Check out our "Project Zone" to suggest a new project, vote on, or discuss existing ideas.  This section of the site makes use of the popular site reddit.  Let us know what you think.
 		</ul>
 	</div>
 	<div class="pane">
 		cmubuggy.org was first launched in October of 2008.  The majority of the original code and design were by Sam Swift (samswift@cmubuggy.org).
 		Adam McCue and Scott Ziolko helped considerably with data structure and population of the history section.  Refinements were made in an un-managed and as-needed basis for 2+ years.<br />
 		<br />
-		<a href="http://github.com/swiftsam/cmubuggy.org"><img style="float:left; margin:0 10px 0 0" alt="github" class="default" height="45" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6.png"></a>
+		<a href="https://github.com/swiftsam/cmubuggy.org"><img style="float:left; margin:0 10px 0 0" alt="github" class="default" height="45" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6.png"></a>
 		The first major overhaul of the site was "completed" just in time for raceday 2011.  This version of the site was committed to a github repository in the summer of 2011 to allow greater community involvement in coding the site.  Please, if you're reading this, do not hesitate to get involved.<br />
 		The github issue tracker is also the best place to point out bugs and suggest improvements or new features.<br />
 		<br />
