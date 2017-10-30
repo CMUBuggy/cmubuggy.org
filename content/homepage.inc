@@ -54,7 +54,7 @@
             <div class="item"><a href="/seniors"><div class="icon" style="background-image:url('/img/icon_grad-cap.png')"></div></a><a href="/seniors">Seniors!</a> Become a 2018 member now for free.</div>
             <div class="item">
                 <a href="/gallery/2016-2018">
-                    <div class="icon galleryicon" style="background-image:url('http://cmubuggy.org/gallery/var/resizes/2016-2017/Raceday---Finals/IMG_9891.JPG')"></div>
+                    <div class="icon galleryicon" style="background-image:url('//cmubuggy.org/gallery/var/resizes/2016-2017/Raceday---Finals/IMG_9891.JPG')"></div>
                 </a>
                 Share your favorite pics from
                 <a href="/gallery/2016-2017/Raceday---Design-Showcase">Design</a>,

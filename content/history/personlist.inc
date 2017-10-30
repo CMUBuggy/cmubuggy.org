@@ -71,7 +71,7 @@
         return (sMarkup);
     };
 	function fnCallback(e, args) {
-	    window.location='http://cmubuggy.org/history/person/'+args[2][2];
+	    window.location='/history/person/'+args[2][2];
 	 }
 	 personAC.itemSelectEvent.subscribe(fnCallback);
 	 personAC2.itemSelectEvent.subscribe(fnCallback);

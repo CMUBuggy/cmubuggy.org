@@ -58,7 +58,7 @@
 		</ul>
 		<h4>Raceday video archive</h4>
 		In 2011, the BAA unveiled an archive of buggy videos with an initial collection of over 200 videos from the 1950's up to complete coverage of 2003-2010 racedays.  Previously the fine coverage produced by cmuTV was unavailable online.  This project was costless, but many hours went into transcoding, sorting, and uploading videos to youtube.
-		<a href="/gallery/2009-2010/prelims/finishline" ><img style="float:right" src="http://cmubuggy.org/gallery/var/thumbs/2009-2010/prelims/finishline/Result%202-w2-SDCB-SpiritB-CIAB.jpg?m=1302290137" alt="Timing system" ></a>
+		<a href="/gallery/2009-2010/prelims/finishline" ><img style="float:right" src="/gallery/var/thumbs/2009-2010/prelims/finishline/Result%202-w2-SDCB-SpiritB-CIAB.jpg?m=1302290137" alt="Timing system" ></a>
 		<h4>Raceday timing system upgrades</h4>
 		In 2009, the company that had been hired to run buggy timing for years showed up short-staffed so BAA members filled in in critical roles.  What we saw gave us enough information to confirm that buggy was due for an upgrade in the sophistication of its timing system.  We worked with sweepstakes in the 2009-2010 season and made it happen.<br />
 		<br />
@@ -68,11 +68,11 @@
 		<br />
 		More info on the timing system project as it developed here in the news section:<br />
 		<ul class="list">
-			<li><a href="http://cmubuggy.org/news/2010/02/raceday-timing-system-upgrade/" >Raceday timing system upgrade (Feb 18, 2010)</a></li>
-			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-in-hand-and-working/" >Timing System in hand and working (March 17, 2010)</a></li>
-			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-test-at-rolls-a-success/" >Timing System test at rolls a success (March 27, 2010)</a></li>
+			<li><a href="/news/2010/02/raceday-timing-system-upgrade/" >Raceday timing system upgrade (Feb 18, 2010)</a></li>
+			<li><a href="/news/2010/03/timing-system-in-hand-and-working/" >Timing System in hand and working (March 17, 2010)</a></li>
+			<li><a href="/news/2010/03/timing-system-test-at-rolls-a-success/" >Timing System test at rolls a success (March 27, 2010)</a></li>
 		</ul>
-		<a href="http://cmubuggy.org/gallery/2008-2009/Finals/atmosphere/DSC_0255" ><img style="float:right" src="http://cmubuggy.org/gallery/var/thumbs/2008-2009/Finals/atmosphere/DSC_0255.JPG?m=1302290126" alt="Timing system" ></a>
+		<a href="/gallery/2008-2009/Finals/atmosphere/DSC_0255" ><img style="float:right" src="/gallery/var/thumbs/2008-2009/Finals/atmosphere/DSC_0255.JPG?m=1302290126" alt="Timing system" ></a>
 		<h4>Jumbotrons</h4>
 		One of the original pie-in-the-sky project ideas for the BAA was to get a jumbotron for raceday.  The geography of the course makes it tough to follow everything that's going on and besides it would just be awesome.<br />
 		<br />
@@ -80,9 +80,9 @@
 		<br />
 		More info on the jumbotron and lead truck auction projects:<br />
 		<ul class="list">
-			<li><a href="http://cmubuggy.org/news/2010/03/lead-truck-auction-2010-2-jumbotrons/" >Lead Truck Auction 2010 -> 2 Jumbotrons! (Mar 26, 2010)</a></li>
-			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-in-hand-and-working/" >Timing System in hand and working (March 17, 2010)</a></li>
-			<li><a href="http://cmubuggy.org/news/2010/03/timing-system-test-at-rolls-a-success/" >Timing System test at rolls a success (March 27, 2010)</a></li>
+			<li><a href="/news/2010/03/lead-truck-auction-2010-2-jumbotrons/" >Lead Truck Auction 2010 -> 2 Jumbotrons! (Mar 26, 2010)</a></li>
+			<li><a href="/news/2010/03/timing-system-in-hand-and-working/" >Timing System in hand and working (March 17, 2010)</a></li>
+			<li><a href="/news/2010/03/timing-system-test-at-rolls-a-success/" >Timing System test at rolls a success (March 27, 2010)</a></li>
 		</ul>
 
 	</div>

@@ -1,9 +1,9 @@
 <div class="pane">
-		<img style="float:right; margin:15px;" class="aligncenter" title="Lead Truck" src="http://cmubuggy.org/img/news/baaleadtruck.JPG" alt="Lead Truck" width="224" height="149" />
+		<img style="float:right; margin:15px;" class="aligncenter" title="Lead Truck" src="/img/news/baaleadtruck.JPG" alt="Lead Truck" width="224" height="149" />
 		<h2>See the WHOLE race this year!</h2>
 		We'll be having our 6th annual auction for rides in the official sweepstakes lead truck for each heat of the prelim and final races. Auction winners will ride in the bed of the pickup truck with the head judge, sweepstakes chairman, and other race officials to get the absolute best seat in the house.<br />
 		<br />
-		The auction is the Buggy Alumni Association's largest source of fund-raising each year, allowing us to pursue our <a style="font-weight:bold;" href="http://cmubuggy.org/about/">mission to support buggy.</a>  These auctions have allowed us to upgrade the timing technology and help rent jumbotrons for raceday in past years.  We'll continue to invest to support sweepstakes and make buggy better and better.</a>
+		The auction is the Buggy Alumni Association's largest source of fund-raising each year, allowing us to pursue our <a style="font-weight:bold;" href="/about/">mission to support buggy.</a>  These auctions have allowed us to upgrade the timing technology and help rent jumbotrons for raceday in past years.  We'll continue to invest to support sweepstakes and make buggy better and better.</a>
 		<br />
 		<br />
 		<div style="text-align:center; margin:15px;">
@@ -30,7 +30,7 @@
 		<br />
 		Please send any suggestions, questions, and requests for clarification to admin@cmubuggy.org and we'll post resolutions to the <a href="/news/2014/04/auction-is-live-at-9am/">news section</a>
 		<br />
-		We are, of course extremely thankful to sweepstakes for giving us the opportunity to use a spot in the lead truck to create this opportunity and to raise some money so that the Buggy Alumni Association can pursue <b><a href="http://cmubuggy.org/about/">its mission to support buggy</a></b>.<br />
+		We are, of course extremely thankful to sweepstakes for giving us the opportunity to use a spot in the lead truck to create this opportunity and to raise some money so that the Buggy Alumni Association can pursue <b><a href="/about/">its mission to support buggy</a></b>.<br />
 		<br />
 		<b>Fine print details</b>
 		<ul class="list">
