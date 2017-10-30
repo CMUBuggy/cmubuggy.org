@@ -2,8 +2,8 @@
 	<link rel="stylesheet" type="text/css" href="/css/yui3.3-reset-fronts-grids.css" />
 	<link rel="stylesheet" type="text/css" href="/css/cmubuggy.css" />
 	<link rel="stylesheet" type="text/css" href="/css/superfish-menu.css" />
-	<link  href="http://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" >
-	<link  href="http://fonts.googleapis.com/css?family=Permanent+Marker:regular" rel="stylesheet" type="text/css" >
+	<link  href="https://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" >
+	<link  href="https://fonts.googleapis.com/css?family=Permanent+Marker:regular" rel="stylesheet" type="text/css" >
 
 
 	<!--JS-->
@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="/js/jquery.editinplace.js" ></script>
 	<script type="text/javascript" src="/js/superfish-menu.js" ></script>
 	<script type="text/javascript" src="/js/googleanalytics.js"></script>
-	<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+	<script type="text/javascript" src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {

@@ -7,4 +7,4 @@
 	    <input type="submit" name="sa" value="Search" class="button" />
 	</form>
 </div>
-<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+<script type="text/javascript" src="https://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
