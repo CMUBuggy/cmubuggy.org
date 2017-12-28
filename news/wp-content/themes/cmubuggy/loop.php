@@ -50,7 +50,7 @@
 			<div class="sociallinks">
 				<table>
 					<tr>
-						<td><?php echo do_shortcode('[fb_count]'); ?></td>
+						<td><?php echo do_shortcode('[PressGraphLike]'); ?></td>
 					</tr>								
 				</table>
 			</div>		
