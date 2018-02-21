@@ -4,19 +4,17 @@ include_once("../util.inc");
 // initialization code
 if( !defined('MEDIAWIKI') )
         die("This Skin file is not a valid Entry Point.");
-require_once('includes/SkinTemplate.php');
  
 // inherit main code from SkinTemplate, set the CSS and template filter
 class SkinCmuBuggy extends SkinTemplate {
-        function initPage(&$out) {
-                SkinTemplate::initPage($out);
-                $this->skinname  = 'cmubuggy';
-                $this->stylename = 'cmubuggy';
-                $this->template  = 'CmuBuggyTemplate';
+	var $skinname = 'cmubuggy', $stylename = 'cmubuggy', $template = 'CmuBuggyTemplate';
+
+        function initPage( OutputPage $out ) {
+                parent::initPage($out);
         }
 }
  
-class CmuBuggyTemplate extends QuickTemplate {
+class CmuBuggyTemplate extends BaseTemplate {
         //Other code sections will be appended to this class body
         /* hijack category functions to create a proper list */
  
@@ -91,7 +89,6 @@ class CmuBuggyTemplate extends QuickTemplate {
 						<title><?php $this->text('pagetitle') ?> | CMU Buggy Alumni Association</title>
 						<?php include_once(ROOT_DIR."/content/cssjs.inc"); ?>
 						<link rel="stylesheet" type="text/css" href="/css/cmubuggy-mediawiki.css" />
-	               <?php print Skin::makeGlobalVariablesScript($this->data); ?>
 	               <?php /*** various MediaWiki-related scripts and styles ***/ ?>
 	               <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
 						<?php       if($this->data['jsvarurl']) { ?>
@@ -205,4 +202,4 @@ class CmuBuggyTemplate extends QuickTemplate {
 					wfRestoreWarnings();
 		} // end of execute() method
 } // end of class
-?>         
+?>

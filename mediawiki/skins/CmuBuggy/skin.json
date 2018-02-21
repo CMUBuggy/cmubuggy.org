@@ -1,0 +1,10 @@
+{
+  "name": "CMU Buggy",
+  "type": "skin",
+  "ValidSkinNames": {
+    "cmubuggy": "CmuBuggy"
+  },
+  "AutoloadClasses": {
+    "SkinCmuBuggy": "CmuBuggy.skin.php"
+  }
+}
