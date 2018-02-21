@@ -25,14 +25,14 @@
 			$dq = $team->GetDq();
 			$url = "/history/team/".$entry->urlkey;
 
-			
+
 			echo("<tr><td>".$count.".</td>");
 			echo("<td><a href=\"/history/raceday/".$year."\">".$year."</a><sub>".$racedaynum."</sub></td>");
 			echo("<td><a href=\"".$url."\">".$org->shortname."</a></td>");
 			echo("<td><a href=\"/history/buggy/".$buggy->urlKey."\">".$buggy->name."</a></td>");
 			echo("<td>".displayTime($team->time)."</td>");
 			echo("<td>".$dq->description." ".$team->notes."</td></tr>");
-			
+
 			$count++;
 		}
 		echo("</table>");

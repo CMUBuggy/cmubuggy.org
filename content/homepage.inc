@@ -1,5 +1,5 @@
 <div id="homepage">
-     <?php include_once("contentfeed.inc");   ?>     
+     <?php include_once("contentfeed.inc");   ?>
         <div  class="yui3-g"  style="width:500px;">
         <div class="yui3-u-3-5">
             <table class="datacompact" style="margin-top:0px;">
@@ -54,7 +54,7 @@
             <div class="item"><a href="/seniors"><div class="icon" style="background-image:url('/img/icon_grad-cap.png')"></div></a><a href="/seniors">Seniors!</a> Become a 2018 member now for free.</div>
             <div class="item">
                 <a href="/gallery/2016-2018">
-                    <div class="icon galleryicon" style="background-image:url('http://cmubuggy.org/gallery/var/resizes/2016-2017/Raceday---Finals/IMG_9891.JPG')"></div>
+                    <div class="icon galleryicon" style="background-image:url('//cmubuggy.org/gallery/var/resizes/2016-2017/Raceday---Finals/IMG_9891.JPG')"></div>
                 </a>
                 Share your favorite pics from
                 <a href="/gallery/2016-2017/Raceday---Design-Showcase">Design</a>,
@@ -68,7 +68,7 @@
     <?php include_once("twitterwidget.inc"); ?>
     <div class="pane clearleft" style="margin-right:270px;">
         <h3 style="margin:0">Buggy Alumni Association?</h3>
-        We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know.  Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind. Find out more in <a href="/about">About Us section ...</a> 
+        We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know.  Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind. Find out more in <a href="/about">About Us section ...</a>
     </div>
     <div class="pane" style="margin-right:270px;">
         <h3 style="margin:0">Buggy?</h3>

@@ -1,5 +1,5 @@
 buggyReserveRow=["<span  class='bubbleWbackgroundYellowNoPadding' style='padding-right:5px;padding-left:5px'>",
-		  "<img src='http://cdn1.iconfinder.com/data/icons/softwaredemo/PNG/16x16/DrawingPin1_Blue.png'>",
+		  "<img src='https://cdn1.iconfinder.com/data/icons/softwaredemo/PNG/16x16/DrawingPin1_Blue.png'>",
 		  "${0}",
 		 "</span>"].join("");
 buggyBlock=["<div id=\'bidBlock{0}\' class='bidBlock' style='position:relative;px;margin-left:auto;margin-right:auto;margin-left:50px;width:625px;display:block;border-width:5px;border-style:solid'>",

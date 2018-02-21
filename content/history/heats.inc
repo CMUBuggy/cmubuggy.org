@@ -1,11 +1,11 @@
-<?php 
+<?php
 	$raceyear = new raceyear();
 	if(isset($_GET["year"])){
 		$raceyear = $raceyear->Get($_GET["year"]);
 	}
 
 	$racedaylist = $raceyear->GetRacedayList();
-	
+
 	$prelims = null;
 	$finals = null;
 
@@ -22,7 +22,7 @@
 			switch($heat->raceclassId) {
 				case 1:
 					if($heat->isreroll==1){
-						$heatArr["MRR"][]=$heat;	
+						$heatArr["MRR"][]=$heat;
 					}else {
 						$heatArr["M"][]=$heat;
 					}
@@ -36,7 +36,7 @@
 					break;
 				case 3:
 					$heatArr["E"][]=$heat;
-					break;				
+					break;
 			}
 		}
 		if($raceday->isFinals){
@@ -45,7 +45,7 @@
 			$prelims = $heatArr;
 		}
 	}
-	
+
 	function heattr($heat){
 		echo("<tr>");
 		$teamlist = $heat->GetTeamList();
@@ -55,7 +55,7 @@
 			echo("<td><a href=\"/history/team/".$entry->urlkey."\">".$org->shortname."</a></td>");
 		}
 		echo("</tr>");
-	}	
+	}
 ?>
 
 <ul class="tabs">

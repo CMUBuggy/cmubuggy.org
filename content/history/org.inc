@@ -20,7 +20,7 @@ if($org->shortname <> $org->longname || $org->isgreek==1){
 $yearfounded = "";
 if($org->yearfounded > 0){
 	$yearfounded = $org->yearfounded;
-} 
+}
 
 $orgAwardList = $org->GetOrgawardList(null,"year");
 $buggyList = $org->GetBuggyList(null,"yearBuilt",false);
@@ -39,7 +39,7 @@ foreach($entryList as $entry){
 	$teamlist 	= $entry->GetTeamList();
 	$entrytype 	= $raceclass->raceclassId.$abcd;
 	$entryArr[$year][$entrytype] = $entry;
-	
+
 	//Check for org-record time
 	foreach($teamlist as $team){
 		//echo($team->time);
@@ -53,7 +53,7 @@ foreach($entryList as $entry){
 			}
 		}
 	}
-	
+
 	//save any Men's trophies won to the TrophyArr
 	if($raceclass->raceclassId == 1 && $place < 7 && $place >0){
 		$awardType = "1".$place;
@@ -77,13 +77,13 @@ foreach($buggyList as $buggy){
 	$buggyawards = $buggy->GetBuggyawardList(null,"awardtypeid");
 	foreach($buggyawards as $award){
 		addtrophy($award->year, "98".$award->GetAwardtype()->description);
-	} 	
+	}
 }
 
 function addtrophy($year, $awardType){
 	global $trophyArr;
 	if(array_key_exists($year, $trophyArr)){
-		array_push($trophyArr[$year],$awardType);	
+		array_push($trophyArr[$year],$awardType);
 	} else {
 		$trophyArr[$year]= array($awardType);
 	}
@@ -91,7 +91,7 @@ function addtrophy($year, $awardType){
 
 function displayraceyear($entries,$year) {
 	global $entrytypes;
-	echo("<tr><td style=\"width:30px\"><a href=\"/history/raceday/".$year."\">".$year."</a></td>");	
+	echo("<tr><td style=\"width:30px\"><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
 	foreach($entrytypes as $entrytype){
 		if(isset($entries[$entrytype])){
 			$entry = $entries[$entrytype];
@@ -109,11 +109,11 @@ function displayraceyear($entries,$year) {
 			}
 			if($dq){$outcome = $dq; }
 			if($time>0){$time = displayTime($time); } else {$time = "- -"; }
-				
+
 			echo("<td style=\"width:60px\"><a href=\"/history/team/".$entry->urlkey."\">".$time."</a></td><td style=\"width:15px\">".$outcome."</td>");
-			
+
 		} else {
-			echo("<td></td><td></td>");	
+			echo("<td></td><td></td>");
 		}
 	}
 }
@@ -164,14 +164,14 @@ function displaytrophyyear($trophies, $year){
 				break;
 			case "99T-Shirt Award":
 				echo("Best T-Shirt Award<br />");
-				break;	
+				break;
 			case "99Chairman's Choice":
 				echo("Chairman's Choice<br />");
 				break;
 			case "99Spirit of Buggy":
 				echo("Spirit of Buggy<br />");
 				break;
-				
+
 			default:
 				echo($trophy);
 		}
@@ -193,7 +193,7 @@ function displayrecord($entrytype) {
 
 function graphtrends($entrytypes, $firstyear, $lastyear) {
 	global $entryArr, $org;
-	$graphArr = array();	 
+	$graphArr = array();
 	$chartData = new pData();
 	$filename = "trend".$org->urlkey.$firstyear.$lastyear;
 	foreach($entrytypes as $et){
@@ -203,8 +203,8 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 		echo("<img src=\"/content/cache/graph/".$filename.".png\" alt=\"\">");
 	} else {
 		for($year=$firstyear;$year<=$lastyear;$year++){
-			$chartData->addPoints($year,"Year"); 
-			if(isset($entryArr[$year])){		
+			$chartData->addPoints($year,"Year");
+			if(isset($entryArr[$year])){
 				$entries = $entryArr[$year];
 				foreach($entrytypes as $entrytype){
 					if(isset($entries[$entrytype])){
@@ -214,7 +214,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 						foreach($teamlist as $team){
 							$teamtime = $team->time;
 							if($teamtime > 0 && ($teamtime < $time || $time == VOID)){
-								$time = $teamtime; 
+								$time = $teamtime;
 							}
 						}
 						$graphArr[$entrytype][$year] = $time;
@@ -225,31 +225,31 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 			} else {
 				foreach($entrytypes as $entrytype){
 					$graphArr[$entrytype][$year]= VOID;
-				}	
+				}
 			}
 		}
-	
+
 		foreach($entrytypes as $type){
 			//remove series for which there are no records in the time range.  the "VOID" points end up being counted as 1.something, so > 100 filters out non-real entries
 			if(array_sum($graphArr[$type])> 100){
 				$label = "";
 				switch($type) {
 					case "1A": $label = "Men's A"; break;
-					case "1B": $label = "Men's B"; break;	
-					case "1C": $label = "Men's C"; break;	
-					case "1D": $label = "Men's D"; break;	
+					case "1B": $label = "Men's B"; break;
+					case "1C": $label = "Men's C"; break;
+					case "1D": $label = "Men's D"; break;
 					case "2A": $label = "Women's A"; break;
 					case "2B": $label = "Women's B"; break;
 					case "2C": $label = "Women's C"; break;
 					case "2D": $label = "Women's D"; break;
-				}	
+				}
 				$chartData->addPoints($graphArr[$type],$label);
 				$chartData->setSerieWeight($label,1);
 			}
 		}
 		$chartTitle = $org->shortname." ".$firstyear."-".$lastyear;
 		$chartFilename = $org->urlkey."Mtrends";
-		
+
 		include("content/history/trendchart.inc");
 	}
 }
@@ -258,7 +258,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 
 <div class="pane">
 <h1><?php echo($longname . " " . $shortname); ?></h1>
-Founded: <?php echo($yearfounded); ?><br />	
+Founded: <?php echo($yearfounded); ?><br />
 
 </div>
 
@@ -323,7 +323,7 @@ Founded: <?php echo($yearfounded); ?><br />
 				<td><?php displayrecord("2A"); ?></td>
 				<td><?php displayrecord("2B"); ?></td>
 				<td><?php displayrecord("2C"); ?></td>
-				<td><?php displayrecord("2D"); ?></td>		
+				<td><?php displayrecord("2D"); ?></td>
 			</tr>
 		</table>
 	</div>
@@ -340,7 +340,7 @@ Founded: <?php echo($yearfounded); ?><br />
 			if($buggy->pictureId != 0) { $picIco = "<a href=\"/history/buggy/".$buggy->urlKey."\"><img height=\"16\" width=\"16\" src=\"/img/cameraIcon.gif\" /></a>"; }
 			echo("<tr><td><a href=\"./?p=buggies&year=".$year."\">".$year."</a></td><td>".$picIco."</td><td><a href=\"/history/buggy/".$buggy->urlKey."\">" . $buggy->name . "</a></td></tr>");
 		}
-		
+
 		?>
 		</table>
 	</div>

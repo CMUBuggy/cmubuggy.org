@@ -8,14 +8,14 @@
 	<meta name="keywords" content="" />
 	<meta name="copyright" content="2000, 2002, 2005, 2007 phpBB Group" />
 	{META}
-	
+
 	<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
 	<!-- INCLUDEPHP ../content/cssjs.inc -->
 	<link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
 	<link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
 	<link href="{T_THEME_PATH}/normal.css" rel="stylesheet" type="text/css" title="A" />
 	<!-- IF S_CONTENT_DIRECTION eq 'rtl' --><link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" /><!-- ENDIF -->
-	
+
 	<!-- IF S_ENABLE_FEEDS -->
 		<!-- IF S_ENABLE_FEEDS_OVERALL --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" /><!-- ENDIF -->
 		<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news" /><!-- ENDIF -->
@@ -25,7 +25,7 @@
 		<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{U_FEED}?f={S_FORUM_ID}" /><!-- ENDIF -->
 		<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
 	<!-- ENDIF -->
-	
+
 	<!--
 		phpBB style name: cmubuggy
 		Based on style:   we_universal & prosilver (this is the default phpBB3 style)
@@ -86,7 +86,7 @@
 
 	// ]]>
 	</script>
-	
+
 	<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>
 </head>
 <!-- PHP -->
@@ -105,7 +105,7 @@ $headline = "Forum";
 	</div>
 	<div id="container" class="phpbb">
 		<p id="breadcrumb" class="left-box">{L_JUMP_TO}: <a href="{U_INDEX}" title="{SITENAME}" accesskey="h">{L_INDEX}</a> <!-- BEGIN navlinks --> &raquo; <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></p>
-		
+
 		<ul class="topic-icons right-box">
 			<!-- <li><a href="#" onclick="fontsizeup(); return false;" onkeypress="return fontsizeup(event);" class="fontsize" title="{L_CHANGE_FONT_SIZE}">{L_CHANGE_FONT_SIZE}</a></li>-->
 			<!-- IF S_WATCH_FORUM_LINK --><li><a href="{S_WATCH_FORUM_LINK}" title="{S_WATCH_FORUM_TITLE}" <!-- IF S_WATCHING_FORUM -->class="unsubscribe"<!-- ELSE -->class="subscribe"<!-- ENDIF -->>{S_WATCH_FORUM_TITLE}</a></li><!-- ENDIF -->
@@ -117,9 +117,9 @@ $headline = "Forum";
 			<!-- IF U_PRINT_TOPIC --><li><a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}" accesskey="p" class="print">{L_PRINT_TOPIC}</a></li><!-- ENDIF -->
 			<!-- IF U_PRINT_PM --><li><a href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p" class="print">{L_PRINT_PM}</a></li><!-- ENDIF -->
 		</ul>
-		
+
 		<br class="clear" />
-		
+
 		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
 			<div id="information" class="rules">
 				<strong>{L_INFORMATION}:</strong> {L_BOARD_DISABLED}

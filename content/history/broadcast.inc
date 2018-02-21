@@ -7,9 +7,9 @@
 			$message = "Username or password is incorrect<br />";
 		}
 	}
-	
+
 	if($_SESSION['broadcaster']!=TRUE){
-	
+
 	?>
 <div class="box">
 	<div class="title">Login as a Broadcaster</div>
@@ -26,7 +26,7 @@
 <?php } ?>
 
 
-<?php 
+<?php
 
 if (time() <= strtotime('2010-04-16 14:00')) {
   $rdid = "20101";

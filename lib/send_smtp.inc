@@ -10,13 +10,13 @@
 
 		$from = "CMU Buggy Alumni Association <admin@cmubuggy.org>";
 		if(isset($mail["from"])){
-			$from = $mail["from"];	
+			$from = $mail["from"];
 		}
 
 		$to = $mail["to"];
 		$headers = array ('From' => $from, 'To' => $mail["to"], 'Subject' => $mail["subject"]);
 		$body = $mail["body"];
-        
+
       $smtp = Mail::factory('smtp',
           array ('host' => $host,
             'port' => $port,

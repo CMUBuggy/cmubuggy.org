@@ -21,25 +21,25 @@
 					$newsURL	= $freeroll->newsURL;
 					$galleryURL	= $freeroll->galleryURL;
 					$item_class 	= "status_pos";
-					
+
 					if($status == "Canceled") { $item_class="status_neg"; }
 					if($status == "No Rolls") { $item_class="status_disabled"; }
-					
+
 					if($newsURL != ""){ $newsURL = "<a style=\"float:right\" href=\"/news/".$newsURL."\"><img alt=\"News\" height=\"22px\" src=\"/img/icon_news.png\" /></a>"; }
 					if($galleryURL != ""){ $galleryURL = "<a style=\"float:right\" href=\"/gallery/".$galleryURL."\"><img alt=\"Gallery\" height=\"22px\" src=\"/img/icon_camera.gif\" /></a>"; }
 					$links = "<div style=\"float:right; height:22px;\">".$newsURL.$galleryURL."</div>";
-					
+
 					//Pick the current group if the date was less than 48 hours ago
 					if(strtotime($freeroll->date) > time()-60*60*48 && $display_group == NULL){
 						$display_group = $group_count;
 					}
-					
+
 					if($dayofweek == "Sat"){
 						if($group_open){
 							echo("</div>");
 							$group_open = FALSE;
 							$group_count++;
-						} 
+						}
 						echo("<div class=\"group\">");
 						$group_open = TRUE;
 					}
@@ -55,7 +55,7 @@
 					<?php echo($links); ?>	<br />
 					<?php echo($freeroll->status); ?> <br />
 					<span class="detail"><?php echo($freeroll->note); ?>	</span>
-				</div>	
+				</div>
 			<?php
 				if($dayofweek == "Sun" && $group_open == TRUE) {
 					echo("</div>");
@@ -66,20 +66,20 @@
 		?>
 		</div>
 	</div>
-	<div class="actions"> 
-		<a class="feedprev">&laquo; Past</a> 
-		<a class="feednext">Future &raquo;</a> 
-	</div> 
+	<div class="actions">
+		<a class="feedprev">&laquo; Past</a>
+		<a class="feednext">Future &raquo;</a>
+	</div>
 </div>
-<?php 
+<?php
 	$seekto = $group_count;
 	if(isset($display_group)){
 		$seekto = $display_group;
-	}  
+	}
 ?>
 <script type="text/javascript">
 
-$(document).ready(function() {		
+$(document).ready(function() {
 	$("#rollslist").scrollable({ vertical: true, speed:400, next:".feednext", prev:".feedprev" });
 	var rollslistAPI = $("#rollslist").data("scrollable");
 	rollslistAPI.seekTo(<?php echo($seekto); ?>,0);

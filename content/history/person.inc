@@ -6,7 +6,7 @@ $pttList = $person->GetPersontoteamList();
 ?>
 
 <div class="pane">
-	<?php 
+	<?php
 		echo("<h2>".$person->firstName. " " . $person->lastName."</h2>");
 		if(count($sweepstakesList)>0){
 			echo("<h4 style=\"margin-top:20px;\">Sweepstakes Positions</h4>");

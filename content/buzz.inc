@@ -4,4 +4,4 @@
 		<li><a href="/buzz" target="_blank">Buzz (live chat)</a></li>
 	</ul>
 </div>
-<iframe src="http://webchat.freenode.net?channels=cmubuggy&uio=Mj10cnVlJjQ9dHJ1ZSYxMT0yMDU80" width="647" height="600"></iframe>
+<iframe src="https://webchat.freenode.net?channels=cmubuggy&uio=Mj10cnVlJjQ9dHJ1ZSYxMT0yMDU80" width="647" height="600"></iframe>

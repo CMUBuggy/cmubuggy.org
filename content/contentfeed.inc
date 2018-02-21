@@ -6,8 +6,8 @@ $cutoff = time()-(60*60*24*10);
 $cutoffDate = date("Y-m-d",$cutoff);
 $cutoffWiki = date("Ymd",$cutoff)."000000";
 
-##NEWS ITEMS## 
-$newsSQL     	= "SELECT wp_posts.ID,wp_posts.post_date,wp_users.display_name,wp_posts.post_name,wp_posts.post_title,wp_posts.comment_count 
+##NEWS ITEMS##
+$newsSQL     	= "SELECT wp_posts.ID,wp_posts.post_date,wp_users.display_name,wp_posts.post_name,wp_posts.post_title,wp_posts.comment_count
 						FROM wp_posts
 						JOIN wp_users
 						ON wp_posts.post_author=wp_users.ID
@@ -18,7 +18,7 @@ $newsSQL     	= "SELECT wp_posts.ID,wp_posts.post_date,wp_users.display_name,wp_
 $newsResults 	= dbQuery("cmubuggy_wp",$newsSQL);
 
 $count = 1;
-if($newsResults){		
+if($newsResults){
 	while ($post = mysqli_fetch_row($newsResults)) {
 		//date format: YYYY-MM-DD HH:MM:SS
 		$timestamp = $post[1];
@@ -31,7 +31,7 @@ if($newsResults){
 	  	$timestamp = mktime($hour, $minute, $second, $month, $day, $year);
 		$href = "/news/".$post[3];
 		$content = "<a href=\"/news/".$post[3]."\">".$post[4]."</a>";
-	  	
+
 		$a = array(
 			"timestamp"=>$timestamp,
 			"content"=>"<a href=\"".$href."\"><div class=\"icon newsicon\"><img src=\"/img/icon_news.png\" /></div></a><a href=\"".$href."\">".$post[4]."</a>",
@@ -40,15 +40,15 @@ if($newsResults){
 		if($count < 3){
 			array_push($newsitems,$a);
 		} else {
-			array_push($items,$a);	
-		}		
+			array_push($items,$a);
+		}
 		$count++;
 	}
 }
 
 $galleryParents = array();
 
-##GALLERY ITEMS##		  
+##GALLERY ITEMS##
 $gallerySQL 	= "SELECT items.id, items.created, users.name, items.name, items.relative_url_cache, items.parent_id, items.relative_path_cache
 						FROM items
 						JOIN users
@@ -69,12 +69,12 @@ if($galleryResults){
 			$galleryClusterItems[$clusterKey]["count"]++;
 			if(!array_key_exists($parent_id, $galleryParents)){
 				$parentSQL = "SELECT album.title, album.relative_url_cache, cover.relative_path_cache
-									FROM items album 
+									FROM items album
 									JOIN items cover
 									ON album.album_cover_item_id = cover.id
 									WHERE album.id =".$parent_id;
 				$parentResults = dbQuery("cmubuggy_g3",$parentSQL);
-				while ($parent = mysqli_fetch_row($parentResults)) { 
+				while ($parent = mysqli_fetch_row($parentResults)) {
 					$galleryParents[$parent_id]= array("title"=>$parent[0], "relative_url_cache"=>$parent[1], "thumburl"=>"/gallery/var/thumbs/".$parent[2]);
 				}
 			}
@@ -83,7 +83,7 @@ if($galleryResults){
 		} else {
 			$href = "/gallery/".$post[4];
 			$galleryClusterItems[$clusterKey] = array(
-																"timestamp"=>$post[1],															
+																"timestamp"=>$post[1],
 																"count"=>1,
 																"content" =>"<a href=\"".$href."\"><div class=\"icon galleryicon\" style=\"background-image:url('/gallery/var/thumbs/".$post[6]."')\"></div></a>".$post[2]." uploaded<br /><a href=\"".$href."\">".$post[3]."</a>",
 																"type"=>"gallery"
@@ -108,7 +108,7 @@ $forumResults 	= dbQuery("cmubuggy_phpBB",$forumSQL);
 
 $forumClusterItems = array();
 
-if($forumResults){	
+if($forumResults){
 	while ($post = mysqli_fetch_row($forumResults)) {
 		$clusterKey = $post[4].date("md",$post[1]);
 		$threadtitle = $post[3];
@@ -157,7 +157,7 @@ if($gcommentResults){
 		$commenttext = $post[5];
 		$username = $post[2];
 		if($username == "guest" && !is_null($post[7])){
-			$username = $post[7];	
+			$username = $post[7];
 		}
 		$href = "/gallery/".$post[6]."#comments";
 		$thumburl = "/gallery/var/thumbs/".$post[3];
@@ -167,7 +167,7 @@ if($gcommentResults){
 			$gcommentClusterItems[$clusterKey]["content"] = "<a href=\"".$href."\"><div class=\"icon galleryicon\" style=\"background-image:url('".$thumburl."')\"><img src=\"/img/icon_comment.png\" /></div></a>".$gcommentClusterItems[$clusterKey]["count"]." new comments on <br /><a href=\"".$href."\">".$post[5]."</a>";
 		} else {
 			$gcommentClusterItems[$clusterKey] = array(
-																"timestamp"=>$post[1],															
+																"timestamp"=>$post[1],
 																"count"=>1,
 																"content" => "<a href=\"".$href."\"><div class=\"icon galleryicon\" style=\"background-image:url('".$thumburl."')\"><img src=\"/img/icon_comment.png\" /></div></a>".$username." commented on <br /><a href=\"".$href."\">".$commenttext."</a>",
 																"type"=>"gcomment"
@@ -202,8 +202,8 @@ if($ncommentResults){
 	   $minute = substr($timestamp, 14, 2);
 	   $second = substr($timestamp, 17, 2);
 	  	$timestamp = mktime($hour, $minute, $second, $month, $day, $year);
-	  	
-		$parent_id = $post[4];	
+
+		$parent_id = $post[4];
 		$clusterKey = $parent_id.$month.$day;
 		$commenttext = $post[3];
 		if(strlen($commenttext)>29){$commenttext = substr($commenttext, 0, 26)."...";}
@@ -217,7 +217,7 @@ if($ncommentResults){
 			$ncommentClusterItems[$clusterKey]["content"] = "<a href=\"".$href."\"><div class=\"icon newscommenticon\"><img class=\"commenticon\" src=\"/img/icon_comment.png\" /><img src=\"/img/icon_news.png\" /></div></a>".$ncommentClusterItems[$clusterKey]["count"]." new comments on <br /><a href=\"".$href."\">".$title."</a>";
 		} else {
 			$ncommentClusterItems[$clusterKey] = array(
-																"timestamp"=>$timestamp,															
+																"timestamp"=>$timestamp,
 																"count"=>1,
 																"content" => "<a href=\"".$href."\"><div class=\"icon newscommenticon\"><img class=\"commenticon\" src=\"/img/icon_comment.png\" /><img src=\"/img/icon_news.png\" /></div></a>".$commenter." commented on<br /><a href=\"".$href."\">".$title."</a>",
 																"type"=>"ncomment"
@@ -229,7 +229,7 @@ if($ncommentResults){
 	}
 }
 
-##REFERENCE ITEMS##				
+##REFERENCE ITEMS##
 $referenceSQL 	= "SELECT revision.rev_id,revision.rev_timestamp,user.user_name, page.page_title, revision.rev_page
 						FROM revision
 						JOIN user
@@ -237,7 +237,7 @@ $referenceSQL 	= "SELECT revision.rev_id,revision.rev_timestamp,user.user_name, 
 						JOIN page
 						ON revision.rev_page=page.page_id
 						WHERE rev_minor_edit=0
-						AND page.page_namespace=0						
+						AND page.page_namespace=0
 						ORDER BY rev_timestamp DESC";
 						//AND revision.rev_timestamp>$cutoffWiki
 $referenceResults = dbQuery("cmubuggy_wiki",$referenceSQL);
@@ -246,7 +246,7 @@ $referenceClusterItems = array();
 
 if($referenceResults){
 	while ($post = mysqli_fetch_row($referenceResults)) {
-	
+
 		$timestamp = $post[1];
 		$year = substr($timestamp, 0, 4);
 	   $month = substr($timestamp, 4, 2);
@@ -254,10 +254,10 @@ if($referenceResults){
 	   $hour = substr($timestamp, 8, 2);
 	   $minute = substr($timestamp, 10, 2);
 	   $second = substr($timestamp, 12, 2);
-	
+
 	  	$timestamp = mktime($hour, $minute, $second, $month, $day, $year)+$UTCdiff;
-		
-		$href = "/reference/".$post[3];		
+
+		$href = "/reference/".$post[3];
 		$clusterKey = $post[4].$year.$month.$day;
 		if(array_key_exists($clusterKey, $referenceClusterItems)){
 			$referenceClusterItems[$clusterKey]["count"]++;
@@ -340,13 +340,13 @@ foreach($commentList as $comment){
 	$created = $cData->created - 6*60*60;  #TODO: Generalize this so that it doesn't screw up when daylight savings starts
 	$line1 = $author." commented on";
 	$line2 = "<a target=\"_blank\" href=\"".$href."\">".$title."... <img src=\"/img/icon-new-window.gif\"></a>";
-	
+
 	if(array_key_exists($clusterKey, $rcommentClusterItems)){
 		$rcommentClusterItems[$clusterKey]["count"]++;
 		$rcommentClusterItems[$clusterKey]["content"] = "<a href=\"".$href."\"><div class=\"icon redditicon\"><img class=\"commenticon\" src=\"/img/icon_comment.png\" />Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$rcommentClusterItems[$clusterKey]["count"]." new comments on <br /><a href=\"".$href."\">".$title."</a>";
 	} else {
 		$rcommentClusterItems[$clusterKey] = array(
-															"timestamp"=>$created,															
+															"timestamp"=>$created,
 															"count"=>1,
 															"content" =>"<a target=\"_blank\" href=\"".$href."\"><div class=\"icon redditicon\"><img class=\"commenticon\" src=\"/img/icon_comment.png\" />Projects<img src=\"/img/icon_reddit.png\" /></div></a>".$line1." ".$line2,
 															"type"=>"rcomment"
@@ -357,12 +357,12 @@ foreach($rcommentClusterItems as $a){
 	array_push($items,$a);
 }
 
-*/		
+*/
 ?>
 <div id="contentfeed">
 	<h3>Recent News</h3>
 	<div id="recentnews">
-		<?php 
+		<?php
 		foreach($newsitems as $item){
 			if($item['type']=="news"){$typeclass = "newsitem"; }
 			echo("<div class=\"item ".$typeclass."\">".$item['content']."<div class=\"detail\">".timeago($item['timestamp'])."</div></div>");
@@ -384,23 +384,23 @@ foreach($rcommentClusterItems as $a){
 						$itemcount++;
 					} else {
 						$itemcount = 0;
-						echo("</div><div>");	
+						echo("</div><div>");
 					}
 				}
 				echo("</div>");
-				
+
 				?>
 		</div>
 	</div>
-	<div class="actions"> 
-		<a class="feedprev">&laquo; Back</a> 
-		<a class="feednext">More &raquo;</a> 
-	</div> 
+	<div class="actions">
+		<a class="feedprev">&laquo; Back</a>
+		<a class="feednext">More &raquo;</a>
+	</div>
 </div>
 
 
 <script type="text/javascript">
-$(function() {		
-	$("#recentactivity").scrollable({ vertical: true, speed:700, next:".feednext", prev:".feedprev" });	
+$(function() {
+	$("#recentactivity").scrollable({ vertical: true, speed:700, next:".feednext", prev:".feedprev" });
 });
 </script>

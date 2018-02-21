@@ -34,7 +34,7 @@
 		<tr>
 			<td></td>
 			<td><input type="button" name="submit" value="Submit" onclick="addComment();"> <input type="button" name="Cancel" value="Cancel" onclick="$('#commentform').slideUp();"></td>
-		</tr>			
+		</tr>
 	</table>
 	</form>
 </div>

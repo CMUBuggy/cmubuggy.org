@@ -1,7 +1,7 @@
 <?php
 	$comment = new Comment();
 	if(isset($commentparent)){
-		$commentList = $commentparent->GetCommentList(); 
+		$commentList = $commentparent->GetCommentList();
 	}else{
 		$commentList = $comment->GetList(array(array("commentId", ">", "0")),"timeSubmitted",false);
 	}
@@ -16,6 +16,6 @@
 	} else {
 		echo("<i>Nobody has commented on this piece of buggy history yet.</i>");
 	}
-?>	
+?>
 </div>
 

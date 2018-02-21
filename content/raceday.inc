@@ -13,5 +13,5 @@
 	if(isset($_GET['p'])){
 		$page = $_GET['p'];
 	}
-	include_once("content/raceday/".$page.".inc");	
+	include_once("content/raceday/".$page.".inc");
 ?>

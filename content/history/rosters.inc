@@ -4,9 +4,9 @@
 	$team = new team();
 	$teamListM = $team->GetList(array(array("racedayId", "=", $racedayId),array("raceclassId", "=", "1")),"orgId");
 	$teamListW = $team->GetList(array(array("racedayId", "=", $racedayId),array("raceclassId", "=", "2")),"orgId");
-	
+
 	function displayTeam($team){
-		if($team != null){ 
+		if($team != null){
 			$buggy = $team->GetBuggy();
 			$org = $team->GetOrg();
 			echo("<tr>");
@@ -14,7 +14,7 @@
 			if($buggy->name != null){
 				echo("<td><a href=\"/history/buggy/".$buggy->urlKey."\">" . $buggy->name . "</a></td>");
 			}
-			
+
 			$teamByRole = array();
 			foreach ($team->GetPersontoteamList() as $personToTeam){
 				$person = $personToTeam->GetPerson();
@@ -27,11 +27,11 @@
 				echo("<td><a href=\"/history/person/".$teamByRole["Hill 3"]->personId."\">".$teamByRole["Hill 3"]->firstName." ".$teamByRole["Hill 3"]->lastName."</a></td>");
 				echo("<td><a href=\"/history/person/".$teamByRole["Hill 4"]->personId."\">".$teamByRole["Hill 4"]->firstName." ".$teamByRole["Hill 4"]->lastName."</a></td>");
 				echo("<td><a href=\"/history/person/".$teamByRole["Hill 5"]->personId."\">".$teamByRole["Hill 5"]->firstName." ".$teamByRole["Hill 5"]->lastName."</a></td>");
-			
+
 			echo("</tr>");
 		}
-	}	
-	
+	}
+
 ?>
 
 <div class="box">
@@ -47,7 +47,7 @@
 			<th>Hill 4</th>
 			<th>Hill 5</th>
 		</tr>
-		<?php 
+		<?php
 			foreach ($teamListW as $team){
 				displayTeam($team);
 			}
@@ -67,7 +67,7 @@
 			<th>Hill 4</th>
 			<th>Hill 5</th>
 		</tr>
-		<?php 
+		<?php
 			foreach ($teamListM as $team){
 				displayTeam($team);
 			}

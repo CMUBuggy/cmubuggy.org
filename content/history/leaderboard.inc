@@ -1,14 +1,14 @@
 <?php
 	$racedayId = 20102;
 	if($_GET["rdid"]!=null){
-		
+
 	}
 
 	$team = new team();
 	$teamTimeListM = $team->GetList(array(array("racedayId", "=", $racedayId),array("time", ">", "0"),array("raceclassId", "=", "1")),"time");
-	$teamTimeListW = $team->GetList(array(array("racedayId", "=", $racedayId),array("time", ">", "0"),array("raceclassId", "=", "2")),"time");	
+	$teamTimeListW = $team->GetList(array(array("racedayId", "=", $racedayId),array("time", ">", "0"),array("raceclassId", "=", "2")),"time");
 	$teamNoTimeListM = $team->GetList(array(array("racedayId", "=", $racedayId),array("time", "=", "NULL"),array("raceclassId", "=", "1")),"heat");
-	$teamNoTimeListW = $team->GetList(array(array("racedayId", "=", $racedayId),array("time", "=", "NULL"),array("raceclassId", "=", "2")),"heat");	
+	$teamNoTimeListW = $team->GetList(array(array("racedayId", "=", $racedayId),array("time", "=", "NULL"),array("raceclassId", "=", "2")),"heat");
 ?>
 
 <div class="box whitebox">
@@ -30,8 +30,8 @@
 				   echo("<br />");
 				   $Wplace++;
 				}
-			?>		
-			</td>		
+			?>
+			</td>
 			<td>
 			<?php
 				$Mplace = 1;
@@ -44,7 +44,7 @@
 				   echo("<br />");
 				   $Mplace++;
 				}
-			?>			
+			?>
 			</td>
 		</tr>
 	</table>
@@ -61,7 +61,7 @@
 	<div class="title">Still to Race</div>
 	<table class="topalign">
 		<tr>
-			<th style="width:150px;">Women's</th><th style="width:150px;">Men's</th>		
+			<th style="width:150px;">Women's</th><th style="width:150px;">Men's</th>
 		</tr>
 		<tr>
 			<td>
@@ -74,8 +74,8 @@
 					echo("heat ".$team->heat." - <a href=\"".$url."\">".$org->shortName." ".$team->abcd."</a>");
 				   echo("<br />");
 				}
-			?>		
-			</td>		
+			?>
+			</td>
 			<td>
 			<?php
 				foreach ($teamNoTimeListM as $team)
@@ -86,7 +86,7 @@
 					echo("heat ".$team->heat." - <a href=\"".$url."\">".$org->shortName." ".$team->abcd."</a>");
 				   echo("<br />");
 				}
-			?>			
+			?>
 			</td>
 		</tr>
 	</table>

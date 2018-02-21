@@ -83,7 +83,7 @@
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssgrids/grids-min.css" />
     <link rel="stylesheet" type="text/css" href="/css/cmubuggy.css" />
     <link rel="stylesheet" type="text/css" href="/css/superfish-menu.css" />
-    <link  href="http://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" />
+    <link  href="https://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" />
 	<!--Google analytics -->
 	<script type="text/javascript">
 	  var _gaq = _gaq || [];
