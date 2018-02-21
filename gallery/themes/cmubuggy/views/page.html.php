@@ -78,9 +78,9 @@
 
     <!-- LOOKING FOR YOUR CSS? It's all been combined into the link below -->
     <?= $theme->get_combined("css") ?>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css" />
-	 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssfonts/fonts-min.css" />
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssgrids/grids-min.css" />
+    <link rel="stylesheet" type="text/css" href="https://yui-s.yahooapis.com/3.2.0/build/cssreset/reset-min.css" />
+	 <link rel="stylesheet" type="text/css" href="https://yui-s.yahooapis.com/3.2.0/build/cssfonts/fonts-min.css" />
+    <link rel="stylesheet" type="text/css" href="https://yui-s.yahooapis.com/3.2.0/build/cssgrids/grids-min.css" />
     <link rel="stylesheet" type="text/css" href="/css/cmubuggy.css" />
     <link rel="stylesheet" type="text/css" href="/css/superfish-menu.css" />
     <link  href="https://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" />
