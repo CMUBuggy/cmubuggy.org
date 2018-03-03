@@ -70,7 +70,7 @@ if($galleryResults){
 			if(!array_key_exists($parent_id, $galleryParents)){
 				$parentSQL = "SELECT album.title, album.relative_url_cache, cover.relative_path_cache
 									FROM items album
-									JOIN items cover
+									LEFT OUTER JOIN items cover
 									ON album.album_cover_item_id = cover.id
 									WHERE album.id =".$parent_id;
 				$parentResults = dbQuery("cmubuggy_g3",$parentSQL);
