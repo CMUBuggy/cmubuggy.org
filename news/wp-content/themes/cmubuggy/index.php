@@ -17,7 +17,7 @@
 			<li><a href="mailto:news@cmubuggy.org">Submit News</a></li>
 		</ul>
 	</div>
-<?
-	get_template_part( 'loop', 'index' ); 
+<?php
+	get_template_part( 'loop', 'index' );
 	get_footer();
 ?>
