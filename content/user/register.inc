@@ -103,7 +103,7 @@ By registering an account on cmubuggy.org, you'll be able to post in the forums,
 <form action="/user/register" method="post" accept-charset="utf-8">
   <fieldset>
       <div class="floatright">
-        <?php  echo recaptcha_get_html($publickey); ?>
+        <?php  echo recaptcha_get_html($publickey, null, true); ?>
       </div>
       <label for="username">Username</label>
       <input type="text" name="username" value="<?php if(isset($_POST['username'])){echo($_POST['username']);} ?>" id="username">
