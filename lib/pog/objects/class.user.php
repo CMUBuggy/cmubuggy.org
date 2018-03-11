@@ -169,8 +169,8 @@ class user extends POG_Base
 			return false;
 		}
 	}
-	
-	function user($username='', $password='', $email='', $realname='', $membersince='', $gradyear='', $salt='', $urlkey='', $emailvalidatekey='', $registerip='', $lastloginip='', $lastlogintime='', $registerhumantest='', $adminlevel='')
+
+	function user($username='', $password='', $email='', $realname='', $membersince='', $gradyear=0, $salt='', $urlkey='', $emailvalidatekey='', $registerip='', $lastloginip='', $lastlogintime=0, $registerhumantest='', $adminlevel=0)
 	{
 		$this->username = $username;
 		$this->password = $password;
