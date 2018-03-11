@@ -106,13 +106,13 @@ By registering an account on cmubuggy.org, you'll be able to post in the forums,
         <?php  echo recaptcha_get_html($publickey); ?>
       </div>
       <label for="username">Username</label>
-      <input type="text" name="username" value="<? if(isset($_POST['username'])){echo($_POST['username']);} ?>" id="username">
+      <input type="text" name="username" value="<?php if(isset($_POST['username'])){echo($_POST['username']);} ?>" id="username">
       <label for="password">Password<div class="detail">(at least 6 characters)</div></label>
       <input type="password" name="password" value="" id="password">
       <label for="password2">Retype Password</label>
       <input type="password" name="password2" value="" id="password2">
       <label for="email">E-mail</label>
-      <input type="text" name="email" value="<? if(isset($_POST['email'])){echo($_POST['email']);} ?>" id="email">
+      <input type="text" name="email" value="<?php if(isset($_POST['email'])){echo($_POST['email']);} ?>" id="email">
       <label for="humantest">Where is CMU located?<div class="detail">(anti-spam)</div></label>
       <input type="text" name="humantest" value="" id="humantest">
       <input type="hidden" name="registrationsubmit" value="1" />
