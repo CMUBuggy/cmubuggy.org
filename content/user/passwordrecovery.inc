@@ -22,6 +22,7 @@ if(isset($_POST["passwordrecoverysubmit"])){
 
       if(send($mail)){
         $successmsg = "Your account information has been e-mailed to you";
+        $user->save();
       } else {
         $errormsg = "There was a problem sending the email";
       }
