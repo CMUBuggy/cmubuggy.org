@@ -22,7 +22,7 @@ if (isset($_COOKIE["cmubuggy_auth"])){
 		</fieldset>
 		<input id="loginbtn" type="submit" value="Login" class="button">
 		<input type="hidden" name="loginsubmit" value="true" id="loginsubmit">
-		<input type="hidden" name="redirecturl" value="<? echo($_SERVER['REQUEST_URI']); ?>" id="loginsubmit">
+		<input type="hidden" name="redirecturl" value="<?php echo($_SERVER['REQUEST_URI']); ?>" id="loginsubmit">
 		<a style="margin-left:10px;" href="/user/register">Register</a>
 	</form>
 <?php } ?>
