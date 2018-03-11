@@ -17,7 +17,7 @@ if(isset($_POST["passwordrecoverysubmit"])){
 			$mail = array(
 				"to" => $user->email,
 				"subject" => "CMUBuggy.org account confirmation",
-				"body" => "Thanks for registering on cmubuggy!\n\nYour username is ".$user->username.".\n\nTo confirm your account, just click this link and you'll be on your way:\nhttp://cmubuggy.org/confirm.php?key=".$user->emailvalidatekey."\n\n If you have any trouble logging in, just reply to this e-mail."
+				"body" => "Thanks for registering on cmubuggy!\n\nYour username is ".$user->username.".\n\nTo confirm your account, just click this link and you'll be on your way:\nhttps://cmubuggy.org/confirm.php?key=".$user->emailvalidatekey."\n\n If you have any trouble logging in, just reply to this e-mail."
 			);
 
 			if(send($mail)){
