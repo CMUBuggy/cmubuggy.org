@@ -1,22 +1,18 @@
 <?php
 
-require_once("recaptchalib.php");
+require_once("lib/recaptcha/autoload.php");
 include_once("lib/send_smtp.inc");
 
-$publickey = "6LetmAoAAAAAABd0RWbVCJaJx0XmmRDuvSuV1M42";
-$privatekey = "6LetmAoAAAAAABeHUUQk5wXGdAwhDdd5-DoPdCcw";
+$siteKey = '6LeXvUwUAAAAAK1sxumFlkObx91jHPlyjI_oou6c';
+$secret = '6LeXvUwUAAAAAK7tH7rx1R5xkU1_gBmr0SuEHXnV';
 
 $errormsg=NULL;
 $successmsg=NULL;
 
-# the response from reCAPTCHA
-$RCresp = null;
-# the error code from reCAPTCHA, if any
-$RCerror = null;
-
-if (isset($_POST["recaptcha_response_field"])) {
-  $RCresp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
-   if ($RCresp->is_valid) {
+if (isset($_POST["g-recaptcha-response"])) {
+  $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+  $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+  if ($resp->isSuccess()) {
     //echo("Captcha OK<br />");
     if(isset($_POST["humantest"]) && strlen($_POST["humantest"])>0){
         //echo("Human test completed<br />");
@@ -84,8 +80,8 @@ if (isset($_POST["recaptcha_response_field"])) {
       $errormsg = "You're not a spammer or a robot are you?  You must answer the question about CMU's location";
     }
   } else {
-      $errormsg = "reCaptcha human test not completed correctly, please try again";
-   }
+    $errormsg = "reCaptcha human test not completed correctly, please try again";
+  }
 }
 
 ?>
@@ -103,7 +99,8 @@ By registering an account on cmubuggy.org, you'll be able to post in the forums,
 <form action="/user/register" method="post" accept-charset="utf-8">
   <fieldset>
       <div class="floatright">
-        <?php  echo recaptcha_get_html($publickey, null, true); ?>
+        <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
       </div>
       <label for="username">Username</label>
       <input type="text" name="username" value="<?php if(isset($_POST['username'])){echo($_POST['username']);} ?>" id="username">
