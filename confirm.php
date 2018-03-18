@@ -15,8 +15,8 @@ if(isset($_GET["key"])){
 	$user->lastlogintime = time();
 	$user->lastloginip = $_SERVER['REMOTE_ADDR'];
 	$user->save();
-	
-	setcookie("cmubuggy_auth", $user->password,time()+31536000,"/",".cmubuggy.org");
+
+	setcookie("cmubuggy_auth", $user->password,time()+31536000,"/");
 	header("Location: /");
 }
 

@@ -16,7 +16,7 @@ if(isset($_POST["loginsubmit"])){
 				if(strlen($user->emailvalidatekey)<1){
 					$authenticated = checkpassword($_POST["password"],$user->salt,$user->password);
 					if($authenticated){
-						setcookie("cmubuggy_auth", $user->password,time()+31536000,"/",".cmubuggy.org");
+						setcookie("cmubuggy_auth", $user->password,time()+31536000,"/");
 						$user->lastlogintime = time();
 						$user->lastloginip = $_SERVER['REMOTE_ADDR'];
 						$user->Save();
