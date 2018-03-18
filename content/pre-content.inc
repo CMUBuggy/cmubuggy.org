@@ -25,19 +25,30 @@
     $unit = "TIME";
   }
 ?>
-<body id="doc">
-  <div id="hd">
-    <img id="end" src="/img/headerend.gif" alt="" />
-    <div id="rddate">Raceday 2018<br/>April 20-21</div>
-    <div id="countdown">
-      <div id="count"><?php echo $count ?></div>
-      <div id="unit"><?php echo $unit ?></div>
-    </div>
-    <div id="title"><?php echo($headline); ?></div>
-  </div>
-  <div id="bd" class="yui3-g">
-    <div id="left" class="yui3-u">
-      <a href="/"><img id="logo" alt="CMU Buggy Alumni Association logo" src="/img/logo-web.png" /></a>
-      <?php include_once("leftmenu.inc"); ?>
-    </div>
-    <div id="content" class="yui3-u">
+<body>
+
+  <header class="fixed-top mb-3">
+    <nav class="navbar navbar-dark bg-danger px-0">
+      <div class="container">
+        <a href="/" class="navbar-brand d-inline-flex">
+          <img src="/img/logo-square-small.png" alt="CMU Buggy Alumni Association logo" class="d-lg-none mr-2" height="30" width="30">
+          <span class="d-none d-sm-inline">Buggy Alumni Association</span><span class="d-sm-none" title="Buggy Alumni Association">BAA</span>
+        </a>
+        <span class="navbar-text d-none d-md-inline text-warning" title="<?php echo("$count $unit"); ?>">Raceday 2018 is April 20&ndash;21</span>
+        <button class="navbar-toggler d-lg-none collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div id="navigation" class="col-lg-3 collapse d-lg-block">
+        <a href="/" class="d-none d-lg-block">
+          <img src="/img/logo-sidebar.png" alt="CMU Buggy Alumni Assocation logo" class="img-fluid mx-auto d-block">
+        </a>
+        <?php include_once 'leftmenu.inc'; ?>
+      </div>
+
+      <div class="col-lg-9">

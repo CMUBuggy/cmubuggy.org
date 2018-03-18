@@ -1,8 +1,9 @@
-<div class="floatleft">
-<?php
-	if(isset($footermsg)){ echo($footermsg); }
-?>
-</div>
-The CMU Buggy Alumni Association is an Alumni Interest Group<br />from Carnegie Mellon University in Pittsburgh, PA<br />
-Please contact <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> with any questions.<br />
-CMU Buggy Alumni Association &copy; 2008-2108
+<hr>
+<footer class="container text-center small text-muted">
+  <p>
+    The <span class="text-nowrap">CMU Buggy Alumni Association</span> is an <span class="text-nowrap">Alumni Interest Group</span><br>
+    from <span class="text-nowrap">Carnegie Mellon University</span> in Pittsburgh, PA<br>
+    Please contact <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> <span class="text-nowrap">with any questions.</span><br>
+    <span class="text-nowrap">CMU Buggy Alumni Association</span> &copy; 2008&ndash;<?php echo date('Y'); ?>
+  </p>
+</footer>

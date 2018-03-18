@@ -1,21 +1,21 @@
-<div id="leftmenu">
-  <ul id="mainnav">
-    <li><a href="/news">News</a></li>
-    <li><a href="/forum/viewforum.php?f=3">Forum</a></li>
-    <li><a href="/video">Videos</a></li>
-    <li><a href="/gallery">Gallery</a></li>
-    <li><a href="/history">History</a></li>
-    <li><a href="/about">About Us</a></li>
-    <li><a href="https://reddit.com/r/cmubuggy" target="_blank">Projects</a><img style="margin:0 0 2px 2px;" src="/img/icon-new-window.gif"></li>
-    <li><a href="/reference">Reference</a></li>
-    <li><a href="/membership">Membership</a></li>
-    <!--<li><a href="/store">Merchandise</a></li>-->
+<nav>
+  <ul class="list-group my-3">
+    <li class="list-group-item"><a class="d-block" href="/news">News</a></li>
+    <li class="list-group-item"><a class="d-block" href="/forum/viewforum.php?f=3">Forum</a></li>
+    <li class="list-group-item"><a class="d-block" href="/video">Videos</a></li>
+    <li class="list-group-item"><a class="d-block" href="/gallery">Gallery</a></li>
+    <li class="list-group-item"><a class="d-block" href="/history">History</a></li>
+    <li class="list-group-item"><a class="d-block" href="/about">About Us</a></li>
+    <li class="list-group-item"><a class="d-block" href="https://reddit.com/r/cmubuggy" target="_blank" rel="noopener">Projects<img src="/img/icon-new-window.gif" alt="" class="ml-1"></a></li>
+    <li class="list-group-item"><a class="d-block" href="/reference">Reference</a></li>
+    <li class="list-group-item"><a class="d-block" href="/membership">Membership</a></li>
   </ul>
-  <?php include("googlesearchinput.inc"); ?>
-  <?php include_once("loginform.inc"); ?>
-  <div id="socialmedia">
-    <a href="https://www.facebook.com/pages/Carnegie-Mellon-Buggy-Alumni-Association/279568438094"><img src="/img/mediaicons/24/facebook.png"></a>
-    <a href="http://feeds.feedburner.com/BuggyAlumniAssociationUltimate"><img src="/img/mediaicons/24/feed.png"></a>
-    <a href="https://twitter.com/CMUBuggy"><img src="/img/mediaicons/24/twitter.png"></a>
-  </div>
+</nav>
+
+<?php include("googlesearchinput.inc"); ?>
+<?php include_once("loginform.inc"); ?>
+<div class="my-3">
+  <a href="https://www.facebook.com/pages/Carnegie-Mellon-Buggy-Alumni-Association/279568438094"><i class="fab fa-2x fa-facebook-square" title="Facebook" style="color: #3b5998;"></i></a>
+  <a href="http://feeds.feedburner.com/BuggyAlumniAssociationUltimate"><i class="fas fa-2x fa-rss-square text-warning" title="Feed"></i></a>
+  <a href="https://twitter.com/CMUBuggy"><i class="fab fa-2x fa-twitter-square" title="Twitter" style="color: #1da1f2;"></i></a>
 </div>

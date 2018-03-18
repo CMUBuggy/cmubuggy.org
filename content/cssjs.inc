@@ -1,5 +1,30 @@
 <!--CSS-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+  body { margin-top: 4.5rem; }
+  @supports ((postition: -webkit-sticky) or (position: sticky)) {
+    #navigation {
+      z-index: 1000;
+      background: #fff;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 3.5rem;
+      max-height: calc(100vh - 3.5rem);
+      overflow-y: auto;
+      margin-top: -1rem;
+    }
+    @media (min-width: 992px) {
+      #navigation {
+        margin-top: 0;
+        top: 4.5rem;
+        max-height: calc(100vh - 4.5rem);
+      }
+    }
+  }
+  .navbar-dark .navbar-toggler { border-color: #fff; }
+  .navbar-dark .navbar-toggler-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
+
+</style>
 
 <!--JS-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
