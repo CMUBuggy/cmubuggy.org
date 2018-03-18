@@ -8,7 +8,7 @@ echo($_GET["key"]);
 if(isset($_GET["key"])){
 	$user = new user();
 	$userList = $user->GetList(array(array("emailvalidatekey", "=", $_GET["key"])));
-	if(count($userList)>0){ 
+	if(count($userList)>0){
 		$user = $userList[0];
 	}
 	$user->emailvalidatekey = "";

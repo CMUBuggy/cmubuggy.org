@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include_once("dbconfig.inc");
 	include_once("lib/pog/pog_includes.inc");
 	include_once("lib/pChart/pChart_includes.inc");
@@ -23,7 +23,7 @@
 			break;
 		case "admin":
 			$title = "Admin | ".$title;
-			$headline = "Admin";	
+			$headline = "Admin";
 			break;
 		case "buzz":
 			$title = "Buzz | ".$title;
@@ -31,9 +31,9 @@
 			break;
 		case "fantasy":
 			$title = "Fantasy Buggy | ".$title;
-			$headline = "Fantasy Buggy Fall '11";	
-			break;						
-		case "history": 
+			$headline = "Fantasy Buggy Fall '11";
+			break;
+		case "history":
 			$title = "History | ".$title;
 			$headline = "History";
 			$dbname = "cmubuggy_pog";
@@ -43,11 +43,11 @@
 			$headline = "Live Streaming Buggy";
 			break;
 		case "membership":
-		case "join": 
+		case "join":
 			$title = "Membership | ".$title;
 			$headline = "Join or Renew";
 			break;
-		case "search": 
+		case "search":
 			$title = "Search Results | ".$title;
 			$headline = "Search Results";
 			break;
@@ -55,7 +55,7 @@
 			$title = "Seniors | ".$title;
 			$headline = "You're alumni now, class of ".date('Y');
 			break;
-		case "store": 
+		case "store":
 			$title = "Store | ".$title;
 			$headline = "Merchandise and souveniers!";
 			break;
@@ -73,7 +73,7 @@
 			$headline = "Video Archives";
 			break;
 	}
-	
+
 	if(empty($s)){
 		$content = ("./content/homepage.inc");
 	} else if(file_exists("./content/".$s.".inc")){
@@ -98,6 +98,6 @@
 		include_once("content/pre-content.inc");
 		include_once($content);
 		include_once("content/post-content.inc");
-?>	
+?>
 </body>
 </html>

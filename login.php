@@ -10,10 +10,10 @@ $user = new user();
 if(isset($_POST["loginsubmit"])){
 	if(isset($_POST["username"])){
 		$userList = $user->GetList(array(array("username", "=", $_POST["username"])));
-		if(count($userList)>0){ 
+		if(count($userList)>0){
 			$user = $userList[0];
 			if(strlen($user->password)>0){
-				if(strlen($user->emailvalidatekey)<1){			
+				if(strlen($user->emailvalidatekey)<1){
 					$authenticated = checkpassword($_POST["password"],$user->salt,$user->password);
 					if($authenticated){
 						setcookie("cmubuggy_auth", $user->password,time()+31536000,"/",".cmubuggy.org");
@@ -24,16 +24,16 @@ if(isset($_POST["loginsubmit"])){
 						$errorcode = 1; //"That password is not correct";
 					}
 				} else {
-					$errorcode = 4; //"You need to verify your e-mail address by clicking the link";	
+					$errorcode = 4; //"You need to verify your e-mail address by clicking the link";
 				}
 			} else {
-				$errorcode = -1; //"You haven't activated your account on the new website";	
+				$errorcode = -1; //"You haven't activated your account on the new website";
 			}
 		} else {
-			$errorcode = 2; //"Sorry, that username is not in the database";	
+			$errorcode = 2; //"Sorry, that username is not in the database";
 		}
 	} else {
-		$errorcode = 3; //"username was not set";	
+		$errorcode = 3; //"username was not set";
 	}
 }
 
