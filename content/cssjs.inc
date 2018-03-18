@@ -1,34 +1,22 @@
 <!--CSS-->
-<link rel="stylesheet" type="text/css" href="/css/yui3.3-reset-fronts-grids.css" />
-<link rel="stylesheet" type="text/css" href="/css/cmubuggy.css" />
-<link rel="stylesheet" type="text/css" href="/css/superfish-menu.css" />
-<link  href="https://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" >
-<link  href="https://fonts.googleapis.com/css?family=Permanent+Marker:regular" rel="stylesheet" type="text/css" >
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <!--JS-->
-<!--<script type="text/javascript" src="/js/jquery.autocomplete.min.js" ></script>-->
-<!--<script type="text/javascript" src="/js/jquery.infieldlabel.min.js" ></script>-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/js/jquery.tools.min.js" ></script>
 <script type="text/javascript" src="/js/jquery.editinplace.js" ></script>
-<script type="text/javascript" src="/js/superfish-menu.js" ></script>
 <script type="text/javascript" src="/js/googleanalytics.js"></script>
 <script type="text/javascript" src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() {
-    //superfish drop down menus
-    jQuery(function(){
-      jQuery('ul.sf-menu').superfish();
-    });
+  $(function () {
+    // jquerytools overlays
+    $('img[rel]').overlay({ onClose: function () {} });
 
-    //jquerytools overlays
-    $("img[rel]").overlay({onClose: function(){}});
-
-    //jquerytools tabs
-    $(".tabs").tabs(".panes > div", {history:true});
-
-    //jquerytools accordion
-    //$("#accordion").tabs("#accordion div.pane", {tabs: 'h2', effect: 'slide', initialIndex: null});
+    // jquerytools tabs
+    $('.tabs').tabs('.panes > div', { history:true });
   });
 </script>
