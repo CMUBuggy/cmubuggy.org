@@ -1,77 +1,116 @@
-<div id="homepage">
-     <?php include_once("contentfeed.inc");   ?>
-        <div  class="yui3-g"  style="width:500px;">
-        <div class="yui3-u-3-5">
-            <table class="datacompact" style="margin-top:0px;">
-                <tr>
-                    <th colspan="2"><h3 style="margin:0;"><a href="/history/raceday/2017/">2017 Results</a></h3></th>
-                    <th colspan="1" style="text-align:right; font-size:1em;"><b>Men's</b></th>
-                    <th colspan="2" style="text-align:right; font-size:1em;"><b>Women's</b></th>
-                </tr>
-                <tr>
-                    <td><b>1<sup>st</sup></b></td>
-                    <td>SDC A</td>
-                    <td>2:02.16</td>
-                    <td class="newcol">SDC A</td>
-                    <td>2:23.27</td>
-                </tr>
-                <tr>
-                    <td><b>2<sup>nd</sup></b></td>
-                    <td>PiKA A</td>
-                    <td>2:08.42</td>
-                    <td class="newcol">SDC B</td>
-                    <td>2:32.80</td>
-                </tr>
-                <tr>
-                    <td><b>3<sup>rd</sup></b></td>
-                    <td>SigEp A</td>
-                    <td>2:09:24</td>
-                    <td class="newcol">PiKA A</td>
-                    <td>2:33.24</td>
-                </tr>
-                <tr>
-                    <td colspan="5" style="font-size:12px;">Design: 1<sup>st</sup> Blueshift &ndash; Fringe, 2<sup>nd</sup> Equinox &ndash; CIA, 3<sup>rd</sup> Inviscid &ndash; Spirit</td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">People's Choice:</span> Inviscid &ndash; Spirit</td>
-                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Spirit of Buggy:</span> Fringe</td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">Chairman's Choice</span>: SigEp</td>
-                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">TShirt</span>: SigNu</td>
-                </tr>
-                <tr>
-                    <td colspan="5" style="font-size:11px;"><span style="font-size:11px;">Design Showcase Spark</span>: Beyonce &ndash; SigEp</td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="font-size:11px;"><span style="font-size:11px;">King of the Hill</span>: Jacob Hoffman &ndash; SDC A</td>
-                    <td colspan="2" style="font-size:11px;"><span style="font-size:11px;">Queen of the Hill</span>: Mary Garrett &ndash; SDC A</td>
-                </tr>
-            </table>
-        </div>
-        <div class="yui3-u-2-5">
-            <h3>Get Invloved</h3>
-            <div class="item"><a href="/seniors"><div class="icon" style="background-image:url('/img/icon_grad-cap.png')"></div></a><a href="/seniors">Seniors!</a> Become a 2018 member now for free.</div>
-            <div class="item">
-                <a href="/gallery/2016-2017">
-                    <div class="icon galleryicon" style="background-image:url('//cmubuggy.org/gallery/var/resizes/2016-2017/Raceday---Finals/IMG_9891.JPG')"></div>
-                </a>
-                Share your favorite pics from
-                <a href="/gallery/2016-2017/Raceday---Design-Showcase">Design</a>,
-                <a href="/gallery/2016-2017/Raceday---Prelims">Prelims</a>,
-                <a href="/gallery/2016-2017/Raceday---Finals">Finals</a>
+<div class="row">
+  <div class="col-md-8">
 
-            </div>
-        </div>
-    </div>
-    <br />
+    <section class="mb-3">
+      <h2><a href="/history/raceday/2017">2017 Results</a></h2>
+      <h3>Races</h3>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th></th>
+            <th colspan="2">Men</th>
+            <th colspan="2">Women</th>
+          </tr>
+        </thead>
+        <tr>
+          <th>1<sup>st</sup></th>
+          <td>SDC A</td>
+          <td>2:02.16</td>
+          <td>SDC A</td>
+          <td>2:23.27</td>
+        </tr>
+        <tr>
+          <th>2<sup>nd</sup></th>
+          <td>PiKA A</td>
+          <td>2:08.42</td>
+          <td>SDC B</td>
+          <td>2:32.80</td>
+        </tr>
+        <tr>
+          <th>3<sup>rd</sup></th>
+          <td>SigEp A</td>
+          <td>2:09:24</td>
+          <td>PiKA A</td>
+          <td>2:33.24</td>
+        </tr>
+      </table>
+
+      <h3>Awards</h3>
+      <dl class="row">
+        <dt class="col-sm-5">Design</dt>
+        <dd class="col-sm-7">
+          <ol style="margin: 0; padding: 0 0 0 1.25em;">
+            <li>Blueshift - Fringe</li>
+            <li>Equinox - CIA</li>
+            <li>Inviscid - Spirit</li>
+          </ol>
+        </dd>
+
+        <dt class="col-sm-5">People's Choice</dt>
+        <dd class="col-sm-7">Inviscid - Spirit</dd>
+
+        <dt class="col-sm-5">Spirit of Buggy</dt>
+        <dd class="col-sm-7">Fringe</dd>
+
+        <dt class="col-sm-5">Chairman's Choice</dt>
+        <dd class="col-sm-7">SigEp</dd>
+
+        <dt class="col-sm-5">T-Shirt</dt>
+        <dd class="col-sm-7">SigNu</dd>
+
+        <dt class="col-sm-5">Design Showcase Spark</dt>
+        <dd class="col-sm-7">Beyonce - SigEp</dd>
+
+        <dt class="col-sm-5">King of the Hill</dt>
+        <dd class="col-sm-7">Jacob Hoffman - SDC A</dd>
+
+        <dt class="col-sm-5">Queen of the Hill</dt>
+        <dd class="col-sm-7">Mary Garrett - SDC A</dd>
+      </dl>
+    </section>
+
     <?php include_once("twitterwidget.inc"); ?>
-    <div class="pane clearleft" style="margin-right:270px;">
-        <h3 style="margin:0">Buggy Alumni Association?</h3>
-        We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know.  Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind. Find out more in <a href="/about">About Us section ...</a>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Buggy Alumni Association</h5>
+        <p>We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know. Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind.</p>
+        <a href="/about" class="btn btn-primary">Learn More</a>
+      </div>
     </div>
-    <div class="pane" style="margin-right:270px;">
-        <h3 style="margin:0">Buggy?</h3>
-        Buggy (also called "Sweepstakes") is a unique race that has been held on and behind the Carnegie Mellon University campus during the spring carnival since 1920.  It is part uphill relay race (in which the baton is a vehicle and driver pushed by runners), and part downhill gravity racing with exciting sharp turns and speeds up to 40mph. Find out more in the <a href="/reference/What_is_buggy%3F">What is Buggy? section ...</a>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Buggy</h5>
+        <p>Buggy (also called "Sweepstakes") is a unique race that has been held on and behind the Carnegie Mellon University campus during the spring carnival since 1920. It is part uphill relay race (in which the baton is a vehicle and driver pushed by runners), and part downhill gravity racing with exciting sharp turns and speeds up to 40mph.</p>
+        <a href="/reference/What_is_buggy%3F" class="btn btn-primary">Learn More</a>
+      </div>
     </div>
+
+  </div>
+  <div class="col-md-4">
+    <section>
+      <h2>Get Involved</h2>
+      <div class="media mb-3">
+        <span class="fa-layers fa-fw fa-2x mr-2">
+          <i class="fas fa-square text-muted"></i>
+          <i class="fas fa-graduation-cap fa-inverse" data-fa-transform="shrink-8"></i>
+        </span>
+        <div class="media-body">
+          <a href="/seniors">Seniors!</a> Become a 2018 member now for free.
+        </div>
+      </div>
+      <div class="media mb-3">
+        <span class="fa-layers fa-fw fa-2x mr-2">
+          <i class="fas fa-square text-muted"></i>
+          <i class="fas fa-images fa-inverse" data-fa-transform="shrink-8"></i>
+        </span>
+        <div class="media-body">
+          Share your favorite pics from <a href="/gallery/2016-2017/Raceday---Design-Showcase">Design</a>, <a href="/gallery/2016-2017/Raceday---Prelims">Prelims</a>, <a href="/gallery/2016-2017/Raceday---Finals">Finals</a>
+        </div>
+      </div>
+    </section>
+
+    <?php include_once("contentfeed.inc"); ?>
+  </div>
 </div>

@@ -23,7 +23,8 @@
   }
   .navbar-dark .navbar-toggler { border-color: #fff; }
   .navbar-dark .navbar-toggler-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
-
+  .img-fa { width: .875em; margin: .0675em auto; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+  #googlesearch input[type="text"] { background-position: .375rem center !important; }
 </style>
 
 <!--JS-->
