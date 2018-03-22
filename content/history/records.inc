@@ -12,7 +12,7 @@
   //$top25womend = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","2"), array("abcd","=","d")),"time", true, 25);
 
   function displayRecordTable($teamlist){
-    echo("<table class=\"data\">");
+    echo("<table class=\"table\">");
     $count = 1;
     foreach($teamlist as $team){
       $entry= $team->GetEntry();
@@ -39,43 +39,22 @@
   }
 ?>
 
-</h2>Course Records</h2>
-<ul class="tabs">
-  <li><a id="t1" href="#mens">Men's</a></li>
-  <li><a id="t2" href="#womens">Women's</a></li>
-  <!--<li><a id="t2" href="#mensb">Men's B</a></li>
-  <li><a id="t6" href="#womensb">Women's B</a></li>
-  <li><a id="t3" href="#mensc">Men's C</a></li>
-  <li><a id="t7" href="#womensc">Women's C</a></li>
-  <li><a id="t4" href="#mensd">Men's D</a></li>-->
+<h1>Course Records</h1>
+
+<ul class="nav nav-tabs mb-2" role="tablist">
+  <li class="nav-item">
+    <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a></li>
+  <li class="nav-item">
+    <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a></li>
 </ul>
 
-<div class="panes">
-  <div class="pane">
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="tab-mens" role="tabpanel" aria-labelledby="mens-tab">
     <?php displayRecordTable($top25men); ?>
   </div>
-  <div class="pane">
+  <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
     <?php displayRecordTable($top25women); ?>
   </div>
-  <!--
-  <div class="pane">
-    <?php //displayRecordTable($top25menb); ?>
-  </div>
-  <div class="pane">
-    <?php //displayRecordTable($top25womenb); ?>
-  </div>
-  <div class="pane">
-    <?php //displayRecordTable($top25menc); ?>
-  </div>
-  <div class="pane">
-    <?php //displayRecordTable($top25womenc); ?>
-  </div>
-  <div class="pane">
-    <?php //displayRecordTable($top25mend); ?>
-  </div>
-  <div class="pane">
-    <?php //displayRecordTable($top25womend); ?>
-  </div>-->
 </div>
 
 
