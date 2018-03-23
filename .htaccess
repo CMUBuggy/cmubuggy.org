@@ -41,7 +41,6 @@ RewriteRule		^history/org/([a-z]+)/?$							index.php?s=history&p=org&urlkey=$1	
 RewriteRule		^history/org/([0-9]+)/?$							index.php?s=history&p=org&id=$1					[NC,L]
 RewriteRule		^history/person/([0-9]+)/?$						index.php?s=history&p=person&id=$1				[NC,L]
 RewriteRule		^history/raceday/([0-9]+)/?$						index.php?s=history&p=raceday&year=$1			[NC,L]
-RewriteRule		^history/roster/([0-9]+)/?$						index.php?s=history&p=rosters&year=$1			[NC,L]
 RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
 
