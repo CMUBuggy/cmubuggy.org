@@ -49,7 +49,6 @@ RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlk
 RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 						[NC,L]
 RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC,L]
 RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
-RewriteRule		^history/comment[/]*$								index.php?s=history&p=comments					[NC,L]
 RewriteRule		^history/contribute[/]*$							index.php?s=history&p=contribute 				[NC,L]
 RewriteRule		^history/leaderboard[/]*$							index.php?s=history&p=leaderboard				[NC,L]
 RewriteRule		^history/org[/]*$										index.php?s=history&p=orglist						[NC,L]
