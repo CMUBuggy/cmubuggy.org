@@ -51,12 +51,13 @@
   function displayEntries($entryArr) {
     global $racedayList;
     ksort($entryArr);
-    echo("<table class=\"data\">");
+    echo("<div class=\"table-responsive\"><table class=\"table\">");
     if(count($racedayList)>1){
-      echo("<tr><th>Place</th><th>Team</th><th>Prelims Time</th><th>Finals Time</th><th>Notes</th></tr>");
+      echo("<thead><tr><th>Place</th><th>Team</th><th>Prelims Time</th><th>Finals Time</th><th>Notes</th></tr></thead>");
     } else {
-      echo("<tr><th>Place</th><th>Team</th><th>Time</th><th>DQ / Notes</th></tr>");
+      echo("<thead><tr><th>Place</th><th>Team</th><th>Time</th><th>DQ / Notes</th></tr></thead>");
     }
+    echo("<tbody>");
     foreach($entryArr as $entry){
       $entrylabel = $entry->GetOrg()->shortname." ".$entry->abcd;
       $teamList = $entry->GetTeamList();
@@ -88,7 +89,7 @@
        }
        echo("<td>".$notes."</td></tr>");
     }
-    echo("</table>");
+    echo("</tbody></table></div>");
   }
 
   function displayHeats($heatArr){
@@ -102,7 +103,8 @@
     foreach($heattypes as $type){
       if(isset($heatArr[$type])){
         echo("<h4>".$heattypelabels[$type]."</h4>");
-        echo("<table class=\"data\"><tr><th></th><th></th><th style=\"width:100px\">Lane 1</th><th style=\"width:100px\">Lane 2</th><th>Lane 3</th style=\"width:100px\"><th>Notes</th>");
+        echo("<div class\"table-responsive\"><table class=\"table\"><thead><tr><th></th><th></th><th>Lane 1</th><th>Lane 2</th><th>Lane 3</th><th>Notes</th></tr></thead>");
+        echo("<tbody>");
         foreach($heatArr[$type] as $heat){
           echo("<tr><td>".$heat->number."</td><td>");
           $videolist = $heat->GetVideoList();
@@ -125,48 +127,52 @@
           }
           echo("<td></td></tr>");
         }
-        echo("</table>");
+        echo("</tbody></table></div>");
       }
     }
   }
 
-  ?>
-  <div class="pane">
-    <?php
-      if(file_exists("/var/www/cmubuggy.org/files/buggybooks/buggybook_".$year.".pdf")){
-        echo("<a class=\"floatright\" href=\"/files/buggybooks/buggybook_".$year.".pdf\"><img alt=\"".$year." buggy book\" height=\"100px\" title=\"Download a PDF of the ".$year." buggy book\" src=\"/files/buggybooks/thumb_100/buggybook_".$year.".jpg\" /></a>");
-      }
-    ?>
-    <h2>Raceday <?php echo($year);?></h2>
-    <?php echo($prevlink.$nextlink); ?>
-  </div>
-  <ul class="tabs">
-    <li><a id="t1" href="#mens">Men's Results</a></li>
-    <li><a id="t2" href="#womens">Women's Results</a></li>
-    <?php if(count($pheatsArr)>0){echo("<li><a id=\"t3\" href=\"#prelimheats\">Prelim Heats</a></li>");}?>
-    <?php if(count($fheatsArr)>0){echo("<li><a id=\"t4\" href=\"#finalsheats\">Finals Heats</a></li>");}?>
-  </ul>
+?>
+<h1>Raceday <?php echo($year);?></h1>
 
-  <div class="panes">
-    <div class="pane">
-      <?php displayEntries($mentriesArr); ?>
-    </div>
-    <div class="pane">
-      <?php displayEntries($wentriesArr); ?>
-    </div>
-    <div class="pane">
+<div class="my-2">
+  <?php echo($prevlink.$nextlink); ?>
+</div>
+
+<ul class="nav nav-tabs mb-2" role="tablist">
+  <li class="nav-item">
+    <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's Results</a>
+  </li>
+  <li class="nav-item">
+    <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's Results</a>
+  </li>
+  <?php if(count($pheatsArr)>0) { ?>
+    <li class="nav-item">
+      <a id="prelimheats-tab" href="#tab-prelimheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-prelimheats" aria-selected="false">Prelim Heats</a>
+    </li>
+  <? } ?>
+  <?php if(count($fheatsArr)>0) { ?>
+    <li class="nav-item">
+      <a id="finalsheats-tab" href="#tab-finalsheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-finalsheats" aria-selected="false">Finals Heats</a>
+    </li>
+  <? } ?>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="tab-mens" role="tabpanel" aria-labelledby="mens-tab">
+    <?php displayEntries($mentriesArr); ?>
+  </div>
+  <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
+    <?php displayEntries($wentriesArr); ?>
+  </div>
+  <?php if(count($pheatsArr)>0) { ?>
+    <div class="tab-pane fade" id="tab-prelimheats" role="tabpanel" aria-labelledby="prelimheats-tab">
       <?php displayHeats($pheatsArr); ?>
     </div>
-    <div class="pane">
+  <? } ?>
+  <?php if(count($fheatsArr)>0) { ?>
+    <div class="tab-pane fade" id="tab-finalsheats" role="tabpanel" aria-labelledby="finalsheats-tab">
       <?php displayHeats($fheatsArr); ?>
     </div>
-  </div>
-
-
-  <?php
-  /*
-  } else {
-    echo("<div class=\"pane\"><h3>Raceday ".$year."?</h3>".$prevlink.$nextlink."<br />I don't think that has happened yet.</div>");
-  }
-  */
-?>
+  <? } ?>
+</div>
