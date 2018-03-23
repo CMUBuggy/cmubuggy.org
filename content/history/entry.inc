@@ -18,7 +18,10 @@ function displayteam($team){
   $reroll = "";
   if($raceday->isFinals == 1){$rddesc = "Finals";}
   if($team->isReroll == 1) {$reroll = " (reroll)";}
-  echo("<div class=\"floatleft\"><h4>".$rddesc.$reroll."</h4>");
+
+  echo("<div class=\"col-sm\">");
+
+  echo("<h2>".$rddesc.$reroll."</h2>");
 
   $heat = $team->GetHeat();
   if($heat->headId>0){
@@ -42,16 +45,17 @@ function displayteam($team){
     $personArr[$teamRole->description] = $personStr;
   }
 
-  echo("<table class=\"data\">");
-  echo("<tr><td>Buggy</td><td><a href=\"/history/buggy/".$buggy->urlKey."\">".$buggy->name."</a></td></tr>");
-  echo("<tr><td>Driver</td><td>".$personArr["Driver"]."</td></tr>");
-  echo("<tr><td>Hill 1</td><td>".$personArr["Hill 1"]."</td></tr>");
-  echo("<tr><td>Hill 2</td><td>".$personArr["Hill 2"]."</td></tr>");
-  echo("<tr><td>Hill 3</td><td>".$personArr["Hill 3"]."</td></tr>");
-  echo("<tr><td>Hill 4</td><td>".$personArr["Hill 4"]."</td></tr>");
-  echo("<tr><td>Hill 5</td><td>".$personArr["Hill 5"]."</td></tr>");
-  echo("<tr><td>Time</td><td>".displayTime($team->time)."</td></tr>");
-  echo("</table>");
+  echo("<dl class=\"row\">");
+  echo("<dt class=\"col-sm-5\">Buggy</dt><dd class=\"col-sm-7\"><a href=\"/history/buggy/".$buggy->urlKey."\">".$buggy->name."</a></dd>");
+  echo("<dt class=\"col-sm-5\">Driver</dt><dd class=\"col-sm-7\">".$personArr["Driver"]."</dd>");
+  echo("<dt class=\"col-sm-5\">Hill 1</dt><dd class=\"col-sm-7\">".$personArr["Hill 1"]."</dd>");
+  echo("<dt class=\"col-sm-5\">Hill 2</dt><dd class=\"col-sm-7\">".$personArr["Hill 2"]."</dd>");
+  echo("<dt class=\"col-sm-5\">Hill 3</dt><dd class=\"col-sm-7\">".$personArr["Hill 3"]."</dd>");
+  echo("<dt class=\"col-sm-5\">Hill 4</dt><dd class=\"col-sm-7\">".$personArr["Hill 4"]."</dd>");
+  echo("<dt class=\"col-sm-5\">Hill 5</dt><dd class=\"col-sm-7\">".$personArr["Hill 5"]."</dd>");
+  echo("<dt class=\"col-sm-5\">Time</dt><dd class=\"col-sm-7\">".displayTime($team->time)."</dd>");
+  echo("</dl>");
+
   echo("</div>");
 }
 
@@ -79,16 +83,15 @@ if(!is_null($errormsg)){
 } else {
 
 ?>
-<div class="pane">
-<?php
-  echo("<h2><a href=\"/history/raceday/".$raceyear->year."\">".$raceyear->year."</a> <a href=\"/history/org/".$org->urlkey."\">".$org->shortname."</a> ".$raceclass->description." ".$entry->abcd."</h2>");
 
-  foreach($teamlist as $team){
-    displayteam($team);
-  }
-}
+<h1><?php echo("<a href=\"/history/raceday/".$raceyear->year."\">".$raceyear->year."</a> <a href=\"/history/org/".$org->urlkey."\">".$org->shortname."</a> ".$raceclass->description." ".$entry->abcd); ?></h1>
 
-?>
-
-
+<div class="row">
+  <?php
+    foreach($teamlist as $team) {
+      displayteam($team);
+    }
+  ?>
 </div>
+
+<?php } ?>
