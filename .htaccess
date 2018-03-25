@@ -26,7 +26,6 @@ RewriteRule		^video[/]*$						index.php?s=videolist			[NC,L]
 
 #admin section
 RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1								[NC,L]
-RewriteRule    ^admin/buggy/([a-z0-9]+)/?$    					index.php?s=admin&p=buggy&urlkey=$1    		[NC,L]
 
 #fantasy section
 RewriteRule		^fantasy/enter[/]*$									index.php?s=fantasy&p=enter 						[NC,L]
