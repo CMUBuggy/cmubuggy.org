@@ -36,3 +36,23 @@
 <script type="text/javascript" src="/js/googleanalytics.js"></script>
 <script type="text/javascript" src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript">
+  function changeTab(hash) {
+    $('[href="' + hash + '"').tab('show');
+  }
+
+  $(function () {
+    if (window.location.hash) {
+      changeTab(window.location.hash);
+    }
+  });
+
+  $(window).on('hashchange', function () {
+    changeTab(window.location.hash.replace('#', '#tab-'));
+  });
+
+  $(document)
+  .on('shown.bs.tab', '.nav-tabs a', function (e) {
+    window.location.hash = e.target.hash.replace('#tab-', '#');
+  });
+</script>
