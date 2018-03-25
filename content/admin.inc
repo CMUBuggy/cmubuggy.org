@@ -1,9 +1,10 @@
-<div id="topnav">
-  <ul class="sf-menu">
-    <li><a href="/admin">Admin Home</a></li>
-    <li><a href="/admin/changelog">Change Log</a></li>
+<nav class="navbar navbar-light navbar-expand bg-light mb-3">
+  <ul class="navbar-nav flex-wrap">
+    <li class="nav-item"><a class="nav-link" href="/admin">Admin Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="/admin/changelog">Change Log</a></li>
   </ul>
-</div>
+</nav>
+
 <?php
   if (isset($uservars["adminlevel"])){
     if($uservars["adminlevel"] > 0){
