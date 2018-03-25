@@ -1,6 +1,6 @@
 <script>
   function dispmsg(valence, msg){
-    $("#message").addClass(valence).html(msg).fadeIn().delay(800).fadeOut();
+    $("#message").addClass(valence).removeClass('d-none').html(msg);
   }
 
   $(function () {
@@ -14,7 +14,7 @@
         "/data.php",
         { type: "update", element_id: $(this).attr("id"), update_value: newval },
         function (data) {
-          dispmsg("good", "Membership status updated");
+          dispmsg("alert-success", "Membership status updated");
         }
       );
     });
@@ -26,7 +26,7 @@
       url: "/data.php",
       success: function (enteredText) {
         $(this).html(enteredText);
-        dispmsg("good", "Graduation year updated");
+        dispmsg("alert-success", "Graduation year updated");
       }
     })
 
@@ -35,7 +35,7 @@
       $.post("/data.php", data, function (data) {
         $("#addmember input:text").val("");
         $("#addmember input:checkbox").removeAttr('checked');
-        dispmsg("good", "Member added");
+        dispmsg("alert-success", "Member added");
       });
     });
   });
@@ -54,7 +54,7 @@
 
 <h1>Manage Membership Records</h1>
 
-<div id="message" class="msg hidden floatright"></div>
+<div id="message" class="alert d-none" role="alert"></div>
 
 <button type="button" class="btn btn-primary mb-3" data-toggle="collapse" data-target="#addmember" aria-expanded="false" aria-controls="addmember">Add a Member?</button>
 
