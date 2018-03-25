@@ -44,12 +44,9 @@ if($video){
       break;
     case "embed":
     ?>
-      <object style="height: 390px; width: 640px">
-        <param name="movie" value="https://www.youtube.com/v/u1zgFlCw8Aw?version=3">
-        <param name="allowFullScreen" value="true">
-        <param name="allowScriptAccess" value="always">
-        <embed src="https://www.youtube.com/v/<?php echo($id); ?>?version=3&enablejsapi=1" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="750" height="525">
-      </object>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive" src="https://www.youtube.com/embed/<?php echo($id); ?>" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
     <?php
     break;
   }
