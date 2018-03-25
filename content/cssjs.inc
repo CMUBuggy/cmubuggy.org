@@ -29,6 +29,7 @@
   .youtube-preview img { width: 120px; height: 90px; }
   .video-grid { margin-left: -.5rem; margin-right: -.5rem; }
   .video-grid > a { margin-left: .5rem; margin-right: .5rem; }
+  .raceday-thumb { width: 3em; }
 </style>
 
 <!--JS-->

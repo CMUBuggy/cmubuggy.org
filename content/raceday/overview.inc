@@ -1,29 +1,39 @@
-<div class="pane">
-    <h3>Survival Tools</h3>
-    <table class="aligntop padded">
-        <tr>
-            <td style="width:50px"><a target="_blank" href="http://new.livestream.com/cmuTVlive"><img src="/img/cmutvlogo.gif" /></a></td>
-            <td style="width:250px"><a target="_blank" href="http://new.livestream.com/cmuTVlive"><b>cmuTV</b></a> will be producing live coverage and streaming it online viewable right in your browser with no additional set-up.  Check their site Friday morning for the link.<br /></td>
-            <td style="width:50px"><a target="_blank" href="http://wrct.org/"><img src="/img/wrctlogo.gif" /></a></td>
-            <td style="width:250px"><a target="_blank" href="http://wrct.org/"><b>WRCT</b></a> will be broadcasting the live audio coverage from loudspeakers on the course, 88.3 FM locally, and online from wrct.org<br /></td>
-        </tr>
-        <tr>
-            <td><a href="/raceday/leaderboard"><img src="/img/leaderboard.jpg" /></a></td>
-            <td><a href="/raceday/leaderboard"><b>Leaderboard</b></a> - It's tough to keep the whole top 10 in your head.  Check here for instantaneous updates entered directly by the head timer<br /></td>
-            <td><a href="/raceday/heats"><img src="/img/icon_sunrise.png" /></a></td>
-            <td><a href="/raceday/heats"><b>Heat Schedule</b></a> - Don't miss your team because you forgot the schedule.<br /></td>
-        </tr>
-        <tr>
-            <td><a href="https://discord.gg/PUwuUuj"><img src="/img/chaticon.png" /></a></td>
-            <td><a href="https://discord.gg/PUwuUuj"><b>Chat</b></a> - We know there are alumni all over the world watching and listening to the coverage that would love to communicate faster than the forum will allow.  We bring you the Raceday Chat.<br /></td>
-            <td><!-- <a href="/files/RacedayGuide2014.pdf"><img src="/img/racedayguide.png" /></a> --></td>
-            <td><!-- <a href="/files/RacedayGuide2014.pdf"><b>Raceday Guide</b></a> - Ever come back after a few years and have a hard time recognizing the buggies? We've put together a full color guide to help you identify this year's buggies and know what to expect each heat.  We printed a few thousand copies to distribute, but feel free to print or save your own copy<br /> --></td>
-        </tr>
-        <tr>
-<!--             <td><a href="/raceday/askthebroadcasters"><img src="/img/microphone.png" width="64" height="64" /></a></td>
-            <td><a href="/raceday/askthebroadcasters"><b>Ask the Broadcasters</b></a> - Are you watching or listening to the broadcast? Do you have a question or comment for the on-air broadcasters? Leave it here, and they'll do their best to respond on-air between heats.<br /></td>
-            <td><a href="/raceday/rosters"><img src="/img/roster_icon.jpg" /></a></td>
-            <td><a href="/raceday/rosters"><b>Rosters</b></a> - Want to know which buggies are rolling on which teams?  Who is pushing which hills?  We've got it all here<br /></td> -->
-        </tr>
-    </table>
+<h1>Raceday Survival Tools</h1>
+
+<div class="row">
+  <div class="media mb-3 col-md-6">
+    <img src="/img/cmutvlogo.gif" alt="cmuTV logo" class="mr-3 raceday-thumb">
+    <div class="media-body">
+      <h5 class="mt-0"><a target="_blank" rel="noopener" href="http://new.livestream.com/cmuTVlive">cmuTV</a></h5>
+      cmuTV will be producing live coverage and streaming it online viewable right in your browser with no additional set-up. Check their site Friday morning for the link.
+    </div>
+  </div>
+  <div class="media mb-3 col-md-6">
+    <img src="/img/wrctlogo.gif" alt="WRTC logo" class="mr-3 raceday-thumb">
+    <div class="media-body">
+      <h5 class="mt-0"><a target="_blank" rel="noopener" href="http://wrct.org/">WRCT</a></h5>
+      WRCT will be broadcasting the live audio coverage from loudspeakers on the course, 88.3 FM locally, and online from wrct.org
+    </div>
+  </div>
+  <div class="media mb-3 col-md-6">
+    <img src="/img/leaderboard.jpg" alt="leaderboard" class="mr-3 raceday-thumb">
+    <div class="media-body">
+      <h5 class="mt-0"><a href="/raceday/leaderboard">Leaderboard</a></h5>
+      It's tough to keep the whole top 10 in your head. Check here for instantaneous updates entered directly by the head timer.
+    </div>
+  </div>
+  <div class="media mb-3 col-md-6">
+    <img src="/img/icon_sunrise.png" alt="sunrise" class="mr-3 raceday-thumb">
+    <div class="media-body">
+      <h5 class="mt-0"><a href="/raceday/heats">Heat Schedule</a></h5>
+      Don't miss your team because you forgot the schedule.
+    </div>
+  </div>
+  <div class="media mb-3 col-md-6">
+    <img src="/img/chaticon.png" alt="chat" class="mr-3 raceday-thumb">
+    <div class="media-body">
+      <h5 class="mt-0"><a href="https://discord.gg/PUwuUuj">Chat</a></h5>
+      We know there are alumni all over the world watching and listening to the coverage that would love to communicate faster than the forum will allow. We bring you the Raceday Chat.
+    </div>
+  </div>
 </div>
