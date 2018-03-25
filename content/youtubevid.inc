@@ -23,14 +23,21 @@ if($video){
       break;
     case "popup":
     ?>
-      <img class=\"vidthumb\" alt="<? echo($video->title); ?>" title="<? echo($video->title); ?>" width="120px" height="90px" src="<?php echo($thumbsrc); ?>" rel="#<?php echo($id); ?>"/>
-      <div class="overlay" id="<?php echo($id); ?>">
-        <object style="height: 390px; width: 640px">
-          <param name="movie" value="https://www.youtube.com/v/u1zgFlCw8Aw?version=3">
-          <param name="allowFullScreen" value="true">
-          <param name="allowScriptAccess" value="always">
-          <embed src="https://www.youtube.com/v/<?php echo($id); ?>?version=3&enablejsapi=1" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="750" height="525">
-        </object>
+      <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#youtube-<?php echo $id; ?>"><img alt="<?php echo($video->title); ?>" title="<?php echo($video->title); ?>" width="120px" height="90px" src="<?php echo($thumbsrc); ?>"></button>
+      <div id="youtube-<?php echo $id; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="#title-<?php echo $id; ?>" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="title-<?php echo $id; ?>"><?php echo $video->title; ?></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <div id="player-<?php echo $id; ?>" data-video-id="<?php echo $id; ?>" class="embed-responsive-item"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     <?php
       break;

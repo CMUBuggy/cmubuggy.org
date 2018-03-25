@@ -36,6 +36,7 @@
 <script type="text/javascript" src="/js/googleanalytics.js"></script>
 <script type="text/javascript" src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script src="https://www.youtube.com/iframe_api" defer></script>
 <script type="text/javascript">
   function changeTab(hash) {
     $('[href="' + hash + '"').tab('show');
@@ -54,5 +55,15 @@
   $(document)
   .on('shown.bs.tab', '.nav-tabs a', function (e) {
     window.location.hash = e.target.hash.replace('#tab-', '#');
+  })
+  .on('show.bs.modal', '[id^="youtube-"]', function (e) {
+    var $playerDiv = $('div[id^="player-"]', this);
+    if ($playerDiv.length == 0) return;
+    $(this).data('player', new YT.Player($playerDiv.attr('id'), { videoId: $playerDiv.data('videoId') }));
+  })
+  .on('hide.bs.modal', '[id^="youtube-"]', function (e) {
+    $(this).data('player').stopVideo();
   });
+
+  function onYouTubeIframeAPIReady() {}
 </script>
