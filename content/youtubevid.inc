@@ -17,9 +17,10 @@ if($video){
 
   switch($vidmode) {
     case "imagelink":
-      echo("<div class=\"vidlink\">");
-      echo("<a href=\"/video/".$video->urlkey."\"><img class=\"vidthumb\" alt=\"".$video->title."\" width=\"120px\" height=\"90px\" src=\"".$thumbsrc."\"/></a>");
-      echo($video->title."</div>");
+      echo('<a href="/video/'.$video->urlkey.'" class="youtube-preview"><figure class="figure">');
+      echo('<img class="figure-img" alt="'.$video->title.'" src="'.$thumbsrc.'">');
+      echo('<figcaption class="figure-caption text-center">'.$video->title.'</figcaption>');
+      echo('</figure></a>');
       break;
     case "popup":
     ?>
