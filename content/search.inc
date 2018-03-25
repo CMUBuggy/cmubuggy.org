@@ -1,4 +1,4 @@
-
+<h1>Search Results</h1>
 <div id="cse-search-results"></div>
 <script type="text/javascript">
   var googleSearchIframeName = "cse-search-results";
@@ -8,6 +8,3 @@
   var googleSearchPath = "/cse";
 </script>
 <script type="text/javascript" src="https://www.google.com/afsonline/show_afs_search.js"></script>
-
-
-
