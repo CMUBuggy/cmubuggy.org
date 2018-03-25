@@ -1,31 +1,33 @@
 <?php
-    $org = new org();
-    $orgList = $org->GetList(array(array("isactive", "=", "1"),array("isracingorg", "=", "1")),"shortname");
+  $org = new org();
+  $orgList = $org->GetList(array(array("isactive", "=", "1"),array("isracingorg", "=", "1")),"shortname");
 ?>
 
-<div id="topnav">
-  <ul class="sf-menu">
-    <li><a href="/history/sweepstakes">Sweepstakes</a></li>
-    <li><a href="/history/org">Organizations</a>
-      <ul>
+<nav class="navbar navbar-light navbar-expand bg-light mb-3">
+  <ul class="navbar-nav flex-wrap">
+    <li class="nav-item"><a class="nav-link" href="/history/sweepstakes">Sweepstakes</a></li>
+    <li class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Organizations</a>
+      <div class="dropdown-menu">
         <?php
-        foreach ($orgList as $org)
-        {
-            echo("<li><a href=\"/history/org/".$org->urlkey."\">".$org->shortname. "</a></li>");
-        }
+          foreach ($orgList as $org) {
+            echo '<a class="dropdown-item" href="/history/org/' . $org->urlkey . '">' . $org->shortname . '</a>';
+          }
         ?>
-        <li><a href="/history/org#past">Past Racing Orgs</a></li>
-        <li><a href="/history/org#support">Supporting Orgs</a></li>
-      </ul>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/history/org">All Organizations</a>
+        <a class="dropdown-item" href="/history/org#past">Past Racing Orgs</a>
+        <a class="dropdown-item" href="/history/org#support">Supporting Orgs</a>
+      </div>
     </li>
-    <li><a href="/history/raceday">Races</a></li>
-    <li><a href="/history/record">Records</a></li>
-    <li><a href="/history/award">Awards</a></li>
-    <li><a href="/history/buggy">Buggies</a></li>
-    <!--<li><a href="/history/person">People</a></li>-->
-    <li><a href="/history/buggybook">Buggy Books</a></li>
+    <li class="nav-item"><a class="nav-link" href="/history/raceday">Races</a></li>
+    <li class="nav-item"><a class="nav-link" href="/history/record">Records</a></li>
+    <li class="nav-item"><a class="nav-link" href="/history/award">Awards</a></li>
+    <li class="nav-item"><a class="nav-link" href="/history/buggy">Buggies</a></li>
+    <li class="nav-item"><a class="nav-link" href="/history/buggybook">Buggy Books</a></li>
   </ul>
-</div>
+</nav>
+
 <?php
 $cachefile = str_replace("/","_",$_SERVER['REQUEST_URI'].".inc");
 if(file_exists("content/cache/history/".$cachefile)){
