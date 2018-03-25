@@ -57,7 +57,6 @@ RewriteRule		^history/team[/]*$									index.php?s=history&p=entry						[NC,L]
 RewriteRule		^raceday/chat[/]*$									index.php?s=raceday&p=chat 						[NC,L]
 RewriteRule		^raceday/heats[/]*$									index.php?s=raceday&p=heats						[NC,L]
 RewriteRule		^raceday/leaderboard[/]*$							index.php?s=raceday&p=leaderboard				[NC,L]
-RewriteRule		^raceday/askthebroadcasters[/]*$					index.php?s=raceday&p=askthebroadcasters		[NC,L]
 
 #reference section
 RewriteRule ^reference/(.*)$ /mediawiki/index.php?title=$1 [PT,L,QSA]
