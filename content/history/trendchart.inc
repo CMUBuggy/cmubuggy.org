@@ -40,5 +40,5 @@
   /* Build the PNG file and send it to the web browser */
   $myPicture->Render("content/cache/graph/".$filename.".png");
 
-  echo("<img src=\"/content/cache/graph/".$filename.".png\" alt=\"\">");
+  echo("<img src=\"/content/cache/graph/".$filename.".png\" alt=\"\" class=\"img-fluid my-2\">");
 ?>
