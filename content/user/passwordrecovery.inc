@@ -35,19 +35,22 @@ if(isset($_POST["passwordrecoverysubmit"])){
 }
 ?>
 
+<h1>Password and Username Recovery</h1>
 
+<?php if(isset($errormsg)){ echo("<div class=\"alert alert-danger\" role=\"alert\">".$errormsg."</div>"); }?>
+<?php if(isset($successmsg)){ echo("<div class=\"alert alert-success\" role=\"alert\">".$successmsg."</div>");  }?>
 
-<div class="pane">
-  <h2>Password and Username Recovery</h2>
-  <?php if(isset($errormsg)){ echo("<div class=\"msg bad\">".$errormsg."</div>"); }?>
-  <?php if(isset($successmsg)){ echo("<div class=\"msg good\">".$successmsg."</div>");  }?>
-  To retrieve your username and reset your password, enter the e-mail address associated with your account.  If you have any trouble, just email admin@cmubuggy.org for assistance.
-  <form action="/user/passwordrecovery" method="post" accept-charset="utf-8">
-    <fieldset>
+To retrieve your username and reset your password, enter the e-mail address associated with your account. If you have any trouble, just email <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> for assistance.
+
+<form action="/user/passwordrecovery" method="post">
+  <fieldset>
+    <input type="hidden" name="passwordrecoverysubmit" value="TRUE" id="passwordrecoverysubmit">
+    <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" name="email" value="" id="email"><br />
-      <input type="hidden" name="passwordrecoverysubmit" value="TRUE" id="passwordrecoverysubmit">
-    </fieldset>
-    <input id="submitbtn" type="submit" value="submit" class="button">
-  </form>
-</div>
+      <input type="email" name="email" value="" id="email" class="form-control" autocomplete="email">
+    </div>
+  </fieldset>
+  <div class="form-group">
+    <buttom id="submitbtn" type="submit" class="btn btn-primary">Submit</buttom>
+  </div>
+</form>

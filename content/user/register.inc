@@ -86,37 +86,58 @@ if (isset($_POST["g-recaptcha-response"])) {
 
 ?>
 
-<div class="pane">
-<h2>Register</h2>
+<h1>Register</h1>
+
 <?php
   if(isset($successmsg)){
-    echo("<div class=\"msg good\">".$successmsg."</div>");
+    echo("<div class=\"alert alert-success\" role=\"alert\">".$successmsg."</div>");
   }else{
-    if(isset($errormsg)){ echo("<div class=\"msg bad\">".$errormsg."</div>");}
+    if(isset($errormsg)){ echo("<div class=\"alert alert-danger\" role=\"alert\">".$errormsg."</div>");
+  }
 ?>
 
-By registering an account on cmubuggy.org, you'll be able to post in the forums, upload pictures to the gallery, and contribute knowledge to our reference section.  We also send out 1 or 2 emails per year to all registered users so you'll know when big things are happening.  Once you complete the form, check your e-mail for a confirmation link to finish your registration.
-<form action="/user/register" method="post" accept-charset="utf-8">
+<p>By registering an account on cmubuggy.org, you'll be able to post in the forums, upload pictures to the gallery, and contribute knowledge to our reference section. We also send out 1 or 2 emails per year to all registered users so you'll know when big things are happening. Once you complete the form, check your e-mail for a confirmation link to finish your registration.</p>
+
+<form action="/user/register" method="post">
   <fieldset>
-      <div class="floatright">
-        <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
-        <script src="https://www.google.com/recaptcha/api.js"></script>
-      </div>
+    <input type="hidden" name="registrationsubmit" value="1" />
+
+    <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" name="username" value="<?php if(isset($_POST['username'])){echo($_POST['username']);} ?>" id="username">
-      <label for="password">Password<div class="detail">(at least 6 characters)</div></label>
-      <input type="password" name="password" value="" id="password">
+      <input type="text" name="username" value="<?php if(isset($_POST['username'])){echo($_POST['username']);} ?>" id="username" class="form-control" autocomplete="username">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" value="" id="password" class="form-control" autocomplete="new-password">
+      <small class="form-text text-muted">at least 6 characters</small>
+    </div>
+
+    <div class="form-group">
       <label for="password2">Retype Password</label>
-      <input type="password" name="password2" value="" id="password2">
+      <input type="password" name="password2" value="" id="password2" class="form-control" autocomplete="new-password">
+    </div>
+
+    <div class="form-group">
       <label for="email">E-mail</label>
-      <input type="text" name="email" value="<?php if(isset($_POST['email'])){echo($_POST['email']);} ?>" id="email">
-      <label for="humantest">Where is CMU located?<div class="detail">(anti-spam)</div></label>
-      <input type="text" name="humantest" value="" id="humantest">
-      <input type="hidden" name="registrationsubmit" value="1" />
+      <input type="email" name="email" value="<?php if(isset($_POST['email'])){echo($_POST['email']);} ?>" id="email" class="form-group" autocomplete="email">
+    </div>
+
+    <div class="form-group">
+      <label for="humantest">Where is CMU located?</label>
+      <input type="text" name="humantest" value="" id="humantest" class="form-control">
+      <small class="form-text text-muted">anti-spam</small>
+    </div>
+
+    <div class="form-group">
+      <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
+      <script src="https://www.google.com/recaptcha/api.js"></script>
+    </div>
   </fieldset>
-  <input id="registerbtn" type="submit" value="Register" class="button" style="margin:10px 0 0 190px">
+
+  <div class="form-group">
+    <button id="registerbtn" type="submit" class="btn btn-primary">Register</button>
+  </div>
 </form>
 
 <?php } ?>
-
-</div>

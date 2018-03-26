@@ -19,18 +19,24 @@
   }
 ?>
 
-<div class="pane">
-  <h2>Login</h2>
-  <?php if(isset($msg)){ echo("<div class=\"msg bad\">".$msg."</div>"); }?>
-  <form action="/login.php" method="post" accept-charset="utf-8">
-    <fieldset>
+<h1>Login</h1>
+
+<?php if(isset($msg)){ echo("<div class=\"alert alert-danger\" role=\"alert\">".$msg."</div>"); }?>
+
+<form action="/login.php" method="post">
+  <fieldset>
+    <input type="hidden" name="loginsubmit" value="1" id="loginsubmit">
+    <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" name="username" value="" id="username"><br />
+      <input type="text" name="username" value="" id="username" class="form-control" autocomplete="username">
+    </div>
+    <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" name="password" value="" id="password">
-      <input type="hidden" name="loginsubmit" value="1" id="loginsubmit">
-    </fieldset>
-    <input id="loginbtn" type="submit" value="login" class="button">
-    <a style="margin-left:10px;" href="/user/register">Register</a>
-  </form>
-</div>
+      <input type="password" name="password" value="" id="password" class="form-control" autocomplete="current-password">
+    </div>
+  </fieldset>
+  <div class="form-group">
+    <button id="loginbtn" type="submit" class="btn btn-primary">Login</button>
+    <a href="/user/register" class="btn btn-link">Register</a>
+  </div>
+</form>

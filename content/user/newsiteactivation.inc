@@ -49,23 +49,30 @@ if(isset($_GET["urlkey"])){
   if(count($userList)>0){
     $user = $userList[0];
   ?>
-    <div class="pane">
-      <h2>New Site Activation</h2>
-      <?php if(isset($errormsg)){ echo("<div class=\"msg bad\">".$errormsg."</div>"); }?>
-      <?php if(isset($successmsg)){ echo("<div class=\"msg good\">".$successmsg."</div>");  }?>
-      Hi, <b><? echo($user->username); ?></b> welcome to the new cmubuggy! To activate your account on our new site just enter and confirm a password you'd like to use from now on.  A confirmation e-mail will be sent to your address on file, <b><? echo($user->email) ?></b>.   If you have any trouble, just email admin@cmubuggy.org for assistance.
-      <form action="/user/newsiteactivation/<? echo($_GET["urlkey"]); ?>" method="post" accept-charset="utf-8">
-        <fieldset>
+    <h1>New Site Activation</h1>
+
+    <?php if(isset($errormsg)){ echo("<div class=\"alert alert-danger\" role=\"alert\">".$errormsg."</div>"); }?>
+    <?php if(isset($successmsg)){ echo("<div class=\"alert alert-success\" role=\"alert\">".$successmsg."</div>");  }?>
+
+    <p>Hi, <b><? echo($user->username); ?></b> welcome to the new cmubuggy! To activate your account on our new site just enter and confirm a password you'd like to use from now on. A confirmation e-mail will be sent to your address on file, <b><? echo($user->email) ?></b>. If you have any trouble, just email <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> for assistance.</p>
+
+    <form action="/user/newsiteactivation/<? echo($_GET["urlkey"]); ?>" method="post">
+      <fieldset>
+        <input type="hidden" name="userid" value="<? echo($user->userId); ?>" id="userid">
+        <input type="hidden" name="newsiteactivationsubmit" value="TRUE" id="newsiteactivationsubmit">
+        <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" name="password" value="" id="password">
+          <input type="password" name="password" value="" id="password" class="form-control" autocomplete="new-password">
+        </div>
+        <div class="form-group">
           <label for="password2">Retype Password</label>
-          <input type="password" name="password2" value="" id="password2">
-          <input type="hidden" name="userid" value="<? echo($user->userId); ?>" id="userid">
-          <input type="hidden" name="newsiteactivationsubmit" value="TRUE" id="newsiteactivationsubmit">
-        </fieldset>
-        <input id="submitbtn" type="submit" value="submit" class="button">
-      </form>
-    </div>
+          <input type="password" name="password2" value="" id="password2" class="form-control" autocomplete="new-password">
+        </div>
+      </fieldset>
+      <div class="form-group">
+        <button id="submitbtn" type="submit" class="btn btn-primary">Sumbit</button>
+      </div>
+    </form>
 <?php
   }
 }
