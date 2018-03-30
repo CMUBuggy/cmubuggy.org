@@ -99,7 +99,7 @@
   </head>
   <?php 
 	  	$headline = "Gallery";
-		include_once("/var/www/cmubuggy.org/content/pre-content.inc"); ?>
+		include_once(ROOT_DIR."/content/pre-content.inc"); ?>
   <div id="topnav">
 		<?= $theme->site_menu($theme->item() ? "#g-item-id-{$theme->item()->id}" : "") ?>
 	</div>
@@ -152,6 +152,6 @@
 	  <? endif ?>
 	</div>
     <?= $theme->page_bottom() ?>
-    <?php include_once("/var/www/cmubuggy.org/content/post-content.inc"); ?>
+    <?php include_once(ROOT_DIR."/content/post-content.inc"); ?>
   </body>
 </html>
