@@ -37,7 +37,9 @@ if(file_exists("content/cache/history/".$cachefile)){
   	}
 	ob_start();
   	include_once("content/history/".$page.".inc");
- 	file_put_contents("content/cache/history/".$cachefile,ob_get_contents());
+  if (file_exists("content/cache/history/")) {
+    file_put_contents("content/cache/history/".$cachefile,ob_get_contents());
+  }
  	ob_end_flush();
 }
 ?>
