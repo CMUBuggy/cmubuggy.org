@@ -7,8 +7,10 @@ if($video){
 		$thumbsrc = "/content/cache/youtube/vidthumb-".$id.".jpg";
 	} else {
 		$thumbsrc = "https://i4.ytimg.com/vi/".$id."/default.jpg";
-		$thumb = file_get_contents("https://i4.ytimg.com/vi/".$id."/default.jpg");
-		file_put_contents("content/cache/youtube/vidthumb-".$id.".jpg", $thumb);
+		if (file_exists("content/cachce/youtube/")) {
+			$thumb = file_get_contents("https://i4.ytimg.com/vi/".$id."/default.jpg");
+			file_put_contents("content/cache/youtube/vidthumb-".$id.".jpg", $thumb);
+		}
 	}
 
 	if(!isset($vidmode)){ $vidmode = "popup"; }
