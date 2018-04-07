@@ -16,14 +16,15 @@
         <tr>
             <td><a href="https://discord.gg/PUwuUuj"><img src="/img/chaticon.png" /></a></td>
             <td><a href="https://discord.gg/PUwuUuj"><b>Chat</b></a> - We know there are alumni all over the world watching and listening to the coverage that would love to communicate faster than the forum will allow.  We bring you the Raceday Chat.<br /></td>
-            <td><!-- <a href="/files/RacedayGuide2014.pdf"><img src="/img/racedayguide.png" /></a> --></td>
-            <td><!-- <a href="/files/RacedayGuide2014.pdf"><b>Raceday Guide</b></a> - Ever come back after a few years and have a hard time recognizing the buggies? We've put together a full color guide to help you identify this year's buggies and know what to expect each heat.  We printed a few thousand copies to distribute, but feel free to print or save your own copy<br /> --></td>
-        </tr>
-        <tr>
-<!--             <td><a href="/raceday/askthebroadcasters"><img src="/img/microphone.png" width="64" height="64" /></a></td>
-            <td><a href="/raceday/askthebroadcasters"><b>Ask the Broadcasters</b></a> - Are you watching or listening to the broadcast? Do you have a question or comment for the on-air broadcasters? Leave it here, and they'll do their best to respond on-air between heats.<br /></td>
-            <td><a href="/raceday/rosters"><img src="/img/roster_icon.jpg" /></a></td>
-            <td><a href="/raceday/rosters"><b>Rosters</b></a> - Want to know which buggies are rolling on which teams?  Who is pushing which hills?  We've got it all here<br /></td> -->
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="50">
+                <path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/>
+              </svg>
+              <!-- svg from Font Awesome - https://fontawesome.com/license -->
+            </td>
+            <td>
+              <a href="/events"><b>Events</b></a> - Check out our full list events for Carnival 2018.
+            </td>
         </tr>
     </table>
 </div>

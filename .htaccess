@@ -25,6 +25,7 @@ RewriteRule		^seniors[/]*$					index.php?s=seniors				[NC,L]
 RewriteRule		^store[/]*$						index.php?s=store					[NC,L]
 RewriteRule		^user[/]*$						index.php?s=user					[NC,L]
 RewriteRule		^video[/]*$						index.php?s=videolist			[NC,L]
+RewriteRule   ^events[/]*$           index.php?s=events     [NC,L]
 
 #admin section
 RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1								[NC,L]
