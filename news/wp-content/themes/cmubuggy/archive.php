@@ -1,47 +1,46 @@
 <?php
 /**
+ * Template Name: Archive
  * @package WordPress
  * @subpackage Toolbox
  */
 
 get_header(); ?>
-	<div id="topnav">
-		<ul class="sf-menu">
-			<li><a href="#">Categories</a>
-				<ul>
-					<?php wp_list_cats('sort_column=name&optioncount=0&hierarchical=0'); ?>
-				</ul>
-			</li>
-			<li><a href="#">Archives</a>
-				<ul>
-					<?php wp_get_archives('type=monthly'); ?>
-				</ul>
-			</li>
-		</ul>
-	</div>
-		<div id="primary">
-			<div id="content">
 
-				<?php the_post(); ?>
+<?php
+  wp_nav_menu(
+    array(
+      'theme_location' => 'primary',
+      'menu_class' => 'sf-menu',
+      'container' => 'div',
+      'container_id' => 'topnav'
+    )
+  );
+?>
 
-				<h2 class="page-title">
-				<?php if ( is_day() ) : ?>
-					<?php printf( __( 'Daily Archives: <span>%s</span>', 'themename' ), get_the_date() ); ?>
-				<?php elseif ( is_month() ) : ?>
-					<?php printf( __( 'Monthly Archives: <span>%s</span>', 'themename' ), get_the_date( 'F Y' ) ); ?>
-				<?php elseif ( is_year() ) : ?>
-					<?php printf( __( 'Yearly Archives: <span>%s</span>', 'themename' ), get_the_date( 'Y' ) ); ?>
-				<?php else : ?>
-					<?php _e( 'Blog Archives', 'themename' ); ?>
-				<?php endif; ?>
-				</h2>
+<div id="primary">
+  <div id="container">
+    <div id="content" role="main" class="entry-content">
 
-				<?php rewind_posts(); ?>
+      <?php the_post(); ?>
+      <h1 class="entry-title"><?php the_title(); ?></h1>
 
-				<?php get_template_part( 'loop', 'archive' ); ?>
+      <?php get_search_form(); ?>
+      <div class="clear"></div>
 
-			</div><!-- #content -->
-		</div><!-- #primary -->
+      <h2>Archives by Subject:</h2>
+      <ul>
+         <?php wp_list_categories(); ?>
+      </ul>
+
+      <h2>Archives by Month:</h2>
+      <ul>
+        <?php wp_get_archives('type=monthly'); ?>
+      </ul>
+
+    </div><!-- #content -->
+  </div><!-- #container -->
+</div>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
