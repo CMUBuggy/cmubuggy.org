@@ -16,7 +16,7 @@
         <th colspan="2">WRCT Pre-Raceday Broadcast</th>
       </tr>
       <tr>
-        <td>Wed 18th @ 8pm</td>
+        <td>Wed, April 18th @ 8pm</td>
         <td>Tune in to hear current students and locals share their predictions for this year’s races, listen locally on 88.3 fm or online via <a href="http://www.wrct.org">wrct.org</a></td>
       </tr>
       <tr>
