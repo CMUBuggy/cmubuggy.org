@@ -37,14 +37,14 @@
         <th colspan="2">History of Buggy (‘93 edition) w/ Tom Wood</th>
       </tr>
       <tr>
-        <td>Friday, April 20 @ 1:30pm</td>
+        <td>Fri, April 20 @ 1:30pm</td>
         <td>Our regular can’t miss event is back as Tom Wood shares a history of buggy focused on the class of ‘93. His talk will be held in the Danforth Conference room in the CUC.</td>
       </tr>
       <tr>
         <th colspan="2">Buggy Meetup and Finals Lead Truck Auction</th>
       </tr>
       <tr>
-        <td>Friday, April 20 @ 7:30pm</td>
+        <td>Fri, April 20 @ 7:30pm</td>
         <td><strong>*NEW EVENT*</strong> For the first time ever, bid live on the finals heats’ lead truck rides <i>after</i> the heats have been decided, and stick around to share your Raceday experiences at Hough’s taproom, the original bar with a buggy!</td>
       </tr>
     </tbody>
