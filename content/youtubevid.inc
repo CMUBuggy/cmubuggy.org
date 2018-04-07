@@ -26,7 +26,7 @@ if($video){
     ?>
       <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#youtube-<?php echo $id; ?>"><img alt="<?php echo($video->title); ?>" title="<?php echo($video->title); ?>" width="120px" height="90px" src="<?php echo($thumbsrc); ?>"></button>
       <div id="youtube-<?php echo $id; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="#title-<?php echo $id; ?>" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="title-<?php echo $id; ?>"><?php echo $video->title; ?></h5>
