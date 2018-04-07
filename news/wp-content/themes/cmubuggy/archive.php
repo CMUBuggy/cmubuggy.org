@@ -7,17 +7,6 @@
 
 get_header(); ?>
 
-<?php
-  wp_nav_menu(
-    array(
-      'theme_location' => 'primary',
-      'menu_class' => 'sf-menu',
-      'container' => 'div',
-      'container_id' => 'topnav'
-    )
-  );
-?>
-
 <div id="primary">
   <div id="container">
     <div id="content" role="main" class="entry-content">

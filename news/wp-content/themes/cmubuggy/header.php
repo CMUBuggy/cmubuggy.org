@@ -27,3 +27,13 @@
 </head>
 <?php 
 	include_once("../content/pre-content.inc");
+
+  wp_nav_menu(
+    array(
+      'theme_location' => 'primary',
+      'menu_class' => 'sf-menu',
+      'container' => 'div',
+      'container_id' => 'topnav'
+    )
+  );
+?>
