@@ -28,7 +28,7 @@
 <body>
 
   <header class="fixed-top mb-3">
-    <nav class="navbar navbar-dark bg-danger px-0">
+    <nav class="navbar navbar-dark bg-primary px-0">
       <div class="container">
         <a href="/" class="navbar-brand d-inline-flex">
           <img src="/img/logo-square-small.png" alt="CMU Buggy Alumni Association logo" class="d-lg-none mr-2" height="30" width="30">
