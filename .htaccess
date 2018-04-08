@@ -7,6 +7,8 @@ php_flag display_errors on
 
 RewriteEngine On    # Turn on the rewriting engine
 
+Redirect 302 /auction https://www.32auctions.com/baa2018
+
 #top level sections
 RewriteRule		^about[/]*$						index.php?s=about					[NC,L]
 RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]
@@ -23,6 +25,7 @@ RewriteRule		^seniors[/]*$					index.php?s=seniors				[NC,L]
 RewriteRule		^store[/]*$						index.php?s=store					[NC,L]
 RewriteRule		^user[/]*$						index.php?s=user					[NC,L]
 RewriteRule		^video[/]*$						index.php?s=videolist			[NC,L]
+RewriteRule   ^events[/]*$           index.php?s=events     [NC,L]
 
 #admin section
 RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1								[NC,L]

@@ -72,6 +72,10 @@
       $title = "Videos | ".$title;
       $headline = "Video Archives";
       break;
+    case "events":
+      $title = "Events | ".$title;
+      $headline = "Events";
+      break;
   }
 
   if(empty($s)){
