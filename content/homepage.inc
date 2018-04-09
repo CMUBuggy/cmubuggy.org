@@ -90,6 +90,17 @@
   </div>
   <div class="col-md-4">
     <section>
+      <h2>Records</h2>
+      <dl class="row">
+        <dt class="col-5">Mens</dt>
+        <dd class="col-7">2:02.16</dd>
+
+        <dt class="col-5">Womens</dt>
+        <dd class="col-7">2:23.27</dd>
+      </dl>
+    </section>
+
+    <section>
       <h2>Get Involved</h2>
       <div class="media mb-3">
         <span class="fa-layers fa-fw fa-2x mr-2">
