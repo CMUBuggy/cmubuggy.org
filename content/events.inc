@@ -9,7 +9,7 @@
 <div class="card mb-3">
   <div class="card-body">
     <h5 class="card-title">WRCT Pre-Raceday Broadcast</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Wed, April 18th @ 8pm</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Wed, April 18th @ 7pm</h6>
     <p class="card-text">Tune in to hear current students and locals share their predictions for this year’s races, listen locally on 88.3&nbsp;FM or online via <a href="http://www.wrct.org">wrct.org</a>.</p>
   </div>
 </div>
