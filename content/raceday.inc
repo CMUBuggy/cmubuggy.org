@@ -13,6 +13,9 @@
       <a class="nav-link" target="_blank" rel="noopener" href="https://discord.gg/PUwuUuj">Chat</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="/live">Live</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" target="_blank" rel="noopener" href="http://new.livestream.com/cmuTVlive">cmuTV<img class="ml-1" alt="" src="/img/icon-new-window.gif"></a>
     </li>
   </ul>
