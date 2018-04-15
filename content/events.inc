@@ -29,6 +29,13 @@
 </div>
 <div class="card mb-3">
   <div class="card-body">
+    <h5 class="card-title">Prelim Races</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Fri, April 20 @ 7:20am</h6>
+    <p class="card-text">Come join us in person or online to watch prelims!</p>
+  </div>
+</div>
+<div class="card mb-3">
+  <div class="card-body">
     <h5 class="card-title">History of Buggy (‘93 edition) w/ Tom Wood</h5>
     <h6 class="card-subtitle mb-2 text-muted">Fri, April 20 @ 1:30pm</h6>
     <p class="card-text">Our regular can’t miss event is back as Tom Wood shares a history of buggy focused on the class of ‘93. His talk will be held in the Danforth Conference room in the CUC.</p>
@@ -39,5 +46,12 @@
     <h5 class="card-title">Buggy Meetup and Finals Lead Truck Auction <span class="badge badge-primary text-uppercase">New Event</span></h5>
     <h6 class="card-subtitle mb-2 text-muted">Fri, April 20 @ 7:30pm</h6>
     <p class="card-text">For the first time ever, bid live on the finals heats’ lead truck rides <em>after</em> the heats have been decided, and stick around to share your Raceday experiences at Hough’s taproom, the original bar with a buggy!</p>
+  </div>
+</div>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">Finals Races</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Sat, April 21 @ 8am</h6>
+    <p class="card-text">Finals!</p>
   </div>
 </div>
