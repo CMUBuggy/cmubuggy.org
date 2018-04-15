@@ -47,3 +47,31 @@
     </div>
   </div>
 </div>
+
+<section class="sponsors">
+  <h2>Sponsors</h2>
+
+  <h3>Gold Level</h3>
+  <div class="d-flex justify-space-around flex-wrap align-items-center" style="margin-left: -.5rem; margin-right: -.5rem;">
+    <div class="mx-2 mb-3">
+      <img src="/img/logo-web.png" alt="Buggy Alumni Association logo" class="img-fluid">
+      <div class="sr-only">Buggy Alumni Association</div>
+    </div>
+    <div class="mx-2 mb-3">
+      <img src="/img/sponsors/godaddy.png" alt="GoDaddy logo" class="img-fluid">
+      <div class="sr-only">GoDaddy</div>
+    </div>
+  </div>
+
+  <h3>Silver Level</h3>
+  <div class="mb-3">
+    <img src="/img/sponsors/uber.png" alt="Uber logo" class="img-fluid">
+    <div class="sr-only">Uber</div>
+  </div>
+
+  <h3>Official Vehicle Supplier</h3>
+  <div class="mb-3">
+    <img src="/img/sponsors/cochran.png" alt="Cochran logo" class="img-fluid">
+    <div class="sr-only">Cocrhan</div>
+  </div>
+</section>

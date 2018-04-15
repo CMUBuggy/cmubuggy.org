@@ -30,6 +30,8 @@
   .video-grid { margin-left: -.5rem; margin-right: -.5rem; }
   .video-grid > a { margin-left: .5rem; margin-right: .5rem; }
   .raceday-thumb { width: 3em; }
+  .sponsors img { max-width: 200px; max-height: 200px; }
+  @supports (object-fit: contain) { .sponsors img { object-fit: contain; width: 200px; } }
 </style>
 
 <!--JS-->
