@@ -21,13 +21,29 @@
 	<meta property="fb:app_id" content="150469765045743"/>
 
 	<?php include_once('../content/cssjs.inc'); ?>
-	<?php if (is_admin_bar_showing()) { ?>
-		<style>
+	<style>
+		:root { --wp-margin: 0px; }
+		#masthead { top: var(--wp-margin); }
+		@supports ((postition: -webkit-sticky) or (position: sticky)) {
+			#navigation {
+				top: 3.5rem;
+				top: calc(3.5rem + var(--wp-margin));
+				max-height: calc(100vh - 3.5rem);
+			}
+			@media (min-width: 992px) {
+				#navigation {
+					top: 4.5rem;
+					top: calc(4.5rem + var(--wp-margin));
+					max-height: calc(100vh - 4.5rem);
+				}
+			}
+		}
+		<?php if (is_admin_bar_showing()) { ?>
 			:root { --wp-margin: 32px }
 			@media screen and (max-width: 782px) { :root { --wp-margin: 46px; } }
 			@media screen and (max-width: 600px) { #masthead { position: sticky; margin-top: -4.5rem; top: 0; } }
-		</style>
-	<?php } ?>
+		<?php } ?>
+	</style>
 
 	<?php wp_head(); ?>
 </head>
