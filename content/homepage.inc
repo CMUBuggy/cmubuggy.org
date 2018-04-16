@@ -2,7 +2,7 @@
   <div class="col-md-8">
 
     <section class="mb-3">
-      <h2><a href="/history/raceday/2017">2017 Results</a></h2>
+      <h2>2017 Results</h2>
       <h3>Races</h3>
       <table class="table table-sm">
         <thead>
