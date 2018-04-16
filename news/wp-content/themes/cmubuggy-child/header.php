@@ -27,7 +27,7 @@
 			@media screen and (max-width: 782px) { :root { --wp-margin: 46px; } }
 			@media screen and (max-width: 600px) { #masthead { position: sticky; margin-top: -4.5rem; top: 0; } }
 		</style>
-	<? } ?>
+	<?php } ?>
 
 	<?php wp_head(); ?>
 </head>
