@@ -7,20 +7,22 @@
   $weeksleft = floor($daysleft / 7);
   $monthsleft = floor($daysleft / 30);
   $count = $monthsleft;
-  $unit = "MONTHS";
+  $unit = "months";
   if ($count < 4){
     $count = $weeksleft;
-    $unit = "WEEKS";
+    $unit = "weeks";
     if ($count < 4){
       $count = $daysleft;
-      $unit = "DAYS";
+      $unit = "days";
       if ($count < 4){
         $count = $hoursleft;
-        $unit = "HOURS";
+        $unit = "hours";
       }
     }
   }
-  if ($hoursleft < 0){
+  $small_word = 'in';
+  if ($hoursleft < 0) {
+    $small_word = 'now:';
     $count = "GO";
     $unit = "TIME";
   }
