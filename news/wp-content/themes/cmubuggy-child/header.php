@@ -21,6 +21,13 @@
 	<meta property="fb:app_id" content="150469765045743"/>
 
 	<?php include_once('../content/cssjs.inc'); ?>
+	<?php if (is_admin_bar_showing()) { ?>
+		<style>
+			:root { --wp-margin: 32px }
+			@media screen and (max-width: 782px) { :root { --wp-margin: 46px; } }
+			@media screen and (max-width: 600px) { #masthead { position: sticky; margin-top: -4.5rem; top: 0; } }
+		</style>
+	<? } ?>
 
 	<?php wp_head(); ?>
 </head>
@@ -42,5 +49,5 @@
 ?>
 <?php if ( ! is_page_template( 'blank-page.php' ) && ! is_page_template( 'blank-page-with-container.php' )) { ?>
 	<div class="row">
-<?
+<?php
 	}

@@ -8,13 +8,34 @@
  */
 
 /*--------------------------------------------------------------
+# Admin Fixes
+--------------------------------------------------------------*/
+:root { --wp-margin: 0px; }
+#masthead { top: var(--wp-margin); }
+@supports ((postition: -webkit-sticky) or (position: sticky)) {
+	#navigation {
+		top: 3.5rem;
+		top: calc(3.5rem + var(--wp-margin));
+		max-height: calc(100vh - 3.5rem);
+	}
+	@media (min-width: 992px) {
+		#navigation {
+			top: 4.5rem;
+			top: calc(4.5rem + var(--wp-margin));
+			max-height: calc(100vh - 4.5rem);
+		}
+	}
+}
+
+
+/*--------------------------------------------------------------
 # Bootstrap Fixes
 --------------------------------------------------------------*/
 table.data {
 	width: 100%;
 	max-width: 100%;
 	margin-bottom: 1rem;
-	background-color: transparent; // Reset for nesting within parents with `background-color`.
+	background-color: transparent; /* Reset for nesting within parents with `background-color`. */
 }
 
 table.data th,

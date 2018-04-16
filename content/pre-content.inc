@@ -29,7 +29,7 @@
 ?>
 <body>
 
-  <header class="fixed-top mb-3">
+  <header id="masthead" class="fixed-top mb-3">
     <nav class="navbar navbar-dark bg-primary px-0">
       <div class="container">
         <a href="/" class="navbar-brand d-inline-flex">
