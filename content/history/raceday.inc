@@ -150,12 +150,12 @@
     <li class="nav-item">
       <a id="prelimheats-tab" href="#tab-prelimheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-prelimheats" aria-selected="false">Prelim Heats</a>
     </li>
-  <? } ?>
+  <?php } ?>
   <?php if(count($fheatsArr)>0) { ?>
     <li class="nav-item">
       <a id="finalsheats-tab" href="#tab-finalsheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-finalsheats" aria-selected="false">Finals Heats</a>
     </li>
-  <? } ?>
+  <?php } ?>
 </ul>
 
 <div class="tab-content">
@@ -169,10 +169,11 @@
     <div class="tab-pane fade" id="tab-prelimheats" role="tabpanel" aria-labelledby="prelimheats-tab">
       <?php displayHeats($pheatsArr); ?>
     </div>
-  <? } ?>
+  <?php } ?>
   <?php if(count($fheatsArr)>0) { ?>
     <div class="tab-pane fade" id="tab-finalsheats" role="tabpanel" aria-labelledby="finalsheats-tab">
       <?php displayHeats($fheatsArr); ?>
     </div>
-  <? } ?>
+  <?php } ?>
 </div>
+<?php

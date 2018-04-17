@@ -54,11 +54,11 @@ if(isset($_GET["urlkey"])){
     <?php if(isset($errormsg)){ echo("<div class=\"alert alert-danger\" role=\"alert\">".$errormsg."</div>"); }?>
     <?php if(isset($successmsg)){ echo("<div class=\"alert alert-success\" role=\"alert\">".$successmsg."</div>");  }?>
 
-    <p>Hi, <b><? echo($user->username); ?></b> welcome to the new cmubuggy! To activate your account on our new site just enter and confirm a password you'd like to use from now on. A confirmation e-mail will be sent to your address on file, <b><? echo($user->email) ?></b>. If you have any trouble, just email <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> for assistance.</p>
+    <p>Hi, <b><?php echo($user->username); ?></b> welcome to the new cmubuggy! To activate your account on our new site just enter and confirm a password you'd like to use from now on. A confirmation e-mail will be sent to your address on file, <b><?php echo($user->email) ?></b>. If you have any trouble, just email <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a> for assistance.</p>
 
-    <form action="/user/newsiteactivation/<? echo($_GET["urlkey"]); ?>" method="post">
+    <form action="/user/newsiteactivation/<?php echo($_GET["urlkey"]); ?>" method="post">
       <fieldset>
-        <input type="hidden" name="userid" value="<? echo($user->userId); ?>" id="userid">
+        <input type="hidden" name="userid" value="<?php echo($user->userId); ?>" id="userid">
         <input type="hidden" name="newsiteactivationsubmit" value="TRUE" id="newsiteactivationsubmit">
         <div class="form-group">
           <label for="password">Password</label>
