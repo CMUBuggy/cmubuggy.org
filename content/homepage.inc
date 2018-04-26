@@ -32,6 +32,27 @@
           <td>CIA A</td>
           <td>2:36.36</td>
         </tr>
+        <tr>
+          <th>4<sup>th</sup></th>
+          <td>SigEp A</td>
+          <td>2:14.69</td>
+          <td>SDC B</td>
+          <td>2:37.49</td>
+        </tr>
+        <tr>
+          <th>5<sup>th</sup></th>
+          <td>Fringe B</td>
+          <td>2:15.53</td>
+          <td>Fringe A</td>
+          <td>2:38.87</td>
+        </tr>
+        <tr>
+          <th>6<sup>th</sup></th>
+          <td>Apex B</td>
+          <td>2:15.63</td>
+          <td>Spirit A</td>
+          <td>2:39.06</td>
+        </tr>
       </table>
       <p>Check out the full raceday results <a href="/raceday/leaderboard">here</a>.</p>
 
