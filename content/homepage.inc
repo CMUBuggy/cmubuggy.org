@@ -1,12 +1,7 @@
 <div class="row">
   <div class="col-md-8">
-    <section class="alert alert-info mb-3">
-      <h2>Raceday is <?php echo $small_word . ' ' . $count . ' ' . $unit; ?>!</h2>
-      <p>Go to our <a href="/raceday">Raceday</a> section for everything you'll need to know during Carnival 2018!</p>
-    </section>
-
     <section class="mb-3">
-      <h2>2017 Results</h2>
+      <h2>2018 Results</h2>
       <h3>Races</h3>
       <table class="table table-sm">
         <thead>
@@ -19,51 +14,55 @@
         <tr>
           <th>1<sup>st</sup></th>
           <td>SDC A</td>
-          <td>2:02.16</td>
+          <td>2:03.17</td>
           <td>SDC A</td>
-          <td>2:23.27</td>
+          <td>2:23.60</td>
         </tr>
         <tr>
           <th>2<sup>nd</sup></th>
-          <td>PiKA A</td>
-          <td>2:08.42</td>
           <td>SDC B</td>
-          <td>2:32.80</td>
+          <td>2:12.77</td>
+          <td>PiKA A</td>
+          <td>2:35.01</td>
         </tr>
         <tr>
           <th>3<sup>rd</sup></th>
-          <td>SigEp A</td>
-          <td>2:09:24</td>
-          <td>PiKA A</td>
-          <td>2:33.24</td>
+          <td>CIA A</td>
+          <td>2:12.96</td>
+          <td>CIA A</td>
+          <td>2:36.36</td>
         </tr>
       </table>
+      <p>Check out the full raceday results <a href="/raceday/leaderboard">here</a>.</p>
 
       <h3>Awards</h3>
       <dl class="row">
         <dt class="col-sm-5">Design</dt>
         <dd class="col-sm-7">
           <ol style="margin: 0; padding: 0 0 0 1.25em;">
+            <li>Bumper - Fringe</li>
+            <li>Emperor - CIA</li>
             <li>Blueshift - Fringe</li>
-            <li>Equinox - CIA</li>
-            <li>Inviscid - Spirit</li>
           </ol>
         </dd>
 
         <dt class="col-sm-5">People's Choice</dt>
-        <dd class="col-sm-7">Inviscid - Spirit</dd>
+        <dd class="col-sm-7">Bumper - Fringe</dd>
 
         <dt class="col-sm-5">Spirit of Buggy</dt>
-        <dd class="col-sm-7">Fringe</dd>
+        <dd class="col-sm-7">Spirit</dd>
 
         <dt class="col-sm-5">Chairman's Choice</dt>
-        <dd class="col-sm-7">SigEp</dd>
+        <dd class="col-sm-7">Fringe</dd>
 
         <dt class="col-sm-5">T-Shirt</dt>
-        <dd class="col-sm-7">SigNu</dd>
+        <dd class="col-sm-7">SigEp</dd>
 
-        <dt class="col-sm-5">Design Showcase Spark</dt>
-        <dd class="col-sm-7">Beyonce - SigEp</dd>
+        <dt class="col-sm-5">Honorable Mention</dt>
+        <dd class="col-sm-7">Eileen - SAE</dd>
+
+        <dt class="col-sm-5">Chairman of the Year</dt>
+        <dd class="col-sm-7">Joyce Chen - SDC</dd>
 
         <dt class="col-sm-5">King of the Hill</dt>
         <dd class="col-sm-7">Jacob Hoffman - SDC A</dd>
