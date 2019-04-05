@@ -57,7 +57,7 @@
     </li>
   </ul>
 
-  <p>Results update automatically. If they stop or you can't see them, <a role="button" href="#" data-iframe>click here</a>. To see 2017 results, <a href="https://docs.google.com/spreadsheets/d/11FmOjQ2FIlqccgAJQ8DVxEvPsBrGdoeN2FTbNHbCyjg/pubhtml" target="_blank">go here</a>.</p>
+  <p>Results update automatically. If they stop or you can't see them, <a role="button" href="#" data-iframe>click here</a>. To see 2018 results, <a href="/history/raceday/2018" target="_blank">go here</a>.</p>
 
   <div class="tab-content mb-3">
     <div class="tab-pane fade prelims show active" id="tab-womens-prelims" role="tabpanel" aria-labelledby="womens-prelims-tab">
@@ -165,6 +165,6 @@
   });
 
   document.querySelector('[data-iframe]').addEventListener('click', function (e) {
-    document.querySelector('#results').innerHTML = '<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQq1kstkhJH0XQS8bkN0wTGegRf4g0VOKiLQydVofP8jeIgCLR-QdGctK1vG5WeMp8ENxpGDSnLrbyO/pubhtml?widget=true&amp;headers=false" style="width: 100%; height: 80vh;"></iframe>';
+    document.querySelector('#results').innerHTML = '<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQRPv3lcYc3ZAM4rAlXvtRaJIJXUdtm4EKjk3rS22rpGQ-awGmdxqsSX2dSTJsWzN7uJT1v9ax5qwJi/pubhtml?widget=true&amp;headers=false" style="width: 100%; height: 80vh;"></iframe>';
   })
 </script>
