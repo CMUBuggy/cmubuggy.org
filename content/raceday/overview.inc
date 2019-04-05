@@ -43,7 +43,7 @@
     <!-- svg from Font Awesome - https://fontawesome.com/license -->
     <div class="media-body">
       <h5 class="mt-0"><a href="/events">Events</a></h5>
-      Check out our full list of events for Carnival 2018.
+      Check out our full list of events for Carnival 2019.
     </div>
   </div>
 </div>
