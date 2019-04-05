@@ -1,57 +1,124 @@
-<h1>Carnival 2018 BAA Event Schedule</h1>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">Prelims Lead Truck Auction</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Mon, April 16 @ 9am &ndash; Wed, April 18 @ 11pm</h6>
-    <p class="card-text">Bid online on your favorite preliminary heats for your chance at the best buggy viewing experience! Rules and link will be posted in a future news post.</p>
-  </div>
-</div>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">WRCT Pre-Raceday Broadcast</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Wed, April 18th @ 7pm</h6>
-    <p class="card-text">Tune in to hear current students and locals share their predictions for this year’s races, listen locally on 88.3&nbsp;FM or online via <a href="http://www.wrct.org">wrct.org</a>.</p>
-  </div>
-</div>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">Myth’s and Legends of Buggy Panel</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Thurs, April 19 @ 12:30pm</h6>
-    <p class="card-text">Taking a page from the Carnival theme this year, a group of panelists across the generations will share their own buggy myths and legends during Design Showcase. Panelists to be announced.</p>
-  </div>
-</div>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">Welcome Back Happy Hour <span class="badge badge-primary text-uppercase">New Location</span></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Thurs, April 19 @ 7:30pm</h6>
-    <p class="card-text">This year, our Welcome Back Happy Hour is moving to Fuel and Fuddle, the newest bar with a buggy! Come hang out with other early arrivals and share your Raceday 2018 predictions.</p>
-  </div>
-</div>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">Prelim Races</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Fri, April 20 @ 7:20am</h6>
-    <p class="card-text">Come join us in person or online to watch prelims!</p>
-  </div>
-</div>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">History of Buggy (‘93 edition) w/ Tom Wood</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Fri, April 20 @ 1:30pm</h6>
-    <p class="card-text">Our regular can’t miss event is back as Tom Wood shares a history of buggy focused on the class of ‘93. His talk will be held in the Danforth Conference room in the CUC.</p>
-  </div>
-</div>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">Buggy Meetup and Finals Lead Truck Auction <span class="badge badge-primary text-uppercase">New Event</span></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Fri, April 20 @ 7:30pm</h6>
-    <p class="card-text">For the first time ever, bid live on the finals heats’ lead truck rides <em>after</em> the heats have been decided, and stick around to share your Raceday experiences at Hough’s taproom, the original bar with a buggy!</p>
-  </div>
-</div>
-<div class="card mb-3">
-  <div class="card-body">
-    <h5 class="card-title">Finals Races</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Sat, April 21 @ 8am</h6>
-    <p class="card-text">Finals!</p>
-  </div>
-</div>
+<?php
+
+  $events = array(
+      array(
+        "Monday, Apr 8 @ 9am",
+        "Online",
+        "Lead Truck Auction Opens!",
+        array(
+          "Bid online on your favorite preliminary heats for your chance at the best buggy viewing experience!",
+          "Rules and link will be shared in a future news post."
+        )
+      ),
+      array(
+        "Tuesday, Apr 9 @ noon",
+        "Email",
+        "Raceday Preview Release",
+        array(
+          "All members will find the much anticipated Raceday Preview in their inboxes. Make sure you've <a href=\"https://securelb.imodules.com/s/1410/giving/form-social.aspx?sid=1410&gid=1&pgid=382&cid=990&appealcode=A3291&dids=98\">renewed your membership</a> TODAY!"
+        )
+      ),
+      array(
+        "Wednesday, Apr 10 @ 8&ndash;9pm",
+        "<a href=\"http://www.wrct.org\">WRCT</a>",
+        "WRCT Pre-Broadcast",
+        array(
+          "Tune in to hear current students and locals share their predictions for this year's races, listen locally on 88.3 fm or online via&nbsp;<a href=\"http://www.wrct.org/\">wrct.org</a>",
+          "Speakers will be announced soon!"
+        )
+      ),
+      array(
+        "Wednesday, Apr 10 @ 10pm",
+        "Online",
+        "Lead Truck Auction Prelims Closes!",
+        array(
+          "Online bidding for all races will close, so make sure you keep an eye on any you don't want to miss!",
+          "Bidding for the Finals races will conclude Friday evening once we know the matchups."
+        )
+      ),
+      array(
+        "Thursday, Apr 11 @ noon&ndash;2pm",
+        "Weigand Gymnasium, CUC",
+        "Sweepstakes Design Showcase",
+        array(
+          "Come view the current and latest buggy designs and talk with the teams. Plus, kids 12 and under can build and race their own LEGO&reg; buggy on our custom-built track!"
+        )
+      ),
+      array(
+        "Thursday, Apr 11 @ 12:30&ndash;1:30pm",
+        "Weigand Gymnasium (Stage), CUC",
+        "BAA Student & Alumni Panel",
+        array(
+          "If you're around on Thursday, swing by the Design Showcase and join us for a rousing panel discussion comparing stories between students and alumni."
+        )
+      ),
+      array(
+        "Thursday, Apr 11 @ 7-9pm",
+        "Fuel &amp; Fuddle (212 Oakland Ave)",
+        "BAA Welcome Back",
+        array(
+          'Join the BAA for a casual "welcome back to Pittsburgh" event to kick-start the weekend. Reminisce at Fuel &amp; Fuddle in Oakland about buggy days and debate who will be the lead contenders this year.'
+        )
+      ),
+      array(
+        "Friday, Apr 12 @ 8am&ndash;12:30pm",
+        "Buggy Course (Tech-Schenley-Frew)",
+        "Preliminary Races &amp; Lead Truck Rides",
+        array(
+          "The 99th anniversary of the races kicks off at 8am EDT! Join us live on the buggy course, or online <a href=\"https://cmubuggy.org/live\">here</a>!"
+        )
+      ),
+      array(
+        "Friday, Apr 12 @ 1:30&ndash;3pm",
+        "Midway Reunion Tent",
+        "History Of Buggy: Showcasing Reunion Years",
+        array(
+          "Come relive the excitement of Buggy with Buggy Alumni Association archivist and guru Tom Wood (E 1974), featuring Reunion years 1969, 1994, 2009, 2014 and 2018. Vintage buggies on display."
+        )
+      ),
+      array(
+        "Friday, Apr 12 @ 7&ndash;10pm",
+        "Hough's Taproom (563 Greenfield Ave)",
+        "Buggy Recap &amp; In-Person Finals Auction",
+        array(
+          "Join the Buggy Alumni Association at Hough's Taproom for some spirited discussions about the preliminary races and bid in-person for the live Lead Truck Auction!"
+        )
+      ),
+      array(
+        "Saturday, Apr 13 @ 8am&ndash;12:30pm",
+        "Buggy Course (Flagstaff Hill)",
+        "Exhibition and Finals Races &amp; Lead Truck Rides",
+        array(
+          "This is the main event! Join us live on the course as races kick off at 8am EST starting with some exhibition heats include the Reunion Race, and the first ever Staff &amp; Faculty CIT vs MCS!",
+          "As always, CMUtv will be <a href=\"https://cmubuggy.org/live\">streaming the races</a>."
+        )
+      ),
+      array(
+        "Saturday, Apr 13 @ 4pm",
+        "Midway Stage (The Cut)",
+        "Spring Carnival Booth &amp; Sweepstakes Awards Ceremony",
+        array(
+          "Cheer on your team as all awards and trophies are handed out and join in the celebration!",
+          "Rain location: McConomy Auditorium, 1st Floor, CUC"
+        )
+      )
+  );
+
+?>
+<h1>Carnival 2019 BAA Event Schedule</h1>
+
+<?php
+  $eventsLength = count($events);
+  for ($idx = 0; $idx < $eventsLength; $idx++) {
+    $event = $events[$idx];
+    echo '<div class="card mb-3">';
+    echo '<div class="card-body">';
+    echo '<h5 class="card-title">' . $event[2] . '</h5>';
+    echo '<h6 class="card-subtitle mb-2 text-muted"> ' . $event[1] . ' - ' . $event[0] . '</h6>';
+    for ($idx2 = 0; $idx2 < count($event[3]); $idx2++ ) {
+      echo '<p class="card-text">' . $event[3][$idx2] . '</p>';
+    }
+    echo '</div>';
+    echo '</div>';
+  }
+?>
