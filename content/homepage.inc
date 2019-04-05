@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-md-8">
     <section class="mb-3">
+      <section class="alert alert-info mb-3">
+        <h2>Raceday is <?php echo $small_word . ' ' . $count . ' ' . $unit; ?>!</h2>
+        <p>Go to our <a href="/raceday">Raceday</a> section for everything you'll need to know during Carnival 2019!</p>
+      </section>
+
       <h2>2018 Results</h2>
       <h3>Races</h3>
       <table class="table table-sm">
