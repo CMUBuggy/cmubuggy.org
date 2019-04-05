@@ -48,7 +48,7 @@
   </div>
 </div>
 
-<section class="sponsors">
+<section class="sponsors" hidden>
   <h2>Sponsors</h2>
 
   <h3>Gold Level</h3>
