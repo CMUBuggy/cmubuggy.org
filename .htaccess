@@ -7,7 +7,7 @@ php_flag display_errors on
 
 RewriteEngine On    # Turn on the rewriting engine
 
-Redirect 302 /auction https://www.32auctions.com/baa2018
+Redirect 302 /auction https://www.32auctions.com/baa2019
 
 #top level sections
 RewriteRule		^about[/]*$						index.php?s=about					[NC,L]

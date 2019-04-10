@@ -7,7 +7,7 @@
         "Lead Truck Auction Opens!",
         array(
           "Bid online on your favorite preliminary heats for your chance at the best buggy viewing experience!",
-          "Rules and link will be shared in a future news post."
+          "Head to our <a href=\"/auction\">auction site</a> to bid."
         )
       ),
       array(
