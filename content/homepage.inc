@@ -60,7 +60,7 @@
           <td>2:39.06</td>
         </tr>
       </table>
-      <p>Check out the full raceday results <a href="/raceday/leaderboard">here</a>.</p>
+      <p>Check out the full 2018 raceday results <a href="/history/raceday/2018">here</a>.</p>
 
       <h3>Awards</h3>
       <dl class="row">
