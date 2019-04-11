@@ -4,7 +4,7 @@
       <section class="alert alert-info mb-3">
         <h2>Raceday is <?php echo $small_word . ' ' . $count . ' ' . $unit; ?>!</h2>
         <p>Go to our <a href="/raceday">Raceday</a> section for everything you'll need to know during Carnival 2019!</p>
-        <p>Go to our <a href="/auction">auction site</a> to bid on races.
+        <p>Go to our <a href="/auction">auction site</a> for how to bid on finals heats.</p>
       </section>
 
       <h2>2018 Results</h2>

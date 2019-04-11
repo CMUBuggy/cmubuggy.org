@@ -7,7 +7,7 @@
         "Lead Truck Auction Opens!",
         array(
           "Bid online on your favorite preliminary heats for your chance at the best buggy viewing experience!",
-          "Head to our <a href=\"/auction\">auction site</a> to bid."
+          "Go to our <a href=\"/auction\">auction site</a> for how to bid on finals heats."
         )
       ),
       array(
