@@ -22,4 +22,4 @@
   <iframe id="ls_embed_1523747003" src="https://livestream.com/accounts/37333/events/8157672/player?enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" class="embed-responsive-item" frameborder="0" scrolling="no" allowfullscreen></iframe>
 </div>
 
-<p>Live streaming is currently broadcast through <a href="http://new.livestream.com/cmuTVlive" target="_blank" rel="noopener">cmuTV</a>. Join the <a href="https://discord.gg/PUwuUuj" target="_blank" rel="noopener">cmubuggy chat room</a> if you're watching and share your comments.
+<p>Live streaming is currently broadcast through <a href="http://new.livestream.com/cmuTVlive" target="_blank" rel="noopener">cmuTV</a>. Join the <a href="https://discord.gg/PUwuUuj" target="_blank" rel="noopener">cmubuggy chat room</a> if you're watching and share your comments.</p>
