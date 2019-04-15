@@ -89,7 +89,7 @@
         <dd class="col-sm-6">Sophie Halpern &amp; Carl Young - SigEp</dd>
 
         <dt class="col-sm-6">King of the Hill</dt>
-        <dd class="col-sm-6">Jacob Hoffman - SDC A</dd>
+        <dd class="col-sm-6">Jacob Hoffman - CIA A</dd>
 
         <dt class="col-sm-6">Queen of the Hill</dt>
         <dd class="col-sm-6">Mary Garrett - SDC A</dd>
