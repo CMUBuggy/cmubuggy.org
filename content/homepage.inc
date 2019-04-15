@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-8">
     <section class="mb-3">
-      <h2>2018 Results</h2>
+      <h2>2019 Results</h2>
       <h3>Races</h3>
-      <table class="table table-sm">
+      <table class="table table-sm" style="font-variant-numeric: tabular-nums;">
         <thead>
           <tr>
             <th></th>
@@ -14,82 +14,85 @@
         <tr>
           <th>1<sup>st</sup></th>
           <td>SDC A</td>
-          <td>2:03.17</td>
+          <td>2:06.61</td>
           <td>SDC A</td>
-          <td>2:23.60</td>
+          <td>2:27.30</td>
         </tr>
         <tr>
           <th>2<sup>nd</sup></th>
-          <td>SDC B</td>
-          <td>2:12.77</td>
           <td>PiKA A</td>
-          <td>2:35.01</td>
+          <td>2:06.79</td>
+          <td>PiKA A</td>
+          <td>2:31.14</td>
         </tr>
         <tr>
           <th>3<sup>rd</sup></th>
           <td>CIA A</td>
-          <td>2:12.96</td>
+          <td>2:10.62</td>
           <td>CIA A</td>
-          <td>2:36.36</td>
+          <td>2:33.87</td>
         </tr>
         <tr>
           <th>4<sup>th</sup></th>
           <td>SigEp A</td>
-          <td>2:14.69</td>
-          <td>SDC B</td>
-          <td>2:37.49</td>
+          <td>2:14.05</td>
+          <td>Fringe A</td>
+          <td>2:36.26</td>
         </tr>
         <tr>
           <th>5<sup>th</sup></th>
-          <td>Fringe B</td>
-          <td>2:15.53</td>
-          <td>Fringe A</td>
-          <td>2:38.87</td>
+          <td>PiKA B</td>
+          <td>2:14.86</td>
+          <td>SDC B</td>
+          <td>2:40.56</td>
         </tr>
         <tr>
           <th>6<sup>th</sup></th>
-          <td>Apex B</td>
-          <td>2:15.63</td>
-          <td>Spirit A</td>
-          <td>2:39.06</td>
+          <td>Spirit B</td>
+          <td>2:15.22</td>
+          <td>CIA B</td>
+          <td>2:40.63</td>
         </tr>
       </table>
-      <p>Check out the full 2018 raceday results <a href="/history/raceday/2018">here</a>.</p>
+      <p>Check out the full 2019 raceday results <a href="/raceday/leaderboard">here</a>.</p>
 
       <h3>Awards</h3>
       <dl class="row">
-        <dt class="col-sm-5">Design</dt>
-        <dd class="col-sm-7">
+        <dt class="col-sm-6">Lifetime Spirit of Buggy</dt>
+        <dd class="col-sm-6">Tom Wood</dd>
+
+        <dt class="col-sm-6">Lifetime Chairman's Choice</dt>
+        <dd class="col-sm-6">Anne Witchner</dd>
+
+        <dt class="col-sm-6">Design</dt>
+        <dd class="col-sm-6">
           <ol style="margin: 0; padding: 0 0 0 1.25em;">
-            <li>Bumper - Fringe</li>
-            <li>Emperor - CIA</li>
+            <li>Blind Faith - Fringe</li>
             <li>Blueshift - Fringe</li>
+            <li>Equinox - CIA</li>
           </ol>
         </dd>
 
-        <dt class="col-sm-5">People's Choice</dt>
-        <dd class="col-sm-7">Bumper - Fringe</dd>
+        <dt class="col-sm-6">People's Choice</dt>
+        <dd class="col-sm-6">Blind Faith - Fringe</dd>
 
-        <dt class="col-sm-5">Spirit of Buggy</dt>
-        <dd class="col-sm-7">Spirit</dd>
+        <dt class="col-sm-6">Spirit of Buggy</dt>
+        <dd class="col-sm-6">SigNu</dd>
 
-        <dt class="col-sm-5">Chairman's Choice</dt>
-        <dd class="col-sm-7">Fringe</dd>
+        <dt class="col-sm-6">Chairman's Choice</dt>
+        <dd class="col-sm-6">Fringe</dd>
 
-        <dt class="col-sm-5">T-Shirt</dt>
-        <dd class="col-sm-7">SigEp</dd>
+        <dt class="col-sm-6">T-Shirt</dt>
+        <dd class="col-sm-6">Atlas</dd>
 
-        <dt class="col-sm-5">Honorable Mention</dt>
-        <dd class="col-sm-7">Eileen - SAE</dd>
+        <dt class="col-sm-6">Chair of the Year</dt>
+        <dd class="col-sm-6">Sohpie Halpern &amp; Carl Young - SigEp</dd>
 
-        <dt class="col-sm-5">Chairman of the Year</dt>
-        <dd class="col-sm-7">Joyce Chen - SDC</dd>
+        <dt class="col-sm-6">King of the Hill</dt>
+        <dd class="col-sm-6">Jacob Hoffman - SDC A</dd>
 
-        <dt class="col-sm-5">King of the Hill</dt>
-        <dd class="col-sm-7">Jacob Hoffman - SDC A</dd>
-
-        <dt class="col-sm-5">Queen of the Hill</dt>
-        <dd class="col-sm-7">Mary Garrett - SDC A</dd>
+        <dt class="col-sm-6">Queen of the Hill</dt>
+        <dd class="col-sm-6">Mary Garrett - SDC A</dd>
       </dl>
     </section>
 
