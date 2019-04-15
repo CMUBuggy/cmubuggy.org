@@ -86,7 +86,7 @@
         <dd class="col-sm-6">Atlas</dd>
 
         <dt class="col-sm-6">Chair of the Year</dt>
-        <dd class="col-sm-6">Sohpie Halpern &amp; Carl Young - SigEp</dd>
+        <dd class="col-sm-6">Sophie Halpern &amp; Carl Young - SigEp</dd>
 
         <dt class="col-sm-6">King of the Hill</dt>
         <dd class="col-sm-6">Jacob Hoffman - SDC A</dd>
