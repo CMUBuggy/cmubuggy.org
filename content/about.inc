@@ -120,7 +120,7 @@
         <dt class="col-sm-5">Graphics</dt>
         <dd class="col-sm-7">Ethan Gladding</dd>
         <dt class="col-sm-5">Broadcast Coordinator</dt>
-        <dt class="col-sm-7">Will Weiner</dt>
+        <dd class="col-sm-7">Will Weiner</dd>
         <dt class="col-sm-5">Secretary</dt>
         <dd class="col-sm-7">Rachael Schmitt</dd>
       </dl>
