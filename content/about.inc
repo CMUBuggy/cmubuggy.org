@@ -106,24 +106,30 @@
       <h3>Current Leaders</h3>
       <dl class="row">
         <dt class="col-sm-5">Chairman</dt>
-        <dd class="col-sm-7">Ben Matzke</dd>
+        <dd class="col-sm-7">Mike Darcy</dd>
         <dt class="col-sm-5">Assistant Chairman</dt>
         <dd class="col-sm-7">Jeremy Tuttle</dd>
-        <dt class="col-sm-5">Head Mechanic</dt>
-        <dd class="col-sm-7"><a href="/history/person/1147">Sam Swift</a></dd>
-        <dt class="col-sm-5">Head Reporter</dt>
-        <dd class="col-sm-7">Natalie McGuier</dd>
+        <dt class="col-sm-5">Reporting Officer</dt>
+        <dd class="col-sm-7">Jasio Santillan</dd>
         <dt class="col-sm-5">Communications Chair</dt>
-        <dd class="col-sm-7">Aileen Dinin</dd>
+        <dd class="col-sm-7">Linna Griffin</dd>
         <dt class="col-sm-5">Treasurer</dt>
-        <dd class="col-sm-7">Daniel Becerra</dd>
-        <dt class="col-sm-5">Design / Content</dt>
-        <dd class="col-sm-7">Connor Hayes</dd>
+        <dd class="col-sm-7">Bryan Arsham</dd>
+        <dt class="col-sm-5">Webmaster</dt>
+        <dd class="col-sm-7">Krishan Taylor</dd>
+        <dt class="col-sm-5">Graphics</dt>
+        <dd class="col-sm-7">Ethan Gladding</dd>
+        <dt class="col-sm-5">Broadcast Coordinator</dt>
+        <dt class="col-sm-7">Will Weiner</dt>
+        <dt class="col-sm-5">Secretary</dt>
+        <dd class="col-sm-7">Rachael Schmitt</dd>
       </dl>
     </section>
     <section>
       <h3>More super important people</h3>
       <dl class="row">
+        <dt class="col-sm-5">Chairman 2015-2019</dt>
+        <dd class="col-sm-7">Ben Matzke</dd>
         <dt class="col-sm-5">Chairman 2008-2010</dt>
         <dd class="col-sm-7">Carsen Kline</dd>
         <dt class="col-sm-5">Assistant Chairman 2008-2010</dt>
