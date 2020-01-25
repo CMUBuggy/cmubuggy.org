@@ -11,7 +11,6 @@ Redirect 302 /auction https://www.32auctions.com/baa2019
 Redirect 302 /chat https://discord.gg/PUwuUuj
 
 #top level sections
-RewriteRule		^about[/]*$						index.php?s=about					[NC,L]
 RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]
 RewriteRule		^auction[/]*$					index.php?s=auction				[NC,L]
 RewriteRule		^buzz[/]*$						index.php?s=buzz					[NC,L]
@@ -25,7 +24,6 @@ RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
 RewriteRule		^seniors[/]*$					index.php?s=seniors				[NC,L]
 RewriteRule		^store[/]*$						index.php?s=store					[NC,L]
 RewriteRule		^user[/]*$						index.php?s=user					[NC,L]
-RewriteRule		^video[/]*$						index.php?s=videolist			[NC,L]
 RewriteRule   ^events[/]*$           index.php?s=events     [NC,L]
 
 #admin section
@@ -75,8 +73,6 @@ RewriteRule		^user/newsiteactivation/([a-z0-9]+)/?$			index.php?s=user&p=newsite
 RewriteRule		^user/newsiteactivation[/]*$						index.php?s=user&p=newsiteactivation			[NC,L]
 RewriteRule		^user/([a-z0-9]+)/?$									index.php?s=user&p=user&urlkey=$1				[NC,L]
 
-#video section
-RewriteRule		^video/([a-z0-9]+)/?$		index.php?s=video&urlkey=$1	[NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
