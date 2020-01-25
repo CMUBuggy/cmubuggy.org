@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
-	<title>News | <?php the_title(); ?></title>
+	<title><?php the_title(); ?> | CMU Buggy Alumni Association</title>
 
 	<meta property="og:title" content="<?php the_title(); ?>"/>
 	<meta property="og:type" content="article" />
@@ -58,7 +58,7 @@
 			'container' => 'nav',
 			'container_class' => 'navbar navbar-light navbar-expand bg-light mb-3',
 			'container_id' => false,
-			'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
+			'fallback_cb' => '',
 			'walker' => new wp_bootstrap_navwalker()
 		)
 	);
