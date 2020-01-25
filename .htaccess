@@ -78,3 +78,6 @@ RewriteRule		^user/([a-z0-9]+)/?$									index.php?s=user&p=user&urlkey=$1				[
 #video section
 RewriteRule		^video/([a-z0-9]+)/?$		index.php?s=video&urlkey=$1	[NC,L]
 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*$ news/$1 [L,NC,QSA]
