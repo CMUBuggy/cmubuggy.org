@@ -7,7 +7,7 @@
       <a class="nav-link" href="/raceday/heats">Heat Schedule</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/raceday/leaderboard">Leaderboard</a>
+      <a class="nav-link" href="/history">Leaderboard</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" target="_blank" rel="noopener" href="https://discord.gg/PUwuUuj">Chat</a>

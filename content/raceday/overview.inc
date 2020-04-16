@@ -18,7 +18,7 @@
   <div class="media mb-3 col-md-6">
     <img src="/img/leaderboard.jpg" alt="leaderboard" class="mr-3 raceday-thumb">
     <div class="media-body">
-      <h5 class="mt-0"><a href="/raceday/leaderboard">Leaderboard</a></h5>
+      <h5 class="mt-0"><a href="/history">Leaderboard</a></h5>
       It's tough to keep the whole top 10 in your head. Check here for instantaneous updates entered directly by the head timer.
     </div>
   </div>
