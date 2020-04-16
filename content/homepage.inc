@@ -1,5 +1,22 @@
 <div class="row">
   <div class="col-md-8">
+    <div class="card mb-3 border-primary">
+      <div class="card-body">
+        <h5 class="card-title">Streaming Schedule for Saturday, April 18</h5>
+        <ul>
+          <li><b>Noon:</b> Opening remarks from Gina Casalegno</li>
+          <li><b>Noon - 1:30pm:</b> 2003-2015 Raceday Highlights w/ Commentary</li>
+          <li><b>1:30pm - 2:15pm:</b> BAA Student and Alumni Panel</li>
+          <li><b>2:15pm - 3:00pm:</b> 2016-2018 Raceday Highlights & Buggy Graduate Recognition</li>
+          <li><b>3:00pm - 3:20pm:</b> Trivia Speed Round</li>
+          <li><b>3:20pm - 3:25pm:</b> 2019 Raceday Highlights</li>
+          <li><b>3:25pm:</b> Closing message from Sweepstakes & BAA</li>
+        </ul>
+        <p>Click <a href="/raceday">here</a> to see everything raceday for 2020!</p>
+        <p class="small font-italic mb-0">Please note that all times are ET.</p>
+      </div>
+    </div>
+
     <section class="mb-3">
       <h2>2019 Results</h2>
       <h3>Races</h3>
