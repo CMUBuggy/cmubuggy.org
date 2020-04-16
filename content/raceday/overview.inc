@@ -12,7 +12,7 @@
     <img src="/img/wrctlogo.gif" alt="WRTC logo" class="mr-3 raceday-thumb">
     <div class="media-body">
       <h5 class="mt-0"><a target="_blank" rel="noopener" href="http://wrct.org/">WRCT</a></h5>
-      WRCT will be broadcasting the live audio coverage from loudspeakers on the course, 88.3 FM locally, and online from wrct.org
+      WRCT will be broadcasting some buggy panels
     </div>
   </div>
   <div class="media mb-3 col-md-6">
