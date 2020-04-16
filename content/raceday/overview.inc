@@ -2,13 +2,6 @@
 
 <div class="row">
   <div class="media mb-3 col-md-6">
-    <img src="/img/cmutvlogo.gif" alt="cmuTV logo" class="mr-3 raceday-thumb">
-    <div class="media-body">
-      <h5 class="mt-0"><a target="_blank" rel="noopener" href="http://new.livestream.com/cmuTVlive">cmuTV</a></h5>
-      cmuTV will be producing live coverage and streaming it online viewable right in your browser with no additional set-up. Check their site Friday morning for the link.
-    </div>
-  </div>
-  <div class="media mb-3 col-md-6">
     <img src="/img/wrctlogo.gif" alt="WRTC logo" class="mr-3 raceday-thumb">
     <div class="media-body">
       <h5 class="mt-0"><a target="_blank" rel="noopener" href="http://wrct.org/">WRCT</a></h5>
@@ -34,16 +27,6 @@
     <div class="media-body">
       <h5 class="mt-0"><a href="https://discord.gg/PUwuUuj">Chat</a></h5>
       We know there are alumni all over the world watching and listening to the coverage that would love to communicate faster than the forum will allow. We bring you the Raceday Chat.
-    </div>
-  </div>
-  <div class="media mb-3 col-md-6">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="50" title="calendar" class="mr-3 raceday-thumb">
-      <path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/>
-    </svg>
-    <!-- svg from Font Awesome - https://fontawesome.com/license -->
-    <div class="media-body">
-      <h5 class="mt-0"><a href="/events">Events</a></h5>
-      Check out our full list of events for Carnival 2019.
     </div>
   </div>
 </div>
