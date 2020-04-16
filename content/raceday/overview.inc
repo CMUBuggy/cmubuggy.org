@@ -36,4 +36,11 @@
       We know there are alumni all over the world watching and listening to the coverage that would love to communicate faster than the forum will allow. We bring you the Raceday Chat.
     </div>
   </div>
+  <div class="media mb-3 col-md-6">
+    <img src="/img/logo-square-small.png" alt="BAA logo" class="mr-3 raceday-thumb">
+    <div class="media-body">
+      <h5 class="mt-0"><a href="/img/broadcast-bingo.pdf" download>Broadcast Bingo</a></h5>
+      Play bingo during the broadcast
+    </div>
+  </div>
 </div>
