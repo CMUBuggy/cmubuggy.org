@@ -12,7 +12,6 @@ Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /membership /news/2019/11/giving-cmu-day-and-new-membership-levels/
 Redirect 302 /poster100 https://forms.gle/x32UHTd55oYBT4h79
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
-Redirect 302 /live https://mediaservices.cmu.edu/media/Digital+Buggy+2020/1_14ngshpg
 
 #top level sections
 RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]

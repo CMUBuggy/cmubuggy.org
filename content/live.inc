@@ -19,7 +19,7 @@
 </nav>
 
 <div class="embed-responsive embed-responsive-16by9 mb-3">
-  <iframe id="ls_embed_1555071151" src="https://livestream.com/accounts/37333/events/8615488/player?width=960&height=540&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="960" height="540" frameborder="0" scrolling="no" allowfullscreen> </iframe>
+  <iframe id="kmsembed-1_14ngshpg" width="960" height="540" src="https://mediaservices.cmu.edu/embed/secure/iframe/entryId/1_14ngshpg/uiConfId/32384181" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Kaltura Player"></iframe>
 </div>
 
-<p>Live streaming is currently broadcast through <a href="http://new.livestream.com/cmuTVlive" target="_blank" rel="noopener">cmuTV</a>. Join the <a href="https://discord.gg/PUwuUuj" target="_blank" rel="noopener">cmubuggy chat room</a> if you're watching and share your comments.</p>
+<p>Join the <a href="/RD20" target="_blank" rel="noopener">Zoom webinar</a> and interact with the broadcast.</p>
