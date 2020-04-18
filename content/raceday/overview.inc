@@ -1,5 +1,20 @@
 <h1>Raceday Survival Tools</h1>
 
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">Streaming Schedule for Saturday, April 18</h5>
+    <ul class="mb-0">
+      <li><b>Noon:</b> Opening remarks from Gina Casalegno</li>
+      <li><b>Noon - 1:30pm:</b> 2003-2015 Raceday Highlights w/ Commentary</li>
+      <li><b>1:30pm - 2:15pm:</b> BAA Student and Alumni Panel</li>
+      <li><b>2:15pm - 3:00pm:</b> 2016-2018 Raceday Highlights & Buggy Graduate Recognition</li>
+      <li><b>3:00pm - 3:20pm:</b> Trivia Speed Round</li>
+      <li><b>3:20pm - 3:25pm:</b> 2019 Raceday Highlights</li>
+      <li><b>3:25pm:</b> Closing message from Sweepstakes & BAA</li>
+    </ul>
+  </div>
+</div>
+
 <div class="row">
   <div class="media mb-3 col-md-6">
     <img src="/img/cmutvlogo.gif" alt="cmuTV logo" class="mr-3 raceday-thumb">
