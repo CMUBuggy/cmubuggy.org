@@ -6,7 +6,7 @@
 		$host = "ssl://smtp.gmail.com";
       $port = "465";
 		$username = "mailer@cmubuggy.org";
-		$password = "2r6taFru";
+		$password = "yr?N3Ejys6q&Kx95Fq";
 
 		$from = "CMU Buggy Alumni Association <admin@cmubuggy.org>";
 		if(isset($mail["from"])){

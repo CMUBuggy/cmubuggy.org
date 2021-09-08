@@ -67,7 +67,7 @@
         $raceday = $team->GetRaceday();
         $teamArr[$raceday->isFinals] = $team;
         if($team->GetDq()->dqId>0){
-          $notes .= "DQ: ".$team->GetDQ()->description;
+          $notes .= "DQ: ".$team->GetDq()->description;
         }
       }
 

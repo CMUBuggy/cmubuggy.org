@@ -17,4 +17,4 @@ lib/pog/configuration.php
 mediawiki/
 news/
 upload/
-
+.DS_Store
