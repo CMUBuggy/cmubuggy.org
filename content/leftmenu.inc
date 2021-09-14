@@ -6,7 +6,7 @@
     <li class="list-group-item"><a class="d-block" href="/gallery">Gallery</a></li>
     <li class="list-group-item"><a class="d-block" href="/history">History</a></li>
     <li class="list-group-item"><a class="d-block" href="/about">About Us</a></li>
-    <li class="list-group-item"><a class="d-block" href="https://reddit.com/r/cmubuggy" target="_blank" rel="noopener">Projects<img src="/img/icon-new-window.gif" alt="" class="ml-1"></a></li>
+    <!-- <li class="list-group-item"><a class="d-block" href="/resources">Resources</a></li> -->
     <li class="list-group-item"><a class="d-block" href="/reference">Reference</a></li>
     <li class="list-group-item"><a class="d-block" href="/membership">Membership</a></li>
   </ul>
