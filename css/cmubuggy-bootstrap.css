@@ -217,6 +217,14 @@ img {
   border-style: none;
 }
 
+@media (max-width: 575.98px) {
+ .circular-image-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+  }
+}
+
 .circular-image {
   width: 100%;
   max-width: 200px;
