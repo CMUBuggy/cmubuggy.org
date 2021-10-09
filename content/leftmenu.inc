@@ -1,13 +1,13 @@
 <nav>
   <ul class="list-group my-3">
     <li class="list-group-item"><a class="d-block" href="/news">News</a></li>
-    <li class="list-group-item"><a class="d-block" href="/forum/viewforum.php?f=3">Forum</a></li>
+<!--    <li class="list-group-item"><a class="d-block" href="/forum/viewforum.php?f=3">Forum</a></li> -->
     <li class="list-group-item"><a class="d-block" href="/video">Videos</a></li>
     <li class="list-group-item"><a class="d-block" href="/gallery">Gallery</a></li>
     <li class="list-group-item"><a class="d-block" href="/history">History</a></li>
     <li class="list-group-item"><a class="d-block" href="/about">About Us</a></li>
+    <li class="list-group-item"><a class="d-block" href="/references">Reference</a></li>
     <li class="list-group-item"><a class="d-block" href="/resources">Resources</a></li>
-    <li class="list-group-item"><a class="d-block" href="/reference">Reference</a></li>
     <li class="list-group-item"><a class="d-block" href="/membership">Membership</a></li>
   </ul>
 </nav>
