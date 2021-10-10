@@ -1,4 +1,3 @@
-
 cmubuggy.org/news runs WordPress 5.8.1 (http://wordpress.org/).
 
 # Theme
