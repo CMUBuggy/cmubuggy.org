@@ -6,15 +6,42 @@ bid/backup/
 content/cache/*
 dbconfig.inc
 files/
-forum/
-gallery/
+
+# exclude everything in /forum except README.md and styles/cmubuggy
+forum/*
+!forum/README.md
+forum/styles/*
+!forum/styles/cmubuggy
+
+# exclude everything in /gallery except README.md and themes/cmubuggy
+gallery/*
+!gallery/README.md
+gallery/themes/*
+!gallery/themes/cmubuggy
+
 img/buggy/
 img/mediaicons/
 img/news/
 lib/pChart/
 lib/pog/setup/
 lib/pog/configuration.php
-mediawiki/
-news/
+
+# exclude everything in /mediawiki except README.md and skins/CmuBuggy
+mediawiki/*
+!mediawiki/README.md
+mediawiki/skins/*
+!mediawiki/skins/CmuBuggy
+
+# exclude everything in /news except .htaccess and wp-content/themes/cmubuggy-child
+news/*
+!news/.htaccess
+!news/README.md
+!news/wp-content
+news/wp-content/*
+!news/wp-content/themes
+news/wp-content/themes/*
+!news/wp-content/themes/cmubuggy-child
+
 upload/
+
 .DS_Store
