@@ -110,7 +110,7 @@
       <div class="card-body">
         <h5 class="card-title">Buggy</h5>
         <p>Buggy (also called "Sweepstakes") is a unique race that has been held on and behind the Carnegie Mellon University campus during the spring carnival since 1920. It is part uphill relay race (in which the baton is a vehicle and driver pushed by runners), and part downhill gravity racing with exciting sharp turns and speeds up to 40mph.</p>
-        <a href="/reference/What_is_buggy%3F" class="btn btn-primary">Learn More</a>
+        <a href="/reference" class="btn btn-primary">Learn More</a>
       </div>
     </div>
 
