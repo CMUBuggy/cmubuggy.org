@@ -62,10 +62,6 @@ RewriteRule		^history/team[/]*$									index.php?s=history&p=entry						[NC,L]
 RewriteRule		^raceday/heats[/]*$									index.php?s=raceday&p=heats						[NC,L]
 RewriteRule		^raceday/leaderboard[/]*$							index.php?s=raceday&p=leaderboard				[NC,L]
 
-#reference section
-RewriteRule ^reference/(.*)$ /mediawiki/index.php?title=$1 [PT,L,QSA]
-RewriteRule ^reference/*$ /mediawiki/index.php [L,QSA]
-
 #user section
 RewriteRule		^user/login/([0-9]+)?$								index.php?s=user&p=login&e=$1						[NC,L]
 RewriteRule		^user/login[/]*$										index.php?s=user&p=login 							[NC,L]

@@ -26,12 +26,6 @@ lib/pChart/
 lib/pog/setup/
 lib/pog/configuration.php
 
-# exclude everything in /mediawiki except README.md and skins/CmuBuggy
-mediawiki/*
-!mediawiki/README.md
-mediawiki/skins/*
-!mediawiki/skins/CmuBuggy
-
 # exclude everything in /news except .htaccess and wp-content/themes/cmubuggy-child
 news/*
 !news/.htaccess
