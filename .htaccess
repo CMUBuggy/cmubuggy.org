@@ -11,13 +11,13 @@ Redirect 302 /auction https://www.32auctions.com/baa2019
 Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /membership /news/2019/11/giving-cmu-day-and-new-membership-levels/
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
+Redirect 302 /fantasy https://docs.google.com/forms/d/e/1FAIpQLSeiUE_9vJIAAo67G_mIZCvEfi3Obe6omOYbWaYqNVcXwNTw2w/viewform?usp=sf_link
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
 #top level sections
 RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]
 RewriteRule		^auction[/]*$					index.php?s=auction				[NC,L]
 RewriteRule		^buzz[/]*$						index.php?s=buzz					[NC,L]
-RewriteRule		^fantasy[/]*$					index.php?s=fantasy				[NC,L]
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^join[/]*$						index.php?s=membership			[NC,L]
 RewriteRule		^live[/]*$						index.php?s=live					[NC,L]
@@ -31,11 +31,6 @@ RewriteRule   ^events[/]*$           index.php?s=events     [NC,L]
 
 #admin section
 RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1								[NC,L]
-
-#fantasy section
-RewriteRule		^fantasy/enter[/]*$									index.php?s=fantasy&p=enter 						[NC,L]
-RewriteRule		^fantasy/stats[/]*$									index.php?s=fantasy&p=stats 						[NC,L]
-RewriteRule		^fantasy/results[/]*$								index.php?s=fantasy&p=results 					[NC,L]
 
 #history section: specific objects
 RewriteRule		^history/buggy/([a-z0-9]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
