@@ -1,102 +1,19 @@
 <div class="row">
   <div class="col-md-8">
-    <section class="mb-3">
-      <h2>2019 Results</h2>
-      <h3>Races</h3>
-      <table class="table table-sm" style="font-variant-numeric: tabular-nums;">
-        <thead>
-          <tr>
-            <th></th>
-            <th colspan="2">Men</th>
-            <th colspan="2">Women</th>
-          </tr>
-        </thead>
-        <tr>
-          <th>1<sup>st</sup></th>
-          <td>SDC A</td>
-          <td>2:06.61</td>
-          <td>SDC A</td>
-          <td>2:27.30</td>
-        </tr>
-        <tr>
-          <th>2<sup>nd</sup></th>
-          <td>PiKA A</td>
-          <td>2:06.79</td>
-          <td>PiKA A</td>
-          <td>2:31.14</td>
-        </tr>
-        <tr>
-          <th>3<sup>rd</sup></th>
-          <td>CIA A</td>
-          <td>2:10.62</td>
-          <td>CIA A</td>
-          <td>2:33.87</td>
-        </tr>
-        <tr>
-          <th>4<sup>th</sup></th>
-          <td>SigEp A</td>
-          <td>2:14.05</td>
-          <td>Fringe A</td>
-          <td>2:36.26</td>
-        </tr>
-        <tr>
-          <th>5<sup>th</sup></th>
-          <td>PiKA B</td>
-          <td>2:14.86</td>
-          <td>SDC B</td>
-          <td>2:40.56</td>
-        </tr>
-        <tr>
-          <th>6<sup>th</sup></th>
-          <td>Spirit B</td>
-          <td>2:15.22</td>
-          <td>CIA B</td>
-          <td>2:40.63</td>
-        </tr>
-      </table>
-      <p>Check out the full 2019 raceday results <a href="/raceday/leaderboard">here</a>.</p>
 
-      <h3>Awards</h3>
-      <dl class="row">
-        <dt class="col-sm-6">Lifetime Spirit of Buggy</dt>
-        <dd class="col-sm-6">Tom Wood</dd>
-
-        <dt class="col-sm-6">Lifetime Chairman's Choice</dt>
-        <dd class="col-sm-6">Anne Witchner</dd>
-
-        <dt class="col-sm-6">Design</dt>
-        <dd class="col-sm-6">
-          <ol style="margin: 0; padding: 0 0 0 1.25em;">
-            <li>Blind Faith - Fringe</li>
-            <li>Blueshift - Fringe</li>
-            <li>Equinox - CIA</li>
-          </ol>
-        </dd>
-
-        <dt class="col-sm-6">People's Choice</dt>
-        <dd class="col-sm-6">Blind Faith - Fringe</dd>
-
-        <dt class="col-sm-6">Spirit of Buggy</dt>
-        <dd class="col-sm-6">SigNu</dd>
-
-        <dt class="col-sm-6">Chairman's Choice</dt>
-        <dd class="col-sm-6">Fringe</dd>
-
-        <dt class="col-sm-6">T-Shirt</dt>
-        <dd class="col-sm-6">Atlas</dd>
-
-        <dt class="col-sm-6">Chair of the Year</dt>
-        <dd class="col-sm-6">Sophie Halpern &amp; Carl Young - SigEp</dd>
-
-        <dt class="col-sm-6">King of the Hill</dt>
-        <dd class="col-sm-6">Jacob Hoffman - CIA A</dd>
-
-        <dt class="col-sm-6">Queen of the Hill</dt>
-        <dd class="col-sm-6">Mary Garrett - SDC A</dd>
-      </dl>
-    </section>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Mini Raceday 2021</h5>
+        <p>
+          Mini Raceday is this weekend, Sat Nov 6 and Sun Nov 7! Choose your <a href="/fantasy">fantasy team</a> lineup by Fri Nov 5, 11:59pm EST and tune in! Times will be posted <a href="http://timing.cmubuggy.org">here</a> each day.
+        </p>
+        <a href="/live" class="btn btn-primary">Watch</a>
+      </div>
+    </div>
 
     <?php include_once("twitterwidget.inc"); ?>
+
+    <?php include_once("homepage-2019-results.inc"); ?>
 
     <div class="card mb-3">
       <div class="card-body">
