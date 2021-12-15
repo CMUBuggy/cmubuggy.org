@@ -5,7 +5,7 @@
       <div class="card-body">
         <h5 class="card-title">Mini Raceday 2021</h5>
         <p>
-          Mini Raceday is this weekend, Sat Nov 6 and Sun Nov 7! Choose your <a href="/fantasy">fantasy team</a> lineup by Fri Nov 5, 11:59pm EST and tune in! Times will be posted <a href="http://timing.cmubuggy.org">here</a> each day.
+          Mini Raceday is over, but you can rewatch the broadcast at any time. Thank you to Will Weiner for being our eyes and ears on the course and to all of the students who chimed in to give us an insider view into how things are going on campus!
         </p>
         <a href="/live" class="btn btn-primary">Watch</a>
       </div>
