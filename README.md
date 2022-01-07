@@ -3,7 +3,8 @@ cmubuggy.org is the public website for the Carnegie Mellon University affiliated
 
 The site is built around a number of 3rd party platforms and tools. If you want to set up a local dev version of the site, cloning the repo is a start, but depending on your project you may need additional pieces of the puzzle:
 
- - Data:  Contact samswift@cmubuggy.org or the current administrator to get access to an exported version of the relevant data.  A mostly accurate db schema is located at /lib/pog/cmubuggy-2.0-schema.png
+ - Data:  Contact the current administrator to get access to an exported version of the relevant data.  A mostly accurate db schema is located at /lib/pog/cmubuggy-2.0-schema.png
+ - pChart: Needed for graphing historical trend data.  Available at http://www.pchart.net/download -- install into lib/pChart.  Warning! pChart is old and does not work properly with PHP 7.  For that, you need a fixed version (2.1.4b, available here: https://github.com/bozhinov/pChart2.0-for-PHP7/releases)
  - Data Objects: all custom data objects make use of the PHP Object Generator library (http://www.phpobjectgenerator.com/).  Code for each object is in /lib/pog/objects and can be modified by pasting the unique object url and generating new code on phpobjectgenerator.com
  - Forum: /forum runs phpBB (http://www.phpbb.com/).  version info is available in /forum/README
  - Gallery: /gallery runs gallery3 (http://gallery.menalto.com/). version info is available in /gallery/README
