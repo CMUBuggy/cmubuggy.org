@@ -5,6 +5,12 @@ php_flag display_errors on
 </IfModule>
 # END Gzip
 
+# Deny access to dbconfig.inc file via website
+<FilesMatch "^dbconfig.inc$">
+	Order allow,deny
+	Deny from all
+</FilesMatch>
+
 RewriteEngine On    # Turn on the rewriting engine
 
 Redirect 302 /auction https://www.32auctions.com/baa2019
