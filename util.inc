@@ -28,13 +28,39 @@
 		return $result;
 	}
 
+	// Do a simple query against the named database.
+	// WARNING: Do not allow any user input into the statement!
+	// Recommend using dbBoundQuery() instead if user input is necessary.
 	function dbQuery($dbname, $sql){
 		include("dbconfig.inc");
 		$con = mysqli_connect($dbhost, $dbuser, $dbpass);
-		if (!$con)	{  die('Could not connect: ' . mysql_error()); }
+		if (!$con)	{  die('Could not connect: ' . mysqli_connect_error()); }
 		mysqli_select_db($con, $dbname);
 		return mysqli_query($con, $sql);
-		mysqli_close($con);
+
+		// Note: Connection will close when $con is garbage collected.
+	}
+
+	// Do a query against the database, allowing the use of bound parameters to prevent SQL injection.
+	function dbBoundQuery($dbname, $sql, $bindings = NULL, ...$values) {
+		include("dbconfig.inc");
+		$con = mysqli_connect($dbhost, $dbuser, $dbpass);
+		if (!$con)	{  die('Could not connect: ' . mysqli_connect_error()); }
+
+		mysqli_select_db($con, $dbname);
+
+		$stmt = mysqli_prepare($con, $sql);
+		if (!$stmt) {  die('Could not prepare statement "' . $sql . ': ' . mysqli_error($con)); }
+
+		if ($bindings) {
+			mysqli_stmt_bind_param($stmt, $bindings, ...$values);
+		}
+
+		mysqli_stmt_execute($stmt) or die ('could not execute statement: ' . mysqli_error($con));
+
+		return mysqli_stmt_get_result($stmt);
+
+		// Note: Connection will close when $con is garbage collected.
 	}
 
 	function dbClose(){
