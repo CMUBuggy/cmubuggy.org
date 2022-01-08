@@ -1,22 +1,47 @@
 <?php
-  $buggyAward = new buggyAward();
-  $buggyAwardList = $buggyAward->GetList(null,"year",false);
-  $buggyAwardArr = array();
-  foreach($buggyAwardList as $buggyAward){
-    $awardType = $buggyAward->GetAwardtype();
-    $buggyAwardArr[$buggyAward->year][$awardType->description] = $buggyAward->GetBuggy();
-  }
-  krsort($buggyAwardArr);
+  $designAwardQuery = "
+      SELECT a.year, a.honoree AS '1st', a.buggyid AS '1stid', a.birth AS '1stbirth',
+        b.honoree AS '2nd', b.buggyid AS '2ndid', b.birth AS '2ndbirth',
+			  c.honoree AS '3rd', c.buggyid AS '3rdid', c.birth AS '3rdbirth',
+			  p.honoree AS 'People', p.buggyid AS 'Peopleid', p.birth AS 'Peoplebirth'
+      FROM (
+	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM 1designawards d
+		      INNER JOIN 0buggies b ON d.buggyid = b.buggyid
+		      INNER JOIN 0orgs o ON b.orgid = o.orgid
+	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM 1designawards d
+		      INNER JOIN 0orgs o ON d.orgid = o.orgid) a
+      LEFT JOIN (
+	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM 1designawards d
+		      INNER JOIN 0buggies b ON d.buggyid = b.buggyid
+		      INNER JOIN 0orgs o ON b.orgid = o.orgid
+	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM 1designawards d
+		      INNER JOIN 0orgs o ON d.orgid = o.orgid) b ON b.year = a.year AND b.award = 2
+      LEFT JOIN (
+	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM 1designawards d
+		      INNER JOIN 0buggies b ON d.buggyid = b.buggyid
+		      INNER JOIN 0orgs o ON b.orgid = o.orgid
+	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM 1designawards d
+		      INNER JOIN 0orgs o ON d.orgid = o.orgid) c ON c.year = a.year AND c.award = 3
+      LEFT JOIN (
+	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM 1designawards d
+		      INNER JOIN 0buggies b ON d.buggyid = b.buggyid
+		      INNER JOIN 0orgs o ON b.orgid = o.orgid
+	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM 1designawards d
+		      INNER JOIN 0orgs o ON d.orgid = o.orgid) p ON p.year = a.year AND p.award = 'People\'s Choice'
+      WHERE a.award = 1
+      ORDER BY year DESC;";
+  $designAwards = dbQuery("history",$designAwardQuery);
 
-  $orgAward = new orgAward();
-  $orgAwardList = $orgAward->GetList(null,"year",false);
-  $orgAwardArr = array();
-  foreach($orgAwardList as $orgAward){
-    $awardType = $orgAward->GetAwardtype();
-    $orgAwardArr[$orgAward->year][$awardType->description] = $orgAward->GetOrg();
-  }
-  krsort($orgAwardArr);
-
+  $orgAwardQuery = " 
+    SELECT DISTINCT y.year AS year, occ.shortname as 'chair', occ.orgid as 'chairid',
+                                    osb.shortname as 'spirit', osb.orgid as 'spiritid',
+                                    ots.shortname as 'shirt', ots.orgid as 'shirtid'
+	    FROM 1orgawards y
+	    LEFT JOIN 1orgawards cc ON cc.year = y.year AND cc.award = 'Chairman\'s Choice' LEFT JOIN 0orgs occ on cc.orgid = occ.orgid
+	    LEFT JOIN 1orgawards sb ON sb.year = y.year AND sb.award = 'Spirit of Buggy' LEFT JOIN 0orgs osb on sb.orgid = osb.orgid
+	    LEFT JOIN 1orgawards ts ON ts.year = y.year AND ts.award = 'T-Shirt Award' LEFT JOIN 0orgs ots on ts.orgid = ots.orgid
+      ORDER BY y.year desc;";
+  $orgAwards = dbQuery("history",$orgAwardQuery);
 ?>
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
@@ -44,54 +69,30 @@
         </thead>
         <tbody>
           <?php
-            for($year = 2011; $year >= 1920; $year--){
-              $buggy1 = new buggy();
-              $buggy2 = new buggy();
-              $buggy3 = new buggy();
-              $buggyPC = new buggy();
-              if(array_key_exists($year,$buggyAwardArr)){
-                if(isset($buggyAwardArr[$year]["Design Competition - 1st Place"])){
-                  $buggy1 = $buggyAwardArr[$year]["Design Competition - 1st Place"];
-                }
-                if(isset($buggyAwardArr[$year]["Design Competition - 2nd Place"])){
-                  $buggy2 = $buggyAwardArr[$year]["Design Competition - 2nd Place"];
-                }
-                if(isset($buggyAwardArr[$year]["Design Competition - 3rd Place"])){
-                  $buggy3 = $buggyAwardArr[$year]["Design Competition - 3rd Place"];
-                }
-                if(isset($buggyAwardArr[$year]["Design Competition - People's Choice"])){
-                  $buggyPC = $buggyAwardArr[$year]["Design Competition - People's Choice"];
-                }
-
-                $org = new org();
-                if($buggy1 != null){
-                  $org = $buggy1->GetOrg();
-                  if($buggy1->yearBuilt > 0) { $yearbuilt = $buggy1->yearBuilt; } else { $yearbuilt = ""; }
-                  $alt1 = $org->shortName." ".$yearbuilt;
-                }
-                if($buggy2 != null){
-                  $org = $buggy2->GetOrg();
-                  if($buggy2->yearBuilt > 0) { $yearbuilt = $buggy2->yearBuilt; } else { $yearbuilt = ""; }
-                  $alt2 = $org->shortName." ".$yearbuilt;
-                }
-                if($buggy3 != null){
-                  $org = $buggy3->GetOrg();
-                  if($buggy3->yearBuilt > 0) { $yearbuilt = $buggy3->yearBuilt; } else { $yearbuilt = ""; }
-                  $alt3 = $org->shortName." ".$yearbuilt;
-                }
-                if($buggyPC != null){
-                  $org = $buggyPC->GetOrg();
-                  if($buggyPC->yearBuilt > 0) { $yearbuilt = $buggyPC->yearBuilt; } else { $yearbuilt = ""; }
-                  $altPC = $org->shortName." ".$yearbuilt;
-                }
-
-                echo("<tr><td>".$year."</td>");
-                echo("<td><a title=\"".$alt1."\" href=\"./buggy/".$buggy1->urlKey."\">".$buggy1->name."</a></td>");
-                echo("<td><a title=\"".$alt2."\" href=\"./buggy/".$buggy2->urlKey."\">".$buggy2->name."</a></td>");
-                echo("<td><a title=\"".$alt3."\" href=\"./buggy/".$buggy3->urlKey."\">".$buggy3->name."</a></td>");
-                echo("<td><a title=\"".$altPC."\" href=\"./buggy/".$buggyPC->urlKey."\">".$buggyPC->name."</a></td>");
-                echo("</tr>");
+            // Format a cell for 1st, 2nd, 3rd, peoples, etc.
+            function echoDesignCompCell($d, $prefix) {
+              if ($d[$prefix."id"]) {
+                $tooltip = $d[$prefix."birth"] ? "title=\"Built ".$d[$prefix."birth"]."\" " : "";
+                echo("<td><a ".$tooltip."href=\"./buggy/".$d[$prefix."id"]."\">".$d[$prefix]."</a></td>");
+              } else {
+                echo("<td>".$d[$prefix]."</td>");
               }
+
+            }
+
+            while ($d = $designAwards->fetch_assoc()) {
+              // TODO: Expand query to link to org and buggy id separately.  For now, follow existing behavior
+              // to link to buggy only.
+              //
+              // Thus, no link at all for now if no buggy data available.
+              //
+              // Show birth year in tooltip if available.
+              echo("<tr><td>".$d["year"]."</td>");
+              echoDesignCompCell($d, "1st");
+              echoDesignCompCell($d, "2nd");
+              echoDesignCompCell($d, "3rd");
+              echoDesignCompCell($d, "People");
+              echo("</tr>");
             }
           ?>
         </tbody>
@@ -114,26 +115,12 @@
         </thead>
         <tbody>
           <?php
-            for($year = 2011; $year >= 1965; $year--){
-              if(array_key_exists($year,$orgAwardArr)){
-                $orgCC = new org();
-                $orgSP = new org();
-                $orgTS = new org();
-                if(isset($orgAwardArr[$year]["Chairman's Choice"])){
-                  $orgCC = $orgAwardArr[$year]["Chairman's Choice"];
-                }
-                if(isset($orgAwardArr[$year]["Spirit of Buggy"])){
-                  $orgSP = $orgAwardArr[$year]["Spirit of Buggy"];
-                }
-                if(isset($orgAwardArr[$year]["T-Shirt Award"])){
-                  $orgTS = $orgAwardArr[$year]["T-Shirt Award"];
-                }
-                echo("<tr><td>".$year."</td>");
-                echo("<td><a href=\"./org/".$orgCC->urlkey."\">".$orgCC->shortname."</a></td>");
-                echo("<td><a href=\"./org/".$orgSP->urlkey."\">".$orgSP->shortname."</a></td>");
-                echo("<td><a href=\"./org/".$orgTS->urlkey."\">".$orgTS->shortname."</a></td>");
+            while ($o = $orgAwards->fetch_assoc()) {
+                echo("<tr><td>".$o["year"]."</td>");
+                echo("<td><a href=\"./org/".$o["chairid"]."\">".$o["chair"]."</a></td>");
+                echo("<td><a href=\"./org/".$o["spiritid"]."\">".$o["spirit"]."</a></td>");
+                echo("<td><a href=\"./org/".$o["shirtid"]."\">".$o["shirt"]."</a></td>");
                 echo("</tr>");
-              }
             }
           ?>
         </tbody>

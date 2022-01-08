@@ -1,6 +1,6 @@
 <?php
-  $org = new org();
-  $orgList = $org->GetList(array(array("isactive", "=", "1"),array("isracingorg", "=", "1")),"shortname");
+  $query = "SELECT orgid, shortname FROM 0orgs WHERE isactive=1 AND isracingorg=1 ORDER BY shortname;";
+  $orgs = dbQuery("history",$query);
 ?>
 
 <nav class="navbar navbar-light navbar-expand bg-light mb-3">
@@ -10,8 +10,8 @@
       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Organizations</a>
       <div class="dropdown-menu">
         <?php
-          foreach ($orgList as $org) {
-            echo '<a class="dropdown-item" href="/history/org/' . $org->urlkey . '">' . $org->shortname . '</a>';
+          while ($org = $orgs->fetch_assoc()) {
+            echo '<a class="dropdown-item" href="/history/org/' . $org["orgid"]. '">' . $org["shortname"] . '</a>';
           }
         ?>
         <div class="dropdown-divider"></div>
