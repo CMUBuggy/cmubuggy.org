@@ -1,7 +1,0 @@
-<?
- 
-include "functions.php";
-
-initHeatsMemoryStuff();
-
-?>
