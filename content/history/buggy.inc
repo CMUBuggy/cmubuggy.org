@@ -1,48 +1,103 @@
 <?php
-$buggy = new buggy();
 
-if(!empty($_GET["urlkey"])){
-  $buggyList = $buggy->GetList(array(array("urlkey","=",$_GET["urlkey"])));
-  if(count($buggyList)>0){
-    $buggy = $buggyList[0];
-  }
+if (empty($_GET["urlkey"])) {
+  // We should have been redirected into buggylist.inc, not here.  What happened?
+  die("Ooops, no buggy specified!");
 }
 
-$yearBuilt = "";
-if($buggy->yearBuilt <> 0){
-  $yearBuilt = $buggy->yearBuilt;
+$buggyUrlKey = $_GET["urlkey"];
+
+#(/buggy) metadata (existance, build year, org, notes)
+$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note FROM 0buggies b
+                    LEFT JOIN 0orgs o ON b.orgid=o.orgid
+                    WHERE b.buggyid=?;";
+
+$metaData = dbBoundQuery("history", $metaDataQuery, "s", $buggyUrlKey);
+
+if ($metaData->num_rows == 1) {
+  $buggy = $metaData->fetch_assoc();
+} else if ($metaData->num_rows == 0) {
+  echo("I'm sorry, I don't know about buggy: " . $buggyUrlKey);
+  exit(0);
+} else {
+  echo("I'm sorry, I seem to be confused and think there are more than one buggy called: " . $buggyUrlKey);
+  exit(0);
 }
 
-$org = new org();
-$org = $buggy->GetOrg();
+//
+// TODO: If we have the data, we need to link the videos.
+//
+$raceQuery = "SELECT year, 
+	CONCAT(case when class = 'W' then 'Women\'s' else 'Men\'s' end, ' ', team) AS Team,
+  entryid AS TeamID,
+  nullif(place,0) AS Place, 
+	case when prelim <> 0 then concat(floor(prelim / 60), ':', right(concat('0',format(prelim % 60, 2)),5)) else null end AS Prelim, 
+	case when reroll <> 0 then concat(floor(reroll / 60), ':', right(concat('0',format(reroll % 60, 2)),5)) else null end AS Reroll,
+	case when final <> 0 then concat(floor(final / 60), ':', right(concat('0',format(final % 60, 2)),5)) else null end AS Final,
+	case when finalreroll <> 0 then concat(floor(finalreroll / 60), ':', right(concat('0',format(finalreroll % 60, 2)),5)) else null end AS FinalReroll,
+	case when DQ <> '0' then DQ else null end AS DQ,
+  note
+FROM 1raceentries
+WHERE buggyid = ?
+ORDER BY year DESC, Team ASC;";
 
-$teamList = $buggy->GetTeamList(array(array("teamId", ">", "0")),"racedayId",false);
-$buggyAwardList = $buggy->GetBuggyawardList(array(array("buggyAwardId", ">", "0")),"year",false);
+$raceData = dbBoundQuery("history", $raceQuery, "s", $buggyUrlKey);
 
+// Combine all buggy awards (design)
+$awardQuery = "SELECT year,
+                      case when award = 1 then '1st Place Design'
+                           when award = 2 then '2nd Place Design'
+                           when award = 3 then '3rd Place Design'
+                           else concat('Design ', award) end as award,
+                      note
+                      FROM 1designawards 
+                      WHERE buggyid = ?
+               UNION SELECT year,
+                      concat(case when place = 1 then '1st Place'
+                                  when place = 2 then '2nd Place'
+                                  when place = 3 then '3rd Place'
+                                  else concat(place, 'th Place') end,
+                             case when class = 'W' then ' Women\'s'
+                                  else ' Men\'s' end)
+                      AS award, note
+                      FROM 1raceentries 
+                      WHERE buggyid = ?
+                            AND place >= 1 AND place <= 6
+                            AND dq = '0'
+               ORDER BY year DESC, award ASC;";
+
+$awardData = dbBoundQuery("history", $awardQuery, "ss", $buggyUrlKey, $buggyUrlKey);
 ?>
 
-<h1><?php echo($buggy->name);?></h1>
+<h1><?php echo($buggy["name"]);?></h1>
 
 <?php
-  if (file_exists("../../img/buggy/".$buggy->urlKey)) {
-    echo("<img class=\"mb-3\" alt=\"".$buggy->urlKey."\" src=\"/img/buggy/".$buggy->urlKey."\" />");
+  // Path is relative to our cwd from the file that called us (e.g. /index.php due to redirects) not relative to this .inc file!
+  if (file_exists("img/buggy/".$buggyUrlKey)) {
+    // No useful alt text to go here sicne it'd really only be the name.
+    echo("<img class=\"mb-3\" src=\"/img/buggy/".$buggyUrlKey."\" />");
   }
 ?>
 
 <dl class="row">
   <dt class="col-sm-5">Built</dt>
-  <dd class="col-sm-7"><?php echo($yearBuilt); ?></dd>
+  <dd class="col-sm-7"><?php echo($buggy["birthyear"]); ?></dd>
 
   <dt class="col-sm-5">Organization</dt>
-  <dd class="col-sm-7"><?php echo("<a href=\"/history/org/".$org->urlkey."\">".$org->shortname. "</a>"); ?></dd>
+  <dd class="col-sm-7"><?php echo("<a href=\"/history/org/".$buggy["orgid"]."\">".$buggy["org"]. "</a>"); ?></dd>
+
+  <?php if (!empty($buggy["note"])) { ?>
+    <dt class="col-sm-5">Notes</dt>
+    <dd class="col-sm-7"><?php echo($buggy["note"]); ?></dd>
+  <?php } ?>
 </dl>
 
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
-    <a id="races-tab" href="#tab-races" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-races" aria-selected="true">Races <span class="badge badge-primary"><?php echo(count($teamList)); ?></span></a>
+    <a id="races-tab" href="#tab-races" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-races" aria-selected="true">Races <span class="badge badge-primary"><?php echo($raceData->num_rows); ?></span></a>
   </li>
   <li class="nav-item">
-    <a id="awards-tab" href="#tab-awards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-awards" aria-selected="false">Awards <span class="badge badge-primary"><?php echo(count($buggyAwardList)); ?></span></a>
+    <a id="awards-tab" href="#tab-awards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-awards" aria-selected="false">Awards <span class="badge badge-primary"><?php echo($awardData->num_rows); ?></span></a>
   </li>
 </ul>
 <div class="tab-content">
@@ -51,28 +106,33 @@ $buggyAwardList = $buggy->GetBuggyawardList(array(array("buggyAwardId", ">", "0"
       <table class="table">
         <thead>
           <tr class="text-nowrap">
-            <th></th>
             <th>Year</th>
-            <th>Day</th>
             <th>Team</th>
-            <th>Time</th>
+            <th>Place</th>
+            <th>Prelim</th>
+            <th>Prelim Reroll</th>
+            <th>Final</th>
+            <th>FinalReroll</th>
             <th>DQ / Notes</th>
           </tr>
         </thead>
         <tbody>
           <?php
-          foreach ($teamList as $team){
-            $entry= $team->GetEntry();
-            $teamdesc = $entry->GetRaceclass()->description." ".$entry->abcd;
-            $raceday = $team->GetRaceday();
-            $racedaytype = "Prelims";
-            if($raceday->isFinals==1){$racedaytype = "Finals";}
-            $org = $entry->GetOrg();
-            $year = $entry->GetRaceyear()->year;
-            $buggy = $team->GetBuggy();
-            $dq = $team->GetDq();
-            if(strlen($dq->description)>0){$dq = "DQ: ".$dq->description; } else {$dq=""; }
-            $url = "/history/".$entry->urlkey;
+          while ($r = $raceData->fetch_assoc()) {
+            $year = $r["year"];
+            echo("<tr><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
+            echo("<td><a href=\"/history/team/".$r["TeamID"]."\">".$r["Team"]."</a></td>");
+            echo("<td>".$r["Place"]."</td>");
+            echo("<td>".$r["Prelim"]."</td>");
+            echo("<td>".$r["Reroll"]."</td>");
+            echo("<td>".$r["Final"]."</td>");
+            echo("<td>".$r["FinalReroll"]."</td>");
+            echo("<td>".$r["DQ"]." ".$r["note"]."</td></tr>");
+
+            /*
+            TODO: This is how videos used to work, look into this once we have video data.
+                  Note this is tricky because the prior method relied on per-heat rows which we don't have now.
+
             $videolist = null;
             $videolist = $team->GetHeat()->GetVideoList();
             $video = null;
@@ -80,11 +140,7 @@ $buggyAwardList = $buggy->GetBuggyawardList(array(array("buggyAwardId", ">", "0"
             echo("<td>");
             include("content/youtubevid.inc");
             echo("</td>");
-            echo("<td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
-            echo("<td>".$racedaytype."</td>");
-            echo("<td><a href=\"/history/team/".$entry->urlkey."\">".$teamdesc."</a></td>");
-            echo("<td>".displayTime($team->time)."</td>");
-            echo("<td>".$dq." ".$team->notes."</td></tr>");
+            */
           }
           ?>
         </tbody>
@@ -102,9 +158,10 @@ $buggyAwardList = $buggy->GetBuggyawardList(array(array("buggyAwardId", ">", "0"
         </thead>
         <tbody>
           <?php
-            foreach($buggyAwardList as $buggyAward){
-              $awardType = $buggyAward->GetAwardtype();
-              echo("<tr><td>".$buggyAward->year."</td><td>$awardType->description</td></tr>");
+            while($a = $awardData->fetch_assoc()) {
+              echo("<tr><td>".$a["year"]."</td>");
+              echo("<td>".$a["award"]."</td>");
+              echo("<td>".$a["note"]."</td></tr>");
             }
           ?>
         </tbody>
