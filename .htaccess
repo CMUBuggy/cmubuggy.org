@@ -17,7 +17,6 @@ RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
 #top level sections
 RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]
-RewriteRule		^auction[/]*$					index.php?s=auction				[NC,L]
 RewriteRule		^buzz[/]*$						index.php?s=buzz					[NC,L]
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^join[/]*$						index.php?s=membership			[NC,L]
