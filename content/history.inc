@@ -15,7 +15,7 @@
           }
         ?>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/history/org">All Organizations</a>
+        <a class="dropdown-item" href="/history/org">Active Racing Orgs</a>
         <a class="dropdown-item" href="/history/org#past">Past Racing Orgs</a>
         <a class="dropdown-item" href="/history/org#support">Supporting Orgs</a>
       </div>
