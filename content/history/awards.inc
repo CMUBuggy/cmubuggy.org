@@ -127,4 +127,6 @@
       </table>
     </div>
   </div>
+
+  <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
 </div>
