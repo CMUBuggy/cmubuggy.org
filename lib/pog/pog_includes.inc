@@ -10,7 +10,6 @@
 	include "objects/class.dq.php";
 	include "objects/class.entry.php";
 	include "objects/class.fantasyentry.php";
-	include "objects/class.freeroll.php";
 	include "objects/class.heat.php";
 	include "objects/class.member.php";
 	include "objects/class.note.php";
