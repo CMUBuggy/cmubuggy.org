@@ -4,7 +4,6 @@
 	include "objects/class.database.php";
 	include "objects/class.dataedit.php";
 	include "objects/class.awardType.php";
-	include "objects/class.broadcasterq.php";
 	include "objects/class.buggy.php";
 	include "objects/class.buggyAward.php";
 	include "objects/class.dq.php";
