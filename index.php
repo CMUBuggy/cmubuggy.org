@@ -17,10 +17,6 @@
       $title = "About | ".$title;
       $headline = "About";
       break;
-    case "auction":
-      $title = "Lead Truck Auction | ".$title;
-      $headline = "Lead Truck Auction";
-      break;
     case "admin":
       $title = "Admin | ".$title;
       $headline = "Admin";
@@ -28,10 +24,6 @@
     case "buzz":
       $title = "Buzz | ".$title;
       $headline = "Live Buggy Chat";
-      break;
-    case "fantasy":
-      $title = "Fantasy Buggy | ".$title;
-      $headline = "Fantasy Buggy Fall '11";
       break;
     case "history":
       $title = "History | ".$title;
