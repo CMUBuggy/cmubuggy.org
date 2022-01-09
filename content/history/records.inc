@@ -1,42 +1,41 @@
 <?php
 
-  $teamObj = new team();
-  $top25men  = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","1")),"time", "true", 50);
-  //$top25menb = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","1"), array("abcd","=","b")),"time", true, 25);
-  //$top25menc = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","1"), array("abcd","=","c")),"time", true, 25);
-  //$top25mend = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","1"), array("abcd","=","d")),"time", true, 25);
+// Course records, top 50, by class. Set class (M or W) in 4 spots
+$recordQuery = "SELECT
+           T.year, T.entryid,
+	         concat(shortname, case when T.team = 'A' then '' else concat(' ', T.team) end) AS teamname,
+           b.name AS buggy, b.buggyid AS buggyid,
+	         concat(floor(T.time / 60), ':', right(concat('0',format(T.time % 60, 2)),5)) AS time
+    FROM (
+		      SELECT year, entryid, orgid, team, buggyid, nullif(prelim,0) as time from 1raceentries where class = ?
+	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(reroll,0) as time from 1raceentries where class = ?
+	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(final,0) as time from 1raceentries where class = ?
+	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(finalreroll,0) as time from 1raceentries where class = ?) as T
+    LEFT JOIN 0orgs o on T.orgid = o.orgid
+    LEFT JOIN 0buggies b on T.buggyid = b.buggyid
+    WHERE T.time IS NOT NULL
+    ORDER BY T.time ASC
+    LIMIT 50;";
 
-  $top25women  = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","2")),"time", true, 50);
-  //$top25womenb = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","2"), array("abcd","=","b")),"time", true, 25);
-  //$top25womenc = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","2"), array("abcd","=","c")),"time", true, 25);
-  //$top25womend = $teamObj->GetList(array(array("time",">","0"), array("raceclassid","=","2"), array("abcd","=","d")),"time", true, 25);
+$top50men = dbBoundQuery("history",$recordQuery,"ssss","M","M","M","M");
+$top50women = dbBoundQuery("history",$recordQuery,"ssss","W","W","W","W");
 
-  function displayRecordTable($teamlist){
-    echo("<table class=\"table\">");
-    $count = 1;
-    foreach($teamlist as $team){
-      $entry= $team->GetEntry();
-      $raceday = $team->GetRaceday();
-      $racedaynum = 1;
-      if($raceday->isFinals==1){$racedaynum = 2;}
-      $org = $entry->GetOrg();
-      $year = $entry->GetRaceyear()->year;
-      $buggy = $team->GetBuggy();
-      $dq = $team->GetDq();
-      $url = "/history/team/".$entry->urlkey;
+function displayRecordTable($teamList){
+  echo("<table class=\"table\">");
+  $count = 1;
+  while ($team = $teamList->fetch_assoc()) {
+    $year = $team["year"];
 
+    echo("<tr><td>".$count.".</td>");
+    echo("<td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
+    echo("<td><a href=\"/history/team/".$team["entryid"]."\">".$team["teamname"]."</a></td>");
+    echo("<td><a href=\"/history/buggy/".$team["buggyid"]."\">".$team["buggy"]."</a></td>");
+    echo("<td>".$team["time"]."</td></tr>");
 
-      echo("<tr><td>".$count.".</td>");
-      echo("<td><a href=\"/history/raceday/".$year."\">".$year."</a><sub>".$racedaynum."</sub></td>");
-      echo("<td><a href=\"".$url."\">".$org->shortname."</a></td>");
-      echo("<td><a href=\"/history/buggy/".$buggy->urlKey."\">".$buggy->name."</a></td>");
-      echo("<td>".displayTime($team->time)."</td>");
-      echo("<td>".$dq->description." ".$team->notes."</td></tr>");
-
-      $count++;
-    }
-    echo("</table>");
+    $count++;
   }
+  echo("</table>");
+}
 ?>
 
 <h1>Course Records</h1>
@@ -50,10 +49,10 @@
 
 <div class="tab-content">
   <div class="tab-pane fade show active" id="tab-mens" role="tabpanel" aria-labelledby="mens-tab">
-    <?php displayRecordTable($top25men); ?>
+    <?php displayRecordTable($top50men); ?>
   </div>
   <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
-    <?php displayRecordTable($top25women); ?>
+    <?php displayRecordTable($top50women); ?>
   </div>
 </div>
 
