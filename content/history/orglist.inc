@@ -1,9 +1,9 @@
 <?php
-  $query = "SELECT orgid, shortname FROM 0orgs WHERE isactive=1 AND isracingorg=1 ORDER BY shortname;";
+  $query = "SELECT orgid, shortname FROM hist_orgs WHERE isactive=1 AND isracingorg=1 ORDER BY shortname;";
   $activeOrgs = dbQuery("history",$query);
-  $query = "SELECT orgid, shortname FROM 0orgs WHERE isactive=0 AND isracingorg=1 ORDER BY shortname;";
+  $query = "SELECT orgid, shortname FROM hist_orgs WHERE isactive=0 AND isracingorg=1 ORDER BY shortname;";
   $pastOrgs = dbquery("history",$query);
-  $query = "SELECT orgid, shortname FROM 0orgs WHERE isactive=1 and isracingorg=0 ORDER BY shortname;";
+  $query = "SELECT orgid, shortname FROM hist_orgs WHERE isactive=1 and isracingorg=0 ORDER BY shortname;";
   $supportOrgs = dbquery("history", $query);
 
   function echoOrgs($orgList) {

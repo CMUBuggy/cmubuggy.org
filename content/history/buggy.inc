@@ -8,8 +8,8 @@ if (empty($_GET["urlkey"])) {
 $buggyUrlKey = $_GET["urlkey"];
 
 #(/buggy) metadata (existance, build year, org, notes)
-$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note FROM 0buggies b
-                    LEFT JOIN 0orgs o ON b.orgid=o.orgid
+$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note FROM hist_buggies b
+                    LEFT JOIN hist_orgs o ON b.orgid=o.orgid
                     WHERE b.buggyid=?;";
 
 $metaData = dbBoundQuery("history", $metaDataQuery, "s", $buggyUrlKey);
@@ -37,7 +37,7 @@ $raceQuery = "SELECT year,
 	case when finalreroll <> 0 then concat(floor(finalreroll / 60), ':', right(concat('0',format(finalreroll % 60, 2)),5)) else null end AS FinalReroll,
 	case when DQ <> '0' then DQ else null end AS DQ,
   note
-FROM 1raceentries
+FROM hist_raceentries
 WHERE buggyid = ?
 ORDER BY year DESC, Team ASC;";
 
@@ -50,7 +50,7 @@ $awardQuery = "SELECT year,
                            when award = 3 then '3rd Place Design'
                            else concat('Design ', award) end as award,
                       note
-                      FROM 1designawards 
+                      FROM hist_designawards
                       WHERE buggyid = ?
                UNION SELECT year,
                       concat(case when place = 1 then '1st Place'
@@ -60,7 +60,7 @@ $awardQuery = "SELECT year,
                              case when class = 'W' then ' Women\'s'
                                   else ' Men\'s' end)
                       AS award, note
-                      FROM 1raceentries 
+                      FROM hist_raceentries
                       WHERE buggyid = ?
                             AND place >= 1 AND place <= 6
                             AND dq = '0'

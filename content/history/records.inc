@@ -7,12 +7,12 @@ $recordQuery = "SELECT
            b.name AS buggy, b.buggyid AS buggyid,
 	         concat(floor(T.time / 60), ':', right(concat('0',format(T.time % 60, 2)),5)) AS time
     FROM (
-		      SELECT year, entryid, orgid, team, buggyid, nullif(prelim,0) as time from 1raceentries where class = ?
-	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(reroll,0) as time from 1raceentries where class = ?
-	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(final,0) as time from 1raceentries where class = ?
-	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(finalreroll,0) as time from 1raceentries where class = ?) as T
-    LEFT JOIN 0orgs o on T.orgid = o.orgid
-    LEFT JOIN 0buggies b on T.buggyid = b.buggyid
+		      SELECT year, entryid, orgid, team, buggyid, nullif(prelim,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(reroll,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(final,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(finalreroll,0) as time from hist_raceentries where class = ?) as T
+    LEFT JOIN hist_orgs o on T.orgid = o.orgid
+    LEFT JOIN hist_buggies b on T.buggyid = b.buggyid
     WHERE T.time IS NOT NULL
     ORDER BY T.time ASC
     LIMIT 50;";

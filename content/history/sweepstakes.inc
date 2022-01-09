@@ -5,15 +5,15 @@
 	                            concat(pac.firstname, ' ', pac.lastname) AS asst, pac.personid AS asstid,
 	                            concat(psf.firstname, ' ', psf.lastname) AS safety, psf.personid AS safetyid,
 	                            concat(phj.firstname, ' ', phj.lastname) AS judge, phj.personid AS judgeid
-                  FROM 1sweepstakes y
-                    LEFT JOIN 1sweepstakes ch ON ch.year = y.year AND ch.role = 'Sweepstakes Chairman'
-                      LEFT JOIN 0people pch ON ch.personid = pch.personid
-	                  LEFT JOIN 1sweepstakes ac ON ac.year = y.year AND ac.role = 'Assistant Chairman'
-                      LEFT JOIN 0people pac ON ac.personid = pac.personid
-	                  LEFT JOIN 1sweepstakes sf ON sf.year = y.year AND sf.role = 'Safety Chairman'
-                      LEFT JOIN 0people psf ON sf.personid = psf.personid
-	                  LEFT JOIN 1sweepstakes hj ON hj.year = y.year AND hj.role = 'Head Judge'
-                      LEFT JOIN 0people phj ON hj.personid = phj.personid
+                  FROM hist_sweepstakes y
+                    LEFT JOIN hist_sweepstakes ch ON ch.year = y.year AND ch.role = 'Sweepstakes Chairman'
+                      LEFT JOIN hist_people pch ON ch.personid = pch.personid
+	                  LEFT JOIN hist_sweepstakes ac ON ac.year = y.year AND ac.role = 'Assistant Chairman'
+                      LEFT JOIN hist_people pac ON ac.personid = pac.personid
+	                  LEFT JOIN hist_sweepstakes sf ON sf.year = y.year AND sf.role = 'Safety Chairman'
+                      LEFT JOIN hist_people psf ON sf.personid = psf.personid
+	                  LEFT JOIN hist_sweepstakes hj ON hj.year = y.year AND hj.role = 'Head Judge'
+                      LEFT JOIN hist_people phj ON hj.personid = phj.personid
                   ORDER BY y.year DESC;";
 
     return dbQuery("history", $query);
@@ -23,8 +23,8 @@
     // We are cheating a bit by using ORDER BY field here.  We do 10 - FIELD() to put unknown roles at the bottom and
     // ensure that Chair, Asst Chair, and Safety are at the top.
     $query = "SELECT role, concat(p.firstname, ' ', p.lastname) AS name, s.personid AS id
-                FROM 1sweepstakes s
-                LEFT JOIN 0people p ON s.personid = p.personid
+                FROM hist_sweepstakes s
+                LEFT JOIN hist_people p ON s.personid = p.personid
                 WHERE year=?
                 ORDER BY 10 - FIELD(role,
                                     'Sweepstakes Advisor', 'Buggy Book Chairman', 'Design Comp Chairman',

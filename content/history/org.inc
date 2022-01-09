@@ -15,7 +15,7 @@ $metaDataQuery = "SELECT case when isgreek = 1 then greekname else longname end 
                          orgurl,
                          yearfounded,
                          note
-                    FROM 0orgs
+                    FROM hist_orgs
                     WHERE orgid=?;";
 $metaData = dbBoundQuery("history", $metaDataQuery, "s", $orgUrlKey);
 
@@ -39,7 +39,7 @@ $entrytypes = array("ma", "mb", "mc", "md", "wa", "wb", "wc", "wd");
 
 // (/org trophies, not design) Awards, specified org
 // Applies to all orgs.
-$otherTrophyQuery = "SELECT year, concat('99', award) as award FROM 1orgawards
+$otherTrophyQuery = "SELECT year, concat('99', award) as award FROM hist_orgawards
                      WHERE orgid = ?
                      ORDER BY year DESC;";
 $otherTrophies = dbBoundQuery("history", $otherTrophyQuery, "s", $orgUrlKey);
@@ -55,19 +55,19 @@ while ($o = $otherTrophies->fetch_assoc()) {
 //
 // TODO: this could return the buggy (when we know it) and notes, but we don't actually use these things in the display.
 //       it would certainly be a nice touch to do so (at least to link to the buggy page, for example)
-$designTrophiesQuery = "SELECT year, concat('98Design - ', award) as award from(
-  select year, award, name, b.orgid, d.note from 1designawards d inner join 0buggies b on d.buggyid = b.buggyid
+$designTrophiesQuery = "SELECT year, concat('98Design - ', award) AS award FROM (
+  SELECT year, award, name, b.orgid, d.note FROM hist_designawards d INNER JOIN hist_buggies b ON d.buggyid = b.buggyid
   UNION
-  select year, award, null as name, d.orgid, d.note from 1designawards d) x
-  where orgid = ?
-  order by year desc;";
+  SELECT year, award, null AS name, d.orgid, d.note FROM hist_designawards d) x
+  WHERE orgid = ?
+  ORDER BY year DESC;";
 $designTrophies = dbBoundQuery("history", $designTrophiesQuery, "s", $orgUrlKey);
 
 while ($d = $designTrophies->fetch_assoc()) {
   addtrophy($d["year"], $d["award"]);
 }
 
-$buggyListQuery = "SELECT name, birthyear, note, buggyid as urlKey from 0buggies
+$buggyListQuery = "SELECT name, birthyear, note, buggyid AS urlKey FROM hist_buggies
                    WHERE orgid = ?
                    ORDER BY birthyear DESC;";
 $buggyList = dbBoundQuery("history", $buggyListQuery, "s", $orgUrlKey);
@@ -82,12 +82,12 @@ $recordQuery = "SELECT A.class, A.team,
                        B.year, B.entryid
                   FROM (
                     SELECT class, team, min(time) AS record FROM (
-                      SELECT year, class, team, nullif(prelim,0) AS time FROM 1raceentries WHERE orgid = ?
-                      UNION SELECT year, class, team, nullif(reroll,0) AS time FROM 1raceentries WHERE orgid = ?
-                      UNION SELECT year, class, team, nullif(final,0) AS time FROM 1raceentries WHERE orgid = ?
-                      UNION SELECT year, class, team, nullif(finalreroll,0) AS time FROM 1raceentries WHERE orgid = ?) X
+                      SELECT year, class, team, nullif(prelim,0) AS time FROM hist_raceentries WHERE orgid = ?
+                      UNION SELECT year, class, team, nullif(reroll,0) AS time FROM hist_raceentries WHERE orgid = ?
+                      UNION SELECT year, class, team, nullif(final,0) AS time FROM hist_raceentries WHERE orgid = ?
+                      UNION SELECT year, class, team, nullif(finalreroll,0) AS time FROM hist_raceentries WHERE orgid = ?) X
                     GROUP BY class, team) A
-                  CROSS JOIN 1raceentries B
+                  CROSS JOIN hist_raceentries B
                     ON B.class=A.class AND B.team=A.team AND A.record IN (B.prelim, B.reroll, B.final, B.finalreroll);";
 $recordData = dbBoundQuery("history", $recordQuery, "ssss", $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey);
 
@@ -99,7 +99,7 @@ while($r = $recordData->fetch_assoc()) {
 // And after that convoluted query, we have an absolutely enormous query to get all the historical team times.
 //
 // In an unusual step, we don't calculate the pretty version of time in the SQL query, because we need to hand the
-// graphing tool raw seconds.
+// graphing tool raw seconds, so we just use our displayTime() utility function.
 $entryQuery = "SELECT ma.year,
 # Mens
 case when ma.finalreroll > 0 then ma.finalreroll
@@ -168,14 +168,14 @@ case when wd.finalreroll > 0 then wd.finalreroll
 end AS 'wd.timesecs',
 case when wd.DQ <> '0' then 'DQ' else nullif(wd.Place, 0) end AS 'wd.place',
 wd.entryid AS 'wd.entryid'
-FROM 1raceentries ma
-LEFT JOIN 1raceentries mb ON ma.year=mb.year AND mb.class = 'M' AND ma.orgid = mb.orgid AND mb.team = 'B'
-LEFT JOIN 1raceentries mc ON ma.year=mc.year AND mc.class = 'M' AND ma.orgid = mc.orgid AND mc.team = 'C'
-LEFT JOIN 1raceentries md ON ma.year=md.year AND md.class = 'M' AND ma.orgid = md.orgid AND md.team = 'D'
-LEFT JOIN 1raceentries wa ON ma.year=wa.year AND wa.class = 'W' AND ma.orgid = wa.orgid AND wa.team = 'A'
-LEFT JOIN 1raceentries wb ON ma.year=wb.year AND wb.class = 'W' AND ma.orgid = wb.orgid AND wb.team = 'B'
-LEFT JOIN 1raceentries wc ON ma.year=wc.year AND wc.class = 'W' AND ma.orgid = wc.orgid AND wc.team = 'C'
-LEFT JOIN 1raceentries wd ON ma.year=wd.year AND wd.class = 'W' AND ma.orgid = wd.orgid AND wd.team = 'D'
+FROM hist_raceentries ma
+LEFT JOIN hist_raceentries mb ON ma.year=mb.year AND mb.class = 'M' AND ma.orgid = mb.orgid AND mb.team = 'B'
+LEFT JOIN hist_raceentries mc ON ma.year=mc.year AND mc.class = 'M' AND ma.orgid = mc.orgid AND mc.team = 'C'
+LEFT JOIN hist_raceentries md ON ma.year=md.year AND md.class = 'M' AND ma.orgid = md.orgid AND md.team = 'D'
+LEFT JOIN hist_raceentries wa ON ma.year=wa.year AND wa.class = 'W' AND ma.orgid = wa.orgid AND wa.team = 'A'
+LEFT JOIN hist_raceentries wb ON ma.year=wb.year AND wb.class = 'W' AND ma.orgid = wb.orgid AND wb.team = 'B'
+LEFT JOIN hist_raceentries wc ON ma.year=wc.year AND wc.class = 'W' AND ma.orgid = wc.orgid AND wc.team = 'C'
+LEFT JOIN hist_raceentries wd ON ma.year=wd.year AND wd.class = 'W' AND ma.orgid = wd.orgid AND wd.team = 'D'
 WHERE ma.team = 'A' AND ma.class = 'M' AND ma.orgid = ?
 ORDER BY year DESC;";
 

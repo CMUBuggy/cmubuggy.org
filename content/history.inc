@@ -1,5 +1,5 @@
 <?php
-  $query = "SELECT orgid, shortname FROM 0orgs WHERE isactive=1 AND isracingorg=1 ORDER BY shortname;";
+  $query = "SELECT orgid, shortname FROM hist_orgs WHERE isactive=1 AND isracingorg=1 ORDER BY shortname;";
   $orgs = dbQuery("history",$query);
 ?>
 

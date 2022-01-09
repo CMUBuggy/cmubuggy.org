@@ -5,29 +5,29 @@
 			  c.honoree AS '3rd', c.buggyid AS '3rdid', c.birth AS '3rdbirth',
 			  p.honoree AS 'People', p.buggyid AS 'Peopleid', p.birth AS 'Peoplebirth'
       FROM (
-	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM 1designawards d
-		      INNER JOIN 0buggies b ON d.buggyid = b.buggyid
-		      INNER JOIN 0orgs o ON b.orgid = o.orgid
-	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM 1designawards d
-		      INNER JOIN 0orgs o ON d.orgid = o.orgid) a
+	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM hist_designawards d
+		      INNER JOIN hist_buggies b ON d.buggyid = b.buggyid
+		      INNER JOIN hist_orgs o ON b.orgid = o.orgid
+	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM hist_designawards d
+		      INNER JOIN hist_orgs o ON d.orgid = o.orgid) a
       LEFT JOIN (
-	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM 1designawards d
-		      INNER JOIN 0buggies b ON d.buggyid = b.buggyid
-		      INNER JOIN 0orgs o ON b.orgid = o.orgid
-	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM 1designawards d
-		      INNER JOIN 0orgs o ON d.orgid = o.orgid) b ON b.year = a.year AND b.award = 2
+	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM hist_designawards d
+		      INNER JOIN hist_buggies b ON d.buggyid = b.buggyid
+		      INNER JOIN hist_orgs o ON b.orgid = o.orgid
+	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM hist_designawards d
+		      INNER JOIN hist_orgs o ON d.orgid = o.orgid) b ON b.year = a.year AND b.award = 2
       LEFT JOIN (
-	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM 1designawards d
-		      INNER JOIN 0buggies b ON d.buggyid = b.buggyid
-		      INNER JOIN 0orgs o ON b.orgid = o.orgid
-	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM 1designawards d
-		      INNER JOIN 0orgs o ON d.orgid = o.orgid) c ON c.year = a.year AND c.award = 3
+	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM hist_designawards d
+		      INNER JOIN hist_buggies b ON d.buggyid = b.buggyid
+		      INNER JOIN hist_orgs o ON b.orgid = o.orgid
+	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM hist_designawards d
+		      INNER JOIN hist_orgs o ON d.orgid = o.orgid) c ON c.year = a.year AND c.award = 3
       LEFT JOIN (
-	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM 1designawards d
-		      INNER JOIN 0buggies b ON d.buggyid = b.buggyid
-		      INNER JOIN 0orgs o ON b.orgid = o.orgid
-	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM 1designawards d
-		      INNER JOIN 0orgs o ON d.orgid = o.orgid) p ON p.year = a.year AND p.award = 'People\'s Choice'
+	      SELECT year, award, concat(shortname, ' - ', name) AS honoree, b.buggyid AS buggyid, b.birthyear AS birth FROM hist_designawards d
+		      INNER JOIN hist_buggies b ON d.buggyid = b.buggyid
+		      INNER JOIN hist_orgs o ON b.orgid = o.orgid
+	      UNION SELECT year, award, shortname AS honoree, NULL AS buggyid, NULL as birth FROM hist_designawards d
+		      INNER JOIN hist_orgs o ON d.orgid = o.orgid) p ON p.year = a.year AND p.award = 'People\'s Choice'
       WHERE a.award = 1
       ORDER BY year DESC;";
   $designAwards = dbQuery("history",$designAwardQuery);
@@ -36,10 +36,10 @@
     SELECT DISTINCT y.year AS year, occ.shortname as 'chair', occ.orgid as 'chairid',
                                     osb.shortname as 'spirit', osb.orgid as 'spiritid',
                                     ots.shortname as 'shirt', ots.orgid as 'shirtid'
-	    FROM 1orgawards y
-	    LEFT JOIN 1orgawards cc ON cc.year = y.year AND cc.award = 'Chairman\'s Choice' LEFT JOIN 0orgs occ on cc.orgid = occ.orgid
-	    LEFT JOIN 1orgawards sb ON sb.year = y.year AND sb.award = 'Spirit of Buggy' LEFT JOIN 0orgs osb on sb.orgid = osb.orgid
-	    LEFT JOIN 1orgawards ts ON ts.year = y.year AND ts.award = 'T-Shirt Award' LEFT JOIN 0orgs ots on ts.orgid = ots.orgid
+	    FROM hist_orgawards y
+	    LEFT JOIN hist_orgawards cc ON cc.year = y.year AND cc.award = 'Chairman\'s Choice' LEFT JOIN hist_orgs occ on cc.orgid = occ.orgid
+	    LEFT JOIN hist_orgawards sb ON sb.year = y.year AND sb.award = 'Spirit of Buggy' LEFT JOIN hist_orgs osb on sb.orgid = osb.orgid
+	    LEFT JOIN hist_orgawards ts ON ts.year = y.year AND ts.award = 'T-Shirt Award' LEFT JOIN hist_orgs ots on ts.orgid = ots.orgid
       ORDER BY y.year desc;";
   $orgAwards = dbQuery("history",$orgAwardQuery);
 ?>

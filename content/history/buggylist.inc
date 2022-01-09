@@ -1,6 +1,6 @@
 <?php
-  $query = "SELECT buggyid, birthyear, shortname AS org, name, buggyid, b.note AS note FROM 0buggies b
-            LEFT JOIN 0orgs o ON o.orgid = b.orgid
+  $query = "SELECT buggyid, birthyear, shortname AS org, name, buggyid, b.note AS note FROM hist_buggies b
+            LEFT JOIN hist_orgs o ON o.orgid = b.orgid
             ORDER BY birthyear DESC;";
   $buggies = dbQuery("history",$query);
 ?>
