@@ -1,5 +1,0 @@
-<?
- include "functions.php";
-
- getMemcacheKeys();
-?>
