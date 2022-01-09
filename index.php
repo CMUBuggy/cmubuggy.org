@@ -17,10 +17,6 @@
       $title = "About | ".$title;
       $headline = "About";
       break;
-    case "auction":
-      $title = "Lead Truck Auction | ".$title;
-      $headline = "Lead Truck Auction";
-      break;
     case "admin":
       $title = "Admin | ".$title;
       $headline = "Admin";
