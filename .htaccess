@@ -40,7 +40,7 @@ RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1								[NC,L]
 #history section: specific objects
 RewriteRule		^history/buggy/([a-z0-9]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
 RewriteRule		^history/org/([a-z0-9]+)/?$							index.php?s=history&p=org&urlkey=$1				[NC,L]
-RewriteRule		^history/person/([0-9]+)/?$							index.php?s=history&p=person&id=$1				[NC,L]
+RewriteRule		^history/person/([a-z0-9]+)/?$						index.php?s=history&p=person&id=$1				[NC,L]
 RewriteRule		^history/raceday/([0-9]+)/?$						index.php?s=history&p=raceday&year=$1			[NC,L]
 RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
