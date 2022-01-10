@@ -45,7 +45,7 @@ RewriteRule		^history/raceday/([0-9]+)/?$						index.php?s=history&p=raceday&yea
 RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
 
-#history section: categories
+#history section: categories (and list versions of the specific object pages)
 RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 						[NC,L]
 RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC,L]
 RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
@@ -55,7 +55,9 @@ RewriteRule		^history/person[/]*$									index.php?s=history&p=personlist					[
 RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
 RewriteRule		^history/record[/]*$									index.php?s=history&p=records 					[NC,L]
 RewriteRule		^history/sweepstakes[/]*$							index.php?s=history&p=sweepstakes 				[NC,L]
-RewriteRule		^history/team[/]*$									index.php?s=history&p=entry						[NC,L]
+
+#/team without a url parameter we will send to the org list, since there isn't an "entry list" per se.
+RewriteRule		^history/team[/]*$									index.php?s=history&p=orglist						[NC,L]
 
 #raceday section
 RewriteRule		^raceday/heats[/]*$									index.php?s=raceday&p=heats						[NC,L]

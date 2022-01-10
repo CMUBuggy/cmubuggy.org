@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `hist_entrypeoplemap` (
     heattype ENUM('Prelim', 'Prelim Reroll', 'Final', 'Final Reroll') NOT NULL,
     position ENUM('Driver', 'Hill 1', 'Hill 2', 'Hill 3', 'Hill 4', 'Hill 5') NOT NULL,
     INDEX (`personid`),
-    INDEX (`entryid`)
+    INDEX (`entryid`),
+    UNIQUE INDEX one_person_per_slot (`entryid`,`heattype`,`position`)
 );
 
 START TRANSACTION;
