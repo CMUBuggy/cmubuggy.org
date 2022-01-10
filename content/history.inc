@@ -25,6 +25,7 @@
     <li class="nav-item"><a class="nav-link" href="/history/award">Awards</a></li>
     <li class="nav-item"><a class="nav-link" href="/history/buggy">Buggies</a></li>
     <li class="nav-item"><a class="nav-link" href="/history/buggybook">Buggy Books</a></li>
+    <li class="nav-item"><a class="nav-link" href="/history/person">People</a></li>
   </ul>
 </nav>
 
