@@ -45,13 +45,14 @@ RewriteRule		^history/raceday/([0-9]+)/?$						index.php?s=history&p=raceday&yea
 RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
 
+
 #history section: categories (and list versions of the specific object pages)
 RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 						[NC,L]
 RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC,L]
 RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
 RewriteRule		^history/contribute[/]*$							index.php?s=history&p=contribute 				[NC,L]
 RewriteRule		^history/org[/]*$										index.php?s=history&p=orglist						[NC,L]
-RewriteRule		^history/person[/]*$									index.php?s=history&p=personlist					[NC,L]
+RewriteRule		^history/person[/]*$									index.php?s=history&p=personlist					[NC,L,QSA]
 RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
 RewriteRule		^history/record[/]*$									index.php?s=history&p=records 					[NC,L]
 RewriteRule		^history/sweepstakes[/]*$							index.php?s=history&p=sweepstakes 				[NC,L]
