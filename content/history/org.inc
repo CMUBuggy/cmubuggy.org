@@ -30,6 +30,7 @@ if ($metaData->num_rows == 1) {
 }
 
 // Arrays we use for tracking to later summarize.
+$trophyCount = 0;
 $trophyArr = array();
 $recordArr = array();
 
@@ -57,18 +58,27 @@ while ($o = $otherTrophies->fetch_assoc()) {
 //
 // We concat the 98 here for sorting purposes with the other results later.
 //
+// Note that while design awards imply that there is a buggy being awarded, we do not always
+// have that association -- so there are a number of rows that have the org id in the designawards
+// table, but no buggyid.  We need to get both sets, and then merge them.
+//
 // TODO: this could return the buggy (when we know it) and notes, but we don't actually use these things in the display.
 //       it would certainly be a nice touch to do so (at least to link to the buggy page, for example)
-$designTrophiesQuery = "SELECT year, concat('98Design - ', award) AS award FROM (
-  SELECT year, award, name, b.orgid, d.note FROM hist_designawards d INNER JOIN hist_buggies b ON d.buggyid = b.buggyid
-  UNION
-  SELECT year, award, null AS name, d.orgid, d.note FROM hist_designawards d) x
-  WHERE orgid = ?
-  ORDER BY year DESC;";
+$designTrophiesQuery = "SELECT year, concat('98Design - ', award) AS award, buggyname, buggyid FROM (
+                               SELECT b.orgid, year, award, b.name AS buggyname, b.buggyid
+                                 FROM hist_designawards d
+                                 INNER JOIN hist_buggies b ON d.buggyid = b.buggyid
+                               UNION SELECT orgid, year, award, NULL AS buggyname, NULL AS buggyid FROM hist_designawards) x
+                          WHERE orgid = ?
+                          ORDER BY year DESC;";
 $designTrophies = dbBoundQuery($HISTORY_DATABASE, $designTrophiesQuery, "s", $orgUrlKey);
 
 while ($d = $designTrophies->fetch_assoc()) {
-  addtrophy($d["year"], $d["award"]);
+  $extra = "";
+  if (!empty($d["buggyid"])) {
+    $extra = " (<a href=\"/history/buggy/".$d["buggyid"]."\">".$d["buggyname"]."</a>)";
+  }
+  addtrophy($d["year"], $d["award"], $extra);
 }
 
 $buggyListQuery = "SELECT name, birthyear, note, buggyid AS urlKey FROM hist_buggies
@@ -198,13 +208,23 @@ while($e = $entryResultSet->fetch_assoc()) {
   array_push($entryData, $e);
 }
 
-function addtrophy($year, $awardType) {
-  global $trophyArr;
+// Add a trophy to trophyarray.
+// awardType is the text that describes the actual award
+// extra is for any extra details that will be placed verbatim after the award in the list.
+//       For example: a link to the buggy page for design comp awards.
+function addtrophy($year, $awardType, $extra = "") {
+  global $trophyArr, $trophyCount;
+
+  $awardData = array("award" => $awardType,
+                     "extra" => $extra);
+
   if(array_key_exists($year, $trophyArr)){
-    array_push($trophyArr[$year],$awardType);
+    array_push($trophyArr[$year],$awardData);
   } else {
-    $trophyArr[$year]= array($awardType);
+    $trophyArr[$year]= array($awardData);
   }
+
+  $trophyCount++;
 }
 
 function displayraceyear($year, $entry) {
@@ -228,78 +248,93 @@ function displayraceyear($year, $entry) {
   echo("</tr>");
 }
 
+// Allows sorting on the trophy name stored in the "award" key.
+function trophyCmp($a, $b) {
+  $aval = $a["award"];
+  $bval = $b["award"];
+
+  if ($aval == $bval) {
+    return 0;
+  }
+  return ($aval < $bval) ? -1 : 1;
+}
+
 function displaytrophyyear($trophies, $year){
-  sort($trophies);
+  uasort($trophies, 'trophyCmp');
   echo("<tr><td>".$year."</td><td><ul class=\"list-unstyled mb-0\">");
-  foreach($trophies as $trophy){
+  foreach($trophies as $t){
+    $trophy = $t["award"];
+    $extra = $t["extra"];
+
+    echo("<li>");
     switch($trophy) {
       case "01m":
-        echo("<li>Men's 1st Place</li>");
+        echo("Men's 1st Place");
         break;
       case "02m":
-        echo("<li>Men's 2nd Place</li>");
+        echo("Men's 2nd Place");
         break;
       case "03m":
-        echo("<li>Men's 3rd Place</li>");
+        echo("Men's 3rd Place");
         break;
       case "04m":
-        echo("<li>Men's 4th Place</li>");
+        echo("Men's 4th Place");
         break;
       case "05m":
-        echo("<li>Men's 5th Place</li>");
+        echo("Men's 5th Place");
         break;
       case "06m":
-        echo("<li>Men's 6th Place</li>");
+        echo("Men's 6th Place");
         break;
       case "01w":
-        echo("<li>Women's 1st Place</li>");
+        echo("Women's 1st Place");
         break;
       case "02w":
-        echo("<li>Women's 2nd Place</li>");
+        echo("Women's 2nd Place");
         break;
       case "03w":
-        echo("<li>Women's 3rd Place</li>");
+        echo("Women's 3rd Place");
         break;
       case "04w":
-        echo("<li>Women's 4th Place</li>");
+        echo("Women's 4th Place");
         break;
       case "05w":
-        echo("<li>Women's 5th Place</li>");
+        echo("Women's 5th Place");
         break;
       case "06w":
-        echo("<li>Women's 6th Place</li>");
+        echo("Women's 6th Place");
         break;
       case "98Design - 1":
-        echo("<li>Design Comp - 1st Place</li>");
+        echo("Design Comp - 1st Place");
         break;
       case "98Design - 2":
-        echo("<li>Design Comp - 2nd Place</li>");
+        echo("Design Comp - 2nd Place");
         break;
       case "98Design - 3":
-        echo("<li>Design Comp - 3rd Place</li>");
+        echo("Design Comp - 3rd Place");
         break;
       case "98Design - Showcase Spark":
-        echo("<li>Design Comp - Showcase Spark</li>");
+        echo("Design Comp - Showcase Spark");
         break;
       case "98Design - Honorable Mention":
-        echo("<li>Design Comp - Honorable Mention</li>");
+        echo("Design Comp - Honorable Mention");
         break; 
       case "98Design - People's Choice":
-        echo("<li>Design Comp - People's Choice</li>");
+        echo("Design Comp - People's Choice");
         break;
       case "99T-Shirt Award":
-        echo("<li>Best T-Shirt Award</li>");
+        echo("Best T-Shirt Award");
         break;
       case "99Chairman's Choice":
-        echo("<li>Chairman's Choice</li>");
+        echo("Chairman's Choice");
         break;
       case "99Spirit of Buggy":
-        echo("<li>Spirit of Buggy</li>");
+        echo("Spirit of Buggy");
         break;
-
       default:
-        echo("<li>".$trophy."</li>");
+        echo($trophy);
     }
+    echo($extra."</li>");
   }
   echo("</ul></td></tr>");
 }
@@ -401,7 +436,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
       <a id="buggies-tab" href="#tab-buggies" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-buggies" aria-selected="false">Buggies <span class="badge badge-primary"><?php echo($buggyList->num_rows); ?></span></a>
     </li>
     <li class="nav-item">
-      <a id="trophies-tab" href="#tab-trophies" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-trophies" aria-selected="false">Trophies <span class="badge badge-primary"><?php echo(count($trophyArr, COUNT_RECURSIVE)-count($trophyArr)); ?></span></a>
+      <a id="trophies-tab" href="#tab-trophies" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-trophies" aria-selected="false">Trophies <span class="badge badge-primary"><?php echo($trophyCount); ?></span></a>
     </li>
     <li class="nav-item">
       <a id="trends-tab" href="#tab-trends" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-trends" aria-selected="false">Trends</a>
@@ -521,7 +556,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 <?php
   } else { // NOT A RACING ORG - Simpler handling since we only worry about trophies.
 ?>
-  <h2>Trophies <span class="badge badge-primary"><?php echo(count($trophyArr, COUNT_RECURSIVE)-count($trophyArr)); ?></span></h2>
+  <h2>Trophies <span class="badge badge-primary"><?php echo($trophyCount); ?></span></h2>
 
   <div class="table-responsive">
     <table class="table">
