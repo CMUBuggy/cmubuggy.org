@@ -1,27 +1,45 @@
 <?php
-  $query = "SELECT orgid, shortname FROM hist_orgs WHERE isactive=1 AND isracingorg=1 ORDER BY shortname;";
-  $activeOrgs = dbQuery($HISTORY_DATABASE, $query);
-  $query = "SELECT orgid, shortname FROM hist_orgs WHERE isactive=0 AND isracingorg=1 ORDER BY shortname;";
-  $pastOrgs = dbQuery($HISTORY_DATABASE, $query);
-  $query = "SELECT orgid, shortname FROM hist_orgs WHERE isactive=1 and isracingorg=0 ORDER BY shortname;";
-  $supportOrgs = dbQuery($HISTORY_DATABASE, $query);
+  $query = "SELECT orgid, shortname, longname, isactive, isracingorg FROM hist_orgs ORDER BY shortname;";
+  $orgResults = dbQuery($HISTORY_DATABASE, $query);
 
-  function echoOrgs($orgList) {
-    while ($o = $orgList->fetch_assoc()) {
-      echo("<li><a href=\"/history/org/".$o["orgid"]."\">".$o["shortname"]."</a></li>");
+  $orgData = $orgResults->fetch_all(MYSQLI_ASSOC);
+
+  // Active and Racing should be 1 or 0.
+  function countOrgs($active, $racing) {
+    global $orgData;
+    $result = 0;
+    foreach ($orgData as $o) {
+      if ($active == $o["isactive"] && $racing == $o["isracingorg"]) {
+        $result++;
+      }
+    }
+    return $result;
+  }
+
+  // Active and Racing should be 1 or 0.
+  function echoOrgs($active, $racing) {
+    global $orgData;
+    foreach ($orgData as $o) {
+      if ($active == $o["isactive"] && $racing == $o["isracingorg"]) {
+        $longname = "";
+        if ($o["shortname"] != $o["longname"]) {
+          $longname = " (".$o["longname"].")";
+        }
+        echo("<li><a href=\"/history/org/".$o["orgid"]."\">".$o["shortname"]."</a>$longname</li>");
+      }
     }
   }
 ?>
 
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
-    <a id="active-tab" href="#tab-active" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-active" aria-selected="true">Active Racing Orgs <span class="badge badge-primary"><?php echo($activeOrgs->num_rows); ?></span></a>
+    <a id="active-tab" href="#tab-active" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-active" aria-selected="true">Active Racing Orgs <span class="badge badge-primary"><?php echo(countOrgs(1,1)); ?></span></a>
   </li>
   <li class="nav-item">
-    <a id="past-tab" href="#tab-past" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-past" aria-selected="false">Past Racing Orgs <span class="badge badge-primary"><?php echo($pastOrgs->num_rows); ?></span></a>
+    <a id="past-tab" href="#tab-past" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-past" aria-selected="false">Past Racing Orgs <span class="badge badge-primary"><?php echo(countOrgs(0,1)); ?></span></a>
   </li>
   <li class="nav-item">
-    <a id="support-tab" href="#tab-support" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-support" aria-selected="false">Support Orgs <span class="badge badge-primary"><?php echo($supportOrgs->num_rows); ?></span></a>
+    <a id="support-tab" href="#tab-support" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-support" aria-selected="false">Support Orgs <span class="badge badge-primary"><?php echo(countOrgs(1,0)); ?></span></a>
   </li>
 </ul>
 <div class="tab-content">
@@ -29,7 +47,7 @@
     <h1>Active Racing Organizations</h1>
     <ul class="list-unstyled">
       <?php
-        echoOrgs($activeOrgs);
+        echoOrgs(1, 1);
       ?>
     </ul>
   </div>
@@ -37,7 +55,7 @@
     <h1>Past Racing Organizations</h1>
     <ul class="list-unstyled">
       <?php
-        echoOrgs($pastOrgs);
+        echoOrgs(0, 1);
       ?>
     </ul>
   </div>
@@ -45,7 +63,7 @@
     <h1>Support Organizations</h1>
     <ul class="list-unstyled">
       <?php
-        echoOrgs($supportOrgs);
+        echoOrgs(1, 0);
       ?>
     </ul>
   </div>
