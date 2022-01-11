@@ -27,10 +27,8 @@
                 FROM hist_sweepstakes s
                 LEFT JOIN hist_people p ON s.personid = p.personid
                 WHERE year=?
-                ORDER BY 10 - FIELD(role,
-                                    'Sweepstakes Advisor', 'Buggy Book Chairman', 'Design Comp Chairman',
-                                    'Head Judge', 'Safety Chairman', 'Assistant Chairman', 'Sweepstakes Chairman');";
-
+                ORDER BY role, p.lastname, p.firstname;";
+                
     global $HISTORY_DATABASE;
     return dbBoundQuery($HISTORY_DATABASE, $query, "d", $year);
   }
