@@ -1,1 +1,4 @@
 php_flag display_errors on
+
+# Disable access to this directory via web.
+Deny from all
