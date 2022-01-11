@@ -43,6 +43,8 @@
   //
   // So, in the case of a final reroll, we are going to use finalreroll if we have it, otherwise use
   // reroll.  This is not perfect, but works in almost 99% of the cases.
+  //
+  // Note that we only fetch exhibitions if there is a video to go with them, since we have nothing to display otherwise.
   $heatQuery = "SELECT number, isfinals, isreroll, h.class,
       concat(o1.shortname, ' ', e1.team) AS team1, e1.entryid AS teamid1, e1.DQ AS dq1,
       case when isfinals = 0 and isreroll = 0 then e1.prelim
@@ -62,12 +64,13 @@
            when isfinals = 1 and isreroll = 0 then e3.final
            when isfinals = 1 and isreroll = 1 and e3.finalreroll > 0 then e3.finalreroll
            when isfinals = 1 and isreroll = 1 and e3.finalreroll <= 0 then e3.reroll end AS timesec3,
-      h.note
+      h.note, v.youtubeid AS video_youtubeid, v.title AS video_title, v.urlkey AS video_urlkey
     FROM hist_heats h
     LEFT JOIN hist_raceentries e1 on concat(h.year, '.', Lane1) = e1.entryid LEFT JOIN hist_orgs o1 on e1.orgid = o1.orgid
     LEFT JOIN hist_raceentries e2 on concat(h.year, '.', Lane2) = e2.entryid LEFT JOIN hist_orgs o2 on e2.orgid = o2.orgid
     LEFT JOIN hist_raceentries e3 on concat(h.year, '.', Lane3) = e3.entryid LEFT JOIN hist_orgs o3 on e3.orgid = o3.orgid
-    WHERE h.year = ? AND h.class != 'E'
+    LEFT JOIN video v on h.heatid = CAST(v.heatid as CHAR)
+    WHERE h.year = ? AND (h.class != 'E' OR v.youtubeid IS NOT NULL)
     ORDER BY h.class,isfinals,isreroll,number ASC;";
 
   $heatData = dbBoundQuery("history", $heatQuery, "d", $year);
@@ -122,8 +125,9 @@
 
   function displayHeats($heatArr){
     // We put womens first on the heats display because historically heats
-    // for womens run earlier in the morning.
-    $heattypes = array("W0","W1","M0","M1");  // Update for exhibitions if needed
+    // for womens run earlier in the morning.  This is also why Exhibitions
+    // are on top.
+    $heattypes = array("E0","W0","W1","M0","M1");
     $heattypelabels = array("M0"=>"Men's",
                             "M1"=>"Men's Rerolls",
                             "W0"=>"Women's",
@@ -133,36 +137,54 @@
       if(isset($heatArr[$type])){
         echo("<h4>".$heattypelabels[$type]."</h4>");
         echo("<div class\"table-responsive\"><table class=\"table\"><thead>");
-        echo("<tr><th></th><th>Lane 1</th><th>Lane 2</th><th>Lane 3</th><th>Notes</th></tr>");
+
+        if ($type != "E0") {
+          // Not Exhibition, Add useful headers.
+          echo("<tr><th></th><th></th><th>Lane 1</th><th>Lane 2</th><th>Lane 3</th><th>Notes</th></tr>");
+        }
+
         echo("</thead><tbody>");
         foreach($heatArr[$type] as $heat){
           echo("<tr><td>".$heat["number"]."</td>");
 
           // TODO: Video Links!
-          /*
-          $videolist = $heat->GetVideoList();
-          $video = null;
-          if($videolist){ $video = reset($videolist); }
-          include("content/youtubevid.inc");
-          echo("</td>");
-          */
-
-          for($lane = 1; $lane <= 3; $lane++) {
-            if (!empty($heat["team".$lane])) {
-              echo("<td><a href=\"/history/team/".$heat["teamid".$lane]."\">".$heat["team".$lane]."</a>");
-              $time = displayTime($heat["timesec".$lane]);
-              if (!empty($time)) {
-                echo("<br />".$time);
-              }
-              if (!empty($heat["dq".$lane])) {
-                echo("<br /> DQ:".$heat["dq".$lane]);
-              }
-              echo("</td>");
-            } else {
-              echo("<td></td>");
-            }
+          if (!empty($heat["video_youtubeid"])) {
+            $video = array(
+              "youtubeid" => $heat["video_youtubeid"],
+              "title" => $heat["video_title"],
+              "urlkey" => $heat["video_urlkey"]
+            );
+            echo("<td>");
+            include("content/youtubevid.inc");
+            echo("</td>");
+          } else {
+            // No video
+            echo("<td></td>");
           }
-          echo("<td></td></tr>");
+
+          if ($type != "E0") {
+            // Not Exhibition, Show Lanes
+            for($lane = 1; $lane <= 3; $lane++) {
+              if (!empty($heat["team".$lane])) {
+                echo("<td><a href=\"/history/team/".$heat["teamid".$lane]."\">".$heat["team".$lane]."</a>");
+                $time = displayTime($heat["timesec".$lane]);
+                if (!empty($time)) {
+                  echo("<br />".$time);
+                }
+                if (!empty($heat["dq".$lane])) {
+                  echo("<br /> DQ:".$heat["dq".$lane]);
+                }
+                echo("</td>");
+              } else {
+                echo("<td></td>");
+              }
+            }
+            echo("<td>".$heat["note"]."</td>");
+          } else {
+            // Exhibition that has a video, the only thing really to show is the video title here.
+            echo("<td>".$heat["video_title"]."</td>");
+          }
+          echo("</tr>");
         }
         echo("</tbody></table></div>");
       }
