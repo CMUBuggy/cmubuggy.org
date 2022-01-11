@@ -17,8 +17,8 @@ $recordQuery = "SELECT
     ORDER BY T.time ASC
     LIMIT 50;";
 
-$top50men = dbBoundQuery("history",$recordQuery,"ssss","M","M","M","M");
-$top50women = dbBoundQuery("history",$recordQuery,"ssss","W","W","W","W");
+$top50men = dbBoundQuery($HISTORY_DATABASE,$recordQuery,"ssss","M","M","M","M");
+$top50women = dbBoundQuery($HISTORY_DATABASE,$recordQuery,"ssss","W","W","W","W");
 
 function displayRecordTable($teamList){
   echo("<table class=\"table\">");

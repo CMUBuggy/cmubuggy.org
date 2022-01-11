@@ -1,5 +1,6 @@
 <?php
-	$dbuser = '[db_user]';
-	$dbpass = '[db_pass]';
-	$dbhost = '[db_host]';	
+    $HISTORY_DATABASE = '[database name for history data]';
+    $dbuser = '[db_user]';
+    $dbpass = '[db_pass]';
+    $dbhost = '[db_host]';
 ?>

@@ -30,7 +30,7 @@
 		      INNER JOIN hist_orgs o ON d.orgid = o.orgid) p ON p.year = a.year AND p.award = 'People\'s Choice'
       WHERE a.award = 1
       ORDER BY year DESC;";
-  $designAwards = dbQuery("history",$designAwardQuery);
+  $designAwards = dbQuery($HISTORY_DATABASE, $designAwardQuery);
 
   $orgAwardQuery = " 
     SELECT DISTINCT y.year AS year, occ.shortname as 'chair', occ.orgid as 'chairid',
@@ -41,7 +41,7 @@
 	    LEFT JOIN hist_orgawards sb ON sb.year = y.year AND sb.award = 'Spirit of Buggy' LEFT JOIN hist_orgs osb on sb.orgid = osb.orgid
 	    LEFT JOIN hist_orgawards ts ON ts.year = y.year AND ts.award = 'T-Shirt Award' LEFT JOIN hist_orgs ots on ts.orgid = ots.orgid
       ORDER BY y.year desc;";
-  $orgAwards = dbQuery("history",$orgAwardQuery);
+  $orgAwards = dbQuery($HISTORY_DATABASE, $orgAwardQuery);
 ?>
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">

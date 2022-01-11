@@ -9,7 +9,7 @@ $urlkey = $_GET['id'];
 
 // Check existance & get name.
 $metaDataQuery = "SELECT concat(firstname, ' ', lastname) AS name FROM hist_people WHERE personid=?;";
-$metaData = dbBoundQuery("history",$metaDataQuery,"s",$urlkey);
+$metaData = dbBoundQuery($HISTORY_DATABASE, $metaDataQuery, "s", $urlkey);
 
 $personName = "";
 if ($metaData->num_rows == 1) {
@@ -23,7 +23,7 @@ if ($metaData->num_rows == 1) {
 }
 
 $sweepstakesQuery = "SELECT concat(year, ' ', role) AS roledesc FROM hist_sweepstakes WHERE personid=? ORDER BY year DESC;";
-$sweepstakesData = dbBoundQuery("history", $sweepstakesQuery,"s",$urlkey);
+$sweepstakesData = dbBoundQuery($HISTORY_DATABASE, $sweepstakesQuery, "s", $urlkey);
 
 $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
                      case when e.class = 'M' then 'Men\'s'
@@ -44,7 +44,7 @@ $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
                 LEFT JOIN hist_orgs o ON e.orgid=o.orgid
                 WHERE personid=?
                 ORDER BY e.year,heattype,e.class,o.shortname,e.team;";
-$teamData = dbBoundQuery("history", $teamQuery, "s", $urlkey);
+$teamData = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "s", $urlkey);
 
 ?>
 

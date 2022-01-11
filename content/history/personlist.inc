@@ -18,8 +18,7 @@
                         FROM hist_people
                         WHERE firstname LIKE concat('%', ?, '%') OR lastname LIKE concat('%', ?, '%')
                         LIMIT ".$MAX_RESULTS.";";
-
-      $personData = dbBoundQuery("history", $personQuery, "ss", $term, $term);
+      $personData = dbBoundQuery($HISTORY_DATABASE, $personQuery, "ss", $term, $term);
       $personList = $personData->fetch_all(MYSQLI_ASSOC);
 
       if (count($personList) == 0) {

@@ -12,7 +12,7 @@ $metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note FR
                     LEFT JOIN hist_orgs o ON b.orgid=o.orgid
                     WHERE b.buggyid=?;";
 
-$metaData = dbBoundQuery("history", $metaDataQuery, "s", $buggyUrlKey);
+$metaData = dbBoundQuery($HISTORY_DATABASE, $metaDataQuery, "s", $buggyUrlKey);
 
 if ($metaData->num_rows == 1) {
   $buggy = $metaData->fetch_assoc();
@@ -66,7 +66,7 @@ $raceQuery = "SELECT e.year,
                 WHERE buggyid = ?
                 ORDER BY year DESC, Team ASC;";
 
-$raceData = dbBoundQuery("history", $raceQuery, "s", $buggyUrlKey);
+$raceData = dbBoundQuery($HISTORY_DATABASE, $raceQuery, "s", $buggyUrlKey);
 
 // Combine all buggy awards (design)
 $awardQuery = "SELECT year,
@@ -91,7 +91,7 @@ $awardQuery = "SELECT year,
                             AND dq = '0'
                ORDER BY year DESC, award ASC;";
 
-$awardData = dbBoundQuery("history", $awardQuery, "ss", $buggyUrlKey, $buggyUrlKey);
+$awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $buggyUrlKey);
 ?>
 
 <h1><?php echo($buggy["name"]);?></h1>

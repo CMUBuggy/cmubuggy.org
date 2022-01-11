@@ -28,11 +28,25 @@
 		return $result;
 	}
 
+	// We provide 2 utility functions for raw SQL queries -- one that just takes the query verbatim
+	// and another that allows the use of bound parameters, necessary if we have user input.
+	//
+	// TODO: It is debatable how useful this approach is.  It is certainly simple, but it
+	// means that on pages that do more than one query we open several database
+	// connections.  However, many pages just do a single query, or at most 2, so in most cases it is
+	// 6 of one, half a dozen...  However, the most complex pages (such as org) do  multiple (5+)
+	// and might be better with some local optimization if we see issues in production.
+	//
+	// Including dbconfig.inc here allows us to provide the history database name
+	// throughout the code (via $HISTORY_DATABASE)
+	include("dbconfig.inc");
+
 	// Do a simple query against the named database.
+	//
 	// WARNING: Do not allow any user input into the statement!
-	// Recommend using dbBoundQuery() instead if user input is necessary.
+	// You absolutely should prefer dbBoundQuery() if user input is necessary (with the user input as bound values)
 	function dbQuery($dbname, $sql){
-		include("dbconfig.inc");
+		global $dbhost, $dbuser, $dbpass;
 		$con = mysqli_connect($dbhost, $dbuser, $dbpass);
 		if (!$con)	{  die('Could not connect: ' . mysqli_connect_error()); }
 		mysqli_select_db($con, $dbname);
@@ -42,8 +56,10 @@
 	}
 
 	// Do a query against the database, allowing the use of bound parameters to prevent SQL injection.
+	//
+	// If you are at all in doubt, use this function in preference to dbQuery().
 	function dbBoundQuery($dbname, $sql, $bindings = NULL, ...$values) {
-		include("dbconfig.inc");
+		global $dbhost, $dbuser, $dbpass;
 		$con = mysqli_connect($dbhost, $dbuser, $dbpass);
 		if (!$con)	{  die('Could not connect: ' . mysqli_connect_error()); }
 
@@ -61,10 +77,6 @@
 		return mysqli_stmt_get_result($stmt);
 
 		// Note: Connection will close when $con is garbage collected.
-	}
-
-	function dbClose(){
-		mysqli_close($con);
 	}
 
 	function timestamp_sort($a, $b){

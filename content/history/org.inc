@@ -17,7 +17,7 @@ $metaDataQuery = "SELECT case when isgreek = 1 then greekname else longname end 
                          note
                     FROM hist_orgs
                     WHERE orgid=?;";
-$metaData = dbBoundQuery("history", $metaDataQuery, "s", $orgUrlKey);
+$metaData = dbBoundQuery($HISTORY_DATABASE, $metaDataQuery, "s", $orgUrlKey);
 
 if ($metaData->num_rows == 1) {
   $org = $metaData->fetch_assoc();
@@ -38,11 +38,13 @@ $recordArr = array();
 $entrytypes = array("ma", "mb", "mc", "md", "wa", "wb", "wc", "wd");
 
 // (/org trophies, not design) Awards, specified org
-// Applies to all orgs.
+// Applies to all orgs (e.g. including Support)
+//
+// We concat the 99 here for sorting purposes with the other results later.
 $otherTrophyQuery = "SELECT year, concat('99', award) as award FROM hist_orgawards
                      WHERE orgid = ?
                      ORDER BY year DESC;";
-$otherTrophies = dbBoundQuery("history", $otherTrophyQuery, "s", $orgUrlKey);
+$otherTrophies = dbBoundQuery($HISTORY_DATABASE, $otherTrophyQuery, "s", $orgUrlKey);
 
 while ($o = $otherTrophies->fetch_assoc()) {
   addtrophy($o["year"], $o["award"]);
@@ -53,6 +55,8 @@ while ($o = $otherTrophies->fetch_assoc()) {
 // Seems probable this only applies to racing orgs, but we do it anyway for all.
 // Some awards just have org data and no buggy even though it clearly is for a specific buggy.
 //
+// We concat the 98 here for sorting purposes with the other results later.
+//
 // TODO: this could return the buggy (when we know it) and notes, but we don't actually use these things in the display.
 //       it would certainly be a nice touch to do so (at least to link to the buggy page, for example)
 $designTrophiesQuery = "SELECT year, concat('98Design - ', award) AS award FROM (
@@ -61,7 +65,7 @@ $designTrophiesQuery = "SELECT year, concat('98Design - ', award) AS award FROM 
   SELECT year, award, null AS name, d.orgid, d.note FROM hist_designawards d) x
   WHERE orgid = ?
   ORDER BY year DESC;";
-$designTrophies = dbBoundQuery("history", $designTrophiesQuery, "s", $orgUrlKey);
+$designTrophies = dbBoundQuery($HISTORY_DATABASE, $designTrophiesQuery, "s", $orgUrlKey);
 
 while ($d = $designTrophies->fetch_assoc()) {
   addtrophy($d["year"], $d["award"]);
@@ -70,7 +74,7 @@ while ($d = $designTrophies->fetch_assoc()) {
 $buggyListQuery = "SELECT name, birthyear, note, buggyid AS urlKey FROM hist_buggies
                    WHERE orgid = ?
                    ORDER BY birthyear DESC;";
-$buggyList = dbBoundQuery("history", $buggyListQuery, "s", $orgUrlKey);
+$buggyList = dbBoundQuery($HISTORY_DATABASE, $buggyListQuery, "s", $orgUrlKey);
 
 
 // I apologize for how convoluted this query is.
@@ -89,7 +93,7 @@ $recordQuery = "SELECT A.class, A.team,
                     GROUP BY class, team) A
                   CROSS JOIN hist_raceentries B
                     ON B.class=A.class AND B.team=A.team AND A.record IN (B.prelim, B.reroll, B.final, B.finalreroll);";
-$recordData = dbBoundQuery("history", $recordQuery, "ssss", $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey);
+$recordData = dbBoundQuery($HISTORY_DATABASE, $recordQuery, "ssss", $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey);
 
 while($r = $recordData->fetch_assoc()) {
   $key = $r["class"].$r["team"];
@@ -101,85 +105,77 @@ while($r = $recordData->fetch_assoc()) {
 // In an unusual step, we don't calculate the pretty version of time in the SQL query, because we need to hand the
 // graphing tool raw seconds, so we just use our displayTime() utility function.
 $entryQuery = "SELECT ma.year,
-# Mens
-case when ma.finalreroll > 0 then ma.finalreroll
-     when ma.final > 0 then ma.final
-     when ma.reroll > 0 then ma.reroll
-     when ma.prelim > 0 then ma.prelim
-     else NULL
-end AS 'ma.timesecs',
-case when ma.DQ <> '0' then 'DQ' else nullif(ma.Place, 0) end AS 'ma.place',
-ma.entryid AS 'ma.entryid',
-case when mb.finalreroll > 0 then mb.finalreroll
-     when mb.final > 0 then mb.final
-     when mb.reroll > 0 then mb.reroll
-     when mb.prelim > 0 then mb.prelim
-     else NULL
-end AS 'mb.timesecs',
-case when mb.DQ <> '0' then 'DQ' else nullif(mb.Place, 0) end AS 'mb.place',
-mb.entryid AS 'mb.entryid',
-case when mc.finalreroll > 0 then mc.finalreroll
-     when mc.final > 0 then mc.final
-     when mc.reroll > 0 then mc.reroll
-     when mc.prelim > 0 then mc.prelim
-     else NULL
-end AS 'mc.timesecs',
-case when mc.DQ <> '0' then 'DQ' else nullif(mc.Place, 0) end AS 'mc.place',
-mc.entryid AS 'mc.entryid',
-case when md.finalreroll > 0 then md.finalreroll
-     when md.final > 0 then md.final
-     when md.reroll > 0 then md.reroll
-     when md.prelim > 0 then md.prelim
-     else NULL
-end AS 'md.timesecs',
-case when md.DQ <> '0' then 'DQ' else nullif(md.Place, 0) end AS 'md.place',
-md.entryid AS 'md.entryid',
+               # Mens
+                      case when ma.finalreroll > 0 then ma.finalreroll
+                           when ma.final > 0 then ma.final
+                           when ma.reroll > 0 then ma.reroll
+                           when ma.prelim > 0 then ma.prelim
+                           else NULL end AS 'ma.timesecs',
+                      case when ma.DQ <> '0' then 'DQ' else nullif(ma.Place, 0) end AS 'ma.place',
+                      ma.entryid AS 'ma.entryid',
+                      case when mb.finalreroll > 0 then mb.finalreroll
+                           when mb.final > 0 then mb.final
+                           when mb.reroll > 0 then mb.reroll
+                           when mb.prelim > 0 then mb.prelim
+                           else NULL end AS 'mb.timesecs',
+                      case when mb.DQ <> '0' then 'DQ' else nullif(mb.Place, 0) end AS 'mb.place',
+                      mb.entryid AS 'mb.entryid',
+                      case when mc.finalreroll > 0 then mc.finalreroll
+                           when mc.final > 0 then mc.final
+                           when mc.reroll > 0 then mc.reroll
+                           when mc.prelim > 0 then mc.prelim
+                           else NULL end AS 'mc.timesecs',
+                      case when mc.DQ <> '0' then 'DQ' else nullif(mc.Place, 0) end AS 'mc.place',
+                      mc.entryid AS 'mc.entryid',
+                      case when md.finalreroll > 0 then md.finalreroll
+                           when md.final > 0 then md.final
+                           when md.reroll > 0 then md.reroll
+                           when md.prelim > 0 then md.prelim
+                           else NULL end AS 'md.timesecs',
+                      case when md.DQ <> '0' then 'DQ' else nullif(md.Place, 0) end AS 'md.place',
+                      md.entryid AS 'md.entryid',
 
-# Womens
-case when wa.finalreroll > 0 then wa.finalreroll
-     when wa.final > 0 then wa.final
-     when wa.reroll > 0 then wa.reroll
-     when wa.prelim > 0 then wa.prelim
-     else NULL
-end AS 'wa.timesecs',
-case when wa.DQ <> '0' then 'DQ' else nullif(wa.Place, 0) end AS 'wa.place',
-wa.entryid AS 'wa.entryid',
-case when wb.finalreroll > 0 then wb.finalreroll
-     when wb.final > 0 then wb.final
-     when wb.reroll > 0 then wb.reroll
-     when wb.prelim > 0 then wb.prelim
-     else NULL
-end AS 'wb.timesecs',
-case when wb.DQ <> '0' then 'DQ' else nullif(wb.Place, 0) end AS 'wb.place',
-wb.entryid AS 'wb.entryid',
-case when wc.finalreroll > 0 then wc.finalreroll
-     when wc.final > 0 then wc.final
-     when wc.reroll > 0 then wc.reroll
-     when wc.prelim > 0 then wc.prelim
-     else NULL
-end AS 'wc.timesecs',
-case when wc.DQ <> '0' then 'DQ' else nullif(wc.Place, 0) end AS 'wc.place',
-wc.entryid AS 'wc.entryid',
-case when wd.finalreroll > 0 then wd.finalreroll
-     when wd.final > 0 then wd.final
-     when wd.reroll > 0 then wd.reroll
-     when wd.prelim > 0 then wd.prelim
-     else NULL
-end AS 'wd.timesecs',
-case when wd.DQ <> '0' then 'DQ' else nullif(wd.Place, 0) end AS 'wd.place',
-wd.entryid AS 'wd.entryid'
-FROM hist_raceentries ma
-LEFT JOIN hist_raceentries mb ON ma.year=mb.year AND mb.class = 'M' AND ma.orgid = mb.orgid AND mb.team = 'B'
-LEFT JOIN hist_raceentries mc ON ma.year=mc.year AND mc.class = 'M' AND ma.orgid = mc.orgid AND mc.team = 'C'
-LEFT JOIN hist_raceentries md ON ma.year=md.year AND md.class = 'M' AND ma.orgid = md.orgid AND md.team = 'D'
-LEFT JOIN hist_raceentries wa ON ma.year=wa.year AND wa.class = 'W' AND ma.orgid = wa.orgid AND wa.team = 'A'
-LEFT JOIN hist_raceentries wb ON ma.year=wb.year AND wb.class = 'W' AND ma.orgid = wb.orgid AND wb.team = 'B'
-LEFT JOIN hist_raceentries wc ON ma.year=wc.year AND wc.class = 'W' AND ma.orgid = wc.orgid AND wc.team = 'C'
-LEFT JOIN hist_raceentries wd ON ma.year=wd.year AND wd.class = 'W' AND ma.orgid = wd.orgid AND wd.team = 'D'
-WHERE ma.team = 'A' AND ma.class = 'M' AND ma.orgid = ?
-ORDER BY year DESC;";
+               # Womens
+                      case when wa.finalreroll > 0 then wa.finalreroll
+                           when wa.final > 0 then wa.final
+                           when wa.reroll > 0 then wa.reroll
+                           when wa.prelim > 0 then wa.prelim
+                           else NULL end AS 'wa.timesecs',
+                      case when wa.DQ <> '0' then 'DQ' else nullif(wa.Place, 0) end AS 'wa.place',
+                      wa.entryid AS 'wa.entryid',
+                      case when wb.finalreroll > 0 then wb.finalreroll
+                           when wb.final > 0 then wb.final
+                           when wb.reroll > 0 then wb.reroll
+                           when wb.prelim > 0 then wb.prelim
+                           else NULL end AS 'wb.timesecs',
+                      case when wb.DQ <> '0' then 'DQ' else nullif(wb.Place, 0) end AS 'wb.place',
+                      wb.entryid AS 'wb.entryid',
+                      case when wc.finalreroll > 0 then wc.finalreroll
+                           when wc.final > 0 then wc.final
+                           when wc.reroll > 0 then wc.reroll
+                           when wc.prelim > 0 then wc.prelim
+                           else NULL end AS 'wc.timesecs',
+                      case when wc.DQ <> '0' then 'DQ' else nullif(wc.Place, 0) end AS 'wc.place',
+                      wc.entryid AS 'wc.entryid',
+                      case when wd.finalreroll > 0 then wd.finalreroll
+                           when wd.final > 0 then wd.final
+                           when wd.reroll > 0 then wd.reroll
+                           when wd.prelim > 0 then wd.prelim
+                           else NULL end AS 'wd.timesecs',
+                      case when wd.DQ <> '0' then 'DQ' else nullif(wd.Place, 0) end AS 'wd.place',
+                      wd.entryid AS 'wd.entryid'
+                  FROM hist_raceentries ma
+                  LEFT JOIN hist_raceentries mb ON ma.year=mb.year AND mb.class = 'M' AND ma.orgid = mb.orgid AND mb.team = 'B'
+                  LEFT JOIN hist_raceentries mc ON ma.year=mc.year AND mc.class = 'M' AND ma.orgid = mc.orgid AND mc.team = 'C'
+                  LEFT JOIN hist_raceentries md ON ma.year=md.year AND md.class = 'M' AND ma.orgid = md.orgid AND md.team = 'D'
+                  LEFT JOIN hist_raceentries wa ON ma.year=wa.year AND wa.class = 'W' AND ma.orgid = wa.orgid AND wa.team = 'A'
+                  LEFT JOIN hist_raceentries wb ON ma.year=wb.year AND wb.class = 'W' AND ma.orgid = wb.orgid AND wb.team = 'B'
+                  LEFT JOIN hist_raceentries wc ON ma.year=wc.year AND wc.class = 'W' AND ma.orgid = wc.orgid AND wc.team = 'C'
+                  LEFT JOIN hist_raceentries wd ON ma.year=wd.year AND wd.class = 'W' AND ma.orgid = wd.orgid AND wd.team = 'D'
+                  WHERE ma.team = 'A' AND ma.class = 'M' AND ma.orgid = ?
+                  ORDER BY year DESC;";
 
-$entryResultSet = dbBoundQuery("history", $entryQuery, "s", $orgUrlKey);
+$entryResultSet = dbBoundQuery($HISTORY_DATABASE, $entryQuery, "s", $orgUrlKey);
 $entryData = array();  // Just a flat list.
 $entryTimes = array();   // Associative array of time-seconds by [year][ma/mb/wa/wb/etc]
 while($e = $entryResultSet->fetch_assoc()) {

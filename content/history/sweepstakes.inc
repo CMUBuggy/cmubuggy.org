@@ -16,7 +16,8 @@
                       LEFT JOIN hist_people phj ON hj.personid = phj.personid
                   ORDER BY y.year DESC;";
 
-    return dbQuery("history", $query);
+    global $HISTORY_DATABASE;
+    return dbQuery($HISTORY_DATABASE, $query);
   }
 
   function getSweepstakesYear($year) {
@@ -29,7 +30,9 @@
                 ORDER BY 10 - FIELD(role,
                                     'Sweepstakes Advisor', 'Buggy Book Chairman', 'Design Comp Chairman',
                                     'Head Judge', 'Safety Chairman', 'Assistant Chairman', 'Sweepstakes Chairman');";
-    return dbBoundQuery("history", $query, "d", $year);
+
+    global $HISTORY_DATABASE;
+    return dbBoundQuery($HISTORY_DATABASE, $query, "d", $year);
   }
 
   // If "year" parameter is supplied, show all known positions for that year.

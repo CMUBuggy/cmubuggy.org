@@ -1,6 +1,6 @@
 <?php
   $query = "SELECT orgid, shortname FROM hist_orgs WHERE isactive=1 AND isracingorg=1 ORDER BY shortname;";
-  $orgs = dbQuery("history",$query);
+  $orgs = dbQuery($HISTORY_DATABASE, $query);
 ?>
 
 <nav class="navbar navbar-light navbar-expand bg-light mb-3">

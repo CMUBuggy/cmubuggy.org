@@ -23,8 +23,12 @@
                  WHERE year = ? AND class = ?
                  ORDER BY place=0, place, prelim=0, prelim, DQ;";
 
-  $mensResults = dbBoundQuery("history", $resQuery, "ds", $year, 'M');
-  $womensResults = dbBoundQuery("history", $resQuery, "ds", $year, 'W');
+  // We could get these all at once instead of 2 different queries and split them locally while maintaining the sort order,
+  // but this is slightly simpler to write/understand.
+  //
+  // Also, if we decide to use a single connection on this page, we can reuse the prepared statement here.
+  $mensResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'M');
+  $womensResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'W');
 
   // Getting heats is a mess, rather than issue a ton of queries, we fetch all the relevant heats
   // and then split them by prelim/final/reroll/etc locally.
@@ -73,7 +77,7 @@
     WHERE h.year = ? AND (h.class != 'E' OR v.youtubeid IS NOT NULL)
     ORDER BY h.class,isfinals,isreroll,number ASC;";
 
-  $heatData = dbBoundQuery("history", $heatQuery, "d", $year);
+  $heatData = dbBoundQuery($HISTORY_DATABASE, $heatQuery, "d", $year);
 
   $pheatsArr = array();
   $fheatsArr = array();

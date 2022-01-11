@@ -41,7 +41,7 @@ $query = "SELECT ma.Year AS year,
   WHERE ((ma.place = 1 AND ma.class = 'M') OR (ma.team IS NULL AND ma.class = 'M'))
   ORDER BY Year DESC;";
 
-$raceyearlist = dbQuery("history", $query);
+$raceyearlist = dbQuery($HISTORY_DATABASE, $query);
 
 function echoTeamCell($teamkey, $teamname) {
   echo("<td><a href=\"/history/team/".$teamkey."\">".$teamname."</td>");

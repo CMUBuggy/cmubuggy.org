@@ -52,7 +52,7 @@ $headerQuery = "SELECT e.year, o.orgid, o.shortname AS org,
 		                                              OR CONCAT(hfr.year,'.',hfr.lane3)=e.entryid)
                   LEFT JOIN video vfr ON CAST(vfr.heatid AS CHAR) = hfr.heatid
                   WHERE entryid = ?;";
-$headerResults = dbBoundQuery("history", $headerQuery, "s", $urlkey);
+$headerResults = dbBoundQuery($HISTORY_DATABASE, $headerQuery, "s", $urlkey);
 
 if ($headerResults->num_rows != 1) {
   echo("I'm sorry, I couldn't make sense of the entry descriptor: " . $urlkey);
@@ -66,7 +66,7 @@ $teamQuery = "SELECT heattype, position, concat(p.firstname, ' ', p.lastname) as
                   LEFT JOIN hist_people p ON p.personid = m.personid
                   WHERE entryid = ?
                   ORDER BY heattype, position;";
-$teamResults = dbBoundQuery("history", $teamQuery, "s", $urlkey);
+$teamResults = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "s", $urlkey);
 
 // Constants to provide an ordered list of the roles/heattypes we (might) want to display.
 $displayHeatTypes = array("Prelim", "Prelim Reroll", "Final", "Final Reroll");
