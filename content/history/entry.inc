@@ -34,6 +34,15 @@ if ($headerResults->num_rows != 1) {
   $header = $headerResults->fetch_assoc();
 }
 
+// Fetch all videos relevant to this entry.
+$videoQuery = "SELECT h.isfinals,h.isreroll,v.youtubeid,v.title,v.urlkey FROM video v
+                 LEFT JOIN hist_heats h ON CAST(v.heatid AS CHAR) = h.heatid
+                 LEFT JOIN hist_raceentries e ON (CONCAT(h.year,'.',h.lane1)=e.entryid
+                                                  OR CONCAT(h.year,'.',h.lane2)=e.entryid
+                                                  OR CONCAT(h.year,'.',h.lane3)=e.entryid)
+                 WHERE e.entryid = ?;";
+$videoResults = dbBoundQuery("history", $videoQuery, "s", $urlkey);
+
 $teamQuery = "SELECT heattype, position, concat(p.firstname, ' ', p.lastname) as personname, p.personid
                   FROM hist_entrypeoplemap m
                   LEFT JOIN hist_people p ON p.personid = m.personid
@@ -44,6 +53,25 @@ $teamResults = dbBoundQuery("history", $teamQuery, "s", $urlkey);
 // Constant ordered list of the roles/heattypes we (might) want to display.
 $displayHeatTypes = array("Prelim", "Prelim Reroll", "Final", "Final Reroll");
 $displayRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
+
+// Create a map for any video objects we have available.
+$videomap = array();
+while ($v = $videoResults->fetch_assoc()) {
+  $videoObject = array(
+    "youtubeid" => $v["youtubeid"],
+    "title" => $v["title"],
+    "urlkey" => $v["urlkey"]
+  );
+  if ($v['isfinals'] == 0 && $v['isreroll'] == 0) {
+    $videomap['Prelim'] = $videoObject;
+  } else if ($v['isfinals'] == 0 && $v['isreroll'] == 1) {
+    $videomap['Prelim Reroll'] = $videoObject;
+  } else if ($v['isfinals'] == 1 && $v['isreroll'] == 0) {
+    $videomap['Final'] = $videoObject;
+  } else {
+    $videomap['Final Reroll'] = $videoObject;
+  }
+}
 
 // create a template array of blank names for the roles we want to display, in order.
 // Since PHP copies arrays instead of just the reference, we can use this as a common
@@ -111,19 +139,6 @@ echo("</table>");
       echo("<div class=\"col-sm\">");
       echo("<h2>".$heattype."</h2>");
 
-      // TODO, it is conceivable we could handle videos here via a join with the heat table, but we do not, at this point,
-      // have the video data to assocaite with it.
-      /*
-      $heat = $team->GetHeat();
-      if($heat->headId>0){
-        $videolist = $heat->GetVideoList();
-        if($videolist){
-          $video = $videolist[0];
-          include("content/youtubevid.inc");
-        }
-      }
-      */
-
       echo("<dl class=\"row\">");
       foreach ($displayRoles as $role) {
         echo("<dt class=\"col-sm-5\">".$role."</dt><dd class=\"col-sm-7\">".$team[$role]."</dd>");
@@ -132,6 +147,17 @@ echo("</table>");
         echo("<dt class=\"col-sm-5\">Time</dt><dd class=\"col-sm-7\">".$header[$heattype]."</dd>");
       }
       echo("</dl>");
+
+      // If we have a relevant video, share it.
+      // TODO: This formatting is a bit janky, but placing at the bottom of the list seems better than
+      //       placing at the top, at least for now.
+      echo("<div style=\"text-align: center;\">");
+      if (!empty($videomap[$heattype])) {
+        $video = $videomap[$heattype];
+        include("content/youtubevid.inc");
+      }
+      echo("</div>");
+
       echo("</div>");
     }
   ?>
