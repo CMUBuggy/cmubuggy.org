@@ -10,7 +10,8 @@
   $resQuery = "SELECT nullif(place, 0) place,
                       concat(shortname, ' ', team) AS team,
                       e.entryid AS entryid,
-                      b.name AS buggy,
+                      b.name AS buggyname,
+                      b.buggyid AS buggyid,
                       case when prelim > 0 then concat(floor(prelim / 60), ':', right(concat('0',format(prelim % 60, 2)),5)) else NULL end prelim,
                       case when reroll > 0 then concat(floor(reroll / 60), ':', right(concat('0',format(reroll % 60, 2)),5)) else NULL end reroll,
                       case when final > 0 then concat(floor(final / 60), ':', right(concat('0',format(final % 60, 2)),5)) else NULL end final,
@@ -97,7 +98,7 @@
     global $racedayList;
 
     echo("<div class=\"table-responsive\"><table class=\"table\">");
-    echo("<thead><tr><th>Place</th><th>Team</th><th>Prelims Time</th><th>Prelim Reroll</th><th>Finals Time</th><th>Finals Reroll</th><th>Notes</th></tr></thead>");
+    echo("<thead><tr><th>Place</th><th>Team</th><th>Buggy</th><th>Prelims</th><th>Prelim Reroll</th><th>Finals</th><th>Finals Reroll</th><th>Notes</th></tr></thead>");
     echo("<tbody>");
 
     while ($r = $resultList->fetch_assoc()) {
@@ -108,7 +109,14 @@
         echo("<td colspan=\"7\" class=\"text-center\">".$r["note"]."</td>");
       } else {
         echo("<td>".$r["place"]."</td>");
-        echo("<td><a href=\"/history/team/".$r["entryid"]."\">".$r["team"]."</a></td>");
+        echo("<td style=\"white-space: nowrap\"><a href=\"/history/team/".$r["entryid"]."\">".$r["team"]."</a></td>");
+
+        if (!empty($r["buggyname"])) {
+          echo("<td><a href=\"/history/buggy/".$r["buggyid"]."\">".$r["buggyname"]."</a></td>");
+        } else {
+          echo("<td></td>");
+        }
+
         echo("<td>".$r["prelim"]."</td>");
         echo("<td>".$r["reroll"]."</td>");
         echo("<td>".$r["final"]."</td>");
