@@ -7,12 +7,15 @@ if (!isset($_GET["urlkey"])) {
   $urlkey = $_GET["urlkey"];
 }
 
-$headerQuery = "SELECT year, o.orgid, o.shortname AS org,
-                       case when Class = 'M' then 'Men\'s'
-                            when Class = 'W' then 'Women\'s'
+// To fetch the videos requires a somwhat complex join against all possible lanes in the heats table.
+// This, combined with the fact that we need 2 bits of video data for each of (up to) 4 heats makes this a bit
+// less readable than it could be.
+$headerQuery = "SELECT e.year, o.orgid, o.shortname AS org,
+                       case when e.Class = 'M' then 'Men\'s'
+                            when e.Class = 'W' then 'Women\'s'
                             else 'Unknown' end AS class,
-                       case when Class = 'M' then 'mens'
-                            when Class = 'W' then 'womens'
+                       case when e.Class = 'M' then 'mens'
+                            when e.Class = 'W' then 'womens'
                             else 'Unknown' end AS classanchor,
                        Team AS team,
                        case when Prelim > 0 then concat(floor(Prelim / 60), ':', right(concat('0',format(Prelim % 60, 2)),5)) else NULL end AS Prelim,
@@ -20,10 +23,34 @@ $headerQuery = "SELECT year, o.orgid, o.shortname AS org,
 		                   case when Final > 0 then concat(floor(Final / 60), ':', right(concat('0',format(Final % 60, 2)),5)) else NULL end AS 'Final',
 		                   case when FinalReroll > 0 then concat(floor(FinalReroll / 60), ':', right(concat('0',format(FinalReroll % 60, 2)),5)) else NULL end AS 'Final Reroll',
                        b.buggyid AS buggyid, b.name AS buggy,
-                       nullif(e.place,0) AS place, e.dq, e.note
+                       nullif(e.place,0) AS place, e.dq, e.note,
+                       vp.youtubeid AS pyoutubeid, vp.title AS ptitle,
+                       vr.youtubeid AS ryoutubeid, vr.title AS rtitle,
+                       vf.youtubeid AS fyoutubeid, vf.title AS ftitle,
+                       vfr.youtubeid AS fryoutubeid, vfr.title AS frtitle
                   FROM hist_raceentries e
                   LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
                   LEFT JOIN hist_orgs o ON e.orgid = o.orgid
+                  LEFT JOIN hist_heats hp ON hp.isfinals = 0 AND hp.isreroll = 0
+                                             AND (CONCAT(hp.year,'.',hp.lane1)=e.entryid
+                                                  OR CONCAT(hp.year,'.',hp.lane2)=e.entryid
+		                                              OR CONCAT(hp.year,'.',hp.lane3)=e.entryid)
+                  LEFT JOIN video vp ON CAST(vp.heatid AS CHAR) = hp.heatid
+                  LEFT JOIN hist_heats hr ON hr.isfinals = 0 AND hr.isreroll = 1
+                                             AND (CONCAT(hr.year,'.',hr.lane1)=e.entryid
+                                                  OR CONCAT(hr.year,'.',hr.lane2)=e.entryid
+		                                              OR CONCAT(hr.year,'.',hr.lane3)=e.entryid)
+                  LEFT JOIN video vr ON CAST(vr.heatid AS CHAR) = hr.heatid
+                  LEFT JOIN hist_heats hf ON hf.isfinals = 1 AND hf.isreroll = 0
+                                             AND (CONCAT(hf.year,'.',hf.lane1)=e.entryid
+                                                  OR CONCAT(hf.year,'.',hf.lane2)=e.entryid
+		                                              OR CONCAT(hf.year,'.',hf.lane3)=e.entryid)
+                  LEFT JOIN video vf ON CAST(vf.heatid AS CHAR) = hf.heatid
+                  LEFT JOIN hist_heats hfr ON hfr.isfinals = 1 AND hfr.isreroll = 1
+                                             AND (CONCAT(hfr.year,'.',hfr.lane1)=e.entryid
+                                                  OR CONCAT(hfr.year,'.',hfr.lane2)=e.entryid
+		                                              OR CONCAT(hfr.year,'.',hfr.lane3)=e.entryid)
+                  LEFT JOIN video vfr ON CAST(vfr.heatid AS CHAR) = hfr.heatid
                   WHERE entryid = ?;";
 $headerResults = dbBoundQuery("history", $headerQuery, "s", $urlkey);
 
@@ -34,15 +61,6 @@ if ($headerResults->num_rows != 1) {
   $header = $headerResults->fetch_assoc();
 }
 
-// Fetch all videos relevant to this entry.
-$videoQuery = "SELECT h.isfinals,h.isreroll,v.youtubeid,v.title,v.urlkey FROM video v
-                 LEFT JOIN hist_heats h ON CAST(v.heatid AS CHAR) = h.heatid
-                 LEFT JOIN hist_raceentries e ON (CONCAT(h.year,'.',h.lane1)=e.entryid
-                                                  OR CONCAT(h.year,'.',h.lane2)=e.entryid
-                                                  OR CONCAT(h.year,'.',h.lane3)=e.entryid)
-                 WHERE e.entryid = ?;";
-$videoResults = dbBoundQuery("history", $videoQuery, "s", $urlkey);
-
 $teamQuery = "SELECT heattype, position, concat(p.firstname, ' ', p.lastname) as personname, p.personid
                   FROM hist_entrypeoplemap m
                   LEFT JOIN hist_people p ON p.personid = m.personid
@@ -50,26 +68,20 @@ $teamQuery = "SELECT heattype, position, concat(p.firstname, ' ', p.lastname) as
                   ORDER BY heattype, position;";
 $teamResults = dbBoundQuery("history", $teamQuery, "s", $urlkey);
 
-// Constant ordered list of the roles/heattypes we (might) want to display.
+// Constants to provide an ordered list of the roles/heattypes we (might) want to display.
 $displayHeatTypes = array("Prelim", "Prelim Reroll", "Final", "Final Reroll");
 $displayRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
 
-// Create a map for any video objects we have available.
+// Create a map for any video objects we have available from the fetched "header" data.
+// The keys must match $displayHeatTypes.
+$heatTypeVideoPrefix = array('Prelim' => 'p','Prelim Reroll' => 'r','Final' => 'f', 'Final Reroll' => 'fr');
 $videomap = array();
-while ($v = $videoResults->fetch_assoc()) {
-  $videoObject = array(
-    "youtubeid" => $v["youtubeid"],
-    "title" => $v["title"],
-    "urlkey" => $v["urlkey"]
-  );
-  if ($v['isfinals'] == 0 && $v['isreroll'] == 0) {
-    $videomap['Prelim'] = $videoObject;
-  } else if ($v['isfinals'] == 0 && $v['isreroll'] == 1) {
-    $videomap['Prelim Reroll'] = $videoObject;
-  } else if ($v['isfinals'] == 1 && $v['isreroll'] == 0) {
-    $videomap['Final'] = $videoObject;
-  } else {
-    $videomap['Final Reroll'] = $videoObject;
+foreach ($heatTypeVideoPrefix as $type => $vp) {
+  if (!empty($header[$vp."youtubeid"])) {
+    $videomap[$type] = array(
+      "youtubeid" => $header[$vp."youtubeid"],
+      "title" => $header[$vp."title"]
+    );
   }
 }
 

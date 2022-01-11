@@ -64,7 +64,7 @@
            when isfinals = 1 and isreroll = 0 then e3.final
            when isfinals = 1 and isreroll = 1 and e3.finalreroll > 0 then e3.finalreroll
            when isfinals = 1 and isreroll = 1 and e3.finalreroll <= 0 then e3.reroll end AS timesec3,
-      h.note, v.youtubeid AS video_youtubeid, v.title AS video_title, v.urlkey AS video_urlkey
+      h.note, v.youtubeid AS video_youtubeid, v.title AS video_title
     FROM hist_heats h
     LEFT JOIN hist_raceentries e1 on concat(h.year, '.', Lane1) = e1.entryid LEFT JOIN hist_orgs o1 on e1.orgid = o1.orgid
     LEFT JOIN hist_raceentries e2 on concat(h.year, '.', Lane2) = e2.entryid LEFT JOIN hist_orgs o2 on e2.orgid = o2.orgid
@@ -152,7 +152,6 @@
             $video = array(
               "youtubeid" => $heat["video_youtubeid"],
               "title" => $heat["video_title"],
-              "urlkey" => $heat["video_urlkey"]
             );
             echo("<td>");
             include("content/youtubevid.inc");

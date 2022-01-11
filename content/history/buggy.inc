@@ -25,21 +25,46 @@ if ($metaData->num_rows == 1) {
 }
 
 //
-// TODO: If we have the data, we need to link the videos.
+// Fetching the link to the videos is a bit gross, since we need to join against every lane of the heats table
+// for each of the 4 heats, and fetch up to 4 different blocks of youtube data.  Apologies for the shorthand naming.
 //
-$raceQuery = "SELECT year, 
-	CONCAT(case when class = 'W' then 'Women\'s' else 'Men\'s' end, ' ', team) AS Team,
-  entryid AS TeamID,
-  nullif(place,0) AS Place, 
-	case when prelim <> 0 then concat(floor(prelim / 60), ':', right(concat('0',format(prelim % 60, 2)),5)) else null end AS Prelim, 
-	case when reroll <> 0 then concat(floor(reroll / 60), ':', right(concat('0',format(reroll % 60, 2)),5)) else null end AS Reroll,
-	case when final <> 0 then concat(floor(final / 60), ':', right(concat('0',format(final % 60, 2)),5)) else null end AS Final,
-	case when finalreroll <> 0 then concat(floor(finalreroll / 60), ':', right(concat('0',format(finalreroll % 60, 2)),5)) else null end AS FinalReroll,
-	case when DQ <> '0' then DQ else null end AS DQ,
-  note
-FROM hist_raceentries
-WHERE buggyid = ?
-ORDER BY year DESC, Team ASC;";
+$raceQuery = "SELECT e.year,
+                     CONCAT(case when e.class = 'W' then 'Women\'s' else 'Men\'s' end, ' ', team) AS Team,
+                     entryid AS TeamID,
+                     nullif(place,0) AS Place,
+                     case when prelim <> 0 then concat(floor(prelim / 60), ':', right(concat('0',format(prelim % 60, 2)),5)) else null end AS Prelim,
+                     case when reroll <> 0 then concat(floor(reroll / 60), ':', right(concat('0',format(reroll % 60, 2)),5)) else null end AS Reroll,
+                     case when final <> 0 then concat(floor(final / 60), ':', right(concat('0',format(final % 60, 2)),5)) else null end AS Final,
+                     case when finalreroll <> 0 then concat(floor(finalreroll / 60), ':', right(concat('0',format(finalreroll % 60, 2)),5)) else null end AS FinalReroll,
+                     case when DQ <> '0' then DQ else null end AS DQ,
+                     vp.youtubeid AS pyoutubeid, vp.title AS ptitle,
+                     vr.youtubeid AS ryoutubeid, vr.title AS rtitle,
+                     vf.youtubeid AS fyoutubeid, vf.title AS ftitle,
+                     vfr.youtubeid AS fryoutubeid, vfr.title AS frtitle,
+                     e.note
+                FROM hist_raceentries e
+                LEFT JOIN hist_heats hp ON hp.isfinals = 0 AND hp.isreroll = 0
+                                           AND (CONCAT(hp.year,'.',hp.lane1)=e.entryid
+                                                OR CONCAT(hp.year,'.',hp.lane2)=e.entryid
+                                                OR CONCAT(hp.year,'.',hp.lane3)=e.entryid)
+                LEFT JOIN video vp ON CAST(vp.heatid AS CHAR) = hp.heatid
+                LEFT JOIN hist_heats hr ON hr.isfinals = 0 AND hr.isreroll = 1
+                                           AND (CONCAT(hr.year,'.',hr.lane1)=e.entryid
+                                                OR CONCAT(hr.year,'.',hr.lane2)=e.entryid
+                                                OR CONCAT(hr.year,'.',hr.lane3)=e.entryid)
+                LEFT JOIN video vr ON CAST(vr.heatid AS CHAR) = hr.heatid
+                LEFT JOIN hist_heats hf ON hf.isfinals = 1 AND hf.isreroll = 0
+                                           AND (CONCAT(hf.year,'.',hf.lane1)=e.entryid
+                                                OR CONCAT(hf.year,'.',hf.lane2)=e.entryid
+                                                OR CONCAT(hf.year,'.',hf.lane3)=e.entryid)
+                LEFT JOIN video vf ON CAST(vf.heatid AS CHAR) = hf.heatid
+                LEFT JOIN hist_heats hfr ON hfr.isfinals = 1 AND hfr.isreroll = 1
+                                           AND (CONCAT(hfr.year,'.',hfr.lane1)=e.entryid
+                                                OR CONCAT(hfr.year,'.',hfr.lane2)=e.entryid
+                                                OR CONCAT(hfr.year,'.',hfr.lane3)=e.entryid)
+                LEFT JOIN video vfr ON CAST(vfr.heatid AS CHAR) = hfr.heatid
+                WHERE buggyid = ?
+                ORDER BY year DESC, Team ASC;";
 
 $raceData = dbBoundQuery("history", $raceQuery, "s", $buggyUrlKey);
 
@@ -119,28 +144,35 @@ $awardData = dbBoundQuery("history", $awardQuery, "ss", $buggyUrlKey, $buggyUrlK
         <tbody>
           <?php
           while ($r = $raceData->fetch_assoc()) {
+            $heatorder = array('Prelim', 'Reroll', 'Final', 'FinalReroll');
+            $heattypes = array('Prelim' => 'p','Reroll' => 'r','Final' => 'f', 'FinalReroll' => 'fr');
+
+            $videomap = array();
+            foreach ($heattypes as $type => $vp) {
+              if (!empty($r[$vp."youtubeid"])) {
+                $videomap[$type] = array(
+                  "youtubeid" => $r[$vp."youtubeid"],
+                  "title" => $r[$vp."title"],
+                  "nothumbnail" => "See Video" // there just isn't enough room for thumbnails on this page.
+                );
+              }
+            }
+
             $year = $r["year"];
             echo("<tr><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
             echo("<td><a href=\"/history/team/".$r["TeamID"]."\">".$r["Team"]."</a></td>");
             echo("<td>".$r["Place"]."</td>");
-            echo("<td>".$r["Prelim"]."</td>");
-            echo("<td>".$r["Reroll"]."</td>");
-            echo("<td>".$r["Final"]."</td>");
-            echo("<td>".$r["FinalReroll"]."</td>");
+            foreach ($heatorder as $type) {
+              echo("<td>");
+              echo($r[$type]);
+              if (isset($videomap[$type])) {
+                echo ("<br>");
+                $video = $videomap[$type];
+                include("content/youtubevid.inc");
+              }
+              echo("</td>");
+            }
             echo("<td>".$r["DQ"]." ".$r["note"]."</td></tr>");
-
-            /*
-            TODO: This is how videos used to work, look into this once we have video data.
-                  Note this is tricky because the prior method relied on per-heat rows which we don't have now.
-
-            $videolist = null;
-            $videolist = $team->GetHeat()->GetVideoList();
-            $video = null;
-            if($videolist){ $video = reset($videolist); }
-            echo("<td>");
-            include("content/youtubevid.inc");
-            echo("</td>");
-            */
           }
           ?>
         </tbody>
