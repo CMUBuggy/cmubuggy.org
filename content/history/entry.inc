@@ -100,11 +100,11 @@ foreach ($displayRoles as $role) {
 $teamArr = array();
 
 
-// First, populate empty sets where we have times.
+// First, populate empty sets where we have times or videos.
 //
-// This ensures we at least display the times we have.
+// This ensures we at least display the data we have even if there is no team.
 foreach($displayHeatTypes as $ht) {
-  if (!empty($header[$ht])) {
+  if (!empty($header[$ht]) || isset($videomap[$ht])) {
     $teamArr[$ht] = $teamArrInit;
   }
 }
