@@ -43,7 +43,7 @@ $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
                 LEFT JOIN hist_raceentries e ON epm.entryid=e.entryid
                 LEFT JOIN hist_orgs o ON e.orgid=o.orgid
                 WHERE personid=?
-                ORDER BY e.year,heattype,e.class,o.shortname,e.team;";
+                ORDER BY e.year DESC,heattype,o.shortname,e.class,e.team;";
 $teamData = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "s", $urlkey);
 
 ?>
