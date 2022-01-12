@@ -22,7 +22,6 @@ Redirect 302 /fantasy https://docs.google.com/forms/d/e/1FAIpQLSeiUE_9vJIAAo67G_
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
 #top level sections
-RewriteRule		^admin[/]*$						index.php?s=admin				[NC,L]
 RewriteRule		^buzz[/]*$						index.php?s=buzz				[NC,L]
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^join[/]*$						index.php?s=membership			[NC,L]
@@ -31,11 +30,7 @@ RewriteRule		^raceday[/]*$					index.php?s=raceday				[NC,L]
 RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
 RewriteRule		^seniors[/]*$					index.php?s=seniors				[NC,L]
 RewriteRule		^store[/]*$						index.php?s=store				[NC,L]
-RewriteRule		^user[/]*$						index.php?s=user				[NC,L]
 RewriteRule		^events[/]*$					index.php?s=events				[NC,L]
-
-#admin section
-RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1							[NC,L]
 
 #history section: specific objects
 RewriteRule		^history/buggy/([a-z0-9\-]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
@@ -64,17 +59,6 @@ RewriteRule		^history/team[/]*$									index.php?s=history&p=orglist						[NC,L
 #raceday section
 RewriteRule		^raceday/heats[/]*$									index.php?s=raceday&p=heats						[NC,L]
 RewriteRule		^raceday/leaderboard[/]*$							index.php?s=raceday&p=leaderboard				[NC,L]
-
-#user section
-RewriteRule		^user/login/([0-9]+)?$								index.php?s=user&p=login&e=$1						[NC,L]
-RewriteRule		^user/login[/]*$										index.php?s=user&p=login 							[NC,L]
-RewriteRule		^user/logout[/]*$										index.php?s=user&p=logout 							[NC,L]
-RewriteRule		^user/register[/]*$									index.php?s=user&p=register						[NC,L]
-RewriteRule		^user/passwordrecovery[/]*$						index.php?s=user&p=passwordrecovery				[NC,L]
-RewriteRule		^user/newsiteactivation/([a-z0-9]+)/?$			index.php?s=user&p=newsiteactivation&urlkey=$1 [NC,L]
-RewriteRule		^user/newsiteactivation[/]*$						index.php?s=user&p=newsiteactivation			[NC,L]
-RewriteRule		^user/([a-z0-9]+)/?$									index.php?s=user&p=user&urlkey=$1				[NC,L]
-
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
