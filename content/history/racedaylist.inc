@@ -101,5 +101,5 @@ function echoTeamCell($teamkey, $teamname) {
       ?>
     </tbody>
   </table>
-  <span class="small">Note: Years where there are ties, or where we are missing times (e.g. 1922, 1929, 1930, etc), will show multiple lines in the table.</span>
+  <span class="small">Note: Years where there are ties (e.g. 1922), will show multiple lines in the table.</span>
 </div>
