@@ -155,6 +155,23 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
               }
             }
 
+            // Because the heats table treats "finals reroll" as "reroll on finals day", we need to
+            // fudge videos that are labeled as "finals reroll" but are likely to be prelims rerolls.
+            //
+            // So, if we have a final reroll video, and no prelim reroll video, and there is
+            // no final reroll time, relabel that video.
+            //
+            // Example buggy that has a lot of these cases: shakazulu
+            //
+            // This is a hack that might break if the final reroll _acutally_ had no time (e.g. crash)
+            // and there is no prelim reroll.
+            if (isset($videomap["FinalReroll"])
+                && !isset($videomap["Reroll"])
+                && empty($r["FinalReroll"])) {
+              $videomap["Reroll"] = $videomap["FinalReroll"];
+              unset($videomap["FinalReroll"]);
+            }
+
             $year = $r["year"];
             echo("<tr><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
             echo("<td><a href=\"/history/team/".$r["TeamID"]."\">".$r["Team"]."</a></td>");

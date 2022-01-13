@@ -124,17 +124,18 @@ while($r = $teamResults->fetch_assoc()) {
 // if this is the result of the heats table keying "finals reroll" based on day, but the times being based
 // on when rerolls are earned.  So:
 //
-// If we have a a final reroll video, but no other heat data for final reroll, _and_ we have an earned
-// prelim reroll heat, but no prelim reroll video, reattribute the final reroll video to the prelim reroll heat.
+// If we have a a final reroll video, but no other heat data for final reroll, _and_ we have
+// no prelim reroll video, reattribute the final reroll video to the prelim reroll heat.
 //
 // Example heats that get us into trouble without this:
 //   2004.SPI.MB
 //   2004.PKT.MA
 //
+// This is a hack that might break if the final reroll _acutally_ had no time (e.g. crash).
+//
 // This, naturally, relies on adding a blank team array for both times and people _first_.
 if (isset($videomap["Final Reroll"])
     && !isset($teamArr["Final Reroll"])
-    && isset($videomap["Final Reroll"])
     && !isset($videomap["Prelim Reroll"])) {
       $videomap["Prelim Reroll"] = $videomap["Final Reroll"];
       unset($videomap["Final Reroll"]);
