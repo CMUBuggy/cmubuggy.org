@@ -1,6 +1,8 @@
 <?php
-  $buggy = new buggy();
-  $buggyList = $buggy->GetList(null,"yearBuilt",FALSE);
+  $query = "SELECT buggyid, birthyear, shortname AS org, name, buggyid, b.note AS note FROM hist_buggies b
+            LEFT JOIN hist_orgs o ON o.orgid = b.orgid
+            ORDER BY birthyear DESC, name ASC;";
+  $buggies = dbQuery($HISTORY_DATABASE, $query);
 ?>
 <h1>Buggies</h1>
 
@@ -11,16 +13,15 @@
         <th>Year Built</th>
         <th>Organization</th>
         <th>Name</th>
+        <th>Notes</th>
       </tr>
     </thead>
     <tbody>
       <?php
-      foreach($buggyList as $buggy){
-        $year = $buggy->yearBuilt;
-        if(!($year > 0)){
-          $year = "";
-        }
-        echo("<tr><td>".$year."</td><td>".$buggy->GetOrg()->shortname."</td><td><a href=\"/history/buggy/".$buggy->urlKey."\">".$buggy->name."</a></td></tr>");
+      while ($buggy = $buggies->fetch_assoc()) {
+        echo("<tr><td>".$buggy["birthyear"]."</td><td>".$buggy["org"]."</td>");
+        echo("<td><a href=\"/history/buggy/".$buggy["buggyid"]."\">".$buggy["name"]."</a></td>");
+        echo("<td>".$buggy["note"]."</td></tr>");
       }
       ?>
     </tbody>

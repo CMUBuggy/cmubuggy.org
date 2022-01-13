@@ -22,41 +22,44 @@ Redirect 302 /fantasy https://docs.google.com/forms/d/e/1FAIpQLSeiUE_9vJIAAo67G_
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
 #top level sections
-RewriteRule		^admin[/]*$						index.php?s=admin					[NC,L]
-RewriteRule		^buzz[/]*$						index.php?s=buzz					[NC,L]
+RewriteRule		^admin[/]*$						index.php?s=admin				[NC,L]
+RewriteRule		^buzz[/]*$						index.php?s=buzz				[NC,L]
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^join[/]*$						index.php?s=membership			[NC,L]
 RewriteRule		^membership[/]*$				index.php?s=membership			[NC,L]
 RewriteRule		^raceday[/]*$					index.php?s=raceday				[NC,L]
 RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
 RewriteRule		^seniors[/]*$					index.php?s=seniors				[NC,L]
-RewriteRule		^store[/]*$						index.php?s=store					[NC,L]
-RewriteRule		^user[/]*$						index.php?s=user					[NC,L]
-RewriteRule   ^events[/]*$           index.php?s=events     [NC,L]
+RewriteRule		^store[/]*$						index.php?s=store				[NC,L]
+RewriteRule		^user[/]*$						index.php?s=user				[NC,L]
+RewriteRule		^events[/]*$					index.php?s=events				[NC,L]
 
 #admin section
-RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1								[NC,L]
+RewriteRule    ^admin/([a-z]+)/?$									index.php?s=admin&p=$1							[NC,L]
 
 #history section: specific objects
-RewriteRule		^history/buggy/([a-z0-9]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
-RewriteRule		^history/org/([a-z]+)/?$							index.php?s=history&p=org&urlkey=$1				[NC,L]
-RewriteRule		^history/org/([0-9]+)/?$							index.php?s=history&p=org&id=$1					[NC,L]
-RewriteRule		^history/person/([0-9]+)/?$						index.php?s=history&p=person&id=$1				[NC,L]
+RewriteRule		^history/buggy/([a-z0-9\-]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
+RewriteRule		^history/org/([a-z0-9]+)/?$							index.php?s=history&p=org&urlkey=$1				[NC,L]
+RewriteRule		^history/person/([a-z0-9]+)/?$						index.php?s=history&p=person&id=$1				[NC,L]
 RewriteRule		^history/raceday/([0-9]+)/?$						index.php?s=history&p=raceday&year=$1			[NC,L]
 RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
 
-#history section: categories
-RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 						[NC,L]
+#history section: categories (and list versions of the specific object pages)
+RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 					[NC,L]
 RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC,L]
 RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
-RewriteRule		^history/contribute[/]*$							index.php?s=history&p=contribute 				[NC,L]
-RewriteRule		^history/org[/]*$										index.php?s=history&p=orglist						[NC,L]
-RewriteRule		^history/person[/]*$									index.php?s=history&p=personlist					[NC,L]
+RewriteRule		^history/org[/]*$									index.php?s=history&p=orglist					[NC,L]
+# /person needs to have the QSA flag in order to preserve the query string for searches.
+RewriteRule		^history/person[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
 RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
-RewriteRule		^history/record[/]*$									index.php?s=history&p=records 					[NC,L]
+# /record is obsolete, but keep it here to allow any dead links to work.
+RewriteRule		^history/record[/]*$								index.php?s=history&p=toptimes 					[NC,L]
+RewriteRule		^history/toptimes[/]*$								index.php?s=history&p=toptimes 					[NC,L]
 RewriteRule		^history/sweepstakes[/]*$							index.php?s=history&p=sweepstakes 				[NC,L]
-RewriteRule		^history/team[/]*$									index.php?s=history&p=entry						[NC,L]
+
+#/team without a url parameter we will send to the org list, since there isn't an "entry list" per se.
+RewriteRule		^history/team[/]*$									index.php?s=history&p=orglist						[NC,L]
 
 #raceday section
 RewriteRule		^raceday/heats[/]*$									index.php?s=raceday&p=heats						[NC,L]

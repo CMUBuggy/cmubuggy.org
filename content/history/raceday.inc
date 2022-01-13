@@ -1,5 +1,201 @@
 <?php
+  if (empty($_GET["year"])) {
+    // We should have been redirected into racedaylist.inc, not here.  What happened?
+    die("Ooops, no year specified!");
+  }
+
   $year = $_GET['year'] * 1;
+
+  // orders by place, then by prelim time, then whether DQed
+  $resQuery = "SELECT nullif(place, 0) place,
+                      concat(shortname, ' ', team) AS team,
+                      e.entryid AS entryid,
+                      b.name AS buggyname,
+                      b.buggyid AS buggyid,
+                      prelim, reroll, final, finalreroll,
+                      nullif(dq,'0') dq,
+                      e.note
+                 FROM hist_raceentries e
+                 LEFT JOIN hist_orgs o ON e.orgid = o.orgid
+                 LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
+                 WHERE year = ? AND class = ?
+                 ORDER BY place=0, place, prelim=0, prelim, DQ;";
+
+  // We could get these all at once instead of 2 different queries and split them locally while maintaining the sort order,
+  // but this is slightly simpler to write/understand.
+  //
+  // Also, if we decide to use a single connection on this page, we can reuse the prepared statement here.
+  $mensResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'M');
+  $womensResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'W');
+
+  // Getting heats is a mess, rather than issue a ton of queries, we fetch all the relevant heats
+  // and then split them by prelim/final/reroll/etc locally.
+  //
+  // We do not fetch exhibitions -- (class == E).  This is only useful if we can link them to videos,
+  // so if we start to do videos, remember to fetch exhibitions as well and deal with them!
+  //
+  // Heats data is SUPER GROSS, especially because the way rerolls can run off the rails and need to be
+  // done "just in time" in many cases.  This leads to "isfinals" in the heats table meaning "happened on finals
+  // day", which doesn't match how we keep times in the raceentries table where finalreroll is
+  // "reroll earned for final roll".  Thus, many but not all of the "isfinals" "isreroll" times are _actually_
+  // (prelim) reroll times.
+  //
+  // So, in the case of a final reroll, we are going to use finalreroll if we have it, otherwise use
+  // reroll.  This is not perfect, but works in almost 99% of the cases.  Example case where it does
+  // not work: 2010 PiKA Mens A.
+  //
+  // Note that we only fetch exhibitions if there is a video to go with them, since we have nothing to display otherwise.
+  $heatQuery = "SELECT number, isfinals, isreroll, h.class,
+      concat(o1.shortname, ' ', e1.team) AS team1, e1.entryid AS teamid1, e1.DQ AS dq1,
+      case when isfinals = 0 and isreroll = 0 then e1.prelim
+           when isfinals = 0 and isreroll = 1 then e1.reroll
+           when isfinals = 1 and isreroll = 0 then e1.final
+           when isfinals = 1 and isreroll = 1 and e1.finalreroll > 0 then e1.finalreroll
+           when isfinals = 1 and isreroll = 1 and e1.finalreroll <= 0 then e1.reroll end AS timesec1,
+      concat(o2.shortname, ' ', e2.team) AS team2, e2.entryid AS teamid2, e2.DQ AS dq2,
+      case when isfinals = 0 and isreroll = 0 then e2.prelim
+           when isfinals = 0 and isreroll = 1 then e2.reroll
+           when isfinals = 1 and isreroll = 0 then e2.final
+           when isfinals = 1 and isreroll = 1 and e2.finalreroll > 0 then e2.finalreroll
+           when isfinals = 1 and isreroll = 1 and e2.finalreroll <= 0 then e2.reroll end AS timesec2,
+      concat(o3.shortname, ' ', e3.team) AS team3, e3.entryid AS teamid3, e3.DQ AS dq3,
+      case when isfinals = 0 and isreroll = 0 then e3.prelim
+           when isfinals = 0 and isreroll = 1 then e3.reroll
+           when isfinals = 1 and isreroll = 0 then e3.final
+           when isfinals = 1 and isreroll = 1 and e3.finalreroll > 0 then e3.finalreroll
+           when isfinals = 1 and isreroll = 1 and e3.finalreroll <= 0 then e3.reroll end AS timesec3,
+      h.note, v.youtubeid AS video_youtubeid, v.title AS video_title
+    FROM hist_heats h
+    LEFT JOIN hist_raceentries e1 on concat(h.year, '.', Lane1) = e1.entryid LEFT JOIN hist_orgs o1 on e1.orgid = o1.orgid
+    LEFT JOIN hist_raceentries e2 on concat(h.year, '.', Lane2) = e2.entryid LEFT JOIN hist_orgs o2 on e2.orgid = o2.orgid
+    LEFT JOIN hist_raceentries e3 on concat(h.year, '.', Lane3) = e3.entryid LEFT JOIN hist_orgs o3 on e3.orgid = o3.orgid
+    LEFT JOIN video v on h.heatid = CAST(v.heatid as CHAR)
+    WHERE h.year = ? AND (h.class != 'E' OR v.youtubeid IS NOT NULL)
+    ORDER BY h.class,isfinals,isreroll,number ASC;";
+
+  $heatData = dbBoundQuery($HISTORY_DATABASE, $heatQuery, "d", $year);
+
+  $pheatsArr = array();
+  $fheatsArr = array();
+
+  // Split up the heat data into class/reroll/prelim/final buckets.
+  // We are assuming the sort order is maintained here.
+  while ($h = $heatData->fetch_assoc()) {
+    $heattype = $h["class"] . $h["isreroll"];
+    if ($h["isfinals"] == 1) {
+      $fheatsArr[$heattype][$h["number"]] = $h;
+    } else {
+      $pheatsArr[$heattype][$h["number"]] = $h;
+    }
+  }
+
+  function displayResults($resultList) {
+    global $racedayList;
+
+    echo("<div class=\"table-responsive\"><table class=\"table\">");
+    echo("<thead><tr><th>Place</th><th>Team</th><th>Buggy</th><th>Prelims</th><th>Prelim Reroll</th><th>Finals</th><th>Finals Reroll</th><th>Notes</th></tr></thead>");
+    echo("<tbody>");
+
+    while ($r = $resultList->fetch_assoc()) {
+      echo("<tr>");
+      if ($resultList->num_rows == 1 &&
+          empty($r["prelim"]) && empty($r["reroll"]) && empty($r["final"]) && empty($r["finalreroll"])) {
+        // One entry, no times.  This was a year that didn't happen.  Post the reason.
+        echo("<td colspan=\"7\" class=\"text-center\">".$r["note"]."</td>");
+      } else {
+        echo("<td>".$r["place"]."</td>");
+        echo("<td style=\"white-space: nowrap\"><a href=\"/history/team/".$r["entryid"]."\">".$r["team"]."</a></td>");
+
+        if (!empty($r["buggyname"])) {
+          echo("<td><a href=\"/history/buggy/".$r["buggyid"]."\">".$r["buggyname"]."</a></td>");
+        } else {
+          echo("<td></td>");
+        }
+
+        echo("<td>".displayTime($r["prelim"])."</td>");
+        echo("<td>".displayTime($r["reroll"])."</td>");
+        echo("<td>".displayTime($r["final"])."</td>");
+        echo("<td>".displayTime($r["finalreroll"])."</td>");
+        $notes = $r["note"];
+        if (!empty($r["dq"])) {
+          if (!empty($notes)) {
+            $notes .= "<br>";
+          }
+          $notes .= "DQ: ".$r["dq"];
+        }
+        echo("<td>".$notes."</td>");
+        echo("</tr>");
+      }
+    }
+    echo("</tbody></table></div>");
+  }
+
+  function displayHeats($heatArr){
+    // We put womens first on the heats display because historically heats
+    // for womens run earlier in the morning.  This is also why Exhibitions
+    // are on top.
+    $heattypes = array("E0","W0","W1","M0","M1");
+    $heattypelabels = array("M0"=>"Men's",
+                            "M1"=>"Men's Rerolls",
+                            "W0"=>"Women's",
+                            "W1"=>"Women's Rerolls",
+                            "E0"=>"Exhibitions");
+    foreach($heattypes as $type){
+      if(isset($heatArr[$type])){
+        echo("<h4>".$heattypelabels[$type]."</h4>");
+        echo("<div class\"table-responsive\"><table class=\"table\"><thead>");
+
+        if ($type != "E0") {
+          // Not Exhibition, Add useful headers.
+          echo("<tr><th></th><th></th><th>Lane 1</th><th>Lane 2</th><th>Lane 3</th><th>Notes</th></tr>");
+        }
+
+        echo("</thead><tbody>");
+        foreach($heatArr[$type] as $heat){
+          echo("<tr><td>".$heat["number"]."</td>");
+
+          if (!empty($heat["video_youtubeid"])) {
+            $video = array(
+              "youtubeid" => $heat["video_youtubeid"],
+              "title" => $heat["video_title"],
+            );
+            echo("<td>");
+            include("content/youtubevid.inc");
+            echo("</td>");
+          } else {
+            // No video
+            echo("<td></td>");
+          }
+
+          if ($type != "E0") {
+            // Not Exhibition, Show Lanes
+            for($lane = 1; $lane <= 3; $lane++) {
+              if (!empty($heat["team".$lane])) {
+                echo("<td><a href=\"/history/team/".$heat["teamid".$lane]."\">".$heat["team".$lane]."</a>");
+                $time = displayTime($heat["timesec".$lane]);
+                if (!empty($time)) {
+                  echo("<br />".$time);
+                }
+                if (!empty($heat["dq".$lane])) {
+                  echo("<br /> DQ:".$heat["dq".$lane]);
+                }
+                echo("</td>");
+              } else {
+                echo("<td></td>");
+              }
+            }
+            echo("<td>".$heat["note"]."</td>");
+          } else {
+            // Exhibition that has a video, the only thing really to show is the video title here.
+            echo("<td>".$heat["video_title"]."</td>");
+          }
+          echo("</tr>");
+        }
+        echo("</tbody></table></div>");
+      }
+    }
+  }
+
   $prevlink = "";
   $nextlink = "";
 
@@ -9,130 +205,8 @@
   if($year < date("Y")){
     $nextlink = " | <a href=\"/history/raceday/".($year + 1)."\">".($year + 1)." &raquo</a>";
   }
-
-  $mentriesArr = array();
-  $wentriesArr = array();
-  $pheatsArr = array();
-  $fheatsArr = array();
-  $raceyear = new raceyear();
-  $raceyear = $raceyear->Get($year);
-  $racedayList = $raceyear->GetRacedayList();
-  foreach($racedayList as $raceday){
-    $tempArr = array();
-    $heatlist = $raceday->GetHeatList(null,"number");
-    foreach($heatlist as $heat){
-      $heattype = (string)$heat->raceclassId.(string)$heat->isreroll;
-      $tempArr[$heattype][$heat->number]=$heat;
-    }
-    if($raceday->isFinals == 1){
-      $fheatsArr=$tempArr;
-    } else {
-      $pheatsArr=$tempArr;
-    }
-  }
-  $entryList = $raceyear->GetEntryList(null,"place");
-  $noplacecounter = 100;
-  foreach($entryList as $entry){
-    $place = $entry->place;
-    if(!($place>0)){
-      $place = $noplacecounter;
-      $noplacecounter++;
-    }
-    switch($entry->raceclassId) {
-      case 1:
-        $mentriesArr[$place] = $entry;
-        break;
-      case 2:
-        $wentriesArr[$place] = $entry;
-        break;
-    }
-  }
-
-  function displayEntries($entryArr) {
-    global $racedayList;
-    ksort($entryArr);
-    echo("<div class=\"table-responsive\"><table class=\"table\">");
-    if(count($racedayList)>1){
-      echo("<thead><tr><th>Place</th><th>Team</th><th>Prelims Time</th><th>Finals Time</th><th>Notes</th></tr></thead>");
-    } else {
-      echo("<thead><tr><th>Place</th><th>Team</th><th>Time</th><th>DQ / Notes</th></tr></thead>");
-    }
-    echo("<tbody>");
-    foreach($entryArr as $entry){
-      $entrylabel = $entry->GetOrg()->shortname." ".$entry->abcd;
-      $teamList = $entry->GetTeamList();
-      $teamArr = array();
-      $notes = "";
-      foreach($teamList as $team){
-        $raceday = $team->GetRaceday();
-        $teamArr[$raceday->isFinals] = $team;
-        if($team->GetDq()->dqId>0){
-          $notes .= "DQ: ".$team->GetDq()->description;
-        }
-      }
-
-      $place = "";
-      if($entry->place>0){$place = $entry->place; }
-
-      $url = "/history/team/".$entry->urlkey;
-       echo("<tr><td>".$place."</td>");
-       echo("<td><a href=\"".$url."\">".$entrylabel."</a></td>");
-       if(isset($teamArr[0])){
-        echo("<td>".displayTime($teamArr[0]->time)."</td>");
-       }
-       if(count($racedayList)>1){
-        if(isset($teamArr[1])){
-          echo("<td>".displayTime($teamArr[1]->time)."</td>");
-        } else {
-          echo("<td></td>");
-        }
-       }
-       echo("<td>".$notes."</td></tr>");
-    }
-    echo("</tbody></table></div>");
-  }
-
-  function displayHeats($heatArr){
-    ksort($heatArr);
-    $heattypes = array("30","20","21","10","11");
-    $heattypelabels = array("10"=>"Men's",
-                    "11"=>"Men's Rerolls",
-                    "20"=>"Women's",
-                    "21"=>"Women's Rerolls",
-                    "30"=>"Exhibitions");
-    foreach($heattypes as $type){
-      if(isset($heatArr[$type])){
-        echo("<h4>".$heattypelabels[$type]."</h4>");
-        echo("<div class\"table-responsive\"><table class=\"table\"><thead><tr><th></th><th></th><th>Lane 1</th><th>Lane 2</th><th>Lane 3</th><th>Notes</th></tr></thead>");
-        echo("<tbody>");
-        foreach($heatArr[$type] as $heat){
-          echo("<tr><td>".$heat->number."</td><td>");
-          $videolist = $heat->GetVideoList();
-          $video = null;
-          if($videolist){ $video = reset($videolist); }
-          include("content/youtubevid.inc");
-          echo("</td>");
-          $teamsArr = array();
-          foreach($heat->GetTeamList() as $team){
-            $teamsArr[$team->lane]=$team;
-          }
-          for($l=1;$l<4;$l++){
-            if(isset($teamsArr[$l])){
-              $team = $teamsArr[$l];
-              $entry = $team->GetEntry();
-              echo("<td><a href=\"/history/team/".$entry->urlkey."\">".$entry->GetOrg()->shortname." ".$entry->abcd."</a><br />".displayTime($team->time)."</td>");
-            } else {
-              echo("<td></td>");
-            }
-          }
-          echo("<td></td></tr>");
-        }
-        echo("</tbody></table></div>");
-      }
-    }
-  }
-
 ?>
+
 <h1>Raceday <?php echo($year);?></h1>
 
 <div class="my-2">
@@ -140,18 +214,22 @@
 </div>
 
 <ul class="nav nav-tabs mb-2" role="tablist">
+  <?php if ($mensResults->num_rows > 0) { // should effecitvely always be true, but you never know... ?>
   <li class="nav-item">
     <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's Results</a>
   </li>
-  <li class="nav-item">
-    <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's Results</a>
-  </li>
-  <?php if(count($pheatsArr)>0) { ?>
+  <?php } ?>
+  <?php if ($womensResults->num_rows > 0) { // safer alternative to "year >= 1979" ?>
+    <li class="nav-item">
+      <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's Results</a>
+    </li>
+  <?php } ?>
+  <?php if (count($pheatsArr) > 0) { ?>
     <li class="nav-item">
       <a id="prelimheats-tab" href="#tab-prelimheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-prelimheats" aria-selected="false">Prelim Heats</a>
     </li>
   <?php } ?>
-  <?php if(count($fheatsArr)>0) { ?>
+  <?php if (count($fheatsArr) > 0) { ?>
     <li class="nav-item">
       <a id="finalsheats-tab" href="#tab-finalsheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-finalsheats" aria-selected="false">Finals Heats</a>
     </li>
@@ -159,18 +237,22 @@
 </ul>
 
 <div class="tab-content">
+  <?php if ($mensResults->num_rows > 0) { ?>
   <div class="tab-pane fade show active" id="tab-mens" role="tabpanel" aria-labelledby="mens-tab">
-    <?php displayEntries($mentriesArr); ?>
+    <?php displayResults($mensResults); ?>
   </div>
-  <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
-    <?php displayEntries($wentriesArr); ?>
-  </div>
-  <?php if(count($pheatsArr)>0) { ?>
+  <?php } ?>
+  <?php if ($womensResults->num_rows > 0) { ?>
+    <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
+      <?php displayResults($womensResults); ?>
+    </div>
+  <?php } ?>
+  <?php if (count($pheatsArr) > 0) { ?>
     <div class="tab-pane fade" id="tab-prelimheats" role="tabpanel" aria-labelledby="prelimheats-tab">
       <?php displayHeats($pheatsArr); ?>
     </div>
   <?php } ?>
-  <?php if(count($fheatsArr)>0) { ?>
+  <?php if (count($fheatsArr) > 0) { ?>
     <div class="tab-pane fade" id="tab-finalsheats" role="tabpanel" aria-labelledby="finalsheats-tab">
       <?php displayHeats($fheatsArr); ?>
     </div>

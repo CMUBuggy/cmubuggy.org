@@ -4,13 +4,13 @@
   $chartData->setAbscissa("Year");
 
   /* Create the pChart object */
-  $myPicture = new pImage(700,400,$chartData);
+  $myPicture = new pImage(800,400,$chartData);
 
   /* Turn of Antialiasing */
   $myPicture->Antialias = FALSE;
 
   /* Add a border to the picture */
-  $myPicture->drawRectangle(0,0,699,399,array("R"=>0,"G"=>0,"B"=>0));
+  $myPicture->drawRectangle(0,0,799,399,array("R"=>0,"G"=>0,"B"=>0));
 
   /* Write the chart title */
   $myPicture->setFontProperties(array("FontName"=>"lib/pChart/fonts/calibri.ttf","FontSize"=>9));
@@ -20,7 +20,7 @@
   $myPicture->setFontProperties(array("FontName"=>"lib/pChart/fonts/verdana.ttf","FontSize"=>9));
 
   /* Define the chart area */
-  $myPicture->setGraphArea(60,40,650,350);
+  $myPicture->setGraphArea(60,40,750,350);
 
   /* Draw the scale */
   $scaleSettings = array("XMargin"=>10,"YMargin"=>10,"Floating"=>FALSE,"GridR"=>200,"GridG"=>200,"GridB"=>200,"DrawSubTicks"=>FALSE,"CycleBackground"=>TRUE);

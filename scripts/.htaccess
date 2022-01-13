@@ -2,3 +2,10 @@ php_flag display_errors on
 
 # Disable access to this directory via web.
 Deny from all
+
+# In case we change our mind about the above, deny access to sql scripts in this directory
+# regardless.
+<FilesMatch "^.*\.sql$">
+	Order allow,deny
+	Deny from all
+</FilesMatch>
