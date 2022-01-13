@@ -547,9 +547,14 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
     </div>
     <div class="tab-pane fade" id="tab-trends" role="tabpanel" aria-labelledby="trends-tab">
       <h2>Trends</h2>
-      <?php // LOL this date range is something everyone will forget to update in the future...
-            graphtrends(array("ma","mb","mc"),"2001","2022");
-            graphtrends(array("wa","wb","wc"),"2001","2022");
+      <?php // Only show trends for the last 20 years.
+            //
+            // TODO: Be smarter about when to show the trends tab at all (e.g. don't show it for orgs that haven't raced)
+            //       in 20 years :)
+            $thisYear = date("Y");
+            $startYear = $thisYear-20;
+            graphtrends(array("ma","mb","mc"), $startYear, $thisYear);
+            graphtrends(array("wa","wb","wc"), $startYear, $thisYear);
       ?>
     </div>
   </div>
