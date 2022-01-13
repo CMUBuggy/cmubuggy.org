@@ -52,7 +52,9 @@ RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					
 RewriteRule		^history/org[/]*$									index.php?s=history&p=orglist					[NC,L]
 RewriteRule		^history/person[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
 RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
-RewriteRule		^history/record[/]*$								index.php?s=history&p=records 					[NC,L]
+# /record is obsolete, but keep it here to allow any dead links to work.
+RewriteRule		^history/record[/]*$								index.php?s=history&p=toptimes 					[NC,L]
+RewriteRule		^history/toptimes[/]*$								index.php?s=history&p=toptimes 					[NC,L]
 RewriteRule		^history/sweepstakes[/]*$							index.php?s=history&p=sweepstakes 				[NC,L]
 
 #/team without a url parameter we will send to the org list, since there isn't an "entry list" per se.

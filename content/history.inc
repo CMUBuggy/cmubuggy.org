@@ -21,7 +21,7 @@
       </div>
     </li>
     <li class="nav-item"><a class="nav-link" href="/history/raceday">Races</a></li>
-    <li class="nav-item"><a class="nav-link" href="/history/record">Records</a></li>
+    <li class="nav-item"><a class="nav-link" href="/history/toptimes">Top Times</a></li>
     <li class="nav-item"><a class="nav-link" href="/history/award">Awards</a></li>
     <li class="nav-item"><a class="nav-link" href="/history/buggy">Buggies</a></li>
     <li class="nav-item"><a class="nav-link" href="/history/buggybook">Buggy Books</a></li>

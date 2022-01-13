@@ -1,7 +1,10 @@
 <?php
 
+$TOP_N = 50;
+
 // Course records, top 50, by class. Set class (M or W) in 4 spots
-$recordQuery = "SELECT
+// Could do this in one query and then split them locally, but doesn't seem worth it to save just one query.
+$query = "SELECT
            T.year, T.entryid,
 	         concat(shortname, case when T.team = 'A' then '' else concat(' ', T.team) end) AS teamname,
            b.name AS buggy, b.buggyid AS buggyid,
@@ -15,12 +18,12 @@ $recordQuery = "SELECT
     LEFT JOIN hist_buggies b on T.buggyid = b.buggyid
     WHERE T.time IS NOT NULL
     ORDER BY T.time ASC
-    LIMIT 50;";
+    LIMIT ".$TOP_N.";";
 
-$top50men = dbBoundQuery($HISTORY_DATABASE,$recordQuery,"ssss","M","M","M","M");
-$top50women = dbBoundQuery($HISTORY_DATABASE,$recordQuery,"ssss","W","W","W","W");
+$top50men = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","M","M","M","M");
+$top50women = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","W","W","W","W");
 
-function displayRecordTable($teamList){
+function displayTable($teamList){
   echo("<table class=\"table\">");
   $count = 1;
   while ($team = $teamList->fetch_assoc()) {
@@ -38,7 +41,7 @@ function displayRecordTable($teamList){
 }
 ?>
 
-<h1>Course Records</h1>
+<h1>Top <?php echo($TOP_N); ?> Times</h1>
 
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
@@ -49,10 +52,10 @@ function displayRecordTable($teamList){
 
 <div class="tab-content">
   <div class="tab-pane fade show active" id="tab-mens" role="tabpanel" aria-labelledby="mens-tab">
-    <?php displayRecordTable($top50men); ?>
+    <?php displayTable($top50men); ?>
   </div>
   <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
-    <?php displayRecordTable($top50women); ?>
+    <?php displayTable($top50women); ?>
   </div>
 </div>
 
