@@ -18,10 +18,7 @@ $headerQuery = "SELECT e.year, o.orgid, o.shortname AS org,
                             when e.Class = 'W' then 'womens'
                             else 'Unknown' end AS classanchor,
                        Team AS team,
-                       case when Prelim > 0 then concat(floor(Prelim / 60), ':', right(concat('0',format(Prelim % 60, 2)),5)) else NULL end AS Prelim,
-                       case when Reroll > 0 then concat(floor(Reroll / 60), ':', right(concat('0',format(Reroll % 60, 2)),5)) else NULL end AS 'Prelim Reroll',
-		                   case when Final > 0 then concat(floor(Final / 60), ':', right(concat('0',format(Final % 60, 2)),5)) else NULL end AS 'Final',
-		                   case when FinalReroll > 0 then concat(floor(FinalReroll / 60), ':', right(concat('0',format(FinalReroll % 60, 2)),5)) else NULL end AS 'Final Reroll',
+                       Prelim, Reroll AS 'Prelim Reroll', Final, FinalReroll AS 'Final Reroll',
                        b.buggyid AS buggyid, b.name AS buggy,
                        nullif(e.place,0) AS place, e.dq, e.note,
                        vp.youtubeid AS pyoutubeid, vp.title AS ptitle,
@@ -156,7 +153,7 @@ echo("</table>");
         echo("<dt class=\"col-sm-5\">".$role."</dt><dd class=\"col-sm-7\">".$team[$role]."</dd>");
       }
       if(!empty($header[$heattype])) {
-        echo("<dt class=\"col-sm-5\">Time</dt><dd class=\"col-sm-7\">".$header[$heattype]."</dd>");
+        echo("<dt class=\"col-sm-5\">Time</dt><dd class=\"col-sm-7\">".displayTime($header[$heattype])."</dd>");
       }
       echo("</dl>");
 

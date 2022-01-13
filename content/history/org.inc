@@ -91,8 +91,7 @@ $buggyList = dbBoundQuery($HISTORY_DATABASE, $buggyListQuery, "s", $orgUrlKey);
 //
 // I don't want to make it worse, but note that this includes times when the prelim was faster than the reroll even
 // if the reroll was granted and used.
-$recordQuery = "SELECT A.class, A.team,
-                       concat(floor(A.record / 60), ':', right(concat('0',format(A.record % 60, 2)),5)) AS record,
+$recordQuery = "SELECT A.class, A.team, A.record,
                        B.year, B.entryid
                   FROM (
                     SELECT class, team, min(time) AS record FROM (
@@ -344,7 +343,7 @@ function displayrecord($entrytype) {
   global $recordArr;
   if(isset($recordArr[$entrytype])){
     $r = $recordArr[$entrytype];
-    echo("<a href=\"/history/team/".$r["entryid"]."\">".$r["record"]."<br />".$r["year"]."</a>");
+    echo("<a href=\"/history/team/".$r["entryid"]."\">".displayTime($r["record"])."<br />".$r["year"]."</a>");
   }
 }
 

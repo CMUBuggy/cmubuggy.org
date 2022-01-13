@@ -32,10 +32,7 @@ $raceQuery = "SELECT e.year,
                      CONCAT(case when e.class = 'W' then 'Women\'s' else 'Men\'s' end, ' ', team) AS Team,
                      entryid AS TeamID,
                      nullif(place,0) AS Place,
-                     case when prelim <> 0 then concat(floor(prelim / 60), ':', right(concat('0',format(prelim % 60, 2)),5)) else null end AS Prelim,
-                     case when reroll <> 0 then concat(floor(reroll / 60), ':', right(concat('0',format(reroll % 60, 2)),5)) else null end AS Reroll,
-                     case when final <> 0 then concat(floor(final / 60), ':', right(concat('0',format(final % 60, 2)),5)) else null end AS Final,
-                     case when finalreroll <> 0 then concat(floor(finalreroll / 60), ':', right(concat('0',format(finalreroll % 60, 2)),5)) else null end AS FinalReroll,
+                     Prelim, Reroll, Final, FinalReroll,
                      case when DQ <> '0' then DQ else null end AS DQ,
                      vp.youtubeid AS pyoutubeid, vp.title AS ptitle,
                      vr.youtubeid AS ryoutubeid, vr.title AS rtitle,
@@ -164,7 +161,7 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
             echo("<td>".$r["Place"]."</td>");
             foreach ($heatorder as $type) {
               echo("<td>");
-              echo($r[$type]);
+              echo(displayTime($r[$type]));
               if (isset($videomap[$type])) {
                 echo ("<br>");
                 $video = $videomap[$type];

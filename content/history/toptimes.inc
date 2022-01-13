@@ -8,7 +8,7 @@ $query = "SELECT
            T.year, T.entryid,
 	         concat(shortname, case when T.team = 'A' then '' else concat(' ', T.team) end) AS teamname,
            b.name AS buggy, b.buggyid AS buggyid,
-	         concat(floor(T.time / 60), ':', right(concat('0',format(T.time % 60, 2)),5)) AS time
+	         T.time
     FROM (
 		      SELECT year, entryid, orgid, team, buggyid, nullif(prelim,0) as time from hist_raceentries where class = ?
 	        UNION ALL SELECT year, entryid, orgid, team, buggyid, nullif(reroll,0) as time from hist_raceentries where class = ?
@@ -33,7 +33,7 @@ function displayTable($teamList){
     echo("<td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
     echo("<td><a href=\"/history/team/".$team["entryid"]."\">".$team["teamname"]."</a></td>");
     echo("<td><a href=\"/history/buggy/".$team["buggyid"]."\">".$team["buggy"]."</a></td>");
-    echo("<td>".$team["time"]."</td></tr>");
+    echo("<td>".displayTime($team["time"])."</td></tr>");
 
     $count++;
   }

@@ -8,25 +8,26 @@
 // - Both a mens and a women's result (Years 1979 onward)
 //
 // - Notably, I don't expect this to return results when there is _only_ a women's result but no mens result.
-//   It is possible to fix this by using the MySQL workaround for a full outer join, but this case seems
-//   unlikely at this point so I will leave it to the future to fix it when it happens.
+//   It is possible to fix this by using the MySQL workaround for a full outer join, but that makes this query
+//   significantly more complex, and this case seems unlikely at this point so I will leave it to the future
+//   to fix it when it actually happens.
 //
-// - We only fetch ma.note (as "note") for the years where nothing happened, to get the reason for display.
+// - We only fetch ma.note (as "note") to be used for the years where nothing happened, so we have a reason to display.
 $query = "SELECT ma.Year AS year,
   concat(oma.shortname, case when ma.team = 'A' then '' else concat(' ', ma.team) end) AS Mens1, ma.entryid AS Mens1ID,
-	case when ma.finalreroll > 0 then concat(floor(ma.finalreroll / 60), ':', right(concat('0',format(ma.finalreroll % 60, 2)),5))
-       when ma.final > 0 then concat(floor(ma.final / 60), ':', right(concat('0',format(ma.final % 60, 2)),5))
-       when ma.reroll > 0 then concat(floor(ma.reroll / 60), ':', right(concat('0',format(ma.reroll % 60, 2)),5))
-		   when ma.prelim > 0 then concat(floor(ma.prelim / 60), ':', right(concat('0',format(ma.prelim % 60, 2)),5))
+	case when ma.finalreroll > 0 then ma.finalreroll
+       when ma.final > 0 then ma.final
+       when ma.reroll > 0 then ma.reroll
+		   when ma.prelim > 0 then ma.prelim
        else NULL
 	end AS MensTime,
   concat(omb.shortname, case when mb.team = 'A' then '' else concat(' ', mb.team) end) AS Mens2, mb.entryid AS Mens2ID,
   concat(omc.shortname, case when mc.team = 'A' then '' else concat(' ', mc.team) end) AS Mens3, mc.entryid AS Mens3ID,
   concat(owa.shortname, case when wa.team = 'A' then '' else concat(' ', wa.team) end) AS Womens1, wa.entryid AS Womens1ID,
-	case when wa.finalreroll > 0 then concat(floor(wa.finalreroll / 60), ':', right(concat('0',format(wa.finalreroll % 60, 2)),5))
-       when wa.final > 0 then concat(floor(wa.final / 60), ':', right(concat('0',format(wa.final % 60, 2)),5))
-       when wa.reroll > 0 then concat(floor(wa.reroll / 60), ':', right(concat('0',format(wa.reroll % 60, 2)),5))
-		   when wa.prelim > 0 then concat(floor(wa.prelim / 60), ':', right(concat('0',format(wa.prelim % 60, 2)),5))
+	case when wa.finalreroll > 0 then wa.finalreroll
+       when wa.final > 0 then wa.final
+       when wa.reroll > 0 then wa.reroll
+		   when wa.prelim > 0 then wa.prelim
        else NULL
 	end AS WomensTime,
   concat(owb.shortname, case when wb.team = 'A' then '' else concat(' ', wb.team) end) AS Womens2, wb.entryid AS Womens2ID,
@@ -80,7 +81,7 @@ function echoTeamCell($teamkey, $teamname) {
           } else {
             if (!empty($r["Mens1"])) {
               echoTeamCell($r["Mens1ID"],$r["Mens1"]);
-              echo("<td>".$r["MensTime"]."</td>");
+              echo("<td>".displayTime($r["MensTime"])."</td>");
               echoTeamCell($r["Mens2ID"],$r["Mens2"]);
               echoTeamCell($r["Mens3ID"],$r["Mens3"]);
             } else {
@@ -88,7 +89,7 @@ function echoTeamCell($teamkey, $teamname) {
             }
             if (!empty($r["Womens1"])) {
               echoTeamCell($r["Womens1ID"],$r["Womens1"]);
-              echo("<td>".$r["WomensTime"]."</td>");
+              echo("<td>".displayTime($r["WomensTime"])."</td>");
               echoTeamCell($r["Womens2ID"],$r["Womens2"]);
               echoTeamCell($r["Womens3ID"],$r["Womens3"]);
             } else {

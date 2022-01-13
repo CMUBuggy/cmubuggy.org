@@ -12,10 +12,7 @@
                       e.entryid AS entryid,
                       b.name AS buggyname,
                       b.buggyid AS buggyid,
-                      case when prelim > 0 then concat(floor(prelim / 60), ':', right(concat('0',format(prelim % 60, 2)),5)) else NULL end prelim,
-                      case when reroll > 0 then concat(floor(reroll / 60), ':', right(concat('0',format(reroll % 60, 2)),5)) else NULL end reroll,
-                      case when final > 0 then concat(floor(final / 60), ':', right(concat('0',format(final % 60, 2)),5)) else NULL end final,
-                      case when finalreroll > 0 then concat(floor(finalreroll / 60), ':', right(concat('0',format(finalreroll % 60, 2)),5)) else NULL end finalreroll,
+                      prelim, reroll, final, finalreroll,
                       nullif(dq,'0') dq,
                       e.note
                  FROM hist_raceentries e
@@ -37,9 +34,6 @@
   // We do not fetch exhibitions -- (class == E).  This is only useful if we can link them to videos,
   // so if we start to do videos, remember to fetch exhibitions as well and deal with them!
   //
-  // For sanity sake on this query, we only return the time seconds value, and we'll convert it using
-  // the displayTime() utility function later.
-  //
   // Heats data is SUPER GROSS, especially because the way rerolls can run off the rails and need to be
   // done "just in time" in many cases.  This leads to "isfinals" in the heats table meaning "happened on finals
   // day", which doesn't match how we keep times in the raceentries table where finalreroll is
@@ -47,7 +41,8 @@
   // (prelim) reroll times.
   //
   // So, in the case of a final reroll, we are going to use finalreroll if we have it, otherwise use
-  // reroll.  This is not perfect, but works in almost 99% of the cases.
+  // reroll.  This is not perfect, but works in almost 99% of the cases.  Example case where it does
+  // not work: 2010 PiKA Mens A.
   //
   // Note that we only fetch exhibitions if there is a video to go with them, since we have nothing to display otherwise.
   $heatQuery = "SELECT number, isfinals, isreroll, h.class,
@@ -117,10 +112,10 @@
           echo("<td></td>");
         }
 
-        echo("<td>".$r["prelim"]."</td>");
-        echo("<td>".$r["reroll"]."</td>");
-        echo("<td>".$r["final"]."</td>");
-        echo("<td>".$r["finalreroll"]."</td>");
+        echo("<td>".displayTime($r["prelim"])."</td>");
+        echo("<td>".displayTime($r["reroll"])."</td>");
+        echo("<td>".displayTime($r["final"])."</td>");
+        echo("<td>".displayTime($r["finalreroll"])."</td>");
         $notes = $r["note"];
         if (!empty($r["dq"])) {
           if (!empty($notes)) {
@@ -159,7 +154,6 @@
         foreach($heatArr[$type] as $heat){
           echo("<tr><td>".$heat["number"]."</td>");
 
-          // TODO: Video Links!
           if (!empty($heat["video_youtubeid"])) {
             $video = array(
               "youtubeid" => $heat["video_youtubeid"],
