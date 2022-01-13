@@ -220,20 +220,22 @@
 </div>
 
 <ul class="nav nav-tabs mb-2" role="tablist">
+  <?php if ($mensResults->num_rows > 0) { // should effecitvely always be true, but you never know... ?>
   <li class="nav-item">
     <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's Results</a>
   </li>
-  <?php if ($year >= 1979) { ?>
+  <?php } ?>
+  <?php if ($womensResults->num_rows > 0) { // safer alternative to "year >= 1979" ?>
     <li class="nav-item">
       <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's Results</a>
     </li>
   <?php } ?>
-  <?php if(count($pheatsArr)>0) { ?>
+  <?php if (count($pheatsArr) > 0) { ?>
     <li class="nav-item">
       <a id="prelimheats-tab" href="#tab-prelimheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-prelimheats" aria-selected="false">Prelim Heats</a>
     </li>
   <?php } ?>
-  <?php if($year >= 1979 && count($fheatsArr)>0) { ?>
+  <?php if (count($fheatsArr) > 0) { ?>
     <li class="nav-item">
       <a id="finalsheats-tab" href="#tab-finalsheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-finalsheats" aria-selected="false">Finals Heats</a>
     </li>
@@ -241,21 +243,22 @@
 </ul>
 
 <div class="tab-content">
+  <?php if ($mensResults->num_rows > 0) { ?>
   <div class="tab-pane fade show active" id="tab-mens" role="tabpanel" aria-labelledby="mens-tab">
     <?php displayResults($mensResults); ?>
   </div>
-  <?php // Don't display womens tab before 1979 (mostly so we render war years properly)
-        if ($year >= 1979) { ?>
+  <?php } ?>
+  <?php if ($womensResults->num_rows > 0) { ?>
     <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
       <?php displayResults($womensResults); ?>
     </div>
   <?php } ?>
-  <?php if(count($pheatsArr)>0) { ?>
+  <?php if (count($pheatsArr) > 0) { ?>
     <div class="tab-pane fade" id="tab-prelimheats" role="tabpanel" aria-labelledby="prelimheats-tab">
       <?php displayHeats($pheatsArr); ?>
     </div>
   <?php } ?>
-  <?php if($year >= 1979 && count($fheatsArr)>0) { ?>
+  <?php if (count($fheatsArr) > 0) { ?>
     <div class="tab-pane fade" id="tab-finalsheats" role="tabpanel" aria-labelledby="finalsheats-tab">
       <?php displayHeats($fheatsArr); ?>
     </div>

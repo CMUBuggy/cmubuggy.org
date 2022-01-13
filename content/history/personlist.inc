@@ -51,7 +51,6 @@ if ($doSearch) {
     foreach($personList as $p) {
       echo "<tr><td><a href=\"/history/person/".$p["personid"]."\">".$p["name"]."</a></td></tr>";
     }
-    //print_r($personList);
     echo "</table>";
     
     if (count($personList) == $MAX_RESULTS) {

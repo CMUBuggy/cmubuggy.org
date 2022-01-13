@@ -21,8 +21,6 @@
   }
 
   function getSweepstakesYear($year) {
-    // We are cheating a bit by using ORDER BY field here.  We do 10 - FIELD() to put unknown roles at the bottom and
-    // ensure that Chair, Asst Chair, and Safety are at the top.
     $query = "SELECT role, concat(p.firstname, ' ', p.lastname) AS name, s.personid AS id
                 FROM hist_sweepstakes s
                 LEFT JOIN hist_people p ON s.personid = p.personid

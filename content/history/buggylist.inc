@@ -1,7 +1,7 @@
 <?php
   $query = "SELECT buggyid, birthyear, shortname AS org, name, buggyid, b.note AS note FROM hist_buggies b
             LEFT JOIN hist_orgs o ON o.orgid = b.orgid
-            ORDER BY birthyear DESC;";
+            ORDER BY birthyear DESC, name ASC;";
   $buggies = dbQuery($HISTORY_DATABASE, $query);
 ?>
 <h1>Buggies</h1>
