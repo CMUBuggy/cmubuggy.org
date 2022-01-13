@@ -29,6 +29,7 @@ if ($metaData->num_rows == 1) {
 // for each of the 4 heats, and fetch up to 4 different blocks of youtube data.  Apologies for the shorthand naming.
 //
 $raceQuery = "SELECT e.year,
+                     case when e.orgid <> b.orgid then borrower.shortname else NULL end AS borrowerorg,
                      CONCAT(case when e.class = 'W' then 'Women\'s' else 'Men\'s' end, ' ', team) AS Team,
                      entryid AS TeamID,
                      nullif(place,0) AS Place,
@@ -40,6 +41,8 @@ $raceQuery = "SELECT e.year,
                      vfr.youtubeid AS fryoutubeid, vfr.title AS frtitle,
                      e.note
                 FROM hist_raceentries e
+                LEFT JOIN hist_orgs borrower ON borrower.orgid=e.orgid
+                LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
                 LEFT JOIN hist_heats hp ON hp.isfinals = 0 AND hp.isreroll = 0
                                            AND (CONCAT(hp.year,'.',hp.lane1)=e.entryid
                                                 OR CONCAT(hp.year,'.',hp.lane2)=e.entryid
@@ -60,7 +63,7 @@ $raceQuery = "SELECT e.year,
                                                 OR CONCAT(hfr.year,'.',hfr.lane2)=e.entryid
                                                 OR CONCAT(hfr.year,'.',hfr.lane3)=e.entryid)
                 LEFT JOIN video vfr ON CAST(vfr.heatid AS CHAR) = hfr.heatid
-                WHERE buggyid = ?
+                WHERE e.buggyid = ?
                 ORDER BY year DESC, Team ASC;";
 
 $raceData = dbBoundQuery($HISTORY_DATABASE, $raceQuery, "s", $buggyUrlKey);
@@ -174,7 +177,19 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
 
             $year = $r["year"];
             echo("<tr><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
-            echo("<td><a href=\"/history/team/".$r["TeamID"]."\">".$r["Team"]."</a></td>");
+
+            echo("<td style=\"white-space: nowrap\">");
+            // If the entry org doesn't match the owner org for this buggy,
+            // we should label that in this entry specifically.
+            //
+            // Example buggies: perun, thirtyfourninetyfive
+            echo("<a href=\"/history/team/".$r["TeamID"]."\">");
+            if (!empty($r["borrowerorg"])) {
+              echo($r["borrowerorg"]."<br>");
+            }
+            echo($r["Team"]."</a>");
+            echo("</td>");
+
             echo("<td>".$r["Place"]."</td>");
             foreach ($heatorder as $type) {
               echo("<td>");
