@@ -46,7 +46,8 @@
 <script src="https://www.youtube.com/iframe_api" defer></script>
 <script type="text/javascript">
   function changeTab(hash) {
-    $('[href="' + hash + '"').tab('show');
+    hash = hash.replace('#','#tab-');
+    $('[href="' + hash + '"]').tab('show');
   }
 
   $(function () {
