@@ -96,12 +96,15 @@ foreach ($displayRoles as $role) {
 // Value: String Name Surrounded By link to the person page for their ID. (or empty string)
 $teamArr = array();
 
-
-// First, populate empty sets where we have times or videos.
+// We use the presense of a $teamArr entry for a given heat type to indicate we have _some_ data
+// for that heat.  So, we treat our 3 sources of data each slightly separately, and only
+// create a team array (even a blank one), if any have data.
 //
-// This ensures we at least display the data we have even if there is no team.
+// Our 3 data sources: times, the entrypeople map, and videos.
+//
+// First, populate empty sets where we have times.  This is pretty simple.
 foreach($displayHeatTypes as $ht) {
-  if (!empty($header[$ht]) || isset($videomap[$ht])) {
+  if (!empty($header[$ht])) {
     $teamArr[$ht] = $teamArrInit;
   }
 }
@@ -111,10 +114,38 @@ while($r = $teamResults->fetch_assoc()) {
   $heattype = $r["heattype"];
   $role = $r["position"];
   if (!isset($teamArr[$heattype])) {
-    // Maybe we don't have a time for this, but we do have a team!
+    // We haven't yet seen this heat for either times or people, so add a blank people array.
     $teamArr[$heattype] = $teamArrInit;
   }
   $teamArr[$heattype][$role] = "<a href=\"/history/person/".$r["personid"]."\">".$r["personname"]."</a>";
+}
+
+// If we are still missing a heat that we have data for we first need to check to see
+// if this is the result of the heats table keying "finals reroll" based on day, but the times being based
+// on when rerolls are earned.  So:
+//
+// If we have a a final reroll video, but no other heat data for final reroll, _and_ we have an earned
+// prelim reroll heat, but no prelim reroll video, reattribute the final reroll video to the prelim reroll heat.
+//
+// Example heats that get us into trouble without this:
+//   2004.SPI.MB
+//   2004.PKT.MA
+//
+// This, naturally, relies on adding a blank team array for both times and people _first_.
+if (isset($videomap["Final Reroll"])
+    && !isset($teamArr["Final Reroll"])
+    && isset($videomap["Final Reroll"])
+    && !isset($videomap["Prelim Reroll"])) {
+      $videomap["Prelim Reroll"] = $videomap["Final Reroll"];
+      unset($videomap["Final Reroll"]);
+}
+
+// Finally, populate empty team data if we don't have a team for a given heat, but we do have
+// either a time or a video.
+foreach($displayHeatTypes as $ht) {
+  if (!isset($teamArr[$ht]) && !empty($videomap[$ht])) {
+    $teamArr[$ht] = $teamArrInit;
+  }
 }
 
 // Page rendering starts here.
@@ -144,7 +175,14 @@ echo("</table>");
 
 <div class="row">
   <?php
-    foreach($teamArr as $heattype => $team) {
+    // Use $displayHeatTypes to force an ordering on the display.
+    foreach($displayHeatTypes as $heattype) {
+      if (!isset($teamArr[$heattype])) {
+        // If we have no data for this heattype, skip it.
+        continue;
+      }
+      $team = $teamArr[$heattype];
+
       echo("<div class=\"col-sm\">");
       echo("<h2>".$heattype."</h2>");
 
