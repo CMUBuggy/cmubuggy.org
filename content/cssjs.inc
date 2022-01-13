@@ -57,7 +57,7 @@
   });
 
   $(window).on('hashchange', function () {
-    changeTab(window.location.hash.replace('#', '#tab-'));
+    changeTab(window.location.hash);
   });
 
   $(document)
