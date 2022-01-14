@@ -75,6 +75,15 @@
 
   $heatData = dbBoundQuery($HISTORY_DATABASE, $heatQuery, "d", $year);
 
+  $historyLinkQuery = "SELECT link FROM hist_yearhistorylink WHERE year = ?;";
+  $historyLinkData = dbBoundQuery($HISTORY_DATABASE, $historyLinkQuery, "d", $year);
+
+  $historyLink = "";
+  if ($historyLinkData->num_rows == 1) {
+    // year is a primary key for this table, so it should be 1 or 0.
+    $historyLink = $historyLinkData->fetch_assoc()["link"];
+  }
+
   $pheatsArr = array();
   $fheatsArr = array();
 
@@ -208,6 +217,10 @@
 ?>
 
 <h1>Raceday <?php echo($year);?></h1>
+
+<?php if (!empty($historyLink)) { ?>
+  Read a history of <a href="<?php echo($historyLink); ?>">this year</a>.
+<?php } ?>
 
 <div class="my-2">
   <?php echo($prevlink.$nextlink); ?>
