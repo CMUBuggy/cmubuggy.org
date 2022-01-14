@@ -95,17 +95,25 @@ $recordQuery = "SELECT A.class, A.team, A.record,
                        B.year, B.entryid
                   FROM (
                     SELECT class, team, min(time) AS record FROM (
-                      SELECT year, class, team, nullif(prelim,0) AS time FROM hist_raceentries WHERE orgid = ?
-                      UNION SELECT year, class, team, nullif(reroll,0) AS time FROM hist_raceentries WHERE orgid = ?
-                      UNION SELECT year, class, team, nullif(final,0) AS time FROM hist_raceentries WHERE orgid = ?
-                      UNION SELECT year, class, team, nullif(finalreroll,0) AS time FROM hist_raceentries WHERE orgid = ?) X
+                      SELECT class, team, nullif(prelim,0) AS time FROM hist_raceentries WHERE orgid = ?
+                      UNION SELECT class, team, nullif(reroll,0) AS time FROM hist_raceentries WHERE orgid = ?
+                      UNION SELECT class, team, nullif(final,0) AS time FROM hist_raceentries WHERE orgid = ?
+                      UNION SELECT class, team, nullif(finalreroll,0) AS time FROM hist_raceentries WHERE orgid = ?) X
                     GROUP BY class, team) A
                   CROSS JOIN hist_raceentries B
-                    ON B.class=A.class AND B.team=A.team AND A.record IN (B.prelim, B.reroll, B.final, B.finalreroll);";
-$recordData = dbBoundQuery($HISTORY_DATABASE, $recordQuery, "ssss", $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey);
+                    ON B.orgid = ? AND B.class=A.class AND B.team=A.team
+                       AND A.record IN (B.prelim, B.reroll, B.final, B.finalreroll);";
+$recordData = dbBoundQuery($HISTORY_DATABASE, $recordQuery, "sssss", $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey);
 
 while($r = $recordData->fetch_assoc()) {
   $key = $r["class"].$r["team"];
+
+  // If a team/class ties themselves, keep the earlier one for the table.
+  if (isset($recordArr[$key]) &&
+      $r["year"] > $recordArr[$key]["year"]) {
+    continue;
+  }
+  
   $recordArr[$key] = $r;
 }
 
