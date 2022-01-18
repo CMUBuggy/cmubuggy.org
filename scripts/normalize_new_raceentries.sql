@@ -49,85 +49,85 @@ INSERT INTO hist_raceentries
 # Drivers
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT PreDriver, entryid, 'Prelim', 'Driver' FROM hist_new_raceentries
-    WHERE PreDriver IS NOT NULL AND PreDriver != 0;
+    WHERE PreDriver IS NOT NULL AND PreDriver != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT RRDriver, entryid, 'Prelim Reroll', 'Driver' FROM hist_new_raceentries
-    WHERE RRDriver IS NOT NULL AND RRDriver != 0;
+    WHERE RRDriver IS NOT NULL AND RRDriver != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinDriver, entryid, 'Final', 'Driver' FROM hist_new_raceentries
-    WHERE FinDriver IS NOT NULL AND FinDriver != 0;
+    WHERE FinDriver IS NOT NULL AND FinDriver != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinRRDriver, entryid, 'Final Reroll', 'Driver' FROM hist_new_raceentries
-    WHERE FinRRDriver IS NOT NULL AND FinRRDriver != 0;
+    WHERE FinRRDriver IS NOT NULL AND FinRRDriver != '0';
 
 # Hill 1
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT PreH1, entryid, 'Prelim', 'Hill 1' FROM hist_new_raceentries
-    WHERE PreH1 IS NOT NULL AND PreH1 != 0;
+    WHERE PreH1 IS NOT NULL AND PreH1 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT RRH1, entryid, 'Prelim Reroll', 'Hill 1' FROM hist_new_raceentries
-    WHERE RRH1 IS NOT NULL AND RRH1 != 0;
+    WHERE RRH1 IS NOT NULL AND RRH1 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinH1, entryid, 'Final', 'Hill 1' FROM hist_new_raceentries
-    WHERE FinH1 IS NOT NULL AND FinH1 != 0;
+    WHERE FinH1 IS NOT NULL AND FinH1 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinRRH1, entryid, 'Final Reroll', 'Hill 1' FROM hist_new_raceentries
-    WHERE FinRRH1 IS NOT NULL AND FinRRH1 != 0;
+    WHERE FinRRH1 IS NOT NULL AND FinRRH1 != '0';
 
 # Hill 2
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT PreH2, entryid, 'Prelim', 'Hill 2' FROM hist_new_raceentries
-    WHERE PreH2 IS NOT NULL AND PreH2 != 0;
+    WHERE PreH2 IS NOT NULL AND PreH2 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT RRH2, entryid, 'Prelim Reroll', 'Hill 2' FROM hist_new_raceentries
-    WHERE RRH2 IS NOT NULL AND RRH2 != 0;
+    WHERE RRH2 IS NOT NULL AND RRH2 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinH2, entryid, 'Final', 'Hill 2' FROM hist_new_raceentries
-    WHERE FinH2 IS NOT NULL AND FinH2 != 0;
+    WHERE FinH2 IS NOT NULL AND FinH2 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinRRH2, entryid, 'Final Reroll', 'Hill 2' FROM hist_new_raceentries
-    WHERE FinRRH2 IS NOT NULL AND FinRRH2 != 0;
+    WHERE FinRRH2 IS NOT NULL AND FinRRH2 != '0';
 
 # Hill 3
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT PreH3, entryid, 'Prelim', 'Hill 3' FROM hist_new_raceentries
-    WHERE PreH3 IS NOT NULL AND PreH3 != 0;
+    WHERE PreH3 IS NOT NULL AND PreH3 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT RRH3, entryid, 'Prelim Reroll', 'Hill 3' FROM hist_new_raceentries
-    WHERE RRH3 IS NOT NULL AND RRH3 != 0;
+    WHERE RRH3 IS NOT NULL AND RRH3 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinH3, entryid, 'Final', 'Hill 3' FROM hist_new_raceentries
-    WHERE FinH3 IS NOT NULL AND FinH3 != 0;
+    WHERE FinH3 IS NOT NULL AND FinH3 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinRRH3, entryid, 'Final Reroll', 'Hill 3' FROM hist_new_raceentries
-    WHERE FinRRH3 IS NOT NULL AND FinRRH3 != 0;
+    WHERE FinRRH3 IS NOT NULL AND FinRRH3 != '0';
 
 # Hill 4
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT PreH4, entryid, 'Prelim', 'Hill 4' FROM hist_new_raceentries
-    WHERE PreH4 IS NOT NULL AND PreH4 != 0;
+    WHERE PreH4 IS NOT NULL AND PreH4 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT RRH4, entryid, 'Prelim Reroll', 'Hill 4' FROM hist_new_raceentries
-    WHERE RRH4 IS NOT NULL AND RRH4 != 0;
+    WHERE RRH4 IS NOT NULL AND RRH4 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinH4, entryid, 'Final', 'Hill 4' FROM hist_new_raceentries
-    WHERE FinH4 IS NOT NULL AND FinH4 != 0;
+    WHERE FinH4 IS NOT NULL AND FinH4 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinRRH4, entryid, 'Final Reroll', 'Hill 4' FROM hist_new_raceentries
-    WHERE FinRRH4 IS NOT NULL AND FinRRH4 != 0;
+    WHERE FinRRH4 IS NOT NULL AND FinRRH4 != '0';
 
 # Hill 5
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT PreH5, entryid, 'Prelim', 'Hill 5' FROM hist_new_raceentries
-    WHERE PreH5 IS NOT NULL AND PreH5 != 0;
+    WHERE PreH5 IS NOT NULL AND PreH5 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT RRH5, entryid, 'Prelim Reroll', 'Hill 5' FROM hist_new_raceentries
-    WHERE RRH5 IS NOT NULL AND RRH5 != 0;
+    WHERE RRH5 IS NOT NULL AND RRH5 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinH5, entryid, 'Final', 'Hill 5' FROM hist_new_raceentries
-    WHERE FinH5 IS NOT NULL AND FinH5 != 0;
+    WHERE FinH5 IS NOT NULL AND FinH5 != '0';
 INSERT INTO hist_entrypeoplemap (personid, entryid, heattype, position)
    SELECT FinRRH5, entryid, 'Final Reroll', 'Hill 5' FROM hist_new_raceentries
-    WHERE FinRRH5 IS NOT NULL AND FinRRH5 != 0;
+    WHERE FinRRH5 IS NOT NULL AND FinRRH5 != '0';
 
 COMMIT;
