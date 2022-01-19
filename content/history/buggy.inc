@@ -31,6 +31,9 @@ if ($metaData->num_rows == 1) {
 $raceQuery = "SELECT e.year,
                      case when e.orgid <> b.orgid then borrower.shortname else NULL end AS borrowerorg,
                      CONCAT(case when e.class = 'W' then 'Women\'s' else 'Men\'s' end, ' ', team) AS Team,
+                     case when e.class = 'W' then '#womens'
+                          when e.class = 'M' then '#mens'
+                          else '' end AS classanchor,
                      entryid AS TeamID,
                      nullif(place,0) AS Place,
                      Prelim, Reroll, Final, FinalReroll,
@@ -176,7 +179,7 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
             }
 
             $year = $r["year"];
-            echo("<tr><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
+            echo("<tr><td><a href=\"/history/raceday/".$year.$r["classanchor"]."\">".$year."</a></td>");
 
             echo("<td style=\"white-space: nowrap\">");
             // If the entry org doesn't match the owner org for this buggy,
