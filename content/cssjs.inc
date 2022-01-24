@@ -35,7 +35,7 @@
 </style>
 
 <!--JS-->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js" integrity="sha384-3Nqiqht3ZZEO8FKj7GR1upiI385J92VwWNLj+FqHxtLYxd9l+WYpeqSOrLh0T12c" crossorigin="anonymous"></script>
@@ -74,4 +74,26 @@
   });
 
   function onYouTubeIframeAPIReady() {}
+
+  // Ensure we scroll any non-tab hash targets to below the header bar.
+  $(function() {
+    // Some browsers may require a delay after the DOM is ready before we can successfully scroll,
+    // but it does not appear to be required for modern edge and chrome, at least on our site.
+    //
+    // So, don't wait.
+    //
+    // See: https://stackoverflow.com/questions/4086107/fixed-page-header-overlaps-in-page-anchors#35452468
+    //
+    // setTimeout(doFragmentTargetOffset, 500);
+    doFragmentTargetOffset();
+  });
+
+  // Actually perform the scroll.
+  function doFragmentTargetOffset(){
+    var offset = $(':target').offset();
+    if(offset){
+        var scrollto = offset.top - 60; // minus fixed header height
+        $('html,body').animate({scrollTop:scrollto}, 0);
+    }
+  }
 </script>
