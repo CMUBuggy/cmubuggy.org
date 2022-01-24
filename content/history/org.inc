@@ -113,7 +113,7 @@ while($r = $recordData->fetch_assoc()) {
       $r["year"] > $recordArr[$key]["year"]) {
     continue;
   }
-  
+
   $recordArr[$key] = $r;
 }
 
@@ -355,6 +355,32 @@ function displayrecord($entrytype) {
   }
 }
 
+// Returns true if this org has at least 2 entries in the provided
+// range for any of the given entry types.  That is, is there anything
+// at all worth trying to graph?
+function isTrendableOrg($entrytypes, $firstyear, $lastyear) {
+  global $entryTimes;
+  $entryCount = array();
+  foreach ($entrytypes as $et) {
+    $entryCount[$et] = 0;
+  }
+  for($year=$firstyear;$year<=$lastyear;$year++) {
+    if (isset($entryTimes[$year])) {
+      $times = $entryTimes[$year];
+      foreach ($entrytypes as $et) {
+        if (isset($times[$et])) {
+          $entryCount[$et]++;
+          if ($entryCount[$et] >= 2) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
 function graphtrends($entrytypes, $firstyear, $lastyear) {
   global $entryTimes, $orgUrlKey, $org;
   $graphArr = array();
@@ -428,6 +454,16 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   if($org["note"]) {
     echo ("<p>Notes: ".$org["note"]."</p>");
   }
+
+  // Only graph trends in the last 20 years for A->C teams
+  $thisYear = date("Y");
+  $trendStartYear = $thisYear - 20;
+  $trendMens = array("ma", "mb", "mc");
+  $trendWomens = array("wa", "wb", "wc");
+
+  // Is there any data at all that is worth trying to trend for this org?
+  $trendableOrg = isTrendableOrg(array_merge($trendMens, $trendWomens),
+                                 $trendStartYear, $thisYear);
 ?>
 
 
@@ -445,9 +481,11 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
     <li class="nav-item">
       <a id="trophies-tab" href="#tab-trophies" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-trophies" aria-selected="false">Trophies <span class="badge badge-primary"><?php echo($trophyCount); ?></span></a>
     </li>
-    <li class="nav-item">
-      <a id="trends-tab" href="#tab-trends" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-trends" aria-selected="false">Trends</a>
-    </li>
+    <?php if ($trendableOrg) { ?>
+      <li class="nav-item">
+        <a id="trends-tab" href="#tab-trends" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-trends" aria-selected="false">Trends</a>
+      </li>
+    <?php } ?>
   </ul>
 
   <div class="tab-content">
@@ -552,18 +590,15 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
         </table>
       </div>
     </div>
-    <div class="tab-pane fade" id="tab-trends" role="tabpanel" aria-labelledby="trends-tab">
-      <h2>Trends</h2>
-      <?php // Only show trends for the last 20 years.
-            //
-            // TODO: Be smarter about when to show the trends tab at all (e.g. don't show it for orgs that haven't raced)
-            //       in 20 years :)
-            $thisYear = date("Y");
-            $startYear = $thisYear-20;
-            graphtrends(array("ma","mb","mc"), $startYear, $thisYear);
-            graphtrends(array("wa","wb","wc"), $startYear, $thisYear);
-      ?>
-    </div>
+    <?php if ($trendableOrg) { ?>
+      <div class="tab-pane fade" id="tab-trends" role="tabpanel" aria-labelledby="trends-tab">
+        <h2>Trends</h2>
+        <?php
+            graphtrends($trendMens, $trendStartYear, $thisYear);
+            graphtrends($trendWomens, $trendStartYear, $thisYear);
+        ?>
+      </div>
+    <?php } ?>
   </div>
 <?php
   } else { // NOT A RACING ORG - Simpler handling since we only worry about trophies.
