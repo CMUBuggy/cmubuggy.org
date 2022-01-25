@@ -13,7 +13,6 @@
 </nav>
 
 <?php include("googlesearchinput.inc"); ?>
-<?php include_once("loginform.inc"); ?>
 <div class="my-3">
   <a href="https://www.facebook.com/pages/Carnegie-Mellon-Buggy-Alumni-Association/279568438094"><i class="fab fa-2x fa-facebook-square" title="Facebook" style="color: #3b5998;"></i></a>
   <a href="https://feeds.feedburner.com/BuggyAlumniAssociationUltimate"><i class="fas fa-2x fa-rss-square text-warning" title="Feed"></i></a>
