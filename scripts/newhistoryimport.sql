@@ -48,6 +48,8 @@ RENAME TABLE 0buggies TO hist_buggies,
 # Add some indexes that appear to be desirable.
 ALTER TABLE hist_designawards ADD INDEX (buggyid);
 ALTER TABLE hist_designawards ADD INDEX (orgid);
+ALTER TABLE hist_heats ADD INDEX isFinalsIsReroll (isFinals, isReroll);
+ALTER TABLE hist_heats ADD INDEX (year);
 ALTER TABLE hist_orgawards ADD INDEX (orgid);
 ALTER TABLE hist_sweepstakes ADD INDEX (year);
 ALTER TABLE hist_sweepstakes ADD INDEX (personid);
