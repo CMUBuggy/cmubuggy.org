@@ -1,6 +1,5 @@
 <?php
 	include_once('../util.inc');
-	include_once('../lib/pog/pog_includes.inc');
 	$headline = 'News';
 ?>
 <!doctype html>
