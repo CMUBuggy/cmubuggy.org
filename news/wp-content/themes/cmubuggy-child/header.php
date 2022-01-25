@@ -1,6 +1,6 @@
 <?php
 	include_once('../util.inc');
-W	$headline = 'News';
+	$headline = 'News';
 ?>
 <!doctype html>
 <html>
