@@ -16,18 +16,6 @@
 		return $displayTime;
 	}
 
-	function pdoQuery($dbname, $sql){
-		include("dbconfig.inc");
-		try {
-			$dbh = new PDO("mysql:host=".$dbhost.";dbname=".$dbname,$dbuser,$dbpass);
-		} catch(PDOException $e) {
-    		echo $e->getMessage();
-    	}
-    	$stmt = $dbh->query($sql);
-    	$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		return $result;
-	}
-
 	// We provide 2 utility functions for raw SQL queries -- one that just takes the query verbatim
 	// and another that allows the use of bound parameters, necessary if we have user input.
 	//
@@ -120,35 +108,4 @@
 		//return date("Y-M-d H:m:i", $timestamp)." ".$msg;
 		return $msg;
 	}
-
-	function checkpassword($plaintext, $salt, $hash){
-		return sha1(md5($plaintext).$salt) == $hash;
-	}
-
-	function hashpassword($plaintext){
-		$salt = substr(md5(uniqid(rand(), true)), 0, 10);
-		return array("hash"=>sha1(md5($plaintext).$salt), "salt"=>$salt);
-	}
-
-	function getuservars($hash){
-		$dbname = "cmubuggy";
-		$sql = "SELECT * FROM user WHERE password = '".$hash."'";
-		$result = pdoQuery($dbname, $sql);
-		return $result;
-	}
-
-	function validateemail($email){
-		//filter_var() sanitizes the e-mail
-	  //address using FILTER_SANITIZE_EMAIL
-	  $field=filter_var($email, FILTER_SANITIZE_EMAIL);
-
-	  //filter_var() validates the e-mail
-	  //address using FILTER_VALIDATE_EMAIL
-	  if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-	  	return TRUE;
-	  }else{
-	   return FALSE;
-	  }
-	}
-
 ?>
