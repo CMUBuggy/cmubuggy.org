@@ -50,22 +50,22 @@ $raceQuery = "SELECT e.year,
                                            AND (CONCAT(hp.year,'.',hp.lane1)=e.entryid
                                                 OR CONCAT(hp.year,'.',hp.lane2)=e.entryid
                                                 OR CONCAT(hp.year,'.',hp.lane3)=e.entryid)
-                LEFT JOIN video vp ON CAST(vp.heatid AS CHAR) = hp.heatid
+                LEFT JOIN video vp ON vp.heatid = hp.heatid
                 LEFT JOIN hist_heats hr ON hr.isfinals = 0 AND hr.isreroll = 1
                                            AND (CONCAT(hr.year,'.',hr.lane1)=e.entryid
                                                 OR CONCAT(hr.year,'.',hr.lane2)=e.entryid
                                                 OR CONCAT(hr.year,'.',hr.lane3)=e.entryid)
-                LEFT JOIN video vr ON CAST(vr.heatid AS CHAR) = hr.heatid
+                LEFT JOIN video vr ON vr.heatid = hr.heatid
                 LEFT JOIN hist_heats hf ON hf.isfinals = 1 AND hf.isreroll = 0
                                            AND (CONCAT(hf.year,'.',hf.lane1)=e.entryid
                                                 OR CONCAT(hf.year,'.',hf.lane2)=e.entryid
                                                 OR CONCAT(hf.year,'.',hf.lane3)=e.entryid)
-                LEFT JOIN video vf ON CAST(vf.heatid AS CHAR) = hf.heatid
+                LEFT JOIN video vf ON vf.heatid = hf.heatid
                 LEFT JOIN hist_heats hfr ON hfr.isfinals = 1 AND hfr.isreroll = 1
                                            AND (CONCAT(hfr.year,'.',hfr.lane1)=e.entryid
                                                 OR CONCAT(hfr.year,'.',hfr.lane2)=e.entryid
                                                 OR CONCAT(hfr.year,'.',hfr.lane3)=e.entryid)
-                LEFT JOIN video vfr ON CAST(vfr.heatid AS CHAR) = hfr.heatid
+                LEFT JOIN video vfr ON vfr.heatid = hfr.heatid
                 WHERE e.buggyid = ?
                 ORDER BY year DESC, Team ASC;";
 

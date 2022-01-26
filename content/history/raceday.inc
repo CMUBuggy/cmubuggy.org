@@ -66,10 +66,10 @@
            when isfinals = 1 and isreroll = 1 and e3.finalreroll <= 0 then e3.reroll end AS timesec3,
       h.note, v.youtubeid AS video_youtubeid, v.title AS video_title
     FROM hist_heats h
-    LEFT JOIN hist_raceentries e1 on concat(h.year, '.', Lane1) = e1.entryid LEFT JOIN hist_orgs o1 on e1.orgid = o1.orgid
-    LEFT JOIN hist_raceentries e2 on concat(h.year, '.', Lane2) = e2.entryid LEFT JOIN hist_orgs o2 on e2.orgid = o2.orgid
-    LEFT JOIN hist_raceentries e3 on concat(h.year, '.', Lane3) = e3.entryid LEFT JOIN hist_orgs o3 on e3.orgid = o3.orgid
-    LEFT JOIN video v on h.heatid = CAST(v.heatid as CHAR)
+    LEFT JOIN hist_raceentries e1 ON concat(h.year, '.', Lane1) = e1.entryid LEFT JOIN hist_orgs o1 ON e1.orgid = o1.orgid
+    LEFT JOIN hist_raceentries e2 ON concat(h.year, '.', Lane2) = e2.entryid LEFT JOIN hist_orgs o2 ON e2.orgid = o2.orgid
+    LEFT JOIN hist_raceentries e3 ON concat(h.year, '.', Lane3) = e3.entryid LEFT JOIN hist_orgs o3 ON e3.orgid = o3.orgid
+    LEFT JOIN video v ON h.heatid = v.heatid
     WHERE h.year = ? AND (h.class != 'E' OR v.youtubeid IS NOT NULL)
     ORDER BY h.class,isfinals,isreroll,number ASC;";
 
