@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-md-8">
 
+    <?php include_once("twitterwidget.inc"); ?>
+
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">Mini Raceday 2021</h5>
@@ -10,10 +12,6 @@
         <a href="/live" class="btn btn-primary">Watch</a>
       </div>
     </div>
-
-    <?php include_once("twitterwidget.inc"); ?>
-
-    <?php include_once("homepage-2019-results.inc"); ?>
 
     <div class="card mb-3">
       <div class="card-body">
