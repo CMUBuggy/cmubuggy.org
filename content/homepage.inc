@@ -1,6 +1,13 @@
 <div class="row">
   <div class="col-md-8">
 
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Raceday 2022 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
+        Spring Carnival will be here before you know it.  Watch this space for more details.
+      </div>
+    </div>
+
     <?php include_once("twitterwidget.inc"); ?>
 
     <div class="card mb-3">
@@ -50,16 +57,15 @@
           <i class="fas fa-graduation-cap fa-inverse" data-fa-transform="shrink-8"></i>
         </span>
         <div class="media-body">
-          <a href="/seniors">Seniors!</a> Become a 2021 member now for free.
+          <a href="/seniors">Seniors!</a> Become a 2022 member now for free.
         </div>
       </div>
       <div class="media mb-3">
-        <span class="fa-layers fa-fw fa-2x mr-2">
-          <i class="fas fa-square text-muted"></i>
-          <i class="fas fa-images fa-inverse" data-fa-transform="shrink-8"></i>
+        <span class="fa-fw fa-2x mr-2">
+          <i class="fab fa-discord text-muted"></i>
         </span>
         <div class="media-body">
-          Share your favorite pics from <a href="/gallery/2016-2017/Raceday---Design-Showcase">Design</a>, <a href="/gallery/2016-2017/Raceday---Prelims">Prelims</a>, <a href="/gallery/2016-2017/Raceday---Finals">Finals</a>
+          Hang out with us on the BAA <a href="/chat">Discord</a>.
         </div>
       </div>
     </section>
