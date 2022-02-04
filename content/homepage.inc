@@ -1,6 +1,13 @@
 <div class="row">
   <div class="col-md-8">
 
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Raceday 2022 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
+        Spring Carnival will be here before you know it.  Watch this space for more details.
+      </div>
+    </div>
+
     <?php include_once("twitterwidget.inc"); ?>
 
     <div class="card mb-3">
