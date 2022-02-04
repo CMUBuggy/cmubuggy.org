@@ -54,15 +54,6 @@
         </div>
       </div>
       <div class="media mb-3">
-        <span class="fa-layers fa-fw fa-2x mr-2">
-          <i class="fas fa-square text-muted"></i>
-          <i class="fas fa-images fa-inverse" data-fa-transform="shrink-8"></i>
-        </span>
-        <div class="media-body">
-          Share your favorite pics from <a href="/gallery/2016-2017/Raceday---Design-Showcase">Design</a>, <a href="/gallery/2016-2017/Raceday---Prelims">Prelims</a>, <a href="/gallery/2016-2017/Raceday---Finals">Finals</a>
-        </div>
-      </div>
-      <div class="media mb-3">
         <span class="fa-fw fa-2x mr-2">
           <i class="fab fa-discord text-muted"></i>
         </span>
