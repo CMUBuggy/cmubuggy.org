@@ -20,9 +20,9 @@
       }
     }
   }
-  $small_word = 'in';
+  $timerSmallWord = 'in';
   if ($hoursleft < 0) {
-    $small_word = 'now:';
+    $timerSmallWord = 'now:';
     $timerCount = "GO";
     $timerUnit = "TIME";
   }
@@ -36,7 +36,7 @@
           <img src="/img/logo-square-small.png" alt="CMU Buggy Alumni Association logo" class="d-lg-none mr-2" height="30" width="30">
           <span class="d-none d-sm-inline">Buggy Alumni Association</span><span class="d-sm-none" title="Buggy Alumni Association">BAA</span>
         </a>
-        <span class="navbar-text d-none d-md-inline text-warning" title="<?php echo("$timerCount $timerUnit"); ?>">Buggy 2022 is April 8&ndash;9</span>
+        <span class="navbar-text d-none d-md-inline text-warning" title="<?php echo("$timerCount $timerUnit"); ?>">Raceday 2022 is April 8&ndash;9</span>
         <button class="navbar-toggler d-lg-none collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

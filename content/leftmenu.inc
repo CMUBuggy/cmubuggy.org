@@ -2,9 +2,8 @@
   <ul class="list-group my-3">
     <li class="list-group-item"><a class="d-block" href="/news">News</a></li>
     <li class="list-group-item"><a class="d-block" href="/video">Videos</a></li>
-    <li class="list-group-item"><a class="d-block" href="/gallery-2021">Gallery</a></li>
-    <li class="list-group-item"><a class="d-block" href="/gallery">Archive</a></li>
-    <li class="list-group-item"><a class="d-block" href="/history">History</a></li>
+    <li class="list-group-item"><span class="d-block"><a href="/gallery-2021">Photos</a> (<a href="/gallery">Archive</a>)</span></li>
+    <li class="list-group-item"><a class="d-block" href="/history">Historical Data</a></li>
     <li class="list-group-item"><a class="d-block" href="/about">About Us</a></li>
     <li class="list-group-item"><a class="d-block" href="/reference">Reference</a></li>
     <li class="list-group-item"><a class="d-block" href="/resources">Resources</a></li>
