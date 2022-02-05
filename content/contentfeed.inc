@@ -47,58 +47,6 @@ if ($newsResults) {
   }
 }
 
-$galleryParents = array();
-
-##GALLERY ITEMS##
-$gallerySQL = "SELECT items.id, items.created, users.name, items.name, items.relative_url_cache, items.parent_id, items.relative_path_cache
-  FROM items
-  JOIN users
-  ON items.owner_id=users.id
-  WHERE type LIKE 'photo'
-  and items.created > $cutoff
-  ORDER BY created DESC
-  LIMIT 0,100";
-$galleryResults = dbQuery("cmubuggy_g3",$gallerySQL);
-
-$galleryClusterItems = array();
-
-if ($galleryResults) {
-  $icon_map["gallery"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i></span>';
-  while ($post = mysqli_fetch_row($galleryResults)) {
-    $clusterKey = $post[2].$post[5];
-    $parent_id = $post[5];
-    if (array_key_exists($clusterKey, $galleryClusterItems)) {
-      $galleryClusterItems[$clusterKey]["count"]++;
-      if (!array_key_exists($parent_id, $galleryParents)) {
-        $parentSQL = "SELECT album.title, album.relative_url_cache, cover.relative_path_cache
-          FROM items album
-          LEFT OUTER JOIN items cover
-          ON album.album_cover_item_id = cover.id
-          WHERE album.id =".$parent_id;
-        $parentResults = dbQuery("cmubuggy_g3",$parentSQL);
-        while ($parent = mysqli_fetch_row($parentResults)) {
-          $galleryParents[$parent_id]= array("title"=>$parent[0], "relative_url_cache"=>$parent[1], "thumburl"=>"/gallery/var/thumbs/".$parent[2]);
-        }
-      }
-      $href = "/gallery/".$galleryParents[$parent_id]["relative_url_cache"];
-      $galleryClusterItems[$clusterKey]["content"] = $post[2] . ' uploaded ' . $galleryClusterItems[$clusterKey]["count"] . ' pics to <a href="' . $href . '">' . $galleryParents[$parent_id]["title"] . '</a>';
-      $galleryClusterItems[$clusterKey]['media'] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><img src="https://cmubuggy.org' . $galleryParents[$parent_id]['thumburl'] . '" alt="" class="rounded img-fa"></span>';
-    } else {
-      $href = "/gallery/".$post[4];
-      $galleryClusterItems[$clusterKey] = array(
-        "timestamp"=>$post[1],
-        "count"=>1,
-        "content" => $post[2] . ' uploaded <a href="' . $href . '">' . $post[3] . '</a>',
-        "type"=>"gallery",
-        "media"=>'<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><img src="https://cmubuggy.org/gallery/var/thumbs/' . $post[6] . '" alt="" class="rounded img-fa"></span>'
-      );
-    }
-  }
-  foreach ($galleryClusterItems as $a) {
-    array_push($items,$a);
-  }
-}
-
 ##phpBB FORUM ITEMS##
 $forumSQL = "SELECT posts.post_id, posts.post_time, users.username, topics.topic_title, posts.topic_id
   FROM posts
@@ -136,53 +84,6 @@ if ($forumResults) {
     array_push($items,$a);
   }
 }
-
-##GALLERY COMMENTS##
-$gcommentSQL = "SELECT comments.id,comments.created,users.name,items.relative_path_cache,comments.text,items.title,items.relative_url_cache, comments.guest_name
-  FROM comments
-  JOIN users
-  ON comments.author_id=users.id
-  JOIN items
-  ON comments.item_id=items.id
-  WHERE comments.state LIKE 'published'
-  and comments.created > $cutoff
-  ORDER BY comments.created DESC";
-$gcommentResults = dbQuery("cmubuggy_g3",$gcommentSQL);
-
-$gcommentClusterItems = array();
-
-if ($gcommentResults) {
-  $icon_map["gcomment"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i><i class="fas fa-comment" data-fa-transform="shrink-10 right-6 down-6"></i></span>';
-  while ($post = mysqli_fetch_row($gcommentResults)) {
-    $parent_id = $post[5];
-    $commentDate = date("md",$post[1]);
-    $clusterKey = $parent_id.$commentDate;
-    $commenttext = $post[5];
-    $username = $post[2];
-    if ($username == "guest" && !is_null($post[7])) {
-      $username = $post[7];
-    }
-    $href = "/gallery/".$post[6]."#comments";
-    $thumburl = "/gallery/var/thumbs/".$post[3];
-    if (strlen($commenttext) > 29) { $commenttext = substr($commenttext, 0, 26)."..."; }
-    if (array_key_exists($clusterKey, $gcommentClusterItems)) {
-      $gcommentClusterItems[$clusterKey]["count"]++;
-      $gcommentClusterItems[$clusterKey]["content"] = $gcommentClusterItems[$clusterKey]["count"] . ' new comments on <a href="' . $href . '">' . $post[5] . '</a>';
-    } else {
-      $gcommentClusterItems[$clusterKey] = array(
-        "timestamp"=>$post[1],
-        "count"=>1,
-        "content" => $username . ' commented on <a href="' . $href . '">' . $commenttext . '</a>',
-        "type"=>"gcomment",
-        "media"=>'<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><img src="https://cmubuggy.org' . $thumburl . '" alt="" class="rounded img-fa"><i class="fas fa-comment" data-fa-transform="shrink-10 right-6 down-6"></i></span>'
-      );
-    }
-  }
-  foreach ($gcommentClusterItems as $a) {
-    array_push($items,$a);
-  }
-}
-
 
 ##NEWS COMMENTS##
 $ncommentSQL = "SELECT wp_comments.comment_ID, wp_comments.comment_date, wp_comments.comment_author, wp_comments.comment_content, wp_comments.comment_post_ID, wp_posts.post_name, wp_posts.post_title
