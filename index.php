@@ -29,11 +29,6 @@
       $title = "Live! | ".$title;
       $headline = "Live Streaming Buggy";
       break;
-    case "membership":
-    case "join":
-      $title = "Membership | ".$title;
-      $headline = "Join or Renew";
-      break;
     case "search":
       $title = "Search Results | ".$title;
       $headline = "Search Results";
