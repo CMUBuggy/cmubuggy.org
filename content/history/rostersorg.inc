@@ -36,10 +36,6 @@
                  WHERE e.year = ? AND e.orgid = ?
                  ORDER BY o.shortname, class DESC, team, heattype, position";
 
-  // We could get these all at once instead of 2 different queries and split them locally while maintaining the sort order,
-  // but this is slightly simpler to write/understand.
-  //
-  // Also, if we decide to use a single connection on this page, we can reuse the prepared statement here.
   $rosters = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, $orgurlkey);
 
   if ($rosters->num_rows == 0) {
