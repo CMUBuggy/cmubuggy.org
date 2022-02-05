@@ -13,14 +13,21 @@ php_flag display_errors on
 
 RewriteEngine On    # Turn on the rewriting engine
 
-Redirect 302 /admin /news/wp-admin
+
+# Old URLs with new homes - 301 (perm) redirect
+# Better for SEO: https://developers.google.com/search/docs/advanced/crawling/301-redirects
+Redirect 301 /join /membership
+Redirect 301 /admin /news/wp-admin
+# /gallery-2021 was a temporary thing while we migrated to smugmug.
+Redirect 301 /gallery-2021 /smugmug
+
+# We use 302 (temp) redirects for things that are hosted off site.
 Redirect 302 /auction https://www.32auctions.com/baa2019
 Redirect 302 /chat https://discord.gg/PUwuUuj
-Redirect 302 /gallery-2021 https://cmubuggy.smugmug.com/
-Redirect 302 /join /membership
 Redirect 302 /membership /news/2019/11/giving-cmu-day-and-new-membership-levels/
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
 Redirect 302 /fantasy https://docs.google.com/forms/d/e/1FAIpQLSeiUE_9vJIAAo67G_mIZCvEfi3Obe6omOYbWaYqNVcXwNTw2w/viewform?usp=sf_link
+Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
 #top level sections
