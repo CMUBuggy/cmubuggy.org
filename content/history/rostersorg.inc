@@ -86,6 +86,7 @@
   }
 
   echo("<h1>".$year." ".$orgshortname." Rosters</h1>");
+  echo("<p><a href=\"/history/rosters/".$year."\">See ".$year." rosters summary</a></p>");
   echo ("<div class=\"table-responsive\"><table class=\"table\">");
 
   echo("<tr><th>Team</th><th>Role</th><th>Person</th></tr>");
