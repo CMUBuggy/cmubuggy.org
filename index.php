@@ -13,7 +13,6 @@
   switch($s){
     case "history":
       $title = "History | ".$title;
-      $headline = "History";
       break;
     case "search":
       $title = "Search Results | ".$title;
@@ -33,7 +32,6 @@
   } else {
     $content = "./content/404.inc";
     $title = "Not Found | ".$title;
-    $headline = "Not Found";
   }
 ?>
 <!doctype html>
