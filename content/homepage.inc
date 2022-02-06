@@ -65,7 +65,7 @@
           <i class="fab fa-discord text-muted"></i>
         </span>
         <div class="media-body">
-          Hang out with us on the BAA <a href="/chat">Discord</a>.
+          Hang out with us on the BAA <a target="_blank" href="/chat">Discord</a>.
         </div>
       </div>
     </section>

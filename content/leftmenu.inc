@@ -2,11 +2,11 @@
   <ul class="list-group my-3">
     <li class="list-group-item"><a class="d-block" href="/news">News</a></li>
     <li class="list-group-item"><a class="d-block" href="/video">Videos</a></li>
-    <li class="list-group-item"><a class="d-block" href="/smugmug">Photos</a></li>
+    <li class="list-group-item"><a target="_blank" class="d-block" href="/smugmug">Photos</a></li>
     <li class="list-group-item"><a class="d-block" href="/history">Historical Data</a></li>
-    <li class="list-group-item"><a class="d-block" href="/about">About Us</a></li>
     <li class="list-group-item"><a class="d-block" href="/reference">Reference</a></li>
     <li class="list-group-item"><a class="d-block" href="/resources">Resources</a></li>
+    <li class="list-group-item"><a class="d-block" href="/about">About Us</a></li>
     <li class="list-group-item"><a class="d-block" href="/membership">Membership</a></li>
   </ul>
 </nav>

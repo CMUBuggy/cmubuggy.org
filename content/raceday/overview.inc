@@ -47,7 +47,7 @@
   <div class="media mb-3 col-md-6">
     <img src="/img/chaticon.png" alt="chat" class="mr-3 raceday-thumb">
     <div class="media-body">
-      <h5 class="mt-0"><a href="https://discord.gg/PUwuUuj">Chat</a></h5>
+      <h5 class="mt-0"><a target="_blank" href="https://discord.gg/PUwuUuj">Chat</a></h5>
       We know there are alumni all over the world watching and listening to the coverage that would love to communicate faster than the forum will allow. We bring you the Raceday Chat.
     </div>
   </div>
