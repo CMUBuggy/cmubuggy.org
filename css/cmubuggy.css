@@ -1,5 +1,5 @@
 /*  ___LAYOUT___   */
-html { 
+html {
 	overflow-y: scroll;
 	color:#333;
 	font-family: Helvetica, Arial;}
@@ -16,8 +16,8 @@ img#logo {margin:-54px 0 0;}
 #hd #title{
 	padding:0px 0 0 190px;
 }
-#left { 
-	width:180px;	
+#left {
+	width:180px;
 }
 
 #content {
@@ -30,7 +30,7 @@ img#logo {margin:-54px 0 0;}
 	border-top:1px solid #ccc;
 	color:#999;
 	font-size:10px;
-	text-align:right;  
+	text-align:right;
 }
 
 .floatleft 	{ float:left;}
@@ -95,7 +95,7 @@ input{
 }
 
 form input[type="checkbox"]{
-	margin:17px 5px 0px 5px;	
+	margin:17px 5px 0px 5px;
 }
 
 fieldset label{
@@ -103,7 +103,7 @@ fieldset label{
 	float: left;
 	text-align:right;
 	clear: left;
-	margin: 15px 5px 0 0;	
+	margin: 15px 5px 0 0;
 	width: 180px;
 	font-size: 1.2em;
 }
@@ -141,8 +141,8 @@ fieldset .detail{
 
 .button:hover,
 #ref input[type="submit"]:hover {
-	color: #e22335;	
-} 
+	color: #e22335;
+}
 
 .rounded {
 	-moz-border-radius:15px;
@@ -173,37 +173,37 @@ td.newcol, th.newcol { border-left:1px solid #999; }
 
 /*  ___Tabs___   */
 /* root element for tabs  */
-ul.tabs {  
-	margin:0 !important; 
+ul.tabs {
+	margin:0 !important;
 	padding:0;
 	height:30px;
 font-weight: bold;
-	//border-bottom:1px solid #999;		
+	//border-bottom:1px solid #999;
 }
 
 /* single tab */
-ul.tabs li {  
-	float:left;	 
-	padding:0; 
-	margin:0;  
-	list-style-type:none;	
+ul.tabs li {
+	float:left;
+	padding:0;
+	margin:0;
+	list-style-type:none;
 }
 
 /* link inside the tab. uses a background image */
-ul.tabs a { 
+ul.tabs a {
 	float:left;
 	font-size:13px;
 	display:block;
-	padding:5px 15px;	
+	padding:5px 15px;
 	text-decoration:none;
-	border:1px solid #999;	
+	border:1px solid #999;
 	border-bottom:0px;
 	height:18px;
 	background-color:#efefef;
 	color:#333;
 	margin-right:2px;
 	position:relative;
-	top:1px;	
+	top:1px;
 	outline:0;
 	-moz-border-radius:4px 4px 0 0;
 	-webkit-border-radius:4px 4px 0 0;
@@ -213,16 +213,16 @@ ul.tabs a:hover {
 	background-color:#F7F7F7;
 	color:#333;
 }
-	
+
 /* selected tab */
 ul.tabs a.current {
 	background-color:#f8f8f8;
-	border-bottom:1px solid #f8f8f8;	
-	color:#f6ab1e;	
+	border-bottom:1px solid #f8f8f8;
+	color:#f6ab1e;
 	cursor:default;
 }
 
-	
+
 /* tab pane */
 div.pane {
 	overflow:auto;
@@ -244,10 +244,10 @@ div.pane {
 
 .pane h1 {
 	font-size: 2.5em;
-	margin: 10px 0 15px 0;	
+	margin: 10px 0 15px 0;
 }
-.pane h2 { 
-	font-size: 2em; 
+.pane h2 {
+	font-size: 2em;
 	margin: 5px 0 10px 0;
 }
 .pane .title,
@@ -258,7 +258,7 @@ div.pane {
 .pane h4 {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin: 5px 0 5px 0;	
+	margin: 5px 0 5px 0;
 }
 
 
@@ -271,7 +271,7 @@ img[rel] {cursor: pointer; }
 	display:none;
 	z-index:10000;
 	background-color:#333;
-	width:750px;	
+	width:750px;
 	height:525px;
 	border:1px solid #666;
 	-moz-box-shadow:0 0 90px 5px #000;
@@ -305,7 +305,7 @@ img[rel] {cursor: pointer; }
 #mainnav {font-size: 1.3em; text-align:center; margin:10px 0;}
 
 #leftmenu input {
-	float: none;	
+	float: none;
 }
 
 #googlesearch {
@@ -324,7 +324,7 @@ img[rel] {cursor: pointer; }
 	font-size: 1em;
 	text-align: left;
 	margin:0 0 3px 5px;
-	width: 50px	
+	width: 50px
 }
 
 #login input[type="text"], #login input[type="password"] {
@@ -334,47 +334,11 @@ img[rel] {cursor: pointer; }
 #socialmedia {
 	margin:25px 0;
 	width:180px;
-	text-align: center;	
+	text-align: center;
 }
 
 #homepage h3 {font-weight: bold; font-size: 1.1em; margin-bottom: 5px;}
 #homepage .pane {overflow: visible; }
-
-/*  ___Homepage Rotating FeaturePic___   */
-#homepage #featurepic { 
-	margin:16px 0 25px 0; 
-	position:relative;
-	overflow:hidden;
-	width: 500px;
-	height: 250px;
-	float:left;
-}
-
-/* root element for the scroll pics */
-#homepage #featurepic .scrollitems {
-	width:20000em;
-	position:absolute;
-	clear:both;
-}
-
-/* single scroll item */
-#homepage #featurepic .scrollitems .item {
-	float:left;
-	cursor:pointer;
-	width:500px !important;
-	height:250px;
-	margin:0px;
-}
-
-#featurepic .caption {
-	width:490px;
-	color:#fff;
-	background-color: rgba(0,0,0,.5);
-	padding:5px;
-	position:absolute;
-	
-	margin:225px 0 0 0;	
-}
 
 /*  ___Homepage Content Items___   */
 .item 						{ height: 49px; padding: 3px; margin:4px 4px 4px 0;}

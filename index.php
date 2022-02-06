@@ -9,50 +9,19 @@
     $s = $_GET["s"];
   }
   $title = "CMU Buggy Alumni Association";
-  $headline = "Records: 2:02.16, 2:23.27";
 
   switch($s){
-    case "about":
-      $title = "About | ".$title;
-      $headline = "About";
-      break;
-    case "buzz":
-      $title = "Buzz | ".$title;
-      $headline = "Live Buggy Chat";
-      break;
     case "history":
       $title = "History | ".$title;
-      $headline = "History";
-      $dbname = "cmubuggy_pog";
-      break;
-    case "live":
-      $title = "Live! | ".$title;
-      $headline = "Live Streaming Buggy";
       break;
     case "search":
       $title = "Search Results | ".$title;
-      $headline = "Search Results";
-      break;
-    case "seniors":
-      $title = "Seniors | ".$title;
-      $headline = "You're alumni now, class of ".date('Y');
-      break;
-    case "store":
-      $title = "Store | ".$title;
-      $headline = "Merchandise and souveniers!";
       break;
     case "raceday":
       $title = "Raceday | ".$title;
-      $headline = "Raceday!";
-      break;
-    case "video":
-    case "videolist":
-      $title = "Videos | ".$title;
-      $headline = "Video Archives";
       break;
     case "events":
       $title = "Events | ".$title;
-      $headline = "Events";
       break;
   }
 
@@ -63,7 +32,6 @@
   } else {
     $content = "./content/404.inc";
     $title = "Not Found | ".$title;
-    $headline = "Not Found";
   }
 ?>
 <!doctype html>

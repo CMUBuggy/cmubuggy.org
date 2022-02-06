@@ -30,12 +30,9 @@ Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
 #top level sections
-RewriteRule		^buzz[/]*$						index.php?s=buzz				[NC,L]
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^raceday[/]*$					index.php?s=raceday				[NC,L]
 RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
-RewriteRule		^seniors[/]*$					index.php?s=seniors				[NC,L]
-RewriteRule		^store[/]*$						index.php?s=store				[NC,L]
 RewriteRule		^events[/]*$					index.php?s=events				[NC,L]
 
 #history section: specific objects
