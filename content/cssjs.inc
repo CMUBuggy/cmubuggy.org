@@ -41,7 +41,6 @@
 <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js" integrity="sha384-3Nqiqht3ZZEO8FKj7GR1upiI385J92VwWNLj+FqHxtLYxd9l+WYpeqSOrLh0T12c" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/js/jquery.editinplace.js" ></script>
 <script type="text/javascript" src="/js/googleanalytics.js"></script>
-<script type="text/javascript" src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 <script src="https://www.youtube.com/iframe_api" defer></script>
 <script type="text/javascript">
