@@ -1,0 +1,31 @@
+// Custom.scss for cmubuggy.org
+// This uses "Option A": Import all of bootstrap, for simplicity sake.
+//
+// It assumes bootstrap (4.1) has been installed in ../bootstrap-4.1.0
+//
+// See: https://getbootstrap.com/docs/4.1/getting-started/theming/
+
+// Our replacements for some but not all default bootstrap colors.
+//
+// Note: Purple is actually the default color, but we need it to
+// replace "danger", so we redefine it here.
+$blue: #2366e2;
+$indigo: #5c23e2;
+$purple: #6f42c1;
+$pink: #e22395;
+$red: #e22335;
+$orange: #ec5a20;
+$yellow: #f6ab1e;
+$green: #23e26f;
+$teal: #1be2ce;
+$cyan: #2395e2;
+
+// Theme color by name
+$primary: $red;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $purple;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+

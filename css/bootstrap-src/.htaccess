@@ -1,0 +1,4 @@
+php_flag display_errors on
+
+# Shouldn't be visible from web
+Deny from all
