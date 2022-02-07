@@ -372,3 +372,36 @@ object {
 .wp-caption-text {
 	text-align: center;
 }
+
+/*--------------------------------------------------------------
+## Customization for CMUBuggy.org
+--------------------------------------------------------------*/
+
+article[class^="post"] {
+	padding: 0 1rem;
+}
+
+li.row {
+	padding: 0 1rem;
+}
+
+@media (max-width: 575.98px) {
+	.circular-image-container {
+		display: flex;
+		justify-content: center;
+		padding-bottom: 1rem;
+	}
+}
+   
+.circular-image {
+	width: 100%;
+	max-width: 200px;
+	border-radius: 50%;
+	overflow: hidden;
+	background-color: white;
+}
+   
+.circular-image img {
+	width: 100%;
+}
+   

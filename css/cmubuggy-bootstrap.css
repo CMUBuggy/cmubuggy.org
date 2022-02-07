@@ -58,11 +58,7 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
   display: block;
 }
 
-article[class^="post"] {
-  padding: 0 1rem;
-}
-
-body, .normal-text {
+body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
@@ -128,10 +124,6 @@ dt {
 dd {
   margin-bottom: .5rem;
   margin-left: 0;
-}
-
-li.row {
-  padding: 0 1rem;
 }
 
 blockquote {
@@ -215,26 +207,6 @@ figure {
 img {
   vertical-align: middle;
   border-style: none;
-}
-
-@media (max-width: 575.98px) {
- .circular-image-container {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 1rem;
-  }
-}
-
-.circular-image {
-  width: 100%;
-  max-width: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: white;
-}
-
-.circular-image img {
-  width: 100%;
 }
 
 svg:not(:root) {
