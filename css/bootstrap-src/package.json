@@ -2,6 +2,10 @@
   "name": "cmubuggy-bootstrap",
   "description": "Bootstrap Theming for cmubuggy.org",
   "version": "4.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmubuggy/cmubuggy.org"
+  },
   "scripts": {
     "bundlesize": "bundlesize",
     "css": "npm-run-all --parallel css-lint* css-compile* --sequential css-prefix* css-minify*",
@@ -29,6 +33,18 @@
     "stylelint-order": "^0.8.1",
     "stylelint-scss": "^2.5.0"
   },
+  "browserslist": [
+    "last 1 major version",
+    ">= 1%",
+    "Chrome >= 45",
+    "Firefox >= 38",
+    "Edge >= 12",
+    "Explorer >= 10",
+    "iOS >= 9",
+    "Safari >= 9",
+    "Android >= 4.4",
+    "Opera >= 30"
+  ],
   "engines": {
     "node": ">=6"
   }
