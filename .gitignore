@@ -7,6 +7,10 @@ content/cache/*
 dbconfig.inc
 files/
 
+# exclude node_modules and dist from css/bootstrap-src
+css/bootstrap-src/dist
+css/bootstrap-src/node_modules
+
 # exclude everything in /forum except README.md and styles/cmubuggy
 forum/*
 !forum/README.md
