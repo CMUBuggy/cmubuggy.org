@@ -14,6 +14,7 @@ Bootstrap is available at http://getbootstrap.com.  We currently use the somewha
   - npm run css
   - copy `cmubuggy-bootstrap.css` file from `dist/css/` to `/css` and commit it.
     - We do not currently use the minified version, but it is generated as part of this process.
+  - update the cachebuster in `/content/cssjs.inc`
 
 ## Steps to consider if updating Bootstrap version
   - Update package.json for correct versions for new bootstrap of all dependencies.  Remember to commit `package-lock.json` too when you regenerate.
