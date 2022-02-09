@@ -7,6 +7,11 @@
  * Template: wp-bootstrap-starter
  */
 
+ /* Note:
+  *
+  * The ClearCacheForMe plugin will prevent normal wordpress version changes from cachebusting, use
+  * the dashboard to clear the cache when you update this file. */
+
 /*--------------------------------------------------------------
 # Bootstrap Fixes
 --------------------------------------------------------------*/
