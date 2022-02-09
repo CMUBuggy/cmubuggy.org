@@ -1,5 +1,5 @@
 <!--CSS-->
-<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2022020900" />
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2022020901" />
 <style>
   body { margin-top: 4.5rem; }
   @supports ((postition: -webkit-sticky) or (position: sticky)) {
