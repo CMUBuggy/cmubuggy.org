@@ -48,7 +48,7 @@
     <div class="row">
       <div id="navigation" class="col-lg-3 collapse d-lg-block">
         <a href="/" class="d-none d-lg-block">
-          <img src="/img/logo-sidebar.png" alt="CMU Buggy Alumni Assocation logo" class="img-fluid mx-auto d-block">
+          <img src="/img/logo-sidebar.png" width=255 height=376 alt="CMU Buggy Alumni Assocation logo" class="img-fluid mx-auto d-block">
         </a>
         <?php include_once 'leftmenu.inc'; ?>
       </div>
