@@ -43,7 +43,9 @@
   <meta name="description" content="" />
   <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
   <title><?php echo($title); ?></title>
-  <?php include_once(ROOT_DIR."/content/cssjs.inc"); ?>
+<?php
+  include_once(ROOT_DIR."/content/cssjs.inc");
+?>
 </head>
 <?php
   include_once("content/pre-content.inc");
