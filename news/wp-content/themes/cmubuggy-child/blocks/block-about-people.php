@@ -11,7 +11,15 @@
             <small><?php block_field( 'pronouns' ); ?></small>
         </h4>
         <div class="small">
-            c/o <?php block_field( 'graduation-year' ); ?> | <?php block_field( 'team-postions' ); ?>  | <a href="<?php block_field( 'email' ); ?>">email</a>        
+            c/o <?php block_field( 'graduation-year' ); ?> |
+                 <?php block_field( 'team-postions' ); ?>  |
+                 <?php
+                   $histKey = block_field('history-db-key', false);
+                   if(!empty($histKey)) {
+                     echo("<a href=\"/history/person/".$histKey."\">history</a> |");
+                   }
+                 ?>
+                 <a href="<?php block_field( 'email' ); ?>">email</a>
 	</div>
         <br>
         <div><?php block_field( 'about' ); ?></div>
