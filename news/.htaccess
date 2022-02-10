@@ -1,3 +1,18 @@
+# Ensure we get cache-control headers for key objects
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access 1 month"
+    ExpiresByType image/jpeg "access 1 month"
+    ExpiresByType image/gif "access 1 month"
+    ExpiresByType image/png "access 1 month"
+    ExpiresByType image/svg "access 1 month"
+    ExpiresByType text/css "access 1 year"
+    ExpiresByType application/pdf "access 1 month"
+    ExpiresByType application/javascript "access 1 year"
+    ExpiresByType application/x-javascript "access 1 year"
+    ExpiresByType image/x-icon "access 1 year"
+</IfModule>
+
 # BEGIN WordPress
 # The directives (lines) between "BEGIN WordPress" and "END WordPress" are
 # dynamically generated, and should only be modified via WordPress filters.

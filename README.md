@@ -11,6 +11,9 @@ The site is built around a number of 3rd party platforms and tools. If you want 
  - News: /news runs Wordpress (http://wordpress.org/).  Version info is available in `/news/README`
  - Wiki: As of 2021, `/reference` points to files in WordPress
 
+# LAMP Setup
+This site is built to run on a LAMP platform (Linux/Apache/PHP/MySQL).  We make extensive use of the apache modules `mod_rewrite` and `mod_expires`.
+
 # Wiki
 As of October 2021, `/reference` points to reference-style pages hosted in our WordPress installation.
 
