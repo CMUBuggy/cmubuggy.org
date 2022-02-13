@@ -14,13 +14,13 @@ def main():
     try:
         recent_comments = fetch_recent_comments(comment_feed_url)
         _print_items(recent_comments)
-    except Exception, e:
+    except Exception as e:
         print(e)
 
     try:
         recent_photos = fetch_recent_photos(photo_feed_url)
         _print_items(recent_photos)
-    except Exception, e:
+    except Exception as e:
         print(e)
 
     # TODO: Insert into database any new records
@@ -37,7 +37,7 @@ def fetch_recent_comments(url):
         try:
             comment = parse_comment_from_entry(entry)
             recent_comments.append(comment)
-        except Exception, e:
+        except Exception as e:
             print(e)
 
     return recent_comments
@@ -76,7 +76,7 @@ def fetch_recent_photos(url):
         try:
             photo = parse_photo_addition_from_entry(entry)
             recent_photos.append(photo)
-        except Exception, e:
+        except Exception as e:
             print(e)
 
     return recent_photos
