@@ -8,6 +8,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js" integrity="sha384-3Nqiqht3ZZEO8FKj7GR1upiI385J92VwWNLj+FqHxtLYxd9l+WYpeqSOrLh0T12c" crossorigin="anonymous"></script>
 
+<?php if(isset($ENABLE_GA_TAG) && $ENABLE_GA_TAG) { ?>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCW3VN91ZX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -16,6 +17,7 @@
 
   gtag('config', 'G-VCW3VN91ZX');
 </script>
+<?php } ?>
 
 <script defer src="https://www.youtube.com/iframe_api"></script>
 
