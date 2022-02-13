@@ -7,25 +7,25 @@
 
 // Our replacements for some but not all default bootstrap colors.
 //
-// Note: Purple is actually the default color, but we need it to
-// replace "danger", so we redefine it here.
-$blue: #2366e2;
-$indigo: #5c23e2;
-$purple: #6f42c1;
-$pink: #e22395;
-$red: #e22335;
-$orange: #ec5a20;
-$yellow: #f6ab1e;
+// These colors come from the CMU Web/Brand Guidelines:
+//   https://cmu.edu/brand/brand-guidelines/web.html
+$red: #b00;
+$gray: #e0e0e0;
+$gray-dark: #666;
+
+// Yellow is translated from "Gold" in the CMU Brand Guidelines.
+$yellow: #a60;
+$teal: #067;
+$blue: #247;
 $green: #085;
-$teal: #1be2ce;
-$cyan: #2395e2;
+// green-dark: #243  (not used in bootstrap)
 
 // Theme color by name
 $primary: $red;
 $success: $green;
-$info: $cyan;
+$info: $teal;
 $warning: $yellow;
-$danger: $purple;
+$danger: $yellow;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
