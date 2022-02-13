@@ -35,29 +35,37 @@ def fetch_recent_comments(url: str) -> 'list[dict]':
 
     recent_comments = []
     for entry in _get_entries_from_xml_root(xml_root):
-        comment = {}
-        recent_comments.append(comment)
-
-        smugmug_id = _get_item_from_element(entry, 'id').text
-        matches = re.search(r'\Asmugmug:comment:(?P<comment_id>\d+)\Z', smugmug_id)
-        comment['comment_id'] = matches.groupdict()['comment_id']
-
-        title = _get_item_from_element(entry, 'title').text
-        matches = re.search(r'\A(?P<author>.*) commented on (.*) photo\Z', title)
-        comment['author'] = matches.groupdict()['author']
-
-        content = _get_item_from_element(entry, 'content').text
-        matches = re.search(
-          r'<img src="(?P<thumbnail_url>https:\/\/[^"]+\.[\w]+)".*>.*<p>Comment: (?P<comment>.*)<\/p>',
-          content)
-        matches_dict = matches.groupdict()
-        comment['thumbnail_url'] = matches_dict['thumbnail_url']
-        comment['comment'] = matches_dict['comment']
-
-        comment['action_url'] = _get_item_from_element(entry, 'link').get('href')
-        comment['created_at'] = datetime.fromisoformat(_get_item_from_element(entry, 'updated').text)
+        try:
+            comment = parse_comment_from_entry(entry)
+            recent_comments.append(comment)
+        except:
+            pass
 
     return recent_comments
+
+def parse_comment_from_entry(entry: Element) -> dict:
+    comment = {}
+
+    smugmug_id = _get_item_from_element(entry, 'id').text
+    matches = re.search(r'\Asmugmug:comment:(?P<comment_id>\d+)\Z', smugmug_id)
+    comment['comment_id'] = matches.groupdict()['comment_id']
+
+    title = _get_item_from_element(entry, 'title').text
+    matches = re.search(r'\A(?P<author>.*) commented on (.*) photo\Z', title)
+    comment['author'] = matches.groupdict()['author']
+
+    content = _get_item_from_element(entry, 'content').text
+    matches = re.search(
+        r'<img src="(?P<thumbnail_url>https:\/\/[^"]+\.[\w]+)".*>.*<p>Comment: (?P<comment>.*)<\/p>',
+        content)
+    matches_dict = matches.groupdict()
+    comment['thumbnail_url'] = matches_dict['thumbnail_url']
+    comment['comment'] = matches_dict['comment']
+
+    comment['action_url'] = _get_item_from_element(entry, 'link').get('href')
+    comment['created_at'] = datetime.fromisoformat(_get_item_from_element(entry, 'updated').text)
+
+    return comment
 
 
 def fetch_recent_photos(url: str) -> 'list[dict]':
@@ -66,23 +74,32 @@ def fetch_recent_photos(url: str) -> 'list[dict]':
 
     recent_photos = []
     for entry in _get_entries_from_xml_root(xml_root):
-        photo = {}
-        recent_photos.append(photo)
-
-        action_url = _get_item_from_element(entry, 'link').get('href')
-        matches = re.search(
-            r'(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/(?P<gallery_slug>[^\/]+\/[^\/]+)\/)(?P<photo_slug>[^\/]+)\/*',
-            action_url)
-        matches_dict = matches.groupdict()
-
-        photo['action_url'] = action_url
-        photo['gallery_url'] = matches_dict['gallery_url']
-        photo['gallery_slug'] = matches_dict['gallery_slug']
-        photo['photo_slug'] = matches_dict['photo_slug']
-        photo['thumbnail_url'] = _get_item_from_element(entry, 'id').text
-        photo['created_at'] = datetime.fromisoformat(_get_item_from_element(entry, 'updated').text)
+        try:
+            photo = parse_photo_addition_from_entry(entry)
+            recent_photos.append(photo)
+        except:
+            pass
 
     return recent_photos
+
+
+def parse_photo_addition_from_entry(entry: Element) -> dict:
+    photo = {}
+
+    action_url = _get_item_from_element(entry, 'link').get('href')
+    matches = re.search(
+        r'(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/(?P<gallery_slug>[^\/]+\/[^\/]+)\/)(?P<photo_slug>[^\/]+)\/*',
+        action_url)
+    matches_dict = matches.groupdict()
+
+    photo['action_url'] = action_url
+    photo['gallery_url'] = matches_dict['gallery_url']
+    photo['gallery_slug'] = matches_dict['gallery_slug']
+    photo['photo_slug'] = matches_dict['photo_slug']
+    photo['thumbnail_url'] = _get_item_from_element(entry, 'id').text
+    photo['created_at'] = datetime.fromisoformat(_get_item_from_element(entry, 'updated').text)
+
+    return photo
 
 
 def _get_entries_from_xml_root(xml_root: Element) -> 'list[Element]':
