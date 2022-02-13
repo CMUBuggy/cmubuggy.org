@@ -1,6 +1,5 @@
 from datetime import datetime
 import re
-from xml.dom.minidom import Element
 import requests
 from xml.etree import ElementTree
 
@@ -15,14 +14,14 @@ def main():
     try:
         recent_comments = fetch_recent_comments(comment_feed_url)
         _print_items(recent_comments)
-    except:
-        pass
+    except Exception, e:
+        print(e)
 
     try:
         recent_photos = fetch_recent_photos(photo_feed_url)
         _print_items(recent_photos)
-    except:
-        pass
+    except Exception, e:
+        print(e)
 
     # TODO: Insert into database any new records
     # TODO: Schedule with Crontab - https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
@@ -38,8 +37,8 @@ def fetch_recent_comments(url):
         try:
             comment = parse_comment_from_entry(entry)
             recent_comments.append(comment)
-        except:
-            pass
+        except Exception, e:
+            print(e)
 
     return recent_comments
 
@@ -63,7 +62,7 @@ def parse_comment_from_entry(entry):
     comment['comment'] = matches_dict['comment']
 
     comment['action_url'] = _get_item_from_element(entry, 'link').get('href')
-    comment['created_at'] = datetime.fromisoformat(_get_item_from_element(entry, 'updated').text)
+    comment['created_at'] = _get_datetime_from_timestamp(_get_item_from_element(entry, 'updated').text)
 
     return comment
 
@@ -77,8 +76,8 @@ def fetch_recent_photos(url):
         try:
             photo = parse_photo_addition_from_entry(entry)
             recent_photos.append(photo)
-        except:
-            pass
+        except Exception, e:
+            print(e)
 
     return recent_photos
 
@@ -97,7 +96,7 @@ def parse_photo_addition_from_entry(entry):
     photo['gallery_slug'] = matches_dict['gallery_slug']
     photo['photo_slug'] = matches_dict['photo_slug']
     photo['thumbnail_url'] = _get_item_from_element(entry, 'id').text
-    photo['created_at'] = datetime.fromisoformat(_get_item_from_element(entry, 'updated').text)
+    photo['created_at'] = _get_datetime_from_timestamp(_get_item_from_element(entry, 'updated').text)
 
     return photo
 
@@ -110,10 +109,18 @@ def _get_item_from_element(el, tag):
     return el.find('atom:%s' % tag, xml_namespaces)
 
 
+def _get_datetime_from_timestamp(timestamp):
+    # We get timestamps in form '2021-10-17T18:28:03-07:00' with timezone specified as '[+/-]##:##',
+    # but strptime expects timezone specified as '[+/-]####', so we strip the last three characters
+    # off and tack the '00' back on.
+    timestamp = timestamp[:-3] + '00'
+    return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S%z')
+
+
 def _print_items(items):
     for item in items:
         for k, v in item.items():
-            print('{%s}: {%s}' % (k, v))
+            print('%s: %s' % (k, v))
         print('\n')
 
 
