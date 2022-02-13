@@ -87,7 +87,7 @@ def parse_photo_addition_from_entry(entry):
 
     action_url = _get_item_from_element(entry, 'link').get('href')
     matches = re.search(
-        r'(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/(?P<gallery_slug>[^\/]+\/[^\/]+)\/)(?P<photo_slug>[^\/]+)\/*',
+        r'(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/(?P<gallery_slug>(?P<folder>[^\/]+)\/(?P<gallery>[^\/]+))\/)(?P<photo_slug>[^\/]+)\/*',
         action_url)
     matches_dict = matches.groupdict()
 
@@ -95,6 +95,7 @@ def parse_photo_addition_from_entry(entry):
     photo['gallery_url'] = matches_dict['gallery_url']
     photo['gallery_slug'] = matches_dict['gallery_slug']
     photo['photo_slug'] = matches_dict['photo_slug']
+    photo['gallery_name'] = '%s / %s' % (matches_dict['folder'], matches_dict['gallery'].replace('-', ' '))
     photo['thumbnail_url'] = _get_item_from_element(entry, 'id').text
     photo['created_at'] = _get_datetime_from_timestamp(_get_item_from_element(entry, 'updated').text)
 
