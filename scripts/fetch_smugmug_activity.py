@@ -29,7 +29,7 @@ def main():
     # TODO: Figure out where to route errors
 
 
-def fetch_recent_comments(url: str) -> 'list[dict]':
+def fetch_recent_comments(url):
     response = requests.get(url)
     xml_root = ElementTree.fromstring(response.content)
 
@@ -43,7 +43,7 @@ def fetch_recent_comments(url: str) -> 'list[dict]':
 
     return recent_comments
 
-def parse_comment_from_entry(entry: Element) -> dict:
+def parse_comment_from_entry(entry):
     comment = {}
 
     smugmug_id = _get_item_from_element(entry, 'id').text
@@ -68,7 +68,7 @@ def parse_comment_from_entry(entry: Element) -> dict:
     return comment
 
 
-def fetch_recent_photos(url: str) -> 'list[dict]':
+def fetch_recent_photos(url):
     response = requests.get(url)
     xml_root = ElementTree.fromstring(response.content)
 
@@ -83,7 +83,7 @@ def fetch_recent_photos(url: str) -> 'list[dict]':
     return recent_photos
 
 
-def parse_photo_addition_from_entry(entry: Element) -> dict:
+def parse_photo_addition_from_entry(entry):
     photo = {}
 
     action_url = _get_item_from_element(entry, 'link').get('href')
@@ -102,18 +102,18 @@ def parse_photo_addition_from_entry(entry: Element) -> dict:
     return photo
 
 
-def _get_entries_from_xml_root(xml_root: Element) -> 'list[Element]':
+def _get_entries_from_xml_root(xml_root):
     return xml_root.findall('atom:entry', xml_namespaces)
 
 
-def _get_item_from_element(el: Element, tag: str):
-    return el.find(f'atom:{tag}', xml_namespaces)
+def _get_item_from_element(el, tag):
+    return el.find('atom:%s' % tag, xml_namespaces)
 
 
-def _print_items(items: 'list[dict]'):
+def _print_items(items):
     for item in items:
         for k, v in item.items():
-            print(f'{k}: {v}')
+            print('{%s}: {%s}' % (k, v))
         print('\n')
 
 
