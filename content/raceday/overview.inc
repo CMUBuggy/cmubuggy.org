@@ -52,7 +52,7 @@
     </div>
   </div>
   <div class="media mb-3 col-md-6">
-    <img src="/img/logo-square-small.png" alt="BAA logo" class="mr-3 raceday-thumb">
+    <img src="/img/logo-2022.svg" alt="BAA logo" class="mr-3 raceday-thumb">
     <div class="media-body">
       <h5 class="mt-0"><a href="/img/broadcast-bingo.pdf" download>Broadcast Bingo</a></h5>
       Play bingo during the broadcast
