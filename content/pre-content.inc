@@ -33,7 +33,7 @@
     <nav class="navbar navbar-dark bg-primary px-0">
       <div class="container">
         <a href="/" class="navbar-brand d-inline-flex">
-          <img src="/img/logo-2022.svg" alt="CMU Buggy Alumni Association logo" class="d-lg-none mr-2" height="30" width="30">
+          <img src="/img/logo-2022-circle.svg" alt="CMU Buggy Alumni Association logo" class="d-lg-none mr-2" height="30" width="30">
           <span class="d-none d-sm-inline">Buggy Alumni Association</span><span class="d-sm-none" title="Buggy Alumni Association">BAA</span>
         </a>
         <span class="navbar-text d-none d-md-inline text-light" title="<?php echo("$timerCount $timerUnit"); ?>">Raceday 2022 is April 8&ndash;9</span>
