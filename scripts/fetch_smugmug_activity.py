@@ -1,4 +1,5 @@
 from datetime import datetime
+import mysql.connector
 import re
 import requests
 from xml.etree import ElementTree
@@ -11,6 +12,22 @@ photo_feed_url = 'https://smugmug.com/hack/feed.mg?Type=nicknameRecent&Data=cmub
 
 # Run with 'python3 -m scripts.fetch_smugmug_activity'
 def main():
+
+
+    config = {
+        'user': 'cmubuggy',
+        'password': '',
+        'host': '127.0.0.1',
+        'database': 'cmubuggy',
+        'raise_on_warnings': True
+    }
+
+    cnx = mysql.connector.connect(**config)
+
+    print('connected!')
+
+    cnx.close()
+
     try:
         recent_comments = fetch_recent_comments(comment_feed_url)
         _print_items(recent_comments)
@@ -61,7 +78,7 @@ def parse_comment_from_entry(entry):
     comment['thumbnail_url'] = matches_dict['thumbnail_url']
     comment['comment'] = matches_dict['comment']
 
-    comment['action_url'] = _get_item_from_element(entry, 'link').get('href')
+    comment['comment_url'] = _get_item_from_element(entry, 'link').get('href')
     comment['created_at'] = _get_datetime_from_timestamp(_get_item_from_element(entry, 'updated').text)
 
     return comment
@@ -85,13 +102,13 @@ def fetch_recent_photos(url):
 def parse_photo_addition_from_entry(entry):
     photo = {}
 
-    action_url = _get_item_from_element(entry, 'link').get('href')
+    content_url = _get_item_from_element(entry, 'link').get('href')
     matches = re.search(
         r'(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/(?P<gallery_slug>(?P<folder>[^\/]+)\/(?P<gallery>[^\/]+))\/)(?P<photo_slug>[^\/]+)\/*',
-        action_url)
+        content_url)
     matches_dict = matches.groupdict()
 
-    photo['action_url'] = action_url
+    photo['content_url'] = content_url
     photo['gallery_url'] = matches_dict['gallery_url']
     photo['gallery_slug'] = matches_dict['gallery_slug']
     photo['photo_slug'] = matches_dict['photo_slug']
