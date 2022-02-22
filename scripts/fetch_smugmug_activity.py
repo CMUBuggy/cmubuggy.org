@@ -4,28 +4,30 @@ import re
 import requests
 from xml.etree import ElementTree
 
+from scripts.dbconfig import DB_HOST, DB_USER, DB_PASSWORD
+
+
 xml_namespaces = {'atom': 'http://www.w3.org/2005/Atom'}
 
 comment_feed_url = 'https://smugmug.com/hack/feed.mg?Type=usercomments&Data=cmubuggy&format=atom10'
 photo_feed_url = 'https://smugmug.com/hack/feed.mg?Type=nicknameRecent&Data=cmubuggy&format=atom10'
 
 
+# pip install mysql-connector-python
+# pip3 install mysql-connector-python-rf
 # Run with 'python3 -m scripts.fetch_smugmug_activity'
 def main():
-
-
     config = {
-        'user': 'cmubuggy',
-        'password': '',
-        'host': '127.0.0.1',
+        'user': DB_USER,
+        'password': DB_PASSWORD,
+        'host': DB_HOST,
         'database': 'cmubuggy',
         'raise_on_warnings': True
     }
 
     cnx = mysql.connector.connect(**config)
 
-    print('connected!')
-
+    print(get_most_recent_comment_id(cnx))
     cnx.close()
 
     try:
@@ -44,6 +46,22 @@ def main():
     # TODO: Schedule with Crontab - https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
     # TODO: Figure out where to route errors
 
+
+def get_most_recent_comment_id(connection):
+    cursor = connection.cursor()
+    query = '''
+        select id, comment_id, comment_url, thumbnail_url, author, comment, created_at
+        from smugmug_comments
+        order by created_at desc
+        limit 1
+        '''
+
+    cursor.execute(query)
+
+    for (comment_id, created_at) in cursor:
+        return (comment_id, created_at)
+
+    return None
 
 def fetch_recent_comments(url):
     response = requests.get(url)
@@ -83,6 +101,9 @@ def parse_comment_from_entry(entry):
 
     return comment
 
+def insert_comments():
+    # INSERT INTO `smugmug_comments`(`id`, `comment_id`, `comment_url`, `thumbnail_url`, `author`, `comment`, `created_at`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7])
+    pass
 
 def fetch_recent_photos(url):
     response = requests.get(url)
