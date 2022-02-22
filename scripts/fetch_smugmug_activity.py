@@ -1,5 +1,6 @@
 from datetime import datetime
 import mysql.connector
+import pytz
 import re
 import requests
 from xml.etree import ElementTree
@@ -27,20 +28,23 @@ def main():
 
     cnx = mysql.connector.connect(**config)
 
-    print(get_most_recent_comment_id(cnx))
-    cnx.close()
-
     try:
-        recent_comments = fetch_recent_comments(comment_feed_url)
-        _print_items(recent_comments)
+        (comment_id, comment_created_at) = get_most_recent_comment_id(cnx)
+        new_comments = fetch_new_comments(comment_feed_url, 'comment_id', comment_created_at)
+        insert_comments(cnx, new_comments)
     except Exception as e:
         print(e)
+    finally:
+        cnx.close()
 
+    return
     try:
         recent_photos = fetch_recent_photos(photo_feed_url)
         _print_items(recent_photos)
     except Exception as e:
         print(e)
+    finally:
+        cnx.close()
 
     # TODO: Insert into database any new records
     # TODO: Schedule with Crontab - https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
@@ -50,7 +54,7 @@ def main():
 def get_most_recent_comment_id(connection):
     cursor = connection.cursor()
     query = '''
-        select id, comment_id, comment_url, thumbnail_url, author, comment, created_at
+        select comment_id, created_at
         from smugmug_comments
         order by created_at desc
         limit 1
@@ -63,19 +67,32 @@ def get_most_recent_comment_id(connection):
 
     return None
 
-def fetch_recent_comments(url):
+
+def fetch_new_comments(url, last_comment_id, last_comment_created_at):
     response = requests.get(url)
     xml_root = ElementTree.fromstring(response.content)
 
-    recent_comments = []
+    new_comments = []
     for entry in _get_entries_from_xml_root(xml_root):
         try:
             comment = parse_comment_from_entry(entry)
-            recent_comments.append(comment)
+
+            # Stop if we have found the most recently cached comment, or if we have
+            # progressed before it in time (in case the comment is deleted on SmugMug)
+            if (comment['comment_id'] == last_comment_id  or
+                comment['created_at'] <= last_comment_created_at):
+                break
+
+            new_comments.append(comment)
+
         except Exception as e:
             print(e)
 
-    return recent_comments
+    # TODO: Fetch more comments if we haven't found the most recent one
+    # Comments are read in reverse chronologically, so reverse the order
+    new_comments.reverse()
+    return new_comments
+
 
 def parse_comment_from_entry(entry):
     comment = {}
@@ -97,13 +114,27 @@ def parse_comment_from_entry(entry):
     comment['comment'] = matches_dict['comment']
 
     comment['comment_url'] = _get_item_from_element(entry, 'link').get('href')
-    comment['created_at'] = _get_datetime_from_timestamp(_get_item_from_element(entry, 'updated').text)
+
+    timestamp = _get_item_from_element(entry, 'updated').text
+    comment['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
 
     return comment
 
-def insert_comments():
-    # INSERT INTO `smugmug_comments`(`id`, `comment_id`, `comment_url`, `thumbnail_url`, `author`, `comment`, `created_at`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7])
-    pass
+
+def insert_comments(connection, new_comments):
+    cursor = connection.cursor()
+    query = '''
+        insert into smugmug_comments
+            (comment_id, comment_url, thumbnail_url, author, comment, created_at)
+        values
+            (%(comment_id)s, %(comment_url)s, %(thumbnail_url)s, %(author)s, %(comment)s, %(created_at)s)
+    '''
+
+    # TODO: Stop SQL injection
+    cursor.executemany(query, new_comments)
+    connection.commit()
+    cursor.close()
+
 
 def fetch_recent_photos(url):
     response = requests.get(url)
@@ -135,7 +166,9 @@ def parse_photo_addition_from_entry(entry):
     photo['photo_slug'] = matches_dict['photo_slug']
     photo['gallery_name'] = '%s / %s' % (matches_dict['folder'], matches_dict['gallery'].replace('-', ' '))
     photo['thumbnail_url'] = _get_item_from_element(entry, 'id').text
-    photo['created_at'] = _get_datetime_from_timestamp(_get_item_from_element(entry, 'updated').text)
+
+    timestamp = _get_item_from_element(entry, 'updated').text
+    photo['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
 
     return photo
 
@@ -148,12 +181,13 @@ def _get_item_from_element(el, tag):
     return el.find('atom:%s' % tag, xml_namespaces)
 
 
-def _get_datetime_from_timestamp(timestamp):
+def _get_utc_datetime_from_timestamp(timestamp):
     # We get timestamps in form '2021-10-17T18:28:03-07:00' with timezone specified as '[+/-]##:##',
     # but strptime expects timezone specified as '[+/-]####', so we strip the last three characters
     # off and tack the '00' back on.
     timestamp = timestamp[:-3] + '00'
-    return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S%z')
+    datetime_in_utc = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S%z').astimezone(pytz.UTC)
+    return datetime_in_utc.replace(tzinfo=None)
 
 
 def _print_items(items):
