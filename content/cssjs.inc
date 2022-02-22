@@ -1,5 +1,5 @@
 <!--CSS-->
-<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2022020901" />
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2022022200" />
 <link rel="stylesheet" href="/css/cmubuggy-all.css?ver=2022021000" />
 
 <!--JS-->
