@@ -8,11 +8,10 @@ from xml.etree import ElementTree
 from scripts.dbconfig import DB_HOST, DB_USER, DB_PASSWORD
 
 
-xml_namespaces = {'atom': 'http://www.w3.org/2005/Atom'}
+XML_NAMESPACES = {'atom': 'http://www.w3.org/2005/Atom'}
 
-comment_feed_url = 'https://smugmug.com/hack/feed.mg?Type=usercomments&Data=cmubuggy&format=atom10'
-photo_feed_url = 'https://smugmug.com/hack/feed.mg?Type=nicknameRecent&Data=cmubuggy&format=atom10'
-
+COMMENT_FEED_URL = 'https://smugmug.com/hack/feed.mg?Type=usercomments&Data=cmubuggy&format=atom10'
+PHOTO_FEED_URL = 'https://smugmug.com/hack/feed.mg?Type=nicknameRecent&Data=cmubuggy&format=atom10'
 
 # pip install mysql-connector-python
 # pip3 install mysql-connector-python-rf
@@ -30,15 +29,15 @@ def main():
 
     try:
         (comment_id, comment_created_at) = get_most_recent_comment(connection)
-        new_comments = fetch_new_comments(comment_feed_url, comment_id, comment_created_at)
+        new_comments = fetch_new_comments(comment_id, comment_created_at)
         insert_comments(connection, new_comments)
     except Exception as e:
         print(e)
 
     try:
         (gallery_slug, photo_slug, created_at) = get_most_recent_photo(connection)
-        recent_photos = fetch_recent_photos(photo_feed_url, gallery_slug, photo_slug, created_at)
-        # insert_photos(recent_photos)
+        recent_photos = fetch_recent_photos(gallery_slug, photo_slug, created_at)
+        insert_photos(connection, recent_photos)
     except Exception as e:
         print(e)
 
@@ -62,11 +61,11 @@ def get_most_recent_comment(connection):
     for (comment_id, created_at) in cursor:
         return (comment_id, created_at)
 
-    return None
+    return (None, datetime.min)
 
 
-def fetch_new_comments(url, last_comment_id, last_comment_created_at):
-    response = requests.get(url)
+def fetch_new_comments(last_comment_id, last_comment_created_at):
+    response = requests.get(COMMENT_FEED_URL)
     xml_root = ElementTree.fromstring(response.content)
 
     new_comments = []
@@ -147,32 +146,50 @@ def get_most_recent_photo(connection):
     for (gallery_slug, photo_slug, created_at) in cursor:
         return (gallery_slug, photo_slug, created_at)
 
-    return None
+    return (None, None, datetime.min)
 
 
-def fetch_recent_photos(url, last_gallery_slug, last_photo_slug, last_photo_uploaded_at):
-    response = requests.get(url)
-    xml_root = ElementTree.fromstring(response.content)
 
-    next_page_url = _get_item_from_element(xml_root, 'next').get('href')
-    print(next_page_url)
-
+def fetch_recent_photos(last_gallery_slug, last_photo_slug, last_photo_uploaded_at):
+    url = PHOTO_FEED_URL
     recent_photos = []
-    for entry in _get_entries_from_xml_root(xml_root):
-        try:
-            photo = parse_photo_upload_from_entry(entry)
+    seen_photos = set()
 
-            # Stop if we have found the most recently cached photo, or if we have
-            # progressed before it in time (in case the photo we are looking for
-            # was deleted on SmugMug)
-            if ((photo['gallery_slug'] == last_gallery_slug and photo['photo_slug'] == last_photo_slug) or
-                photo['created_at'] <= last_photo_uploaded_at):
-                break
+    found_last_photo = False
+    while not found_last_photo:
 
-            recent_photos.append(photo)
-        except Exception as e:
-            print(e)
+        response = requests.get(url)
+        xml_root = ElementTree.fromstring(response.content)
 
+        entries = _get_entries_from_xml_root(xml_root)
+        if not entries:
+            break
+
+        for entry in entries:
+            try:
+                photo = parse_photo_upload_from_entry(entry)
+
+                # TODO: find a way to sort the feed?? - this is breaking the unique constraint right now :(
+                # Stop if we have found the most recently cached photo, or if we have
+                # progressed before it in time (in case the photo we are looking for
+                # was deleted on SmugMug)
+                if ((photo['gallery_slug'] == last_gallery_slug and
+                     photo['photo_slug'] == last_photo_slug)):
+                    found_last_photo = True
+                    break
+
+                photo_identifier = (photo['gallery_slug'], photo['photo_slug'])
+                if photo_identifier not in seen_photos:
+                    recent_photos.append(photo)
+                    seen_photos.add(photo_identifier)
+            except Exception as e:
+                print(e)
+
+        if not found_last_photo:
+            url = _get_next_url_from_xml_root(xml_root)
+
+    # Photos are read in reverse chronologically, so reverse the order
+    recent_photos.reverse()
     return recent_photos
 
 
@@ -213,12 +230,16 @@ def insert_photos(connection, new_photos):
     cursor.close()
 
 
+def _get_next_url_from_xml_root(xml_root):
+    next_link = xml_root.find('atom:link[@rel="next"]', XML_NAMESPACES)
+    return None if next_link == None else next_link.get('href')
+
 def _get_entries_from_xml_root(xml_root):
-    return xml_root.findall('atom:entry', xml_namespaces)
+    return xml_root.findall('atom:entry', XML_NAMESPACES)
 
 
 def _get_item_from_element(el, tag):
-    return el.find('atom:%s' % tag, xml_namespaces)
+    return el.find('atom:%s' % tag, XML_NAMESPACES)
 
 
 def _get_utc_datetime_from_timestamp(timestamp):
