@@ -30,14 +30,13 @@ def main():
 
     try:
         (comment_id, comment_created_at) = get_most_recent_comment_id(cnx)
-        new_comments = fetch_new_comments(comment_feed_url, 'comment_id', comment_created_at)
+        new_comments = fetch_new_comments(comment_feed_url, comment_id, comment_created_at)
         insert_comments(cnx, new_comments)
     except Exception as e:
         print(e)
     finally:
         cnx.close()
 
-    return
     try:
         recent_photos = fetch_recent_photos(photo_feed_url)
         _print_items(recent_photos)
