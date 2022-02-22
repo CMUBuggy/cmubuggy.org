@@ -26,31 +26,30 @@ def main():
         'raise_on_warnings': True
     }
 
-    cnx = mysql.connector.connect(**config)
+    connection = mysql.connector.connect(**config)
 
     try:
-        (comment_id, comment_created_at) = get_most_recent_comment_id(cnx)
+        (comment_id, comment_created_at) = get_most_recent_comment(connection)
         new_comments = fetch_new_comments(comment_feed_url, comment_id, comment_created_at)
-        insert_comments(cnx, new_comments)
+        insert_comments(connection, new_comments)
     except Exception as e:
         print(e)
-    finally:
-        cnx.close()
 
     try:
-        recent_photos = fetch_recent_photos(photo_feed_url)
-        _print_items(recent_photos)
+        (gallery_slug, photo_slug, created_at) = get_most_recent_photo(connection)
+        recent_photos = fetch_recent_photos(photo_feed_url, gallery_slug, photo_slug, created_at)
+        # insert_photos(recent_photos)
     except Exception as e:
         print(e)
-    finally:
-        cnx.close()
+
+    connection.close()
 
     # TODO: Insert into database any new records
     # TODO: Schedule with Crontab - https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
     # TODO: Figure out where to route errors
 
 
-def get_most_recent_comment_id(connection):
+def get_most_recent_comment(connection):
     cursor = connection.cursor()
     query = '''
         select comment_id, created_at
@@ -60,7 +59,6 @@ def get_most_recent_comment_id(connection):
         '''
 
     cursor.execute(query)
-
     for (comment_id, created_at) in cursor:
         return (comment_id, created_at)
 
@@ -77,7 +75,8 @@ def fetch_new_comments(url, last_comment_id, last_comment_created_at):
             comment = parse_comment_from_entry(entry)
 
             # Stop if we have found the most recently cached comment, or if we have
-            # progressed before it in time (in case the comment is deleted on SmugMug)
+            # progressed before it in time (in case the comment we are looking for
+            # was deleted on SmugMug)
             if (comment['comment_id'] == last_comment_id  or
                 comment['created_at'] <= last_comment_created_at):
                 break
@@ -127,7 +126,7 @@ def insert_comments(connection, new_comments):
             (comment_id, comment_url, thumbnail_url, author, comment, created_at)
         values
             (%(comment_id)s, %(comment_url)s, %(thumbnail_url)s, %(author)s, %(comment)s, %(created_at)s)
-    '''
+        '''
 
     # TODO: Stop SQL injection
     cursor.executemany(query, new_comments)
@@ -135,14 +134,41 @@ def insert_comments(connection, new_comments):
     cursor.close()
 
 
-def fetch_recent_photos(url):
+def get_most_recent_photo(connection):
+    cursor = connection.cursor()
+    query = '''
+        select gallery_slug, photo_slug, created_at
+        from smugmug_uploads
+        order by created_at desc
+        limit 1
+        '''
+
+    cursor.execute(query)
+    for (gallery_slug, photo_slug, created_at) in cursor:
+        return (gallery_slug, photo_slug, created_at)
+
+    return None
+
+
+def fetch_recent_photos(url, last_gallery_slug, last_photo_slug, last_photo_uploaded_at):
     response = requests.get(url)
     xml_root = ElementTree.fromstring(response.content)
+
+    next_page_url = _get_item_from_element(xml_root, 'next').get('href')
+    print(next_page_url)
 
     recent_photos = []
     for entry in _get_entries_from_xml_root(xml_root):
         try:
-            photo = parse_photo_addition_from_entry(entry)
+            photo = parse_photo_upload_from_entry(entry)
+
+            # Stop if we have found the most recently cached photo, or if we have
+            # progressed before it in time (in case the photo we are looking for
+            # was deleted on SmugMug)
+            if ((photo['gallery_slug'] == last_gallery_slug and photo['photo_slug'] == last_photo_slug) or
+                photo['created_at'] <= last_photo_uploaded_at):
+                break
+
             recent_photos.append(photo)
         except Exception as e:
             print(e)
@@ -150,7 +176,7 @@ def fetch_recent_photos(url):
     return recent_photos
 
 
-def parse_photo_addition_from_entry(entry):
+def parse_photo_upload_from_entry(entry):
     photo = {}
 
     content_url = _get_item_from_element(entry, 'link').get('href')
@@ -170,6 +196,21 @@ def parse_photo_addition_from_entry(entry):
     photo['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
 
     return photo
+
+
+def insert_photos(connection, new_photos):
+    cursor = connection.cursor()
+    query = '''
+        insert into smugmug_uploads
+            (gallery_url, content_url, thumbnail_url, gallery_name, gallery_slug, photo_slug, created_at)
+        values
+            (%(gallery_url)s, %(content_url)s, %(thumbnail_url)s, %(gallery_name)s, %(gallery_slug)s, %(photo_slug)s, %(created_at)s)
+        '''
+
+    # TODO: Stop SQL injection
+    cursor.executemany(query, new_photos)
+    connection.commit()
+    cursor.close()
 
 
 def _get_entries_from_xml_root(xml_root):
