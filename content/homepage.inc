@@ -38,7 +38,7 @@
 
   </div>
   <div class="col-md-4">
-    <section>
+    <section class="d-lg-none">
       <h2>Records</h2>
       <dl class="row">
         <dt class="col-5">Mens</dt>
@@ -66,6 +66,15 @@
         </span>
         <div class="media-body">
           Hang out with us on the BAA <a target="_blank" href="/chat">Discord</a>.
+        </div>
+      </div>
+      <div class="media mb-3">
+        <span class="fa-layers fa-fw fa-2x mr-2">
+          <i class="fas fa-square text-muted"></i>
+          <i class="fas fa-bolt fa-inverse" data-fa-transform="shrink-8"></i>
+        </span>
+        <div class="media-body">
+          Got more time and energy?  There's <a href="/about/get-involved">lots to do</a>!
         </div>
       </div>
     </section>
