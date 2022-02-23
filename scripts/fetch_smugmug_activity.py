@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 from datetime import datetime
 from os.path import abspath, dirname, join
 
@@ -8,17 +9,6 @@ import re
 import requests
 from xml.etree import ElementTree
 
-
-# The `updated` timestamp in an entry is not the time the item was created, but
-# rather the last time it was last modified in the SmugMug UI. This causes entropy
-# in the results that can make it hard to tell when to stop searching through the
-# results, so during normal running mode we use the current time as a proxy for
-# `created_at`. While not exact, we run the script once an hour, so it is close
-# enough to the actual created at time.
-# When running this script for the first time, this should be set to True to use
-# the dynamic but reasonably accurate `updated` timestamp from entries instead, so
-# that the results make some sense to a user viewing an activity feed.
-INITIALIZE_MODE = False
 
 DB_CONFIG_FILE = 'dbconfig.json'
 
@@ -31,12 +21,30 @@ XML_NAMESPACES = {'atom': 'http://www.w3.org/2005/Atom'}
 #     sudo pip install mysql-connector-python
 #     sudo pip3 install mysql-connector-python-rf
 # Run with:
-#     python3 -m scripts.fetch_smugmug_activity
+#     python3 -m scripts.fetch_smugmug_activity [--initialize]
+#
+# The `updated` timestamp in an entry is not the time the item was created, but
+# rather the last time it was last modified in the SmugMug UI. This causes entropy
+# in the results that can make it hard to tell when to stop searching through the
+# results, so during normal running mode we use the current time as a proxy for
+# `created_at`. While not exact, we run the script once an hour, so it is close
+# enough to the actual created at time.
+#
+# When running this script for the first time, pass the --initialize flag to use
+# the dynamic but reasonably accurate `updated` timestamp from entries instead, so
+# that the results make some sense to a user viewing an activity feed.
 #
 # TODO: Schedule with Crontab -
 #       https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
 # TODO: Figure out where to route errors
 def main():
+    parser = ArgumentParser()
+    parser.add_argument('--initialize', action='store_true')
+    args = parser.parse_args()
+
+    global INITIALIZE_MODE
+    INITIALIZE_MODE = args.initialize
+
     connection = open_db_connection()
 
     try:
