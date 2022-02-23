@@ -28,7 +28,7 @@
      <div class="media mb-3">
         <a href="/history/raceday">
          <span class="fa-layers fa-fw fa-2x mr-2">
-          <i class="fas fa-square" style="color: var(--orange)"></i>
+          <i class="fas fa-square" style="color: var(--yellow)"></i>
           <i class="fas fa-trophy fa-inverse" data-fa-transform="shrink-8"></i>
          </span>
         </a>
@@ -71,7 +71,7 @@
      <div class="media mb-3">
         <a href="/history/buggy">
          <span class="fa-layers fa-fw fa-2x mr-2">
-          <i class="fas fa-square" style="color: var(--orange)"></i>
+          <i class="fas fa-square" style="color: var(--yellow)"></i>
           <i class="fas fa-wrench fa-inverse" data-fa-transform="shrink-8"></i>
          </span>
         </a>
