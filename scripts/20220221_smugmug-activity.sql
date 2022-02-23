@@ -6,8 +6,7 @@ CREATE TABLE IF NOT EXISTS `smugmug_comments` (
     author VARCHAR(2083),
     comment VARCHAR(2083),
     created_at datetime,
-    INDEX (`created_at` DESC),
-    UNIQUE INDEX `comment_id_unique` (`comment_id`)
+    INDEX (`created_at` DESC)
 );
 
 CREATE TABLE IF NOT EXISTS `smugmug_uploads` (
@@ -19,6 +18,5 @@ CREATE TABLE IF NOT EXISTS `smugmug_uploads` (
     gallery_slug VARCHAR(150),
     photo_slug VARCHAR(150),
     created_at datetime,
-    INDEX (`created_at` DESC),
-    UNIQUE INDEX `content_unique` (`gallery_slug`, `photo_slug`)
+    INDEX (`created_at` DESC)
 );

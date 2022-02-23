@@ -9,19 +9,33 @@ import requests
 from xml.etree import ElementTree
 
 
+# The `updated` timestamp in an entry is not the time the item was created, but
+# rather the last time it was last modified in the SmugMug UI. This causes entropy
+# in the results that can make it hard to tell when to stop searching through the
+# results, so during normal running mode we use the current time as a proxy for
+# `created_at`. While not exact, we run the script once an hour, so it is close
+# enough to the actual created at time.
+# When running this script for the first time, this should be set to True to use
+# the dynamic but reasonably accurate `updated` timestamp from entries instead, so
+# that the results make some sense to a user viewing an activity feed.
+INITIALIZE_MODE = False
+
 DB_CONFIG_FILE = 'dbconfig.json'
 
 COMMENT_FEED_URL = 'https://smugmug.com/hack/feed.mg?Type=usercomments&Data=cmubuggy&format=atom10'
 PHOTO_FEED_URL = 'https://smugmug.com/hack/feed.mg?Type=nicknameRecent&Data=cmubuggy&format=atom10'
 XML_NAMESPACES = {'atom': 'http://www.w3.org/2005/Atom'}
 
-# TODO: Schedule with Crontab - https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
+
+# Pre-requisites:
+#     sudo pip install mysql-connector-python
+#     sudo pip3 install mysql-connector-python-rf
+# Run with:
+#     python3 -m scripts.fetch_smugmug_activity
+#
+# TODO: Schedule with Crontab -
+#       https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
 # TODO: Figure out where to route errors
-
-
-# pip install mysql-connector-python
-# pip3 install mysql-connector-python-rf
-# Run with 'python3 -m scripts.fetch_smugmug_activity'
 def main():
     connection = open_db_connection()
 
@@ -33,8 +47,8 @@ def main():
         print(e)
 
     try:
-        (gallery_slug, photo_slug, created_at) = get_most_recent_photo(connection)
-        recent_photos = fetch_recent_photos(gallery_slug, photo_slug, created_at)
+        (gallery_slug, photo_slug, photo_created_at) = get_most_recent_photo(connection)
+        recent_photos = fetch_recent_photos(gallery_slug, photo_slug, photo_created_at)
         insert_photos(connection, recent_photos)
     except Exception as e:
         print(e)
@@ -61,7 +75,7 @@ def get_most_recent_comment(connection):
     query = '''
         select comment_id, created_at
         from smugmug_comments
-        order by created_at desc
+        order by id desc
         limit 1
         '''
 
@@ -73,6 +87,9 @@ def get_most_recent_comment(connection):
 
 
 def fetch_new_comments(last_comment_id, last_comment_created_at):
+    # The SmugMug comment feed does not paginate, so hopefully we never receive more
+    # than 100 comments in an hour. Or perhaps it is an infinite feed. I guess we will
+    # find out when we have more than 100 comments total :)
     response = requests.get(COMMENT_FEED_URL)
     xml_root = ElementTree.fromstring(response.content)
 
@@ -83,7 +100,7 @@ def fetch_new_comments(last_comment_id, last_comment_created_at):
 
             # Stop if we have found the most recently cached comment, or if we have
             # progressed before it in time (in case the comment we are looking for
-            # was deleted on SmugMug)
+            # was deleted on SmugMug and, therefore, from the feed)
             if (comment['comment_id'] == last_comment_id  or
                 comment['created_at'] <= last_comment_created_at):
                 break
@@ -93,7 +110,6 @@ def fetch_new_comments(last_comment_id, last_comment_created_at):
         except Exception as e:
             print(e)
 
-    # TODO: Fetch more comments if we haven't found the most recent one
     # Comments are read in reverse chronologically, so reverse the order
     new_comments.reverse()
     return new_comments
@@ -120,13 +136,19 @@ def parse_comment_from_entry(entry):
 
     comment['comment_url'] = _get_item_from_element(entry, 'link').get('href')
 
-    timestamp = _get_item_from_element(entry, 'updated').text
-    comment['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
+    if INITIALIZE_MODE:
+        timestamp = _get_item_from_element(entry, 'updated').text
+        comment['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
+    else:
+        comment['created_at'] = datetime.utcnow()
 
     return comment
 
 
 def insert_comments(connection, new_comments):
+    if not new_comments:
+        return
+
     cursor = connection.cursor()
     query = '''
         insert into smugmug_comments
@@ -144,7 +166,7 @@ def get_most_recent_photo(connection):
     query = '''
         select gallery_slug, photo_slug, created_at
         from smugmug_uploads
-        order by created_at desc
+        order by id desc
         limit 1
         '''
 
@@ -174,19 +196,21 @@ def fetch_recent_photos(last_gallery_slug, last_photo_slug, last_photo_uploaded_
             try:
                 photo = parse_photo_upload_from_entry(entry)
 
-                # TODO: find a way to sort the feed?? - this is breaking the unique constraint right now :(
                 # Stop if we have found the most recently cached photo, or if we have
                 # progressed before it in time (in case the photo we are looking for
-                # was deleted on SmugMug)
+                # was deleted on SmugMug and, therefore, from the feed)
                 if ((photo['gallery_slug'] == last_gallery_slug and
-                     photo['photo_slug'] == last_photo_slug)):
+                     photo['photo_slug'] == last_photo_slug) or
+                    photo['created_at'] <= last_photo_uploaded_at):
                     found_last_photo = True
                     break
 
+                # SmugMug's pagination isn't perfect, so filter out duplicate entries
                 photo_identifier = (photo['gallery_slug'], photo['photo_slug'])
                 if photo_identifier not in seen_photos:
                     recent_photos.append(photo)
                     seen_photos.add(photo_identifier)
+
             except Exception as e:
                 print(e)
 
@@ -211,16 +235,23 @@ def parse_photo_upload_from_entry(entry):
     photo['gallery_url'] = matches_dict['gallery_url']
     photo['gallery_slug'] = matches_dict['gallery_slug']
     photo['photo_slug'] = matches_dict['photo_slug']
-    photo['gallery_name'] = '%s / %s' % (matches_dict['folder'], matches_dict['gallery'].replace('-', ' '))
+    photo['gallery_name'] = \
+        '%s / %s' % (matches_dict['folder'], matches_dict['gallery'].replace('-', ' '))
     photo['thumbnail_url'] = _get_item_from_element(entry, 'id').text
 
-    timestamp = _get_item_from_element(entry, 'updated').text
-    photo['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
+    if INITIALIZE_MODE:
+        timestamp = _get_item_from_element(entry, 'updated').text
+        photo['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
+    else:
+        photo['created_at'] = datetime.utcnow()
 
     return photo
 
 
 def insert_photos(connection, new_photos):
+    if not new_photos:
+        return
+
     cursor = connection.cursor()
     query = '''
         insert into smugmug_uploads
@@ -237,6 +268,7 @@ def _get_next_url_from_xml_root(xml_root):
     next_link = xml_root.find('atom:link[@rel="next"]', XML_NAMESPACES)
     return None if next_link == None else next_link.get('href')
 
+
 def _get_entries_from_xml_root(xml_root):
     return xml_root.findall('atom:entry', XML_NAMESPACES)
 
@@ -246,12 +278,12 @@ def _get_item_from_element(el, tag):
 
 
 def _get_utc_datetime_from_timestamp(timestamp):
-    # We get timestamps in form '2021-10-17T18:28:03-07:00' with timezone specified as '[+/-]##:##',
-    # but strptime expects timezone specified as '[+/-]####', so we strip the last three characters
-    # off and tack the '00' back on.
+    # We get timestamps in form '2021-10-17T18:28:03-07:00' with timezone specified
+    # as '[+/-]##:##', but strptime expects timezone specified as '[+/-]####', so
+    # we strip the last three characters off and tack the '00' back on.
     timestamp = timestamp[:-3] + '00'
-    datetime_in_utc = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S%z').astimezone(pytz.UTC)
-    return datetime_in_utc.replace(tzinfo=None)
+    as_datetime = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S%z')
+    return as_datetime.astimezone(pytz.UTC).replace(tzinfo=None)
 
 
 if __name__ == "__main__":
