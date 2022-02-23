@@ -1,3 +1,7 @@
+<!--Favicons-->
+<link rel="icon" href="/favicon.ico?v=2022022200" sizes="any">
+<link rel="icon" href="/img/logo-2022.svg" type="image/svg+xml">
+
 <!--CSS-->
 <link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2022022201" />
 <link rel="stylesheet" href="/css/cmubuggy-all.css?ver=2022021000" />
