@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="media mb-3">
-        <span class="fa-fw fa-2x mr-2">
+        <span class="fa-layers fa-fw fa-2x mr-2">
           <i class="fab fa-discord text-muted"></i>
         </span>
         <div class="media-body">
