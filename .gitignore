@@ -5,7 +5,7 @@ bid/development-bundle
 bid/backup/
 content/cache/*
 dbconfig.inc
-dbconfig.py
+dbconfig.json
 files/
 
 # exclude everything in /forum except README.md and styles/cmubuggy
