@@ -1,31 +1,29 @@
 from datetime import datetime
+from os.path import abspath, dirname, join
+
+import json
 import mysql.connector
 import pytz
 import re
 import requests
 from xml.etree import ElementTree
 
-from scripts.dbconfig import DB_HOST, DB_USER, DB_PASSWORD
 
-
-XML_NAMESPACES = {'atom': 'http://www.w3.org/2005/Atom'}
+DB_CONFIG_FILE = 'dbconfig.json'
 
 COMMENT_FEED_URL = 'https://smugmug.com/hack/feed.mg?Type=usercomments&Data=cmubuggy&format=atom10'
 PHOTO_FEED_URL = 'https://smugmug.com/hack/feed.mg?Type=nicknameRecent&Data=cmubuggy&format=atom10'
+XML_NAMESPACES = {'atom': 'http://www.w3.org/2005/Atom'}
+
+# TODO: Schedule with Crontab - https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
+# TODO: Figure out where to route errors
+
 
 # pip install mysql-connector-python
 # pip3 install mysql-connector-python-rf
 # Run with 'python3 -m scripts.fetch_smugmug_activity'
 def main():
-    config = {
-        'user': DB_USER,
-        'password': DB_PASSWORD,
-        'host': DB_HOST,
-        'database': 'cmubuggy',
-        'raise_on_warnings': True
-    }
-
-    connection = mysql.connector.connect(**config)
+    connection = open_db_connection()
 
     try:
         (comment_id, comment_created_at) = get_most_recent_comment(connection)
@@ -43,9 +41,19 @@ def main():
 
     connection.close()
 
-    # TODO: Insert into database any new records
-    # TODO: Schedule with Crontab - https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
-    # TODO: Figure out where to route errors
+
+def open_db_connection():
+    root_directory = dirname(dirname(abspath(__file__)))
+    f = open(join(root_directory, DB_CONFIG_FILE))
+    config = json.load(f)
+    f.close()
+
+    return mysql.connector.connect(
+        host=config['DB_HOST'],
+        database=config['DB_NAME'],
+        user=config['DB_USER'],
+        password=config['DB_PASSWORD'],
+        raise_on_warnings= True)
 
 
 def get_most_recent_comment(connection):
@@ -126,8 +134,6 @@ def insert_comments(connection, new_comments):
         values
             (%(comment_id)s, %(comment_url)s, %(thumbnail_url)s, %(author)s, %(comment)s, %(created_at)s)
         '''
-
-    # TODO: Stop SQL injection
     cursor.executemany(query, new_comments)
     connection.commit()
     cursor.close()
@@ -147,7 +153,6 @@ def get_most_recent_photo(connection):
         return (gallery_slug, photo_slug, created_at)
 
     return (None, None, datetime.min)
-
 
 
 def fetch_recent_photos(last_gallery_slug, last_photo_slug, last_photo_uploaded_at):
@@ -223,8 +228,6 @@ def insert_photos(connection, new_photos):
         values
             (%(gallery_url)s, %(content_url)s, %(thumbnail_url)s, %(gallery_name)s, %(gallery_slug)s, %(photo_slug)s, %(created_at)s)
         '''
-
-    # TODO: Stop SQL injection
     cursor.executemany(query, new_photos)
     connection.commit()
     cursor.close()
@@ -249,13 +252,6 @@ def _get_utc_datetime_from_timestamp(timestamp):
     timestamp = timestamp[:-3] + '00'
     datetime_in_utc = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S%z').astimezone(pytz.UTC)
     return datetime_in_utc.replace(tzinfo=None)
-
-
-def _print_items(items):
-    for item in items:
-        for k, v in item.items():
-            print('%s: %s' % (k, v))
-        print('\n')
 
 
 if __name__ == "__main__":
