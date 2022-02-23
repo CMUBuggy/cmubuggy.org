@@ -77,7 +77,7 @@
       <div data-name class="ml-5"></div>
       <div data-time class="ml-2 text-monospace"></div>
     </div>
-    <div data-note class="ml-5 mt-1 text-muted"></div>
+    <div data-note class="ml-5 mt-1 text-dark"></div>
   </div>
 </template>
 
