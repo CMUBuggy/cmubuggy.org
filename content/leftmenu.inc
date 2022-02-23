@@ -14,7 +14,7 @@
 <?php include("googlesearchinput.inc"); ?>
 <div class="my-3">
   <a href="https://www.facebook.com/pages/Carnegie-Mellon-Buggy-Alumni-Association/279568438094"><i class="fab fa-2x fa-facebook-square" title="Facebook" style="color: #3b5998;"></i></a>
-  <a href="https://feeds.feedburner.com/BuggyAlumniAssociationUltimate"><i class="fas fa-2x fa-rss-square text-warning" title="Feed"></i></a>
+  <a href="https://feeds.feedburner.com/BuggyAlumniAssociationUltimate"><i class="fas fa-2x fa-rss-square" style="color: #f26522" title="Feed"></i></a>
   <a href="https://twitter.com/CMUBuggy"><i class="fab fa-2x fa-twitter-square" title="Twitter" style="color: #1da1f2;"></i></a>
   <a href="https://instagram.com/cmubuggy"><i class="fab fa-2x fa-instagram-square" title="Instagram" style="color: #e1306c;"></i></a>
 </div>
