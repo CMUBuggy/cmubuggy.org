@@ -131,6 +131,39 @@ if ($ncommentResults) {
     array_push($items,$a);
   }
 }
+
+// smugmug images
+$smugMugSQL = "SELECT gallery_url, gallery_name, gallery_slug, count(photo_slug) AS photo_count, MAX(created_at) AS created
+               FROM smugmug_uploads
+               WHERE created_at > '$cutoffDate'
+               GROUP BY gallery_url, gallery_name, gallery_slug
+               ORDER BY created DESC;";
+$smugMugResults = dbQuery($HISTORY_DATABASE, $smugMugSQL);
+
+if ($smugMugResults) {
+  $icon_map["smugmug_img"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i></span>';
+  while($row = $smugMugResults->fetch_assoc()) {
+    $timestamp = $row["created"];
+    $year = substr($timestamp, 0, 4);
+    $month = substr($timestamp, 5, 2);
+    $day = substr($timestamp, 8, 2);
+    $hour = substr($timestamp, 11, 2);
+    $minute = substr($timestamp, 14, 2);
+    $second = substr($timestamp, 17, 2);
+    $timestamp = gmmktime($hour, $minute, $second, $month, $day, $year);
+
+    $count = ($row["photo_count"] >= 500) ? "500+" : $row["photo_count"];
+
+    $nextItem = array(
+      "timestamp" => $timestamp,
+      "content" => 'Gallery <a href="' . $row["gallery_url"] . '">' . $row["gallery_name"] . '</a> has '
+                   . $count . ' new photos ',
+      "type" => "smugmug_img"
+    );
+    array_push($items, $nextItem);
+  }
+}
+
 ?>
 
 <?php if (count($newsitems) > 0) { ?>
