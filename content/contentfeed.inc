@@ -4,7 +4,6 @@ $newsitems = array();
 //only look for items from the last 90 days
 $cutoff = time()-(60*60*24*90);
 $cutoffDate = date("Y-m-d",$cutoff);
-$cutoffWiki = date("Ymd",$cutoff)."000000";
 $icon_map = array();
 
 ##NEWS ITEMS##
@@ -129,52 +128,6 @@ if ($ncommentResults) {
     }
   }
   foreach ($ncommentClusterItems as $a) {
-    array_push($items,$a);
-  }
-}
-
-##REFERENCE ITEMS##
-$referenceSQL = "SELECT revision.rev_id,revision.rev_timestamp,user.user_name, page.page_title, revision.rev_page
-  FROM revision
-  JOIN user
-  ON revision.rev_user=user.user_id
-  JOIN page
-  ON revision.rev_page=page.page_id
-  WHERE rev_minor_edit=0
-  AND page.page_namespace=0
-  and rev_timestamp > $cutoffWiki
-  ORDER BY rev_timestamp DESC";
-$referenceResults = dbQuery("cmubuggy_wiki",$referenceSQL);
-
-$referenceClusterItems = array();
-
-if ($referenceResults) {
-  $icon_map["reference"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-info fa-inverse" data-fa-transform="shrink-8"></i></span>';
-  while ($post = mysqli_fetch_row($referenceResults)) {
-    $timestamp = $post[1];
-    $year = substr($timestamp, 0, 4);
-    $month = substr($timestamp, 4, 2);
-    $day = substr($timestamp, 6, 2);
-    $hour = substr($timestamp, 8, 2);
-    $minute = substr($timestamp, 10, 2);
-    $second = substr($timestamp, 12, 2);
-    $timestamp = mktime($hour, $minute, $second, $month, $day, $year)+$UTCdiff;
-
-    $href = "/reference/".$post[3];
-    $clusterKey = $post[4].$year.$month.$day;
-    if (array_key_exists($clusterKey, $referenceClusterItems)) {
-      $referenceClusterItems[$clusterKey]["count"]++;
-      $referenceClusterItems[$clusterKey]["content"] = $referenceClusterItems[$clusterKey]["count"] . ' changes to <a href="' . $href . '">' . str_replace("_"," ",$post[3]) . '</a>';
-    } else {
-      $referenceClusterItems[$clusterKey] = array(
-        "timestamp"=>$timestamp,
-        "count"=>1,
-        "content"=>$post[2] . ' edited <a href="' . $href . '">' . str_replace("_"," ",$post[3]) . '</a>',
-        "type"=>"reference"
-      );
-    }
-  }
-  foreach ($referenceClusterItems as $a) {
     array_push($items,$a);
   }
 }
