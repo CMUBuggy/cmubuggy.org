@@ -132,17 +132,44 @@ if ($ncommentResults) {
   }
 }
 
-// smugmug images
-$smugMugSQL = "SELECT gallery_url, gallery_name, gallery_slug, count(photo_slug) AS photo_count, MAX(created_at) AS created
-               FROM smugmug_uploads
-               WHERE created_at > '$cutoffDate'
-               GROUP BY gallery_url, gallery_name, gallery_slug
-               ORDER BY created DESC;";
-$smugMugResults = dbQuery($HISTORY_DATABASE, $smugMugSQL);
+// smugmug comments
+$smugMugCommentSQL = "SELECT comment_url, author, created_at
+                      FROM smugmug_comments
+                      WHERE created_at > '$cutoffDate'
+                      ORDER BY created_at DESC;";
+$smugMugCommentResults = dbQuery($HISTORY_DATABASE, $smugMugCommentSQL);
 
-if ($smugMugResults) {
-  $icon_map["smugmug_img"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i></span>';
-  while($row = $smugMugResults->fetch_assoc()) {
+if ($smugMugCommentResults) {
+  $icon_map["icomment"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i><i class="fas fa-comment" data-fa-transform="shrink-10 right-6 down-6"></i></span>';
+  while($row = $smugMugCommentResults->fetch_assoc()) {
+    $timestamp = $row["created_at"];
+    $year = substr($timestamp, 0, 4);
+    $month = substr($timestamp, 5, 2);
+    $day = substr($timestamp, 8, 2);
+    $hour = substr($timestamp, 11, 2);
+    $minute = substr($timestamp, 14, 2);
+    $second = substr($timestamp, 17, 2);
+    $timestamp = gmmktime($hour, $minute, $second, $month, $day, $year);
+
+    $nextItem = array(
+      "timestamp" => $timestamp,
+      "content" => $row["author"] . ' <a href="' . $row["comment_url"] . '">commented on</a> an image',
+      "type" => "icomment"
+    );
+    array_push($items, $nextItem);
+  }
+}
+// smugmug images
+$smugMugImageSQL = "SELECT gallery_url, gallery_name, count(photo_slug) AS photo_count, MAX(created_at) AS created
+                    FROM smugmug_uploads
+                    WHERE created_at > '$cutoffDate'
+                    GROUP BY gallery_url, gallery_name, gallery_slug
+                    ORDER BY created DESC;";
+$smugMugImageResults = dbQuery($HISTORY_DATABASE, $smugMugImageSQL);
+
+if ($smugMugImageResults) {
+  $icon_map["smugmug_img"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-success"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i></span>';
+  while($row = $smugMugImageResults->fetch_assoc()) {
     $timestamp = $row["created"];
     $year = substr($timestamp, 0, 4);
     $month = substr($timestamp, 5, 2);
