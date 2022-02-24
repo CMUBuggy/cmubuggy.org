@@ -5,6 +5,7 @@ bid/development-bundle
 bid/backup/
 content/cache/*
 dbconfig.inc
+dbconfig.json
 files/
 
 # exclude node_modules and dist from css/bootstrap-src
