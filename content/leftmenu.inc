@@ -17,4 +17,5 @@
   <a href="https://feeds.feedburner.com/BuggyAlumniAssociationUltimate"><i class="fas fa-2x fa-rss-square" style="color: #f26522" title="Feed"></i></a>
   <a href="https://twitter.com/CMUBuggy"><i class="fab fa-2x fa-twitter-square" title="Twitter" style="color: #1da1f2;"></i></a>
   <a href="https://instagram.com/cmubuggy"><i class="fab fa-2x fa-instagram-square" title="Instagram" style="color: #e1306c;"></i></a>
+  <a href="https://www.youtube.com/user/CMUbuggy"><i class="fab fa-2x fa-youtube-square" title="Youtube" style="color: #ff0000;"></i></a>
 </div>
