@@ -29,6 +29,11 @@ Redirect 302 /fantasy https://docs.google.com/forms/d/e/1FAIpQLSeiUE_9vJIAAo67G_
 Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
+# Rewrite some iOS favicon handling (404 the precompsed icon, push the root apple-touch-icon to favicons/)
+# This is needed so they don't get caught by the /news redirect.
+RewriteRule		^apple-touch-icon.png$			favicons/apple-touch-icon.png	[NC,L]
+RewriteRule		^apple-touch-icon-precomposed.png$	-							[L,R=404]
+
 #top level sections
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^raceday[/]*$					index.php?s=raceday				[NC,L]
