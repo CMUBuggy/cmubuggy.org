@@ -4,7 +4,6 @@ bid2011/
 bid/development-bundle
 bid/backup/
 content/cache/*
-dbconfig.inc
 dbconfig.json
 files/
 
@@ -44,3 +43,4 @@ news/wp-content/themes/*
 upload/
 
 .DS_Store
+__pycache__
