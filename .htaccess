@@ -6,7 +6,7 @@ php_flag display_errors on
 # END Gzip
 
 # Deny access to dbconfig.inc file via website
-<FilesMatch "^dbconfig.inc$">
+<FilesMatch "^dbconfig.json$">
 	Order allow,deny
 	Deny from all
 </FilesMatch>
