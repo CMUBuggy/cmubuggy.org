@@ -153,7 +153,7 @@ if ($smugMugCommentResults) {
 
     $nextItem = array(
       "timestamp" => $timestamp,
-      "content" => $row["author"] . ' <a href="' . $row["comment_url"] . '">commented on</a> an image',
+      "content" => $row["author"] . ' commented on <a href="' . $row["comment_url"] . '">an image</a>',
       "type" => "icomment"
     );
     array_push($items, $nextItem);
