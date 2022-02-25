@@ -8,5 +8,5 @@
 
   $HISTORY_DATABASE = $config->DB_NAME;  // '[database name for history data]'
 
-  $ENABLE_GA_TAG = false;                // false or unset will prevent GA tag from showing
+  $ENABLE_GA_TAG = $config->GA_TAG;  // false or unset will prevent GA tag from showing
 ?>
