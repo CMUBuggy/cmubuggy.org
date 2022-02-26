@@ -20,23 +20,34 @@ XML_NAMESPACES = {'atom': 'http://www.w3.org/2005/Atom'}
 # Pre-requisites:
 #     sudo pip install mysql-connector-python
 #     sudo pip3 install mysql-connector-python-rf
+#
 # Run with:
 #     python3 -m scripts.fetch_smugmug_activity [--initialize]
 #
-# The `updated` timestamp in an entry is not the time the item was created, but
-# rather the last time it was last modified in the SmugMug UI. This causes entropy
-# in the results that can make it hard to tell when to stop searching through the
-# results, so during normal running mode we use the current time as a proxy for
-# `created_at`. While not exact, we run the script once an hour, so it is close
-# enough to the actual created at time.
+# Scheduling:
+# This script was scheduled using Crontab as the root user. Prior to scheduling,
+# the mysql-connector-python packages had to be installed for root. Script output
+# can be found in /var/mail/root.
+#     sudo su
+#     sudo pip install mysql-connector-python
+#     sudo pip3 install mysql-connector-python-rf
+#     crontab -e
+
+# The following expression was used for scheduling:
+#     0 * * * * /usr/bin/python3 /var/www/cmubuggy.org/scripts/fetch_smugmug_activity.py
 #
-# When running this script for the first time, pass the --initialize flag to use
-# the dynamic but reasonably accurate `updated` timestamp from entries instead, so
-# that the results make some sense to a user viewing an activity feed.
+# Other notes:
+#   The `updated` timestamp in an entry is not the time the item was created, but
+#   rather the last time it was last modified in the SmugMug UI. This causes entropy
+#   in the results that can make it hard to tell when to stop searching through the
+#   results, so during normal running mode we use the current time as a proxy for
+#   `created_at`. While not exact, we run the script once an hour, so it is close
+#   enough to the actual created at time.
 #
-# TODO: Schedule with Crontab -
-#       https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
-# TODO: Figure out where to route errors
+#   When running this script for the first time, pass the --initialize flag to use
+#   the dynamic but reasonably accurate `updated` timestamp from entries instead, so
+#   that the results make some sense to a user viewing an activity feed.
+#
 def main():
     parser = ArgumentParser()
     parser.add_argument('--initialize', action='store_true')
