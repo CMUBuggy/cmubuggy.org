@@ -55,8 +55,8 @@ def main():
         print(e)
 
     try:
-        (gallery_slug, photo_slug, photo_created_at) = get_most_recent_photo(connection)
-        recent_photos = fetch_recent_photos(gallery_slug, photo_slug, photo_created_at)
+        (gallery_slug, photo_id, photo_created_at) = get_most_recent_photo(connection)
+        recent_photos = fetch_recent_photos(gallery_slug, photo_id, photo_created_at)
         insert_photos(connection, recent_photos)
     except Exception as e:
         print(e)
@@ -128,21 +128,21 @@ def parse_comment_from_entry(entry):
 
     smugmug_id = _get_item_from_element(entry, 'id').text
     matches = re.search(r'\Asmugmug:comment:(?P<comment_id>\d+)\Z', smugmug_id)
-    comment['comment_id'] = matches.groupdict()['comment_id']
+    comment['comment_id'] = matches.group('comment_id')
+
+    comment['comment_url'] = _get_item_from_element(entry, 'link').get('href')
 
     title = _get_item_from_element(entry, 'title').text
     matches = re.search(r'\A(?P<author>.*) commented on (.*) photo\Z', title)
-    comment['author'] = matches.groupdict()['author']
+    comment['author'] = matches.group('author')
 
     content = _get_item_from_element(entry, 'content').text
     matches = re.search(
         r'<img src="(?P<thumbnail_url>https:\/\/[^"]+\.[\w]+)".*>.*<p>Comment: (?P<comment>.*)<\/p>',
         content)
-    matches_dict = matches.groupdict()
-    comment['thumbnail_url'] = matches_dict['thumbnail_url']
-    comment['comment'] = matches_dict['comment']
-
-    comment['comment_url'] = _get_item_from_element(entry, 'link').get('href')
+    if matches != None:
+        comment['thumbnail_url'] = matches.group('thumbnail_url')
+        comment['comment'] = matches.group('comment')
 
     if INITIALIZE_MODE:
         timestamp = _get_item_from_element(entry, 'updated').text
@@ -172,20 +172,20 @@ def insert_comments(connection, new_comments):
 def get_most_recent_photo(connection):
     cursor = connection.cursor()
     query = '''
-        select gallery_slug, photo_slug, created_at
+        select gallery_slug, photo_id, created_at
         from smugmug_uploads
         order by id desc
         limit 1
         '''
 
     cursor.execute(query)
-    for (gallery_slug, photo_slug, created_at) in cursor:
-        return (gallery_slug, photo_slug, created_at)
+    for (gallery_slug, photo_id, created_at) in cursor:
+        return (gallery_slug, photo_id, created_at)
 
     return (None, None, datetime.min)
 
 
-def fetch_recent_photos(last_gallery_slug, last_photo_slug, last_photo_uploaded_at):
+def fetch_recent_photos(last_gallery_slug, last_photo_id, last_photo_uploaded_at):
     url = PHOTO_FEED_URL
     recent_photos = []
     seen_photos = set()
@@ -208,13 +208,13 @@ def fetch_recent_photos(last_gallery_slug, last_photo_slug, last_photo_uploaded_
                 # progressed before it in time (in case the photo we are looking for
                 # was deleted on SmugMug and, therefore, from the feed)
                 if ((photo['gallery_slug'] == last_gallery_slug and
-                     photo['photo_slug'] == last_photo_slug) or
+                     photo['photo_id'] == last_photo_id) or
                     photo['created_at'] <= last_photo_uploaded_at):
                     found_last_photo = True
                     break
 
                 # SmugMug's pagination isn't perfect, so filter out duplicate entries
-                photo_identifier = (photo['gallery_slug'], photo['photo_slug'])
+                photo_identifier = (photo['gallery_slug'], photo['photo_id'])
                 if photo_identifier not in seen_photos:
                     recent_photos.append(photo)
                     seen_photos.add(photo_identifier)
@@ -235,16 +235,16 @@ def parse_photo_upload_from_entry(entry):
 
     content_url = _get_item_from_element(entry, 'link').get('href')
     matches = re.search(
-        r'(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/(?P<gallery_slug>(?P<folder>[^\/]+)\/(?P<gallery>[^\/]+))\/)(?P<photo_slug>[^\/]+)\/*',
+        r'^(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/(?P<folder_slug>.+))\/(?P<gallery_slug>[^\/]+)\/(?P<photo_id>[^\/]+)(\/*)$',
         content_url)
-    matches_dict = matches.groupdict()
 
     photo['content_url'] = content_url
-    photo['gallery_url'] = matches_dict['gallery_url']
-    photo['gallery_slug'] = matches_dict['gallery_slug']
-    photo['photo_slug'] = matches_dict['photo_slug']
-    photo['gallery_name'] = \
-        '%s / %s' % (matches_dict['folder'], matches_dict['gallery'].replace('-', ' '))
+    photo['gallery_url'] = matches.group('gallery_url')
+    photo['gallery_slug'] = \
+        '%s/%s' % (matches.group('gallery_slug'), matches.group('gallery_slug'))
+    photo['gallery_name'] = matches.group('gallery_slug').replace('-', ' ')
+    photo['photo_id'] = matches.group('photo_id')
+
     photo['thumbnail_url'] = _get_item_from_element(entry, 'id').text
 
     if INITIALIZE_MODE:
@@ -263,9 +263,9 @@ def insert_photos(connection, new_photos):
     cursor = connection.cursor()
     query = '''
         insert into smugmug_uploads
-            (gallery_url, content_url, thumbnail_url, gallery_name, gallery_slug, photo_slug, created_at)
+            (gallery_url, content_url, thumbnail_url, gallery_name, gallery_slug, photo_id, created_at)
         values
-            (%(gallery_url)s, %(content_url)s, %(thumbnail_url)s, %(gallery_name)s, %(gallery_slug)s, %(photo_slug)s, %(created_at)s)
+            (%(gallery_url)s, %(content_url)s, %(thumbnail_url)s, %(gallery_name)s, %(gallery_slug)s, %(photo_id)s, %(created_at)s)
         '''
     cursor.executemany(query, new_photos)
     connection.commit()
