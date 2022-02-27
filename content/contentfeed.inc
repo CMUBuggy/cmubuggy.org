@@ -160,7 +160,7 @@ if ($smugMugCommentResults) {
   }
 }
 // smugmug images
-$smugMugImageSQL = "SELECT gallery_url, gallery_name, count(photo_slug) AS photo_count, MAX(created_at) AS created
+$smugMugImageSQL = "SELECT gallery_url, gallery_name, count(photo_id) AS photo_count, MAX(created_at) AS created
                     FROM smugmug_uploads
                     WHERE created_at > '$cutoffDate'
                     GROUP BY gallery_url, gallery_name, gallery_slug
