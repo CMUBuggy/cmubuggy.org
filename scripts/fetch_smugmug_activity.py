@@ -161,10 +161,10 @@ def insert_comments(connection, new_comments):
             %(created_at)s
         )
         on duplicate key update
-            comment_url = %(comment_url)s,
-            thumbnail_url = %(thumbnail_url)s,
-            author = %(author)s,
-            comment = %(comment)s
+            comment_url = values(comment_url),
+            thumbnail_url = values(thumbnail_url),
+            author = values(author),
+            comment = values(comment)
         '''
     cursor.executemany(query, new_comments)
     connection.commit()
@@ -255,11 +255,11 @@ def insert_photos(connection, new_photos):
             %(created_at)s
         )
         on duplicate key update
-            gallery_url = %(gallery_url)s,
-            content_url = %(content_url)s,
-            thumbnail_url = %(thumbnail_url)s,
-            gallery_name = %(gallery_name)s,
-            gallery_slug = %(gallery_slug)s
+            gallery_url = values(gallery_url),
+            content_url = values(content_url),
+            thumbnail_url = values(thumbnail_url),
+            gallery_name = values(gallery_name),
+            gallery_slug = values(gallery_slug)
         '''
     cursor.executemany(query, new_photos)
     connection.commit()
