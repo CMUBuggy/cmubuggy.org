@@ -245,14 +245,18 @@ def parse_photo_upload_from_entry(entry):
     photo = {}
 
     content_url = _get_item_from_element(entry, 'link').get('href')
+    photo['content_url'] = content_url
+
+    # Three examples of URLs returned by SmugMug:
+    #   Gallery in nested folders: https://cmubuggy.smugmug.com/Buggy-History/Orgs/PiKA/PiKA-all/i-nwcRtxV/
+    #   Gallery in folder: https://cmubuggy.smugmug.com/2021-2022/Fall-Rolls-Nov-21/i-3XVVtFZ/
+    #   Top-level gallery: https://cmubuggy.smugmug.com/1940s/i-PC9ww4L/
     matches = re.search(
-        r'^(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/(?P<folder_slug>.+))\/(?P<gallery_slug>[^\/]+)\/(?P<photo_id>[^\/]+)(\/*)$',
+        r'^(?P<gallery_url>https:\/\/cmubuggy.smugmug.com\/*.*\/(?P<gallery_slug>[^\/]+))\/(?P<photo_id>[^\/]+)\/*$',
         content_url)
 
-    photo['content_url'] = content_url
     photo['gallery_url'] = matches.group('gallery_url')
-    photo['gallery_slug'] = \
-        '%s/%s' % (matches.group('gallery_slug'), matches.group('gallery_slug'))
+    photo['gallery_slug'] = matches.group('gallery_slug')
     photo['gallery_name'] = matches.group('gallery_slug').replace('-', ' ')
     photo['photo_id'] = matches.group('photo_id')
 
