@@ -164,7 +164,7 @@ if ($smugMugCommentResults) {
 
     $nextItem = array(
       "timestamp" => $timestamp,
-      "content" => $row["author"] . ' commented on <a href="' . $row["comment_url"] . '">an image</a>',
+      "content" => $row["author"] . ' commented on <a target="_blank" href="' . $row["comment_url"] . '">an image</a>',
       "type" => "icomment"
     );
     array_push($commentitems, $nextItem);
@@ -194,8 +194,8 @@ if ($smugMugImageResults) {
 
     $nextItem = array(
       "timestamp" => $timestamp,
-      "content" => 'Gallery <a href="' . $row["gallery_url"] . '">' . $row["gallery_name"] . '</a> has '
-                   . $count . ' new photos ',
+      "content" => 'Gallery <a target="_blank" href="' . $row["gallery_url"] . '">' . $row["gallery_name"] . '</a> has '
+                   . $count . ' recent photos ',
       "type" => "smugmug_img"
     );
     array_push($items, $nextItem);
