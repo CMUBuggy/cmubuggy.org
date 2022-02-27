@@ -195,7 +195,7 @@ if ($smugMugImageResults) {
     $nextItem = array(
       "timestamp" => $timestamp,
       "content" => 'Gallery <a href="' . $row["gallery_url"] . '">' . $row["gallery_name"] . '</a> has '
-                   . $count . ' new photos ',
+                   . $count . ' recent photos ',
       "type" => "smugmug_img"
     );
     array_push($items, $nextItem);
