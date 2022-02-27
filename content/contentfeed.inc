@@ -4,7 +4,6 @@ $newsitems = array();
 //only look for items from the last 90 days
 $cutoff = time()-(60*60*24*90);
 $cutoffDate = date("Y-m-d",$cutoff);
-$cutoffWiki = date("Ymd",$cutoff)."000000";
 $icon_map = array();
 
 ##NEWS ITEMS##
@@ -133,51 +132,65 @@ if ($ncommentResults) {
   }
 }
 
-##REFERENCE ITEMS##
-$referenceSQL = "SELECT revision.rev_id,revision.rev_timestamp,user.user_name, page.page_title, revision.rev_page
-  FROM revision
-  JOIN user
-  ON revision.rev_user=user.user_id
-  JOIN page
-  ON revision.rev_page=page.page_id
-  WHERE rev_minor_edit=0
-  AND page.page_namespace=0
-  and rev_timestamp > $cutoffWiki
-  ORDER BY rev_timestamp DESC";
-$referenceResults = dbQuery("cmubuggy_wiki",$referenceSQL);
+// smugmug comments
+$smugMugCommentSQL = "SELECT comment_url, author, created_at
+                      FROM smugmug_comments
+                      WHERE created_at > '$cutoffDate'
+                      ORDER BY created_at DESC;";
+$smugMugCommentResults = dbQuery($HISTORY_DATABASE, $smugMugCommentSQL);
 
-$referenceClusterItems = array();
-
-if ($referenceResults) {
-  $icon_map["reference"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-info fa-inverse" data-fa-transform="shrink-8"></i></span>';
-  while ($post = mysqli_fetch_row($referenceResults)) {
-    $timestamp = $post[1];
+if ($smugMugCommentResults) {
+  $icon_map["icomment"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i><i class="fas fa-comment" data-fa-transform="shrink-10 right-6 down-6"></i></span>';
+  while($row = $smugMugCommentResults->fetch_assoc()) {
+    $timestamp = $row["created_at"];
     $year = substr($timestamp, 0, 4);
-    $month = substr($timestamp, 4, 2);
-    $day = substr($timestamp, 6, 2);
-    $hour = substr($timestamp, 8, 2);
-    $minute = substr($timestamp, 10, 2);
-    $second = substr($timestamp, 12, 2);
-    $timestamp = mktime($hour, $minute, $second, $month, $day, $year)+$UTCdiff;
+    $month = substr($timestamp, 5, 2);
+    $day = substr($timestamp, 8, 2);
+    $hour = substr($timestamp, 11, 2);
+    $minute = substr($timestamp, 14, 2);
+    $second = substr($timestamp, 17, 2);
+    $timestamp = gmmktime($hour, $minute, $second, $month, $day, $year);
 
-    $href = "/reference/".$post[3];
-    $clusterKey = $post[4].$year.$month.$day;
-    if (array_key_exists($clusterKey, $referenceClusterItems)) {
-      $referenceClusterItems[$clusterKey]["count"]++;
-      $referenceClusterItems[$clusterKey]["content"] = $referenceClusterItems[$clusterKey]["count"] . ' changes to <a href="' . $href . '">' . str_replace("_"," ",$post[3]) . '</a>';
-    } else {
-      $referenceClusterItems[$clusterKey] = array(
-        "timestamp"=>$timestamp,
-        "count"=>1,
-        "content"=>$post[2] . ' edited <a href="' . $href . '">' . str_replace("_"," ",$post[3]) . '</a>',
-        "type"=>"reference"
-      );
-    }
-  }
-  foreach ($referenceClusterItems as $a) {
-    array_push($items,$a);
+    $nextItem = array(
+      "timestamp" => $timestamp,
+      "content" => $row["author"] . ' commented on <a href="' . $row["comment_url"] . '">an image</a>',
+      "type" => "icomment"
+    );
+    array_push($items, $nextItem);
   }
 }
+// smugmug images
+$smugMugImageSQL = "SELECT gallery_url, gallery_name, count(photo_id) AS photo_count, MAX(created_at) AS created
+                    FROM smugmug_uploads
+                    WHERE created_at > '$cutoffDate'
+                    GROUP BY gallery_url, gallery_name, gallery_slug
+                    ORDER BY created DESC;";
+$smugMugImageResults = dbQuery($HISTORY_DATABASE, $smugMugImageSQL);
+
+if ($smugMugImageResults) {
+  $icon_map["smugmug_img"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-success"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i></span>';
+  while($row = $smugMugImageResults->fetch_assoc()) {
+    $timestamp = $row["created"];
+    $year = substr($timestamp, 0, 4);
+    $month = substr($timestamp, 5, 2);
+    $day = substr($timestamp, 8, 2);
+    $hour = substr($timestamp, 11, 2);
+    $minute = substr($timestamp, 14, 2);
+    $second = substr($timestamp, 17, 2);
+    $timestamp = gmmktime($hour, $minute, $second, $month, $day, $year);
+
+    $count = ($row["photo_count"] >= 500) ? "500+" : $row["photo_count"];
+
+    $nextItem = array(
+      "timestamp" => $timestamp,
+      "content" => 'Gallery <a href="' . $row["gallery_url"] . '">' . $row["gallery_name"] . '</a> has '
+                   . $count . ' new photos ',
+      "type" => "smugmug_img"
+    );
+    array_push($items, $nextItem);
+  }
+}
+
 ?>
 
 <?php if (count($newsitems) > 0) { ?>
