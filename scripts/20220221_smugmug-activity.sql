@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `smugmug_comments` (
+CREATE TABLE IF NOT EXISTS smugmug_comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     comment_id VARCHAR(15),
     comment_url VARCHAR(2083),
@@ -6,10 +6,11 @@ CREATE TABLE IF NOT EXISTS `smugmug_comments` (
     author VARCHAR(2083),
     comment VARCHAR(2083),
     created_at datetime,
-    INDEX (`created_at` DESC)
+    INDEX (created_at DESC),
+    CONSTRAINT unique_comment_id UNIQUE(comment_id)
 );
 
-CREATE TABLE IF NOT EXISTS `smugmug_uploads` (
+CREATE TABLE IF NOT EXISTS smugmug_uploads (
     id INT AUTO_INCREMENT PRIMARY KEY,
     gallery_url VARCHAR(2083),
     content_url VARCHAR(2083),
@@ -18,5 +19,6 @@ CREATE TABLE IF NOT EXISTS `smugmug_uploads` (
     gallery_slug VARCHAR(300),
     photo_id VARCHAR(150),
     created_at datetime,
-    INDEX (`created_at` DESC)
+    INDEX (created_at DESC),
+    CONSTRAINT unique_photo_id UNIQUE(photo_id)
 );

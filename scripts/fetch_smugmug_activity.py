@@ -59,15 +59,13 @@ def main():
     connection = open_db_connection()
 
     try:
-        (comment_id, comment_created_at) = get_most_recent_comment(connection)
-        new_comments = fetch_new_comments(comment_id, comment_created_at)
+        new_comments = fetch_new_comments()
         insert_comments(connection, new_comments)
     except Exception as e:
         print(e)
 
     try:
-        (gallery_slug, photo_id, photo_created_at) = get_most_recent_photo(connection)
-        recent_photos = fetch_recent_photos(gallery_slug, photo_id, photo_created_at)
+        recent_photos = fetch_recent_photos()
         insert_photos(connection, recent_photos)
     except Exception as e:
         print(e)
@@ -89,23 +87,7 @@ def open_db_connection():
         raise_on_warnings= True)
 
 
-def get_most_recent_comment(connection):
-    cursor = connection.cursor()
-    query = '''
-        select comment_id, created_at
-        from smugmug_comments
-        order by id desc
-        limit 1
-        '''
-
-    cursor.execute(query)
-    for (comment_id, created_at) in cursor:
-        return (comment_id, created_at)
-
-    return (None, datetime.min)
-
-
-def fetch_new_comments(last_comment_id, last_comment_created_at):
+def fetch_new_comments():
     # The SmugMug comment feed does not paginate, so hopefully we never receive more
     # than 100 comments in an hour. Or perhaps it is an infinite feed. I guess we will
     # find out when we have more than 100 comments total :)
@@ -116,14 +98,6 @@ def fetch_new_comments(last_comment_id, last_comment_created_at):
     for entry in _get_entries_from_xml_root(xml_root):
         try:
             comment = parse_comment_from_entry(entry)
-
-            # Stop if we have found the most recently cached comment, or if we have
-            # progressed before it in time (in case the comment we are looking for
-            # was deleted on SmugMug and, therefore, from the feed)
-            if (comment['comment_id'] == last_comment_id  or
-                comment['created_at'] <= last_comment_created_at):
-                break
-
             new_comments.append(comment)
 
         except Exception as e:
@@ -170,40 +144,41 @@ def insert_comments(connection, new_comments):
 
     cursor = connection.cursor()
     query = '''
-        insert into smugmug_comments
-            (comment_id, comment_url, thumbnail_url, author, comment, created_at)
-        values
-            (%(comment_id)s, %(comment_url)s, %(thumbnail_url)s, %(author)s, %(comment)s, %(created_at)s)
+        insert into smugmug_comments (
+            comment_id,
+            comment_url,
+            thumbnail_url,
+            author,
+            comment,
+            created_at
+        )
+        values (
+            %(comment_id)s,
+            %(comment_url)s,
+            %(thumbnail_url)s,
+            %(author)s,
+            %(comment)s,
+            %(created_at)s
+        )
+        on duplicate key update
+            comment_url = values(comment_url),
+            thumbnail_url = values(thumbnail_url),
+            author = values(author),
+            comment = values(comment)
         '''
     cursor.executemany(query, new_comments)
     connection.commit()
     cursor.close()
 
 
-def get_most_recent_photo(connection):
-    cursor = connection.cursor()
-    query = '''
-        select gallery_slug, photo_id, created_at
-        from smugmug_uploads
-        order by id desc
-        limit 1
-        '''
-
-    cursor.execute(query)
-    for (gallery_slug, photo_id, created_at) in cursor:
-        return (gallery_slug, photo_id, created_at)
-
-    return (None, None, datetime.min)
-
-
-def fetch_recent_photos(last_gallery_slug, last_photo_id, last_photo_uploaded_at):
+def fetch_recent_photos():
     url = PHOTO_FEED_URL
     recent_photos = []
     seen_photos = set()
 
-    found_last_photo = False
-    while not found_last_photo:
-
+    # The SmugMug photo feed includes the last 1000 photos uploaded to the account
+    # across multiple pages. Paginate through all results until we run out of them.
+    while True:
         response = requests.get(url)
         xml_root = ElementTree.fromstring(response.content)
 
@@ -215,15 +190,6 @@ def fetch_recent_photos(last_gallery_slug, last_photo_id, last_photo_uploaded_at
             try:
                 photo = parse_photo_upload_from_entry(entry)
 
-                # Stop if we have found the most recently cached photo, or if we have
-                # progressed before it in time (in case the photo we are looking for
-                # was deleted on SmugMug and, therefore, from the feed)
-                if ((photo['gallery_slug'] == last_gallery_slug and
-                     photo['photo_id'] == last_photo_id) or
-                    photo['created_at'] <= last_photo_uploaded_at):
-                    found_last_photo = True
-                    break
-
                 # SmugMug's pagination isn't perfect, so filter out duplicate entries
                 photo_identifier = (photo['gallery_slug'], photo['photo_id'])
                 if photo_identifier not in seen_photos:
@@ -233,8 +199,7 @@ def fetch_recent_photos(last_gallery_slug, last_photo_id, last_photo_uploaded_at
             except Exception as e:
                 print(e)
 
-        if not found_last_photo:
-            url = _get_next_url_from_xml_root(xml_root)
+        url = _get_next_url_from_xml_root(xml_root)
 
     # Photos are read in reverse chronologically, so reverse the order
     recent_photos.reverse()
@@ -277,10 +242,30 @@ def insert_photos(connection, new_photos):
 
     cursor = connection.cursor()
     query = '''
-        insert into smugmug_uploads
-            (gallery_url, content_url, thumbnail_url, gallery_name, gallery_slug, photo_id, created_at)
-        values
-            (%(gallery_url)s, %(content_url)s, %(thumbnail_url)s, %(gallery_name)s, %(gallery_slug)s, %(photo_id)s, %(created_at)s)
+        insert into smugmug_uploads (
+            gallery_url,
+            content_url,
+            thumbnail_url,
+            gallery_name,
+            gallery_slug,
+            photo_id,
+            created_at
+        )
+        values (
+            %(gallery_url)s,
+            %(content_url)s,
+            %(thumbnail_url)s,
+            %(gallery_name)s,
+            %(gallery_slug)s,
+            %(photo_id)s,
+            %(created_at)s
+        )
+        on duplicate key update
+            gallery_url = values(gallery_url),
+            content_url = values(content_url),
+            thumbnail_url = values(thumbnail_url),
+            gallery_name = values(gallery_name),
+            gallery_slug = values(gallery_slug)
         '''
     cursor.executemany(query, new_photos)
     connection.commit()
