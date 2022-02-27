@@ -176,6 +176,8 @@ def fetch_recent_photos():
     recent_photos = []
     seen_photos = set()
 
+    # The SmugMug photo feed includes the last 1000 photos uploaded to the account
+    # across multiple pages. Paginate through all results until we run out of them.
     while True:
         response = requests.get(url)
         xml_root = ElementTree.fromstring(response.content)
