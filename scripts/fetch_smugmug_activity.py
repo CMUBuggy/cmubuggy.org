@@ -144,10 +144,27 @@ def insert_comments(connection, new_comments):
 
     cursor = connection.cursor()
     query = '''
-        insert ignore into smugmug_comments
-            (comment_id, comment_url, thumbnail_url, author, comment, created_at)
-        values
-            (%(comment_id)s, %(comment_url)s, %(thumbnail_url)s, %(author)s, %(comment)s, %(created_at)s)
+        insert into smugmug_comments (
+            comment_id,
+            comment_url,
+            thumbnail_url,
+            author,
+            comment,
+            created_at
+        )
+        values (
+            %(comment_id)s,
+            %(comment_url)s,
+            %(thumbnail_url)s,
+            %(author)s,
+            %(comment)s,
+            %(created_at)s
+        )
+        on duplicate key update
+            comment_url = %(comment_url)s,
+            thumbnail_url = %(thumbnail_url)s,
+            author = %(author)s,
+            comment = %(comment)s
         '''
     cursor.executemany(query, new_comments)
     connection.commit()
@@ -219,10 +236,30 @@ def insert_photos(connection, new_photos):
 
     cursor = connection.cursor()
     query = '''
-        insert ignore into smugmug_uploads
-            (gallery_url, content_url, thumbnail_url, gallery_name, gallery_slug, photo_id, created_at)
-        values
-            (%(gallery_url)s, %(content_url)s, %(thumbnail_url)s, %(gallery_name)s, %(gallery_slug)s, %(photo_id)s, %(created_at)s)
+        insert into smugmug_uploads (
+            gallery_url,
+            content_url,
+            thumbnail_url,
+            gallery_name,
+            gallery_slug,
+            photo_id,
+            created_at
+        )
+        values (
+            %(gallery_url)s,
+            %(content_url)s,
+            %(thumbnail_url)s,
+            %(gallery_name)s,
+            %(gallery_slug)s,
+            %(photo_id)s,
+            %(created_at)s
+        )
+        on duplicate key update
+            gallery_url = %(gallery_url)s,
+            content_url = %(content_url)s,
+            thumbnail_url = %(thumbnail_url)s,
+            gallery_name = %(gallery_name)s,
+            gallery_slug = %(gallery_slug)s
         '''
     cursor.executemany(query, new_photos)
     connection.commit()
