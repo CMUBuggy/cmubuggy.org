@@ -57,7 +57,7 @@
     </li>
   </ul>
 
-  <p>Results update automatically. If they stop or you can't see them, <a role="button" href="#" data-iframe>click here</a>. To see 2018 results, <a href="/history/raceday/2018" target="_blank">go here</a>.</p>
+  <p>Results update automatically. If they stop or you can't see them, <a role="button" href="#" data-iframe>click here</a>.</p>
 
   <div class="tab-content mb-3">
     <div class="tab-pane fade prelims show active" id="tab-womens-prelims" role="tabpanel" aria-labelledby="womens-prelims-tab">
