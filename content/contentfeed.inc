@@ -1,9 +1,20 @@
 <?php
-$items = array();
-$newsitems = array();
-//only look for items from the last 90 days
-$cutoff = time()-(60*60*24*90);
+// Front Page Feed Limits:
+// Total Items: 15
+// Comments: Only 5, regardless of source.
+// Only back 90 days.
+$MAX_FEED_ITEMS_COMMENT = 5;
+$MAX_FEED_ITEMS_ALL = 15;
+$MAX_FEED_DAYS = 90;
+
+// set our cutoff time
+$cutoff = time()-(60*60*24*$MAX_FEED_DAYS);
 $cutoffDate = date("Y-m-d",$cutoff);
+
+// Our various arrays to track our content.
+$items = array();
+$commentitems = array();
+$newsitems = array();
 $icon_map = array();
 
 ##NEWS ITEMS##
@@ -128,7 +139,7 @@ if ($ncommentResults) {
     }
   }
   foreach ($ncommentClusterItems as $a) {
-    array_push($items,$a);
+    array_push($commentitems,$a);
   }
 }
 
@@ -156,7 +167,7 @@ if ($smugMugCommentResults) {
       "content" => $row["author"] . ' commented on <a href="' . $row["comment_url"] . '">an image</a>',
       "type" => "icomment"
     );
-    array_push($items, $nextItem);
+    array_push($commentitems, $nextItem);
   }
 }
 // smugmug images
@@ -191,6 +202,9 @@ if ($smugMugImageResults) {
   }
 }
 
+// Now, take the max number of comments we want to see, and append them to the end of items.
+uasort($commentitems, "timestamp_sort");
+$items = array_merge($items, array_slice($commentitems, 0, $MAX_FEED_ITEMS_COMMENT));
 ?>
 
 <?php if (count($newsitems) > 0) { ?>
@@ -209,7 +223,7 @@ if ($smugMugImageResults) {
   <?php
     ##OVERALL DISPLAY##
     uasort($items, "timestamp_sort");
-    $items = array_slice($items, 0, 150);
+    $items = array_slice($items, 0, $MAX_FEED_ITEMS_ALL);
     foreach ($items as $item) {
       $media = $icon_map[$item['type']];
       if (isset($item['media'])) { $media = $item['media']; }
