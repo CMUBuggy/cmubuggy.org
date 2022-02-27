@@ -17,14 +17,14 @@
 
 <div class="row">
   <div class="media mb-3 col-md-6">
-    <img src="/img/cmutvlogo.gif" alt="cmuTV logo" class="mr-3 raceday-thumb">
+    <img src="/img/logos/cmutvlogo.gif" alt="cmuTV logo" class="mr-3 raceday-thumb">
     <div class="media-body">
       <h5 class="mt-0"><a href="/live">Livestream</a></h5>
       Go check out this year's livestream!
     </div>
   </div>
   <div class="media mb-3 col-md-6">
-    <img src="/img/wrctlogo.gif" alt="WRTC logo" class="mr-3 raceday-thumb">
+    <img src="/img/logos/wrctlogo.gif" alt="WRTC logo" class="mr-3 raceday-thumb">
     <div class="media-body">
       <h5 class="mt-0"><a target="_blank" rel="noopener" href="http://wrct.org/">WRCT</a></h5>
       WRCT will be broadcasting some buggy panels
