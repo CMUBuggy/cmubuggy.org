@@ -36,26 +36,7 @@ XML_NAMESPACES = {'atom': 'http://www.w3.org/2005/Atom'}
 # The following expression was used for scheduling:
 #     0 * * * * /usr/bin/python3 /var/www/cmubuggy.org/scripts/fetch_smugmug_activity.py
 #
-# Other notes:
-#   The `updated` timestamp in an entry is not the time the item was created, but
-#   rather the last time it was last modified in the SmugMug UI. This causes entropy
-#   in the results that can make it hard to tell when to stop searching through the
-#   results, so during normal running mode we use the current time as a proxy for
-#   `created_at`. While not exact, we run the script once an hour, so it is close
-#   enough to the actual created at time.
-#
-#   When running this script for the first time, pass the --initialize flag to use
-#   the dynamic but reasonably accurate `updated` timestamp from entries instead, so
-#   that the results make some sense to a user viewing an activity feed.
-#
 def main():
-    parser = ArgumentParser()
-    parser.add_argument('--initialize', action='store_true')
-    args = parser.parse_args()
-
-    global INITIALIZE_MODE
-    INITIALIZE_MODE = args.initialize
-
     connection = open_db_connection()
 
     try:
@@ -129,11 +110,10 @@ def parse_comment_from_entry(entry):
         comment['thumbnail_url'] = matches.group('thumbnail_url')
         comment['comment'] = matches.group('comment')
 
-    if INITIALIZE_MODE:
-        timestamp = _get_item_from_element(entry, 'updated').text
-        comment['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
-    else:
-        comment['created_at'] = datetime.utcnow()
+    timestamp_item = _get_item_from_element(entry, 'updated')
+    comment['created_at'] = datetime.utcnow() \
+        if timestamp_item == None \
+        else _get_utc_datetime_from_timestamp(timestamp_item.text)
 
     return comment
 
@@ -225,13 +205,13 @@ def parse_photo_upload_from_entry(entry):
     photo['gallery_name'] = matches.group('gallery_slug').replace('-', ' ')
     photo['photo_id'] = matches.group('photo_id')
 
-    photo['thumbnail_url'] = _get_item_from_element(entry, 'id').text
+    thumbnail_url_item = _get_item_from_element(entry, 'id')
+    photo['thumbnail_url'] = '' if thumbnail_url_item == None else thumbnail_url_item.text
 
-    if INITIALIZE_MODE:
-        timestamp = _get_item_from_element(entry, 'updated').text
-        photo['created_at'] = _get_utc_datetime_from_timestamp(timestamp)
-    else:
-        photo['created_at'] = datetime.utcnow()
+    timestamp_item = _get_item_from_element(entry, 'updated')
+    photo['created_at'] = datetime.utcnow() \
+        if timestamp_item == None \
+        else _get_utc_datetime_from_timestamp(timestamp_item.text)
 
     return photo
 
@@ -288,8 +268,8 @@ def _get_item_from_element(el, tag):
 def _get_utc_datetime_from_timestamp(timestamp):
     # We get timestamps in form '2021-10-17T18:28:03-07:00' with timezone specified
     # as '[+/-]##:##', but strptime expects timezone specified as '[+/-]####', so
-    # we strip the last three characters off and tack the '00' back on.
-    timestamp = timestamp[:-3] + '00'
+    # we strip out the ':'.
+    timestamp = timestamp[:-3] + timestamp[-2:]
     as_datetime = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S%z')
     return as_datetime.astimezone(pytz.UTC).replace(tzinfo=None)
 
