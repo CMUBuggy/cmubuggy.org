@@ -2,9 +2,12 @@
   <div class="col-md-8">
 
     <div class="card mb-3">
+      <h5 class="card-header">Raceday 2022 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
       <div class="card-body">
-        <h5 class="card-title">Raceday 2022 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
-        Spring Carnival will be here before you know it.  Watch this space for more details.
+        <p>Spring Carnival will be here before you know it, and we're excited to see everyone and celebrate the 100th anniversary of Buggy in person!</p>
+
+        <p>We're looking for people to help out on raceday.  Click below if you'd like to volunteer.</p>
+        <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSeca9G08KAzIKgyOJ2CV5xAgquJ2dsubwC5CsyCkCgPIZI1YA/viewform" class="btn btn-primary">Volunteer Now</a>
       </div>
     </div>
 
