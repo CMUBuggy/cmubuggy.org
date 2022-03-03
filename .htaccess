@@ -27,6 +27,11 @@ Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
 Redirect 302 /fantasy https://docs.google.com/forms/d/e/1FAIpQLSeiUE_9vJIAAo67G_mIZCvEfi3Obe6omOYbWaYqNVcXwNTw2w/viewform?usp=sf_link
 Redirect 302 /smugmug https://cmubuggy.smugmug.com/
+
+# 2022 Raceday Volunteer Form
+Redirect 302 /volunteer https://docs.google.com/forms/d/e/1FAIpQLSeca9G08KAzIKgyOJ2CV5xAgquJ2dsubwC5CsyCkCgPIZI1YA/viewform
+
+# Raceday 2020
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
 # Rewrite some iOS favicon handling (404 the precompsed icon, push the root apple-touch-icon to favicons/)
