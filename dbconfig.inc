@@ -1,5 +1,5 @@
 <?php
-  $config_json_str = file_get_contents('./dbconfig.json');
+  $config_json_str = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/dbconfig.json');
   $config = json_decode($config_json_str);
 
   $dbhost = $config->DB_HOST;
