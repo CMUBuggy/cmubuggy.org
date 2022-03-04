@@ -1,4 +1,7 @@
 <?php
+// Force exact matching instead of prefix matching for /news/... URLs.
+add_filter('strict_redirect_guess_404_permalink', '__return_true');
+
 function buggy_theme_enqueue_scripts() {
 	// Note: The "Clear Cache For Me" plugin usurps the versioning control
 	// here, so in order to cachebust a new CSS version, you will need to click the
