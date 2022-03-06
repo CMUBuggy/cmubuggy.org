@@ -24,6 +24,8 @@
                       team,
                       b.name AS buggyname,
                       b.buggyid AS buggyid,
+                      b.birthyear AS buggyyear,
+                      b.smugmug_slug AS buggy_smugmug_slug,
                       m.heattype AS heattype,
                       m.position AS position,
                       m.personid AS personid,
@@ -70,6 +72,21 @@
       if (!empty($row["buggyid"])) {
         $teams[$teamkey]["buggy"] = "<a href=\"/history/buggy/".$row["buggyid"]."\">".$row["buggyname"]."</a>";
       }
+      if (!empty($row["buggyyear"])) {
+        $buggyyear = $row["buggyyear"];
+        $age = "";
+        if ($year == $buggyyear) {
+          $age = " <i>(New Buggy)</i>";
+        } else if ($year > $buggyyear) {
+          $age = " <i>(" . ($year - $buggyyear) . " years old)</i>";
+        }
+        $teams[$teamkey]["buggyage"] = $buggyyear.$age;
+      }
+      if (!empty($row["buggy_smugmug_slug"])) {
+        $slug = $row["buggy_smugmug_slug"];
+        $size = "S";
+        $teams[$teamkey]["buggyimage"] = "<img class=\"img-fluid img-thumbnail\" src=\"https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg\">";
+      }
       $teams[$teamkey]["people"] = array();
     }
 
@@ -85,14 +102,21 @@
   echo("<p><a href=\"/history/rosters/".$year."\">See ".$year." rosters summary</a></p>");
   echo ("<div class=\"table-responsive\"><table class=\"table\">");
 
-  echo("<tr><th>Team</th><th>Role</th><th>Person</th></tr>");
+  echo("<tr><th width=40% scope=\"col\">Team</th><th scope=\"col\">Role</th><th scope=\"col\">Person</th></tr>");
   foreach ($teams as $teamKey => $team) {
     echo("<tr>");
 
     $rows = count($team["people"]);
-    echo("<td rowspan=".max(1,$rows)."><h4>".$team["entry"]."</h4>");
+    echo("<td width=40% rowspan=".max(1,$rows)."><h4>".$team["entry"]."</h4><dl>");
     if(isset($team["buggy"])) {
-      echo("Buggy: ".$team["buggy"]);
+      echo("<dt>Buggy</dt><dd>".$team["buggy"]."</dd>");
+    }
+    if(isset($team["buggyage"])) {
+      echo("<dt>Buggy Built</dt><dd>".$team["buggyage"]."</dd>");
+    }
+    echo("</dl>");
+    if(isset($team["buggyimage"])) {
+      echo($team["buggyimage"]);
     }
     echo("</td>");
 

@@ -8,7 +8,8 @@ if (empty($_GET["urlkey"])) {
 $buggyUrlKey = $_GET["urlkey"];
 
 #(/buggy) metadata (existance, build year, org, notes)
-$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note FROM hist_buggies b
+$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note, b.smugmug_slug, b.smugmug_tag
+                    FROM hist_buggies b
                     LEFT JOIN hist_orgs o ON b.orgid=o.orgid
                     WHERE b.buggyid=?;";
 
@@ -100,25 +101,47 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
 <h1><?php echo($buggy["name"]);?></h1>
 
 <?php
-  // Path is relative to our cwd from the file that called us (e.g. /index.php due to redirects) not relative to this .inc file!
-  if (file_exists("img/buggy/".$buggyUrlKey)) {
+  $image_url = "";
+  if(!empty($buggy["smugmug_slug"])) {
+    $slug = $buggy["smugmug_slug"];
+    $size = "S";
+    $image_url = "https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg";
+  } else if (file_exists("img/buggy/".$buggyUrlKey)) {
+    // Legacy photo lookup from local directories.  Should become obsolete pretty quick.
+    // Path is relative to our cwd from the file that called us (e.g. /index.php due to redirects) not relative to this .inc file!
+
     // No useful alt text to go here sicne it'd really only be the name.
-    echo("<img class=\"mb-3\" src=\"/img/buggy/".$buggyUrlKey."\" />");
+    $image_url = "/img/buggy/".$buggyUrlKey;
   }
 ?>
 
-<dl class="row">
-  <dt class="col-sm-5">Built</dt>
-  <dd class="col-sm-7"><?php echo($buggy["birthyear"]); ?></dd>
+<div class="row">
+  <div class="col">
+  <dl class="row">
+    <dt class="col-sm-5">Built</dt>
+    <dd class="col-sm-7"><?php echo($buggy["birthyear"]); ?></dd>
 
-  <dt class="col-sm-5">Organization</dt>
-  <dd class="col-sm-7"><?php echo("<a href=\"/history/org/".$buggy["orgid"]."\">".$buggy["org"]. "</a>"); ?></dd>
+    <dt class="col-sm-5">Organization</dt>
+    <dd class="col-sm-7"><?php echo("<a href=\"/history/org/".$buggy["orgid"]."\">".$buggy["org"]. "</a>"); ?></dd>
 
-  <?php if (!empty($buggy["note"])) { ?>
-    <dt class="col-sm-5">Notes</dt>
-    <dd class="col-sm-7"><?php echo($buggy["note"]); ?></dd>
-  <?php } ?>
-</dl>
+    <?php if (!empty($buggy["note"])) { ?>
+      <dt class="col-sm-5">Notes</dt>
+      <dd class="col-sm-7"><?php echo($buggy["note"]); ?></dd>
+    <?php }
+          if (!empty($buggy["smugmug_tag"])) { ?>
+      <dt class="col-sm-5">Photos</dt>
+      <dd class="col-sm-7"><a target="_blank" href="https://cmubuggy.smugmug.com/keyword/<?php echo($buggy["smugmug_tag"]); ?>/">Click Here</a></dd>
+    <?php } ?>
+  </dl>
+  </div>
+  <div class="col"><div class="row">
+  <?php
+    if (!empty($image_url)) {
+      echo("<img class=\"img-fluid img-thumbnail mb-2\" src=\"".$image_url."\" />");
+    }
+  ?>
+  </div></div>
+</div>
 
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
