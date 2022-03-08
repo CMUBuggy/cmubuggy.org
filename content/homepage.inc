@@ -1,6 +1,30 @@
 <div class="row">
   <div class="col-md-8">
 
+
+<?php
+  // Time out the merch box after March 20 Midnight.
+  // (default timezone already set in pre-content.inc)
+  $merchenddate = mktime(23, 59, 0, 3, 20, 2022);
+
+  if (time() < $merchenddate) {
+?>
+    <div class="card mb-3">
+      <h5 class="card-header">Buggy Merch!</h5>
+      <div class="card-body">
+        <div class="media">
+          <img class="d-none d-md-inline align-self-center mr-3" style="max-height:180px" src="https://cmubuggy.org/files/2022merch/hat.webp">
+          <div class="media-body">
+            <p>Order your BAA tshirt, hoodie, or hat before Raceday!</p>
+            <p>Supplies are limited, order by March 20th.</p>
+            <a target="_blank" href="/merch" class="btn btn-primary">Get My Stuff!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+<?php
+  }
+?>
     <div class="card mb-3">
       <h5 class="card-header">Raceday 2022 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
       <div class="card-body">
