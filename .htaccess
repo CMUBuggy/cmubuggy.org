@@ -22,6 +22,9 @@ Redirect 301 /admin /news/wp-admin
 Redirect 301 /gallery-2021 /smugmug
 
 # We use 302 (temp) redirects for things that are hosted off site.
+Redirect 302 /merch https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
+Redirect 302 /store https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
+
 Redirect 302 /auction https://www.32auctions.com/baa2019
 Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
