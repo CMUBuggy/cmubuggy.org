@@ -14,9 +14,11 @@ $metaDataQuery = "SELECT case when isgreek = 1 then greekname else longname end 
                          isracingorg,
                          orgurl,
                          yearfounded,
-                         note
-                    FROM hist_orgs
-                    WHERE orgid=?;";
+                         note,
+                         orglogos.image_url AS image_url
+                    FROM hist_orgs o
+                    LEFT JOIN orglogos ON o.orgid = orglogos.orgid
+                    WHERE o.orgid=?;";
 $metaData = dbBoundQuery($HISTORY_DATABASE, $metaDataQuery, "s", $orgUrlKey);
 
 if ($metaData->num_rows == 1) {
@@ -436,25 +438,39 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   }
 }
 ?>
-
-<h1><?php
+<div class="row">
+  <div class="col">
+  <h1>
+  <?php
       echo($org["longname"]);
       if ($org["shortname"]) {
         echo (" <span style=\"font-size:.5em\">(".$org["shortname"].")</span>");
       }
-?></h1>
+  ?>
+  </h1>
 
-<p>Founded: <?php echo($org["yearfounded"]); ?></p>
+  <dl class="row">
+  <dt class="col-sm-3">Founded</dt><dd class="col-sm-9"><?php echo($org["yearfounded"]); ?></dd>
+  <?php
+    if($org["orgurl"]) {
+      // We don't store these with a leading "http://" so....
+      // Hopefully everyone redirects to https if they use it.
+      echo ("<dt class=\"col-sm-3\">Website</dt><dd class=\"col-sm-9\"><a href=\"http://".$org["orgurl"]."\">".$org["orgurl"]."</a></dd>");
+    }
+    if($org["note"]) {
+      echo ("<dt class=\"col-sm-3\">Notes</dt><dd class=\"col-sm-9\">".$org["note"]."</dd>");
+    }
+  ?>
+  </dl>
+  </div>
+  <?php if(isset($org["image_url"])) { ?>
+  <div class="d-none d-sm-inline col text-right">
+    <img class="img-fluid mb-2" style="max-height: 200px" src="<?php echo($org["image_url"]); ?>" />
+  </div>
+  <?php } ?>
+</div>
+
 <?php
-  if($org["orgurl"]) {
-    // We don't store these with a leading "http://" so....
-    // Hopefully everyone redirects to https if they use it.
-    echo ("<p>Website: <a href=\"http://".$org["orgurl"]."\">".$org["orgurl"]."</a></p>");
-  }
-  if($org["note"]) {
-    echo ("<p>Notes: ".$org["note"]."</p>");
-  }
-
   // Only graph trends in the last 20 years for A->C teams
   $thisYear = date("Y");
   $trendStartYear = $thisYear - 20;
@@ -465,7 +481,6 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   $trendableOrg = isTrendableOrg(array_merge($trendMens, $trendWomens),
                                  $trendStartYear, $thisYear);
 ?>
-
 
 <?php if ($org["isracingorg"] == 1) { ?>
   <ul class="nav nav-tabs mb-2" role="tablist">
