@@ -1,9 +1,11 @@
 <?php
 // Front Page Feed Limits:
-// Total Items: 15
-// Comments: Only 5, regardless of source.
-// Only back 90 days.
-$MAX_FEED_ITEMS_COMMENT = 5;
+// Total Items: 15 (on main page, this lines up nicely with the left nav)
+// Comments: Only 7, regardless of source (avoid talkative photos).
+// Smugmug Uploads: No more than 7 galleries (avoid bulk uplodes).
+// Only back 90 days (keep us recent).
+$MAX_FEED_ITEMS_COMMENT = 7;
+$MAX_FEED_ITEMS_SMUGMUG = 7;
 $MAX_FEED_ITEMS_ALL = 15;
 $MAX_FEED_DAYS = 90;
 
@@ -175,7 +177,8 @@ $smugMugImageSQL = "SELECT gallery_url, gallery_name, count(photo_id) AS photo_c
                     FROM smugmug_uploads
                     WHERE created_at > '$cutoffDate'
                     GROUP BY gallery_url, gallery_name, gallery_slug
-                    ORDER BY created DESC;";
+                    ORDER BY created DESC
+                    LIMIT $MAX_FEED_ITEMS_SMUGMUG;";
 $smugMugImageResults = dbQuery($HISTORY_DATABASE, $smugMugImageSQL);
 
 if ($smugMugImageResults) {
