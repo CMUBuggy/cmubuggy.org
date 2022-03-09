@@ -13,7 +13,7 @@
    width="652"
    height="240"
    viewBox="20 140 652 240"
-   sodipodi:docname="fringe racing logo.ai"><metadata
+   style="background-color:#002861"><metadata
      id="metadata8"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
@@ -278,7 +278,7 @@
            id="g208"
            transform="translate(272.499,207.6392)"><path
              d="m 0,0 c -1.477,-0.001 -2.955,-0.029 -4.432,0.007 -1.427,0.035 -1.692,0.301 -1.705,1.702 -0.027,2.834 0.002,5.669 -0.038,8.503 -0.013,0.924 0.348,1.469 1.256,1.552 2.945,0.269 5.933,0.414 8.835,-0.005 C 7.47,11.247 9.88,6.869 8.853,3.413 8.416,1.946 5.978,0.04 4.433,0.007 2.956,-0.024 1.478,0 0,0"
-             style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             style="fill:#002861;fill-opacity:1;fill-rule:nonzero;stroke:none"
              id="path210" /></g><g
            id="g212"
            transform="translate(357.3359,205.2187)"><path
@@ -288,7 +288,7 @@
            id="g216"
            transform="translate(283.8047,138.7109)"><path
              d="m 0,0 c -0.807,-1.729 -2.975,-3.628 -4.994,-3.452 -2.615,0.228 -5.265,0.045 -7.9,0.062 -1.5,0.01 -1.667,0.179 -1.702,1.633 -0.07,2.911 -0.093,5.825 -0.203,8.735 -0.036,0.956 0.474,1.365 1.242,1.41 2.911,0.167 5.867,0.395 8.723,-0.08 C -2.768,7.963 -0.967,6.671 0.001,4.593 0.419,4.145 0.342,3.551 0.291,3.058 0.187,2.039 0.277,1 0,0"
-             style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             style="fill:#002861;fill-opacity:1;fill-rule:nonzero;stroke:none"
              id="path218" /></g><g
            id="g220"
            transform="translate(283.8047,138.7109)"><path
@@ -298,5 +298,5 @@
            id="g224"
            transform="translate(314.4336,146.0742)"><path
              d="M 0,0 -4.732,-15.149 H 7.321 L 3.189,0 Z"
-             style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             style="fill:#002861;fill-opacity:1;fill-rule:nonzero;stroke:none"
              id="path226" /></g></g></g></g></svg>
