@@ -13,6 +13,7 @@ START TRANSACTION;
 INSERT INTO orglogos (orgid, image_url) VALUES ('AEP',  '/img/logos/aepi.jpg');
 INSERT INTO orglogos (orgid, image_url) VALUES ('APX',  '/img/logos/apex.svg');
 INSERT INTO orglogos (orgid, image_url) VALUES ('ATL',  '/img/logos/atlas.jpg');
+INSERT INTO orglogos (orgid, image_url) VALUES ('CEMS', '/img/logos/cmuems.webp');
 INSERT INTO orglogos (orgid, image_url) VALUES ('CIA',  '/img/logos/cia2022.png');
 INSERT INTO orglogos (orgid, image_url) VALUES ('CMTV', '/img/logos/cmutv.png');
 INSERT INTO orglogos (orgid, image_url) VALUES ('DG',   '/img/logos/dg.png');
