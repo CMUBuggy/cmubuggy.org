@@ -438,7 +438,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   }
 }
 ?>
-<div class="row">
+<div class="row mb-2">
   <div class="col">
   <h1>
   <?php
@@ -464,8 +464,8 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   </dl>
   </div>
   <?php if(isset($org["image_url"])) { ?>
-  <div class="d-none d-sm-inline col text-right">
-    <img class="img-fluid mb-2" style="max-height: 200px" src="<?php echo($org["image_url"]); ?>" />
+  <div class="d-none d-sm-flex col align-items-center justify-content-end">
+    <img class="img-fluid" style="max-height: 200px" src="<?php echo($org["image_url"]); ?>" />
   </div>
   <?php } ?>
 </div>
