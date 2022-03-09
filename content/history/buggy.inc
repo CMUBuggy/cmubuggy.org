@@ -8,7 +8,7 @@ if (empty($_GET["urlkey"])) {
 $buggyUrlKey = $_GET["urlkey"];
 
 #(/buggy) metadata (existance, build year, org, notes)
-$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note, b.smugmug_slug, b.smugmug_tag
+$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note, b.smugmug_slug, b.suppress_gallery
                     FROM hist_buggies b
                     LEFT JOIN hist_orgs o ON b.orgid=o.orgid
                     WHERE b.buggyid=?;";
@@ -128,9 +128,11 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
       <dt class="col-sm-5">Notes</dt>
       <dd class="col-sm-7"><?php echo($buggy["note"]); ?></dd>
     <?php }
-          if (!empty($buggy["smugmug_tag"])) { ?>
+          if (!$buggy["suppress_gallery"]) {
+            $smugmug_smart_gallery = ucfirst(strtolower($buggyUrlKey));
+    ?>
       <dt class="col-sm-5">Photos</dt>
-      <dd class="col-sm-7"><a target="_blank" href="https://cmubuggy.smugmug.com/keyword/<?php echo($buggy["smugmug_tag"]); ?>/">Click Here</a></dd>
+      <dd class="col-sm-7"><a target="_blank" href="https://cmubuggy.smugmug.com/Reference/Buggies/n-Cz6XNB/<?php echo($smugmug_smart_gallery); ?>/">Click Here</a></dd>
     <?php } ?>
   </dl>
   </div>
