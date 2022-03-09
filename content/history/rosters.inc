@@ -25,9 +25,11 @@
                            else 'Unknown' end AS class,
                       team,
                       b.name AS buggyname,
-                      b.buggyid AS buggyid
+                      b.buggyid AS buggyid,
+                      orglogos.image_url AS org_image_url
                  FROM hist_raceentries e
                  LEFT JOIN hist_orgs o ON e.orgid = o.orgid
+                 LEFT JOIN orglogos ON e.orgid = orglogos.orgid
                  LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
                  WHERE year = ?
                  ORDER BY o.shortname, class, team";
@@ -46,6 +48,7 @@
   // mens is an numeric array of all mens teams in team order, values are the table strings for the entry and buggy columns.
   // womens is a numeric array of all womens teams in team order, values are the table strings for the entry and buggy columns.
   $participatingOrgs = array();
+  $participatingOrgImages = array();
   $entriesByOrg = array();
 
   while($row = $rosters->fetch_assoc()) {
@@ -58,6 +61,9 @@
     }
 
     $participatingOrgs[$orgname] = $row["orgid"];
+    if(isset($row["org_image_url"])) {
+      $participatingOrgImages[$orgname] = $row["org_image_url"];
+    }
 
     if (!isset($entriesByOrg[$orgname])) {
       // Init this org.
@@ -66,7 +72,7 @@
       $entriesByOrg[$orgname]["Womens"] = array();
     }
 
-    $entryString = "<td><a href=\"/history/team/".$row["entryid"]."\">".$class." ".$row["team"]."</a></td>";
+    $entryString = "<td class=\"text-nowrap\"><a href=\"/history/team/".$row["entryid"]."\">".$class." ".$row["team"]."</a></td>";
     $entryString .= "<td><a href=\"/history/buggy/".$row["buggyid"]."\">".$row["buggyname"]."</a></td>";
 
     array_push($entriesByOrg[$orgname][$class], $entryString);
@@ -102,15 +108,32 @@
   // Second Table, Entries:
   echo("<h1>".$year." Entered Teams</h1>");
   echo("<div class=\"table-responsive\"><table class=\"table\">");
-  echo("<tr><th rowspan=2>Orginization</th><th colspan=2>Mens</th><th colspan=2>Womens</th></tr>");
+
+  // How gross is this?  In order to put the logos into a reasonable spot and make them dissapear as the
+  // screen gets small, we need to make the "Organization" column responsive and change its colspan as we
+  // do so.  Thus, it looks like we actually have 2 Org columns, but we never show more than one.
+  echo("<tr>");
+  echo("<th class=\"d-none d-md-table-cell\" colspan=2 rowspan=2 style=\"text-align: center\">Organization</th>");
+  echo("<th class=\"d-md-none\" rowspan=2 style=\"text-align: center\">Organization</th>");
+  echo("<th colspan=2>Mens</th><th colspan=2>Womens</th>");
+  echo("</tr>");
+
   echo("<tr><th>Team</th><th>Buggy</th><th>Team</th><th>Buggy</th></tr>");
   foreach ($entriesByOrg as $orgname => $e) {
       $orgid = $participatingOrgs[$orgname];
 
       $rows = max(count($e["Mens"]), count($e["Womens"]));
       echo("<tr>");
+
+      echo("<td class=\"d-none d-md-table-cell\" rowspan=".$rows.">");
+      if (isset($participatingOrgImages[$orgname])) {
+        echo("<img class=\"img-fluid\" style=\"max-width: 100px;\" src=\"".$participatingOrgImages[$orgname]."\">");
+      }
+      echo("</td>");
+
       echo("<td rowspan=".$rows.">");
       echo("<h4><a href=\"/history/org/".$orgid."\">".$orgname."</a></h4>");
+
       echo("(<a href=\"/history/rosters/".$year."/".$orgid."\">View All Rosters</a>)");
       echo("</td>");
 
