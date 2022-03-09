@@ -125,7 +125,7 @@
       $rows = max(count($e["Mens"]), count($e["Womens"]));
       echo("<tr>");
 
-      echo("<td class=\"d-none d-md-table-cell\" rowspan=".$rows.">");
+      echo("<td class=\"d-none d-md-table-cell align-middle\" rowspan=".$rows.">");
       if (isset($participatingOrgImages[$orgname])) {
         echo("<img class=\"img-fluid\" style=\"max-width: 100px;\" src=\"".$participatingOrgImages[$orgname]."\">");
       }
