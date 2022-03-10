@@ -51,7 +51,7 @@ ALTER TABLE hist_designawards ADD INDEX (orgid);
 ALTER TABLE hist_heats ADD INDEX isFinalsIsReroll (isFinals, isReroll);
 ALTER TABLE hist_heats ADD INDEX (year);
 ALTER TABLE hist_orgawards ADD INDEX (orgid);
-ALTER TABLE hist_sweepstakes ADD INDEX (year);
+ALTER TABLE hist_sweepstakes ADD INDEX (year, role);
 ALTER TABLE hist_sweepstakes ADD INDEX (personid);
 
 # If you locked the tables, unlock them.
