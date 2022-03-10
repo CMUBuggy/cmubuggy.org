@@ -36,17 +36,34 @@
     $year = $_GET["year"];
     $sweeps = getSweepstakesYear($_GET["year"]);
 
-    echo("<h1>Sweepstakes Committee ".$year."</h1>");
+?>
+    <div class="row align-items-center mb-4">
+      <div class="col col-sm-8 col-md-9">
+        <h1 class="text-center">Sweepstakes Committee <?php echo($year);?></h1>
+      </div>
+      <div class="d-none d-sm-flex col justify-content-end">
+        <img class="img-fluid" style="max-height:150px" src="/img/logos/sweepstakes_logo_notext.svg">
+      </div>
+    </div>
+<?php
+
     echo("<dl class=\"row\">");
     while($r = $sweeps->fetch_assoc()) {
-      echo("<dt class=\"col-sm-5\">".$r["role"]."</dt>");
-      echo("<dd class=\"col-sm-7\"><a href=\"/history/person/".$r["id"]."\">".$r["name"]."</a></dd>");
+      echo("<dt class=\"col-6 my-1 d-sm-flex justify-content-end\">".$r["role"]."</dt>");
+      echo("<dd class=\"col-6 my-1 d-flex align-items-center\"><a href=\"/history/person/".$r["id"]."\">".$r["name"]."</a></dd>");
     }
   } else {
     // Show all years, but only 4 roles.
     $sweeps = getAllSweepstakes();
 ?>
-  <h1>Sweepstakes Committees</h1>
+  <div class="row align-items-center mb-2">
+    <div class="col col-sm-8 col-md-9">
+      <h1>Sweepstakes Committees</h1>
+    </div>
+    <div class="d-none d-sm-flex col justify-content-end">
+      <img class="img-fluid" style="max-height:150px" src="/img/logos/sweepstakes_logo_notext.svg">
+    </div>
+  </div>
   <div class="table-responsive">
     <table class="table">
       <thead>
