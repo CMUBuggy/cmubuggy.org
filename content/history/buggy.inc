@@ -96,27 +96,36 @@ $awardQuery = "SELECT year,
                ORDER BY year DESC, award ASC;";
 
 $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $buggyUrlKey);
-?>
 
-<h1><?php echo($buggy["name"]);?></h1>
+// Compute a URL for any image we might have.
+$image_url = "";
+$image_column_class = "col";
+if(!empty($buggy["smugmug_slug"])) {
+  $slug = $buggy["smugmug_slug"];
+  $size = "S";
+  $image_url = "https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg";
+} else if (file_exists("img/buggy/".$buggyUrlKey)) {
+  // Legacy photo lookup from local directories.  Should become obsolete pretty quick.
+  // Path is relative to our cwd from the file that called us (e.g. /index.php due to redirects) not relative to this .inc file!
 
-<?php
-  $image_url = "";
-  if(!empty($buggy["smugmug_slug"])) {
-    $slug = $buggy["smugmug_slug"];
-    $size = "S";
-    $image_url = "https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg";
-  } else if (file_exists("img/buggy/".$buggyUrlKey)) {
-    // Legacy photo lookup from local directories.  Should become obsolete pretty quick.
-    // Path is relative to our cwd from the file that called us (e.g. /index.php due to redirects) not relative to this .inc file!
-
-    // No useful alt text to go here sicne it'd really only be the name.
-    $image_url = "/img/buggy/".$buggyUrlKey;
-  }
+  // No useful alt text to go here sicne it'd really only be the name.
+  $image_url = "/img/buggy/".$buggyUrlKey;
+}
+if(empty($image_url)) {
+  // We hide the column entirely on smaller break points to avoid strange word wrapping of long
+  // buggy names if we have no image, but it keeps the formatting of the metadata roughtly the same
+  // on the larger breakpoints where we probably have enough space anyway.
+  //
+  // If we _have_ an image, though, we want to preserve it for spotting purposes on mobile.
+  //
+  // At sm and xs, of course, the columns for the metadata become line breaks...
+  $image_column_class = "col d-none d-md-flex";
+}
 ?>
 
 <div class="row">
   <div class="col">
+  <h1><?php echo($buggy["name"]);?></h1>
   <dl class="row">
     <dt class="col-sm-5">Built</dt>
     <dd class="col-sm-7"><?php echo($buggy["birthyear"]); ?></dd>
@@ -136,8 +145,11 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
     <?php } ?>
   </dl>
   </div>
-  <div class="col"><div class="row">
+  <div class="<?php echo($image_column_class);?>"><div class="row">
   <?php
+    // Note we want to keep this column around, even if there is no image, because it keeps the rendering
+    // consistent for the metadata.  However, this might do strange things in the event of very long
+    // buggy names.
     if (!empty($image_url)) {
       echo("<img class=\"img-fluid img-thumbnail mb-2\" src=\"".$image_url."\" />");
     }
@@ -181,7 +193,7 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
                 $videomap[$type] = array(
                   "youtubeid" => $r[$vp."youtubeid"],
                   "title" => $r[$vp."title"],
-                  "nothumbnail" => "See Video" // there just isn't enough room for thumbnails on this page.
+                  "nothumbnail" => "Video" // there just isn't enough room for thumbnails on this page.
                 );
               }
             }
