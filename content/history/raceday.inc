@@ -99,8 +99,6 @@
   }
 
   function displayResults($resultList) {
-    global $racedayList;
-
     echo("<div class=\"table-responsive\"><table class=\"table\">");
     echo("<thead><tr><th>Place</th><th>Team</th><th>Buggy</th><th>Prelims</th><th>Prelim Reroll</th><th>Finals</th><th>Finals Reroll</th><th>Notes</th></tr></thead>");
     echo("<tbody>");
