@@ -141,7 +141,7 @@ if(empty($image_url)) {
             $smugmug_smart_gallery = ucfirst(strtolower($buggyUrlKey));
     ?>
       <dt class="col-sm-5">Photos</dt>
-      <dd class="col-sm-7"><a target="_blank" href="https://cmubuggy.smugmug.com/Reference/Buggies/n-Cz6XNB/<?php echo($smugmug_smart_gallery); ?>/">Click Here</a></dd>
+      <dd class="col-sm-7"><a target="_blank" href="https://cmubuggy.smugmug.com/Buggies/<?php echo($smugmug_smart_gallery); ?>/">Click Here</a></dd>
     <?php } ?>
   </dl>
   </div>
