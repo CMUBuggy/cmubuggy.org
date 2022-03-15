@@ -8,7 +8,8 @@ if (empty($_GET["urlkey"])) {
 $buggyUrlKey = $_GET["urlkey"];
 
 #(/buggy) metadata (existance, build year, org, notes)
-$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note FROM hist_buggies b
+$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note, b.smugmug_slug, b.suppress_gallery
+                    FROM hist_buggies b
                     LEFT JOIN hist_orgs o ON b.orgid=o.orgid
                     WHERE b.buggyid=?;";
 
@@ -95,30 +96,69 @@ $awardQuery = "SELECT year,
                ORDER BY year DESC, award ASC;";
 
 $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $buggyUrlKey);
-?>
 
-<h1><?php echo($buggy["name"]);?></h1>
-
-<?php
+// Compute a URL for any image we might have.
+$image_url = "";
+$image_column_class = "d-flex col align-items-center justify-content-end";
+if(!empty($buggy["smugmug_slug"])) {
+  $slug = $buggy["smugmug_slug"];
+  $size = "S";
+  $image_url = "https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg";
+} else if (file_exists("img/buggy/".$buggyUrlKey)) {
+  // Legacy photo lookup from local directories.  Should become obsolete pretty quick.
   // Path is relative to our cwd from the file that called us (e.g. /index.php due to redirects) not relative to this .inc file!
-  if (file_exists("img/buggy/".$buggyUrlKey)) {
-    // No useful alt text to go here sicne it'd really only be the name.
-    echo("<img class=\"mb-3\" src=\"/img/buggy/".$buggyUrlKey."\" />");
-  }
+
+  // No useful alt text to go here sicne it'd really only be the name.
+  $image_url = "/img/buggy/".$buggyUrlKey;
+}
+if(empty($image_url)) {
+  // We hide the column entirely on smaller break points to avoid strange word wrapping of long
+  // buggy names if we have no image, but it keeps the formatting of the metadata roughtly the same
+  // on the larger breakpoints where we probably have enough space anyway.
+  //
+  // If we _have_ an image, though, we want to preserve it for spotting purposes on mobile.
+  //
+  // At sm and xs, of course, the columns for the metadata become line breaks...
+  $image_column_class = "col d-none d-md-flex";
+}
 ?>
 
-<dl class="row">
-  <dt class="col-sm-5">Built</dt>
-  <dd class="col-sm-7"><?php echo($buggy["birthyear"]); ?></dd>
+<div class="row">
+  <div class="col">
+  <h1><?php echo($buggy["name"]);?></h1>
+  <dl class="row">
+    <dt class="col-sm-5">Built</dt>
+    <dd class="col-sm-7"><?php echo($buggy["birthyear"]); ?></dd>
 
-  <dt class="col-sm-5">Organization</dt>
-  <dd class="col-sm-7"><?php echo("<a href=\"/history/org/".$buggy["orgid"]."\">".$buggy["org"]. "</a>"); ?></dd>
+    <dt class="col-sm-5">Organization</dt>
+    <dd class="col-sm-7"><?php echo("<a href=\"/history/org/".$buggy["orgid"]."\">".$buggy["org"]. "</a>"); ?></dd>
 
-  <?php if (!empty($buggy["note"])) { ?>
-    <dt class="col-sm-5">Notes</dt>
-    <dd class="col-sm-7"><?php echo($buggy["note"]); ?></dd>
-  <?php } ?>
-</dl>
+    <?php if (!empty($buggy["note"])) { ?>
+      <dt class="col-sm-5">Notes</dt>
+      <dd class="col-sm-7"><?php echo($buggy["note"]); ?></dd>
+    <?php }
+
+          // We host "smart galleries" on smugmug at /Buggies/[buggyid]/
+          // But they don't always exist, so we rely on the database to tell is what to try.
+          if (!$buggy["suppress_gallery"]) {
+            $smugmug_smart_gallery = ucfirst(strtolower($buggyUrlKey));
+    ?>
+      <dt class="col-sm-5">Photos</dt>
+      <dd class="col-sm-7"><a target="_blank" href="https://cmubuggy.smugmug.com/Buggies/<?php echo($smugmug_smart_gallery); ?>/">Click Here</a></dd>
+    <?php } ?>
+  </dl>
+  </div>
+  <div class="<?php echo($image_column_class);?>"><div class="row">
+  <?php
+    // Note we want to keep this column around, even if there is no image, because it keeps the rendering
+    // consistent for the metadata.  However, this might do strange things in the event of very long
+    // buggy names.
+    if (!empty($image_url)) {
+      echo("<img class=\"img-fluid img-thumbnail mb-2\" src=\"".$image_url."\" />");
+    }
+  ?>
+  </div></div>
+</div>
 
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
@@ -156,7 +196,7 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
                 $videomap[$type] = array(
                   "youtubeid" => $r[$vp."youtubeid"],
                   "title" => $r[$vp."title"],
-                  "nothumbnail" => "See Video" // there just isn't enough room for thumbnails on this page.
+                  "nothumbnail" => "Video" // there just isn't enough room for thumbnails on this page.
                 );
               }
             }
