@@ -99,7 +99,7 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
 
 // Compute a URL for any image we might have.
 $image_url = "";
-$image_column_class = "col";
+$image_column_class = "d-flex col align-items-center justify-content-end";
 if(!empty($buggy["smugmug_slug"])) {
   $slug = $buggy["smugmug_slug"];
   $size = "S";
@@ -137,6 +137,9 @@ if(empty($image_url)) {
       <dt class="col-sm-5">Notes</dt>
       <dd class="col-sm-7"><?php echo($buggy["note"]); ?></dd>
     <?php }
+
+          // We host "smart galleries" on smugmug at /Buggies/[buggyid]/
+          // But they don't always exist, so we rely on the database to tell is what to try.
           if (!$buggy["suppress_gallery"]) {
             $smugmug_smart_gallery = ucfirst(strtolower($buggyUrlKey));
     ?>
