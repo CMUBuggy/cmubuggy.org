@@ -5,7 +5,8 @@
 
   // After March, default to current year (otherwise prior year).
   // Not 100% perfect, but should be pretty rare to use this anyway.
-  $year = date("Y");
+  $CURRENT_YEAR = date("Y");
+  $year = $CURRENT_YEAR;
   if (date("m") < 4) {
     // Not yet april, use prior year.
     $year = $year - 1;
@@ -37,7 +38,13 @@
   $rosters = dbBoundQuery($HISTORY_DATABASE, $resQuery, "d", $year);
 
   if ($rosters->num_rows == 0) {
-    die("Sorry, unknown year.");
+    if ($year == $CURRENT_YEAR) {
+     echo("<h1>".$year." Rosters</h1>");
+     echo("<p>Stay tuned – rosters will be posted the week of Carnival. We'll see you then!</p>");
+     exit();
+    } else {
+      die("Sorry, we don't have data for ".$year.".");
+    }
   }
 
   // We first run through the results to identify all the participating orgs and teams, and

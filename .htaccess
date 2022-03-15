@@ -20,6 +20,7 @@ Redirect 301 /join /membership
 Redirect 301 /admin /news/wp-admin
 # /gallery-2021 was a temporary thing while we migrated to smugmug.
 Redirect 301 /gallery-2021 /smugmug
+Redirect 301 /live /raceday/live
 
 # We use 302 (temp) redirects for things that are hosted off site.
 Redirect 302 /merch https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
@@ -44,7 +45,6 @@ RewriteRule		^apple-touch-icon-precomposed.png$	-							[L,R=404]
 
 #top level sections
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
-RewriteRule		^raceday[/]*$					index.php?s=raceday				[NC,L]
 RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
 RewriteRule		^events[/]*$					index.php?s=events				[NC,L]
 
@@ -78,7 +78,6 @@ RewriteRule		^history/rosters[/]*$								index.php?s=history&p=rosters					[NC,
 RewriteRule		^history/team[/]*$									index.php?s=history&p=orglist						[NC,L]
 
 #raceday section
-RewriteRule		^raceday/heats[/]*$									index.php?s=raceday&p=heats						[NC,L]
 RewriteRule		^raceday/leaderboard[/]*$							index.php?s=raceday&p=leaderboard				[NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
