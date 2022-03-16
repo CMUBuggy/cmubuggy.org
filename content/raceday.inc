@@ -7,7 +7,7 @@
       <a class="nav-link" href="/raceday/heats">Heat Schedule</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/history/rosters">Rosters</a>
+      <a class="nav-link" href="/raceday/rosters">Rosters</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/raceday/leaderboard">Leaderboard</a>
