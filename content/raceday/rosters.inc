@@ -1,13 +1,13 @@
 <?php
-  // Display an overview of the participants of a given raceday year.
+  // Display an overview of the participants of a given raceday year. More useful for a raceday that
+  // hasn't happened yet, rather than one that has already happened.
   //
-  // More useful for a raceday that hasn't happened yet, rather than one that has already happened.
-
-  // After March, default to current year (otherwise prior year).
-  // Not 100% perfect, but should be pretty rare to use this anyway.
-  $year = date("Y");
-  if (date("m") < 4) {
-    // Not yet april, use prior year.
+  // Starting in March, default to the current year to allow Raceday mode to be turned on a month out.
+  // Otherwise use the prior year. Not 100% perfect, but should be pretty rare to use this anyway.
+  $CURRENT_YEAR = date("Y");
+  $year = $CURRENT_YEAR;
+  if (date("m") < 3) {
+    // Not yet March, use prior year.
     $year = $year - 1;
   }
 
@@ -37,7 +37,13 @@
   $rosters = dbBoundQuery($HISTORY_DATABASE, $resQuery, "d", $year);
 
   if ($rosters->num_rows == 0) {
-    die("Sorry, unknown year.");
+    if ($year == $CURRENT_YEAR) {
+     echo("<h1>".$year." Rosters</h1>");
+     echo("<p>Stay tuned – rosters will be posted the week of Carnival. We'll see you then!</p>");
+     exit();
+    } else {
+      die("Sorry, we don't have data for ".$year.".");
+    }
   }
 
   // We first run through the results to identify all the participating orgs and teams, and

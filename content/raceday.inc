@@ -7,20 +7,25 @@
       <a class="nav-link" href="/raceday/heats">Heat Schedule</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/history">Leaderboard</a>
+      <a class="nav-link" href="/raceday/rosters">Rosters</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" target="_blank" rel="noopener" href="https://discord.gg/PUwuUuj">Chat</a>
+      <a class="nav-link" href="/raceday/leaderboard">Leaderboard</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/live">Live</a>
+      <a class="nav-link" target="_blank" rel="noopener" href="/chat">Chat</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/raceday/livestream">Livestream</a>
     </li>
   </ul>
 </nav>
 <?php
-  $page = "overview";
-  if(isset($_GET['p'])){
-    $page = $_GET['p'];
+  $page = $_GET['p'];
+  $file = "content/raceday/".$page.".inc";
+  if(!empty($page) && file_exists($file)) {
+    include_once($file);
+  } else {
+    include_once("./content/404.inc");
   }
-  include_once("content/raceday/".$page.".inc");
 ?>
