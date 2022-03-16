@@ -10,7 +10,7 @@
   if (time() < $merchenddate) {
 ?>
     <div class="card mb-3">
-      <h5 class="card-header">Buggy Merch!</h5>
+      <h5 class="card-header">Buggy Merch</h5>
       <div class="card-body">
         <div class="media">
           <img class="d-none d-md-inline align-self-center mr-3" style="max-height:180px" src="https://cmubuggy.org/files/2022merch/hat.webp">
@@ -28,24 +28,15 @@
     <div class="card mb-3">
       <h5 class="card-header">Raceday 2022 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
       <div class="card-body">
-        <p>Spring Carnival will be here before you know it, and we're excited to see everyone and celebrate the 100th anniversary of Buggy in person!</p>
-
-        <p>We're looking for people to help out on raceday.  Click below if you'd like to volunteer.</p>
-        <a target="_blank" href="/volunteer" class="btn btn-primary">Volunteer Now</a>
+        <p>It is only a short time until Raceday 2022 and we're excited to see everyone and celebrate the 100th anniversary of Buggy!</p>
+        <p>Our raceday info center is the place to go for everything you need to know about in-person and virtual activites.</p>
+        <p>We're still looking for people to help out.  Click below if you'd like to volunteer.</p>
+        <a href="/raceday" class="btn btn-primary">Raceday Info</a>
+        <a target="_blank" href="/volunteer" class="btn btn-secondary">Volunteer Now</a>
       </div>
     </div>
 
     <?php include_once("twitterwidget.inc"); ?>
-
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Mini Raceday 2021</h5>
-        <p>
-          Mini Raceday is over, but you can rewatch the broadcast at any time. Thank you to Will Weiner for being our eyes and ears on the course and to all of the students who chimed in to give us an insider view into how things are going on campus!
-        </p>
-        <a href="/live" class="btn btn-primary">Watch</a>
-      </div>
-    </div>
 
     <div class="card mb-3">
       <div class="card-body">
