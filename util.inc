@@ -108,4 +108,18 @@
 		//return date("Y-M-d H:m:i", $timestamp)." ".$msg;
 		return $msg;
 	}
+
+	// Create a smugmug url for an image given a slug and a size.
+	//
+	// Note that Ti and Th will _crop_ to the correct aspect ratio.
+	// See https://www.smugmughelp.com/en/articles/390-change-the-display-size-of-my-photos
+	function makeSmugmugUrl($slug, $size = 'S') {
+	  if(empty($slug)) {
+	 	die("no slug in makeSmugmugUrl");
+	  }
+	  if (!in_array($size, ['Ti','Th','S','M','L','XL','X2','X3','X4','X5','4k','5k','O'])) {
+		die("invalid size: '$size' in makeSmugmugUrl");
+	  }		
+	  return "https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg";
+	}
 ?>

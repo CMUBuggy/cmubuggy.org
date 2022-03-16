@@ -83,9 +83,8 @@
         $teams[$teamkey]["buggyage"] = $buggyyear.$age;
       }
       if (!empty($row["buggy_smugmug_slug"])) {
-        $slug = $row["buggy_smugmug_slug"];
-        $size = "S";
-        $teams[$teamkey]["buggyimage"] = "<img class=\"img-fluid img-thumbnail\" src=\"https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg\">";
+        $buggy_image_url = makeSmugmugUrl($row["buggy_smugmug_slug"], "S");
+        $teams[$teamkey]["buggyimage"] = "<img class=\"img-fluid img-thumbnail\" src=\"".$buggy_image_url."\">";
       }
       $teams[$teamkey]["people"] = array();
     }

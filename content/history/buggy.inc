@@ -101,9 +101,7 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
 $image_url = "";
 $image_column_class = "d-flex col align-items-center justify-content-end";
 if(!empty($buggy["smugmug_slug"])) {
-  $slug = $buggy["smugmug_slug"];
-  $size = "S";
-  $image_url = "https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg";
+  $image_url = makeSmugmugUrl($buggy["smugmug_slug"], "S");
 } else if (file_exists("img/buggy/".$buggyUrlKey)) {
   // Legacy photo lookup from local directories.  Should become obsolete pretty quick.
   // Path is relative to our cwd from the file that called us (e.g. /index.php due to redirects) not relative to this .inc file!
