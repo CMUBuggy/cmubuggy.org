@@ -20,9 +20,6 @@
     case "raceday":
       $title = "Raceday | ".$title;
       break;
-    case "events":
-      $title = "Events | ".$title;
-      break;
   }
 
   if(empty($s)){

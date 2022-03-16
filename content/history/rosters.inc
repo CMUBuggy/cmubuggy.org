@@ -1,14 +1,13 @@
 <?php
-  // Display an overview of the participants of a given raceday year.
+  // Display an overview of the participants of a given raceday year. More useful for a raceday that
+  // hasn't happened yet, rather than one that has already happened.
   //
-  // More useful for a raceday that hasn't happened yet, rather than one that has already happened.
-
-  // After March, default to current year (otherwise prior year).
-  // Not 100% perfect, but should be pretty rare to use this anyway.
+  // Starting in March, default to the current year to allow Raceday mode to be turned on a month out.
+  // Otherwise use the prior year. Not 100% perfect, but should be pretty rare to use this anyway.
   $CURRENT_YEAR = date("Y");
   $year = $CURRENT_YEAR;
-  if (date("m") < 4) {
-    // Not yet april, use prior year.
+  if (date("m") < 3) {
+    // Not yet March, use prior year.
     $year = $year - 1;
   }
 

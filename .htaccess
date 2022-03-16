@@ -46,7 +46,6 @@ RewriteRule		^apple-touch-icon-precomposed.png$	-							[L,R=404]
 #top level sections
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
-RewriteRule		^events[/]*$					index.php?s=events				[NC,L]
 
 #history section: specific objects
 RewriteRule		^history/buggy/([a-z0-9\-]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]

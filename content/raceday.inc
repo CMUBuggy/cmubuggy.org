@@ -7,7 +7,7 @@
       <a class="nav-link" href="/raceday/heats">Heat Schedule</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/history/rosters/2022">Rosters</a>
+      <a class="nav-link" href="/history/rosters">Rosters</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/raceday/leaderboard">Leaderboard</a>
@@ -21,10 +21,11 @@
   </ul>
 </nav>
 <?php
-  if(isset($_GET['p'])){
-    $page = $_GET['p'];
+  $page = $_GET['p'];
+  $file = "content/raceday/".$page.".inc";
+  if(!empty($page) && file_exists($file)) {
+    include_once($file);
   } else {
-    die('It looks like nothing was found at this location. Maybe try one of the links on the side?');
+    include_once("./content/404.inc");
   }
-  include_once("content/raceday/".$page.".inc");
 ?>
