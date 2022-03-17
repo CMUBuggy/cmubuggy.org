@@ -99,6 +99,7 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $b
 
 // Compute a URL for any image we might have.
 $image_url = "";
+$smart_gallery_url = "";
 $image_column_class = "d-flex col align-items-center justify-content-end";
 if(!empty($buggy["smugmug_slug"])) {
   $image_url = makeSmugmugUrl($buggy["smugmug_slug"], "S");
@@ -121,7 +122,7 @@ if(empty($image_url)) {
 }
 ?>
 
-<div class="row">
+<div class="row mb-3">
   <div class="col">
   <h1><?php echo($buggy["name"]);?></h1>
   <dl class="row">
@@ -140,9 +141,9 @@ if(empty($image_url)) {
           // But they don't always exist, so we rely on the database to tell is what to try.
           if (!$buggy["suppress_gallery"]) {
             $smugmug_smart_gallery = ucfirst(strtolower($buggyUrlKey));
+            $smart_gallery_url = "https://cmubuggy.smugmug.com/Buggies/".$smugmug_smart_gallery."/";
     ?>
-      <dt class="col-sm-5">Photos</dt>
-      <dd class="col-sm-7"><a target="_blank" href="https://cmubuggy.smugmug.com/Buggies/<?php echo($smugmug_smart_gallery); ?>/">Click Here</a></dd>
+      <div class="col-sm-12 text-align-center"><a class="btn btn-info" href="<?php echo($smart_gallery_url); ?>">View Photo Gallery</a></dd>
     <?php } ?>
   </dl>
   </div>
@@ -151,8 +152,14 @@ if(empty($image_url)) {
     // Note we want to keep this column around, even if there is no image, because it keeps the rendering
     // consistent for the metadata.  However, this might do strange things in the event of very long
     // buggy names.
+    if (!empty($smart_gallery_url)) {
+      echo("<a href=\"".$smart_gallery_url."\">");
+    }
     if (!empty($image_url)) {
-      echo("<img class=\"img-fluid img-thumbnail mb-2\" src=\"".$image_url."\" />");
+      echo("<img alt=\"Picture of Buggy\" class=\"img-fluid img-thumbnail\" src=\"".$image_url."\" />");
+    }
+    if (!empty($smart_gallery_url)) {
+      echo("</a>");
     }
   ?>
   </div></div>
