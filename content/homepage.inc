@@ -39,6 +39,13 @@
     <?php include_once("twitterwidget.inc"); ?>
 
     <div class="card mb-3">
+      <h5 class="card-header">Chute The Sh!t: The Buggy Podcast</h5>
+      <div class="card-body">
+      <iframe src="https://open.spotify.com/embed-podcast/show/3wbaYb92dfzuWDUbOOxHWi" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      </div>
+    </div>
+
+    <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">Buggy Alumni Association</h5>
         <p>We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know. Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind.</p>
