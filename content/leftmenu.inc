@@ -17,4 +17,10 @@
   <a href="https://twitter.com/CMUBuggy"><i class="fab fa-2x fa-twitter-square" title="Twitter" style="color: #1da1f2;"></i></a>
   <a href="https://instagram.com/cmubuggy"><i class="fab fa-2x fa-instagram-square" title="Instagram" style="color: #e1306c;"></i></a>
   <a href="https://www.youtube.com/user/CMUbuggy"><i class="fab fa-2x fa-youtube-square" title="Youtube" style="color: #ff0000;"></i></a>
+  <a href="/spotify">
+    <span class="fa-layers fa-2x">
+      <i class="fas fa-square" style="color: #1DB954;"></i>
+      <i class="fab fa-spotify fa-inverse" data-fa-transform="shrink-8"></i>
+    </span>
+  </a>
 </div>
