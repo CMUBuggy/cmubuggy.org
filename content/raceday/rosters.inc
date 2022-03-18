@@ -140,7 +140,7 @@
       echo("<td rowspan=".$rows.">");
       echo("<h4><a href=\"/history/org/".$orgid."\">".$orgname."</a></h4>");
 
-      echo("(<a href=\"/history/rosters/".$year."/".$orgid."\">View All Rosters</a>)");
+      echo("(<a href=\"/raceday/rosters/".$year."/".$orgid."\">View All Rosters</a>)");
       echo("</td>");
 
       for ($i = 0; $i < $rows; $i++) {

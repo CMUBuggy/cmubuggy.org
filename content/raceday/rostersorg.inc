@@ -98,7 +98,7 @@
   }
 
   echo("<h1>".$year." ".$orgshortname." Rosters</h1>");
-  echo("<p><a href=\"/history/rosters/".$year."\">See ".$year." rosters summary</a></p>");
+  echo("<p><a href=\"/raceday/rosters/".$year."\">See ".$year." rosters summary</a></p>");
   echo ("<div class=\"table-responsive\"><table class=\"table\">");
 
   echo("<tr><th width=40% scope=\"col\">Team</th><th scope=\"col\">Role</th><th scope=\"col\">Person</th></tr>");
