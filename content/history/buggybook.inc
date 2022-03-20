@@ -7,7 +7,7 @@ for($year=1965;$year<2020;$year++){
         target=\"_blank\" onclick=\"_gaq.push(['_trackEvent','Download','PDF',this.href]);\">
       <img alt=\"".$year." buggy book\"
           title=\"Download a PDF of the ".$year." buggy book\"
-          class=\"img-thumbnail\"
+          class=\"img-thumbnail\" style=\"max-height: 200px;\"
           src=\"/files/buggybooks/thumb_200/buggybook_".$year.".pdf.jpg\" />
       </a>");
 }

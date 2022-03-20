@@ -1,6 +1,6 @@
 /* Custom CSS applied to all pages via the cmubuggy cssjs script
  *
- * Remember to update the cachebuster when this file is updated.
+ * Remember to update the cachebuster in content/cssjs.inc when this file is updated.
  */
 body { margin-top: 4.5rem; }
 @supports ((postition: -webkit-sticky) or (position: sticky)) {
