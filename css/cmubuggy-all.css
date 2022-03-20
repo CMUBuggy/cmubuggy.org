@@ -33,4 +33,3 @@ body { margin-top: 4.5rem; }
 .raceday-thumb { width: 3em; }
 .sponsors img { max-width: 200px; max-height: 200px; }
 @supports (object-fit: contain) { .sponsors img { object-fit: contain; width: 200px; } }
-.img-thumbnail-small { max-height: 200px; }
