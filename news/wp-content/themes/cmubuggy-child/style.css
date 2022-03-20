@@ -397,7 +397,7 @@ li.row {
 		padding-bottom: 1rem;
 	}
 }
-   
+
 .circular-image {
 	width: 100%;
 	max-width: 200px;
@@ -405,8 +405,8 @@ li.row {
 	overflow: hidden;
 	background-color: white;
 }
-   
+
 .circular-image img {
 	width: 100%;
 }
-   
+
