@@ -13,6 +13,7 @@
   $year = $_GET['year'] * 1;
   $orgurlkey = $_GET['org'];
   $orgshortname = $orgurlkey;  // Temp until we can replace it.
+  $orgimageurl = "";
 
   // Note that this is a rare query where we don't do alphabetical class sort, since Womens
   // typically race before mens, and we envision this as a live-use raceday page.
@@ -29,12 +30,14 @@
                       m.heattype AS heattype,
                       m.position AS position,
                       m.personid AS personid,
+                      ol.image_url AS image_url,
                       concat(p.firstname, ' ', p.lastname) as personname
                  FROM hist_raceentries e
                  LEFT JOIN hist_orgs o ON e.orgid = o.orgid
                  LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
                  LEFT JOIN hist_entrypeoplemap m ON m.entryid = e.entryid
                  LEFT JOIN hist_people p ON p.personid = m.personid
+                 LEFT JOIN orglogos ol ON o.orgid = ol.orgid
                  WHERE e.year = ? AND e.orgid = ?
                  ORDER BY o.shortname, class DESC, team, heattype, position";
 
@@ -53,7 +56,11 @@
   $teams = array();
 
   while($row = $rosters->fetch_assoc()) {
-    $orgshortname = $row["orgname"]; // As long as we get one row, we have a better name.
+    // Org Metadata: As long as we get one row, we don't care which one it is.
+    $orgshortname = $row["orgname"];
+    if (isset($row["image_url"]) && !empty($row["image_url"])) {
+      $orgimageurl = $row["image_url"];
+    }
 
     $class = $row["class"];
 
@@ -97,8 +104,19 @@
     }
   }
 
+  echo("<div class=\"row mb-3\">");
+  echo("<div class=\"col col-sm-8\">");
   echo("<h1>".$year." ".$orgshortname." Rosters</h1>");
-  echo("<p><a href=\"/raceday/rosters/".$year."\">See ".$year." rosters summary</a></p>");
+  echo("<a class=\"btn btn-primary my-2\" href=\"/history/org/".$orgurlkey."\">Org History</a>");
+  echo("</div>");
+  if (!empty($orgimageurl)) {
+    echo("<div class=\"d-none d-sm-flex col-sm-4 align-items-center justify-content-end\">");
+    echo("<img class=\"img-fluid\" style=\"max-height: 200px\" src=\"".$orgimageurl."\">");
+    echo("</div>");
+  }
+  echo("</div>");
+
+
   echo ("<div class=\"table-responsive\"><table class=\"table\">");
 
   echo("<tr><th width=40% scope=\"col\">Team</th><th scope=\"col\">Role</th><th scope=\"col\">Person</th></tr>");
@@ -129,8 +147,8 @@
         echo ("<tr>");
         $firstRow = false;
       }
-      echo("<td>".$role."</td>");
-      echo("<td>".$person."</td>");
+      echo("<td class=\"align-middle\">".$role."</td>");
+      echo("<td class=\"align-middle\">".$person."</td>");
       echo("</tr>");
     }
   }
