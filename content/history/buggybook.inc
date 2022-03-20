@@ -33,7 +33,7 @@ function displayBuggyBookLink($year) {
 
 <?php foreach($yearsByDecade as $decade => $years) {
   echo("<h3>".$decade."s</h3>");
-  echo("<div class='d-flex flex-wrap justify-content-between mb-3' style='margin: -.25em; gap: 10px;'>");
+  echo("<div class='d-flex flex-wrap justify-content-between mb-3' style='margin: -.25em; row-gap: 10px;'>");
 
   foreach($years as $year) {
     displayBuggyBookLink($year);
