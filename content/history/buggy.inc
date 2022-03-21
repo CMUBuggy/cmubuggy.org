@@ -185,7 +185,7 @@ if(empty($image_url)) {
             <th>Prelim</th>
             <th>Prelim Reroll</th>
             <th>Final</th>
-            <th>FinalReroll</th>
+            <th>Final Reroll</th>
             <th>DQ / Notes</th>
           </tr>
         </thead>
