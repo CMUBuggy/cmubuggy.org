@@ -40,26 +40,17 @@ function getHistoryOpenGraphContent() {
 function getOrgExtraData($orgUrlKey) {
   global $HISTORY_DATABASE;
 
-  $metaDataQuery = "SELECT shortname, orglogos.image_url AS image_url
-                    FROM hist_orgs o
-                    LEFT JOIN orglogos ON o.orgid = orglogos.orgid
-                    WHERE o.orgid=?;";
+  $metaDataQuery = "SELECT shortname FROM hist_orgs o WHERE o.orgid=?;";
   $metaData = dbBoundQuery($HISTORY_DATABASE, $metaDataQuery, "s", $orgUrlKey);
 
   if ($metaData->num_rows == 1) {
     $org = $metaData->fetch_assoc();
     $ret = "<meta property=\"og:title\" content=\"History | Org: ".$org["shortname"]."\" />\n";
-    if(!empty($org["image_url"])) {
-      // So, OpenGraph requires absolute URLs, but we tend to use relative URLs in this table.
-      // If the url starts with a slash, append https://cmubuggy.org to the front.
-      //
-      // Gross.
-      $image_url = $org["image_url"];
-      if ($image_url[0] == "/") {
-          $image_url = "https://cmubuggy.org" . $image_url;
-      }
-      $ret .= "<meta property=\"og:image\" content=\"".$image_url."\" />\n";
-    }
+
+    // We could obviously also fetch the logo here, unfortuinately OpenGraph is pretentious and does not
+    // accept SVG as a valid image format.  Thus, most of our orgs would get no image anyway (since we
+    // prefer SVGs for logos), and therefore we chose to skip it.
+
     return $ret;
   }
 
