@@ -10,8 +10,11 @@
   }
   $title = "CMU Buggy Alumni Association";
 
+  $OPENGRAPH_DATA = "";
   switch($s){
     case "history":
+      include_once("./content/history/opengraph/opengraphdata.inc");
+      $OPENGRAPH_DATA = getHistoryOpenGraphContent();
       $title = "History | ".$title;
       break;
     case "search":
@@ -36,12 +39,14 @@
 <head>
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
   <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
   <title><?php echo($title); ?></title>
 <?php
+  echo($OPENGRAPH_DATA);
   include_once(ROOT_DIR."/content/cssjs.inc");
+  if (!empty($OEMBED_LINK)) {
+    echo("my oembed is: ". $OEMBED_LINK);
+  }
 ?>
 </head>
 <?php
