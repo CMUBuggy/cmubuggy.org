@@ -410,3 +410,40 @@ li.row {
 	width: 100%;
 }
 
+.event-card .card-body {
+	display: flex !important;
+	flex-direction: row;
+	justify-content: space-between;
+	column-gap: 1rem;
+}
+
+.event-card-text {
+	flex-basis: 60%;
+}
+
+.event-card-image {
+	flex-basis: 40%;
+	align-self: center;
+}
+
+.event-card-image img {
+	object-fit: cover;
+	object-position: 50% 50%;
+	overflow: hidden;
+	width: 100%;
+	min-height: 200px;
+}
+
+@media (max-width: 575.98px) {
+	.event-card .card-body {
+		flex-direction: column-reverse;
+	}
+
+	.event-card-image {
+		margin-bottom: 1rem;
+	}
+
+	.event-card-image img {
+		height: 300px;
+	}
+}
