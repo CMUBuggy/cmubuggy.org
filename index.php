@@ -13,7 +13,7 @@
   $OGMAP = array(
     "og:type" => "website",
     "og:site_name" => "CMU Buggy Alumni Association"
-    // TODO: Default "og:url"
+    // TODO: Default "og:url" (apparently facebook cannot render og:image without it?)
   );
 
   switch($s){

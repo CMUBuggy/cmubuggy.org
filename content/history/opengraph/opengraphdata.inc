@@ -49,8 +49,6 @@ function getOrgExtraData($orgUrlKey, &$ogMap) {
     // We could obviously also fetch the logo here, unfortuinately OpenGraph is pretentious and does not
     // accept SVG as a valid image format.  Thus, most of our orgs would get no image anyway (since we
     // prefer SVGs for logos), and therefore we chose to skip it.
-
-    return $ret;
   } else {
     // Provide a reasonable title if we couldn't find the org.
     $ogMap["og:title"] = "History | Unknown Org";
