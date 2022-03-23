@@ -26,6 +26,8 @@
       $title = "Search Results | ".$title;
       break;
     case "raceday":
+      include_once("./content/raceday/opengraph/opengraphdata.inc");
+      $OGMAP = getRacedayOpenGraphContent($OGMAP);
       $title = "Raceday | ".$title;
       break;
   }
