@@ -2,14 +2,15 @@
 // Helper to generate open graph metadata for certain history pages.
 
 function getHistoryOpenGraphContent() {
-  $historyPage = $_GET['p'];
-
-  if (!in_array($historyPage, ['buggy', 'org']) || empty($_GET["urlkey"])) {
+  if (empty($_GET['p']) ||
+      !in_array($_GET['p'], ['buggy', 'org'])
+      || empty($_GET["urlkey"])) {
     // Either we don't know how to handle this page, or we don't have a paremeter.
     // Either way, No OG data.
     return "";
   }
 
+  $historyPage = $_GET['p'];
   $urlKey = $_GET["urlkey"];
   $url = "https://cmubuggy.org/history/".$historyPage."/".$urlKey."/";
 
