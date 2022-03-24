@@ -23,8 +23,11 @@ Redirect 301 /gallery-2021 /smugmug
 Redirect 301 /live /raceday/live
 
 # We use 302 (temp) redirects for things that are hosted off site.
-Redirect 302 /merch https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
-Redirect 302 /store https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
+
+# When the store is closed, /merch is handled by the wordpress fallback, and
+# /store redirects to /merch.
+#Redirect 302 /merch https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
+Redirect 302 /store /merch
 
 Redirect 302 /auction https://www.32auctions.com/baa2019
 Redirect 302 /chat https://discord.gg/PUwuUuj
