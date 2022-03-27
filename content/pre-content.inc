@@ -40,7 +40,7 @@
         </a>
         <span class="navbar-text d-none d-md-inline d-lg-none text-light" title="<?php echo("$timerCount $timerUnit"); ?>">Raceday 2022 is April 8&ndash;9</span>
         <span class="navbar-text d-none d-lg-inline text-light">
-          <strong>Records</strong> / Mens: 2:02.16 / Womens: 2:23.27
+          <strong>Records</strong> / <a href="/history/team/2017.SDC.MA">Mens: 2:02.16</a> / <a href="/history/team/2017.SDC.WA">Womens: 2:23.27</a>
         </span>
     </section>
         <button class="navbar-toggler d-lg-none collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="toggle navigation">
