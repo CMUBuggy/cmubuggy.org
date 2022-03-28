@@ -42,10 +42,10 @@
       <h2>Records</h2>
       <dl class="row">
         <dt class="col-5">Mens</dt>
-        <dd class="col-7">2:02.16</dd>
+        <dd class="col-7"><a href="/history/team/2017.SDC.MA">2:02.16</a></dd>
 
         <dt class="col-5">Womens</dt>
-        <dd class="col-7">2:23.27</dd>
+        <dd class="col-7"><a href="/history/team/2017.SDC.WA">2:23.27</a></dd>
       </dl>
     </section>
 
