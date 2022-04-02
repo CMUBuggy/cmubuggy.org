@@ -45,6 +45,9 @@ Redirect 302 /indy500 https://forms.gle/XxoCtAaifRyM5sag6
 # 2022 Raceday Volunteer Form
 Redirect 302 /volunteer https://docs.google.com/forms/d/e/1FAIpQLSeca9G08KAzIKgyOJ2CV5xAgquJ2dsubwC5CsyCkCgPIZI1YA/viewform
 
+# Crowdsourced Timing Tool
+Redirect 302 /timing https://buggy-timing.bubbleapps.io/
+
 # Raceday 2020
 RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
