@@ -1,5 +1,11 @@
 This is the git repo for the source code running cmubuggy.org.
 
+> Q: What do you call the code for the CMU Sweepstakes Alumni Website?
+>
+> A: Buggy Software!
+>
+>   -- Anonymous
+
 cmubuggy.org is the public website for the Carnegie Mellon University affiliated Buggy Alumni Association.
 
 The site is built around a number of 3rd party platforms and tools. If you want to set up a local dev version of the site, cloning the repo is a start, but depending on your project you may need additional pieces of the puzzle:
