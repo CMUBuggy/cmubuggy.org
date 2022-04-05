@@ -16,7 +16,7 @@ INSERT INTO orglogos (orgid, image_url) VALUES ('ATL',  '/img/logos/atlas.jpg');
 INSERT INTO orglogos (orgid, image_url) VALUES ('CEMS', '/img/logos/cmuems.webp');
 INSERT INTO orglogos (orgid, image_url) VALUES ('CIA',  '/img/logos/cia2022.png');
 INSERT INTO orglogos (orgid, image_url) VALUES ('CMTV', '/img/logos/cmutv.png');
-INSERT INTO orglogos (orgid, image_url) VALUES ('DG',   '/img/logos/dg.png');
+INSERT INTO orglogos (orgid, image_url) VALUES ('DG',   '/img/logos/dg-racing.png');
 INSERT INTO orglogos (orgid, image_url) VALUES ('FRI',  '/img/logos/fringe.svg');
 INSERT INTO orglogos (orgid, image_url) VALUES ('KS',   '/img/logos/kapsig.gif');
 INSERT INTO orglogos (orgid, image_url) VALUES ('PKA',  '/img/logos/pikaracing.png');
