@@ -84,35 +84,8 @@
     array_push($entriesByOrg[$orgname][$class], $entryString);
   }
 
-  echo("<h1>".$year." Entered Orgs</h1>");
-
-  // First Table, Orgs:
-  echo ("<div class=\"table-responsive\"><table class=\"table\">");
-  // If I understand this correctly, php maintains key order when inserting,
-  // so since we sorted by org name above, this should maintain that sort.
-  $ORG_COLS = 4;
-  $rowMod = 0;
-
-  foreach ($participatingOrgs as $org => $orgid) {
-      if ($rowMod == 0) {
-        echo("<tr>");
-      }
-      echo("<td><a href=\"/history/org/".$orgid."\">".$org."</a></td>");
-      $rowMod = ($rowMod + 1) % $ORG_COLS;
-      if ($rowMod == 0) {
-        echo("</tr>");
-      }
-  }
-
-  // Clean up the last row.
-  if ($rowMod > 0) {
-    echo("<td colspan=".($ORG_COLS - $rowMod)."></td></tr>");
-  }
-
-  echo("</table></div>");
-
   // Second Table, Entries:
-  echo("<h1>".$year." Entered Teams</h1>");
+  echo("<h1>".$year." Team Rosters</h1>");
   echo("<div class=\"table-responsive\"><table class=\"table\">");
 
   // How gross is this?  In order to put the logos into a reasonable spot and make them dissapear as the
@@ -140,7 +113,7 @@
       echo("<td rowspan=".$rows.">");
       echo("<h4><a href=\"/history/org/".$orgid."\">".$orgname."</a></h4>");
 
-      echo("(<a href=\"/raceday/rosters/".$year."/".$orgid."\">View All Rosters</a>)");
+      echo("<a class=\"btn btn-primary\" href=\"/raceday/rosters/".$year."/".$orgid."\">View Rosters</a>");
       echo("</td>");
 
       for ($i = 0; $i < $rows; $i++) {
