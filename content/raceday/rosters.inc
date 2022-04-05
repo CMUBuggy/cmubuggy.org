@@ -85,7 +85,7 @@
   }
 
   // Second Table, Entries:
-  echo("<h1>".$year." Entries</h1>");
+  echo("<h1>".$year." Team Rosters</h1>");
   echo("<div class=\"table-responsive\"><table class=\"table\">");
 
   // How gross is this?  In order to put the logos into a reasonable spot and make them dissapear as the
