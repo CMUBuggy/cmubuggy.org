@@ -18,6 +18,9 @@
     <li class="nav-item">
       <a class="nav-link" href="/raceday/livestream">Livestream</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/raceday/thank-you">Thank You!</a>
+    </li>
   </ul>
 </nav>
 <?php

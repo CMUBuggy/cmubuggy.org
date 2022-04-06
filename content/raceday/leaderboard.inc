@@ -9,6 +9,11 @@
     will-change: opacity, transform;
   }
 
+  .prelims .race-result,
+  .finals .race-result {
+    background-color: #b6d7a8 !important;
+  }
+
   .prelims .race-result:nth-child(n+11),
   .finals .race-result:nth-child(n+7) {
     background-color: #efefef !important;
@@ -72,7 +77,7 @@
 </div>
 
 <template id="raceResult">
-  <div class="race-result p-3 mb-1 border rounded bg-success" data-id>
+  <div class="race-result p-3 mb-1 border rounded" data-id>
     <div class="d-flex justify-content-between" data-place>
       <div data-name class="ml-5"></div>
       <div data-time class="ml-2 text-monospace"></div>
