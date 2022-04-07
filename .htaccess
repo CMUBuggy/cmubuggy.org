@@ -20,11 +20,17 @@ Redirect 301 /join /membership
 Redirect 301 /admin /news/wp-admin
 # /gallery-2021 was a temporary thing while we migrated to smugmug.
 Redirect 301 /gallery-2021 /smugmug
+
+#### Livestream related links.
+# On non-raceday, /live can be redirected to our own embedded page if we want.
 # /raceday/livestream is the wordpress embedded livestream page
-# Redirect 301 /live /raceday/livestream
+# Redirect 302 /live /raceday/livestream
 
 # 2022 CMUtv Livestream
 Redirect 302 /live https://livestream.com/cmutvlive/buggy100
+# /raceday/live was a nonexistant page that /live pointed at in early 2022,
+# so this ensures we get to a reasonable spot.  Can probably go away after May 2022.
+Redirect 302 /raceday/live /live
 
 # We use 302 (temp) redirects for things that are hosted off site.
 
