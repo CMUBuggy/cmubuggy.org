@@ -33,6 +33,7 @@
       <div class="card-body">
         <div class="d-flex justify-content-center">
           <a href="/raceday" class="btn btn-primary m-1">Raceday Info Center</a>
+          <a href="/live" class="btn btn-info m-1">Livestream</a>
         </div><div class="d-flex justify-content-center mb-2">
           <a href="/raceday/rosters" class="btn btn-secondary m-1">Rosters</a>
           <a href="/raceday/heats" class="btn btn-secondary m-1">Heats</a>

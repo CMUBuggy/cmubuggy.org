@@ -20,7 +20,11 @@ Redirect 301 /join /membership
 Redirect 301 /admin /news/wp-admin
 # /gallery-2021 was a temporary thing while we migrated to smugmug.
 Redirect 301 /gallery-2021 /smugmug
-Redirect 301 /live /raceday/live
+# /raceday/livestream is the wordpress embedded livestream page
+# Redirect 301 /live /raceday/livestream
+
+# 2022 CMUtv Livestream
+Redirect 302 /live https://livestream.com/cmutvlive/buggy100
 
 # We use 302 (temp) redirects for things that are hosted off site.
 
@@ -42,7 +46,7 @@ Redirect 302 /spotify https://open.spotify.com/show/3wbaYb92dfzuWDUbOOxHWi
 # April 2022 Indy 500 Webinar Signup
 Redirect 302 /indy500 https://forms.gle/XxoCtAaifRyM5sag6
 
-# 2022 Raceday Volunteer Form
+# 2022 Raceday Volunteer Form (obsolete)
 Redirect 302 /volunteer https://docs.google.com/forms/d/e/1FAIpQLSeca9G08KAzIKgyOJ2CV5xAgquJ2dsubwC5CsyCkCgPIZI1YA/viewform
 
 # Crowdsourced Timing Tool

@@ -16,7 +16,7 @@
       <a class="nav-link" target="_blank" rel="noopener" href="/chat">Chat</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/raceday/livestream">Livestream</a>
+      <a class="nav-link" href="/live">Livestream</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/raceday/thank-you">Thank You!</a>
