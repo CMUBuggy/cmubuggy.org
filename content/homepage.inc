@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8">
     <?php include("homepage-raceday-results.inc"); ?>
-    <?php include("twitterwidget.inc"); ?>
+    <?php include("homepage-twitterbox.inc"); ?>
 
     <div class="card mb-3">
       <h5 class="card-header">Chute The Sh!t: The Buggy Podcast</h5>
