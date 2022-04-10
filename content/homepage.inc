@@ -1,34 +1,7 @@
 <div class="row">
   <div class="col-md-8">
-
-    <?php
-      // Auction Box Runs only until April 6 7:59pm ET
-      // Time zone default is set in pre-content.inc
-      $merchenddate = mktime(19, 59, 0, 4, 6, 2022);
-
-      if (time() < $merchenddate) {
-    ?>
-        <div class="card mb-3">
-          <h5 class="card-header">Lead Truck Auction</h5>
-          <div class="card-body">
-            <div class="media">
-              <a target="_blank" href="https://cmubuggy.smugmug.com/2017-2018/Raceday-Finals-Apr-21/i-cP8zkfb/A">
-                <img class="img-fluid my-3 mr-3 align-self-center" src="<?php echo(makeSmugmugUrl("i-cP8zkfb", "Th"));?>" alt="Farnam in the Lead Truck">
-              </a>
-              <div class="media-body">
-                <p>The Lead Truck Auction is OPEN!</p>
-                <p>Place your bids to see a heat from the best seat on the course -- the back of the lead truck.</p>
-                <a target="_blank" href="/auction" class="btn btn-primary">Bid Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-    <?php
-      }
-    ?>
-
-    <?php include_once("homepage-raceday-results.inc"); ?>
-    <?php include_once("twitterwidget.inc"); ?>
+    <?php include("homepage-raceday-results.inc"); ?>
+    <?php include("twitterwidget.inc"); ?>
 
     <div class="card mb-3">
       <h5 class="card-header">Chute The Sh!t: The Buggy Podcast</h5>

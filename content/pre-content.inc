@@ -1,6 +1,6 @@
 <?php
   date_default_timezone_set('America/New_York');
-  $rddate = mktime(8, 0, 0, 4, 8, 2022);
+  $rddate = mktime(8, 0, 0, 4, 14, 2023);
   $currenttime = time();
   $hoursleft = floor(($rddate - $currenttime) / (60 * 60));
   $daysleft = floor($hoursleft / 24);
@@ -32,7 +32,7 @@
   <header id="masthead" class="fixed-top mb-3">
     <nav class="navbar navbar-dark bg-primary px-0">
       <div class="container">
-        <span class="navbar-text d-none d-lg-inline text-light" title="<?php echo("$timerCount $timerUnit"); ?>">Raceday 2022 is April 8&ndash;9</span>
+        <span class="navbar-text d-none d-lg-inline text-light" title="<?php echo("$timerCount $timerUnit"); ?>">Raceday 2023 is April 14&ndash;15</span>
         <a href="/" class="navbar-brand d-inline-flex">
           <img src="/img/logo-2022-circle.svg" alt="CMU Buggy Alumni Association logo" class="d-lg-none mr-2" height="30" width="30">
           <span class="d-none d-sm-inline d-lg-none">Buggy Alumni Association</span>
