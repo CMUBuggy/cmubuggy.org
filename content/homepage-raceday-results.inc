@@ -53,6 +53,7 @@
       </tr>
     </table>
     <a href="/raceday/leaderboard" class="btn btn-primary">Full Results</a>
+    <a href="https://livestream.com/cmutvlive/buggy100" class="btn btn-info">Videos</a>
   </div>
 </div>
 
