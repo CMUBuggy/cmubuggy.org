@@ -38,13 +38,11 @@ Redirect 302 /raceday/live /live
 # /store redirects to /merch.
 #Redirect 302 /merch https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
 Redirect 302 /store /merch
+Redirect 302 /merch https://docs.google.com/forms/d/e/1FAIpQLSfGtc-uzPWkjGNQDjuck9i5HJyLSp2poYuX9cW36tU1Gtegew/viewform?usp=sf_link
 
-Redirect 302 /auction https://www.32auctions.com/baafinals2022
 Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
-Redirect 302 /fantasy https://docs.google.com/forms/d/e/1FAIpQLSeiUE_9vJIAAo67G_mIZCvEfi3Obe6omOYbWaYqNVcXwNTw2w/viewform?usp=sf_link
 Redirect 302 /smugmug https://cmubuggy.smugmug.com/
-Redirect 302 /merch https://docs.google.com/forms/d/e/1FAIpQLSfGtc-uzPWkjGNQDjuck9i5HJyLSp2poYuX9cW36tU1Gtegew/viewform?usp=sf_link
 
 # Chute the Sh!t
 Redirect 302 /podcast https://linktr.ee/cmubuggy
@@ -53,14 +51,8 @@ Redirect 302 /spotify https://open.spotify.com/show/3wbaYb92dfzuWDUbOOxHWi
 # April 2022 Indy 500 Webinar Signup
 Redirect 302 /indy500 https://forms.gle/XxoCtAaifRyM5sag6
 
-# 2022 Raceday Volunteer Form (obsolete)
-Redirect 302 /volunteer https://docs.google.com/forms/d/e/1FAIpQLSeca9G08KAzIKgyOJ2CV5xAgquJ2dsubwC5CsyCkCgPIZI1YA/viewform
-
 # Crowdsourced Timing Tool
 Redirect 302 /timing https://buggy-timing.bubbleapps.io/
-
-# Raceday 2020
-RedirectMatch 302 (?i)/RD20 https://cmu.zoom.us/j/91610341394
 
 # Rewrite some iOS favicon handling (404 the precompsed icon, push the root apple-touch-icon to favicons/)
 # This is needed so they don't get caught by the /news redirect.

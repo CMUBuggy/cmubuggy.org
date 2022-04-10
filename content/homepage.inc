@@ -1,55 +1,33 @@
 <div class="row">
   <div class="col-md-8">
 
-<?php
-  // Auction Box Runs only until April 6 7:59pm ET
-  // Time zone default is set in pre-content.inc
-  $merchenddate = mktime(19, 59, 0, 4, 6, 2022);
+    <?php
+      // Auction Box Runs only until April 6 7:59pm ET
+      // Time zone default is set in pre-content.inc
+      $merchenddate = mktime(19, 59, 0, 4, 6, 2022);
 
-  if (time() < $merchenddate) {
-?>
-    <div class="card mb-3">
-      <h5 class="card-header">Lead Truck Auction</h5>
-      <div class="card-body">
-        <div class="media">
-          <a target="_blank" href="https://cmubuggy.smugmug.com/2017-2018/Raceday-Finals-Apr-21/i-cP8zkfb/A">
-            <img class="img-fluid my-3 mr-3 align-self-center" src="<?php echo(makeSmugmugUrl("i-cP8zkfb", "Th"));?>" alt="Farnam in the Lead Truck">
-          </a>
-          <div class="media-body">
-            <p>The Lead Truck Auction is OPEN!</p>
-            <p>Place your bids to see a heat from the best seat on the course -- the back of the lead truck.</p>
-            <a target="_blank" href="/auction" class="btn btn-primary">Bid Now</a>
+      if (time() < $merchenddate) {
+    ?>
+        <div class="card mb-3">
+          <h5 class="card-header">Lead Truck Auction</h5>
+          <div class="card-body">
+            <div class="media">
+              <a target="_blank" href="https://cmubuggy.smugmug.com/2017-2018/Raceday-Finals-Apr-21/i-cP8zkfb/A">
+                <img class="img-fluid my-3 mr-3 align-self-center" src="<?php echo(makeSmugmugUrl("i-cP8zkfb", "Th"));?>" alt="Farnam in the Lead Truck">
+              </a>
+              <div class="media-body">
+                <p>The Lead Truck Auction is OPEN!</p>
+                <p>Place your bids to see a heat from the best seat on the course -- the back of the lead truck.</p>
+                <a target="_blank" href="/auction" class="btn btn-primary">Bid Now</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-<?php
-  }
-?>
+    <?php
+      }
+    ?>
 
-    <div class="card mb-3">
-      <h5 class="card-header">Raceday 2022 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
-      <img class="card-img-top" src="<?php echo(makeSmugmugUrl("i-jZjxT8C")); ?>">
-      <div class="card-body">
-        <div class="d-flex justify-content-center">
-          <a href="/raceday" class="btn btn-primary m-1">Raceday Info Center</a>
-          <a href="/live" class="btn btn-info m-1">Livestream</a>
-        </div><div class="d-flex justify-content-center mb-2">
-          <a href="/raceday/rosters" class="btn btn-secondary m-1">Rosters</a>
-          <a href="/raceday/heats" class="btn btn-secondary m-1">Heats</a>
-          <a href="/raceday/leaderboard" class="btn btn-secondary m-1">Leaderboard</a>
-        </div>
-        <p>Raceday 2022 is upon us! We're excited to see everyone and celebrate the 100th anniversary of Buggy!</p>
-        <p>Our <a href="/raceday">raceday info center</a> is the place to go for everything you need to know about all in-person and virtual activites.</p>
-        <p>Key Events:</p>
-        <ul>
-          <li>Design Showcase: Thursday Apr 7, 12pm-2pm</li>
-          <li>Preliminary Races: Friday Apr 8, 8am-12pm</li>
-          <li>Finals Races: Saturday Apr 9, 8am-12pm</li>
-        </ul>
-      </div>
-    </div>
-
+    <?php include_once("homepage-raceday-results.inc"); ?>
     <?php include_once("twitterwidget.inc"); ?>
 
     <div class="card mb-3">
