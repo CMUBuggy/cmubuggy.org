@@ -52,7 +52,7 @@
         <td>2:57.85</td>
       </tr>
     </table>
-    <a href="/raceday/leaderboard" class="btn btn-primary">Full Results</a>
+    <a href="/history/raceday/2022" class="btn btn-primary">Full Results</a>
     <a href="https://livestream.com/cmutvlive/buggy100" class="btn btn-info">Videos</a>
   </div>
 </div>
