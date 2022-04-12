@@ -335,10 +335,10 @@ function displaytrophyyear($trophies, $year){
         echo("Best T-Shirt Award");
         break;
       case "99Chairman's Choice":
-        echo("Chairman's Choice");
+        echo("Anne Witchner Chairman's Choice");
         break;
       case "99Spirit of Buggy":
-        echo("Spirit of Buggy");
+        echo("Tom Wood Spirit of Buggy");
         break;
       default:
         echo($trophy);

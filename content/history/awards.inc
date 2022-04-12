@@ -108,8 +108,8 @@
         <thead>
           <tr>
             <th>Year</th>
-            <th>Chairman's Choice</th>
-            <th>Spirit of Buggy</th>
+            <th>Anne Witchner<br>Chairman's Choice</th>
+            <th>Tom Wood<br>Spirit of Buggy</th>
             <th>T-Shirt Award</th>
           </tr>
         </thead>
