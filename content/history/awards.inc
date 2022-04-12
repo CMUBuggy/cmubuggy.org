@@ -32,6 +32,9 @@
       ORDER BY year DESC;";
   $designAwards = dbQuery($HISTORY_DATABASE, $designAwardQuery);
 
+  // Note: This will still render a year even if none of the selected awards are present in that year,
+  // if an unnamed award (e.g. "Most Improved" _is_ present).  This doesn't seem likely enough to
+  // worry about though.
   $orgAwardQuery = " 
     SELECT DISTINCT y.year AS year, occ.shortname as 'chair', occ.orgid as 'chairid',
                                     osb.shortname as 'spirit', osb.orgid as 'spiritid',
@@ -108,8 +111,8 @@
         <thead>
           <tr>
             <th>Year</th>
-            <th>Chairman's Choice</th>
-            <th>Spirit of Buggy</th>
+            <th>Anne Witchner<br>Chairman's Choice</th>
+            <th>Tom Wood<br>Spirit of Buggy</th>
             <th>T-Shirt Award</th>
           </tr>
         </thead>

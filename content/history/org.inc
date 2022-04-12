@@ -335,12 +335,19 @@ function displaytrophyyear($trophies, $year){
         echo("Best T-Shirt Award");
         break;
       case "99Chairman's Choice":
-        echo("Chairman's Choice");
+        // Named after Anne
+        echo("Anne Witchner Chairman's Choice");
         break;
       case "99Spirit of Buggy":
-        echo("Spirit of Buggy");
+        // Named after Tom
+        echo("Tom Wood Spirit of Buggy");
         break;
       default:
+        // Unknown Award ("Most Improved"?)
+        // If we have a leading 2 digit sort key, remove it before displaying.
+        if(preg_match("/^[0-9]{2}/", $trophy)) {
+          $trophy = substr($trophy, 2);
+        }
         echo($trophy);
     }
     echo($extra."</li>");
