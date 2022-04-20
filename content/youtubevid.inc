@@ -1,9 +1,20 @@
 <?php
 // Expects $video to be an associative array with ["youtubeid"] and ["title"] set
 // Also, optionally set "nothumbnail" to an alt string to display to get a link without an image thumbnail.
+// Also, optionally set "start" and "end" with the number of seconds from start of video to start and
+//       end at.
 if($video){
   $id=$video["youtubeid"];
   $showthumbnail = empty($video["nothumbnail"]);
+
+  $dataVideoStart = "";
+  if (!empty($video["start"])) {
+    $dataVideoStart = " data-video-start=\"".$video["start"]."\"";
+  }
+  $dataVideoEnd = "";
+  if (!empty($video["end"])) {
+    $dataVideoEnd = " data-video-end=\"".$video["end"]."\"";
+  }
 ?>
 
   <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#youtube-<?php echo $id; ?>">
@@ -27,7 +38,7 @@ if($video){
         </div>
         <div class="modal-body">
           <div class="embed-responsive embed-responsive-16by9">
-            <div id="player-<?php echo $id; ?>" data-video-id="<?php echo $id; ?>" class="embed-responsive-item"></div>
+            <div id="player-<?php echo $id; ?>" data-video-id="<?php echo $id; ?>"<?php echo $dataVideoStart.$dataVideoEnd; ?> class="embed-responsive-item"></div>
           </div>
         </div>
       </div>
