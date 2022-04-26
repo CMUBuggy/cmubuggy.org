@@ -24,7 +24,16 @@ $(document)
 .on('show.bs.modal', '[id^="youtube-"]', function (e) {
   var $playerDiv = $('div[id^="player-"]', this);
   if ($playerDiv.length == 0) return;
-  $(this).data('player', new YT.Player($playerDiv.attr('id'), { videoId: $playerDiv.data('videoId') }));
+  var $playerParams = { videoId: $playerDiv.data('videoId'), playerVars: {} };
+
+  if (typeof $playerDiv.data('videoStart') !== "undefined") {
+    $playerParams["playerVars"]["start"] = $playerDiv.data('videoStart');
+  }
+  if (typeof $playerDiv.data('videoEnd') !== "undefined") {
+    $playerParams["playerVars"]["end"] = $playerDiv.data('videoEnd');
+  }
+
+  $(this).data('player', new YT.Player($playerDiv.attr('id'), $playerParams));
 })
 .on('hide.bs.modal', '[id^="youtube-"]', function (e) {
   $(this).data('player').stopVideo();
