@@ -54,6 +54,9 @@ Redirect 302 /indy500 https://forms.gle/XxoCtAaifRyM5sag6
 # Crowdsourced Timing Tool
 Redirect 302 /timing https://buggy-timing.bubbleapps.io/
 
+# 2022 BAA Officer nominations
+Redirect 302 /nominations https://docs.google.com/forms/d/e/1FAIpQLSfzbvn6uNROIpb9ssm4lln3LFAlKC6FNzgsRqhRb7_jAs3Wag/viewform
+
 # Rewrite some iOS favicon handling (404 the precompsed icon, push the root apple-touch-icon to favicons/)
 # This is needed so they don't get caught by the /news redirect.
 RewriteRule		^apple-touch-icon.png$			favicons/apple-touch-icon.png	[NC,L]
