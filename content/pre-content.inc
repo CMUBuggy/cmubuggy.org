@@ -38,7 +38,7 @@
           <span class="d-none d-sm-inline d-lg-none">Buggy Alumni Association</span>
           <span class="d-sm-none" title="Buggy Alumni Association">BAA</span>
         </a>
-        <span class="navbar-text d-none d-md-inline d-lg-none text-light" title="<?php echo("$timerCount $timerUnit"); ?>">Raceday 2022 is April 8&ndash;9</span>
+        <span class="navbar-text d-none d-md-inline d-lg-none text-light" title="<?php echo("$timerCount $timerUnit"); ?>">Raceday 2023 is April 14&ndash;15</span>
         <span class="navbar-text d-none d-lg-inline text-light">
           <strong>Records</strong> / <a href="/history/team/2017.SDC.MA">Mens: 2:02.16</a> / <a href="/history/team/2017.SDC.WA">Womens: 2:23.27</a>
         </span>
