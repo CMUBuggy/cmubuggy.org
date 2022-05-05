@@ -150,7 +150,7 @@
     foreach($heattypes as $type){
       if(isset($heatArr[$type])){
         echo("<h4>".$heattypelabels[$type]."</h4>");
-        echo("<div class\"table-responsive\"><table class=\"table\"><thead>");
+        echo("<table class=\"table\"><thead>");
 
         if ($type != "E0") {
           // Not Exhibition, Add useful headers.
@@ -198,7 +198,7 @@
           }
           echo("</tr>");
         }
-        echo("</tbody></table></div>");
+        echo("</tbody></table>");
       }
     }
   }

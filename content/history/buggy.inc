@@ -175,22 +175,21 @@ if(empty($image_url)) {
 </ul>
 <div class="tab-content">
   <div class="tab-pane fade show active" id="tab-races" role="tabpanel" aria-labelledby="races-tab">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr class="text-nowrap">
-            <th>Year</th>
-            <th>Team</th>
-            <th>Place</th>
-            <th>Prelim</th>
-            <th>Prelim Reroll</th>
-            <th>Final</th>
-            <th>Final Reroll</th>
-            <th>DQ / Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
+    <table class="table">
+      <thead>
+        <tr class="text-nowrap">
+          <th>Year</th>
+          <th>Team</th>
+          <th>Place</th>
+          <th>Prelim</th>
+          <th>Prelim Reroll</th>
+          <th>Final</th>
+          <th>Final Reroll</th>
+          <th>DQ / Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
           while ($r = $raceData->fetch_assoc()) {
             $heatorder = array('Prelim', 'Reroll', 'Final', 'FinalReroll');
             $heattypes = array('Prelim' => 'p','Reroll' => 'r','Final' => 'f', 'FinalReroll' => 'fr');
@@ -251,10 +250,9 @@ if(empty($image_url)) {
             }
             echo("<td>".$r["DQ"]." ".$r["note"]."</td></tr>");
           }
-          ?>
-        </tbody>
-      </table>
-    </div>
+        ?>
+      </tbody>
+    </table>
   </div>
   <div class="tab-pane fade" id="tab-awards" role="tabpanel" aria-labelledby="awards-tab">
     <div class="table-responsive">
