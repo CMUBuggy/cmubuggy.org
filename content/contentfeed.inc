@@ -9,6 +9,9 @@ $MAX_FEED_ITEMS_SMUGMUG = 7;
 $MAX_FEED_ITEMS_ALL = 15;
 $MAX_FEED_DAYS = 90;
 
+// Disable the forum feed, since it is mostly spam.
+$FORUM_FEED_ENABLED = false;
+
 // set our cutoff time
 $cutoff = time()-(60*60*24*$MAX_FEED_DAYS);
 $cutoffDate = date("Y-m-d",$cutoff);
@@ -68,7 +71,11 @@ $forumSQL = "SELECT posts.post_id, posts.post_time, users.username, topics.topic
   ON posts.topic_id=topics.topic_id
   where post_time > $cutoff
   ORDER BY post_time DESC";
-$forumResults = dbQuery("cmubuggy_phpBB",$forumSQL);
+
+$forumResults = false;
+if ($FORUM_FEED_ENABLED) {
+  $forumResults = dbQuery("cmubuggy_phpBB",$forumSQL);
+}
 
 $forumClusterItems = array();
 
