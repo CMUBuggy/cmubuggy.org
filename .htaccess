@@ -21,6 +21,42 @@ Redirect 301 /admin /news/wp-admin
 # /gallery-2021 was a temporary thing while we migrated to smugmug.
 Redirect 301 /gallery-2021 /smugmug
 
+# First pass at dealing with legacy org ids, which we need to get out
+# of search engines by redirecting them.  Preferably should be done
+# in PHP code via lookup table, but this is simple and there's
+# not that many.  Use 302 while testing this, convert to 301 later.
+#
+# To avoid conflicts with other rewrite rules, we actually have to do
+# this with mod_rewrite and not regular redirects.
+#
+# mod_rewrite defaults to a 302, to do a 301, use R=301 instead.
+#
+# Only covers the 35 orgs that had data prior to 2022 update.  We don't
+# rewrte if the url key didn't change (e.g. "CIA", "ATO", etc)
+RewriteRule ^history/org/aepi/?$		/history/org/AEP	[R,L,NC]
+RewriteRule ^history/org/afrotc/?$		/history/org/AFR	[R,L,NC]
+RewriteRule ^history/org/apex/?$		/history/org/APX	[R,L,NC]
+RewriteRule ^history/org/beta/?$		/history/org/BTP	[R,L,NC]
+RewriteRule ^history/org/cmutv/?$		/history/org/CMTV	[R,L,NC]
+RewriteRule ^history/org/deltaforce/?$	/history/org/DF		[R,L,NC]
+RewriteRule ^history/org/fringe/?$		/history/org/FRI	[R,L,NC]
+RewriteRule ^history/org/kappa/?$		/history/org/KKG	[R,L,NC]
+RewriteRule ^history/org/kapsig/?$		/history/org/KS		[R,L,NC]
+RewriteRule ^history/org/kkgzbt/?$		/history/org/KZ		[R,L,NC]
+RewriteRule ^history/org/nrotc/?$		/history/org/NR		[R,L,NC]
+RewriteRule ^history/org/phidelt/?$		/history/org/PDT	[R,L,NC]
+RewriteRule ^history/org/pioneers/?$	/history/org/PIO	[R,L,NC]
+RewriteRule ^history/org/pika/?$		/history/org/PKA	[R,L,NC]
+RewriteRule ^history/org/phikap/?$		/history/org/PKT	[R,L,NC]
+RewriteRule ^history/org/sigep/?$		/history/org/SEP	[R,L,NC]
+RewriteRule ^history/org/spirit/?$		/history/org/SPI	[R,L,NC]
+RewriteRule ^history/org/sigtau/?$		/history/org/STG	[R,L,NC]
+RewriteRule ^history/org/radioclub/?$	/history/org/W3VC	[R,L,NC]
+RewriteRule ^history/org/taudeltaphi/?$		/history/org/TDP	[R,L,NC]
+RewriteRule ^history/org/betasigmarho/?$	/history/org/BSR	[R,L,NC]
+RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R,L,NC]
+
+
 #### Livestream related links.
 # On non-raceday, /live can be redirected to our own embedded page if we want.
 # /raceday/livestream is the wordpress embedded livestream page
