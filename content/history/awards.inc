@@ -43,8 +43,30 @@
 	    LEFT JOIN hist_orgawards cc ON cc.year = y.year AND cc.award = 'Chairman\'s Choice' LEFT JOIN hist_orgs occ on cc.orgid = occ.orgid
 	    LEFT JOIN hist_orgawards sb ON sb.year = y.year AND sb.award = 'Spirit of Buggy' LEFT JOIN hist_orgs osb on sb.orgid = osb.orgid
 	    LEFT JOIN hist_orgawards ts ON ts.year = y.year AND ts.award = 'T-Shirt Award' LEFT JOIN hist_orgs ots on ts.orgid = ots.orgid
-      ORDER BY y.year desc;";
+      ORDER BY y.year DESC;";
   $orgAwards = dbQuery($HISTORY_DATABASE, $orgAwardQuery);
+
+  $personAwardQuery = "
+      SELECT DISTINCT y.year AS year,
+                      CONCAT(kperson.firstname, ' ', kperson.lastname) AS 'king',
+                        CONCAT(korg.shortname, ' ', kteam.team) AS 'kingteam', king.time AS 'kingtime', king.note AS 'kingnote',
+                        kperson.personid AS 'kingid', kteam.entryid AS 'kingentryid',
+                      CONCAT(qperson.firstname, ' ' , qperson.lastname) AS 'queen',
+                        CONCAT(qorg.shortname, ' ', qteam.team) AS 'queenteam', queen.time AS 'queentime', queen.note AS 'queennote',
+                        qperson.personid AS 'queenid', qteam.entryid AS 'queenentryid',
+                      chair.personid AS 'chair', chair.note AS 'chairnote'
+      FROM hist_personawards y
+      LEFT JOIN hist_personawards chair ON chair.year = y.year AND chair.award = 'Chair'
+      LEFT JOIN hist_personawards king ON king.year = y.year AND king.award = 'King'
+      LEFT JOIN hist_people kperson ON kperson.personid = king.personid
+      LEFT JOIN hist_raceentries kteam ON kteam.entryid = CONCAT(king.year, '.', king.team)
+      LEFT JOIN hist_orgs korg ON korg.orgid = kteam.orgid
+      LEFT JOIN hist_personawards queen ON queen.year = y.year AND queen.award = 'Queen'
+      LEFT JOIN hist_people qperson ON qperson.personid = queen.personid
+      LEFT JOIN hist_raceentries qteam ON qteam.entryid = CONCAT(queen.year, '.', queen.team)
+      LEFT JOIN hist_orgs qorg ON qorg.orgid = kteam.orgid
+      ORDER BY y.year DESC;";
+  $personAwards = dbQuery($HISTORY_DATABASE, $personAwardQuery);
 ?>
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
@@ -52,6 +74,9 @@
   </li>
   <li class="nav-item">
     <a id="orgawards-tab" href="#tab-orgawards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-orgawards" aria-selected="false">Organization Awards</a>
+  </li>
+  <li class="nav-item">
+    <a id="personawards-tab" href="#tab-personawards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-personawards" aria-selected="false">Individual Awards</a>
   </li>
 </ul>
 
@@ -101,6 +126,7 @@
         </tbody>
       </table>
     </div>
+    <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
   </div>
 
   <div class="tab-pane fade" id="tab-orgawards" role="tabpanel" aria-labelledby="orgawards-tab">
@@ -129,7 +155,51 @@
         </tbody>
       </table>
     </div>
+    <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
   </div>
 
-  <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
+  <div class="tab-pane fade" id="tab-personawards" role="tabpanel" aria-labelledby="personawards-tab">
+    <h1>Individual Awards</h1>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>King of The Hill</th><th>Time (sec)</th>
+            <th>Queen Of The Hill</th><th>Time (sec)</th>
+            <!-- TODO: Chairperson of the year -->
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            while ($p = $personAwards->fetch_assoc()) {
+                echo("<tr><td>".$p["year"]."</td>");
+                if ($p["king"]) {
+                  $note = "";
+                  if ($p["kingnote"]) {
+                    $note = "<br><i>".$p["kingnote"]."</i>";
+                  }
+                  echo("<td><a href=\"./person/".$p["kingid"]."\">".$p["king"]."</a> (<a href=\"./team/".$p["kingentryid"]."\">".$p["kingteam"]."</a>)".$note."</td>");
+                  echo("<td>".$p["kingtime"]."</td>");
+                } else {
+                  echo("<td colspan=2></td>");
+                }
+                if ($p["queen"]) {
+                  $note = "";
+                  if ($p["queennote"]) {
+                    $note = "<br><i>".$p["kingnote"]."</i>";
+                  }
+                  echo("<td><a href=\"./person/".$p["queenid"]."\">".$p["queen"]."</a> (<a href=\"./team/".$p["queenentryid"]."\">".$p["queenteam"]."</a>)".$note."</td>");
+                  echo("<td>".$p["queentime"]."</td>");
+                } else {
+                  echo("<td colspan=2></td>");
+                }
+                echo("</tr>");
+            }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
