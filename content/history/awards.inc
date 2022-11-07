@@ -64,7 +64,7 @@
       LEFT JOIN hist_personawards queen ON queen.year = y.year AND queen.award = 'Queen'
       LEFT JOIN hist_people qperson ON qperson.personid = queen.personid
       LEFT JOIN hist_raceentries qteam ON qteam.entryid = CONCAT(queen.year, '.', queen.team)
-      LEFT JOIN hist_orgs qorg ON qorg.orgid = kteam.orgid
+      LEFT JOIN hist_orgs qorg ON qorg.orgid = qteam.orgid
       ORDER BY y.year DESC;";
   $personAwards = dbQuery($HISTORY_DATABASE, $personAwardQuery);
 ?>
