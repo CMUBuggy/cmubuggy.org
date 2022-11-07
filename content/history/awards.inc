@@ -126,7 +126,6 @@
         </tbody>
       </table>
     </div>
-    <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
   </div>
 
   <div class="tab-pane fade" id="tab-orgawards" role="tabpanel" aria-labelledby="orgawards-tab">
@@ -155,7 +154,6 @@
         </tbody>
       </table>
     </div>
-    <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
   </div>
 
   <div class="tab-pane fade" id="tab-personawards" role="tabpanel" aria-labelledby="personawards-tab">
@@ -202,4 +200,5 @@
       </table>
     </div>
   </div>
+  <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
 </div>
