@@ -54,6 +54,7 @@ ALTER TABLE hist_orgawards ADD INDEX (orgid);
 ALTER TABLE hist_orgawards ADD INDEX (year, award(20));
 ALTER TABLE hist_sweepstakes ADD INDEX (year, role);
 ALTER TABLE hist_sweepstakes ADD INDEX (personid);
+ALTER TABLE hist_personawards ADD INDEX (year, award);
 
 # If you locked the tables, unlock them.
 #UNLOCK TABLES;
