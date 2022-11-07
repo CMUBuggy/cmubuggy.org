@@ -164,8 +164,8 @@
         <thead>
           <tr>
             <th>Year</th>
-            <th>King of The Hill</th><th>Time (sec)</th>
-            <th>Queen Of The Hill</th><th>Time (sec)</th>
+            <th>Blinn/Brewer<br>King of the Hill</th><th>Time (sec)</th>
+            <th>Queen of the Hill</th><th>Time (sec)</th>
             <!-- TODO: Chairperson of the year -->
           </tr>
         </thead>

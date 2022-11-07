@@ -96,7 +96,7 @@
         <td><a href="/history/person/jtw2">James Wong</a> - <a href="/history/org/FRI">Fringe</a></td>
       </tr>
       <tr>
-        <th>King of the Hill</th>
+        <th>Blinn/Brewer<br>King of the Hill</th>
         <td><a href="/history/person/cmedward">Clayton Edwards</a> - <a href="/history/team/2022.SDC.MA">SDC A</a></td>
       </tr>
       <tr>

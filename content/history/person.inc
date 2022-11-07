@@ -47,8 +47,8 @@ $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
 $teamData = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "s", $urlkey);
 
 $awardQuery = "SELECT a.year AS year,
-                      case when a.award='King' then 'King of The Hill'
-                           when a.award='Queen' then 'Queen of The Hill'
+                      case when a.award='King' then 'Blinn/Brewer King of the Hill'
+                           when a.award='Queen' then 'Queen of the Hill'
                            when a.award='Chair' then 'Chairperson of the Year'
                            else 'Unknown Award' end AS award
                FROM hist_personawards a
