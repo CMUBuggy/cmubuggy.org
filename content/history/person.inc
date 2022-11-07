@@ -46,10 +46,30 @@ $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
                 ORDER BY e.year DESC,heattype DESC,o.shortname,e.class,e.team;";
 $teamData = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "s", $urlkey);
 
+$awardQuery = "SELECT a.year AS year,
+                      case when a.award='King' then 'King of The Hill'
+                           when a.award='Queen' then 'Queen of The Hill'
+                           when a.award='Chair' then 'Chairperson of the Year'
+                           else 'Unknown Award' end AS award
+               FROM hist_personawards a
+               WHERE personid=?
+               ORDER BY a.year DESC, a.award";
+
+$awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "s", $urlkey);
 ?>
 
 <?php
   echo("<h1>".$personName."</h1>");
+  if ($awardData->num_rows > 0) {
+    echo("<h2>Awards</h2>");
+    echo("<ul class=\"list-unstyled\">");
+    while ($a = $awardData->fetch_assoc()) {
+      echo("<li>");
+      echo($a["year"]." ".$a["award"]);
+      echo("</li>");
+    }
+    echo("</ul>");
+  }
   if($sweepstakesData->num_rows > 0) {
     echo("<h2>Sweepstakes Positions</h2>");
     echo("<ul class=\"list-unstyled\">");
