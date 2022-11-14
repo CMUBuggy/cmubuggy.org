@@ -36,9 +36,19 @@ $trophyCount = 0;
 $trophyArr = array();
 $recordArr = array();
 
-// Keys for various things ("Mens A", "Womens C", etc).
+// Keys for team data abbreviations ("Mens A", "Womens C", etc).
 // No more than a D team please!
-$entrytypes = array("ma", "mb", "mc", "md", "wa", "wb", "wc", "wd");
+//
+// This maps the english class name to the valid entry keys for that class.
+$classkeys = array("Men's" => array("ma", "mb", "mc", "md"),
+                   "Women's" => array("wa", "wb", "wc", "wd"));
+
+// All possible entry type abbreviations for all classes.  We build this off
+// of the above so that they are consistent.
+$allTeamAbbreviations = array();
+foreach ($classkeys as $a) {
+  array_push($allTeamAbbreviations, ...$a);
+}
 
 // (/org trophies, not design) Awards, specified org
 // Applies to all orgs (e.g. including Support)
@@ -197,8 +207,9 @@ $entryQuery = "SELECT ma.year,
 $entryResultSet = dbBoundQuery($HISTORY_DATABASE, $entryQuery, "s", $orgUrlKey);
 $entryData = array();  // Just a flat list.
 $entryTimes = array();   // Associative array of time-seconds by [year][ma/mb/wa/wb/etc]
-while($e = $entryResultSet->fetch_assoc()) {
-  foreach ($entrytypes as $et) {
+
+while ($e = $entryResultSet->fetch_assoc()) {
+  foreach ($allTeamAbbreviations as $et) {
     if (array_key_exists($et.".timesecs", $e)) {
       $e[$et.".time"] = displayTime($e[$et.".timesecs"]);
       $entryTimes[$e["year"]][$et] = $e[$et.".timesecs"];
@@ -237,24 +248,54 @@ function addtrophy($year, $awardType, $extra = "") {
 }
 
 function displayraceyear($year, $entry) {
-  global $entrytypes;
-  echo("<tr><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
-  foreach ($entrytypes as $entrytype) {
-    if (isset($entry[$entrytype.".entryid"])) {
-      $time = $entry[$entrytype.".time"];
-      $outcome = $entry[$entrytype.".place"];
-      $id = $entry[$entrytype.".entryid"];
+  global $classkeys;
 
-      if (empty($time)) {
-        $time = "--&nbsp;--&nbsp;--";
+  $thisYearClasses = array();
+
+  // How many rows does this year need?  [1 per class]\
+  foreach(array_keys($classkeys) as $class) {
+    foreach($classkeys[$class] as $k) {
+      if (isset($entry[$k.".entryid"])) {
+        array_push($thisYearClasses, $class);
+        break;
       }
-
-      echo("<td><a href=\"/history/team/".$id."\">".$time."</a></td><td>".$outcome."</td>");
-    } else {
-      echo ("<td></td><td></td>");
     }
   }
-  echo("</tr>");
+
+  $rowspanText = "";
+  $rows = count($thisYearClasses);
+  if ($rows > 0) {
+    $rowspanText = " rowspan=".$rows;
+  } else {
+    die ("oops, year with no rows: ".$year);
+  }
+
+  echo("<tr><td".$rowspanText."><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
+  $firstrow = true;
+  foreach ($thisYearClasses as $class) {
+    if(!$firstrow) {
+      echo("<tr>");
+    } else {
+      $firstrow = false;
+    }
+    echo("<td>".$class."</td>");
+    foreach ($classkeys[$class] as $entrytype) {
+      if (isset($entry[$entrytype.".entryid"])) {
+        $time = $entry[$entrytype.".time"];
+        $outcome = $entry[$entrytype.".place"];
+        $id = $entry[$entrytype.".entryid"];
+
+        if (empty($time)) {
+          $time = "--&nbsp;--&nbsp;--";
+        }
+
+        echo("<td><a href=\"/history/team/".$id."\">".$time."</a></td><td>".$outcome."</td>");
+      } else {
+        echo ("<td></td><td></td>");
+      }
+    }
+    echo("</tr>\n");
+  }
 }
 
 // Allows sorting on the trophy name stored in the "award" key.
@@ -518,14 +559,11 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
           <thead>
             <tr class="text-nowrap">
               <th>Year</th>
-              <th colspan="2">Men's A</th>
-              <th colspan="2">Men's B</th>
-              <th colspan="2">Men's C</th>
-              <th colspan="2">Men's D</th>
-              <th colspan="2">Women's A</th>
-              <th colspan="2">Women's B</th>
-              <th colspan="2">Women's C</th>
-              <th colspan="2">Women's D</th>
+              <th>Class</th>
+              <th colspan="2">Team A</th>
+              <th colspan="2">Team B</th>
+              <th colspan="2">Team C</th>
+              <th colspan="2">Team D</th>
             </tr>
           </thead>
           <tbody>

@@ -53,16 +53,8 @@ function echoTeamCell($teamkey, $teamname) {
   <table class="table">
     <thead>
       <tr>
-        <th></th>
-        <th colspan="4" class="text-center">Men's</th>
-        <th colspan="4" class="text-center">Women's</th>
-      </tr>
-      <tr>
         <th>Year</th>
-        <th>Champ</th>
-        <th>Time</th>
-        <th>2nd Place</th>
-        <th>3rd Place</th>
+        <th>Class</th>
         <th>Champ</th>
         <th>Time</th>
         <th>2nd Place</th>
@@ -74,29 +66,53 @@ function echoTeamCell($teamkey, $teamname) {
 
         while ($r = $raceyearlist->fetch_assoc()) {
           echo("<tr>");
-          echo("<td><a href=\"/history/raceday/".$r["year"]."\">".$r["year"]."</a></td>");
-          if (empty($r["Mens1"]) && empty($r["Womens1"])) {
+
+          // How many rows does this year need?  [1 per class]
+          $rowspan = 0;
+          if (!empty($r["Mens1"])) {
+            $rowspan++;
+          }
+          if (!empty($r["Womens1"])) {
+            $rowspan++;
+          }
+          $rowspanText = "";
+          if ($rowspan != 0) {
+            $rowspanText = " rowspan=".$rowspan;
+          }
+
+          echo("<td".$rowspanText."><a href=\"/history/raceday/".$r["year"]."\">".$r["year"]."</a></td>");
+          if ($rowspan == 0) {
             // Skipped Years (War, Covid)
-            echo("<td colspan=\"8\" class=\"text-center\">".$r["note"]."</td>");
+            echo("<td colspan=\"5\" class=\"text-center\">".$r["note"]."</td></tr>");
           } else {
+            $firstRow = true;
             if (!empty($r["Mens1"])) {
+              if (!$firstRow){
+                echo("<tr>");
+              } else {
+                $firstRow = false;
+              }
+              echo("<td>Men's</td>");
               echoTeamCell($r["Mens1ID"],$r["Mens1"]);
               echo("<td>".displayTime($r["MensTime"])."</td>");
               echoTeamCell($r["Mens2ID"],$r["Mens2"]);
               echoTeamCell($r["Mens3ID"],$r["Mens3"]);
-            } else {
-              echo("<td colspan=\"4\"></td>");
+              echo("</tr>\n");
             }
             if (!empty($r["Womens1"])) {
+              if (!$firstRow){
+                echo("<tr>");
+              } else {
+                $firstRow = false;
+              }
+              echo("<td>Women's</td>");
               echoTeamCell($r["Womens1ID"],$r["Womens1"]);
               echo("<td>".displayTime($r["WomensTime"])."</td>");
               echoTeamCell($r["Womens2ID"],$r["Womens2"]);
               echoTeamCell($r["Womens3ID"],$r["Womens3"]);
-            } else {
-              echo("<td colspan=\"4\"></td>");
+              echo("</tr>\n");
             }
           }
-          echo("</tr>");
         }
       ?>
     </tbody>
