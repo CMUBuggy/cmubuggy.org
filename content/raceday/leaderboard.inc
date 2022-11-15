@@ -55,10 +55,16 @@
       <a id="mens-prelims-tab" href="#tab-mens-prelims" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-mens-prelims" aria-selected="false">Men's Prelims</a>
     </li>
     <li class="nav-item">
-      <a id="womens-finals-tab" href="#tab-womens-finals" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens-finals" aria-selected="false">Women's Finals</a>
+      <a id="allgender-prelims-tab" href="#tab-allgender-prelims" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender-prelims" aria-selected="false">All Gender Prelims</a>
     </li>
     <li class="nav-item">
-      <a id="mens-finals-tab" href="#tab-mens-finals" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-mens-finals" aria-selected="false">Men's Finals</span></a>
+      <a id="womens-finals-tab" href="#tab-womens-finals" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens-finals" aria-selected="false">Women's Finals</a>
+    </li>
+    <li class="nav-item">
+      <a id="mens-finals-tab" href="#tab-mens-finals" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-mens-finals" aria-selected="false">Men's Finals</span></a>
+    </li>
+    <li class="nav-item">
+      <a id="allgender-finals-tab" href="#tab-allgender-finals" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender-finals" aria-selected="false">All Gender Finals</a>
     </li>
   </ul>
 
@@ -69,9 +75,13 @@
     </div>
     <div class="tab-pane fade prelims" id="tab-mens-prelims" role="tabpanel" aria-labelledby="mens-prelims-tab">
     </div>
+    <div class="tab-pane fade prelims" id="tab-allgender-prelims" role="tabpanel" aria-labelledby="allgender-prelims-tab">
+    </div>
     <div class="tab-pane fade finals" id="tab-womens-finals" role="tabpanel" aria-labelledby="womens-finals-tab">
     </div>
     <div class="tab-pane fade finals" id="tab-mens-finals" role="tabpanel" aria-labelledby="mens-finals-tab">
+    </div>
+    <div class="tab-pane fade prelims" id="tab-allgender-finals" role="tabpanel" aria-labelledby="allgender-finals-tab">
     </div>
   </div>
 </div>
@@ -99,6 +109,21 @@
     messagingSenderId: '31785879580'
   };
   firebase.initializeApp(config);
+
+  // Determine which tabs are visible.
+  var visibleconfigref = firebase.database().ref("config").orderByChild('time_sort');
+  visibleconfigref.on('value', function (snapshot) {
+    snapshot.forEach(function (child) {
+      var nameStyle = child.key.replace('_', '-');
+      // var tab = document.querySelector('#tab-' + nameStyle);
+      var button = document.querySelector('#' + nameStyle + '-tab');
+
+      var displaySetting = child.val() == true ? 'block' : 'none';
+      button.style.display = displaySetting;
+
+      console.debug("%s set to %s", nameStyle, displaySetting);
+    })
+  });
 
   var raceResult = document.querySelector('#raceResult');
 
@@ -152,7 +177,7 @@
     console.debug('result moved: %s - %s', tab.id, data.key);
   }
 
-  ['womens_prelims', 'mens_prelims', 'womens_finals', 'mens_finals'].forEach(function (type) {
+  ['womens_prelims', 'mens_prelims', 'allgender_prelims', 'womens_finals', 'mens_finals', 'allgender_finals'].forEach(function (type) {
     var ref = firebase.database().ref(type).orderByChild('time_sort'),
       tab = document.querySelector('#tab-' + type.replace('_', '-'));
     ref.on('child_added', function (snapshot, previousChildKey) {
