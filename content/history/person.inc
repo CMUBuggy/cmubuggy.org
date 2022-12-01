@@ -28,9 +28,11 @@ $sweepstakesData = dbBoundQuery($HISTORY_DATABASE, $sweepstakesQuery, "s", $urlk
 $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
                      case when e.class = 'M' then 'Men\'s'
                           when e.class = 'W' then 'Women\'s'
+                          when e.class = 'N' then 'All Gender'
                           else 'Unknown' end AS class,
                      case when e.class = 'M' then 'mens'
                           when e.class = 'W' then 'womens'
+                          when e.class = 'N' then 'allgender'
                           else 'Unknown' end AS classanchor,
                      e.team, position AS role,
                      case when heattype = 'Prelim' then e.prelim
