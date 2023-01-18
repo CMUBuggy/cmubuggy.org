@@ -31,8 +31,9 @@
   // Getting heats is a mess, rather than issue a ton of queries, we fetch all the relevant heats
   // and then split them by prelim/final/reroll/etc locally.
   //
-  // We do not fetch exhibitions -- (class == E).  This is only useful if we can link them to videos,
-  // so if we start to do videos, remember to fetch exhibitions as well and deal with them!
+  // We do not fetch exhibitions -- (class == E) unless they also have a video to link to, since
+  // exhibitions otherwise have no useful data to share.  So, if you want an exhibition to show,
+  // it needs to have a linked video (and, ideally a title in the video table entry)
   //
   // Heats data is SUPER GROSS, especially because the way rerolls can run off the rails and need to be
   // done "just in time" in many cases.  This leads to "isfinals" in the heats table meaning "happened on finals
