@@ -49,12 +49,19 @@ function echoTeamCell($teamkey, $teamname) {
 }
 ?>
 
+<script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023011800"></script>
+
+<b>Class To Show:</b>
+All <input type="radio" id="enableAll" name="classFilter" value="ALL" checked>
+Men's <input type="radio" id="enableM" name="classFilter" value="mensRow">
+Women's <input type="radio" id="enableW" name="classFilter" value="womensRow">
+
 <div class="table-responsive">
-  <table class="table">
+  <table class="table classFilterTable">
     <thead>
       <tr>
         <th>Year</th>
-        <th>Class</th>
+        <th class="classCol">Class</th>
         <th>Champ</th>
         <th>Time</th>
         <th>2nd Place</th>
@@ -64,8 +71,9 @@ function echoTeamCell($teamkey, $teamname) {
     <tbody>
       <?php
 
+        $yearParity = false;
         while ($r = $raceyearlist->fetch_assoc()) {
-          echo("<tr>");
+          $yearCell = "<td><a href=\"/history/raceday/".$r["year"]."\">".$r["year"]."</a></td>";
 
           // How many rows does this year need?  [1 per class]
           $rowspan = 0;
@@ -75,24 +83,24 @@ function echoTeamCell($teamkey, $teamname) {
           if (!empty($r["Womens1"])) {
             $rowspan++;
           }
-          $rowspanText = "";
-          if ($rowspan != 0) {
-            $rowspanText = " rowspan=".$rowspan;
-          }
 
-          echo("<td".$rowspanText."><a href=\"/history/raceday/".$r["year"]."\">".$r["year"]."</a></td>");
+          // Stripe the table so years are the same background color when multiple classes are shown
+          $yearParityClass = "";
+          if ($yearParity) {
+            $yearParityClass = " table-secondary year-parity";
+          }
+          $yearParity = !$yearParity;
+
           if ($rowspan == 0) {
             // Skipped Years (War, Covid)
-            echo("<td colspan=\"5\" class=\"text-center\">".$r["note"]."</td></tr>");
+            echo("<tr class=\"classRow skippedYearRow".$yearParityClass."\">".$yearCell);
+            echo("<td colspan=\"5\" class=\"text-center\">".$r["note"]."</td>");
+            echo("</tr>\n");
           } else {
-            $firstRow = true;
             if (!empty($r["Mens1"])) {
-              if (!$firstRow){
-                echo("<tr>");
-              } else {
-                $firstRow = false;
-              }
-              echo("<td>Men's</td>");
+              echo("<tr class=\"classRow mensRow".$yearParityClass."\">".$yearCell);
+
+              echo("<td class=\"classCol\">Men's</td>");
               echoTeamCell($r["Mens1ID"],$r["Mens1"]);
               echo("<td>".displayTime($r["MensTime"])."</td>");
               echoTeamCell($r["Mens2ID"],$r["Mens2"]);
@@ -100,12 +108,8 @@ function echoTeamCell($teamkey, $teamname) {
               echo("</tr>\n");
             }
             if (!empty($r["Womens1"])) {
-              if (!$firstRow){
-                echo("<tr>");
-              } else {
-                $firstRow = false;
-              }
-              echo("<td>Women's</td>");
+              echo("<tr class=\"classRow womensRow".$yearParityClass."\">".$yearCell);
+              echo("<td class=\"classCol\">Women's</td>");
               echoTeamCell($r["Womens1ID"],$r["Womens1"]);
               echo("<td>".displayTime($r["WomensTime"])."</td>");
               echoTeamCell($r["Womens2ID"],$r["Womens2"]);

@@ -247,12 +247,12 @@ function addtrophy($year, $awardType, $extra = "") {
   $trophyCount++;
 }
 
-function displayraceyear($year, $entry) {
+function displayraceyear($year, $entry, $yearParity=false) {
   global $classkeys;
 
   $thisYearClasses = array();
 
-  // How many rows does this year need?  [1 per class]\
+  // How many rows does this year need?  [1 per class]
   foreach(array_keys($classkeys) as $class) {
     foreach($classkeys[$class] as $k) {
       if (isset($entry[$k.".entryid"])) {
@@ -264,21 +264,29 @@ function displayraceyear($year, $entry) {
 
   $rowspanText = "";
   $rows = count($thisYearClasses);
-  if ($rows > 0) {
-    $rowspanText = " rowspan=".$rows;
-  } else {
+  if ($rows <= 0) {
     die ("oops, year with no rows: ".$year);
   }
 
-  echo("<tr><td".$rowspanText."><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
-  $firstrow = true;
   foreach ($thisYearClasses as $class) {
-    if(!$firstrow) {
-      echo("<tr>");
-    } else {
-      $firstrow = false;
+    $cssClass="";
+    switch($class) {
+      case "Men's":
+        $cssClass = "mensRow";
+        break;
+      case "Women's":
+        $cssClass = "womensRow";
+        break;
+      default:
+        die("oops, unknown class in ".$year.": ".$class);
+    };
+
+    if ($yearParity) {
+      $cssClass = $cssClass . " table-secondary";
     }
-    echo("<td>".$class."</td>");
+
+    echo("<tr class=\"classRow ".$cssClass."\"><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
+    echo("<td class=\"classCol\">".$class."</td>");
     foreach ($classkeys[$class] as $entrytype) {
       if (isset($entry[$entrytype.".entryid"])) {
         $time = $entry[$entrytype.".time"];
@@ -551,15 +559,23 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
     <?php } ?>
   </ul>
 
+  <script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023011800"></script>
+
   <div class="tab-content">
     <div class="tab-pane fade show active" id="tab-raceresults" role="tabpanel" aria-labelledby="raceresults-tab">
       <h2>Race Results</h2>
+
+      <b>Class To Show:</b>
+      All <input type="radio" id="enableAll" name="classFilter" value="ALL" checked>
+      Men's <input type="radio" id="enableM" name="classFilter" value="mensRow">
+      Women's <input type="radio" id="enableW" name="classFilter" value="womensRow">
+
       <div class="table-responsive">
         <table class="table">
           <thead>
             <tr class="text-nowrap">
               <th>Year</th>
-              <th>Class</th>
+              <th class="classCol">Class</th>
               <th colspan="2">Team A</th>
               <th colspan="2">Team B</th>
               <th colspan="2">Team C</th>
@@ -568,8 +584,10 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
           </thead>
           <tbody>
             <?php
+              $yearParity = false;
               foreach ($entryData as $e) {
-                displayraceyear($e["year"], $e);
+                displayraceyear($e["year"], $e, $yearParity);
+                $yearParity = !$yearParity;
               }
             ?>
           </tbody>
