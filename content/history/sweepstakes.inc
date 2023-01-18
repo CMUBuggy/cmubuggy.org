@@ -64,6 +64,7 @@
       <img class="img-fluid" style="max-height:150px" src="/img/logos/sweepstakes_logo_notext.svg">
     </div>
   </div>
+  <p class="font-italic">To see the full committee, click on the year.</p>
   <div class="table-responsive">
     <table class="table">
       <thead>
