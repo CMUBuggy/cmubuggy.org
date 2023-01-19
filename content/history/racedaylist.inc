@@ -32,6 +32,15 @@ $query = "SELECT ma.Year AS year,
 	end AS WomensTime,
   concat(owb.shortname, case when wb.team = 'A' then '' else concat(' ', wb.team) end) AS Womens2, wb.entryid AS Womens2ID,
   concat(owc.shortname, case when wc.team = 'A' then '' else concat(' ', wc.team) end) AS Womens3, wc.entryid AS Womens3ID,
+  concat(ona.shortname, case when na.team = 'A' then '' else concat(' ', na.team) end) AS AllGender1, na.entryid AS AllGender1ID,
+	case when na.finalreroll > 0 then na.finalreroll
+       when na.final > 0 then na.final
+       when na.reroll > 0 then na.reroll
+		   when na.prelim > 0 then na.prelim
+       else NULL
+	end AS AllGenderTime,
+  concat(onb.shortname, case when nb.team = 'A' then '' else concat(' ', nb.team) end) AS AllGender2, nb.entryid AS AllGender2ID,
+  concat(onc.shortname, case when nc.team = 'A' then '' else concat(' ', nc.team) end) AS AllGender3, nc.entryid AS AllGender3ID,
   ma.note AS note
   FROM hist_raceentries ma LEFT JOIN hist_orgs oma ON ma.orgid = oma.orgid
   LEFT JOIN hist_raceentries mb ON ma.year=mb.year AND ma.class = mb.class AND mb.place = 2 LEFT JOIN hist_orgs omb ON mb.orgid = omb.orgid
@@ -39,6 +48,9 @@ $query = "SELECT ma.Year AS year,
   LEFT JOIN hist_raceentries wa ON ma.year=wa.year AND wa.class = 'W' AND wa.place = 1 LEFT JOIN hist_orgs owa ON wa.orgid = owa.orgid
   LEFT JOIN hist_raceentries wb ON wa.year=wb.year AND wa.class = wb.class AND wb.place = 2 LEFT JOIN hist_orgs owb ON wb.orgid = owb.orgid
   LEFT JOIN hist_raceentries wc ON wa.year=wc.year AND wa.class = wc.class AND wc.place = 3 LEFT JOIN hist_orgs owc ON wc.orgid = owc.orgid
+  LEFT JOIN hist_raceentries na ON ma.year=na.year AND na.class = 'N' AND na.place = 1 LEFT JOIN hist_orgs ona ON na.orgid = ona.orgid
+  LEFT JOIN hist_raceentries nb ON na.year=nb.year AND na.class = nb.class AND nb.place = 2 LEFT JOIN hist_orgs onb ON nb.orgid = onb.orgid
+  LEFT JOIN hist_raceentries nc ON na.year=nc.year AND na.class = nc.class AND nc.place = 3 LEFT JOIN hist_orgs onc ON nc.orgid = onc.orgid
   WHERE ((ma.place = 1 AND ma.class = 'M') OR (ma.team IS NULL AND ma.class = 'M'))
   ORDER BY Year DESC;";
 
@@ -55,6 +67,7 @@ function echoTeamCell($teamkey, $teamname) {
 All <input type="radio" id="enableAll" name="classFilter" value="ALL" checked>
 Men's <input type="radio" id="enableM" name="classFilter" value="mensRow">
 Women's <input type="radio" id="enableW" name="classFilter" value="womensRow">
+All Gender <input type="radio" id="enableN" name="classFilter" value="allgenderRow">
 
 <div class="table-responsive">
   <table class="table classFilterTable">
@@ -81,6 +94,9 @@ Women's <input type="radio" id="enableW" name="classFilter" value="womensRow">
             $rowspan++;
           }
           if (!empty($r["Womens1"])) {
+            $rowspan++;
+          }
+          if (!empty($r["AllGender1"])) {
             $rowspan++;
           }
 
@@ -114,6 +130,15 @@ Women's <input type="radio" id="enableW" name="classFilter" value="womensRow">
               echo("<td>".displayTime($r["WomensTime"])."</td>");
               echoTeamCell($r["Womens2ID"],$r["Womens2"]);
               echoTeamCell($r["Womens3ID"],$r["Womens3"]);
+              echo("</tr>\n");
+            }
+            if (!empty($r["AllGender1"])) {
+              echo("<tr class=\"classRow allgenderRow".$yearParityClass."\">".$yearCell);
+              echo("<td class=\"classCol\">All Gender</td>");
+              echoTeamCell($r["AllGender1ID"],$r["AllGender1"]);
+              echo("<td>".displayTime($r["AllGenderTime"])."</td>");
+              echoTeamCell($r["AllGender2ID"],$r["AllGender2"]);
+              echoTeamCell($r["AllGender3ID"],$r["AllGender3"]);
               echo("</tr>\n");
             }
           }
