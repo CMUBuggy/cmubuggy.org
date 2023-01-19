@@ -41,7 +41,8 @@ $recordArr = array();
 //
 // This maps the english class name to the valid entry keys for that class.
 $classkeys = array("Men's" => array("ma", "mb", "mc", "md"),
-                   "Women's" => array("wa", "wb", "wc", "wd"));
+                   "Women's" => array("wa", "wb", "wc", "wd"),
+                   "All Gender" => array("na", "nb", "nc", "nd"));
 
 // All possible entry type abbreviations for all classes.  We build this off
 // of the above so that they are consistent.
@@ -192,7 +193,37 @@ $entryQuery = "SELECT ma.year,
                            when wd.prelim > 0 then wd.prelim
                            else NULL end AS 'wd.timesecs',
                       case when wd.DQ <> '0' then 'DQ' else nullif(wd.Place, 0) end AS 'wd.place',
-                      wd.entryid AS 'wd.entryid'
+                      wd.entryid AS 'wd.entryid',
+
+               # All Gender
+               case when na.finalreroll > 0 then na.finalreroll
+                           when na.final > 0 then na.final
+                           when na.reroll > 0 then na.reroll
+                           when na.prelim > 0 then na.prelim
+                           else NULL end AS 'na.timesecs',
+                      case when na.DQ <> '0' then 'DQ' else nullif(na.Place, 0) end AS 'na.place',
+                      na.entryid AS 'na.entryid',
+                      case when nb.finalreroll > 0 then nb.finalreroll
+                           when nb.final > 0 then nb.final
+                           when nb.reroll > 0 then nb.reroll
+                           when nb.prelim > 0 then nb.prelim
+                           else NULL end AS 'nb.timesecs',
+                      case when nb.DQ <> '0' then 'DQ' else nullif(nb.Place, 0) end AS 'nb.place',
+                      nb.entryid AS 'nb.entryid',
+                      case when nc.finalreroll > 0 then nc.finalreroll
+                           when nc.final > 0 then nc.final
+                           when nc.reroll > 0 then nc.reroll
+                           when nc.prelim > 0 then nc.prelim
+                           else NULL end AS 'nc.timesecs',
+                      case when nc.DQ <> '0' then 'DQ' else nullif(nc.Place, 0) end AS 'nc.place',
+                      nc.entryid AS 'nc.entryid',
+                      case when nd.finalreroll > 0 then nd.finalreroll
+                           when nd.final > 0 then nd.final
+                           when nd.reroll > 0 then nd.reroll
+                           when nd.prelim > 0 then nd.prelim
+                           else NULL end AS 'nd.timesecs',
+                      case when nd.DQ <> '0' then 'DQ' else nullif(nd.Place, 0) end AS 'nd.place',
+                      nd.entryid AS 'nd.entryid'
                   FROM hist_raceentries ma
                   LEFT JOIN hist_raceentries mb ON ma.year=mb.year AND mb.class = 'M' AND ma.orgid = mb.orgid AND mb.team = 'B'
                   LEFT JOIN hist_raceentries mc ON ma.year=mc.year AND mc.class = 'M' AND ma.orgid = mc.orgid AND mc.team = 'C'
@@ -201,6 +232,10 @@ $entryQuery = "SELECT ma.year,
                   LEFT JOIN hist_raceentries wb ON ma.year=wb.year AND wb.class = 'W' AND ma.orgid = wb.orgid AND wb.team = 'B'
                   LEFT JOIN hist_raceentries wc ON ma.year=wc.year AND wc.class = 'W' AND ma.orgid = wc.orgid AND wc.team = 'C'
                   LEFT JOIN hist_raceentries wd ON ma.year=wd.year AND wd.class = 'W' AND ma.orgid = wd.orgid AND wd.team = 'D'
+                  LEFT JOIN hist_raceentries na ON ma.year=na.year AND na.class = 'N' AND ma.orgid = na.orgid AND na.team = 'A'
+                  LEFT JOIN hist_raceentries nb ON ma.year=nb.year AND nb.class = 'N' AND ma.orgid = nb.orgid AND nb.team = 'B'
+                  LEFT JOIN hist_raceentries nc ON ma.year=nc.year AND nc.class = 'N' AND ma.orgid = nc.orgid AND nc.team = 'C'
+                  LEFT JOIN hist_raceentries nd ON ma.year=nd.year AND nd.class = 'N' AND ma.orgid = nd.orgid AND nd.team = 'D'
                   WHERE ma.team = 'A' AND ma.class = 'M' AND ma.orgid = ?
                   ORDER BY year DESC;";
 
@@ -221,7 +256,12 @@ while ($e = $entryResultSet->fetch_assoc()) {
       if ($place != "DQ" && $place > 0 && $place < 7) {
         // The keying here ensures we sort race medals above other medals
         // and better places are sorted above lower places, regardless of class.
-        addtrophy($e["year"], "0".$e[$et.".place"].$et[0]);
+        //
+        // TODO: We standardized on the sort order of Mens, Womens, All Gender in the
+        // initial implementation of 3 class support, but 'N' sorts between 'M' and 'W',
+        // so we change the prefix for All Gender to be 1 instead of 0.
+        $raceAwardSortPrefix = ($et[0] != 'n') ? "0" : "1";
+        addtrophy($e["year"], $raceAwardSortPrefix.$e[$et.".place"].$et[0]);
       }
     }
   }
@@ -277,6 +317,9 @@ function displayraceyear($year, $entry, $yearParity=false) {
         break;
       case "Women's":
         $cssClass = "womensRow";
+        break;
+      case "All Gender":
+        $cssClass = "allgenderRow";
         break;
       default:
         die("oops, unknown class in ".$year.": ".$class);
@@ -362,6 +405,25 @@ function displaytrophyyear($trophies, $year){
         break;
       case "06w":
         echo("Women's 6th Place");
+        break;
+      // See note where the tropihes are added for why we use "1" for raceAwardSortPrefix.
+      case "11n":
+        echo("All Gender 1st Place");
+        break;
+      case "12n":
+        echo("All Gender 2nd Place");
+        break;
+      case "13n":
+        echo("All Gender 3rd Place");
+        break;
+      case "14n":
+        echo("All Gender 4th Place");
+        break;
+      case "15n":
+        echo("All Gender 5th Place");
+        break;
+      case "16n":
+        echo("All Gender 6th Place");
         break;
       case "98Design - 1":
         echo("Design Comp - 1st Place");
@@ -483,6 +545,10 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
           case "wb": $label = "Women's B"; break;
           case "wc": $label = "Women's C"; break;
           case "wd": $label = "Women's D"; break;
+          case "na": $label = "All Gender A"; break;
+          case "nb": $label = "All Gender B"; break;
+          case "nc": $label = "All Gender C"; break;
+          case "nd": $label = "All Gender D"; break;
         }
         $chartData->addPoints($graphArr[$type],$label);
         $chartData->setSerieWeight($label,1);
@@ -533,10 +599,15 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   $trendStartYear = $thisYear - 20;
   $trendMens = array("ma", "mb", "mc");
   $trendWomens = array("wa", "wb", "wc");
+  $trendAllGender = array("na", "nb", "nc");
 
-  // Is there any data at all that is worth trying to trend for this org?
-  $trendableOrg = isTrendableOrg(array_merge($trendMens, $trendWomens),
-                                 $trendStartYear, $thisYear);
+  // Is there any data at all that is worth trying to trend for this org? (e.g. do we have a trends tab?)
+  //
+  // Also keep track of this per-class so we know what graphs to render.
+  $trendableMens = isTrendableOrg($trendMens, $trendStartYear, $thisYear);
+  $trendableWomens = isTrendableOrg($trendWomens, $trendStartYear, $thisYear);
+  $trendableAllGender = isTrendableOrg($trendAllGender, $trendStartYear, $thisYear);
+  $trendableOrg = $trendableMens || $trendableWomens || $trendableAllGender;
 ?>
 
 <?php if ($org["isracingorg"] == 1) { ?>
@@ -570,6 +641,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
       All <input type="radio" id="enableAll" name="classFilter" value="ALL" checked>
       Men's <input type="radio" id="enableM" name="classFilter" value="mensRow">
       Women's <input type="radio" id="enableW" name="classFilter" value="womensRow">
+      All Gender <input type="radio" id="enableN" name="classFilter" value="allgenderRow">
 
       <div class="table-responsive">
         <table class="table">
@@ -623,6 +695,13 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
               <td><?php displayrecord("WC"); ?></td>
               <td><?php displayrecord("WD"); ?></td>
             </tr>
+            <tr>
+              <th>All Gender</th>
+              <td><?php displayrecord("NA"); ?></td>
+              <td><?php displayrecord("NB"); ?></td>
+              <td><?php displayrecord("NC"); ?></td>
+              <td><?php displayrecord("ND"); ?></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -673,8 +752,15 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
       <div class="tab-pane fade" id="tab-trends" role="tabpanel" aria-labelledby="trends-tab">
         <h2>Trends</h2>
         <?php
-            graphtrends($trendMens, $trendStartYear, $thisYear);
-            graphtrends($trendWomens, $trendStartYear, $thisYear);
+            if ($trendableMens) {
+              graphtrends($trendMens, $trendStartYear, $thisYear);
+            }
+            if ($trendableWomens) {
+              graphtrends($trendWomens, $trendStartYear, $thisYear);
+            }
+            if ($trendableAllGender) {
+              graphtrends($trendAllGender, $trendStartYear, $thisYear);
+            }
         ?>
       </div>
     <?php } ?>
