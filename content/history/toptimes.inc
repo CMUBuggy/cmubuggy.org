@@ -26,6 +26,7 @@ $query = "SELECT
 
 $top50men = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","M","M","M","M");
 $top50women = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","W","W","W","W");
+$top50allgender = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","N","N","N","N");
 
 function displayTable($teamList){
   echo("<table class=\"table\">");
@@ -52,7 +53,12 @@ function displayTable($teamList){
     <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a></li>
   <li class="nav-item">
     <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a></li>
-</ul>
+<?php if($top50allgender->num_rows > 0) { ?>
+  <li class="nav-item">
+    <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a></li>
+<?php } ?>
+  </ul>
+
 
 <div class="tab-content">
   <div class="tab-pane fade show active" id="tab-mens" role="tabpanel" aria-labelledby="mens-tab">
@@ -61,6 +67,11 @@ function displayTable($teamList){
   <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
     <?php displayTable($top50women); ?>
   </div>
+  <?php if($top50allgender->num_rows > 0) { ?>
+    <div class="tab-pane fade" id="tab-allgender" role="tabpanel" aria-labelledby="allgender-tab">
+    <?php displayTable($top50allgender); ?>
+  </div>
+  <?php } ?>
 </div>
 
 
