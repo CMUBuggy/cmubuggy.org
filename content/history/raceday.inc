@@ -21,12 +21,13 @@
                  WHERE year = ? AND class = ?
                  ORDER BY place=0, place, prelim=0, prelim, DQ;";
 
-  // We could get these all at once instead of 2 different queries and split them locally while maintaining the sort order,
+  // We could get these all at once instead of 3 different queries and split them locally while maintaining the sort order,
   // but this is slightly simpler to write/understand.
   //
   // Also, if we decide to use a single connection on this page, we can reuse the prepared statement here.
   $mensResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'M');
   $womensResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'W');
+  $allgenderResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'N');
 
   // Getting heats is a mess, rather than issue a ton of queries, we fetch all the relevant heats
   // and then split them by prelim/final/reroll/etc locally.
@@ -141,12 +142,17 @@
   function displayHeats($heatArr){
     // We put womens first on the heats display because historically heats
     // for womens run earlier in the morning.  This is also why Exhibitions
-    // are on top.
-    $heattypes = array("E0","W0","W1","M0","M1");
+    // are on top.  Of course, this doesn't always happen and shouldn't be
+    // considered to have been the actual order rolls happened on the day.
+    //
+    // TODO: Confirm placement of All Gender
+    $heattypes = array("E0","W0","W1","M0","M1", "N0", "N1");
     $heattypelabels = array("M0"=>"Men's",
                             "M1"=>"Men's Rerolls",
                             "W0"=>"Women's",
                             "W1"=>"Women's Rerolls",
+                            "N0"=>"All Gender",
+                            "N1"=>"All Gender Rerolls",
                             "E0"=>"Exhibitions");
     foreach($heattypes as $type){
       if(isset($heatArr[$type])){
@@ -228,12 +234,17 @@
 <ul class="nav nav-tabs mb-2" role="tablist">
   <?php if ($mensResults->num_rows > 0) { // should effecitvely always be true, but you never know... ?>
   <li class="nav-item">
-    <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's Results</a>
+    <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a>
   </li>
   <?php } ?>
   <?php if ($womensResults->num_rows > 0) { // safer alternative to "year >= 1979" ?>
     <li class="nav-item">
-      <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's Results</a>
+      <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a>
+    </li>
+  <?php } ?>
+  <?php if ($allgenderResults->num_rows > 0) { ?>
+    <li class="nav-item">
+      <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a>
     </li>
   <?php } ?>
   <?php if (count($pheatsArr) > 0) { ?>
@@ -257,6 +268,11 @@
   <?php if ($womensResults->num_rows > 0) { ?>
     <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
       <?php displayResults($womensResults); ?>
+    </div>
+  <?php } ?>
+  <?php if ($allgenderResults->num_rows > 0) { ?>
+    <div class="tab-pane fade" id="tab-allgender" role="tabpanel" aria-labelledby="allgender-tab">
+      <?php displayResults($allgenderResults); ?>
     </div>
   <?php } ?>
   <?php if (count($pheatsArr) > 0) { ?>
