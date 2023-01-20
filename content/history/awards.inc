@@ -46,17 +46,23 @@
       ORDER BY y.year DESC;";
   $orgAwards = dbQuery($HISTORY_DATABASE, $orgAwardQuery);
 
+  // TODO: chair should use its own orgid column don't overload team like this.
+  // We have notes, but, we don't use them currently.
   $personAwardQuery = "
       SELECT DISTINCT y.year AS year,
                       CONCAT(kperson.firstname, ' ', kperson.lastname) AS 'king',
-                        CONCAT(korg.shortname, ' ', kteam.team) AS 'kingteam', king.time AS 'kingtime', king.note AS 'kingnote',
+                        CONCAT(korg.shortname, ' ', kteam.team) AS 'kingteam', king.time AS 'kingtime',
                         kperson.personid AS 'kingid', kteam.entryid AS 'kingentryid',
-                      CONCAT(qperson.firstname, ' ' , qperson.lastname) AS 'queen',
-                        CONCAT(qorg.shortname, ' ', qteam.team) AS 'queenteam', queen.time AS 'queentime', queen.note AS 'queennote',
+                      CONCAT(qperson.firstname, ' ', qperson.lastname) AS 'queen',
+                        CONCAT(qorg.shortname, ' ', qteam.team) AS 'queenteam', queen.time AS 'queentime',
                         qperson.personid AS 'queenid', qteam.entryid AS 'queenentryid',
-                      chair.personid AS 'chair', chair.note AS 'chairnote'
+                      CONCAT(cperson.firstname, ' ', cperson.lastname) AS 'chair',
+                        corg.shortname AS 'chairorg',
+                        cperson.personid AS 'chairid', chair.team AS 'chairorgid'
       FROM hist_personawards y
       LEFT JOIN hist_personawards chair ON chair.year = y.year AND chair.award = 'Chair'
+      LEFT JOIN hist_people cperson ON cperson.personid = chair.personid
+      LEFT JOIN hist_orgs corg ON chair.team = corg.orgid
       LEFT JOIN hist_personawards king ON king.year = y.year AND king.award = 'King'
       LEFT JOIN hist_people kperson ON kperson.personid = king.personid
       LEFT JOIN hist_raceentries kteam ON kteam.entryid = CONCAT(king.year, '.', king.team)
@@ -159,40 +165,50 @@
   <div class="tab-pane fade" id="tab-personawards" role="tabpanel" aria-labelledby="personawards-tab">
     <h1>Individual Awards</h1>
 
+    <p class="font-italic">"Hill 1 Awards" refers to the "Blinn/Brewer King of the Hill" and "Queen of the Hill" awards.</p>
+
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
             <th>Year</th>
-            <th>Blinn/Brewer<br>King of the Hill</th><th>Time (sec)</th>
-            <th>Queen of the Hill</th><th>Time (sec)</th>
-            <!-- TODO: Chairperson of the year -->
+            <th>Hill 1 Awards</th>
+            <th><span class="d-none d-sm-inline">Chairperson</span><span class="d-inline d-sm-none">Chair</span> of the Year</th>
           </tr>
         </thead>
         <tbody>
           <?php
+            // Format one line of hill 1 awards.
+            // at the XS breakpoint, we only use the first character of "prefix";
+            function echoHillOne($prefix, $personId, $name, $teamId, $team, $time) {
+              echo("<span class=\"d-none d-sm-inline\">".$prefix."</span>");
+              echo("<span class=\"d-inline d-sm-none\">".$prefix[0]."</span>");
+              echo(": <a href=\"./person/".$personId."\">".$name."</a><br>");
+              echo("<ul class=\"mb-0\"><li><a href=\"./team/".$teamId."\">".$team."</a>");
+              if (!empty($time)) {
+                echo(" (".$time."s)");
+              }
+              echo("</ul>\n");
+            }
+
             while ($p = $personAwards->fetch_assoc()) {
                 echo("<tr><td>".$p["year"]."</td>");
+                echo("<td>");
+                $firstHillOne = true;
                 if ($p["king"]) {
-                  $note = "";
-                  if ($p["kingnote"]) {
-                    $note = "<br><i>".$p["kingnote"]."</i>";
-                  }
-                  echo("<td><a href=\"./person/".$p["kingid"]."\">".$p["king"]."</a> (<a href=\"./team/".$p["kingentryid"]."\">".$p["kingteam"]."</a>)".$note."</td>");
-                  echo("<td>".$p["kingtime"]."</td>");
-                } else {
-                  echo("<td colspan=2></td>");
+                  echoHillOne("King", $p["kingid"],$p["king"],$p["kingentryid"],$p["kingteam"],$p["kingtime"]);
+                  $firstHillOne = false;
                 }
                 if ($p["queen"]) {
-                  $note = "";
-                  if ($p["queennote"]) {
-                    $note = "<br><i>".$p["kingnote"]."</i>";
-                  }
-                  echo("<td><a href=\"./person/".$p["queenid"]."\">".$p["queen"]."</a> (<a href=\"./team/".$p["queenentryid"]."\">".$p["queenteam"]."</a>)".$note."</td>");
-                  echo("<td>".$p["queentime"]."</td>");
-                } else {
-                  echo("<td colspan=2></td>");
+                  echoHillOne("Queen", $p["queenid"],$p["queen"],$p["queenentryid"],$p["queenteam"],$p["queentime"]);
+                  $firstHillOne = false;
                 }
+                echo("</td><td>");
+                if ($p["chair"]) {
+                  echo("<a href=\"./person/".$p["chairid"]."\">".$p["chair"]."</a> ");
+                  echo("<ul class=\"mb-0\"><li><a href=\"./org/".$p["chairorgid"]."\">".$p["chairorg"]."</a></li></ul>");
+                }
+                echo("</td>");
                 echo("</tr>");
             }
           ?>
@@ -200,5 +216,6 @@
       </table>
     </div>
   </div>
+  <span class="small">Some hill 1 times may be estimated or unofficial.</span><br>
   <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
 </div>
