@@ -46,23 +46,19 @@
       ORDER BY y.year DESC;";
   $orgAwards = dbQuery($HISTORY_DATABASE, $orgAwardQuery);
 
-  // TODO: chair should use its own orgid column don't overload team like this.
-  // We have notes, but, we don't use them currently.
-  $personAwardQuery = "
+  // Tracks which years have _any_ individual award.
+  $individualAwardYears = array();
+
+  // We have a notes field in the table, but, we don't use it currently.
+  $hillOneAwardQuery = "
       SELECT DISTINCT y.year AS year,
                       CONCAT(kperson.firstname, ' ', kperson.lastname) AS 'king',
                         CONCAT(korg.shortname, ' ', kteam.team) AS 'kingteam', king.time AS 'kingtime',
                         kperson.personid AS 'kingid', kteam.entryid AS 'kingentryid',
                       CONCAT(qperson.firstname, ' ', qperson.lastname) AS 'queen',
                         CONCAT(qorg.shortname, ' ', qteam.team) AS 'queenteam', queen.time AS 'queentime',
-                        qperson.personid AS 'queenid', qteam.entryid AS 'queenentryid',
-                      CONCAT(cperson.firstname, ' ', cperson.lastname) AS 'chair',
-                        corg.shortname AS 'chairorg',
-                        cperson.personid AS 'chairid', chair.team AS 'chairorgid'
+                        qperson.personid AS 'queenid', qteam.entryid AS 'queenentryid'
       FROM hist_personawards y
-      LEFT JOIN hist_personawards chair ON chair.year = y.year AND chair.award = 'Chair'
-      LEFT JOIN hist_people cperson ON cperson.personid = chair.personid
-      LEFT JOIN hist_orgs corg ON chair.team = corg.orgid
       LEFT JOIN hist_personawards king ON king.year = y.year AND king.award = 'King'
       LEFT JOIN hist_people kperson ON kperson.personid = king.personid
       LEFT JOIN hist_raceentries kteam ON kteam.entryid = CONCAT(king.year, '.', king.team)
@@ -72,7 +68,47 @@
       LEFT JOIN hist_raceentries qteam ON qteam.entryid = CONCAT(queen.year, '.', queen.team)
       LEFT JOIN hist_orgs qorg ON qorg.orgid = qteam.orgid
       ORDER BY y.year DESC;";
-  $personAwards = dbQuery($HISTORY_DATABASE, $personAwardQuery);
+  $hillOneAwards = dbQuery($HISTORY_DATABASE, $hillOneAwardQuery);
+
+  // Collapse out all the hill one awards into a per-year map, and record which years we used.
+  $hillOneAwardTable = array();
+  while($h = $hillOneAwards->fetch_assoc()) {
+    $year = $h["year"];
+    $individualAwardYears[$year] = 'x';
+    if(array_key_exists($year, $hillOneAwardTable)){
+      array_push($hillOneAwardTable[$year],$h);
+    } else {
+      $hillOneAwardTable[$year]= array($h);
+    }
+  }
+
+  // For chair of the year, we need to worry about multiple concurrent winners (e.g. co-chairs),
+  // so we fetch them separately and condense them down to their own lookup table.
+  //
+  // TODO: chair should use its own orgid column don't overload team like this.
+  $chairAwardQuery = "
+      SELECT DISTINCT chair.year AS year,
+                      CONCAT(cperson.firstname, ' ', cperson.lastname) AS 'chair',
+                        corg.shortname AS 'chairorg',
+                        cperson.personid AS 'chairid', chair.team AS 'chairorgid'
+      FROM hist_personawards chair
+      LEFT JOIN hist_people cperson ON cperson.personid = chair.personid
+      LEFT JOIN hist_orgs corg ON chair.team = corg.orgid
+      WHERE chair.award = 'Chair'
+      ORDER BY chair.year DESC;";
+  $chairAwards = dbQuery($HISTORY_DATABASE, $chairAwardQuery);
+
+  // Collapse every year from the chair table into a per-year map, and record which years we used.
+  $chairAwardTable = array();
+  while($c = $chairAwards->fetch_assoc()) {
+    $year = $c["year"];
+    $individualAwardYears[$year] = 'x';
+    if(array_key_exists($year, $chairAwardTable)){
+      array_push($chairAwardTable[$year],$c);
+    } else {
+      $chairAwardTable[$year]= array($c);
+    }
+  }
 ?>
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
@@ -191,22 +227,31 @@
               echo("</ul>\n");
             }
 
-            while ($p = $personAwards->fetch_assoc()) {
-                echo("<tr><td>".$p["year"]."</td>");
+            // We need the desending set of years.  ksort gives us ascending, so we need to reverse it.
+            ksort($individualAwardYears);
+            $individualAwardYears = array_reverse(array_keys($individualAwardYears));
+            foreach($individualAwardYears as $year) {
+                echo("<tr><td>".$year."</td>");
+
                 echo("<td>");
-                $firstHillOne = true;
-                if ($p["king"]) {
-                  echoHillOne("King", $p["kingid"],$p["king"],$p["kingentryid"],$p["kingteam"],$p["kingtime"]);
-                  $firstHillOne = false;
-                }
-                if ($p["queen"]) {
-                  echoHillOne("Queen", $p["queenid"],$p["queen"],$p["queenentryid"],$p["queenteam"],$p["queentime"]);
-                  $firstHillOne = false;
+                foreach ($hillOneAwardTable[$year] as $h) {
+                  // Ties, notably, will be messy, but they should be very rare in practice.
+                  if ($h["king"]) {
+                    echoHillOne("King", $h["kingid"],$h["king"],$h["kingentryid"],$h["kingteam"],$h["kingtime"]);
+                  }
+                  if ($h["queen"]) {
+                    echoHillOne("Queen", $h["queenid"],$h["queen"],$h["queenentryid"],$h["queenteam"],$h["queentime"]);
+                  }
                 }
                 echo("</td><td>");
-                if ($p["chair"]) {
-                  echo("<a href=\"./person/".$p["chairid"]."\">".$p["chair"]."</a> ");
-                  echo("<ul class=\"mb-0\"><li><a href=\"./org/".$p["chairorgid"]."\">".$p["chairorg"]."</a></li></ul>");
+                // NOTE: It goes without saying that this won't render a chairperson award if there is no
+                // Hill 1 award (of any class) that year.  Any fix should consider what we do with
+                // Hill 1 award ties as well (which currently are handled poorly anyway).
+                if (array_key_exists($year, $chairAwardTable)) {
+                  foreach($chairAwardTable[$year] as $c) {
+                    echo("<a href=\"./person/".$c["chairid"]."\">".$c["chair"]."</a> ");
+                    echo("<ul class=\"mb-0\"><li><a href=\"./org/".$c["chairorgid"]."\">".$c["chairorg"]."</a></li></ul>");
+                  }
                 }
                 echo("</td>");
                 echo("</tr>");
