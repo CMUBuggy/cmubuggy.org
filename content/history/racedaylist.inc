@@ -61,7 +61,7 @@ function echoTeamCell($teamkey, $teamname) {
 }
 ?>
 
-<script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023011800"></script>
+<script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023012000"></script>
 
 <b>Class To Show:</b>
 All <input type="radio" id="enableAll" name="classFilter" value="ALL" checked>
@@ -103,7 +103,7 @@ All Gender <input type="radio" id="enableN" name="classFilter" value="allgenderR
           // Stripe the table so years are the same background color when multiple classes are shown
           $yearParityClass = "";
           if ($yearParity) {
-            $yearParityClass = " table-secondary year-parity";
+            $yearParityClass = " table-parity-color year-parity";
           }
           $yearParity = !$yearParity;
 

@@ -326,7 +326,7 @@ function displayraceyear($year, $entry, $yearParity=false) {
     };
 
     if ($yearParity) {
-      $cssClass = $cssClass . " table-secondary year-parity";
+      $cssClass = $cssClass . " table-parity-color year-parity";
     }
 
     echo("<tr class=\"classRow ".$cssClass."\"><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
@@ -631,7 +631,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
     <?php } ?>
   </ul>
 
-  <script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023011800"></script>
+  <script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023012000"></script>
 
   <div class="tab-content">
     <div class="tab-pane fade show active" id="tab-raceresults" role="tabpanel" aria-labelledby="raceresults-tab">

@@ -8,7 +8,7 @@
 // as the appropriate CSS class for the buggy classes from above.
 // Obviously, the header row will lack any CSS class.
 //
-// If you are parity-coloring the table using table-secondary, and you
+// If you are parity-coloring the table using table-parity-color, and you
 // need that to be removed on the filtered views, also tag those rows
 // with table-parity so it can be disabled/enabled when the views change.
 //
@@ -17,13 +17,12 @@
 // "classCol" CSS class.
 
 $("input[type=radio][name=classFilter]").on("change", function() {
-    console.log("hi2");
   if (this.value == "ALL") {
     $(".classRow,.classCol").show();
-    $(".classRow.year-parity").addClass("table-secondary");
+    $(".classRow.year-parity").addClass("table-parity-color");
   } else {
     $(".classRow,.classCol").hide();
-    $(".classRow.year-parity").removeClass("table-secondary");
+    $(".classRow.year-parity").removeClass("table-parity-color");
     $("."+this.value).show();
   }
 })
