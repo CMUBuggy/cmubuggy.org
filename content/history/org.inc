@@ -631,20 +631,24 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
     <?php } ?>
   </ul>
 
-  <script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023012000"></script>
+  <script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023012001"></script>
 
   <div class="tab-content">
     <div class="tab-pane fade show active" id="tab-raceresults" role="tabpanel" aria-labelledby="raceresults-tab">
       <h2>Race Results</h2>
 
-      <b>Class To Show:</b>
-      All <input type="radio" id="enableAll" name="classFilter" value="ALL" checked>
-      Men's <input type="radio" id="enableM" name="classFilter" value="mensRow">
-      Women's <input type="radio" id="enableW" name="classFilter" value="womensRow">
-      All Gender <input type="radio" id="enableN" name="classFilter" value="allgenderRow">
+      <p>
+      <b>Filter By Race Class:</b>
+      <select name="classFilter" aria-controls="raceListTable">
+        <option value="ALL" selected>Show All Classes</option>
+        <option value="mensRow">Only Show Men's</option>
+        <option value="womensRow">Only Show Women's</option>
+        <option value="allgenderRow">Only Show All Gender</option>
+      </select>
+      </p>
 
       <div class="table-responsive">
-        <table class="table">
+        <table class="table" id="raceListTable">
           <thead>
             <tr class="text-nowrap">
               <th>Year</th>

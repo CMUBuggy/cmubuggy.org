@@ -1,8 +1,8 @@
 // How to use this:
 //
-// Create radio buttons on the page named "classFilter" with values
-// of "ALL" and then one for each CSS class name of the buggy class
-// rows (e.g. "mensRow", "womensRow", etc.)
+// Create radio buttons or aselect element on the page named "classFilter"
+// with values of "ALL" and then one for each CSS class name of the buggy
+// class rows (e.g. "mensRow", "womensRow", etc.)
 //
 // In the table, tag every _row_ with the "classRow" class, as well
 // as the appropriate CSS class for the buggy classes from above.
@@ -15,8 +15,7 @@
 // Finally, if you have a buggy class column that you wish to hide,
 // tag all that column's _cells_, as well as the header cell, with the
 // "classCol" CSS class.
-
-$("input[type=radio][name=classFilter]").on("change", function() {
+$("select[name=classFilter], input[type=radio][name=classFilter]").on("change", function() {
   if (this.value == "ALL") {
     $(".classRow,.classCol").show();
     $(".classRow.year-parity").addClass("table-parity-color");
