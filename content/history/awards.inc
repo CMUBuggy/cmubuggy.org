@@ -85,17 +85,21 @@
   // For chair of the year, we need to worry about multiple concurrent winners (e.g. co-chairs),
   // so we fetch them separately and condense them down to their own lookup table.
   //
-  // TODO: chair should use its own orgid column don't overload team like this.
+  // This query assumes that "ChairHon" sorts in the enum at a higher value than "Chair"
+  // (so that it will appear after any "Chair" entries).
+  //
+  // TODO: chair should perhaps use its own orgid column don't overload team like this, but this
+  // is workable and we'd still need to know the difference in the awards.
   $chairAwardQuery = "
-      SELECT DISTINCT chair.year AS year,
+      SELECT DISTINCT year, award,
                       CONCAT(cperson.firstname, ' ', cperson.lastname) AS 'chair',
                         corg.shortname AS 'chairorg',
                         cperson.personid AS 'chairid', chair.team AS 'chairorgid'
       FROM hist_personawards chair
       LEFT JOIN hist_people cperson ON cperson.personid = chair.personid
       LEFT JOIN hist_orgs corg ON chair.team = corg.orgid
-      WHERE chair.award = 'Chair'
-      ORDER BY chair.year DESC;";
+      WHERE chair.award IN ('Chair', 'ChairHon')
+      ORDER BY year DESC, award ASC;";
   $chairAwards = dbQuery($HISTORY_DATABASE, $chairAwardQuery);
 
   // Collapse every year from the chair table into a per-year map, and record which years we used.
@@ -220,7 +224,7 @@
               echo("<span class=\"d-none d-sm-inline\">".$prefix."</span>");
               echo("<span class=\"d-inline d-sm-none\">".$prefix[0]."</span>");
               echo(": <a href=\"./person/".$personId."\">".$name."</a><br>");
-              echo("<ul class=\"mb-0\"><li><a href=\"./team/".$teamId."\">".$team."</a>");
+              echo("<ul class=\"mb-0 nobullet\"><li><a href=\"./team/".$teamId."\">".$team."</a>");
               if (!empty($time)) {
                 echo(" (".$time."s)");
               }
@@ -250,7 +254,12 @@
                 if (array_key_exists($year, $chairAwardTable)) {
                   foreach($chairAwardTable[$year] as $c) {
                     echo("<a href=\"./person/".$c["chairid"]."\">".$c["chair"]."</a> ");
-                    echo("<ul class=\"mb-0\"><li><a href=\"./org/".$c["chairorgid"]."\">".$c["chairorg"]."</a></li></ul>");
+                    echo("<ul class=\"mb-0 nobullet\">");
+                    echo("<li><a href=\"./org/".$c["chairorgid"]."\">".$c["chairorg"]."</a></li>");
+                    if ($c["award"] == 'ChairHon') {
+                      echo("<li class=\"font-italic\">Honorable Mention</li>");
+                    }
+                    echo("</ul>");
                   }
                 }
                 echo("</td>");
