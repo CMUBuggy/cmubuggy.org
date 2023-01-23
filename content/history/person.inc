@@ -50,8 +50,13 @@ $awardQuery = "SELECT a.year AS year,
                       case when a.award='King' then 'Blinn/Brewer King of the Hill'
                            when a.award='Queen' then 'Queen of the Hill'
                            when a.award='Chair' then 'Chairperson of the Year'
-                           else 'Unknown Award' end AS award
+                           when a.award='ChairHon' then 'Chairperson of the Year, Honorable Mention'
+                           else 'Unknown Award' end AS award,
+                      a.award AS awardtype,
+                      o.orgid as orgid,
+                      o.shortname as orgname
                FROM hist_personawards a
+               LEFT JOIN hist_orgs o ON a.team=o.orgid
                WHERE personid=?
                ORDER BY a.year DESC, a.award";
 
@@ -66,7 +71,11 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "s", $urlkey);
     while ($a = $awardData->fetch_assoc()) {
       echo("<li>");
       echo($a["year"]." ".$a["award"]);
-      echo("</li>");
+      if ($a["awardtype"] == 'Chair' || $a["awardtype"] == 'ChairHon') {
+        // include the org.
+        echo(" (<a href=\"/history/org/".$a["orgid"]."\">".$a["orgname"]."</a>)");
+      }
+      echo("</li>\n");
     }
     echo("</ul>");
   }
