@@ -10,7 +10,7 @@ function getRacedayOpenGraphContent($ogMap) {
   }
 
   $racedayPage = $_GET['p'];
-  $year = date("Y");
+  $year = getDefaultRacedayYear();
 
   if(in_array($racedayPage, ['rosters', 'rostersorg'])) {
     if(!empty($_GET['year'])) {
