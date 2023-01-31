@@ -122,4 +122,19 @@
 	  }		
 	  return "https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg";
 	}
+
+    // Returns a "Default" year to use when one is not specified on the raceday pages.  Utility function
+    // to keep it consistent.
+    //
+    // Starting in March, default to the current year to allow Raceday mode to be turned on a month out.
+    // Otherwise use the prior year. Not 100% perfect, but uses of the default value should be rare.
+    function getDefaultRacedayYear() {
+      $CURRENT_YEAR = date("Y");
+      $year = $CURRENT_YEAR;
+      if (date("m") < 3) {
+        // Not yet March, use prior year.
+        $year = $year - 1;
+      }
+      return $year;
+    }
 ?>

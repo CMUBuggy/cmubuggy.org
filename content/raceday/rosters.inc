@@ -5,17 +5,12 @@
   // Starting in March, default to the current year to allow Raceday mode to be turned on a month out.
   // Otherwise use the prior year. Not 100% perfect, but should be pretty rare to use this anyway.
   $CURRENT_YEAR = date("Y");
-  $year = $CURRENT_YEAR;
-  if (date("m") < 3) {
-    // Not yet March, use prior year.
-    $year = $year - 1;
-  }
+  $year = getDefaultRacedayYear();
 
   // Hopefully, though, we have a parameter.
   if (!empty($_GET["year"])) {
     $year = $_GET['year'] * 1;
   }
-
 
   $resQuery = "SELECT e.entryid AS entryid,
                       shortname AS orgname,
