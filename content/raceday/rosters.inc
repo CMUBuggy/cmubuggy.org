@@ -17,7 +17,8 @@
                       e.orgid AS orgid,
                       case when class = 'M' then 'Mens'
                            when class = 'W' then 'Womens'
-                           else 'Unknown' end AS class,
+                           when class = 'N' then 'All Gender'
+                           else 'Error' end AS class,
                       team,
                       b.name AS buggyname,
                       b.buggyid AS buggyid,
@@ -26,7 +27,7 @@
                  LEFT JOIN hist_orgs o ON e.orgid = o.orgid
                  LEFT JOIN orglogos ON e.orgid = orglogos.orgid
                  LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
-                 WHERE year = ?
+                 WHERE year = ? AND class IN ('M','W','N')
                  ORDER BY o.shortname, class, team";
 
   $rosters = dbBoundQuery($HISTORY_DATABASE, $resQuery, "d", $year);
@@ -44,7 +45,7 @@
   // We first run through the results to identify all the participating orgs and teams, and
   // link the teams to the orgs.
 
-  // Entries By Org is keyed by orgname, 2 keys: "Mens", "Womens".
+  // Entries By Org is keyed by orgname, 3 keys: "Mens", "Womens", "All Gender"
   // (Recover the orgid by using participatingOrgs, above)
   // mens is an numeric array of all mens teams in team order, values are the table strings for the entry and buggy columns.
   // womens is a numeric array of all womens teams in team order, values are the table strings for the entry and buggy columns.
@@ -56,11 +57,6 @@
     $orgname = $row["orgname"];
     $class = $row["class"];
 
-    // If class isn't understood to be mens or womens, skip this entry.
-    if ($class != "Mens" && $class != "Womens") {
-      continue;
-    }
-
     $participatingOrgs[$orgname] = $row["orgid"];
     if(isset($row["org_image_url"])) {
       $participatingOrgImages[$orgname] = $row["org_image_url"];
@@ -71,10 +67,13 @@
       $entriesByOrg[$orgname] = array();
       $entriesByOrg[$orgname]["Mens"] = array();
       $entriesByOrg[$orgname]["Womens"] = array();
+      $entriesByOrg[$orgname]["All Gender"] = array();
     }
 
-    $entryString = "<td class=\"text-nowrap\"><a href=\"/history/team/".$row["entryid"]."\">".$class." ".$row["team"]."</a></td>";
-    $entryString .= "<td><a href=\"/history/buggy/".$row["buggyid"]."\">".$row["buggyname"]."</a></td>";
+    $entryString = "<td class=\"text-nowrap\">";
+    $entryString .= "<a href=\"/history/team/".$row["entryid"]."\">".$class." ".$row["team"]."</a><br>";
+    $entryString .= "<span class=\"font-italic\"><a href=\"/history/buggy/".$row["buggyid"]."\">".$row["buggyname"]."</a></span>";
+    $entryString .= "</td>\n";
 
     array_push($entriesByOrg[$orgname][$class], $entryString);
   }
@@ -87,16 +86,17 @@
   // screen gets small, we need to make the "Organization" column responsive and change its colspan as we
   // do so.  Thus, it looks like we actually have 2 Org columns, but we never show more than one.
   echo("<tr>");
-  echo("<th class=\"d-none d-md-table-cell\" colspan=2 rowspan=2 style=\"text-align: center\">Organization</th>");
-  echo("<th class=\"d-md-none\" rowspan=2 style=\"text-align: center\">Organization</th>");
-  echo("<th colspan=2>Mens</th><th colspan=2>Womens</th>");
-  echo("</tr>");
+  echo("<th class=\"d-none d-md-table-cell\" colspan=2 style=\"text-align: center\">Organization</th>");
+  echo("<th class=\"d-md-none\" style=\"text-align: center\">Organization</th>");
+  echo("<th>Mens</th>");
+  echo("<th>Womens</th>");
+  echo("<th>All Gender</th>");
+  echo("</tr>\n");
 
-  echo("<tr><th>Team</th><th>Buggy</th><th>Team</th><th>Buggy</th></tr>");
   foreach ($entriesByOrg as $orgname => $e) {
       $orgid = $participatingOrgs[$orgname];
 
-      $rows = max(count($e["Mens"]), count($e["Womens"]));
+      $rows = max(count($e["Mens"]), count($e["Womens"]), count($e["All Gender"]));
       echo("<tr>");
 
       echo("<td class=\"d-none d-md-table-cell align-middle\" rowspan=".$rows.">");
@@ -117,7 +117,8 @@
         }
         displayEntryCols($e["Mens"], $i);
         displayEntryCols($e["Womens"], $i);
-        echo("</tr>");
+        displayEntryCols($e["All Gender"], $i);
+        echo("</tr>\n");
       }
   }
   echo("</table></div>");
@@ -127,7 +128,7 @@
     if (isset($e[$index])) {
       echo($e[$index]);
     } else {
-      echo("<td colspan=2></td>");
+      echo("<td></td>");
     }
   }
 ?>
