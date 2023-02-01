@@ -57,7 +57,10 @@
                         kperson.personid AS 'kingid', kteam.entryid AS 'kingentryid',
                       CONCAT(qperson.firstname, ' ', qperson.lastname) AS 'queen',
                         CONCAT(qorg.shortname, ' ', qteam.team) AS 'queenteam', queen.time AS 'queentime',
-                        qperson.personid AS 'queenid', qteam.entryid AS 'queenentryid'
+                        qperson.personid AS 'queenid', qteam.entryid AS 'queenentryid',
+                      CONCAT(mperson.firstname, ' ', mperson.lastname) AS 'monarch',
+                        CONCAT(morg.shortname, ' ', mteam.team) AS 'monarchteam', monarch.time AS 'monarchtime',
+                        mperson.personid AS 'monarchid', mteam.entryid AS 'monarchentryid'
       FROM hist_personawards y
       LEFT JOIN hist_personawards king ON king.year = y.year AND king.award = 'King'
       LEFT JOIN hist_people kperson ON kperson.personid = king.personid
@@ -67,6 +70,10 @@
       LEFT JOIN hist_people qperson ON qperson.personid = queen.personid
       LEFT JOIN hist_raceentries qteam ON qteam.entryid = CONCAT(queen.year, '.', queen.team)
       LEFT JOIN hist_orgs qorg ON qorg.orgid = qteam.orgid
+      LEFT JOIN hist_personawards monarch ON monarch.year = y.year AND monarch.award = 'Monarch'
+      LEFT JOIN hist_people mperson ON mperson.personid = monarch.personid
+      LEFT JOIN hist_raceentries mteam ON mteam.entryid = CONCAT(monarch.year, '.', monarch.team)
+      LEFT JOIN hist_orgs morg ON morg.orgid = mteam.orgid
       ORDER BY y.year DESC;";
   $hillOneAwards = dbQuery($HISTORY_DATABASE, $hillOneAwardQuery);
 
@@ -245,6 +252,10 @@
                   }
                   if ($h["queen"]) {
                     echoHillOne("Queen", $h["queenid"],$h["queen"],$h["queenentryid"],$h["queenteam"],$h["queentime"]);
+                  }
+                  if ($h["monarch"]) {
+                    echoHillOne("Monarch", $h["monarchid"],$h["monarch"],$h["monarchentryid"],
+                                $h["monarchteam"],$h["monarchtime"]);
                   }
                 }
                 echo("</td><td>");
