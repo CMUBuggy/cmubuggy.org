@@ -70,10 +70,13 @@
       $entriesByOrg[$orgname]["All Gender"] = array();
     }
 
-    $entryString = "<td class=\"text-nowrap\">";
-    $entryString .= "<a href=\"/history/team/".$row["entryid"]."\">".$class." ".$row["team"]."</a><br>";
-    $entryString .= "<span class=\"font-italic\"><a href=\"/history/buggy/".$row["buggyid"]."\">".$row["buggyname"]."</a></span>";
-    $entryString .= "</td>\n";
+    $entryString = "<a href=\"/history/team/".$row["entryid"]."\">".$class." ".$row["team"]."</a>";
+    if (!empty($row["buggyname"])) {
+      $entryString .= "<span class=\"d-none d-sm-inline\"><br></span>\n";
+      $entryString .= "<span class=\"d-sm-none\">(</span>";
+      $entryString .= "<span class=\"font-italic\"><a href=\"/history/buggy/".$row["buggyid"]."\">".$row["buggyname"]."</a></span>";
+      $entryString .= "<span class=\"d-sm-none\">)</span>";
+    }
 
     array_push($entriesByOrg[$orgname][$class], $entryString);
   }
@@ -88,9 +91,10 @@
   echo("<tr>");
   echo("<th class=\"d-none d-md-table-cell\" colspan=2 style=\"text-align: center\">Organization</th>");
   echo("<th class=\"d-md-none\" style=\"text-align: center\">Organization</th>");
-  echo("<th>Mens</th>");
-  echo("<th>Womens</th>");
-  echo("<th>All Gender</th>");
+  echo("<th class=\"d-sm-none\">Teams</th>");
+  echo("<th class=\"d-none d-sm-table-cell\">Mens</th>");
+  echo("<th class=\"d-none d-sm-table-cell\">Womens</th>");
+  echo("<th class=\"d-none d-sm-table-cell\">All Gender</th>");
   echo("</tr>\n");
 
   foreach ($entriesByOrg as $orgname => $e) {
@@ -115,20 +119,33 @@
         if ($i > 0) {
           echo("<tr>");
         }
-        displayEntryCols($e["Mens"], $i);
-        displayEntryCols($e["Womens"], $i);
-        displayEntryCols($e["All Gender"], $i);
+        echo("<td class=\"text-nowrap d-sm-none\">\n");
+        displayIfSet($e["Mens"],$i);
+        displayIfSet($e["Womens"], $i);
+        displayIfSet($e["All Gender"], $i);
+        echo("</td>");
+
+        displayColIfSet($e["Mens"], $i);
+        displayColIfSet($e["Womens"], $i);
+        displayColIfSet($e["All Gender"], $i);
         echo("</tr>\n");
       }
   }
   echo("</table></div>");
 
-  // Helper for printing out each entry (or not) for the entry table.
-  function displayEntryCols($e, $index) {
+  function displayIfSet($e, $index) {
     if (isset($e[$index])) {
       echo($e[$index]);
-    } else {
-      echo("<td></td>");
+      echo("<br>");
     }
+  }
+
+  // Helper for printing out each entry (or not) for the entry table.
+  function displayColIfSet($e, $index) {
+    echo("<td class=\"text-nowrap d-none d-sm-table-cell\">\n");
+    if (isset($e[$index])) {
+      echo($e[$index]);
+    }
+    echo("</td>\n");
   }
 ?>
