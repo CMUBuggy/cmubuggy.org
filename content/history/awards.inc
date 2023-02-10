@@ -212,7 +212,11 @@
   <div class="tab-pane fade" id="tab-personawards" role="tabpanel" aria-labelledby="personawards-tab">
     <h1>Individual Awards</h1>
 
+    <?php if ($ALLGENDER_UI_ENABLED) { ?>
+    <p class="font-italic">"Hill 1 Awards" refers to the "Blinn/Brewer King of the Hill," "Queen of the Hill," and "Monarch of the Hill" awards.</p>
+    <?php } else { ?>
     <p class="font-italic">"Hill 1 Awards" refers to the "Blinn/Brewer King of the Hill" and "Queen of the Hill" awards.</p>
+    <?php } ?>
 
     <div class="table-responsive">
       <table class="table">

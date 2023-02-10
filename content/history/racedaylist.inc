@@ -69,7 +69,9 @@ function echoTeamCell($teamkey, $teamname) {
   <option value="ALL" selected>Show All Classes</option>
   <option value="mensRow">Only Show Men's</option>
   <option value="womensRow">Only Show Women's</option>
+<?php if ($ALLGENDER_UI_ENABLED) { ?>
   <option value="allgenderRow">Only Show All Gender</option>
+<?php } ?>
 </select>
 </p>
 

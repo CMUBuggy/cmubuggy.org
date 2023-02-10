@@ -643,7 +643,9 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
         <option value="ALL" selected>Show All Classes</option>
         <option value="mensRow">Only Show Men's</option>
         <option value="womensRow">Only Show Women's</option>
+        <?php if ($ALLGENDER_UI_ENABLED) { ?>
         <option value="allgenderRow">Only Show All Gender</option>
+        <?php } ?>
       </select>
       </p>
 
@@ -699,6 +701,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
               <td><?php displayrecord("WC"); ?></td>
               <td><?php displayrecord("WD"); ?></td>
             </tr>
+            <?php if ($ALLGENDER_UI_ENABLED) { ?>
             <tr>
               <th>All Gender</th>
               <td><?php displayrecord("NA"); ?></td>
@@ -706,6 +709,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
               <td><?php displayrecord("NC"); ?></td>
               <td><?php displayrecord("ND"); ?></td>
             </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>
