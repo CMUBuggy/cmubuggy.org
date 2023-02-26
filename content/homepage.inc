@@ -1,5 +1,11 @@
 <div class="row">
   <div class="col-md-8">
+    <?php
+      // Include at most one of these (probably starting around Mid-Feb).
+      // The countdown one is short with less detail.
+      include("homepage-raceday-countdown.inc");
+      // include("homepage-raceday-infobox.inc");
+    ?>
     <?php include("homepage-raceday-results.inc"); ?>
     <?php include("homepage-twitterbox.inc"); ?>
 
