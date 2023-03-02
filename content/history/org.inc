@@ -311,15 +311,19 @@ function displayraceyear($year, $entry, $yearParity=false) {
 
   foreach ($thisYearClasses as $class) {
     $cssClass="";
+    $classAnchor="";
     switch($class) {
       case "Men's":
         $cssClass = "mensRow";
+        $classAnchor = "#mens";
         break;
       case "Women's":
         $cssClass = "womensRow";
+        $classAnchor = "#womens";
         break;
       case "All Gender":
         $cssClass = "allgenderRow";
+        $classAnchor = "#allgender";
         break;
       default:
         die("oops, unknown class in ".$year.": ".$class);
@@ -329,7 +333,7 @@ function displayraceyear($year, $entry, $yearParity=false) {
       $cssClass = $cssClass . " table-parity-color year-parity";
     }
 
-    echo("<tr class=\"classRow ".$cssClass."\"><td><a href=\"/history/raceday/".$year."\">".$year."</a></td>");
+    echo("<tr class=\"classRow ".$cssClass."\"><td><a href=\"/history/raceday/".$year.$classAnchor."\">".$year."</a></td>");
     echo("<td class=\"classCol\">".$class."</td>");
     foreach ($classkeys[$class] as $entrytype) {
       if (isset($entry[$entrytype.".entryid"])) {

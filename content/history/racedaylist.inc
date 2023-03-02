@@ -89,11 +89,16 @@ function echoTeamCell($teamkey, $teamname) {
     </thead>
     <tbody>
       <?php
+        // Hash mark is optional on the class anchor, will be added if needed.
+        function makeYearCell($r, $classAnchor = "") {
+          if (!empty($classAnchor) && $classAnchor[0] != "#") {
+            $classAnchor = "#".$classAnchor;
+          }
+          return "<td><a href=\"/history/raceday/".$r["year"].$classAnchor."\">".$r["year"]."</a></td>";
+        }
 
         $yearParity = false;
         while ($r = $raceyearlist->fetch_assoc()) {
-          $yearCell = "<td><a href=\"/history/raceday/".$r["year"]."\">".$r["year"]."</a></td>";
-
           // How many rows does this year need?  [1 per class]
           $rowspan = 0;
           if (!empty($r["Mens1"])) {
@@ -115,13 +120,12 @@ function echoTeamCell($teamkey, $teamname) {
 
           if ($rowspan == 0) {
             // Skipped Years (War, Covid)
-            echo("<tr class=\"classRow skippedYearRow".$yearParityClass."\">".$yearCell);
+            echo("<tr class=\"classRow skippedYearRow".$yearParityClass."\">".makeYearCell($r));
             echo("<td colspan=\"5\" class=\"text-center\">".$r["note"]."</td>");
             echo("</tr>\n");
           } else {
             if (!empty($r["Mens1"])) {
-              echo("<tr class=\"classRow mensRow".$yearParityClass."\">".$yearCell);
-
+              echo("<tr class=\"classRow mensRow".$yearParityClass."\">".makeYearCell($r, "#mens"));
               echo("<td class=\"classCol\">Men's</td>");
               echoTeamCell($r["Mens1ID"],$r["Mens1"]);
               echo("<td>".displayTime($r["MensTime"])."</td>");
@@ -130,7 +134,7 @@ function echoTeamCell($teamkey, $teamname) {
               echo("</tr>\n");
             }
             if (!empty($r["Womens1"])) {
-              echo("<tr class=\"classRow womensRow".$yearParityClass."\">".$yearCell);
+              echo("<tr class=\"classRow womensRow".$yearParityClass."\">".makeYearCell($r, "#womens"));
               echo("<td class=\"classCol\">Women's</td>");
               echoTeamCell($r["Womens1ID"],$r["Womens1"]);
               echo("<td>".displayTime($r["WomensTime"])."</td>");
@@ -139,7 +143,7 @@ function echoTeamCell($teamkey, $teamname) {
               echo("</tr>\n");
             }
             if (!empty($r["AllGender1"])) {
-              echo("<tr class=\"classRow allgenderRow".$yearParityClass."\">".$yearCell);
+              echo("<tr class=\"classRow allgenderRow".$yearParityClass."\">".makeYearCell($r, "#allgender"));
               echo("<td class=\"classCol\">All Gender</td>");
               echoTeamCell($r["AllGender1ID"],$r["AllGender1"]);
               echo("<td>".displayTime($r["AllGenderTime"])."</td>");
