@@ -74,7 +74,8 @@ Redirect 302 /raceday/live /live
 # /store redirects to /merch.
 #Redirect 302 /merch https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
 Redirect 302 /store /merch
-Redirect 302 /merch https://docs.google.com/forms/d/e/1FAIpQLSfGtc-uzPWkjGNQDjuck9i5HJyLSp2poYuX9cW36tU1Gtegew/viewform?usp=sf_link
+#Redirect 302 /merch https://docs.google.com/forms/d/e/1FAIpQLSfGtc-uzPWkjGNQDjuck9i5HJyLSp2poYuX9cW36tU1Gtegew/viewform?usp=sf_link
+Redirect 302 /merch https://www.customink.com/g/xyd0-00cq-75cp
 
 Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
