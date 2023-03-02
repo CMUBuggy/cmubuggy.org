@@ -13,9 +13,11 @@ if (!isset($_GET["urlkey"])) {
 $headerQuery = "SELECT e.year, o.orgid, o.shortname AS org,
                        case when e.Class = 'M' then 'Men\'s'
                             when e.Class = 'W' then 'Women\'s'
+                            when e.Class = 'N' then 'All Gender'
                             else 'Unknown' end AS class,
                        case when e.Class = 'M' then 'mens'
                             when e.Class = 'W' then 'womens'
+                            when e.Class = 'N' then 'allgender'
                             else 'Unknown' end AS classanchor,
                        Team AS team,
                        Prelim, Reroll AS 'Prelim Reroll', Final, FinalReroll AS 'Final Reroll',

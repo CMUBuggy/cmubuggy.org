@@ -31,9 +31,13 @@ if ($metaData->num_rows == 1) {
 //
 $raceQuery = "SELECT e.year,
                      case when e.orgid <> b.orgid then borrower.shortname else NULL end AS borrowerorg,
-                     CONCAT(case when e.class = 'W' then 'Women\'s' else 'Men\'s' end, ' ', team) AS Team,
+                     CONCAT(case when e.class = 'W' then 'Women\'s'
+                                 when e.class = 'M' then 'Men\'s'
+                                 when e.class = 'N' then 'All Gender'
+                                 else 'Unknown' end, ' ', team) AS Team,
                      case when e.class = 'W' then '#womens'
                           when e.class = 'M' then '#mens'
+                          when e.class = 'N' then '#allgender'
                           else '' end AS classanchor,
                      entryid AS TeamID,
                      nullif(place,0) AS Place,
@@ -86,8 +90,10 @@ $awardQuery = "SELECT year,
                                   when place = 2 then '2nd Place'
                                   when place = 3 then '3rd Place'
                                   else concat(place, 'th Place') end,
-                             case when class = 'W' then ' Women\'s'
-                                  else ' Men\'s' end)
+                             case when class = 'M' then ' Men\'s'
+                                  when class = 'W' then ' Women\'s'
+                                  when class = 'N' then ' All Gender'
+                                  else ' Unknown' end)
                       AS award, note
                       FROM hist_raceentries
                       WHERE buggyid = ?

@@ -17,11 +17,18 @@
 
   // Note that this is a rare query where we don't do alphabetical class sort, since Womens
   // typically race before mens, and we envision this as a live-use raceday page.
+  //
+  // TODO: Confirm placement of All Gender (based on heat ordering)
   $resQuery = "SELECT e.entryid AS entryid,
                       shortname AS orgname,
                       case when class = 'M' then 'Mens'
                            when class = 'W' then 'Womens'
-                           else 'Unknown' end AS class,
+                           when class = 'N' then 'All Gender'
+                           else 'Error' end AS class,
+                      case when class = 'W' then 1
+                           when class = 'M' then 2
+                           when class = 'N' then 3
+                           else -1 end AS classsort,
                       team,
                       b.name AS buggyname,
                       b.buggyid AS buggyid,
@@ -38,8 +45,8 @@
                  LEFT JOIN hist_entrypeoplemap m ON m.entryid = e.entryid
                  LEFT JOIN hist_people p ON p.personid = m.personid
                  LEFT JOIN orglogos ol ON o.orgid = ol.orgid
-                 WHERE e.year = ? AND e.orgid = ?
-                 ORDER BY o.shortname, class DESC, team, heattype, position";
+                 WHERE e.year = ? AND e.orgid = ? AND e.class IN ('M','W','N')
+                 ORDER BY o.shortname, classsort, team, heattype, position";
 
   $rosters = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, $orgurlkey);
 
@@ -63,12 +70,6 @@
     }
 
     $class = $row["class"];
-
-    // If class isn't understood to be mens or womens, skip this entry.
-    if ($class != "Mens" && $class != "Womens") {
-      continue;
-    }
-
     $teamkey = $class." ".$row["team"];
 
     if (!isset($teams[$teamkey])) {

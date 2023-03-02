@@ -32,6 +32,15 @@ $query = "SELECT ma.Year AS year,
 	end AS WomensTime,
   concat(owb.shortname, case when wb.team = 'A' then '' else concat(' ', wb.team) end) AS Womens2, wb.entryid AS Womens2ID,
   concat(owc.shortname, case when wc.team = 'A' then '' else concat(' ', wc.team) end) AS Womens3, wc.entryid AS Womens3ID,
+  concat(ona.shortname, case when na.team = 'A' then '' else concat(' ', na.team) end) AS AllGender1, na.entryid AS AllGender1ID,
+	case when na.finalreroll > 0 then na.finalreroll
+       when na.final > 0 then na.final
+       when na.reroll > 0 then na.reroll
+		   when na.prelim > 0 then na.prelim
+       else NULL
+	end AS AllGenderTime,
+  concat(onb.shortname, case when nb.team = 'A' then '' else concat(' ', nb.team) end) AS AllGender2, nb.entryid AS AllGender2ID,
+  concat(onc.shortname, case when nc.team = 'A' then '' else concat(' ', nc.team) end) AS AllGender3, nc.entryid AS AllGender3ID,
   ma.note AS note
   FROM hist_raceentries ma LEFT JOIN hist_orgs oma ON ma.orgid = oma.orgid
   LEFT JOIN hist_raceentries mb ON ma.year=mb.year AND ma.class = mb.class AND mb.place = 2 LEFT JOIN hist_orgs omb ON mb.orgid = omb.orgid
@@ -39,6 +48,9 @@ $query = "SELECT ma.Year AS year,
   LEFT JOIN hist_raceentries wa ON ma.year=wa.year AND wa.class = 'W' AND wa.place = 1 LEFT JOIN hist_orgs owa ON wa.orgid = owa.orgid
   LEFT JOIN hist_raceentries wb ON wa.year=wb.year AND wa.class = wb.class AND wb.place = 2 LEFT JOIN hist_orgs owb ON wb.orgid = owb.orgid
   LEFT JOIN hist_raceentries wc ON wa.year=wc.year AND wa.class = wc.class AND wc.place = 3 LEFT JOIN hist_orgs owc ON wc.orgid = owc.orgid
+  LEFT JOIN hist_raceentries na ON ma.year=na.year AND na.class = 'N' AND na.place = 1 LEFT JOIN hist_orgs ona ON na.orgid = ona.orgid
+  LEFT JOIN hist_raceentries nb ON na.year=nb.year AND na.class = nb.class AND nb.place = 2 LEFT JOIN hist_orgs onb ON nb.orgid = onb.orgid
+  LEFT JOIN hist_raceentries nc ON na.year=nc.year AND na.class = nc.class AND nc.place = 3 LEFT JOIN hist_orgs onc ON nc.orgid = onc.orgid
   WHERE ((ma.place = 1 AND ma.class = 'M') OR (ma.team IS NULL AND ma.class = 'M'))
   ORDER BY Year DESC;";
 
@@ -49,20 +61,26 @@ function echoTeamCell($teamkey, $teamname) {
 }
 ?>
 
+<script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023012001"></script>
+
+<p>
+<b>Filter By Race Class:</b>
+<select name="classFilter" aria-controls="raceListTable">
+  <option value="ALL" selected>Show All Classes</option>
+  <option value="mensRow">Only Show Men's</option>
+  <option value="womensRow">Only Show Women's</option>
+<?php if ($ALLGENDER_UI_ENABLED) { ?>
+  <option value="allgenderRow">Only Show All Gender</option>
+<?php } ?>
+</select>
+</p>
+
 <div class="table-responsive">
-  <table class="table">
+  <table class="table classFilterTable" id="raceListTable">
     <thead>
       <tr>
-        <th></th>
-        <th colspan="4" class="text-center">Men's</th>
-        <th colspan="4" class="text-center">Women's</th>
-      </tr>
-      <tr>
         <th>Year</th>
-        <th>Champ</th>
-        <th>Time</th>
-        <th>2nd Place</th>
-        <th>3rd Place</th>
+        <th class="classCol">Class</th>
         <th>Champ</th>
         <th>Time</th>
         <th>2nd Place</th>
@@ -72,31 +90,64 @@ function echoTeamCell($teamkey, $teamname) {
     <tbody>
       <?php
 
+        $yearParity = false;
         while ($r = $raceyearlist->fetch_assoc()) {
-          echo("<tr>");
-          echo("<td><a href=\"/history/raceday/".$r["year"]."\">".$r["year"]."</a></td>");
-          if (empty($r["Mens1"]) && empty($r["Womens1"])) {
+          $yearCell = "<td><a href=\"/history/raceday/".$r["year"]."\">".$r["year"]."</a></td>";
+
+          // How many rows does this year need?  [1 per class]
+          $rowspan = 0;
+          if (!empty($r["Mens1"])) {
+            $rowspan++;
+          }
+          if (!empty($r["Womens1"])) {
+            $rowspan++;
+          }
+          if (!empty($r["AllGender1"])) {
+            $rowspan++;
+          }
+
+          // Stripe the table so years are the same background color when multiple classes are shown
+          $yearParityClass = "";
+          if ($yearParity) {
+            $yearParityClass = " table-parity-color year-parity";
+          }
+          $yearParity = !$yearParity;
+
+          if ($rowspan == 0) {
             // Skipped Years (War, Covid)
-            echo("<td colspan=\"8\" class=\"text-center\">".$r["note"]."</td>");
+            echo("<tr class=\"classRow skippedYearRow".$yearParityClass."\">".$yearCell);
+            echo("<td colspan=\"5\" class=\"text-center\">".$r["note"]."</td>");
+            echo("</tr>\n");
           } else {
             if (!empty($r["Mens1"])) {
+              echo("<tr class=\"classRow mensRow".$yearParityClass."\">".$yearCell);
+
+              echo("<td class=\"classCol\">Men's</td>");
               echoTeamCell($r["Mens1ID"],$r["Mens1"]);
               echo("<td>".displayTime($r["MensTime"])."</td>");
               echoTeamCell($r["Mens2ID"],$r["Mens2"]);
               echoTeamCell($r["Mens3ID"],$r["Mens3"]);
-            } else {
-              echo("<td colspan=\"4\"></td>");
+              echo("</tr>\n");
             }
             if (!empty($r["Womens1"])) {
+              echo("<tr class=\"classRow womensRow".$yearParityClass."\">".$yearCell);
+              echo("<td class=\"classCol\">Women's</td>");
               echoTeamCell($r["Womens1ID"],$r["Womens1"]);
               echo("<td>".displayTime($r["WomensTime"])."</td>");
               echoTeamCell($r["Womens2ID"],$r["Womens2"]);
               echoTeamCell($r["Womens3ID"],$r["Womens3"]);
-            } else {
-              echo("<td colspan=\"4\"></td>");
+              echo("</tr>\n");
+            }
+            if (!empty($r["AllGender1"])) {
+              echo("<tr class=\"classRow allgenderRow".$yearParityClass."\">".$yearCell);
+              echo("<td class=\"classCol\">All Gender</td>");
+              echoTeamCell($r["AllGender1ID"],$r["AllGender1"]);
+              echo("<td>".displayTime($r["AllGenderTime"])."</td>");
+              echoTeamCell($r["AllGender2ID"],$r["AllGender2"]);
+              echoTeamCell($r["AllGender3ID"],$r["AllGender3"]);
+              echo("</tr>\n");
             }
           }
-          echo("</tr>");
         }
       ?>
     </tbody>
