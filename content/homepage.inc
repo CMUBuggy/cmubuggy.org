@@ -6,7 +6,21 @@
       include("homepage-raceday-countdown.inc");
       // include("homepage-raceday-infobox.inc");
     ?>
-    <?php include("homepage-raceday-results.inc"); ?>
+    <?php
+      // Times out approximately when store closes.
+      include("homepage-raceday-merch.inc");
+    ?>
+    <?php
+      // Results from most recent raceday
+      // 2 boxes: Teams that placed & Awards
+      //
+      // Goes up ASAP after a raceday completes.
+      //
+      // Can be removed around the beginning of Febuary when we start doing
+      // next-raceday stuff like the countdown box.
+
+      // include("homepage-raceday-results.inc");
+    ?>
     <?php include("homepage-twitterbox.inc"); ?>
 
     <div class="card mb-3">
