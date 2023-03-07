@@ -131,9 +131,6 @@ while($r = $recordData->fetch_assoc()) {
 }
 
 // And after that convoluted query, we have an absolutely enormous query to get all the historical team times.
-//
-// In an unusual step, we don't calculate the pretty version of time in the SQL query, because we need to hand the
-// graphing tool raw seconds, so we just use our displayTime() utility function.
 $entryQuery = "SELECT ma.year,
                # Mens
                       case when ma.finalreroll > 0 then ma.finalreroll

@@ -4,16 +4,29 @@
 	$UTCdiff = -60*60*4;
 	$footermsg = "";
 
+	// Renders times in a standardized way.
+	//
+	// Time is input as a floating point number of seconds.
+	//
+	// Renders zero time as a blank string.
+	// Renders nonzero times as m:ss.cc
+	//
+	// Times longer than 10 minutes will be longer and not align with shorter times,
+	// obviously.  This should be very rare and therefore acceptable.
+	//
+	// If we need to render times over an hour at some point, we might want to
+	// consider some rule changes :)
 	function displayTime($time){
-		$displayTime = "";
+		$renderedTime = "";
 		if($time > 0){
 			$timeMin = intval($time / 60);
 			$timeSec = ($time)-($timeMin*60);
-			if($timeSec<10){ $timeSec = "0".$timeSec; }
-			if(strlen($timeSec)>5){$timeSec = substr($timeSec,0,5); }
-			$displayTime = str_pad(str_pad($timeMin.":".$timeSec,5,"."),7,"0");
+
+			// Produce a string in the format m:ss.cc.
+			// String will round to the nearest hundredth second.
+			$renderedTime = sprintf("%d:%05.2f", $timeMin, $timeSec);
 		}
-		return $displayTime;
+		return $renderedTime;
 	}
 
 	// We provide 2 utility functions for raw SQL queries -- one that just takes the query verbatim
