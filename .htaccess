@@ -58,32 +58,40 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R,L,NC]
 
 
 #### Livestream related links.
-# On non-raceday, /live can be redirected to our own embedded page if we want.
+#
+# cmubuggy.org/live: This is the link that is directly mentioned in the
+# toolbar of the /raceday pages. This should _always_ be a 302 redirect.
+#
+# On non-raceday, /live can be redirected to our own wordpress page.
 # /raceday/livestream is the wordpress embedded livestream page
-# Redirect 302 /live /raceday/livestream
+Redirect 302 /live /raceday/livestream
 
+# On Raceday, we should redirect /live to the site of the stream itself.
+#
 # 2022 CMUtv Livestream
-Redirect 302 /live https://livestream.com/cmutvlive/buggy100
-# /raceday/live was a nonexistant page that /live pointed at in early 2022,
-# so this ensures we get to a reasonable spot.  Can probably go away after May 2022.
-Redirect 302 /raceday/live /live
+# Redirect 302 /live https://livestream.com/cmutvlive/buggy100
 
-# We use 302 (temp) redirects for things that are hosted off site.
+# /raceday/live was a nonexistant page that /live pointed at in early 2022,
+# so this ensures we get to a reasonable spot.  Not sure how critical this
+# is to maintain, using a 301 to strongly transfer it though.
+Redirect 301 /raceday/live /live
+
+# We use 302 (temp) redirects for things that are hosted off site so we can
+# reclaim them easily we need to.
 
 # When the store is closed, /merch is handled by the wordpress fallback, and
 # /store redirects to /merch.
-#Redirect 302 /merch https://pogo.undergroundshirts.com/collections/cmu-buggy-centennial-apparel
 Redirect 302 /store /merch
-#Redirect 302 /merch https://docs.google.com/forms/d/e/1FAIpQLSfGtc-uzPWkjGNQDjuck9i5HJyLSp2poYuX9cW36tU1Gtegew/viewform?usp=sf_link
 Redirect 302 /merch https://www.customink.com/g/xyd0-00cq-75cp
 
 Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
 Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 
-# Raceday Volunteer Link (2023)
+# Raceday Volunteer Links (2023)
 Redirect 302 /volunteer https://docs.google.com/forms/d/1GMBfdeNFJ0DzMtzlP2Cho52Jya_IKgTOz-k8-u75BF0/viewform
 Redirect 302 /broadcast-volunteer https://docs.google.com/forms/d/e/1FAIpQLSfj8vuGN8HjQYOIWG02wGVwh34URDdYqb9vXAYhWQ1biGZoqA/viewform
+
 # Chute the Sh!t
 Redirect 302 /podcast https://linktr.ee/cmubuggy
 Redirect 302 /spotify https://open.spotify.com/show/3wbaYb92dfzuWDUbOOxHWi
