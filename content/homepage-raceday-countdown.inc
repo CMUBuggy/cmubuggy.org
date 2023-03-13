@@ -8,9 +8,10 @@
 ?>
         <p>
         <p>Watch this space for updates as raceday approaches.</p>
-        <p>Our members help make raceday happen.  If you'll be in town, please sign up to help.
-        You can sign up for <a href="/broadcast-volunteer">the broadcast</a> or
-        <a href="/volunteer">many other roles</a>.</p>
+        <p>Our members help make raceday happen.  If you'll be in town, please sign up to help.</p>
+        
+        <a target="_blank" href="/volunteer" class="btn btn-primary">Help Us Out!</a>
+        <a target="_blank" href="/broadcast-volunteer" class="btn btn-primary">Be A Commentator!</a>
 <?php } ?>
       </div>
     </div>
