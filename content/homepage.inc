@@ -8,7 +8,7 @@
     ?>
     <?php
       // Times out approximately when store closes.
-      include("homepage-raceday-merch.inc");
+      // include("homepage-raceday-merch.inc");
     ?>
     <?php
       // Results from most recent raceday
