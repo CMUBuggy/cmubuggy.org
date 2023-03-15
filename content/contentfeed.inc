@@ -32,7 +32,14 @@ $newsSQL = "SELECT wp_posts.ID,wp_posts.post_date,wp_users.display_name,wp_posts
   and post_date > '$cutoffDate'
   ORDER BY post_date DESC
   LIMIT 0,15";
-$newsResults  = dbQuery("cmubuggy_wp",$newsSQL);
+
+$newsResults = false;
+try {
+  $newsResults  = dbQuery("cmubuggy_wp",$newsSQL);
+} catch (Exception $e) {
+  // If there's an error (e.g. no wordpress in this database because it is a dev db),
+  // then we just have no results.
+}
 
 $count = 1;
 if ($newsResults) {
@@ -112,7 +119,14 @@ $ncommentSQL = "SELECT wp_comments.comment_ID, wp_comments.comment_date, wp_comm
   WHERE wp_comments.comment_approved = 1
   and wp_comments.comment_date > '$cutoffDate'
   ORDER BY wp_comments.comment_date DESC";
-$ncommentResults = dbQuery("cmubuggy_wp",$ncommentSQL);
+
+$ncommentResults = false;
+try {
+  $ncommentResults = dbQuery("cmubuggy_wp",$ncommentSQL);
+} catch (Exception $e) {
+  // If there's an error (e.g. no wordpress in this database because it is a dev db),
+  // then we just have no results.
+}
 
 $ncommentClusterItems = array();
 
