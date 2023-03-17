@@ -1,7 +1,13 @@
     <div class="card mb-3">
-      <h5 class="card-header">Raceday 2022 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
-      <img class="card-img-top" src="<?php echo(makeSmugmugUrl("i-jZjxT8C")); ?>">
+      <h5 class="card-header">Raceday 2023 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
+      <img class="card-img-top" src="<?php echo(makeSmugmugUrl("i-PbQzFc5")); ?>">
       <div class="card-body">
+<?php
+  // Set this to true the week of raceday itself.
+  $RACEDAY_WEEK = false;
+
+  if ($RACEDAY_WEEK) {
+?>
         <div class="d-flex justify-content-center">
           <a href="/raceday" class="btn btn-primary m-1">Raceday Info Center</a>
           <a href="/live" class="btn btn-info m-1">Livestream</a>
@@ -11,13 +17,22 @@
           <a href="/raceday/heats" class="btn btn-secondary m-1">Heats</a>
           <a href="/raceday/leaderboard" class="btn btn-secondary m-1">Leaderboard</a>
         </div>
-        <p>Raceday 2022 is upon us! We're excited to see everyone and celebrate the 100th anniversary of Buggy!</p>
-        <p>Our <a href="/raceday">raceday info center</a> is the place to go for everything you need to know about all in-person and virtual activites.</p>
+<?php } ?>
+
+        <p>Our <a href="/raceday">raceday info center</a> is the place to go for everything you need to know about all the activites.</p>
         <p>Key Events:</p>
         <ul>
-          <li>Design Showcase: Thursday Apr 7, 12pm-2pm</li>
-          <li>Preliminary Races: Friday Apr 8, 8am-12pm</li>
-          <li>Finals Races: Saturday Apr 9, 8am-12pm</li>
+          <li>Buggy Showcase: Thursday Apr 13, Noon</li>
+          <li>Preliminary Races: Friday Apr 14, 8am-Noon</li>
+          <li>Finals Races: Saturday Apr 15, 8am-Noon</li>
         </ul>
+<?php
+  if (!$RACEDAY_WEEK) {
+?>
+        <p>Our members help make raceday happen.  If you'll be in town, please sign up to help.</p>
+
+        <a target="_blank" href="/volunteer" class="btn btn-primary">Help Us Out!</a>
+        <a target="_blank" href="/broadcast-volunteer" class="btn btn-primary">Be A Commentator!</a>
+<?php } ?>
       </div>
     </div>
