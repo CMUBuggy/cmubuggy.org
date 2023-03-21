@@ -61,7 +61,7 @@ function echoTeamCell($teamkey, $teamname) {
 }
 ?>
 
-<script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023012001"></script>
+<script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023032100"></script>
 
 <p>
 <b>Filter By Race Class:</b>

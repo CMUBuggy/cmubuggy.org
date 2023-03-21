@@ -1,6 +1,6 @@
 // How to use this:
 //
-// Create radio buttons or aselect element on the page named "classFilter"
+// Create radio buttons or a select element on the page named "classFilter"
 // with values of "ALL" and then one for each CSS class name of the buggy
 // class rows (e.g. "mensRow", "womensRow", etc.)
 //
@@ -24,4 +24,10 @@ $("select[name=classFilter], input[type=radio][name=classFilter]").on("change", 
     $(".classRow.year-parity").removeClass("table-parity-color");
     $("."+this.value).show();
   }
-})
+});
+
+// Sometimes, when the back button is pressed, the value in the select is preserved
+// and so we need to force the filter to obey it.
+$(window).on("pageshow", function () {
+  $("select[name=classFilter], input[type=radio][name=classFilter]").change();
+});
