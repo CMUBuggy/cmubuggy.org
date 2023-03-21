@@ -632,7 +632,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
     <?php } ?>
   </ul>
 
-  <script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023012001"></script>
+  <script defer type="text/javascript" src="/js/cmubuggy-classfilter.js?ver=2023032100"></script>
 
   <div class="tab-content">
     <div class="tab-pane fade show active" id="tab-raceresults" role="tabpanel" aria-labelledby="raceresults-tab">
