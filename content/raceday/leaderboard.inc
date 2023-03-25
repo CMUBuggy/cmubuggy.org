@@ -92,7 +92,10 @@
       <div data-name class="ml-5"></div>
       <div data-time class="ml-2 text-monospace"></div>
     </div>
-    <div data-note class="ml-5 mt-1 text-dark"></div>
+    <div class="d-flex justify-content-between">
+      <div data-note class="ml-5 mt-1 text-dark"></div>
+      <em><div data-speed class="ml-2"></div></em>
+    </div>
   </div>
 </template>
 
@@ -127,14 +130,22 @@
 
   var raceResult = document.querySelector('#raceResult');
 
+  function populateNodeText(node, value) {
+    node.querySelector('[data-name]').textContent = value.team;
+    node.querySelector('[data-time]').textContent = value.time || ' ';
+    node.querySelector('[data-note]').textContent = value.notes || ' ';
+    node.querySelector('[data-speed]').textContent =
+      (value.speed_trap ? value.speed_trap + ' mph' : ' ');
+  }
+
   function addRaceResult(tab, data, previousChildKey) {
     var node = document.importNode(raceResult.content, true),
       value = data.val(),
       previousNode = previousChildKey && tab.querySelector('[data-id=' + previousChildKey + ']');
     node.querySelector('[data-id]').setAttribute('data-id', data.key);
-    node.querySelector('[data-name]').textContent = value.team;
-    node.querySelector('[data-time]').textContent = value.time || '';
-    node.querySelector('[data-note]').textContent = value.notes;
+
+    populateNodeText(node, value);
+
     if (value.dq) {
       node.querySelector('.race-result').classList.add('dq');
     }
@@ -148,10 +159,10 @@
 
   function updateRaceResult(tab, data, previousChildKey) {
     var node = tab.querySelector('[data-id=' + data.key + ']'),
-      value = data.val();
-    node.querySelector('[data-name]').textContent = value.team;
-    node.querySelector('[data-time]').textContent = value.time || '';
-    node.querySelector('[data-note]').textContent = value.notes;
+    value = data.val();
+
+    populateNodeText(node, value);
+
     if (value.dq) {
       node.classList.add('dq');
     } else {
