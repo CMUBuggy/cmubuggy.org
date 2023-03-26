@@ -124,6 +124,22 @@
  </div>
  <div class="row">
    <div class="col">
+     <div class="media mb-3">
+        <a href="/history/video">
+         <span class="fa-layers fa-fw fa-2x mr-2">
+          <i class="fas fa-square" style="color: var(--red)"></i>
+          <i class="fas fa-video fa-inverse" data-fa-transform="shrink-8"></i>
+         </span>
+        </a>
+        <div class="media-body">
+          <a href="/history/video">Videos</a> of previous Racedays
+        </div>
+     </div>
+   </div>
+   <div class="col"></div>
+ </div>
+ <div class="row">
+   <div class="col">
      <div class="card border-secondary m-3">
       <div class="card-header">Something Wrong or Missing?</div>
       <div class="card-body text-secondary">

@@ -1,12 +1,12 @@
 <nav>
   <ul class="list-group my-3">
-    <li class="list-group-item"><a class="d-block" href="/news">News</a></li>
-    <li class="list-group-item"><a class="d-block" href="/video">Videos</a></li>
-    <li class="list-group-item"><a target="_blank" class="d-block" href="https://cmubuggy.smugmug.com">Photos</a></li>
+    <li class="list-group-item"><a class="d-block" href="/raceday">Raceday</a></li>
+    <li class="list-group-item"><a class="d-block" href="https://cmubuggy.smugmug.com" target="_blank">Photos</a></li>
     <li class="list-group-item"><a class="d-block" href="/history">Historical Data</a></li>
-    <li class="list-group-item"><a class="d-block" href="/reference">About Buggy</a></li>
+    <li class="list-group-item"><a class="d-block" href="/news">News</a></li>
+    <li class="list-group-item"><a class="d-block" href="/reference">Reference</a></li>
+    <li class="list-group-item"><a class="d-block" href="/membership">Membership</a></li>
     <li class="list-group-item"><a class="d-block" href="/about">About the BAA</a></li>
-    <li class="list-group-item"><a class="d-block" href="/membership">Membership / Join</a></li>
   </ul>
 </nav>
 
