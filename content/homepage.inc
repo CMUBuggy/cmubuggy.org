@@ -72,7 +72,8 @@
       </div>
       <div class="media mb-3">
         <span class="align-self-center fa-layers fa-fw fa-2x mr-2">
-          <i class="fab fa-discord text-muted"></i>
+          <i class="fas fa-square text-muted"></i>
+          <i class="fab fa-discord fa-inverse" data-fa-transform="shrink-8"></i>
         </span>
         <div class="media-body">
           Hang out with us on the BAA <a target="_blank" href="/chat">Discord</a>.
