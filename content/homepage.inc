@@ -67,7 +67,7 @@
           <i class="fas fa-graduation-cap fa-inverse" data-fa-transform="shrink-8"></i>
         </span>
         <div class="media-body">
-          <a href="/seniors">Seniors!</a> Become a 2022 member now for free.
+          <a href="/seniors">Seniors!</a> Get your first year of membership free!
         </div>
       </div>
       <div class="media mb-3">
