@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `hist_raceentries` (
   `Final` double DEFAULT NULL,
   `FinalReroll` double DEFAULT NULL,
   `DQ` varchar(128) DEFAULT NULL,
-  `Note` varchar(256) DEFAULT NULL,a
+  `Note` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`entryid`),
   INDEX(`buggyid`),
   INDEX `OrgClassTeam` (`orgid`,`class`,`team`),
