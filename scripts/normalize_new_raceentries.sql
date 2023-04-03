@@ -14,20 +14,21 @@ CREATE TABLE IF NOT EXISTS `hist_raceentries` (
   `entryid` varchar(12) NOT NULL,
   `Year` int(11) DEFAULT NULL,
   `orgid` varchar(5) DEFAULT NULL,
-  `Class` text,
-  `Team` text,
+  `Class` char(1) DEFAULT NULL,
+  `Team` char(1) DEFAULT NULL,
   `Place` int(11) DEFAULT NULL,
   `buggyid` varchar(25) DEFAULT NULL,
   `Prelim` double DEFAULT NULL,
   `Reroll` double DEFAULT NULL,
   `Final` double DEFAULT NULL,
   `FinalReroll` double DEFAULT NULL,
-  `DQ` text,
-  `Note` text,
+  `DQ` varchar(128) DEFAULT NULL,
+  `Note` varchar(256) DEFAULT NULL,a
   PRIMARY KEY (`entryid`),
-  INDEX(`year`),
-  INDEX(`orgid`),
   INDEX(`buggyid`),
+  INDEX `OrgClassTeam` (`orgid`,`class`,`team`),
+  INDEX `YearOrgClassTeam` (`year`, `orgid`, `class`, `team`),
+  INDEX `YearClassPlace` (`year`,`class`,`place`),
   UNIQUE KEY `entryid_UNIQUE` (`entryid`)
 );
 
