@@ -8,9 +8,14 @@ if (empty($_GET["urlkey"])) {
 $buggyUrlKey = $_GET["urlkey"];
 
 #(/buggy) metadata (existance, build year, org, notes)
-$metaDataQuery = "SELECT name, birthyear, o.shortname AS org, b.orgid, b.note, b.smugmug_slug, b.suppress_gallery
+$metaDataQuery = "SELECT b.name, b.birthyear, o.shortname AS org, b.orgid,
+                         b.note, b.smugmug_slug, b.suppress_gallery,
+                         b.formerly AS formerid, fb.name AS fname,
+                         fo.orgid AS forgid, fo.shortname AS forg
                     FROM hist_buggies b
                     LEFT JOIN hist_orgs o ON b.orgid=o.orgid
+                    LEFT JOIN hist_buggies fb ON fb.buggyid=b.formerly
+                    LEFT JOIN hist_orgs fo ON fb.orgid=fo.orgid
                     WHERE b.buggyid=?;";
 
 $metaData = dbBoundQuery($HISTORY_DATABASE, $metaDataQuery, "s", $buggyUrlKey);
@@ -138,7 +143,19 @@ if(empty($image_url)) {
     <dt class="col-sm-5">Organization</dt>
     <dd class="col-sm-7"><?php echo("<a href=\"/history/org/".$buggy["orgid"]."\">".$buggy["org"]. "</a>"); ?></dd>
 
-    <?php if (!empty($buggy["note"])) { ?>
+    <?php if (!empty($buggy["fname"])) {
+            $formertext = "<a href=\"/history/buggy/".$buggy["formerid"]."\">".$buggy["fname"]."</a>";
+            if (!empty($buggy["forg"])) {
+              $formertext .=" (<a href=\"/history/org/".$buggy["forgid"]."\">".$buggy["forg"]."</a>)";
+            }
+    ?>
+      <dt class="col-sm-5">Formerly</dt>
+      <dd class="col-sm-7"><?php echo($formertext); ?></dd>
+
+    <?php }
+
+          if (!empty($buggy["note"])) { ?>
+
       <dt class="col-sm-5">Notes</dt>
       <dd class="col-sm-7"><?php echo($buggy["note"]); ?></dd>
     <?php }
