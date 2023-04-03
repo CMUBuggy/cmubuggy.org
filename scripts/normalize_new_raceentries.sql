@@ -25,10 +25,11 @@ CREATE TABLE IF NOT EXISTS `hist_raceentries` (
   `DQ` varchar(128) DEFAULT NULL,
   `Note` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`entryid`),
-  INDEX(`buggyid`),
-  INDEX `OrgClassTeam` (`orgid`,`class`,`team`),
-  INDEX `YearOrgClassTeam` (`year`, `orgid`, `class`, `team`),
-  INDEX `YearClassPlace` (`year`,`class`,`place`),
+  INDEX(`buggyid`),  # Buggy
+  INDEX(`class`),  # TopTimes
+  INDEX `OrgClassTeam` (`orgid`,`class`,`team`),  # Org
+  INDEX `YearOrgClassTeam` (`year`, `orgid`, `class`, `team`),  # Racedaylist
+  INDEX `YearClassPlace` (`year`,`class`,`place`),  # Individual Raceday
   UNIQUE KEY `entryid_UNIQUE` (`entryid`)
 );
 

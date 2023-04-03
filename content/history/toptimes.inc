@@ -9,6 +9,7 @@ $query = "SELECT
            T.year, T.entryid,
            case when T.class = 'M' then 'mens'
                 when T.class = 'W' then 'womens'
+                when T.class = 'N' then 'allgender'
                 else 'unknown' end AS classanchor,
 	         concat(shortname, case when T.team = 'A' then '' else concat(' ', T.team) end) AS teamname,
            b.name AS buggy, b.buggyid AS buggyid,
