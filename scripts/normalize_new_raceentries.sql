@@ -32,8 +32,7 @@ CREATE TABLE IF NOT EXISTS `hist_raceentries` (
 );
 
 CREATE TABLE IF NOT EXISTS `hist_entrypeoplemap` (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    personid VARCHAR(20) NOT NULL,
+    personid VARCHAR(10) NOT NULL,
     entryid VARCHAR(12) NOT NULL,
     heattype ENUM('Prelim', 'Prelim Reroll', 'Final', 'Final Reroll') NOT NULL,
     position ENUM('Driver', 'Hill 1', 'Hill 2', 'Hill 3', 'Hill 4', 'Hill 5') NOT NULL,
