@@ -94,9 +94,14 @@ while ($d = $designTrophies->fetch_assoc()) {
   addtrophy($d["year"], $d["award"], $extra);
 }
 
-$buggyListQuery = "SELECT name, birthyear, note, buggyid AS urlKey FROM hist_buggies
-                   WHERE orgid = ?
-                   ORDER BY birthyear DESC;";
+$buggyListQuery = "SELECT b.name, b.birthyear, b.note, b.buggyid AS urlKey,
+                          b.formerly AS formerid, fb.name AS fname,
+                          fo.orgid AS forgid, fo.shortname AS forg
+                   FROM hist_buggies b
+                   LEFT JOIN hist_buggies fb ON b.formerly = fb.buggyid
+                   LEFT JOIN hist_orgs fo ON fo.orgid = fb.orgid
+                   WHERE b.orgid = ?
+                   ORDER BY b.birthyear DESC;";
 $buggyList = dbBoundQuery($HISTORY_DATABASE, $buggyListQuery, "s", $orgUrlKey);
 
 
@@ -731,7 +736,28 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
               while ($b = $buggyList->fetch_assoc()) {
                 echo("<tr><td>".$b["birthyear"]."</td>");
                 echo("<td><a href=\"/history/buggy/".$b["urlKey"]."\">" . $b["name"] . "</a></td>");
-                echo("<td>".$b["note"]."</td></tr>");
+
+                // Notes field also gets a bonus note if there is a "formerly" known as buggy.
+                //
+                // We add a period if there is no obvious ending punctuation on the note already
+                // and there is a "former" buggy.
+                //
+                // Similar logic is in buggylist.inc.
+                echo("<td>");
+                $punctuation = "";
+
+                if (!empty($b["note"])) {
+                  echo($b["note"]);
+
+                  $lastchar = substr($b["note"], -1);
+                  if (!in_array($lastchar, [".","?","!",";",","])) {
+                    $punctuation = ".  ";
+                  }
+                }
+                if (!empty($b["fname"] && !empty($b["forg"]))) {
+                  echo($punctuation."Formerly ".$b["forg"]."'s ".$b["fname"]);
+                }
+                echo("</td></tr>\n");
               }
             ?>
           </tbody>
