@@ -4,7 +4,7 @@
       <div class="card-body">
 <?php
   // Set this to true the week of raceday itself.
-  $RACEDAY_WEEK = false;
+  $RACEDAY_WEEK = true;
 
   if ($RACEDAY_WEEK) {
 ?>
