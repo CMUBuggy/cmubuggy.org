@@ -33,6 +33,8 @@
         //
         // We add a period if there is no obvious ending punctuation on the note already
         // and there is a "former" buggy.
+        //
+        // Similar logic is in org.inc.
         echo("<td>");
         $punctuation = "";
 
