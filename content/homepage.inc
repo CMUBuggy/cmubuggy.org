@@ -1,12 +1,16 @@
 <div class="row">
   <div class="col-md-8">
     <?php
-      // Include at most one of these (probably starting around Mid-Feb).
+      // For when the auction goes live (includes a timeout for end of auction)
+      include("homepage-raceday-auction.inc");
+      
+      // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
+
       // include("homepage-raceday-countdown.inc");
       include("homepage-raceday-infobox.inc");
-    ?>
-    <?php
+
+      // Store/Merch Promo Box
       // Times out approximately when store closes.
       // include("homepage-raceday-merch.inc");
     ?>
