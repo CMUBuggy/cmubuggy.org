@@ -64,7 +64,7 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R,L,NC]
 #
 # On non-raceday, /live can be redirected to our own wordpress page.
 # /raceday/livestream is the wordpress embedded livestream page
-Redirect 302 /live /raceday/livestream
+# Redirect 302 /live /raceday/livestream
 
 # On Raceday, we should redirect /live to the site of the stream itself.
 #
