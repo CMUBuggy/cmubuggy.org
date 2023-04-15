@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <?php
       // For when the auction goes live (includes a timeout for end of auction)
-      include("homepage-raceday-auction.inc");
+      // include("homepage-raceday-auction.inc");
       
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
