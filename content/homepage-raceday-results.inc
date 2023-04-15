@@ -41,7 +41,7 @@
         <th>4<sup>th</sup></th>
         <td><a href="/history/team/2023.SPI.MB">Spirit B</a></td>
         <td>2:16.59</td>
-        <td><a href="/history/team/2023.PA.WA">PiKA A</a></td>
+        <td><a href="/history/team/2023.PKA.WA">PiKA A</a></td>
         <td>2:43.41</td>
         <td colspan="2"></td>
       </tr>
