@@ -95,7 +95,7 @@
       </tr>
       <tr>
         <th>Anne Witchner<br>Chairman's Choice</th>
-        <td><a href="/history/org/RBO">RoboBuggy</a> and <a href="/history/org/W3VC">Radio Club</a></td>
+        <td><a href="/history/org/RBO">Robobuggy</a> and <a href="/history/org/W3VC">Radio Club</a></td>
       </tr>
       <tr>
         <th>Most Improved</th>
@@ -103,7 +103,7 @@
       </tr>
       <tr>
         <th>T-Shirt</th>
-        <td><a href="/history/org/RBO">RoboBuggy</a></td>
+        <td><a href="/history/org/RBO">Robobuggy</a></td>
       </tr>
       <tr>
         <th>Chair of the Year</th>
