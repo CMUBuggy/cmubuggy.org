@@ -62,7 +62,7 @@
         <td colspan="2"></td>
       </tr>
     </table>
-    <a href="/raceday/leaderboard" class="btn">Full Results</a>
+    <a href="/raceday/leaderboard" class="btn btn-primary">Full Results</a>
     <a href="https://livestream.com/cmutvlive/buggy2023" class="btn btn-info">Videos</a>
   </div>
 </div>
