@@ -66,6 +66,9 @@
     <li class="nav-item">
       <a id="allgender-finals-tab" href="#tab-allgender-finals" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender-finals" aria-selected="false">All Gender Finals</a>
     </li>
+    <li class="nav-item">
+      <a id="exhibitions-tab" href="#tab-exhibitions" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-exhibitions" aria-selected="false">Exhibitions</a>
+    </li>
   </ul>
 
   <p>Results update automatically. If they stop or you can't see them, <a role="button" href="#" data-iframe>click here</a>.</p>
@@ -82,6 +85,8 @@
     <div class="tab-pane fade finals" id="tab-mens-finals" role="tabpanel" aria-labelledby="mens-finals-tab">
     </div>
     <div class="tab-pane fade prelims" id="tab-allgender-finals" role="tabpanel" aria-labelledby="allgender-finals-tab">
+    </div>
+    <div class="tab-pane fade prelims" id="tab-exhibitions" role="tabpanel" aria-labelledby="exhibitions-tab">
     </div>
   </div>
 </div>
@@ -188,7 +193,9 @@
     console.debug('result moved: %s - %s', tab.id, data.key);
   }
 
-  ['womens_prelims', 'mens_prelims', 'allgender_prelims', 'womens_finals', 'mens_finals', 'allgender_finals'].forEach(function (type) {
+  ['womens_prelims', 'mens_prelims', 'allgender_prelims',
+   'womens_finals', 'mens_finals', 'allgender_finals',
+   'exhibitions'].forEach(function (type) {
     var ref = firebase.database().ref(type).orderByChild('time_sort'),
       tab = document.querySelector('#tab-' + type.replace('_', '-'));
     ref.on('child_added', function (snapshot, previousChildKey) {
