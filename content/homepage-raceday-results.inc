@@ -62,56 +62,64 @@
         <td colspan="2"></td>
       </tr>
     </table>
-    Full Results Coming Soon</a><br>
+    <a href="/raceday/leaderboard" class="btn">Full Results</a>
     <a href="https://livestream.com/cmutvlive/buggy2023" class="btn btn-info">Videos</a>
   </div>
 </div>
 
 <div class="card mb-3">
   <div class="card-body">
-    <h5 class="card-title">2022 Awards</h5>
+    <h5 class="card-title">2023 Awards</h5>
     <table class="table table-sm" >
       <tr>
         <th>Design</th>
         <td>
           <ol style="margin: 0; padding: 0 0 0 1.25em;">
-            <li><a href="/history/buggy/kingfisher">Kingfisher</a> - <a href="/history/org/CIA">CIA</a></li>
             <li><a href="/history/buggy/roadrunner">Roadrunner</a> - <a href="/history/org/CIA">CIA</a></li>
-            <li><a href="/history/buggy/burnout">Burnout</a> - <a href="/history/org/FRI">Fringe</a></li>
+            <li><a href="/history/buggy/fringe23">Brimstone</a> - <a href="/history/org/FRI">Fringe</a></li>
+            <li><a href="/history/buggy/scorch">Scorch</a> - <a href="/history/org/APX">Apex</a></li>
           </ol>
         </td>
       </tr>
       <tr>
+        <th>Design (Robotic)</th>
+        <td>Short Circuit - <a href="/history/org/RBO">Robobuggy</a></td>
+      </tr>
+      <tr>
         <th>People's Choice</th>
-        <td><a href="/history/buggy/burnout">Burnout</a> - <a href="/history/org/FRI">Fringe</a></td>
+        <td><a href="/history/buggy/fringe23">Brimstone</a> - <a href="/history/org/FRI">Fringe</a></td>
       </tr>
       <tr>
         <th>Tom Wood<br>Spirit of Buggy</th>
-        <td><a href="/history/org/APX">Apex</a></td>
+        <td><a href="/history/org/FRI">Fringe</a></td>
       </tr>
       <tr>
         <th>Anne Witchner<br>Chairman's Choice</th>
-        <td><a href="/history/org/DG">DG</a></td>
+        <td><a href="/history/org/RBO">RoboBuggy</a> and <a href="/history/org/W3VC">Radio Club</a></td>
       </tr>
       <tr>
         <th>Most Improved</th>
-        <td><a href="/history/org/SN">SigNu</a></td>
-      </tr>
-      <tr>
-        <th>T-Shirt</th>
         <td><a href="/history/org/DG">DG</a></td>
       </tr>
       <tr>
+        <th>T-Shirt</th>
+        <td><a href="/history/org/RBO">RoboBuggy</a></td>
+      </tr>
+      <tr>
         <th>Chair of the Year</th>
-        <td><a href="/history/person/jtw2">James Wong</a> - <a href="/history/org/FRI">Fringe</a></td>
+        <td>Mia Krishnamurthy - <a href="/history/org/SEP">SigEp</a></td>
       </tr>
       <tr>
         <th>Blinn/Brewer<br>King of the Hill</th>
-        <td><a href="/history/person/cmedward">Clayton Edwards</a> - <a href="/history/team/2022.SDC.MA">SDC A</a></td>
+        <td><a href="/history/person/ssetse">Seth Setse</a> - <a href="/history/team/2023.SPI.MA">Spirit A</a></td>
       </tr>
       <tr>
         <th>Queen of the Hill</th>
-        <td><a href="/history/person/mconduah">Maame Conduah</a> - <a href="/history/team/2022.SPI.WA">Spirit A</a></td>
+        <td><a href="/history/person/lhasher">Leo Hasher</a> - <a href="/history/team/2023.CIA.WA">CIA A</a></td>
+      </tr>
+      <tr>
+        <th>Monarch of the Hill</th>
+        <td><a href="/history/person/tcorneli">Thomas Cornelius</a> - <a href="/history/team/2023.PKA.NA">PiKA A</a></td>
       </tr>
     </table>
   </div>
