@@ -8,7 +8,7 @@
       // The countdown one is short with less detail.
 
       // include("homepage-raceday-countdown.inc");
-      include("homepage-raceday-infobox.inc");
+      // include("homepage-raceday-infobox.inc");
 
       // Store/Merch Promo Box
       // Times out approximately when store closes.
@@ -23,7 +23,7 @@
       // Can be removed around the beginning of Febuary when we start doing
       // next-raceday stuff like the countdown box.
 
-      // include("homepage-raceday-results.inc");
+      include("homepage-raceday-results.inc");
     ?>
     <?php include("homepage-twitterbox.inc"); ?>
 
