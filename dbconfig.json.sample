@@ -3,6 +3,5 @@
     "DB_NAME": "",
     "DB_USER": "",
     "DB_PASSWORD": "",
-    "ALLGENDER_UI_ENABLED": false,
     "GA_TAG": false
 }

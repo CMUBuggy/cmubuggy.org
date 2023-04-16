@@ -53,12 +53,6 @@
   $participatingOrgImages = array();
   $entriesByOrg = array();
 
-  // Disable displaying the all gender column for years that don't have it.
-  //
-  // TODO: in practice, this should be removed when we remove ALLGENDER_UI_ENABLED support as well.
-  // (also get all references below, of course :)
-  $displayAllGender = false;
-
   while($row = $rosters->fetch_assoc()) {
     $orgname = $row["orgname"];
     $class = $row["class"];
@@ -84,10 +78,6 @@
       $entryString .= "<span class=\"d-sm-none\">)</span>";
     }
 
-    if ($class == "All Gender") {
-      $displayAllGender = true;
-    }
-
     array_push($entriesByOrg[$orgname][$class], $entryString);
   }
 
@@ -104,9 +94,7 @@
   echo("<th class=\"d-sm-none\">Teams</th>");
   echo("<th class=\"d-none d-sm-table-cell\">Mens</th>");
   echo("<th class=\"d-none d-sm-table-cell\">Womens</th>");
-  if ($displayAllGender) {
-    echo("<th class=\"d-none d-sm-table-cell\">All Gender</th>");
-  }
+  echo("<th class=\"d-none d-sm-table-cell\">All Gender</th>");
   echo("</tr>\n");
 
   foreach ($entriesByOrg as $orgname => $e) {
@@ -134,16 +122,12 @@
         echo("<td class=\"text-nowrap d-sm-none\">\n");
         displayIfSet($e["Mens"],$i);
         displayIfSet($e["Womens"], $i);
-        if ($displayAllGender) {
-          displayIfSet($e["All Gender"], $i);
-        }
+        displayIfSet($e["All Gender"], $i);
         echo("</td>");
 
         displayColIfSet($e["Mens"], $i);
         displayColIfSet($e["Womens"], $i);
-        if ($displayAllGender) {
-          displayColIfSet($e["All Gender"], $i);
-        }
+        displayColIfSet($e["All Gender"], $i);
         echo("</tr>\n");
       }
   }
