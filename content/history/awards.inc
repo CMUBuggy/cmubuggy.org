@@ -196,12 +196,58 @@
         </thead>
         <tbody>
           <?php
+            // First, collapse down all the years to consolidate ties.
+            $orgAwardTable = array();
             while ($o = $orgAwards->fetch_assoc()) {
-                echo("<tr><td>".$o["year"]."</td>");
-                echo("<td><a href=\"./org/".$o["chairid"]."\">".$o["chair"]."</a></td>");
-                echo("<td><a href=\"./org/".$o["spiritid"]."\">".$o["spirit"]."</a></td>");
-                echo("<td><a href=\"./org/".$o["shirtid"]."\">".$o["shirt"]."</a></td>");
-                echo("</tr>");
+              $year = $o["year"];
+
+              $e = ""; // Shorthand for the entry
+
+              if (array_key_exists($year, $orgAwardTable)) {
+                $e = &$orgAwardTable[$year];
+              } else {
+                $orgAwardTable[$year] = array();
+                $e = &$orgAwardTable[$year];
+                $e["chair"] = array();
+                $e["spirit"] = array();
+                $e["shirt"] = array();
+              }
+              if ($o["chairid"]) {
+                $e["chair"][$o["chairid"]] = $o["chair"];
+              }
+              if ($o["spiritid"]) {
+                $e["spirit"][$o["spiritid"]] = $o["spirit"];
+              }
+              if ($o["shirtid"]) {
+                $e["shirt"][$o["shirtid"]] = $o["shirt"];
+              }
+
+              unset($e); // clear reference for next loop
+            }
+
+            // helper to output the org award cells
+            function doOrgAwardCell($type, $o) {
+              $first = true;
+              if (array_key_exists($type, $o)) {
+                foreach (array_keys($o[$type]) as $item) {
+                  if (!$first) { echo (", "); }
+                  echo("<a href=\"./org/".$item."\">".$o[$type][$item]."</a>");
+                  $first = false;
+                }
+              }
+            }
+
+            // Now, sort the collapsed table by years and output the cells.
+            ksort($orgAwardTable);
+            foreach(array_reverse(array_keys($orgAwardTable)) as $year) {
+              $o = $orgAwardTable[$year];
+              echo("<tr><td>".$year."</td>\n<td>");
+              doOrgAwardCell("chair", $o);
+              echo("</td>\n<td>");
+              doOrgAwardCell("spirit", $o);
+              echo("</td>\n<td>");
+              doOrgAwardCell("shirt", $o);
+              echo("</td></tr>\n");
             }
           ?>
         </tbody>
@@ -284,7 +330,6 @@
         </tbody>
       </table>
     </div>
+    <span class="small">Some hill 1 times may be estimated or unofficial.</span><br>
   </div>
-  <span class="small">Some hill 1 times may be estimated or unofficial.</span><br>
-  <span class="small">Note: Years where there are ties will show multiple lines in the table.</span>
 </div>
