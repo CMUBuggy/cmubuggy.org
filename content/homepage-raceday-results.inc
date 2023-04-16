@@ -1,6 +1,7 @@
 <div class="card mb-3">
   <div class="card-body">
     <h5 class="card-title">2023 Race Results</h5>
+    <img class="card-img-top" src="<?php echo(makeSmugmugUrl("i-jR7CdfK")); ?>">
     <table class="table table-sm" style="font-variant-numeric: tabular-nums;">
       <thead>
         <tr>

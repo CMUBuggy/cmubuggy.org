@@ -1,6 +1,10 @@
 <nav>
   <ul class="list-group my-3">
+<?php
+  // Enable each year as we launch the raceday info center.
+  if (false) { ?>
     <li class="list-group-item"><a class="d-block" href="/raceday">Raceday</a></li>
+<?php } ?>
     <li class="list-group-item"><a class="d-block" href="https://cmubuggy.smugmug.com" target="_blank">Photos</a></li>
     <li class="list-group-item"><a class="d-block" href="/history">Historical Data</a></li>
     <li class="list-group-item"><a class="d-block" href="/news">News</a></li>
