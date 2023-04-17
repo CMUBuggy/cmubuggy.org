@@ -77,18 +77,18 @@
         <td>
           <ol style="margin: 0; padding: 0 0 0 1.25em;">
             <li><a href="/history/buggy/roadrunner">Roadrunner</a> - <a href="/history/org/CIA">CIA</a></li>
-            <li><a href="/history/buggy/fringe23">Brimstone</a> - <a href="/history/org/FRI">Fringe</a></li>
+            <li><a href="/history/buggy/brimstone23">Brimstone</a> - <a href="/history/org/FRI">Fringe</a></li>
             <li><a href="/history/buggy/scorch">Scorch</a> - <a href="/history/org/APX">Apex</a></li>
           </ol>
         </td>
       </tr>
       <tr>
         <th>Design (Robotic)</th>
-        <td>Short Circuit - <a href="/history/org/RBO">Robobuggy</a></td>
+        <td><a href="/history/buggy/shortcircuit">Short Circuit</a> - <a href="/history/org/RBO">Robobuggy</a></td>
       </tr>
       <tr>
         <th>People's Choice</th>
-        <td><a href="/history/buggy/fringe23">Brimstone</a> - <a href="/history/org/FRI">Fringe</a></td>
+        <td><a href="/history/buggy/brimstone23">Brimstone</a> - <a href="/history/org/FRI">Fringe</a></td>
       </tr>
       <tr>
         <th>Tom Wood<br>Spirit of Buggy</th>
@@ -108,7 +108,7 @@
       </tr>
       <tr>
         <th>Chair of the Year</th>
-        <td>Mia Krishnamurthy - <a href="/history/org/SEP">SigEp</a></td>
+        <td><a href="/history/person/miakrishna">Mia Krishnamurthy</a> - <a href="/history/org/SEP">SigEp</a></td>
       </tr>
       <tr>
         <th>Blinn/Brewer<br>King of the Hill</th>
