@@ -676,6 +676,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
     </div>
     <div class="tab-pane fade" id="tab-records" role="tabpanel" aria-labelledby="records-tab">
       <h2>Organization Records</h2>
+      <p><i>Note: This table does not account for DQs, it's entirely unofficial and just for fun.</i></p>
       <div class="table-responsive">
         <table class="table">
           <thead>

@@ -49,6 +49,8 @@ function displayTable($teamList){
 
 <h1>Top <?php echo($TOP_N); ?> Times</h1>
 
+<p><i>Note: This table does not account for DQs, it's entirely unofficial and just for fun.</i></p>
+
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
     <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a></li>
