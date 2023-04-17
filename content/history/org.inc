@@ -74,9 +74,6 @@ while ($o = $otherTrophies->fetch_assoc()) {
 // Note that while design awards imply that there is a buggy being awarded, we do not always
 // have that association -- so there are a number of rows that have the org id in the designawards
 // table, but no buggyid.  We need to get both sets, and then merge them.
-//
-// TODO: this could return the buggy (when we know it) and notes, but we don't actually use these things in the display.
-//       it would certainly be a nice touch to do so (at least to link to the buggy page, for example)
 $designTrophiesQuery = "SELECT year, concat('98Design - ', award) AS award, buggyname, buggyid FROM (
                                SELECT b.orgid, year, award, b.name AS buggyname, b.buggyid
                                  FROM hist_designawards d
