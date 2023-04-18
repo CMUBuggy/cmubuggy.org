@@ -88,7 +88,9 @@ function getEntryExtraData($entryUrlKey, &$ogMap) {
 
   $metaDataQuery = "SELECT e.year, o.shortname AS shortname,
                            case when e.Class = 'M' then 'Men\'s'
-                             when e.Class = 'W' then 'Women\'s'
+                                when e.Class = 'W' then 'Women\'s'
+                                when e.Class = 'N' then 'All Gender'
+                                when e.Class = 'R' then 'Robotic'
                              else 'Unknown' end AS class,
                            Team AS team
                       FROM hist_raceentries e
