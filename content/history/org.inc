@@ -35,6 +35,7 @@ if ($metaData->num_rows == 1) {
 $trophyCount = 0;
 $trophyArr = array();
 $recordArr = array();
+$classesWithRecords = array();  // Map of classes that actually have a record.
 
 // Keys for team data abbreviations ("Mens A", "Womens C", etc).
 // No more than a D team please!
@@ -42,14 +43,8 @@ $recordArr = array();
 // This maps the english class name to the valid entry keys for that class.
 $classkeys = array("Men's" => array("ma", "mb", "mc", "md"),
                    "Women's" => array("wa", "wb", "wc", "wd"),
-                   "All Gender" => array("na", "nb", "nc", "nd"));
-
-// All possible entry type abbreviations for all classes.  We build this off
-// of the above so that they are consistent.
-$allTeamAbbreviations = array();
-foreach ($classkeys as $a) {
-  array_push($allTeamAbbreviations, ...$a);
-}
+                   "All Gender" => array("na", "nb", "nc", "nd"),
+                   "Robotic" => array("ra", "rb", "rc", "rd"));
 
 // (/org trophies, not design) Awards, specified org
 // Applies to all orgs (e.g. including Support)
@@ -119,8 +114,11 @@ $recordQuery = "SELECT A.class, A.team, A.record,
                     ON B.orgid = ? AND B.class=A.class AND B.team=A.team
                        AND A.record IN (B.prelim, B.reroll, B.final, B.finalreroll);";
 $recordData = dbBoundQuery($HISTORY_DATABASE, $recordQuery, "sssss", $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey);
+$hasRecords = $recordData->num_rows > 0;  // true if team has any records at all
 
 while($r = $recordData->fetch_assoc()) {
+  $classesWithRecords[$r["class"]] = "x";
+
   $key = $r["class"].$r["team"];
 
   // If a team/class ties themselves, keep the earlier one for the table.
@@ -133,125 +131,171 @@ while($r = $recordData->fetch_assoc()) {
 }
 
 // And after that convoluted query, we have an absolutely enormous query to get all the historical team times.
-$entryQuery = "SELECT ma.year,
+//
+// As of 2023 (plus, in order to handle robotic buggies) we can't assume that any org must have a Mens team,
+// so we need to do a UNION SELECT by class to pull up each class separately.  Then, it is reassembled
+// into by-year data below.
+$entryQuery = "SELECT ma.year AS year, ma.class AS class,
                # Mens
                       case when ma.finalreroll > 0 then ma.finalreroll
                            when ma.final > 0 then ma.final
                            when ma.reroll > 0 then ma.reroll
                            when ma.prelim > 0 then ma.prelim
-                           else NULL end AS 'ma.timesecs',
-                      case when ma.DQ <> '0' then 'DQ' else nullif(ma.Place, 0) end AS 'ma.place',
-                      ma.entryid AS 'ma.entryid',
+                           else NULL end AS 'a.timesecs',
+                      case when ma.DQ <> '0' then 'DQ' else nullif(ma.Place, 0) end AS 'a.place',
+                      ma.entryid AS 'a.entryid',
                       case when mb.finalreroll > 0 then mb.finalreroll
                            when mb.final > 0 then mb.final
                            when mb.reroll > 0 then mb.reroll
                            when mb.prelim > 0 then mb.prelim
-                           else NULL end AS 'mb.timesecs',
-                      case when mb.DQ <> '0' then 'DQ' else nullif(mb.Place, 0) end AS 'mb.place',
-                      mb.entryid AS 'mb.entryid',
+                           else NULL end AS 'b.timesecs',
+                      case when mb.DQ <> '0' then 'DQ' else nullif(mb.Place, 0) end AS 'b.place',
+                      mb.entryid AS 'b.entryid',
                       case when mc.finalreroll > 0 then mc.finalreroll
                            when mc.final > 0 then mc.final
                            when mc.reroll > 0 then mc.reroll
                            when mc.prelim > 0 then mc.prelim
-                           else NULL end AS 'mc.timesecs',
-                      case when mc.DQ <> '0' then 'DQ' else nullif(mc.Place, 0) end AS 'mc.place',
-                      mc.entryid AS 'mc.entryid',
+                           else NULL end AS 'c.timesecs',
+                      case when mc.DQ <> '0' then 'DQ' else nullif(mc.Place, 0) end AS 'c.place',
+                      mc.entryid AS 'c.entryid',
                       case when md.finalreroll > 0 then md.finalreroll
                            when md.final > 0 then md.final
                            when md.reroll > 0 then md.reroll
                            when md.prelim > 0 then md.prelim
-                           else NULL end AS 'md.timesecs',
-                      case when md.DQ <> '0' then 'DQ' else nullif(md.Place, 0) end AS 'md.place',
-                      md.entryid AS 'md.entryid',
-
-               # Womens
-                      case when wa.finalreroll > 0 then wa.finalreroll
-                           when wa.final > 0 then wa.final
-                           when wa.reroll > 0 then wa.reroll
-                           when wa.prelim > 0 then wa.prelim
-                           else NULL end AS 'wa.timesecs',
-                      case when wa.DQ <> '0' then 'DQ' else nullif(wa.Place, 0) end AS 'wa.place',
-                      wa.entryid AS 'wa.entryid',
-                      case when wb.finalreroll > 0 then wb.finalreroll
-                           when wb.final > 0 then wb.final
-                           when wb.reroll > 0 then wb.reroll
-                           when wb.prelim > 0 then wb.prelim
-                           else NULL end AS 'wb.timesecs',
-                      case when wb.DQ <> '0' then 'DQ' else nullif(wb.Place, 0) end AS 'wb.place',
-                      wb.entryid AS 'wb.entryid',
-                      case when wc.finalreroll > 0 then wc.finalreroll
-                           when wc.final > 0 then wc.final
-                           when wc.reroll > 0 then wc.reroll
-                           when wc.prelim > 0 then wc.prelim
-                           else NULL end AS 'wc.timesecs',
-                      case when wc.DQ <> '0' then 'DQ' else nullif(wc.Place, 0) end AS 'wc.place',
-                      wc.entryid AS 'wc.entryid',
-                      case when wd.finalreroll > 0 then wd.finalreroll
-                           when wd.final > 0 then wd.final
-                           when wd.reroll > 0 then wd.reroll
-                           when wd.prelim > 0 then wd.prelim
-                           else NULL end AS 'wd.timesecs',
-                      case when wd.DQ <> '0' then 'DQ' else nullif(wd.Place, 0) end AS 'wd.place',
-                      wd.entryid AS 'wd.entryid',
-
-               # All Gender
-               case when na.finalreroll > 0 then na.finalreroll
-                           when na.final > 0 then na.final
-                           when na.reroll > 0 then na.reroll
-                           when na.prelim > 0 then na.prelim
-                           else NULL end AS 'na.timesecs',
-                      case when na.DQ <> '0' then 'DQ' else nullif(na.Place, 0) end AS 'na.place',
-                      na.entryid AS 'na.entryid',
-                      case when nb.finalreroll > 0 then nb.finalreroll
-                           when nb.final > 0 then nb.final
-                           when nb.reroll > 0 then nb.reroll
-                           when nb.prelim > 0 then nb.prelim
-                           else NULL end AS 'nb.timesecs',
-                      case when nb.DQ <> '0' then 'DQ' else nullif(nb.Place, 0) end AS 'nb.place',
-                      nb.entryid AS 'nb.entryid',
-                      case when nc.finalreroll > 0 then nc.finalreroll
-                           when nc.final > 0 then nc.final
-                           when nc.reroll > 0 then nc.reroll
-                           when nc.prelim > 0 then nc.prelim
-                           else NULL end AS 'nc.timesecs',
-                      case when nc.DQ <> '0' then 'DQ' else nullif(nc.Place, 0) end AS 'nc.place',
-                      nc.entryid AS 'nc.entryid',
-                      case when nd.finalreroll > 0 then nd.finalreroll
-                           when nd.final > 0 then nd.final
-                           when nd.reroll > 0 then nd.reroll
-                           when nd.prelim > 0 then nd.prelim
-                           else NULL end AS 'nd.timesecs',
-                      case when nd.DQ <> '0' then 'DQ' else nullif(nd.Place, 0) end AS 'nd.place',
-                      nd.entryid AS 'nd.entryid'
+                           else NULL end AS 'd.timesecs',
+                      case when md.DQ <> '0' then 'DQ' else nullif(md.Place, 0) end AS 'd.place',
+                      md.entryid AS 'd.entryid'
                   FROM hist_raceentries ma
                   LEFT JOIN hist_raceentries mb ON ma.year=mb.year AND mb.class = 'M' AND ma.orgid = mb.orgid AND mb.team = 'B'
                   LEFT JOIN hist_raceentries mc ON ma.year=mc.year AND mc.class = 'M' AND ma.orgid = mc.orgid AND mc.team = 'C'
                   LEFT JOIN hist_raceentries md ON ma.year=md.year AND md.class = 'M' AND ma.orgid = md.orgid AND md.team = 'D'
-                  LEFT JOIN hist_raceentries wa ON ma.year=wa.year AND wa.class = 'W' AND ma.orgid = wa.orgid AND wa.team = 'A'
-                  LEFT JOIN hist_raceentries wb ON ma.year=wb.year AND wb.class = 'W' AND ma.orgid = wb.orgid AND wb.team = 'B'
-                  LEFT JOIN hist_raceentries wc ON ma.year=wc.year AND wc.class = 'W' AND ma.orgid = wc.orgid AND wc.team = 'C'
-                  LEFT JOIN hist_raceentries wd ON ma.year=wd.year AND wd.class = 'W' AND ma.orgid = wd.orgid AND wd.team = 'D'
-                  LEFT JOIN hist_raceentries na ON ma.year=na.year AND na.class = 'N' AND ma.orgid = na.orgid AND na.team = 'A'
-                  LEFT JOIN hist_raceentries nb ON ma.year=nb.year AND nb.class = 'N' AND ma.orgid = nb.orgid AND nb.team = 'B'
-                  LEFT JOIN hist_raceentries nc ON ma.year=nc.year AND nc.class = 'N' AND ma.orgid = nc.orgid AND nc.team = 'C'
-                  LEFT JOIN hist_raceentries nd ON ma.year=nd.year AND nd.class = 'N' AND ma.orgid = nd.orgid AND nd.team = 'D'
                   WHERE ma.team = 'A' AND ma.class = 'M' AND ma.orgid = ?
-                  ORDER BY year DESC;";
 
-$entryResultSet = dbBoundQuery($HISTORY_DATABASE, $entryQuery, "s", $orgUrlKey);
-$entryData = array();  // Just a flat list.
+               # Womens
+               UNION SELECT wa.year AS year, wa.class AS class,
+                      case when wa.finalreroll > 0 then wa.finalreroll
+                           when wa.final > 0 then wa.final
+                           when wa.reroll > 0 then wa.reroll
+                           when wa.prelim > 0 then wa.prelim
+                           else NULL end AS 'a.timesecs',
+                      case when wa.DQ <> '0' then 'DQ' else nullif(wa.Place, 0) end AS 'a.place',
+                      wa.entryid AS 'a.entryid',
+                      case when wb.finalreroll > 0 then wb.finalreroll
+                           when wb.final > 0 then wb.final
+                           when wb.reroll > 0 then wb.reroll
+                           when wb.prelim > 0 then wb.prelim
+                           else NULL end AS 'b.timesecs',
+                      case when wb.DQ <> '0' then 'DQ' else nullif(wb.Place, 0) end AS 'b.place',
+                      wb.entryid AS 'b.entryid',
+                      case when wc.finalreroll > 0 then wc.finalreroll
+                           when wc.final > 0 then wc.final
+                           when wc.reroll > 0 then wc.reroll
+                           when wc.prelim > 0 then wc.prelim
+                           else NULL end AS 'c.timesecs',
+                      case when wc.DQ <> '0' then 'DQ' else nullif(wc.Place, 0) end AS 'c.place',
+                      wc.entryid AS 'c.entryid',
+                      case when wd.finalreroll > 0 then wd.finalreroll
+                           when wd.final > 0 then wd.final
+                           when wd.reroll > 0 then wd.reroll
+                           when wd.prelim > 0 then wd.prelim
+                           else NULL end AS 'd.timesecs',
+                      case when wd.DQ <> '0' then 'DQ' else nullif(wd.Place, 0) end AS 'd.place',
+                      wd.entryid AS 'd.entryid'
+                  FROM hist_raceentries wa
+                  LEFT JOIN hist_raceentries wb ON wa.year=wb.year AND wb.class = 'W' AND wa.orgid = wb.orgid AND wb.team = 'B'
+                  LEFT JOIN hist_raceentries wc ON wa.year=wc.year AND wc.class = 'W' AND wa.orgid = wc.orgid AND wc.team = 'C'
+                  LEFT JOIN hist_raceentries wd ON wa.year=wd.year AND wd.class = 'W' AND wa.orgid = wd.orgid AND wd.team = 'D'
+                  WHERE wa.team = 'A' AND wa.class = 'W' AND wa.orgid = ?
+
+               # All Gender
+               UNION SELECT na.year AS year, na.class AS class,
+               case when na.finalreroll > 0 then na.finalreroll
+                           when na.final > 0 then na.final
+                           when na.reroll > 0 then na.reroll
+                           when na.prelim > 0 then na.prelim
+                           else NULL end AS 'a.timesecs',
+                      case when na.DQ <> '0' then 'DQ' else nullif(na.Place, 0) end AS 'a.place',
+                      na.entryid AS 'a.entryid',
+                      case when nb.finalreroll > 0 then nb.finalreroll
+                           when nb.final > 0 then nb.final
+                           when nb.reroll > 0 then nb.reroll
+                           when nb.prelim > 0 then nb.prelim
+                           else NULL end AS 'b.timesecs',
+                      case when nb.DQ <> '0' then 'DQ' else nullif(nb.Place, 0) end AS 'b.place',
+                      nb.entryid AS 'b.entryid',
+                      case when nc.finalreroll > 0 then nc.finalreroll
+                           when nc.final > 0 then nc.final
+                           when nc.reroll > 0 then nc.reroll
+                           when nc.prelim > 0 then nc.prelim
+                           else NULL end AS 'c.timesecs',
+                      case when nc.DQ <> '0' then 'DQ' else nullif(nc.Place, 0) end AS 'c.place',
+                      nc.entryid AS 'c.entryid',
+                      case when nd.finalreroll > 0 then nd.finalreroll
+                           when nd.final > 0 then nd.final
+                           when nd.reroll > 0 then nd.reroll
+                           when nd.prelim > 0 then nd.prelim
+                           else NULL end AS 'd.timesecs',
+                      case when nd.DQ <> '0' then 'DQ' else nullif(nd.Place, 0) end AS 'd.place',
+                      nd.entryid AS 'd.entryid'
+                  FROM hist_raceentries na
+                  LEFT JOIN hist_raceentries nb ON na.year=nb.year AND nb.class = 'N' AND na.orgid = nb.orgid AND nb.team = 'B'
+                  LEFT JOIN hist_raceentries nc ON na.year=nc.year AND nc.class = 'N' AND na.orgid = nc.orgid AND nc.team = 'C'
+                  LEFT JOIN hist_raceentries nd ON na.year=nd.year AND nd.class = 'N' AND na.orgid = nd.orgid AND nd.team = 'D'
+                  WHERE na.team = 'A' AND na.class = 'N' AND na.orgid = ?
+
+               # Robotic
+               UNION SELECT ra.year AS year, ra.class AS class,
+               case when ra.finalreroll > 0 then ra.finalreroll
+                           when ra.final > 0 then ra.final
+                           when ra.reroll > 0 then ra.reroll
+                           when ra.prelim > 0 then ra.prelim
+                           else NULL end AS 'a.timesecs',
+                      case when ra.DQ <> '0' then 'DQ' else nullif(ra.Place, 0) end AS 'a.place',
+                      ra.entryid AS 'a.entryid',
+                      case when rb.finalreroll > 0 then rb.finalreroll
+                           when rb.final > 0 then rb.final
+                           when rb.reroll > 0 then rb.reroll
+                           when rb.prelim > 0 then rb.prelim
+                           else NULL end AS 'b.timesecs',
+                      case when rb.DQ <> '0' then 'DQ' else nullif(rb.Place, 0) end AS 'b.place',
+                      rb.entryid AS 'b.entryid',
+                      case when rc.finalreroll > 0 then rc.finalreroll
+                           when rc.final > 0 then rc.final
+                           when rc.reroll > 0 then rc.reroll
+                           when rc.prelim > 0 then rc.prelim
+                           else NULL end AS 'c.timesecs',
+                      case when rc.DQ <> '0' then 'DQ' else nullif(rc.Place, 0) end AS 'c.place',
+                      rc.entryid AS 'c.entryid',
+                      case when rd.finalreroll > 0 then rd.finalreroll
+                           when rd.final > 0 then rd.final
+                           when rd.reroll > 0 then rd.reroll
+                           when rd.prelim > 0 then rd.prelim
+                           else NULL end AS 'd.timesecs',
+                      case when rd.DQ <> '0' then 'DQ' else nullif(rd.Place, 0) end AS 'd.place',
+                      rd.entryid AS 'd.entryid'
+                  FROM hist_raceentries ra
+                  LEFT JOIN hist_raceentries rb ON ra.year=rb.year AND rb.class = 'R' AND ra.orgid = rb.orgid AND rb.team = 'B'
+                  LEFT JOIN hist_raceentries rc ON ra.year=rc.year AND rc.class = 'R' AND ra.orgid = rc.orgid AND rc.team = 'C'
+                  LEFT JOIN hist_raceentries rd ON ra.year=rd.year AND rd.class = 'R' AND ra.orgid = rd.orgid AND rd.team = 'D'
+                  WHERE ra.team = 'A' AND ra.class = 'R' AND ra.orgid = ?
+                  ORDER BY year,class DESC;";
+
+$entryResultSet = dbBoundQuery($HISTORY_DATABASE, $entryQuery, "ssss", $orgUrlKey, $orgUrlKey, $orgUrlKey, $orgUrlKey);
+$entryMap = array();  // Map we use to combine a year into one row with classteam indications.
 $entryTimes = array();   // Associative array of time-seconds by [year][ma/mb/wa/wb/etc]
 
 while ($e = $entryResultSet->fetch_assoc()) {
-  foreach ($allTeamAbbreviations as $et) {
-    if (array_key_exists($et.".timesecs", $e)) {
-      $e[$et.".time"] = displayTime($e[$et.".timesecs"]);
-      $entryTimes[$e["year"]][$et] = $e[$et.".timesecs"];
+  $year = $e["year"];
+  foreach (["a","b","c","d"] as $team) {
+    $classteam = strtolower($e["class"]) . $team;
+    if (array_key_exists($team.".timesecs", $e)) {
+      $e[$team.".time"] = displayTime($e[$team.".timesecs"]);
+      $entryTimes[$e["year"]][$classteam] = $e[$team.".timesecs"];
     }
 
     // Check if we need to add trophies
-    if (!empty($e[$et.".place"])) {
-      $place = $e[$et.".place"];
+    if (!empty($e[$team.".place"])) {
+      $place = $e[$team.".place"];
       if ($place != "DQ" && $place > 0 && $place < 7) {
         // The keying here ensures we sort race medals above other medals
         // and better places are sorted above lower places, regardless of class.
@@ -259,13 +303,38 @@ while ($e = $entryResultSet->fetch_assoc()) {
         // TODO: We standardized on the sort order of Mens, Womens, All Gender in the
         // initial implementation of 3 class support, but 'N' sorts between 'M' and 'W',
         // so we change the prefix for All Gender to be 1 instead of 0.
-        $raceAwardSortPrefix = ($et[0] != 'n') ? "0" : "1";
-        addtrophy($e["year"], $raceAwardSortPrefix.$e[$et.".place"].$et[0]);
+        //
+        // Likewise, we put robots below all gender (so add a "2" prefix), but as of 2023
+        // there aren't robot awards anyway.
+        $raceAwardSortPrefix = "0";
+        if ($classteam[0] == 'n') {
+          $raceAwardSortPrefix = "1";
+        } else if ($classteam[0] == 'r') {
+          $raceAwardSortPrefix = "2";
+        }
+        addtrophy($year, $raceAwardSortPrefix.$e[$team.".place"].$classteam[0]);
       }
     }
+
+    // Copy data over to the main entry map for the year.
+    if (!isset($entryMap[$year])) {
+      $entryMap[$year] = array();
+      $entryMap[$year]["year"] = $year;
+    }
+    // no need to copy timesecs, since it isn't displayed.
+    $entryMap[$year][$classteam.".time"] = $e[$team.".time"];
+    $entryMap[$year][$classteam.".place"] = $e[$team.".place"];
+    $entryMap[$year][$classteam.".entryid"] = $e[$team.".entryid"];
   }
-  array_push($entryData, $e);
 }
+
+$entryData = array();  // Just a flat list of years in descending order with all the classes and teams.
+$years = array_keys($entryMap);
+krsort($years);
+foreach($years as $year) {
+  array_push($entryData,$entryMap[$year]);
+}
+unset($entryMap); // not needed any more
 
 // Add a trophy to trophyarray.
 // awardType is the text that describes the actual award
@@ -323,6 +392,10 @@ function displayraceyear($year, $entry, $yearParity=false) {
       case "All Gender":
         $cssClass = "allgenderRow";
         $classAnchor = "#allgender";
+        break;
+      case "Robotic":
+        $cssClass = "roboticRow";
+        $classAnchor = "#robotic";
         break;
       default:
         die("oops, unknown class in ".$year.": ".$class);
@@ -603,6 +676,8 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   $trendMens = array("ma", "mb", "mc");
   $trendWomens = array("wa", "wb", "wc");
   $trendAllGender = array("na", "nb", "nc");
+  $trendRobotic = array("ra", "rb", "rc");
+
 
   // Is there any data at all that is worth trying to trend for this org? (e.g. do we have a trends tab?)
   //
@@ -610,7 +685,8 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   $trendableMens = isTrendableOrg($trendMens, $trendStartYear, $thisYear);
   $trendableWomens = isTrendableOrg($trendWomens, $trendStartYear, $thisYear);
   $trendableAllGender = isTrendableOrg($trendAllGender, $trendStartYear, $thisYear);
-  $trendableOrg = $trendableMens || $trendableWomens || $trendableAllGender;
+  $trendableRobotic = isTrendableOrg($trendRobotic, $trendStartYear, $thisYear);
+  $trendableOrg = $trendableMens || $trendableWomens || $trendableAllGender || $trendableRobotic;
 ?>
 
 <?php if ($org["isracingorg"] == 1) { ?>
@@ -618,9 +694,11 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
     <li class="nav-item">
       <a id="raceresults-tab" href="#tab-raceresults" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-raceresults" aria-selected="true">Race Results</a>
     </li>
+    <?php if ($hasRecords) { ?>
     <li class="nav-item">
       <a id="records-tab" href="#tab-records" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-records" aria-selected="false">Records</a>
     </li>
+    <?php } ?>
     <li class="nav-item">
       <a id="buggies-tab" href="#tab-buggies" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-buggies" aria-selected="false">Buggies <span class="badge badge-primary"><?php echo($buggyList->num_rows); ?></span></a>
     </li>
@@ -647,6 +725,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
         <option value="mensRow">Only Show Men's</option>
         <option value="womensRow">Only Show Women's</option>
         <option value="allgenderRow">Only Show All Gender</option>
+        <option value="roboticRow">Only Show Robotic</option>
       </select>
       </p>
 
@@ -674,6 +753,10 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
         </table>
       </div>
     </div>
+    <?php
+    // We only display the records tab if the org actually _has_ records.  Even then
+    // we only display the classes for which a record exists.
+    if ($hasRecords) { ?>
     <div class="tab-pane fade" id="tab-records" role="tabpanel" aria-labelledby="records-tab">
       <h2>Organization Records</h2>
       <p><i>Note: This table does not account for DQs.</i></p>
@@ -689,6 +772,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
             </tr>
           </thead>
           <tbody>
+            <?php if (isset($classesWithRecords["M"])) { ?>
             <tr>
               <th>Men's</th>
               <td><?php displayrecord("MA"); ?></td>
@@ -696,6 +780,8 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
               <td><?php displayrecord("MC"); ?></td>
               <td><?php displayrecord("MD"); ?></td>
             </tr>
+            <?php }
+                  if (isset($classesWithRecords["W"])) { ?>
             <tr>
               <th>Women's</th>
               <td><?php displayrecord("WA"); ?></td>
@@ -703,6 +789,8 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
               <td><?php displayrecord("WC"); ?></td>
               <td><?php displayrecord("WD"); ?></td>
             </tr>
+            <?php }
+                  if (isset($classesWithRecords["N"])) { ?>
             <tr>
               <th>All Gender</th>
               <td><?php displayrecord("NA"); ?></td>
@@ -710,10 +798,21 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
               <td><?php displayrecord("NC"); ?></td>
               <td><?php displayrecord("ND"); ?></td>
             </tr>
+            <?php }
+                  if (isset($classesWithRecords["R"])) { ?>
+            <tr>
+              <th>Robotic</th>
+              <td><?php displayrecord("RA"); ?></td>
+              <td><?php displayrecord("RB"); ?></td>
+              <td><?php displayrecord("RC"); ?></td>
+              <td><?php displayrecord("RD"); ?></td>
+            </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>
     </div>
+    <?php } ?>
     <div class="tab-pane fade" id="tab-buggies" role="tabpanel" aria-labelledby="buggies-tab">
       <h2>Buggies</h2>
       <div class="table-responsive">
@@ -789,6 +888,9 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
             }
             if ($trendableAllGender) {
               graphtrends($trendAllGender, $trendStartYear, $thisYear);
+            }
+            if ($trendableRobotic) {
+              graphtrends($trendRobotic, $trendStartYear, $thisYear);
             }
         ?>
       </div>

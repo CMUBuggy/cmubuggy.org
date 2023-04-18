@@ -10,6 +10,7 @@ $query = "SELECT
            case when T.class = 'M' then 'mens'
                 when T.class = 'W' then 'womens'
                 when T.class = 'N' then 'allgender'
+                when T.class = 'R' then 'robotic'
                 else 'unknown' end AS classanchor,
 	         concat(shortname, case when T.team = 'A' then '' else concat(' ', T.team) end) AS teamname,
            b.name AS buggy, b.buggyid AS buggyid,
@@ -28,6 +29,7 @@ $query = "SELECT
 $top50men = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","M","M","M","M");
 $top50women = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","W","W","W","W");
 $top50allgender = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","N","N","N","N");
+$top50robotic = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","R","R","R","R");
 
 function displayTable($teamList){
   echo("<table class=\"table\">");
@@ -56,10 +58,10 @@ function displayTable($teamList){
     <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a></li>
   <li class="nav-item">
     <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a></li>
-<?php if($top50allgender->num_rows > 0) { ?>
   <li class="nav-item">
     <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a></li>
-<?php } ?>
+  <li class="nav-item">
+    <a id="robotic-tab" href="#tab-robotic" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-robotic" aria-selected="false">Robotic</a></li>
   </ul>
 
 
@@ -70,11 +72,12 @@ function displayTable($teamList){
   <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
     <?php displayTable($top50women); ?>
   </div>
-  <?php if($top50allgender->num_rows > 0) { ?>
-    <div class="tab-pane fade" id="tab-allgender" role="tabpanel" aria-labelledby="allgender-tab">
+  <div class="tab-pane fade" id="tab-allgender" role="tabpanel" aria-labelledby="allgender-tab">
     <?php displayTable($top50allgender); ?>
   </div>
-  <?php } ?>
+  <div class="tab-pane fade" id="tab-robotic" role="tabpanel" aria-labelledby="robotic-tab">
+    <?php displayTable($top50robotic); ?>
+  </div>
 </div>
 
 
