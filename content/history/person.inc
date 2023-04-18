@@ -29,10 +29,12 @@ $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
                      case when e.class = 'M' then 'Men\'s'
                           when e.class = 'W' then 'Women\'s'
                           when e.class = 'N' then 'All Gender'
+                          when e.class = 'R' then 'Robotic'
                           else 'Unknown' end AS class,
                      case when e.class = 'M' then 'mens'
                           when e.class = 'W' then 'womens'
                           when e.class = 'N' then 'allgender'
+                          when e.class = 'R' then 'robotic'
                           else 'Unknown' end AS classanchor,
                      e.team, position AS role,
                      case when heattype = 'Prelim' then e.prelim
@@ -45,7 +47,7 @@ $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
                 LEFT JOIN hist_raceentries e ON epm.entryid=e.entryid
                 LEFT JOIN hist_orgs o ON e.orgid=o.orgid
                 WHERE personid=?
-                ORDER BY e.year DESC,heattype DESC,o.shortname,e.class,e.team;";
+                ORDER BY e.year DESC,heattype DESC,o.shortname,e.class,e.team,position;";
 $teamData = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "s", $urlkey);
 
 $awardQuery = "SELECT a.year AS year,

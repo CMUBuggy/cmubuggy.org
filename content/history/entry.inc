@@ -14,10 +14,12 @@ $headerQuery = "SELECT e.year, o.orgid, o.shortname AS org,
                        case when e.Class = 'M' then 'Men\'s'
                             when e.Class = 'W' then 'Women\'s'
                             when e.Class = 'N' then 'All Gender'
+                            when e.Class = 'R' then 'Robotic'
                             else 'Unknown' end AS class,
                        case when e.Class = 'M' then 'mens'
                             when e.Class = 'W' then 'womens'
                             when e.Class = 'N' then 'allgender'
+                            when e.Class = 'N' then 'Robotic'
                             else 'Unknown' end AS classanchor,
                        Team AS team,
                        Prelim, Reroll AS 'Prelim Reroll', Final, FinalReroll AS 'Final Reroll',
@@ -84,13 +86,23 @@ foreach ($heatTypeVideoPrefix as $type => $vp) {
   }
 }
 
+$year = $header["year"];
+$class = $header["class"];
+
 // create a template array of blank names for the roles we want to display, in order.
 // Since PHP copies arrays instead of just the reference, we can use this as a common
 // baseline for each heat.
 $teamArrInit = array();
 foreach ($displayRoles as $role) {
-  $teamArrInit[$role] = "";
+  $teamArrInit[$role] = "<i>Unknown</i>";
 }
+
+// Robotic buggies don't (generally), have drivers, so "unknown" isn't accurate.  However,
+// this can be overridden later by the presense of a driver in the entrypeoplemap (say, for an R/C pilot).
+if ($class == 'Robotic') {
+  $teamArrInit['Driver']  = '<i>Robotic Buggy</i>';
+}
+
 
 // This will hold all of the teams.
 // First Level: Prelim/Final/Etc
@@ -100,7 +112,7 @@ $teamArr = array();
 
 // We use the presense of a $teamArr entry for a given heat type to indicate we have _some_ data
 // for that heat.  So, we treat our 3 sources of data each slightly separately, and only
-// create a team array (even a blank one), if any have data.
+// create a team array (even an unknown one), if any have data.
 //
 // Our 3 data sources: times, the entrypeople map, and videos.
 //
@@ -153,12 +165,11 @@ foreach($displayHeatTypes as $ht) {
 
 // Page rendering starts here.
 
-$year = $header["year"];
-$class = $header["class"];
+
 
 echo("<h1>");
 echo("<a href=\"/history/raceday/".$year."#".$header["classanchor"]."\">".$year."</a> ");
-echo("<a href=\"/history/org/".$header["orgid"]."\">".$header["org"]."</a> ".$header["class"]." ".$header["team"]);
+echo("<a href=\"/history/org/".$header["orgid"]."\">".$header["org"]."</a> ".$class." ".$header["team"]);
 echo("</h1>");
 
 // Add other entry-level metadata here as we have it

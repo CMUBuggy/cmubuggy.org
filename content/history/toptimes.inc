@@ -10,15 +10,17 @@ $query = "SELECT
            case when T.class = 'M' then 'mens'
                 when T.class = 'W' then 'womens'
                 when T.class = 'N' then 'allgender'
+                when T.class = 'R' then 'robotic'
                 else 'unknown' end AS classanchor,
-	         concat(shortname, case when T.team = 'A' then '' else concat(' ', T.team) end) AS teamname,
+	         CONCAT(shortname, ' ', T.team) AS teamname,
+           T.note as note,
            b.name AS buggy, b.buggyid AS buggyid,
 	         T.time
     FROM (
-		      SELECT year, entryid, class, orgid, team, buggyid, nullif(prelim,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, nullif(reroll,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, nullif(final,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, nullif(finalreroll,0) as time from hist_raceentries where class = ?) as T
+		      SELECT year, entryid, class, orgid, team, buggyid, note, nullif(prelim,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(reroll,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(final,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(finalreroll,0) as time from hist_raceentries where class = ?) as T
     LEFT JOIN hist_orgs o on T.orgid = o.orgid
     LEFT JOIN hist_buggies b on T.buggyid = b.buggyid
     WHERE T.time IS NOT NULL
@@ -28,8 +30,9 @@ $query = "SELECT
 $top50men = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","M","M","M","M");
 $top50women = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","W","W","W","W");
 $top50allgender = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","N","N","N","N");
+$top50robotic = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","R","R","R","R");
 
-function displayTable($teamList){
+function displayTable($teamList, $displayNotes=false){
   echo("<table class=\"table\">");
   $count = 1;
   while ($team = $teamList->fetch_assoc()) {
@@ -39,7 +42,11 @@ function displayTable($teamList){
     echo("<td><a href=\"/history/raceday/".$year."#".$team["classanchor"]."\">".$year."</a></td>");
     echo("<td><a href=\"/history/team/".$team["entryid"]."\">".$team["teamname"]."</a></td>");
     echo("<td><a href=\"/history/buggy/".$team["buggyid"]."\">".$team["buggy"]."</a></td>");
-    echo("<td>".displayTime($team["time"])."</td></tr>");
+    echo("<td>".displayTime($team["time"])."</td>");
+    if ($displayNotes) {
+      echo("<td>".$team["note"]."</td>");
+    }
+    echo("</tr>");
 
     $count++;
   }
@@ -56,10 +63,10 @@ function displayTable($teamList){
     <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a></li>
   <li class="nav-item">
     <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a></li>
-<?php if($top50allgender->num_rows > 0) { ?>
   <li class="nav-item">
     <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a></li>
-<?php } ?>
+  <li class="nav-item">
+    <a id="robotic-tab" href="#tab-robotic" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-robotic" aria-selected="false">Robotic</a></li>
   </ul>
 
 
@@ -70,11 +77,16 @@ function displayTable($teamList){
   <div class="tab-pane fade" id="tab-womens" role="tabpanel" aria-labelledby="womens-tab">
     <?php displayTable($top50women); ?>
   </div>
-  <?php if($top50allgender->num_rows > 0) { ?>
-    <div class="tab-pane fade" id="tab-allgender" role="tabpanel" aria-labelledby="allgender-tab">
+  <div class="tab-pane fade" id="tab-allgender" role="tabpanel" aria-labelledby="allgender-tab">
     <?php displayTable($top50allgender); ?>
   </div>
-  <?php } ?>
+  <div class="tab-pane fade" id="tab-robotic" role="tabpanel" aria-labelledby="robotic-tab">
+    <?php
+          // Robotic class gets their notes displayed, since RC vs Autonomous is a
+          // critical detail about the roll and is currently only in notes.
+          displayTable($top50robotic, true);
+    ?>
+  </div>
 </div>
 
 

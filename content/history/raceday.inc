@@ -28,6 +28,7 @@
   $mensResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'M');
   $womensResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'W');
   $allgenderResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'N');
+  $roboticResults = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, 'R');
 
   // Getting heats is a mess, rather than issue a ton of queries, we fetch all the relevant heats
   // and then split them by prelim/final/reroll/etc locally.
@@ -247,6 +248,11 @@
       <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a>
     </li>
   <?php } ?>
+  <?php if ($roboticResults->num_rows > 0) { ?>
+    <li class="nav-item">
+      <a id="robotic-tab" href="#tab-robotic" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-robotic" aria-selected="false">Robotic</a>
+    </li>
+  <?php } ?>
   <?php if (count($pheatsArr) > 0) { ?>
     <li class="nav-item">
       <a id="prelimheats-tab" href="#tab-prelimheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-prelimheats" aria-selected="false">Prelim Heats</a>
@@ -273,6 +279,11 @@
   <?php if ($allgenderResults->num_rows > 0) { ?>
     <div class="tab-pane fade" id="tab-allgender" role="tabpanel" aria-labelledby="allgender-tab">
       <?php displayResults($allgenderResults); ?>
+    </div>
+  <?php } ?>
+  <?php if ($roboticResults->num_rows > 0) { ?>
+    <div class="tab-pane fade" id="tab-robotic" role="tabpanel" aria-labelledby="robotic-tab">
+      <?php displayResults($roboticResults); ?>
     </div>
   <?php } ?>
   <?php if (count($pheatsArr) > 0) { ?>

@@ -39,10 +39,12 @@ $raceQuery = "SELECT e.year,
                      CONCAT(case when e.class = 'W' then 'Women\'s'
                                  when e.class = 'M' then 'Men\'s'
                                  when e.class = 'N' then 'All Gender'
+                                 when e.class = 'R' then 'Robotic'
                                  else 'Unknown' end, ' ', team) AS Team,
                      case when e.class = 'W' then '#womens'
                           when e.class = 'M' then '#mens'
                           when e.class = 'N' then '#allgender'
+                          when e.class = 'R' then '#robotic'
                           else '' end AS classanchor,
                      entryid AS TeamID,
                      nullif(place,0) AS Place,
