@@ -1,10 +1,17 @@
 <?php
 
 $FIRST_YEAR = 1965;
-$LAST_YEAR = 2019;
+$LAST_YEAR = 2022;
+
+// Years in the above range which lack a buggy book (e.g. covid)
+$SKIP_YEARS = [2020, 2021];
 
 $yearsByDecade = array();
 for($year = $LAST_YEAR; $year >= $FIRST_YEAR; $year--) {
+  if (in_array($year, $SKIP_YEARS)) {
+    continue;
+  }
+
   $decade = strval((int)(floor($year/10) * 10));
 
   if(array_key_exists($decade, $yearsByDecade)) {
