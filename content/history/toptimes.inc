@@ -12,14 +12,15 @@ $query = "SELECT
                 when T.class = 'N' then 'allgender'
                 when T.class = 'R' then 'robotic'
                 else 'unknown' end AS classanchor,
-	         concat(shortname, case when T.team = 'A' then '' else concat(' ', T.team) end) AS teamname,
+	         CONCAT(shortname, ' ', T.team) AS teamname,
+           T.note as note,
            b.name AS buggy, b.buggyid AS buggyid,
 	         T.time
     FROM (
-		      SELECT year, entryid, class, orgid, team, buggyid, nullif(prelim,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, nullif(reroll,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, nullif(final,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, nullif(finalreroll,0) as time from hist_raceentries where class = ?) as T
+		      SELECT year, entryid, class, orgid, team, buggyid, note, nullif(prelim,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(reroll,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(final,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(finalreroll,0) as time from hist_raceentries where class = ?) as T
     LEFT JOIN hist_orgs o on T.orgid = o.orgid
     LEFT JOIN hist_buggies b on T.buggyid = b.buggyid
     WHERE T.time IS NOT NULL
@@ -31,7 +32,7 @@ $top50women = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","W","W","W","W");
 $top50allgender = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","N","N","N","N");
 $top50robotic = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","R","R","R","R");
 
-function displayTable($teamList){
+function displayTable($teamList, $displayNotes=false){
   echo("<table class=\"table\">");
   $count = 1;
   while ($team = $teamList->fetch_assoc()) {
@@ -41,7 +42,11 @@ function displayTable($teamList){
     echo("<td><a href=\"/history/raceday/".$year."#".$team["classanchor"]."\">".$year."</a></td>");
     echo("<td><a href=\"/history/team/".$team["entryid"]."\">".$team["teamname"]."</a></td>");
     echo("<td><a href=\"/history/buggy/".$team["buggyid"]."\">".$team["buggy"]."</a></td>");
-    echo("<td>".displayTime($team["time"])."</td></tr>");
+    echo("<td>".displayTime($team["time"])."</td>");
+    if ($displayNotes) {
+      echo("<td>".$team["note"]."</td>");
+    }
+    echo("</tr>");
 
     $count++;
   }
@@ -76,7 +81,11 @@ function displayTable($teamList){
     <?php displayTable($top50allgender); ?>
   </div>
   <div class="tab-pane fade" id="tab-robotic" role="tabpanel" aria-labelledby="robotic-tab">
-    <?php displayTable($top50robotic); ?>
+    <?php
+          // Robotic class gets their notes displayed, since RC vs Autonomous is a
+          // critical detail about the roll and is currently only in notes.
+          displayTable($top50robotic, true);
+    ?>
   </div>
 </div>
 
