@@ -114,6 +114,18 @@ $awardQuery = "SELECT year,
 
 $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "ss", $buggyUrlKey, $buggyUrlKey);
 
+$filteredAwards = array();
+
+while ($a = $awardData->fetch_assoc()) {
+  // if place and class are null, this is a design award and
+  // checkTrophyYear should be included regardless.  Otherwise, we need
+  // to confirm the place award existed in that year.
+  if ((!isset($a["place"]) && !isset($a["class"]))
+      || checkTrophyYear($a["class"], $a["year"], $a["place"])) {
+    array_push($filteredAwards, $a);
+  }
+}
+
 // Compute a URL for any image we might have.
 $image_url = "";
 $smart_gallery_url = "";
@@ -199,7 +211,7 @@ if(empty($image_url)) {
     <a id="races-tab" href="#tab-races" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-races" aria-selected="true">Races <span class="badge badge-primary"><?php echo($raceData->num_rows); ?></span></a>
   </li>
   <li class="nav-item">
-    <a id="awards-tab" href="#tab-awards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-awards" aria-selected="false">Awards <span class="badge badge-primary"><?php echo($awardData->num_rows); ?></span></a>
+    <a id="awards-tab" href="#tab-awards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-awards" aria-selected="false">Awards <span class="badge badge-primary"><?php echo(count($filteredAwards)); ?></span></a>
   </li>
 </ul>
 <div class="tab-content">
@@ -294,15 +306,7 @@ if(empty($image_url)) {
         </thead>
         <tbody>
           <?php
-            while($a = $awardData->fetch_assoc()) {
-              // if place and class are null, this is a design award and
-              // checkTrophyYear should be skipped.
-              if (isset($a["place"]) && isset($a["class"])) {
-                if (!checkTrophyYear($a["year"], $a["class"], $a["place"])) {
-                  // this race trophy didn't actually exist, skip it!
-                  continue;
-                }
-              }
+            foreach ($filteredAwards as $a) {
               echo("<tr><td>".$a["year"]."</td>");
               echo("<td>".$a["award"]."</td>");
               echo("<td>".$a["note"]."</td></tr>");
