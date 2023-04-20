@@ -287,7 +287,8 @@ $entryTimes = array();   // Associative array of time-seconds by [year][ma/mb/wa
 while ($e = $entryResultSet->fetch_assoc()) {
   $year = $e["year"];
   foreach (["a","b","c","d"] as $team) {
-    $classteam = strtolower($e["class"]) . $team;
+    $class = strtolower($e["class"]);
+    $classteam = $class . $team;
     if (array_key_exists($team.".timesecs", $e)) {
       $e[$team.".time"] = displayTime($e[$team.".timesecs"]);
       $entryTimes[$e["year"]][$classteam] = $e[$team.".timesecs"];
@@ -296,7 +297,9 @@ while ($e = $entryResultSet->fetch_assoc()) {
     // Check if we need to add trophies
     if (!empty($e[$team.".place"])) {
       $place = $e[$team.".place"];
-      if ($place != "DQ" && $place > 0 && $place < 7) {
+      // checkTrophyYear will ensure we only display trophies that existed
+      // in that year.
+      if ($place != "DQ" && checkTrophyYear($class, $year, $place)) {
         // The keying here ensures we sort race medals above other medals
         // and better places are sorted above lower places, regardless of class.
         //

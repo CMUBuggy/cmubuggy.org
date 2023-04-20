@@ -84,11 +84,15 @@ $raceQuery = "SELECT e.year,
 $raceData = dbBoundQuery($HISTORY_DATABASE, $raceQuery, "s", $buggyUrlKey);
 
 // Combine all buggy awards (design)
+//
+// Note: we need to postfilter using checkTrophyYear() which is why we separately
+// pull class and place (and need to null them out on the design side of the union)
 $awardQuery = "SELECT year,
                       case when award = 1 then '1st Place Design'
                            when award = 2 then '2nd Place Design'
                            when award = 3 then '3rd Place Design'
                            else concat('Design ', award) end as award,
+                      NULL AS place, NULL as class,
                       note
                       FROM hist_designawards
                       WHERE buggyid = ?
@@ -101,7 +105,7 @@ $awardQuery = "SELECT year,
                                   when class = 'W' then ' Women\'s'
                                   when class = 'N' then ' All Gender'
                                   else ' Unknown' end)
-                      AS award, note
+                      AS award, place, class, note
                       FROM hist_raceentries
                       WHERE buggyid = ?
                             AND place >= 1 AND place <= 6
@@ -291,6 +295,14 @@ if(empty($image_url)) {
         <tbody>
           <?php
             while($a = $awardData->fetch_assoc()) {
+              // if place and class are null, this is a design award and
+              // checkTrophyYear should be skipped.
+              if (isset($a["place"]) && isset($a["class"])) {
+                if (!checkTrophyYear($a["year"], $a["class"], $a["place"])) {
+                  // this race trophy didn't actually exist, skip it!
+                  continue;
+                }
+              }
               echo("<tr><td>".$a["year"]."</td>");
               echo("<td>".$a["award"]."</td>");
               echo("<td>".$a["note"]."</td></tr>");

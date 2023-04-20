@@ -150,4 +150,43 @@
       }
       return $year;
     }
+
+	// Verifies that the class ('m', 'w', or 'n') in the given year actually awarded
+    // up to $place places.  Returns false if not (or if class is invalid).
+    function checkTrophyYear($class, $year, $place) {
+	  if ($place <= 0) {
+	    return false;
+	  }
+
+	  $class = strtolower($class);
+
+	  if ($class == 'm') {
+	    // Mens
+	    // 3 Until 1964, 6 after
+	    if ($year < 1964 && $place <= 3) {
+		  return true;
+	    } else if ($year >= 1964 && $place <= 6) {
+		  return true;
+	    }
+	  } else if ($class == 'w') {
+	    // Womens
+	    // 3 Until 2013
+	    // 4 2013-2016
+	    // 6 After 2016
+	    if ($year < 2013 && $place <= 3) {
+		  return true;
+	    } else if ($year >= 2013 && $year <= 2016 && $place <= 4) {
+		  return true;
+	    } else if ($year > 2016 && $place <= 6) {
+		  return true;
+	    }
+	  } else if ($class = 'n') {
+	    // All Gender: Only 3 Places (so far)
+	    if ($place <= 3) {
+		  return true;
+	    }
+	  }
+
+	return false;
+  }
 ?>
