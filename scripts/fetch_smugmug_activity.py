@@ -18,23 +18,24 @@ XML_NAMESPACES = {'atom': 'http://www.w3.org/2005/Atom'}
 
 
 # Pre-requisites:
-#     sudo pip install mysql-connector-python
-#     sudo pip3 install mysql-connector-python-rf
+#     sudo su
+#     apt install python3-pip
+#     apt install python3.10-venv
+#     python3 -m venv venv              # Create a virtual env
+#     . venv/bin/activate               # Activate it
+#     pip3 install -r requirements.txt  # Install required packages
 #
 # Run with:
-#     python3 -m scripts.fetch_smugmug_activity [--initialize]
+#     python3 -m scripts.fetch_smugmug_activity
 #
 # Scheduling:
-# This script was scheduled using Crontab as the root user. Prior to scheduling,
-# the mysql-connector-python packages had to be installed for root. Script output
-# can be found in /var/mail/root.
-#     sudo su
-#     sudo pip install mysql-connector-python
-#     sudo pip3 install mysql-connector-python-rf
+#     This script was scheduled using Crontab as the root user. Script output
+#     can be found in /var/mail/root.
+#
 #     crontab -e
-
+#
 # The following expression was used for scheduling:
-#     0 * * * * /usr/bin/python3 /var/www/cmubuggy.org/scripts/fetch_smugmug_activity.py
+#     0 * * * * /var/www/dev.cmubuggy.org/venv/bin/python3 /var/www/dev.cmubuggy.org/scripts/fetch_smugmug_activity.py
 #
 def main():
     connection = open_db_connection()
@@ -105,7 +106,8 @@ def parse_comment_from_entry(entry):
     content = _get_item_from_element(entry, 'content').text
     matches = re.search(
         r'<img src="(?P<thumbnail_url>https:\/\/[^"]+\.[\w]+)".*>.*<p>Comment: (?P<comment>.*)<\/p>',
-        content)
+        content,
+        re.DOTALL) # This flag allows multi-line comments by matching \n with .
     if matches != None:
         comment['thumbnail_url'] = matches.group('thumbnail_url')
         comment['comment'] = matches.group('comment')
@@ -139,12 +141,12 @@ def insert_comments(connection, new_comments):
             %(author)s,
             %(comment)s,
             %(created_at)s
-        )
+        ) as new_values
         on duplicate key update
-            comment_url = values(comment_url),
-            thumbnail_url = values(thumbnail_url),
-            author = values(author),
-            comment = values(comment)
+            comment_url = new_values.comment_url,
+            thumbnail_url = new_values.thumbnail_url,
+            author = new_values.author,
+            comment = new_values.comment
         '''
     cursor.executemany(query, new_comments)
     connection.commit()
@@ -239,13 +241,13 @@ def insert_photos(connection, new_photos):
             %(gallery_slug)s,
             %(photo_id)s,
             %(created_at)s
-        )
+        ) as new_values
         on duplicate key update
-            gallery_url = values(gallery_url),
-            content_url = values(content_url),
-            thumbnail_url = values(thumbnail_url),
-            gallery_name = values(gallery_name),
-            gallery_slug = values(gallery_slug)
+            gallery_url = new_values.gallery_url,
+            content_url = new_values.content_url,
+            thumbnail_url = new_values.thumbnail_url,
+            gallery_name = new_values.gallery_name,
+            gallery_slug = new_values.gallery_slug
         '''
     cursor.executemany(query, new_photos)
     connection.commit()

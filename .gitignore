@@ -1,15 +1,19 @@
 *~
-basicbackdoorscriptfinder.php
-bid2011/
-bid/development-bundle
-bid/backup/
-content/cache/*
+
+# exclude secrets
 dbconfig.json
+
+# exclude content uploaded through Wordpress
+content/cache/*
 files/
+upload/
 
 # exclude node_modules and dist from css/bootstrap-src
 css/bootstrap-src/dist
 css/bootstrap-src/node_modules
+
+# exclude Python virtual env
+venv/
 
 # exclude everything in /forum except README.md and styles/cmubuggy
 forum/*
@@ -39,8 +43,6 @@ news/wp-content/*
 !news/wp-content/themes
 news/wp-content/themes/*
 !news/wp-content/themes/cmubuggy-child
-
-upload/
 
 .DS_Store
 __pycache__
