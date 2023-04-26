@@ -21,6 +21,13 @@ Redirect 301 /admin /news/wp-admin
 # /gallery-2021 was a temporary thing while we migrated to smugmug.
 Redirect 301 /gallery-2021 /smugmug
 
+# Things that are obsolete and didn't survive the mysql/php upgrades in 2023.
+# 302 because they _might_ come back...
+#
+# Use RewriteRule to catch all parameters/paths
+RewriteRule ^gallery/?$		/news/obsolete	[R,L,NC]
+RewriteRule ^forum/?$		/news/obsolete	[R,L,NC]
+
 # First pass at dealing with legacy org ids, which we need to get out
 # of search engines by redirecting them.  Preferably should be done
 # in PHP code via lookup table, but this is simple and there's
