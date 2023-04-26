@@ -25,8 +25,8 @@ Redirect 301 /gallery-2021 /smugmug
 # 302 because they _might_ come back...
 #
 # Use RewriteRule to catch all parameters/paths
-RewriteRule ^gallery/?$		/news/obsolete	[R,L,NC]
-RewriteRule ^forum/?$		/news/obsolete	[R,L,NC]
+RewriteRule ^gallery/?		/news/obsolete	[R,L,NC]
+RewriteRule ^forum/?		/news/obsolete	[R,L,NC]
 
 # First pass at dealing with legacy org ids, which we need to get out
 # of search engines by redirecting them.  Preferably should be done
