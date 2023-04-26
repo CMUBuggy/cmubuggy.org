@@ -25,6 +25,8 @@ Redirect 301 /gallery-2021 /smugmug
 # 302 because they _might_ come back...
 #
 # Use RewriteRule to catch all parameters/paths
+# Allow gallery/var/ablums to continue to serve for now, since it is just direct links to image files.
+RewriteRule ^(gallery/var/albums/.*)	$1	[L,NC]
 RewriteRule ^gallery/?		/news/obsolete	[R,L,NC]
 RewriteRule ^forum/?		/news/obsolete	[R,L,NC]
 
