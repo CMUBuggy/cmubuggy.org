@@ -113,8 +113,8 @@ Redirect 302 /spotify https://open.spotify.com/show/3wbaYb92dfzuWDUbOOxHWi
 # Crowdsourced Timing Tool
 Redirect 302 /timing https://buggy-timing.bubbleapps.io/
 
-# 2022 BAA Officer voting
-Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSdljzZwchhIh8DdseQVkLg6bjR0Uop1rhiU8XySCtoYuRP0jA/viewform
+# 2023 BAA Officer voting
+Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd77ejvki5-QnViSls29edardm90FeFVG7MkS4B5ZufuoYHaw/viewform
 
 # Rewrite some iOS favicon handling (404 the precompsed icon, push the root apple-touch-icon to favicons/)
 # This is needed so they don't get caught by the /news redirect.
