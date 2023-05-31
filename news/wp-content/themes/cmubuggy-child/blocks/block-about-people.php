@@ -24,10 +24,12 @@
         <br>
         <div><?php block_field('about'); ?></div>
         <br>
+        <?php if (!empty(block_field('professional-field', false))) { ?>
         <div>
-            <small>Currently working in</small><br>
+            <small>Profession</small><br>
             <?php block_field('professional-field'); ?>
         </div>
+        <?php } ?>
         <div>
             <small><?php block_field('question-1'); ?></small><br>
             <?php block_field('answer-1'); ?>
