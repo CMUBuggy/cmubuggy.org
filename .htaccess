@@ -21,6 +21,9 @@ Redirect 301 /admin /news/wp-admin
 # /gallery-2021 was a temporary thing while we migrated to smugmug.
 Redirect 301 /gallery-2021 /smugmug
 
+# Some old links pointed at /resources before it got merged with the reference section.
+Redirect 302 /resources /reference
+
 # Things that are obsolete and didn't survive the mysql/php upgrades in 2023.
 # 302 because they _might_ come back...
 #
