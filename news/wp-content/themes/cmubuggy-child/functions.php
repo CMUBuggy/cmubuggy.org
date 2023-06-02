@@ -18,4 +18,13 @@ function remove_parent_styles() {
 	remove_action( 'wp_enqueue_scripts', 'wp_bootstrap_starter_scripts' );
 }
 add_action( 'init', 'remove_parent_styles' );
+
+
+add_filter( 'oembed_response_data', 'cmubuggy_oembed_cleanup' );
+function cmubuggy_oembed_cleanup( $data ) {
+  unset($data['author_url']);
+  unset($data['author_name']);
+  return $data;
+}
+
 ?>
