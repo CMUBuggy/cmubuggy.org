@@ -10,7 +10,6 @@
 	<meta name="description" content="" />
 	<title><?php the_title(); ?> | CMU Buggy Alumni Association</title>
 
-	<meta property="og:title" content="<?php the_title(); ?>"/>
 	<meta property="og:type" content="article" />
 	<meta property="og:site_name" content="CMU Buggy Alumni Association"/>
 	<meta property="og:url" content="<?php the_permalink(); ?>"/>
@@ -18,9 +17,11 @@
 <?php
 // Grab excerpt of the post if this is a single post page, otherwise use something
 // appropriately generic.
-if ( is_single() ) {
+if ( is_singular() ) {
+  echo "\t".'<meta property="og:title" content="',esc_attr(wp_strip_all_tags(get_the_title())),'"/>'."\n";
   echo "\t".'<meta property="og:description" content="',esc_attr(wp_strip_all_tags(get_the_excerpt())),'"/>';
 } else {
+  echo "\t".'<meta property="og:title" content="',esc_attr(wp_strip_all_tags(get_the_archive_title())), esc_attr(wp_strip_all_tags(get_the_archive_description())),'"/>'."\n";
   echo "\t".'<meta property="og:description" content="Breaking buggy news and rolls reports from the Buggy Alumni Association"/>';
 }
 ?>
