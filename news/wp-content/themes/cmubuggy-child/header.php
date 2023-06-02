@@ -14,7 +14,16 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:site_name" content="CMU Buggy Alumni Association"/>
 	<meta property="og:url" content="<?php the_permalink(); ?>"/>
-	<meta property="og:description" content="Breaking buggy news and rolls reports from the Buggy Alumni Association"/>
+
+<?php
+// Grab excerpt of the post if this is a single post page, otherwise use something
+// appropriately generic.
+if ( is_single() ) {
+  echo "\t".'<meta property="og:description" content="',esc_attr(wp_strip_all_tags(get_the_excerpt())),'"/>';
+} else {
+  echo "\t".'<meta property="og:description" content="Breaking buggy news and rolls reports from the Buggy Alumni Association"/>';
+}
+?>
 
 	<?php include_once('../content/cssjs.inc'); ?>
 	<style>
