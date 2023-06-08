@@ -21,10 +21,16 @@
     }
   }
   $timerSmallWord = 'in';
+
+  // when we get close or go past the time, add excitement.
   if ($hoursleft < 0) {
     $timerSmallWord = 'now:';
     $timerCount = "GO";
     $timerUnit = "TIME";
+  } else if ($hoursleft < 1) {
+    $timerSmallWord = '';
+    $timerCount = "so very";
+    $timerUnit = "soon";
   }
 ?>
 <body>
