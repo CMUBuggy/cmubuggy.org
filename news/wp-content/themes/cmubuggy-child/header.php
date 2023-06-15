@@ -8,7 +8,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
-	<title><?php the_title(); ?> | CMU Buggy Alumni Association</title>
+	<title><?php
+if ( is_singular() ) {
+  echo esc_attr(wp_strip_all_tags(get_the_title()));
+} else {
+  echo "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
+}
+?> | CMU Buggy Alumni Association</title>
 
 	<meta property="og:type" content="article" />
 	<meta property="og:site_name" content="CMU Buggy Alumni Association"/>
