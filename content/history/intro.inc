@@ -136,7 +136,19 @@
         </div>
      </div>
    </div>
-   <div class="col"></div>
+   <div class="col">
+      <div class="media mb-3">
+        <a href="/news/history/raceday-previews">
+         <span class="fa-layers fa-fw fa-2x mr-2">
+          <i class="fas fa-square" style="color: var(--yellow)"></i>
+          <i class="fas fa-binoculars fa-inverse" data-fa-transform="shrink-8"></i>
+         </span>
+        </a>
+        <div class="media-body">
+          Past <a href="/news/history/raceday-previews">Raceday Previews and Spotting Guides</a>
+        </div>
+     </div>
+   </div>
  </div>
  <div class="row">
    <div class="col">
