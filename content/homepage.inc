@@ -25,7 +25,15 @@
 
       include("homepage-raceday-results.inc");
     ?>
-    <?php include("homepage-twitterbox.inc"); ?>
+    <?php
+      // Twitter Embed content
+      //
+      // Disabled because it is both slow and twitter has broken their API so it is much harder
+      // for us to use.  Can be reenabled if we need for, say, raceday.
+      if (false) {
+        include("homepage-twitterbox.inc");
+      }
+    ?>
 
     <div class="card mb-3">
       <h5 class="card-header">Chute The Sh!t: The Buggy Podcast</h5>
