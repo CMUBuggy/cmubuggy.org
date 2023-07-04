@@ -49,16 +49,30 @@
 
     padding: 10px;
     font-size: 20px;
-    background-color: lightskyblue;
+    color: #fff;
+    background-color: #27266a;
 
     counter-reset: place;
+  }
+
+  div.leaderboard-header {
+    height: 10%;
+  }
+
+  div.allresults {
+    height: 90%;
+  }
+
+  div.rr-item {
+    height: 10%;
   }
 
   .race-result [data-note]:empty { display: none; }
   .race-result {
     opacity: 1;
-    animation: fadeUp 1s forwards;
-    will-change: opacity, transform;
+
+    border-color: aliceblue;
+    background-color: #2b3492;
   }
 
   .race-result [data-place]::before {
@@ -67,7 +81,7 @@
     position: absolute;
   }
   .race-result.dq.dq {
-    background-color: #fff !important;
+    background-color: #363651 !important;
   }
   .race-result.dq [data-place]::before {
     content: 'DQ';
@@ -89,14 +103,16 @@
 </style>
 
 <template id="raceResult">
-  <div class="race-result p-3 mb-1 border rounded" data-id>
-    <div class="d-flex justify-content-between" data-place>
-      <div data-name class="ml-5"></div>
-      <div data-time class="ml-2 text-monospace"></div>
-    </div>
-    <div class="d-none justify-content-between">
-      <div data-note class="ml-5 mt-1 text-dark"></div>
-      <em><div data-speed class="ml-2"></div></em>
+  <div class="rr-item">
+    <div class="race-result p-1 mb-1 border rounded" data-id>
+      <div class="d-flex justify-content-between" data-place>
+        <div data-name class="ml-5"></div>
+        <div data-time class="ml-2 text-monospace"></div>
+      </div>
+      <div class="d-none justify-content-between">
+        <div data-note class="ml-5 mt-1 text-dark"></div>
+        <em><div data-speed class="ml-2"></div></em>
+      </div>
     </div>
   </div>
 </template>
@@ -149,9 +165,16 @@
 </head>
 <body>
 <div class="fullscreen">
-<h1>Leaderboard</h1>
-<div id="results-here">
-</div>
+  <div class="leaderboard-header">
+    <img height="95%" src="/img/logos/sweepstakes_logo_notext.svg"
+         style="filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
+    <span id="leaderboard-title" class="h2">Leaderboard</span>
+  </div>
+  <div class="allresults" id="results-here"></div>
 </div>
 </body>
+
+<script>
+    document.getElementById("leaderboard-title").textContent = classNames[queryClass];
+</script>
 </html>
