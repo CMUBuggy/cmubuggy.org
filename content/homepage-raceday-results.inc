@@ -6,61 +6,70 @@
       <thead>
         <tr>
           <th></th>
-          <th colspan="2">Men</th>
-          <th colspan="2">Women</th>
-          <th colspan="2">All Gender</th>
+          <th class="d-none d-sm-table-cell" colspan="2">Men</th>
+          <th class="d-none d-sm-table-cell" colspan="2">Women</th>
+          <th class="d-none d-sm-table-cell" colspan="2">All Gender</th>
+          <th class="d-table-cell d-sm-none">Men</th>
+          <th class="d-table-cell d-sm-none">Women</th>
+          <th class="d-table-cell d-sm-none">All Gender</th>
         </tr>
       </thead>
       <tr>
         <th>1<sup>st</sup></th>
-        <td><a href="/history/team/2023.PKA.MA">PiKA A</a></td>
-        <td>2:09.39</td>
-        <td><a href="/history/team/2023.SPI.WA">Spirit A</a></td>
-        <td>2:35.28</td>
-        <td><a href="/history/team/2023.APX.NA">Apex</a></td>
-        <td>2:45.58</td>
+        <td><a class="text-nowrap" href="/history/team/2023.PKA.MA">PiKA A</a></td>
+        <td class="d-none d-sm-table-cell">2:09.39</td>
+        <td><a class="text-nowrap" href="/history/team/2023.SPI.WA">Spirit A</a></td>
+        <td class="d-none d-sm-table-cell">2:35.28</td>
+        <td><a class="text-nowrap" href="/history/team/2023.APX.NA">Apex</a></td>
+        <td class="d-none d-sm-table-cell">2:45.58</td>
       </tr>
       <tr>
         <th>2<sup>nd</sup></th>
-        <td><a href="/history/team/2023.SPI.MA">Spirit A</a></td>
-        <td>2:11.49</td>
-        <td><a href="/history/team/2023.CIA.WA">CIA A</a></td>
-        <td>2:36.43</td>
-        <td><a href="/history/team/2023.PKA.NA">PiKA</a></td>
-        <td>2:49.85</td>
+        <td><a class="text-nowrap" href="/history/team/2023.SPI.MA">Spirit A</a></td>
+        <td class="d-none d-sm-table-cell">2:11.49</td>
+        <td><a class="text-nowrap" href="/history/team/2023.CIA.WA">CIA A</a></td>
+        <td class="d-none d-sm-table-cell">2:36.43</td>
+        <td><a class="text-nowrap" href="/history/team/2023.PKA.NA">PiKA</a></td>
+        <td class="d-none d-sm-table-cell">2:49.85</td>
       </tr>
       <tr>
         <th>3<sup>rd</sup></th>
-        <td><a href="/history/team/2023.APX.MA">Apex A</a></td>
-        <td>2:13.63</td>
-        <td><a href="/history/team/2023.FRI.WA">Fringe A</a></td>
-        <td>2:40.15</td>
-        <td><a href="/history/team/2023.CIA.NA">CIA</a></td>
-        <td>2:56.62</td>
+        <td><a class="text-nowrap" href="/history/team/2023.APX.MA">Apex A</a></td>
+        <td class="d-none d-sm-table-cell">2:13.63</td>
+        <td><a class="text-nowrap" href="/history/team/2023.FRI.WA">Fringe A</a></td>
+        <td class="d-none d-sm-table-cell">2:40.15</td>
+        <td><a class="text-nowrap" href="/history/team/2023.CIA.NA">CIA</a></td>
+        <td class="d-none d-sm-table-cell">2:56.62</td>
       </tr>
       <tr>
         <th>4<sup>th</sup></th>
-        <td><a href="/history/team/2023.SPI.MB">Spirit B</a></td>
-        <td>2:16.59</td>
-        <td><a href="/history/team/2023.PKA.WA">PiKA A</a></td>
-        <td>2:43.41</td>
-        <td colspan="2"></td>
+        <td><a class="text-nowrap" href="/history/team/2023.SPI.MB">Spirit B</a></td>
+        <td class="d-none d-sm-table-cell">2:16.59</td>
+        <td><a class="text-nowrap" href="/history/team/2023.PKA.WA">PiKA A</a></td>
+        <td class="d-none d-sm-table-cell">2:43.41</td>
+
+        <td class="d-table-cell d-sm-none"></td>
+        <td class="d-none d-sm-table-cell" colspan="2"></td>
       </tr>
       <tr>
         <th>5<sup>th</sup></th>
-        <td><a href="/history/team/2023.FRI.MB">Fringe B</a></td>
-        <td>2:17.95</td>
-        <td><a href="/history/team/2023.SN.WA">SigNu A</a></td>
-        <td>2:46.89</td>
-        <td colspan="2"></td>
+        <td><a class="text-nowrap" href="/history/team/2023.FRI.MB">Fringe B</a></td>
+        <td class="d-none d-sm-table-cell">2:17.95</td>
+        <td><a class="text-nowrap" href="/history/team/2023.SN.WA">SigNu A</a></td>
+        <td class="d-none d-sm-table-cell">2:46.89</td>
+
+        <td class="d-table-cell d-sm-none"></td>
+        <td class="d-none d-sm-table-cell" colspan="2"></td>
       </tr>
       <tr>
         <th>6<sup>th</sup></th>
-        <td><a href="/history/team/2023.CIA.MC">CIA C</a></td>
-        <td>2:18.63</td>
-        <td><a href="/history/team/2023.APX.WA">Apex A</a></td>
-        <td>2:46.92</td>    
-        <td colspan="2"></td>
+        <td><a class="text-nowrap" href="/history/team/2023.CIA.MC">CIA C</a></td>
+        <td class="d-none d-sm-table-cell">2:18.63</td>
+        <td><a class="text-nowrap" href="/history/team/2023.APX.WA">Apex A</a></td>
+        <td class="d-none d-sm-table-cell">2:46.92</td>
+
+        <td class="d-table-cell d-sm-none"></td>
+        <td class="d-none d-sm-table-cell" colspan="2"></td>
       </tr>
     </table>
     <a href="/history/raceday/2023" class="btn btn-primary">Full Results</a>
