@@ -21,12 +21,7 @@ forum/*
 forum/styles/*
 !forum/styles/cmubuggy
 
-# exclude everything in /gallery except README.md and themes/cmubuggy
-gallery/*
-!gallery/README.md
-gallery/themes/*
-!gallery/themes/cmubuggy
-
+# Misc larger supporting directories
 img/buggy/
 img/mediaicons/
 img/news/
