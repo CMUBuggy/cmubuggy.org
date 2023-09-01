@@ -12,8 +12,9 @@ upload/
 css/bootstrap-src/dist
 css/bootstrap-src/node_modules
 
-# exclude Python virtual env
-venv/
+# exclude Python virtual env except the .htaccess file
+venv/*
+!venv/.htaccess
 
 # exclude everything in /forum except README.md and styles/cmubuggy
 forum/*
