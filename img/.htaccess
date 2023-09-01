@@ -1,3 +1,6 @@
+# Don't allow index views of /img and below.
+Options -Indexes
+
 # Ensure we get cache-control headers for static images
 <IfModule mod_expires.c>
     ExpiresActive On
