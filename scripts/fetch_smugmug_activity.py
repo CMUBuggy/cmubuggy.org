@@ -125,6 +125,8 @@ def insert_comments(connection, new_comments):
         return
 
     cursor = connection.cursor()
+    # Note: This query is mariadb-style and will generate warnings with Mysql 8.0.20+.  To fix, use
+    # a table alias instead of VALUES();
     query = '''
         insert into smugmug_comments (
             comment_id,
@@ -141,12 +143,12 @@ def insert_comments(connection, new_comments):
             %(author)s,
             %(comment)s,
             %(created_at)s
-        ) as new_values
+        )
         on duplicate key update
-            comment_url = new_values.comment_url,
-            thumbnail_url = new_values.thumbnail_url,
-            author = new_values.author,
-            comment = new_values.comment
+            comment_url = VALUES(comment_url),
+            thumbnail_url = VALUES(thumbnail_url),
+            author = VALUES(author),
+            comment = VALUES(comment)
         '''
     cursor.executemany(query, new_comments)
     connection.commit()
@@ -223,6 +225,8 @@ def insert_photos(connection, new_photos):
         return
 
     cursor = connection.cursor()
+    # Note: This query is mariadb-style and will generate warnings with Mysql 8.0.20+.  To fix, use
+    # a table alias instead of VALUES()
     query = '''
         insert into smugmug_uploads (
             gallery_url,
@@ -241,13 +245,13 @@ def insert_photos(connection, new_photos):
             %(gallery_slug)s,
             %(photo_id)s,
             %(created_at)s
-        ) as new_values
+        )
         on duplicate key update
-            gallery_url = new_values.gallery_url,
-            content_url = new_values.content_url,
-            thumbnail_url = new_values.thumbnail_url,
-            gallery_name = new_values.gallery_name,
-            gallery_slug = new_values.gallery_slug
+            gallery_url = VALUES(gallery_url),
+            content_url = VALUES(content_url),
+            thumbnail_url = VALUES(thumbnail_url),
+            gallery_name = VALUES(gallery_name),
+            gallery_slug = VALUES(gallery_slug)
         '''
     cursor.executemany(query, new_photos)
     connection.commit()
