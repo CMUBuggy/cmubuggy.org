@@ -132,12 +132,6 @@ $smart_gallery_url = "";
 $image_column_class = "d-flex col align-items-center justify-content-end";
 if(!empty($buggy["smugmug_slug"])) {
   $image_url = makeSmugmugUrl($buggy["smugmug_slug"], "S");
-} else if (file_exists("img/buggy/".$buggyUrlKey)) {
-  // Legacy photo lookup from local directories.  Should become obsolete pretty quick.
-  // Path is relative to our cwd from the file that called us (e.g. /index.php due to redirects) not relative to this .inc file!
-
-  // No useful alt text to go here sicne it'd really only be the name.
-  $image_url = "/img/buggy/".$buggyUrlKey;
 }
 if(empty($image_url)) {
   // We hide the column entirely on smaller break points to avoid strange word wrapping of long
