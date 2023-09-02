@@ -11,6 +11,9 @@ php_flag display_errors on
 	Deny from all
 </FilesMatch>
 
+# Deny access to .git directory
+RedirectMatch 404 /\.git
+
 RewriteEngine On    # Turn on the rewriting engine
 
 
