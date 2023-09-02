@@ -41,6 +41,11 @@
   }
 
   if(empty($s)){
+    // Can't be relative URLs, sadly (so dev sites will behave in unexpected ways).
+    // But, our homepage at least should have a logo for opengraph data.
+    $OGMAP["og:image"] = "https://cmubuggy.org/img/logo-2022-opengraph.jpg";
+    $OGMAP["og:url"] = "https://cmubuggy.org/";
+
     $content = ("./content/homepage.inc");
   } else if(file_exists("./content/".$s.".inc")){
     $content = "./content/".$s.".inc";
