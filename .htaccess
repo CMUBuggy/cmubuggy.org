@@ -19,7 +19,8 @@ RewriteEngine On    # Turn on the rewriting engine
 
 # Old URLs with new homes - 301 (perm) redirect
 # Better for SEO: https://developers.google.com/search/docs/advanced/crawling/301-redirects
-Redirect 301 /join /membership
+# In ancient times we used /Join instead of /join, so we need to be case-insensitve.
+RedirectMatch 301 (?i)/join/?$ /membership
 Redirect 301 /admin /news/wp-admin
 # /gallery-2021 was a temporary thing while we migrated to smugmug.
 Redirect 301 /gallery-2021 /smugmug
