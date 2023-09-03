@@ -12,7 +12,6 @@ The site is built around a number of 3rd party platforms and tools. If you want 
 
  - Data:  Contact the current administrator to get access to an exported version of the relevant data.
  - pChart: Needed for graphing historical trend data on the organization history pages.  Available at http://www.pchart.net/download -- install into lib/pChart.  Warning! pChart is old and does not work properly with PHP 7.  For that, you need a fixed version (2.1.4b, available here from a third party: https://github.com/bozhinov/pChart2.0-for-PHP7/releases)
- - Forum: `/forum` runs phpBB (http://www.phpbb.com/).  Version info is available in `/forum/README`
  - Photos: Currently, photo hosting is provided by SmugMug at https://cmubuggy.smugmug.com
    - Previously, our self hosted gallery ran gallery3 (http://gallery.menalto.com/).
  - News: /news runs Wordpress (http://wordpress.org/).  Version info is available in `/news/README`
