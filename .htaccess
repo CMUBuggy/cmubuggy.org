@@ -113,6 +113,7 @@ Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 Redirect 302 /2023membersurvey https://forms.gle/Gnbj4jLNfGatm8hf7
 Redirect 302 /2023interest https://forms.gle/cVePbgEwpaatGuqn8
 Redirect 302 /2023fallgrant https://docs.google.com/forms/d/e/1FAIpQLSefjRHZ-VMTEaNrgTrperVtvxH0iSKObEBLn0cSgmzB_8_Kjw/viewform
+Redirect 302 /F23rollsreporters https://docs.google.com/spreadsheets/d/1JGh_IGxl05nmFhDZQKNYxarzjuVqDByIN3MmVvPgHyc/edit
 
 # Raceday Volunteer Links (Raceday 2023)
 Redirect 302 /volunteer https://docs.google.com/forms/d/1GMBfdeNFJ0DzMtzlP2Cho52Jya_IKgTOz-k8-u75BF0/viewform
