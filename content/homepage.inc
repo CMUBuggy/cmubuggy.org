@@ -13,6 +13,10 @@
       // Store/Merch Promo Box
       // Times out approximately when store closes.
       // include("homepage-raceday-merch.inc");
+
+      // Endowment Application Promobox
+      // Includes timeout
+      include("homepage-endowmentbox.inc");
     ?>
     <?php
       // Results from most recent raceday
