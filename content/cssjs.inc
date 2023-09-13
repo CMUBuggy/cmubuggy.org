@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#ffffff">
 
 <!--CSS-->
-<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2022032000" />
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2023091303" />
 <link rel="stylesheet" href="/css/cmubuggy-all.css?ver=2023012301" />
 
 <!--JS-->
