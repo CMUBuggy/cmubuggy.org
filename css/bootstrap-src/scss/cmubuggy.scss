@@ -8,20 +8,27 @@
 // Our replacements for some but not all default bootstrap colors.
 //
 // These colors come from the CMU Web/Brand Guidelines:
+//   https://www.cmu.edu/brand/brand-guidelines/visual-identity/colors.html
+//    and
 //   https://cmu.edu/brand/brand-guidelines/web.html
-//   In particular, we adopted these hex codes from the cmu.edu CSS circa February/March 2022.
+//   In particular, we adopted many of these hex codes from the cmu.edu CSS circa February/March 2022.
 //     (e.g. http://web.archive.org/web/20220331104814cs_/https://www.cmu.edu/common/standard-v6/css/main.min.css )
 //   as the web hex codes (at the time) did not match the overall brand guidelines.
+// Red is the 2022 CMU CSS Red.  Using the core palette "Carnegie Red" feels quite dark.
+// Gray and Gray-Dark are the core palette "Steel Gray" and "Iron Gray" colors from the 2023 guidelines.
 $red: #b00;
 $gray: #e0e0e0;
-$gray-dark: #666;
+$gray-dark: #6d6e71;
 
-// Yellow is translated from "Gold" in the CMU Brand Guidelines.
-$yellow: #a60;
-$teal: #067;
-$blue: #247;
+// Yellow a darker variant of the "Gold Thread" from the 2023 CMU branding guidelines.
+// Teal is "Hornbostel Teal" from the 2023 guidelines.
+// Blue is "Blue Thread" from the 2023 guidelines.
+// Green is from the 2022 CSS.
+$yellow: #db3;
+$teal: #1f4c4c;
+$blue: #043663;
 $green: #085;
-// green-dark: #243  (not used in bootstrap)
+// green-dark: #243  (2022 CSS, not used in bootstrap)
 
 // Theme color by name
 $primary: $red;

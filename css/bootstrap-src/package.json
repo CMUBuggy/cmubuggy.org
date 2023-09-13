@@ -18,7 +18,6 @@
   },
   "style": "dist/css/cmubuggy-bootstrap.css",
   "sass": "scss/cmubuggy.scss",
-  "dependencies": {},
   "devDependencies": {
     "bootstrap": "^4.6.0",
     "clean-css-cli": "^4.1.11",
