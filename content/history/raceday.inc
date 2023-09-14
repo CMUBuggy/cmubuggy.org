@@ -109,8 +109,11 @@
     while ($r = $resultList->fetch_assoc()) {
       echo("<tr>");
       if ($resultList->num_rows == 1 &&
-          empty($r["prelim"]) && empty($r["reroll"]) && empty($r["final"]) && empty($r["finalreroll"])) {
-        // One entry, no times.  This was a year that didn't happen.  Post the reason.
+          empty($r["prelim"]) && empty($r["reroll"]) &&
+          empty($r["final"]) && empty($r["finalreroll"]) &&
+          empty($r["dq"])) {
+        // One entry, no times _or_ DQ/DNF.  This was a year that didn't happen.
+        // Post the reason instead.
         echo("<td colspan=\"7\" class=\"text-center\">".$r["note"]."</td>");
       } else {
         echo("<td>".$r["place"]."</td>");
