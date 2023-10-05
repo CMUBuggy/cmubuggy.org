@@ -16,7 +16,7 @@
 
       // Endowment Application Promobox
       // Includes timeout
-      include("homepage-endowmentbox.inc");
+      // include("homepage-endowmentbox.inc");
     ?>
     <?php
       // Results from most recent raceday
