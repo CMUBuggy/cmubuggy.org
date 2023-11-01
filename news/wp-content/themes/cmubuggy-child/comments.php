@@ -103,9 +103,13 @@ if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_
 
 	'comment_field' =>  '<p><textarea placeholder="Start typing..." id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
 
+	// Don't bother showing this stock comment about HTML markup.  Its sort of archaic and we probably don't
+	// want to encourage it anyway.
+	/*
 	'comment_notes_after' => '<p class="form-allowed-tags">' .
 	__( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:', 'wp-bootstrap-starter' ) .
 	'</p><div class="alert alert-info">' . allowed_tags() . '</div>',
+    */
 
 	// So, that was the needed stuff to have bootstrap basic styles for the form elements and buttons
 
