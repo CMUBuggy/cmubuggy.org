@@ -11,7 +11,7 @@
 
 <!--CSS-->
 <link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2023091303" />
-<link rel="stylesheet" href="/css/cmubuggy-all.css?ver=2023012301" />
+<link rel="stylesheet" href="/css/cmubuggy-all.css?ver=2023120401" />
 
 <!--JS-->
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

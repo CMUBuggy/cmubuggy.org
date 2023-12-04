@@ -7,7 +7,7 @@
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
 
-      // include("homepage-raceday-countdown.inc");
+      include("homepage-raceday-countdown.inc");
       // include("homepage-raceday-infobox.inc");
 
       // Store/Merch Promo Box
@@ -17,8 +17,7 @@
       // Endowment Application Promobox
       // Includes timeout
       // include("homepage-endowmentbox.inc");
-    ?>
-    <?php
+
       // Results from most recent raceday
       // 2 boxes: Teams that placed & Awards
       //
@@ -27,7 +26,7 @@
       // Can be removed around the beginning of Febuary when we start doing
       // next-raceday stuff like the countdown box.
 
-      include("homepage-raceday-results.inc");
+      // include("homepage-raceday-results.inc");
     ?>
     <?php
       // Twitter Embed content
