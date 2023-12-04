@@ -41,3 +41,18 @@ body { margin-top: 4.5rem; }
 .raceday-thumb { width: 3em; }
 .sponsors img { max-width: 200px; max-height: 200px; }
 @supports (object-fit: contain) { .sponsors img { object-fit: contain; width: 200px; } }
+
+@media (max-width: 576px) {
+ .carousel-item img {
+   width: auto !important;
+   height: 250px;
+   max-height: 250px;
+ }
+}
+@media (min-width: 576px) {
+  .carousel-item img {
+    width: auto !important;
+    height: 300px;
+    max-height: 300px;
+  }
+}
