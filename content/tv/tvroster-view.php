@@ -85,9 +85,15 @@
   $teamQuery = "SELECT position, concat(p.firstname, ' ', p.lastname) as personname
                   FROM hist_entrypeoplemap m
                   LEFT JOIN hist_people p ON p.personid = m.personid
-                  WHERE entryid = ? && heattype='Prelim'
+                  WHERE entryid = ? && heattype = ?
                   ORDER BY heattype, position;";
-  $teamResults = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "s", $urlkey);
+  $teamResults = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "ss", $urlkey, 'Prelim');
+
+  // If we don't have a prelim roster, try a finals roster just in case (likely with
+  // All Gender heats or past years were prelims were canceled)
+  if ($teamResults->num_rows == 0) {
+    $teamResults = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "ss", $urlkey, 'Final');
+  }
 
   if ($teamResults->num_rows == 0) {
     echo("I'm sorry, there do not appear to be any people on the team: " . $urlkey);
