@@ -174,10 +174,10 @@ RewriteRule		^raceday/rosters[/]*$								index.php?s=raceday&p=rosters					[NC,
 
 # /tv various database pages for the broadcast
 # Force redirect for the view page so javascript can pick up the type target.
-RewriteRule		^tv/leaderboard/?$									/content/tv/tvlb-index.html						[NC,L]
-#RewriteRule		^tv/leaderboard/([a-z0-9_]+)/?$						/content/tv/tvlb-view.html?t=$1					[NC,R,L]
-#RewriteRule		^content/tv/tvlb-view.html$							/content/tv/tvlb-view.html						[NC,L]
-
+RewriteRule		^tvportal[/]*$										index.php?s=tvportal							[NC,L]
+RewriteRule		^tvportal/leaderboard/?$							index.php?s=tvportal&p=tvlb						[NC,L]
+RewriteRule     ^tvportal/rosters[/]*$								index.php?s=tvportal&p=tvrosters				[NC,L]
+RewriteRule		^tvportal/rosters/([0-9]+)/?$						index.php?s=tvportal&p=tvrosters&year=$1			[NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
