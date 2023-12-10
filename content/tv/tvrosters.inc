@@ -83,7 +83,7 @@
 
   // Second Table, Entries:
   echo("<h1>".$year." Team Rosters (TV Portal)</h1>");
-  echo("<h4>Warning: Only displays prelim roster data from database</h4>");
+  echo("<h4>Warning: Displays single roster.  Tries prelim first, then final.</h4>");
   echo("<div class=\"table-responsive\"><table class=\"table\">");
 
   echo("<tr>");
