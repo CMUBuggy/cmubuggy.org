@@ -9,6 +9,7 @@
 <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 
+<?php // WARNING: Update standalone files too if you change CSS versions (notably, in ./tv) ?>
 <!--CSS-->
 <link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2023091303" />
 <link rel="stylesheet" href="/css/cmubuggy-all.css?ver=2023120401" />

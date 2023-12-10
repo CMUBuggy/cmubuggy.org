@@ -1,0 +1,180 @@
+<html>
+<head>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script>
+  const classNames = {
+    'womens_prelims': "Women's Prelims",
+    'mens_prelims': "Men's Prelims",
+    'allgender_prelims': "All Gender Prelims",
+    'womens_finals': "Women's Finals",
+    'mens_finals': "Men's Finals",
+    'allgender_finals': "All Gender Finals",
+    'exhibitions': "Exhibitions"
+  };
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryClass = urlParams.get('t');
+
+  // If we don't know what this is, redirect back to the index.
+  if (!(queryClass in classNames)) {
+    window.location.href = "/tv/leaderboard";
+  }
+
+  console.log("Generate leaderboard for: " + queryClass);
+</script>
+
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2023091303" />
+
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  div.fullscreen {
+    height: 100%;
+    width: 100%;
+
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #27266a;
+
+    counter-reset: place;
+  }
+
+  div.leaderboard-header {
+    height: 10%;
+  }
+
+  div.allresults {
+    height: 90%;
+  }
+
+  div.rr-item {
+    height: 10%;
+  }
+
+  .race-result [data-note]:empty { display: none; }
+  .race-result {
+    opacity: 1;
+
+    border-color: aliceblue;
+    background-color: #2b3492;
+  }
+
+  .race-result [data-place]::before {
+    counter-increment: place;
+    content: counter(place);
+    position: absolute;
+  }
+  .race-result.dq.dq {
+    background-color: #363651 !important;
+  }
+  .race-result.dq [data-place]::before {
+    content: 'DQ';
+  }
+
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    30% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<template id="raceResult">
+  <div class="rr-item">
+    <div class="race-result p-1 mb-1 border rounded" data-id>
+      <div class="d-flex justify-content-between" data-place>
+        <div data-name class="ml-5"></div>
+        <div data-time class="ml-2 text-monospace"></div>
+      </div>
+      <div class="d-none justify-content-between">
+        <div data-note class="ml-5 mt-1 text-dark"></div>
+        <em><div data-speed class="ml-2"></div></em>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: 'AIzaSyCjdOwIz6r5P0OScBb84x9o9udtveSKpFM',
+    authDomain: 'cmu-buggy-leaderboard.firebaseapp.com',
+    databaseURL: 'https://cmu-buggy-leaderboard.firebaseio.com',
+    projectId: 'cmu-buggy-leaderboard',
+    storageBucket: 'cmu-buggy-leaderboard.appspot.com',
+    messagingSenderId: '31785879580'
+  };
+  firebase.initializeApp(config);
+
+  function populateNodeText(node, value) {
+    node.querySelector('[data-name]').textContent = value.team;
+    node.querySelector('[data-time]').textContent = value.time || ' ';
+    node.querySelector('[data-note]').textContent = value.notes || ' ';
+    node.querySelector('[data-speed]').textContent =
+      (value.speed_trap ? value.speed_trap + ' mph' : ' ');
+  }
+
+  function addRaceResult(key, value) {
+    const tab = document.querySelector('#results-here');
+    const node = document.importNode(raceResult.content, true);
+    node.querySelector('[data-id]').setAttribute('data-id', key);
+    populateNodeText(node, value);
+
+    if (value.dq) {
+      node.querySelector('.race-result').classList.add('dq');
+    }
+
+    tab.appendChild(node);
+    console.debug('result added: %s - %s', tab.id, key);
+  }
+
+  const ref = firebase.database().ref(queryClass).orderByChild('time_sort').limitToFirst(10);
+  ref.once('value', (snap) => {
+    snap.forEach((childSnapshot) => {
+      const childKey = childSnapshot.key;
+      const childData = childSnapshot.val();
+      console.log(childKey + ": " + JSON.stringify(childData));
+      addRaceResult(childKey, childData);
+    });
+  });
+</script>
+
+</head>
+<body>
+<div class="fullscreen">
+  <div class="leaderboard-header">
+    <img height="95%" src="/img/logos/sweepstakes_logo_notext.svg"
+         style="filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
+    <span id="leaderboard-title" class="h2">Leaderboard</span>
+  </div>
+  <div class="allresults" id="results-here"></div>
+</div>
+</body>
+
+<script>
+    document.getElementById("leaderboard-title").textContent = classNames[queryClass];
+</script>
+</html>

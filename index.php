@@ -30,6 +30,9 @@
       $OGMAP = getRacedayOpenGraphContent($OGMAP);
       $title = "Raceday | ".$title;
       break;
+    case "tvportal":
+      $title = "TV Portal | ".$title;
+      break;
   }
 
   // If we haven't yet found a specific opengraph title, use <title>.

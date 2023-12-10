@@ -16,7 +16,6 @@ RedirectMatch 404 /\.git
 
 RewriteEngine On    # Turn on the rewriting engine
 
-
 # Old URLs with new homes - 301 (perm) redirect
 # Better for SEO: https://developers.google.com/search/docs/advanced/crawling/301-redirects
 # In ancient times we used /Join instead of /join, so we need to be case-insensitve.
@@ -139,11 +138,11 @@ Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd77ejvki5-QnViSls29
 RewriteRule		^apple-touch-icon.png$			favicons/apple-touch-icon.png	[NC,L]
 RewriteRule		^apple-touch-icon-precomposed.png$	-							[L,R=404]
 
-#top level sections
+# top level sections
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
 
-#history section: specific objects
+# history section: specific objects
 RewriteRule		^history/buggy/([a-z0-9\-]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
 RewriteRule		^history/org/([a-z0-9]+)/?$							index.php?s=history&p=org&urlkey=$1				[NC,L]
 RewriteRule		^history/person/([a-z0-9]+)/?$						index.php?s=history&p=person&id=$1				[NC,L]
@@ -151,29 +150,34 @@ RewriteRule		^history/raceday/([0-9]+)/?$						index.php?s=history&p=raceday&yea
 RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
 
-#history section: categories (and list versions of the specific object pages)
+# /history section: categories (and list versions of the specific object pages)
 RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 					[NC,L]
 RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC,L]
 RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
 RewriteRule		^history/org[/]*$									index.php?s=history&p=orglist					[NC,L]
-# /person needs to have the QSA flag in order to preserve the query string for searches.
+# person needs to have the QSA flag in order to preserve the query string for searches.
 RewriteRule		^history/person[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
 RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
-# /record is obsolete, but keep it here to allow any dead links to work.
+# record is obsolete, but keep it here to allow any dead links to work.
 RewriteRule		^history/record[/]*$								index.php?s=history&p=toptimes 					[NC,L]
 RewriteRule		^history/toptimes[/]*$								index.php?s=history&p=toptimes 					[NC,L]
 RewriteRule		^history/sweepstakes[/]*$							index.php?s=history&p=sweepstakes 				[NC,L]
+# team without a url parameter we will send to the org list, since there isn't an "entry list" per se.
+RewriteRule		^history/team[/]*$									index.php?s=history&p=orglist					[NC,L]
 
-#/team without a url parameter we will send to the org list, since there isn't an "entry list" per se.
-RewriteRule		^history/team[/]*$									index.php?s=history&p=orglist						[NC,L]
-
-#raceday section
-RewriteRule		^raceday/leaderboard[/]*$							index.php?s=raceday&p=leaderboard				[NC,L]
+# /raceday section
+RewriteRule		^raceday/leaderboard/?$								index.php?s=raceday&p=leaderboard				[NC,L]
 RewriteRule		^raceday/rosters/([0-9]+)/?$						index.php?s=raceday&p=rosters&year=$1			[NC,L]
 RewriteRule		^raceday/rosters/([0-9]+)/([a-z0-9]+)/?$			index.php?s=raceday&p=rostersorg&year=$1&org=$2	[NC,L]
-
 # Rosters with no parameter has some current-year based defaulting logic.
 RewriteRule		^raceday/rosters[/]*$								index.php?s=raceday&p=rosters					[NC,L]
+
+# /tv various database pages for the broadcast
+# Force redirect for the view page so javascript can pick up the type target.
+RewriteRule		^tvportal[/]*$										index.php?s=tvportal							[NC,L]
+RewriteRule		^tvportal/leaderboard/?$							index.php?s=tvportal&p=tvlb						[NC,L]
+RewriteRule     ^tvportal/rosters[/]*$								index.php?s=tvportal&p=tvrosters				[NC,L]
+RewriteRule		^tvportal/rosters/([0-9]+)/?$						index.php?s=tvportal&p=tvrosters&year=$1			[NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
