@@ -1,3 +1,48 @@
+<html>
+<head>
+<title>TV Roster View</title>
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2023091303" />
+
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  hr { 
+    border-top: 4px solid rgba(255,255,255,1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  div.fullscreen {
+    height: 100%;
+    width: 100%;
+
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #27266a;
+
+    counter-reset: place;
+  }
+
+  div.roster-header {
+    height: 10%;
+  }
+</style>
+</head>
+<body>
+<div class="fullscreen">
+
 <?php
   include_once("../../dbconfig.inc");
   include_once("../../util.inc");
@@ -60,15 +105,24 @@
       $teamArr[$role] = $r["personname"];
     }
   }
+?>
 
-  echo "<h1>Placeholder TV roster view for: ".$urlkey."</h1>";
-  echo "Org Name: ".$header['org']."<br>";
-  echo "Buggy Name: ".$header['buggy']."<br>";
-  echo "Team Name:".$header['org']." ".$header['class']." ".$header['team']."<br>";
+<div class="roster-header">
+    <img height="95%" src="/img/logos/sweepstakes_logo_notext.svg"
+         style="filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
+<?php
+  $teamName = $header['org']." ".$header['class']." ".$header['team'];
+  echo "<span class=\"h2\">".$teamName." Roster</span>";
+?>
+  </div>
+
+<?php
+  echo "<hr>";
+  echo "<b>Buggy</b>: ".$header['buggy']."<br>";
   echo "<hr>";
 
   foreach ($displayRoles as $role) {
-    echo $role.": ".$teamArr[$role]."<br>";
+    echo "<b>".$role."</b>: ".$teamArr[$role]."<br>";
   }
 
   echo "<hr>";
@@ -78,3 +132,7 @@
     echo "<img class=\"img-fluid img-thumbnail\" src=\"".$buggy_image_url."\">";
   }
 ?>
+
+</div>
+</body>
+</html>
