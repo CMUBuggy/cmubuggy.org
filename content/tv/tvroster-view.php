@@ -95,21 +95,17 @@
     $teamResults = dbBoundQuery($HISTORY_DATABASE, $teamQuery, "ss", $urlkey, 'Final');
   }
 
-  if ($teamResults->num_rows == 0) {
-    echo("I'm sorry, there do not appear to be any people on the team: " . $urlkey);
-    exit(0);
-  } else {
-    // Now, populate the people on the team.
+  // Its better if we render _something_ if we still have no names, so we just list everyone
+  // as unknown by default.  This also fills in anyone missing as unknown.
+  $teamArr = array();
+  foreach ($displayRoles as $role) {
+    $teamArr[$role] = "<i>Unknown</i>";
+  }
 
-    $teamArr = array();
-    foreach ($displayRoles as $role) {
-      $teamArr[$role] = "<i>Unknown</i>";
-    }
-
-    while($r = $teamResults->fetch_assoc()) {
-      $role = $r["position"];
-      $teamArr[$role] = $r["personname"];
-    }
+  // Now, populate the people on the team.
+  while($r = $teamResults->fetch_assoc()) {
+    $role = $r["position"];
+    $teamArr[$role] = $r["personname"];
   }
 ?>
 
