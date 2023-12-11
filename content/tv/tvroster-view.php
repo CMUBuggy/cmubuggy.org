@@ -102,6 +102,11 @@
     $teamArr[$role] = "<i>Unknown</i>";
   }
 
+  // Robots get a special driver default.
+  if ($header["class"] == 'Robotic') {
+    $teamArr["Driver"] = "<i>Robotic Buggy</i>";
+  }
+
   // Now, populate the people on the team.
   while($r = $teamResults->fetch_assoc()) {
     $role = $r["position"];
