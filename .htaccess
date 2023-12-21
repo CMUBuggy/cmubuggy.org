@@ -133,6 +133,9 @@ Redirect 302 /timing https://buggy-timing.bubbleapps.io/
 # 2023 BAA Officer voting
 Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd77ejvki5-QnViSls29edardm90FeFVG7MkS4B5ZufuoYHaw/viewform
 
+# Membership Update Forum
+Redirect 302 /memberupdate https://docs.google.com/forms/d/e/1FAIpQLSdWXstvHgL3Zt5BzOnL21qkq1VpxUrTYLR3DGYB9KCQD3lMGQ/viewform
+
 # Rewrite some iOS favicon handling (404 the precompsed icon, push the root apple-touch-icon to favicons/)
 # This is needed so they don't get caught by the /news redirect.
 RewriteRule		^apple-touch-icon.png$			favicons/apple-touch-icon.png	[NC,L]
