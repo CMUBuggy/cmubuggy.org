@@ -3,20 +3,25 @@
     <?php
       // For when the auction goes live (includes a timeout for end of auction)
       // include("homepage-raceday-auction.inc");
-      
-      // Include at most one of the next two (probably starting around Mid-Feb).
-      // The countdown one is short with less detail.
 
-      include("homepage-raceday-countdown.inc");
-      // include("homepage-raceday-infobox.inc");
+      // Endowment Application Promobox
+      // Includes timeout
+      include("homepage-endowmentbox.inc");
+      
 
       // Store/Merch Promo Box
       // Times out approximately when store closes.
       // include("homepage-raceday-merch.inc");
 
-      // Endowment Application Promobox
-      // Includes timeout
-      // include("homepage-endowmentbox.inc");
+      // -----------------------------------
+      // All Announcement Go Above This Line
+      // All Standard Boxes Go Below
+      // -----------------------------------
+
+      // Include at most one of the next two (probably starting around Mid-Feb).
+      // The countdown one is short with less detail.
+      include("homepage-raceday-countdown.inc");
+      // include("homepage-raceday-infobox.inc");
 
       // Results from most recent raceday
       // 2 boxes: Teams that placed & Awards
