@@ -111,11 +111,12 @@ Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 # 2023 Giving Tuesday
 Redirect 302 /givingtuesday https://givingcmuday.cmu.edu/campaigns/uni-buggy-alumni-association
 
-# Survey/Endowment Grant Links (Fall 2023)
+# Survey/Endowment Grant Links (RD 24)
 Redirect 302 /2023membersurvey https://forms.gle/Gnbj4jLNfGatm8hf7
 Redirect 302 /2023designvolunteer https://forms.gle/DhycG2Sydk1rjYaB6
 Redirect 302 /2023interest https://forms.gle/cVePbgEwpaatGuqn8
-Redirect 302 /grantapp https://docs.google.com/forms/d/e/1FAIpQLSefjRHZ-VMTEaNrgTrperVtvxH0iSKObEBLn0cSgmzB_8_Kjw/viewform
+Redirect 302 /2023fallgrant https://docs.google.com/forms/d/e/1FAIpQLSefjRHZ-VMTEaNrgTrperVtvxH0iSKObEBLn0cSgmzB_8_Kjw/viewform
+Redirect 302 /2024springgrant https://docs.google.com/forms/d/e/1FAIpQLSdLwjjwJRKyg6qFC4hEMC7kA30dmOhSL9x5jdrh-FdgGNbm5w/viewform
 
 # Volunteer Links (Raceday 2023, Rolls Reporting)
 Redirect 302 /volunteer https://docs.google.com/forms/d/1GMBfdeNFJ0DzMtzlP2Cho52Jya_IKgTOz-k8-u75BF0/viewform
