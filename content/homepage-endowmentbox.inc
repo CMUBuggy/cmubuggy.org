@@ -1,7 +1,7 @@
 <?php
-  // Time out the endowment box after Sep 30 Midnight.
+  // Time out the endowment box after Jan 31 Midnight.
   // (default timezone already set in pre-content.inc)
-  $enddate = mktime(23, 59, 0, 9, 30, 2023);
+  $enddate = mktime(23, 59, 0, 1, 31, 2024);
 
   if (time() < $enddate) {
 ?>
@@ -12,8 +12,8 @@
         <img class="d-none d-md-inline-flex align-self-center mr-3" src="<?php echo(makeSmugmugUrl("i-qpSmJ4V","Th")); ?>">
         <div class="media-body align-self-center">
           <p>Applications for Endowed Fund Grants are open now until the end of September.</p>
-          <a target="_blank" href="/2023fallgrant" class="btn btn-primary">Apply Now</a>
-          <a target="_blank" href="/news/2023/09/fall-2023-enhancment-grant-applications-open/" class="btn btn-info">Learn More</a>
+          <a target="_blank" href="/2024springgrant" class="btn btn-primary">Apply Now</a>
+          <a target="_blank" href="/news/2024/01/spring-2024-buggy-enhancement-grants-open/" class="btn btn-info">Learn More</a>
         </div>
       </div>
     </div>
