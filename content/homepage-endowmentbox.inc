@@ -13,7 +13,7 @@
         <div class="media-body align-self-center">
           <p>Applications for Endowed Fund Grants are open now until the end of September.</p>
           <a target="_blank" href="/2024springgrant" class="btn btn-primary">Apply Now</a>
-          <a target="_blank" href="/news/2023/09/fall-2023-enhancment-grant-applications-open/" class="btn btn-info">Learn More</a>
+          <a target="_blank" href="/news/2024/01/spring-2024-buggy-enhancement-grants-open/" class="btn btn-info">Learn More</a>
         </div>
       </div>
     </div>
