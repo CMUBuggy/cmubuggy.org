@@ -1,7 +1,7 @@
 <?php
-  // Time out the endowment box after Jan 31 Midnight.
+  // Time out the endowment box shortly after Jan 31 Midnight.
   // (default timezone already set in pre-content.inc)
-  $enddate = mktime(23, 59, 0, 1, 31, 2024);
+  $enddate = mktime(3, 00, 0, 2, 1, 2024);
 
   if (time() < $enddate) {
 ?>
