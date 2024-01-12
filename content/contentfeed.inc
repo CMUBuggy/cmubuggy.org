@@ -238,12 +238,6 @@ $items = array_merge($items, array_slice($commentitems, 0, $MAX_FEED_ITEMS_COMME
       echo '<div class="media mb-3">' . $icon_map[$item['type']] . '<div class="media-body">' . $item['content'] . '<time class="d-block text-right text-muted" datetime="' . date(DATE_RFC3339, $item['timestamp']) . '">' . timeago($item['timestamp']) . '</time></div></div>';
     }
   ?>
-  <div class="media mb-3">
-    <span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-info"></i><i class="fas fa-newspaper fa-inverse" data-fa-transform="shrink-8"></i></span>
-    <div class="media-body">
-      Get our latest updates in your inbox with our <a href="https://groups.google.com/g/baa-news">news mailing list</a>.
-    </div>
-  </div>
 </section>
 
 <section>
