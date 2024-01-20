@@ -8,7 +8,10 @@
   if(isset($_GET["s"])) {
     $s = $_GET["s"];
   }
-  $TITLE_TAG = "CMU Buggy Alumni Association";
+  
+  $BAA_TITLE = "CMU Buggy Alumni Association";  // Used to build titles.
+  $BASE_TITLE = "";  // Title visible on the page, if any
+  $TITLE_TAG = "";  // HTML <title> tag contents
 
   $OGMAP = array(
     "og:type" => "website",
@@ -16,23 +19,33 @@
     // TODO: Default "og:url" (apparently facebook cannot render og:image without it?)
   );
 
+  // TODO: Call down into a module and return a better BASE_TITLE, where appropriate.
   switch($s){
     case "history":
       include_once("./content/history/opengraph/opengraphdata.inc");
       $OGMAP = getHistoryOpenGraphContent($OGMAP);
-      $TITLE_TAG = "History | ".$TITLE_TAG;
+      $BASE_TITLE = "History";
       break;
     case "search":
-      $TITLE_TAG = "Search Results | ".$TITLE_TAG;
+      $BASE_TITLE = "Search Results";
       break;
     case "raceday":
       include_once("./content/raceday/opengraph/opengraphdata.inc");
       $OGMAP = getRacedayOpenGraphContent($OGMAP);
-      $TITLE_TAG = "Raceday | ".$TITLE_TAG;
+      $BASE_TITLE = "Raceday";
       break;
     case "tvportal":
-      $TITLE_TAG = "TV Portal | ".$TITLE_TAG;
+      $BASE_TITLE = "TV Portal";
       break;
+  }
+
+  // If we don't have a base title yet, just use BAA_TITLE.
+  // Otherwise, append BAA_TITLE into TITLE_TAG.
+  if (empty($BASE_TITLE)) {
+    $BASE_TITLE = $BAA_TITLE;
+    $TITLE_TAG = $BAA_TITLE;
+  } else {
+    $TITLE_TAG = $BASE_TITLE." | ".$BAA_TITLE;
   }
 
   // If we haven't yet found a specific opengraph title, use <title>.
