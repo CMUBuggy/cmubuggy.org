@@ -1,3 +1,8 @@
+<?php // This file takes place entirely inside of the HEAD tag ?>
+<?php // To keep Wordpress and the site consistent, it provides the TITLE tag based on the $TITLE_TAG variable. ?>
+
+<title><?php echo($TITLE_TAG); ?></title>
+
 <!--Favicon-->
 <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=2022022500">

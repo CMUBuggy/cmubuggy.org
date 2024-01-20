@@ -8,7 +8,7 @@
   if(isset($_GET["s"])) {
     $s = $_GET["s"];
   }
-  $title = "CMU Buggy Alumni Association";
+  $TITLE_TAG = "CMU Buggy Alumni Association";
 
   $OGMAP = array(
     "og:type" => "website",
@@ -20,24 +20,24 @@
     case "history":
       include_once("./content/history/opengraph/opengraphdata.inc");
       $OGMAP = getHistoryOpenGraphContent($OGMAP);
-      $title = "History | ".$title;
+      $TITLE_TAG = "History | ".$TITLE_TAG;
       break;
     case "search":
-      $title = "Search Results | ".$title;
+      $TITLE_TAG = "Search Results | ".$TITLE_TAG;
       break;
     case "raceday":
       include_once("./content/raceday/opengraph/opengraphdata.inc");
       $OGMAP = getRacedayOpenGraphContent($OGMAP);
-      $title = "Raceday | ".$title;
+      $TITLE_TAG = "Raceday | ".$TITLE_TAG;
       break;
     case "tvportal":
-      $title = "TV Portal | ".$title;
+      $TITLE_TAG = "TV Portal | ".$TITLE_TAG;
       break;
   }
 
   // If we haven't yet found a specific opengraph title, use <title>.
   if (!isset($OGMAP["og:title"])) {
-    $OGMAP["og:title"] = $title;
+    $OGMAP["og:title"] = $TITLE_TAG;
     if ($OGMAP["og:site_name"] == $OGMAP["og:title"]) {
       unset($OGMAP["og:site_name"]);
     }
@@ -54,7 +54,7 @@
     $content = "./content/".$s.".inc";
   } else {
     $content = "./content/404.inc";
-    $title = "Not Found | ".$title;
+    $TITLE_TAG = "Not Found | ".$TITLE_TAG;
   }
 ?>
 <!doctype html>
@@ -63,12 +63,13 @@
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
-  <title><?php echo($title); ?></title>
   <!-- OpenGraph Metadata -->
 <?php
   foreach ($OGMAP as $key => $value) {
     echo("  <meta property=\"".$key."\" content=\"".$value."\" />\n");
   }
+
+  // Provides <title>
   include_once(ROOT_DIR."/content/cssjs.inc");
 ?>
 </head>

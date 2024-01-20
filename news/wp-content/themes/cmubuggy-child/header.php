@@ -1,21 +1,20 @@
 <?php
 	include_once('../util.inc');
+
+	// Determine our title tag for cssjs.inc.
+	$TITLE_TAG = "Unknown";
+	if ( is_singular() ) {
+	  $TITLE_TAG = esc_attr(wp_strip_all_tags(get_the_title()));
+	} else {
+	  $TITLE_TAG = "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
+	}
+    $TITLE_TAG = $TITLE_TAG." | CMU Buggy Alumni Association";  
 ?>
 <!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<title><?php
-if ( is_singular() ) {
-  echo esc_attr(wp_strip_all_tags(get_the_title()));
-} else {
-  echo "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
-}
-?> | CMU Buggy Alumni Association</title>
-
 	<meta property="og:type" content="article" />
 	<meta property="og:site_name" content="CMU Buggy Alumni Association"/>
 	<meta property="og:url" content="<?php the_permalink(); ?>"/>
@@ -32,7 +31,11 @@ if ( is_singular() ) {
 }
 ?>
 
-	<?php include_once('../content/cssjs.inc'); ?>
+	<?php
+	  // Pull in the main site's CSS and JS.
+	  // This also provides the <title> tag via the contents of the TITLE_TAG variable.
+	  include_once('../content/cssjs.inc');
+	?>
 	<style>
 		:root { --wp-margin: 0px; }
 		#masthead { top: var(--wp-margin); }
