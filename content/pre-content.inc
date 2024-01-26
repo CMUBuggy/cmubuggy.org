@@ -75,9 +75,19 @@
             <a class="nav-link text-dark" href="https://cmubuggy.smugmug.com" target="_blank">Gallery</a>
           </li>
         </ul>
-        <!-- TODO: Actual breadcrumbs -->
         <div>
-          Home > <?php echo("$BASE_TITLE"); ?>
+
+<?php
+  // Check to see if someone has disabled breadcrumbs on this page
+  if ($SHOW_BREADCRUMBS) {
+    // TODO: Actual breadcrumbs
+    // We use text-reset here to keep the link black, but still retain the hover-underline effect.
+    echo("<a class=\"text-reset\" href=\"/\">Home</a> > $BASE_TITLE");
+  } else {
+    // Needed for consistent spacing on the home page.
+    echo("&nbsp;");
+  }
+?>
         </div>
         <h1><?php echo("$BASE_TITLE"); ?></h1>
       </div>
