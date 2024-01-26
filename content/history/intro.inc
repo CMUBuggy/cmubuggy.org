@@ -1,5 +1,3 @@
-<h1>The History of Buggy</h1>
-
 <div class="container">
  <div class="row">
    <div class="col">

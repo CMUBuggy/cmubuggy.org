@@ -6,8 +6,6 @@
     // No page selected, just show the index (included below)
 ?>
 
-<h1>BAA TV Portal</h1>
-
 <ul>
   <li><a href="/tvportal/leaderboard">Leaderboard Views</li>
   <li><a href="/tvportal/rosters">Roster Views</li>
