@@ -1,6 +1,7 @@
 <?php
 	include_once('../util.inc');
 
+  $SHOW_BREADCRUMBS = true;
 	// Determine our title tag for cssjs.inc.
 	$BASE_TITLE = "BAA News";
 	if ( is_singular() ) {
@@ -8,7 +9,7 @@
 	} else {
 	  $BASE_TITLE = "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
 	}
-    $TITLE_TAG = $BASE_TITLE." | CMU Buggy Alumni Association";  
+  $TITLE_TAG = $BASE_TITLE." | CMU Buggy Alumni Association";  
 ?>
 <!doctype html>
 <html>
