@@ -2,13 +2,13 @@
 	include_once('../util.inc');
 
 	// Determine our title tag for cssjs.inc.
-	$TITLE_TAG = "Unknown";
+	$BASE_TITLE = "BAA News";
 	if ( is_singular() ) {
-	  $TITLE_TAG = esc_attr(wp_strip_all_tags(get_the_title()));
+	  $BASE_TITLE = esc_attr(wp_strip_all_tags(get_the_title()));
 	} else {
-	  $TITLE_TAG = "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
+	  $BASE_TITLE = "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
 	}
-    $TITLE_TAG = $TITLE_TAG." | CMU Buggy Alumni Association";  
+    $TITLE_TAG = $BASE_TITLE." | CMU Buggy Alumni Association";  
 ?>
 <!doctype html>
 <html>
