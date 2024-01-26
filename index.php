@@ -9,6 +9,7 @@
     $s = $_GET["s"];
   }
 
+  $SHOW_BREADCRUMBS = true;  // False will indicate to hide the breadcrumbs (e.g. home page)
   $BAA_TITLE = "CMU Buggy Alumni Association";  // Used to build titles.
   $BASE_TITLE = "";  // Title visible on the page, if any
   $TITLE_TAG = "";  // HTML <title> tag contents
@@ -57,15 +58,21 @@
   }
 
   if(empty($s)){
-    // Can't be relative URLs, sadly (so dev sites will behave in unexpected ways).
+    // We are running the home page itself.
+
+    // Opengraph Data can't be relative URLs, sadly (so dev sites will behave in unexpected ways).
     // But, our homepage at least should have a logo for opengraph data.
     $OGMAP["og:image"] = "https://cmubuggy.org/img/logo-2022-opengraph.jpg";
     $OGMAP["og:url"] = "https://cmubuggy.org/";
 
+    $SHOW_BREADCRUMBS = false;
+
     $content = ("./content/homepage.inc");
   } else if(file_exists("./content/".$s.".inc")){
+    // We are running some other page that is in the non-wordpress codebase (e.g. history, tvportal)
     $content = "./content/".$s.".inc";
   } else {
+    // We don't know what the user wants.
     $content = "./content/404.inc";
     $TITLE_TAG = "Not Found | ".$TITLE_TAG;
   }
