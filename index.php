@@ -8,7 +8,7 @@
   if(isset($_GET["s"])) {
     $s = $_GET["s"];
   }
-  
+
   $BAA_TITLE = "CMU Buggy Alumni Association";  // Used to build titles.
   $BASE_TITLE = "";  // Title visible on the page, if any
   $TITLE_TAG = "";  // HTML <title> tag contents
@@ -88,7 +88,9 @@
 </head>
 <?php
   include_once("content/pre-content.inc");
-  include_once($content);
+  try {
+    include_once($content);
+  } catch (Exception $e) {}
   include_once("content/post-content.inc");
 ?>
 </body>
