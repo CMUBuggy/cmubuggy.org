@@ -1,0 +1,127 @@
+diff --git a/content/cssjs.inc b/content/cssjs.inc
+index 2adb324..4047284 100644
+--- a/content/cssjs.inc
++++ b/content/cssjs.inc
+@@ -1,3 +1,8 @@
++<?php // This file takes place entirely inside of the HEAD tag ?>
++<?php // To keep Wordpress and the site consistent, it provides the TITLE tag based on the $TITLE_TAG variable. ?>
++
++<title><?php echo($TITLE_TAG); ?></title>
++
+ <!--Favicon-->
+ <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+ <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=2022022500">
+diff --git a/index.php b/index.php
+index 9cf4745..a630bfd 100755
+--- a/index.php
++++ b/index.php
+@@ -8,7 +8,7 @@
+   if(isset($_GET["s"])) {
+     $s = $_GET["s"];
+   }
+-  $title = "CMU Buggy Alumni Association";
++  $TITLE_TAG = "CMU Buggy Alumni Association";
+ 
+   $OGMAP = array(
+     "og:type" => "website",
+@@ -20,24 +20,24 @@
+     case "history":
+       include_once("./content/history/opengraph/opengraphdata.inc");
+       $OGMAP = getHistoryOpenGraphContent($OGMAP);
+-      $title = "History | ".$title;
++      $TITLE_TAG = "History | ".$TITLE_TAG;
+       break;
+     case "search":
+-      $title = "Search Results | ".$title;
++      $TITLE_TAG = "Search Results | ".$TITLE_TAG;
+       break;
+     case "raceday":
+       include_once("./content/raceday/opengraph/opengraphdata.inc");
+       $OGMAP = getRacedayOpenGraphContent($OGMAP);
+-      $title = "Raceday | ".$title;
++      $TITLE_TAG = "Raceday | ".$TITLE_TAG;
+       break;
+     case "tvportal":
+-      $title = "TV Portal | ".$title;
++      $TITLE_TAG = "TV Portal | ".$TITLE_TAG;
+       break;
+   }
+ 
+   // If we haven't yet found a specific opengraph title, use <title>.
+   if (!isset($OGMAP["og:title"])) {
+-    $OGMAP["og:title"] = $title;
++    $OGMAP["og:title"] = $TITLE_TAG;
+     if ($OGMAP["og:site_name"] == $OGMAP["og:title"]) {
+       unset($OGMAP["og:site_name"]);
+     }
+@@ -54,7 +54,7 @@
+     $content = "./content/".$s.".inc";
+   } else {
+     $content = "./content/404.inc";
+-    $title = "Not Found | ".$title;
++    $TITLE_TAG = "Not Found | ".$TITLE_TAG;
+   }
+ ?>
+ <!doctype html>
+@@ -63,12 +63,13 @@
+   <meta charset="utf8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+   <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
+-  <title><?php echo($title); ?></title>
+   <!-- OpenGraph Metadata -->
+ <?php
+   foreach ($OGMAP as $key => $value) {
+     echo("  <meta property=\"".$key."\" content=\"".$value."\" />\n");
+   }
++
++  // Provides <title>
+   include_once(ROOT_DIR."/content/cssjs.inc");
+ ?>
+ </head>
+diff --git a/news/wp-content/themes/cmubuggy-child/header.php b/news/wp-content/themes/cmubuggy-child/header.php
+index 93bbd36..0e7ea83 100644
+--- a/news/wp-content/themes/cmubuggy-child/header.php
++++ b/news/wp-content/themes/cmubuggy-child/header.php
+@@ -1,5 +1,14 @@
+ <?php
+ 	include_once('../util.inc');
++
++	// Determine our title tag for cssjs.inc.
++	$TITLE_TAG = "Unknown";
++	if ( is_singular() ) {
++	  $TITLE_TAG = esc_attr(wp_strip_all_tags(get_the_title()));
++	} else {
++	  $TITLE_TAG = "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
++	}
++    $TITLE_TAG = $TITLE_TAG." | CMU Buggy Alumni Association";  
+ ?>
+ <!doctype html>
+ <html>
+@@ -8,14 +17,6 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="keywords" content="" />
+ 	<meta name="description" content="" />
+-	<title><?php
+-if ( is_singular() ) {
+-  echo esc_attr(wp_strip_all_tags(get_the_title()));
+-} else {
+-  echo "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
+-}
+-?> | CMU Buggy Alumni Association</title>
+-
+ 	<meta property="og:type" content="article" />
+ 	<meta property="og:site_name" content="CMU Buggy Alumni Association"/>
+ 	<meta property="og:url" content="<?php the_permalink(); ?>"/>
+@@ -32,7 +33,11 @@ if ( is_singular() ) {
+ }
+ ?>
+ 
+-	<?php include_once('../content/cssjs.inc'); ?>
++	<?php
++	  // Pull in the main site's CSS and JS.
++	  // This also provides the <title> tag via the contents of the TITLE_TAG variable.
++	  include_once('../content/cssjs.inc');
++	?>
+ 	<style>
+ 		:root { --wp-margin: 0px; }
+ 		#masthead { top: var(--wp-margin); }
