@@ -1,4 +1,3 @@
-    </div>
-  </div>
-</div>
+  </div> <!-- row -->
+</div> <!-- container -->
 <?php include_once(ROOT_DIR."/content/footer.inc"); ?>

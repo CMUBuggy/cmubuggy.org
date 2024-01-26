@@ -56,3 +56,11 @@ body { margin-top: 4.5rem; }
     max-height: 300px;
   }
 }
+
+.border-2 {
+  border-width: 2px !important;
+}
+
+.border-3 {
+  border-width: 3px !important;
+}
