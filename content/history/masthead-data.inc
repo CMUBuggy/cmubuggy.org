@@ -10,20 +10,11 @@ function getHistoryBreadcrumbs() {
         "org" => ['/history/org', "Organizations"],
         "person" => ['/history/person', "People"],
         "raceday" => ['/history/raceday', "Racedays"],
+        "sweepstakes" => ['/history/sweepstakes', "Sweepstakes Committees"],
 
         // There isn't really a /history/entries page.
         // Going to use orgs, but could arguably be racedays too.
         "entry" => ['/history/org', "Organizations"],
-
-        // TODO: Sweepstakes can run in 2 modes, one with a urlkey (year) and
-        // one for the overall list.
-        // Options:
-        //  - Ignore it
-        //  - Split sweepstakes into sweepstakes and sweepstakeslist to be consistent with other pages
-        //  - Custom handling in this file
-        // "sweepstakes" => ['/history/sweepstakes', "Sweepstakes Committees"],
-        // For now, no breadcrumb and a specific title that doesn't include the year.
-
 
         // These pages exist, but are the top level and shouldn't get a dedicated breadcrumb.
         // Instead, they just get their title and the History breadcrumb.
@@ -34,6 +25,7 @@ function getHistoryBreadcrumbs() {
         // "orglist" => ['/history/org', "Organizations"],
         // "personlist" => ['/history/person', "People"],
         // "racedaylist" => ['/history/raceday', "Racedays"],
+        // "sweepstakeslist" => ['/history/sweepstakes', "Sweepstakes Committees"],
         // "toptimes" => ['/history/toptimes', "Top Times"]
     ];
 
@@ -57,6 +49,7 @@ function getHistoryPageTitle() {
         // "person" => "Connor Hayes"
         // "raceday" => "2023"
         // "entry" => "2023 Spirit Womens A"
+        // "sweepstakes" => "Sweepstakes Committee 2023"
 
         // TODO: Sweepstakes is special, see note above.
 
@@ -66,7 +59,7 @@ function getHistoryPageTitle() {
         "orglist" => "Organizations",
         "personlist" => "People Search",
         "racedaylist" => "Racedays",
-        "sweepstakes" => "Sweepstakes Committees",
+        "sweepstakeslist" => "Sweepstakes Committees",
         "toptimes" => "Top Times"
     ];
 
