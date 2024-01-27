@@ -10,6 +10,7 @@
   }
 
   $SHOW_BREADCRUMBS = true;  // False will indicate to hide the breadcrumbs (e.g. home page)
+  $BREADCRUMB_LIST = [["/", "Home"]];  // List of breadcrumb (url, text) pairs.
   $BAA_TITLE = "CMU Buggy Alumni Association";  // Used to build titles.
   $BASE_TITLE = "";  // Title visible on the page, if any
   $TITLE_TAG = "";  // HTML <title> tag contents
@@ -20,23 +21,31 @@
     // TODO: Default "og:url" (apparently facebook cannot render og:image without it?)
   );
 
-  // TODO: Call down into a module and return a better BASE_TITLE, where appropriate.
+  // Pre-Content Data Collection.
+  // - Opengraph
+  // - Title
+  // - Breadcrumbs
+  // TODO: Call down into a module and return a better BASE_TITLE and additional breadcrumbs, where appropriate.
   switch($s){
     case "history":
       include_once("./content/history/opengraph/opengraphdata.inc");
       $OGMAP = getHistoryOpenGraphContent($OGMAP);
       $BASE_TITLE = "History";
+      array_push($BREADCRUMB_LIST, ["/history", "History"]);
       break;
     case "search":
+      // Disabled in new design
       $BASE_TITLE = "Search Results";
       break;
     case "raceday":
       include_once("./content/raceday/opengraph/opengraphdata.inc");
       $OGMAP = getRacedayOpenGraphContent($OGMAP);
       $BASE_TITLE = "Raceday";
+      array_push($BREADCRUMB_LIST, ["/raceday", "Raceday"]);
       break;
     case "tvportal":
       $BASE_TITLE = "TV Portal";
+      array_push($BREADCRUMB_LIST, ["/tvportal", "TV Portal"]);
       break;
   }
 

@@ -79,10 +79,28 @@
 
 <?php
   // Check to see if someone has disabled breadcrumbs on this page
-  if ($SHOW_BREADCRUMBS) {
-    // TODO: Actual breadcrumbs
-    // We use text-reset here to keep the link black, but still retain the hover-underline effect.
-    echo("<a class=\"text-reset\" href=\"/\">Home</a> > $BASE_TITLE");
+  if ($SHOW_BREADCRUMBS && count($BREADCRUMB_LIST) > 0) {
+    // Breadcrumps are a list of 2-item lists (url, title).
+    // If the URL is an empty string, don't linkify it.
+
+    $first_crumb = true;
+    foreach($BREADCRUMB_LIST as $crumb) {
+      if (!$first_crumb) {
+        echo(" > ");
+      } else {
+        $first_crumb = false;
+      }
+      $url = $crumb[0];
+      $text = $crumb[1];
+      if ($url != "") {
+        // We use text-reset here to keep the link black, but still retain the hover-underline effect.
+        echo("<a class=\"text-reset\" href=\"/\">");
+      }
+      echo($text);
+      if ($url != "") {
+        echo("</a>");
+      }
+    }
   } else {
     // Needed for consistent spacing on the home page.
     echo("&nbsp;");
