@@ -642,15 +642,6 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 ?>
 <div class="row mb-2">
   <div class="col">
-  <h1>
-  <?php
-      echo($org["longname"]);
-      if ($org["shortname"]) {
-        echo (" <span style=\"font-size:.5em\">(".$org["shortname"].")</span>");
-      }
-  ?>
-  </h1>
-
   <dl class="row">
   <dt class="col-sm-3">Founded</dt><dd class="col-sm-9"><?php echo($org["yearfounded"]); ?></dd>
   <?php

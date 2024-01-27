@@ -66,6 +66,10 @@ function getHistoryPageTitle() {
         // "person" => "Connor Hayes"
         // "entry" => "2023 Spirit Womens A"
 
+        "buggy" => 'getBuggyTitle',
+        "entry" => 'getEntryTitle',
+        "org" => 'getOrgTitle',
+        "person" => 'getPersonTitle',
         "raceday" => 'getRacedayTitle',
         "sweepstakes" => 'getSweepstakesTitle',
     ];
@@ -106,5 +110,77 @@ function getSweepstakesTitle() {
 
     $year = $_GET["year"] * 1;
     return "Sweepstakes Committee $year";
+}
+
+// TODO: The next few just re-use data that we already got in the
+// opengraph queries.  Ideally, we should just be able to do that once.
+
+// Common code for all the below.  Die if the paramter
+// (which should have been required for our routing) is
+// not present.  Return it otherwise.
+function dieOrGetParam($param) {
+    if (empty($_GET[$param])) {
+        // Should not have been routed here.
+        die("routed without url key:" . $param);
+    }
+    return $_GET[$param];
+}
+
+// Common code for all of the below.  Takes a query,
+// binds the provide url parameter.  Returns the
+// "title" column from the first row of the query.
+//
+// Returns unknown if a nonsingular row is returned.
+function commonGetTitle($query, $key){
+    global $HISTORY_DATABASE;
+    $param = dieOrGetParam($key);
+
+    $result = dbBoundQuery($HISTORY_DATABASE, $query, "s", $param);
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        if (!empty($row["title"])) {
+            return $row["title"];
+        }
+    }
+
+    // 0 rows, more than 1 row, or no "title" column.
+    return "Unknown";
+}
+
+function getBuggyTitle() {
+    return commonGetTitle("SELECT name AS title FROM hist_buggies WHERE buggyid=?;", "urlkey");
+}
+
+function getEntryTitle() {
+    $q = "SELECT CONCAT(e.year, ' ', o.shortname, ' ',
+                        case when e.Class = 'M' then 'Men\'s'
+                             when e.Class = 'W' then 'Women\'s'
+                             when e.Class = 'N' then 'All Gender'
+                             when e.Class = 'R' then 'Robotic'
+                             else 'Unknown' end,
+                        ' ', team)
+                AS title
+            FROM hist_raceentries e
+            LEFT JOIN hist_orgs o ON e.orgid = o.orgid
+            WHERE entryid = ?;";
+
+    return commonGetTitle($q, "urlkey");
+}
+
+function getOrgTitle() {
+    // This extra bit of complexity with variables allows us to
+    // include both greek and short names in the title.
+    $q = "SELECT
+            @ln := case when isgreek = 1 then greekname else longname end AS ln,
+            @sn := case when isgreek = 1 OR longname != shortname then shortname else null end as sn,
+            CONCAT(@ln, IF(@sn IS NOT NULL, CONCAT(' (', @sn, ')'), ''))
+                   AS title
+            FROM hist_orgs
+            WHERE orgid=?;";
+    return commonGetTitle($q, "urlkey");
+}
+
+function getPersonTitle() {
+    return commonGetTitle("SELECT concat(firstname, ' ', lastname) AS title FROM hist_people WHERE personid=?;", "id");
 }
 ?>
