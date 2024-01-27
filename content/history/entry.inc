@@ -165,15 +165,10 @@ foreach($displayHeatTypes as $ht) {
 
 // Page rendering starts here.
 
-
-
-echo("<h1>");
-echo("<a href=\"/history/raceday/".$year."#".$header["classanchor"]."\">".$year."</a> ");
-echo("<a href=\"/history/org/".$header["orgid"]."\">".$header["org"]."</a> ".$class." ".$header["team"]);
-echo("</h1>");
-
-// Add other entry-level metadata here as we have it
+// Add entry-level metadata here as we have it
 echo("<table>");
+echo("<tr><th>Year:</th><td><a href=\"/history/raceday/".$year."#".$header["classanchor"]."\">".$year."</a></td></tr>");
+echo("<tr><th>Org:</th><td><a href=\"/history/org/".$header["orgid"]."\">".$header["org"]."</a></td></tr>");
 echo("<tr><th>Buggy:</th><td><a href=\"/history/buggy/".$header["buggyid"]."\">".$header["buggy"]."</a></td></tr>");
 if (!empty($header["place"])) {
   echo("<tr><th>Place:</th><td>". $header["place"]."</td></tr>");

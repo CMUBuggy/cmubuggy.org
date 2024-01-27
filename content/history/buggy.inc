@@ -147,7 +147,6 @@ if(empty($image_url)) {
 
 <div class="row mb-3">
   <div class="col">
-  <h1><?php echo($buggy["name"]);?></h1>
   <dl class="row">
     <dt class="col-sm-5">Built</dt>
     <dd class="col-sm-7"><?php echo($buggy["birthyear"]); ?></dd>
