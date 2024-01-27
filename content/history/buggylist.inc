@@ -10,8 +10,6 @@
             ORDER BY birthyear DESC, name ASC;";
   $buggies = dbQuery($HISTORY_DATABASE, $query);
 ?>
-<h1>Buggies</h1>
-
 <div class="table-responsive">
   <table class="table">
     <thead>
