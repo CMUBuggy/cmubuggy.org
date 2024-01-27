@@ -94,7 +94,7 @@
       $text = $crumb[1];
       if ($url != "") {
         // We use text-reset here to keep the link black, but still retain the hover-underline effect.
-        echo("<a class=\"text-reset\" href=\"/\">");
+        echo("<a class=\"text-reset\" href=\"$url\">");
       }
       echo($text);
       if ($url != "") {

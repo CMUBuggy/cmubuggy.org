@@ -28,8 +28,6 @@
   }
 ?>
 
-<h1>People Search</h1>
-
 <p>The history database currently includes people that we have records for as raceday pushers, drivers, and members of the sweepstakes committee.</p>
 <form method="get" action="/history/person">
 <div class="form-inline my-2">

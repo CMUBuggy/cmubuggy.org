@@ -30,8 +30,9 @@
     case "history":
       include_once("./content/history/opengraph/opengraphdata.inc");
       $OGMAP = getHistoryOpenGraphContent($OGMAP);
-      $BASE_TITLE = "History";
-      array_push($BREADCRUMB_LIST, ["/history", "History"]);
+      include_once("./content/history/masthead-data.inc");
+      $BREADCRUMB_LIST = array_merge($BREADCRUMB_LIST, getHistoryBreadcrumbs());
+      $BASE_TITLE = getHistoryPageTitle();
       break;
     case "search":
       // Disabled in new design

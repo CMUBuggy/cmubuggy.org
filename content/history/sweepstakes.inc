@@ -56,14 +56,6 @@
     // Show all years, but only 4 roles.
     $sweeps = getAllSweepstakes();
 ?>
-  <div class="row align-items-center mb-2">
-    <div class="col col-sm-8 col-md-9">
-      <h1>Sweepstakes Committees</h1>
-    </div>
-    <div class="d-none d-sm-flex col justify-content-end">
-      <img class="img-fluid" style="max-height:150px" src="/img/logos/sweepstakes_logo_notext.svg">
-    </div>
-  </div>
   <p class="font-italic">To see the full committee, click on the year.</p>
   <div class="table-responsive">
     <table class="table">
