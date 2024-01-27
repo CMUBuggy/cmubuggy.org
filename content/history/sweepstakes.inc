@@ -11,17 +11,9 @@
   }
 
   // Should always have a year, due to htaccess routing.
-  $year = $_GET["year"];
+  $year = $_GET["year"] * 1;
   $sweeps = getSweepstakesYear($_GET["year"]);
 ?>
-  <div class="row align-items-center mb-4">
-    <div class="col col-sm-8 col-md-9">
-      <h1 class="text-center">Sweepstakes Committee <?php echo($year);?></h1>
-    </div>
-    <div class="d-none d-sm-flex col justify-content-end">
-      <img class="img-fluid" style="max-height:150px" src="/img/logos/sweepstakes_logo_notext.svg">
-    </div>
-  </div>
 <?php
   if ($sweeps->num_rows > 0) {
     echo("<dl class=\"row\">");

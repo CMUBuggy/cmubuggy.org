@@ -225,8 +225,6 @@
   }
 ?>
 
-<h1>Raceday <?php echo($year);?></h1>
-
 <?php if (!empty($historyLink)) { ?>
   Read a history of <a href="<?php echo($historyLink); ?>">this year</a>.
 <?php } ?>
