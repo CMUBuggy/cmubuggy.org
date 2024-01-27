@@ -1,5 +1,3 @@
-<h1>Racedays</h1>
-
 <?php
 // This query only works for years in one of 3 cases:
 // - No results at all, and there is an entry in the database. (e.g. COVID and War Years)

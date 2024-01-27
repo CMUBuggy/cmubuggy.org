@@ -2,14 +2,23 @@
 	include_once('../util.inc');
 
   $SHOW_BREADCRUMBS = true;
-	// Determine our title tag for cssjs.inc.
-	$BASE_TITLE = "BAA News";
-	if ( is_singular() ) {
-	  $BASE_TITLE = esc_attr(wp_strip_all_tags(get_the_title()));
-	} else {
-	  $BASE_TITLE = "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
-	}
-  $TITLE_TAG = $BASE_TITLE." | CMU Buggy Alumni Association";  
+  if (!defined($BREADCRUMB_LIST) || count($BREADCRUMB_LIST) == 0) {
+	// If someone has set something up before header.php is called, keep using that.
+	$BREADCRUMB_LIST = [["/", "Home"]];  // List of breadcrumb (url, text) pairs.
+  }
+
+  // Determine our title tag for cssjs.inc & title/breadcrumbs for pre-content.inc
+  $BASE_TITLE = "BAA News";
+  if ( is_singular() ) {
+    $BASE_TITLE = esc_attr(wp_strip_all_tags(get_the_title()));
+  } else {
+    $BASE_TITLE = "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
+  }
+  $TITLE_TAG = $BASE_TITLE." | CMU Buggy Alumni Association";
+
+  // TODO: something more useful, including URLs for intermediate stuff.
+  // TBD: breadcrumbs may need to be done in other files, (e.g. page.php, archive.php) before we get here.
+  array_push($BREADCRUMB_LIST, ["", $BASE_TITLE]);
 ?>
 <!doctype html>
 <html>
