@@ -31,7 +31,7 @@
     //
     // Has a special archive title.
     // If this is the top level home page, no breadcrumbs.  Otherwise "News"
-    $BASE_TITLE = "News by ".esc_attr(wp_strip_all_tags(get_the_archive_title()));
+    $BASE_TITLE = "News ".esc_attr(wp_strip_all_tags(get_the_archive_title()));
     if (!is_home()) {
       array_push($BREADCRUMB_LIST, ["/news", "News"]);
     }
