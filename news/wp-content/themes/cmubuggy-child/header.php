@@ -9,16 +9,34 @@
 
   // Determine our title tag for cssjs.inc & title/breadcrumbs for pre-content.inc
   $BASE_TITLE = "BAA News";
-  if ( is_singular() ) {
+  if ( is_page() ) {
+    // Page -- Find all parents for breadcrumbs.
     $BASE_TITLE = esc_attr(wp_strip_all_tags(get_the_title()));
+    $MORE_CRUMBS = [];
+    $parent = get_post_parent();
+    while ($parent != null) {
+      $title = esc_attr(wp_strip_all_tags(get_the_title($parent)));
+      $url = get_permalink($parent);
+      array_unshift($MORE_CRUMBS, [$url, $title]);
+      $parent = get_post_parent($parent);
+    }
+    $BREADCRUMB_LIST = array_merge($BREADCRUMB_LIST, $MORE_CRUMBS);
+  } else if ( is_singular() ) {
+    // Single Post (but not a page)
+    // Always a "news" breadcrumb.
+    $BASE_TITLE = esc_attr(wp_strip_all_tags(get_the_title()));
+    array_push($BREADCRUMB_LIST, ["/news", "News"]);
   } else {
-    $BASE_TITLE = "BAA News: " . esc_attr(wp_strip_all_tags(get_the_archive_title()));
+    // Multiple posts on one page.
+    //
+    // Has a special archive title.
+    // If this is the top level home page, no breadcrumbs.  Otherwise "News"
+    $BASE_TITLE = "News by ".esc_attr(wp_strip_all_tags(get_the_archive_title()));
+    if (!is_home()) {
+      array_push($BREADCRUMB_LIST, ["/news", "News"]);
+    }
   }
   $TITLE_TAG = $BASE_TITLE." | CMU Buggy Alumni Association";
-
-  // TODO: something more useful, including URLs for intermediate stuff.
-  // TBD: breadcrumbs may need to be done in other files, (e.g. page.php, archive.php) before we get here.
-  array_push($BREADCRUMB_LIST, ["", $BASE_TITLE]);
 ?>
 <!doctype html>
 <html>
