@@ -54,8 +54,6 @@ function displayTable($teamList, $displayNotes=false){
 }
 ?>
 
-<h1>Top <?php echo($TOP_N); ?> Times</h1>
-
 <p><i>Note: This table does not account for DQs.</i></p>
 
 <ul class="nav nav-tabs mb-2" role="tablist">
