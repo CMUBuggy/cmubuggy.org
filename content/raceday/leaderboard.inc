@@ -122,8 +122,11 @@
   var visibleconfigref = firebase.database().ref("config").orderByChild('time_sort');
   visibleconfigref.on('value', function (snapshot) {
     snapshot.forEach(function (child) {
+      if (child.key == 'CURRENT_TAB') {
+        // not currently relevant in this view
+        return;
+      }
       var nameStyle = child.key.replace('_', '-');
-      // var tab = document.querySelector('#tab-' + nameStyle);
       var button = document.querySelector('#' + nameStyle + '-tab');
 
       var displaySetting = child.val() == true ? 'block' : 'none';
