@@ -4,13 +4,10 @@
       // For when the auction goes live (includes a timeout for end of auction)
       // include("homepage-raceday-auction.inc");
 
-      // Endowment Application Promobox
-      // Includes timeout
-      include("homepage-endowmentbox.inc");
-      
+      // Endowment Application Promobox (includes a timeout)
+      // include("homepage-endowmentbox.inc");
 
-      // Store/Merch Promo Box
-      // Times out approximately when store closes.
+      // Store/Merch Promo Box (times out approximately when store closes)
       // include("homepage-raceday-merch.inc");
 
       // -----------------------------------
@@ -21,6 +18,12 @@
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
       include("homepage-raceday-countdown.inc");
+
+      // Leaderboard (disables via config spreadsheet, but still reads firebase
+      // if code is included)
+      // include("homepage-raceday-leaderbox.inc");
+
+      // Full Raceday Infobox
       // include("homepage-raceday-infobox.inc");
 
       // Results from most recent raceday
@@ -28,8 +31,7 @@
       //
       // Goes up ASAP after a raceday completes.
       //
-      // Can be removed around the beginning of Febuary when we start doing
-      // next-raceday stuff like the countdown box.
+      // Should be removed sometime in the fall when it starts to feel stale.
 
       // include("homepage-raceday-results.inc");
     ?>
