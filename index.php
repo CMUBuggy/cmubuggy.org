@@ -1,6 +1,5 @@
 <?php
   include_once("dbconfig.inc");
-  include_once("lib/pChart_includes.inc");
   include_once("util.inc");
   session_start();
 

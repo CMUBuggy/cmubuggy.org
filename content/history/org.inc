@@ -7,6 +7,9 @@ if (empty($_GET["urlkey"])) {
 
 $orgUrlKey = $_GET["urlkey"];
 
+// We use pchart on this page, so make sure to include it.
+// (path relative to index.php)
+include_once("lib/pChart_includes.inc");
 
 #(/org) metadata (existance, names, founding, url, notes)
 $metaDataQuery = "SELECT case when isgreek = 1 then greekname else longname end AS longname,
