@@ -102,7 +102,9 @@ Redirect 301 /raceday/live /live
 Redirect 302 /store /merch
 Redirect 302 /merch https://www.customink.com/fundraising/baa-fall-beanies
 
-Redirect 302 /auction https://www.32auctions.com/LeadTruck2023
+# Lead Truck Auction or Placeholder
+# Redirect 302 /auction https://www.32auctions.com/LeadTruck2023
+Redirect 302 /auction https://cmubuggy.org/news/auction-coming-soon/
 
 Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
