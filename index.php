@@ -40,8 +40,9 @@
     case "raceday":
       include_once("./content/raceday/opengraph/opengraphdata.inc");
       $OGMAP = getRacedayOpenGraphContent($OGMAP);
-      $BASE_TITLE = "Raceday";
-      array_push($BREADCRUMB_LIST, ["/raceday", "Raceday"]);
+      include_once("./content/raceday/masthead-data.inc");
+      $BASE_TITLE = getRacedayPageTitle();
+      $BREADCRUMB_LIST = array_merge($BREADCRUMB_LIST, getRacedayBreadcrumbs());
       break;
     case "tvportal":
       $BASE_TITLE = "TV Portal";

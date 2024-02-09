@@ -189,4 +189,16 @@
 
 	return false;
   }
+
+  // Die if the paramter (which should have been required
+  // for our routing to the current page) is not present.
+
+  // Return it otherwise.
+  function dieOrGetParam($param) {
+    if (empty($_GET[$param])) {
+        // Should not have been routed here.
+        die("routed without url key:" . $param);
+    }
+    return $_GET[$param];
+  }
 ?>

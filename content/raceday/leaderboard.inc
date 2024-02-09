@@ -1,5 +1,3 @@
-<h1>Leaderboard</h1>
-
 <style>
   .tab-pane { counter-reset: place; }
   .race-result [data-note]:empty { display: none; }
