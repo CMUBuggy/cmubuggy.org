@@ -60,14 +60,23 @@ function getRacedayOpenGraphContent($ogMap) {
 //
 // Doesn't check to see if they're actually valid entered for this year or not, since this is only for
 // opengraph purposes.
+//
+// Caches results so multiple calls won't hit the DB.
+$ORG_SHORTNAME_CACHE = [];
 function getOrgShortname($orgUrlKey) {
   global $HISTORY_DATABASE;
+  global $ORG_SHORTNAME_CACHE;
+
+  if (array_key_exists($orgUrlKey, $ORG_SHORTNAME_CACHE)) {
+    return $ORG_SHORTNAME_CACHE[$orgUrlKey];
+  }
 
   $metaDataQuery = "SELECT shortname FROM hist_orgs o WHERE o.orgid=?;";
   $metaData = dbBoundQuery($HISTORY_DATABASE, $metaDataQuery, "s", $orgUrlKey);
 
   if ($metaData->num_rows == 1) {
     $org = $metaData->fetch_assoc();
+    $ORG_SHORTNAME_CACHE[$orgUrlKey] = $org["shortname"];
     return $org["shortname"];
 
     // We could obviously also fetch the logo here, unfortuinately OpenGraph is pretentious and does not

@@ -34,7 +34,6 @@
 
   if ($rosters->num_rows == 0) {
     if ($year == $CURRENT_YEAR) {
-     echo("<h1>".$year." Rosters</h1>");
      echo("<p>Stay tuned – rosters will be posted the week of Carnival. We'll see you then!</p>");
      exit();
     } else {
@@ -82,7 +81,6 @@
   }
 
   // Second Table, Entries:
-  echo("<h1>".$year." Team Rosters</h1>");
   echo("<div class=\"table-responsive\"><table class=\"table\">");
 
   // How gross is this?  In order to put the logos into a reasonable spot and make them dissapear as the

@@ -1,6 +1,6 @@
 <?php
 function getHistoryBreadcrumbs() {
-    // If we are here, we always have at least the /history crumb.
+    // Except for the top page, we get a History crumb.
     $ret = [["/history", "History"]];
 
     // The map of deeper crumbs.
@@ -29,8 +29,11 @@ function getHistoryBreadcrumbs() {
         // "toptimes" => ['/history/toptimes', "Top Times"]
     ];
 
-    if (empty($_GET['p'])
-        || !in_array($_GET['p'], array_keys($CRUMB_MAP))) {
+
+    if (empty($_GET['p'])) {
+        // Top level page, no additional crumb.
+        return [];
+    } else if (!in_array($_GET['p'], array_keys($CRUMB_MAP))) {
         // Either this is the top page, or it is a subpage that doesn't get a crumb.
         return $ret;
     } else {
@@ -57,10 +60,10 @@ function getHistoryPageTitle() {
     // PHP callbacks are just strings.  None of these callback may take a param,
     // they need to work the same way the content does by processing $_GET.
     $TITLE_CALLBACKS = [
-        // TODO:
         // These pages will need custom handling, as the title
         // varies based on the query.
         //
+        // Examples:
         // "buggy" => "Stealth"
         // "org" => "Apex"
         // "person" => "Connor Hayes"
@@ -114,17 +117,6 @@ function getSweepstakesTitle() {
 
 // TODO: The next few just re-use data that we already got in the
 // opengraph queries.  Ideally, we should just be able to do that once.
-
-// Common code for all the below.  Die if the paramter
-// (which should have been required for our routing) is
-// not present.  Return it otherwise.
-function dieOrGetParam($param) {
-    if (empty($_GET[$param])) {
-        // Should not have been routed here.
-        die("routed without url key:" . $param);
-    }
-    return $_GET[$param];
-}
 
 // Common code for all of the below.  Takes a query,
 // binds the provide url parameter.  Returns the
