@@ -119,7 +119,7 @@ function getSweepstakesTitle() {
 // opengraph queries.  Ideally, we should just be able to do that once.
 
 // Common code for all of the below.  Takes a query,
-// binds the provide url parameter.  Returns the
+// binds the provided url parameter.  Returns the
 // "title" column from the first row of the query.
 //
 // Returns unknown if a nonsingular row is returned.
