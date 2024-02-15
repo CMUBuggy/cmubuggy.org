@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `hist_raceentries` (
   INDEX `YearOrgClassTeam` (`year`, `orgid`, `class`, `team`),  # Racedaylist
   INDEX `YearClassPlace` (`year`,`class`,`place`),  # Individual Raceday
   UNIQUE KEY `entryid_UNIQUE` (`entryid`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 CREATE TABLE IF NOT EXISTS `hist_entrypeoplemap` (
     personid VARCHAR(10) NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `hist_entrypeoplemap` (
     position ENUM('Driver', 'Hill 1', 'Hill 2', 'Hill 3', 'Hill 4', 'Hill 5') NOT NULL,
     INDEX (`personid`),
     UNIQUE INDEX one_person_per_slot (`entryid`,`heattype`,`position`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 START TRANSACTION;
 INSERT INTO hist_raceentries
