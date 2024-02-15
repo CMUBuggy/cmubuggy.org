@@ -162,7 +162,11 @@ RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC
 RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
 RewriteRule		^history/org[/]*$									index.php?s=history&p=orglist					[NC,L]
 # person needs to have the QSA flag in order to preserve the query string for searches.
+#
+# /history/people is a rewrite since otherwise it goes to /about/people and this
+# seems more reasonable.
 RewriteRule		^history/person[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
+RewriteRule		^history/people[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
 RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
 # record is obsolete, but keep it here to allow any dead links to work.
 RewriteRule		^history/record[/]*$								index.php?s=history&p=toptimes 					[NC,L]
