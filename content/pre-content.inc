@@ -11,7 +11,7 @@
   if ($timerCount < 4){
     $timerCount = $weeksleft;
     $timerUnit = "weeks";
-    if ($timerCount < 4){
+    if ($timerCount < 8){
       $timerCount = $daysleft;
       $timerUnit = "days";
       if ($timerCount < 4){
