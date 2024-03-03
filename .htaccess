@@ -40,7 +40,7 @@ RewriteRule ^forum/?		/news/obsolete	[R,L,NC]
 # First pass at dealing with legacy org ids, which we need to get out
 # of search engines by redirecting them.  Preferably should be done
 # in PHP code via lookup table, but this is simple and there's
-# not that many.  Use 302 while testing this, convert to 301 later.
+# not that many.
 #
 # To avoid conflicts with other rewrite rules, we actually have to do
 # this with mod_rewrite and not regular redirects.
@@ -49,28 +49,28 @@ RewriteRule ^forum/?		/news/obsolete	[R,L,NC]
 #
 # Only covers the 35 orgs that had data prior to 2022 update.  We don't
 # rewrte if the url key didn't change (e.g. "CIA", "ATO", etc)
-RewriteRule ^history/org/aepi/?$		/history/org/AEP	[R,L,NC]
-RewriteRule ^history/org/afrotc/?$		/history/org/AFR	[R,L,NC]
-RewriteRule ^history/org/apex/?$		/history/org/APX	[R,L,NC]
-RewriteRule ^history/org/beta/?$		/history/org/BTP	[R,L,NC]
-RewriteRule ^history/org/cmutv/?$		/history/org/CMTV	[R,L,NC]
-RewriteRule ^history/org/deltaforce/?$	/history/org/DF		[R,L,NC]
-RewriteRule ^history/org/fringe/?$		/history/org/FRI	[R,L,NC]
-RewriteRule ^history/org/kappa/?$		/history/org/KKG	[R,L,NC]
-RewriteRule ^history/org/kapsig/?$		/history/org/KS		[R,L,NC]
-RewriteRule ^history/org/kkgzbt/?$		/history/org/KZ		[R,L,NC]
-RewriteRule ^history/org/nrotc/?$		/history/org/NR		[R,L,NC]
-RewriteRule ^history/org/phidelt/?$		/history/org/PDT	[R,L,NC]
-RewriteRule ^history/org/pioneers/?$	/history/org/PIO	[R,L,NC]
-RewriteRule ^history/org/pika/?$		/history/org/PKA	[R,L,NC]
-RewriteRule ^history/org/phikap/?$		/history/org/PKT	[R,L,NC]
-RewriteRule ^history/org/sigep/?$		/history/org/SEP	[R,L,NC]
-RewriteRule ^history/org/spirit/?$		/history/org/SPI	[R,L,NC]
-RewriteRule ^history/org/sigtau/?$		/history/org/STG	[R,L,NC]
-RewriteRule ^history/org/radioclub/?$	/history/org/W3VC	[R,L,NC]
-RewriteRule ^history/org/taudeltaphi/?$		/history/org/TDP	[R,L,NC]
-RewriteRule ^history/org/betasigmarho/?$	/history/org/BSR	[R,L,NC]
-RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R,L,NC]
+RewriteRule ^history/org/aepi/?$		/history/org/AEP	[R=301,L,NC]
+RewriteRule ^history/org/afrotc/?$		/history/org/AFR	[R=301,L,NC]
+RewriteRule ^history/org/apex/?$		/history/org/APX	[R=301,L,NC]
+RewriteRule ^history/org/beta/?$		/history/org/BTP	[R=301,L,NC]
+RewriteRule ^history/org/cmutv/?$		/history/org/CMTV	[R=301,L,NC]
+RewriteRule ^history/org/deltaforce/?$	/history/org/DF		[R=301,L,NC]
+RewriteRule ^history/org/fringe/?$		/history/org/FRI	[R=301,L,NC]
+RewriteRule ^history/org/kappa/?$		/history/org/KKG	[R=301,L,NC]
+RewriteRule ^history/org/kapsig/?$		/history/org/KS		[R=301,L,NC]
+RewriteRule ^history/org/kkgzbt/?$		/history/org/KZ		[R=301,L,NC]
+RewriteRule ^history/org/nrotc/?$		/history/org/NR		[R=301,L,NC]
+RewriteRule ^history/org/phidelt/?$		/history/org/PDT	[R=301,L,NC]
+RewriteRule ^history/org/pioneers/?$	/history/org/PIO	[R=301,L,NC]
+RewriteRule ^history/org/pika/?$		/history/org/PKA	[R=301,L,NC]
+RewriteRule ^history/org/phikap/?$		/history/org/PKT	[R=301,L,NC]
+RewriteRule ^history/org/sigep/?$		/history/org/SEP	[R=301,L,NC]
+RewriteRule ^history/org/spirit/?$		/history/org/SPI	[R=301,L,NC]
+RewriteRule ^history/org/sigtau/?$		/history/org/STG	[R=301,L,NC]
+RewriteRule ^history/org/radioclub/?$	/history/org/W3VC	[R=301,L,NC]
+RewriteRule ^history/org/taudeltaphi/?$		/history/org/TDP	[R=301,L,NC]
+RewriteRule ^history/org/betasigmarho/?$	/history/org/BSR	[R=301,L,NC]
+RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 
 
 #### Livestream related links.
