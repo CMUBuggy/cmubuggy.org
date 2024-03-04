@@ -120,7 +120,7 @@
     3 => (object) [
       'label' => 'History',
       'href' => '/history',
-      # All history pages _except_ video.
+      // All history pages _except_ video.
       'active_re' => '@^(/news)?/history(?!/video)@',
       'children' => [
         0 => (object) [
@@ -173,7 +173,7 @@
     4 => (object) [
       'label' => 'Gallery',
       'href' => '/gallery',
-      # Really, just /history/video (/gallery doesn't exist)
+      // Really, just /history/video (/gallery doesn't exist)
       'active_re' => '@^(/news)?(/gallery|/history/video)@',
       'children' => [
         0 => (object) [
