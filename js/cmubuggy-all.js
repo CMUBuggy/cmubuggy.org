@@ -62,3 +62,18 @@ function doFragmentTargetOffset(){
       $('html,body').animate({scrollTop:scrollto}, 0);
   }
 }
+
+// https://stackoverflow.com/a/45755948
+$('.dropdown-menu a.dropdown-toggle').on('click', function(_) {
+  if (!$(this).next().hasClass('show')) {
+    $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+  }
+  var $subMenu = $(this).next('.dropdown-menu');
+  $subMenu.toggleClass('show');
+
+  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(_) {
+    $('.dropdown-submenu .show').removeClass('show');
+  });
+
+  return false;
+});

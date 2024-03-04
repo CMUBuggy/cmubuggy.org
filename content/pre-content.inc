@@ -35,42 +35,39 @@
 ?>
 <body>
 
-  <header id="masthead" class="">
-    <div class="navbar navbar-dark bg-primary px-0 py-0 my-0 fixed-top">
-      <div class="container d-flex justify-content-between py-2" >
-        <a href="/" class="navbar-brand d-inline-flex text-light">
+  <header id="masthead">
+    <div class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow">
+      <div class="container d-flex justify-content-between" >
+        <a href="/" class="navbar-brand d-inline-flex">
           <img src="/img/logo-2022-circle.svg" alt="CMU Buggy Alumni Association logo" class="d-lg-none mr-2" height="30" width="30">
           <span class="d-sm-inline d-md-none" title="Buggy Alumni Association">BAA</span>
           <span class="d-none d-md-inline">Buggy Alumni Association</span>
         </a>
-        <span class="navbar-text d-none d-md-inline text-light" title="<?php echo("$timerCount $timerUnit"); ?>">Raceday 2024 is April 12&ndash;13</span>
-        <button class="navbar-toggler d-md-none collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <?php
+            $nav_class = "";
+            include(ROOT_DIR."/content/nav.inc");
+          ?>
+        </div>
       </div>
     </div>
 
-
-    <!-- Mobile nav -->
-    <!-- TODO: Fix mystery margin + stutter above this and style way better pls -->
-    <div id="navigation" class="collapse d-md-none bg-light mt-0">
-      <?php
-        $nav_class = "flex-column container";
-        include(ROOT_DIR."/content/nav.inc");
-      ?>
-    </div>
-
-    <!-- Desktop nav -->
-    <div class="container d-none d-md-flex justify-content-between pt-3">
+    <!-- Breadcrumbs, countdown -->
+    <div class="container d-none d-md-flex justify-content-between align-middle my-3">
       <a href="/">
         <img src="/img/logo-2022-white.svg" width=125 alt="CMU Buggy Alumni Assocation logo" class="img-fluid mx-auto d-block">
       </a>
 
       <div class="ml-3 flex-grow-1 d-flex flex-column ">
-        <?php
-          $nav_class = "nav-tabs justify-content-end border-bottom border-2 border-primary mb-2";
-          include(ROOT_DIR."/content/nav.inc");
-        ?>
+        <div class="border-bottom border-2 border-primary my-2 py-2 text-right">
+          <span class="my-2"
+            title="<?php echo("$timerCount $timerUnit"); ?>">
+            Raceday 2024 is April 12&ndash;13
+          </span>
+        </div>
         <div>
 
           <?php
@@ -109,6 +106,6 @@
 
   </header>
 
-  <div class="container mt-4">
+  <div class="container">
     <div class="row">
       <div class="col-lg">
