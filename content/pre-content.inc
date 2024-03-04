@@ -103,7 +103,19 @@
         <h1><?php echo("$BASE_TITLE"); ?></h1>
       </div>
     </div>
-
+    <?php
+      // Provide title on mobile.  SHOW_BREADCRUMBS is a hack to detect
+      // the home page, so we don't show the extra title on the home page.
+      //
+      // TODO: Show Breadcrumbs Too?
+      if ($SHOW_BREADCRUMBS) {
+    ?>
+      <div class="container d-md-none justify-content-between align-left my-3">
+        <h1><?php echo("$BASE_TITLE"); ?></h1>
+      </div>
+    <?php
+      }
+    ?>
   </header>
 
   <div class="container">
