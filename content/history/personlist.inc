@@ -40,10 +40,10 @@
   </div>
 </div>
 </form>
-<hr>
 
 <?php
 if ($doSearch) {
+  echo("<hr>");
   if (empty($searchError)) {
     echo "<table>";
     foreach($personList as $p) {
