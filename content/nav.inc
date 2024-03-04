@@ -9,14 +9,50 @@
   $navItems = [
     0 => (object) [
       'label' => 'News',
-      'href' => '/news',
       // /news is the wordpress prefix and we'd rather highlight the correct
       // section even if we landed at an awkward /news-prefixed uri.
-      'active_re' => '@^/news(?!/(reference|about|history|gallery|membership))@'
+      'active_re' => '@^/news(?!/(reference|about|history|gallery|membership))@',
+      'children' => [
+        0 => (object) [
+          'label' => 'Recent',
+          'href' => '/news',
+        ],
+        1 => (object) [
+          'label' => 'Subscribe',
+          'href' => 'https://groups.google.com/g/baa-news',
+          'external' => true,
+        ],
+        2 => (object) [
+          'divider' => true,
+        ],
+        // TODO: Dynamically generate category items? Note: This is a subset
+        3 => (object) [
+          'label' => 'Rolls Reports',
+          'href' => '/news/category/rolls-reports/',
+        ],
+        4 => (object) [
+          'label' => 'General Interest Buggy News',
+          'href' => '/news/category/general-interest-buggy-stuff',
+        ],
+        5 => (object) [
+          'label' => 'BAA News',
+          'href' => '/news/category/buggy-alumni-association',
+        ],
+        6 => (object) [
+          'label' => 'Sweepstakes News',
+          'href' => '/news/category/sweepstakes-news',
+        ],
+        7 => (object) [
+          'divider' => true,
+        ],
+        8 => (object) [
+          'label' => 'Index',
+          'href' => '/news/archives/',
+        ],
+      ],
     ],
     1 => (object) [
       'label' => 'About Buggy',
-      'href' => '/reference',
       'active_re' => '@^(/news)?/reference@',
       'children' => [
         0 => (object) [
@@ -88,7 +124,6 @@
     ],
     2 => (object) [
       'label' => 'About the BAA',
-      'href' => '/about',
       'active_re' => '@^(/news)?/about@',
       'children' => [
         0 => (object) [
@@ -119,7 +154,6 @@
     ],
     3 => (object) [
       'label' => 'History',
-      'href' => '/history',
       // All history pages _except_ video.
       'active_re' => '@^(/news)?/history(?!/video)@',
       'children' => [
@@ -172,7 +206,6 @@
     ],
     4 => (object) [
       'label' => 'Gallery',
-      'href' => '/gallery',
       // Really, just /history/video (/gallery doesn't exist)
       'active_re' => '@^((/news)?(/gallery|/history/video)|/video)@',
       'children' => [

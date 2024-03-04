@@ -92,19 +92,6 @@ if ( is_singular() ) {
 </head>
 <?php
 	include_once('../content/pre-content.inc');
-
-	wp_nav_menu(
-		array(
-			'theme_location' => 'primary',
-			'menu_class' => 'navbar-nav flex-wrap',
-			'menu_id' => false,
-			'container' => 'nav',
-			'container_class' => 'navbar navbar-light navbar-expand bg-light mb-3',
-			'container_id' => false,
-			'fallback_cb' => '',
-			'walker' => new wp_bootstrap_navwalker()
-		)
-	);
 ?>
 <?php if ( ! is_page_template( 'blank-page.php' ) && ! is_page_template( 'blank-page-with-container.php' )) { ?>
 	<div class="row">
