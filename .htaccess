@@ -40,7 +40,7 @@ RewriteRule ^forum/?		/news/obsolete	[R,L,NC]
 # First pass at dealing with legacy org ids, which we need to get out
 # of search engines by redirecting them.  Preferably should be done
 # in PHP code via lookup table, but this is simple and there's
-# not that many.  Use 302 while testing this, convert to 301 later.
+# not that many.
 #
 # To avoid conflicts with other rewrite rules, we actually have to do
 # this with mod_rewrite and not regular redirects.
@@ -49,28 +49,28 @@ RewriteRule ^forum/?		/news/obsolete	[R,L,NC]
 #
 # Only covers the 35 orgs that had data prior to 2022 update.  We don't
 # rewrte if the url key didn't change (e.g. "CIA", "ATO", etc)
-RewriteRule ^history/org/aepi/?$		/history/org/AEP	[R,L,NC]
-RewriteRule ^history/org/afrotc/?$		/history/org/AFR	[R,L,NC]
-RewriteRule ^history/org/apex/?$		/history/org/APX	[R,L,NC]
-RewriteRule ^history/org/beta/?$		/history/org/BTP	[R,L,NC]
-RewriteRule ^history/org/cmutv/?$		/history/org/CMTV	[R,L,NC]
-RewriteRule ^history/org/deltaforce/?$	/history/org/DF		[R,L,NC]
-RewriteRule ^history/org/fringe/?$		/history/org/FRI	[R,L,NC]
-RewriteRule ^history/org/kappa/?$		/history/org/KKG	[R,L,NC]
-RewriteRule ^history/org/kapsig/?$		/history/org/KS		[R,L,NC]
-RewriteRule ^history/org/kkgzbt/?$		/history/org/KZ		[R,L,NC]
-RewriteRule ^history/org/nrotc/?$		/history/org/NR		[R,L,NC]
-RewriteRule ^history/org/phidelt/?$		/history/org/PDT	[R,L,NC]
-RewriteRule ^history/org/pioneers/?$	/history/org/PIO	[R,L,NC]
-RewriteRule ^history/org/pika/?$		/history/org/PKA	[R,L,NC]
-RewriteRule ^history/org/phikap/?$		/history/org/PKT	[R,L,NC]
-RewriteRule ^history/org/sigep/?$		/history/org/SEP	[R,L,NC]
-RewriteRule ^history/org/spirit/?$		/history/org/SPI	[R,L,NC]
-RewriteRule ^history/org/sigtau/?$		/history/org/STG	[R,L,NC]
-RewriteRule ^history/org/radioclub/?$	/history/org/W3VC	[R,L,NC]
-RewriteRule ^history/org/taudeltaphi/?$		/history/org/TDP	[R,L,NC]
-RewriteRule ^history/org/betasigmarho/?$	/history/org/BSR	[R,L,NC]
-RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R,L,NC]
+RewriteRule ^history/org/aepi/?$		/history/org/AEP	[R=301,L,NC]
+RewriteRule ^history/org/afrotc/?$		/history/org/AFR	[R=301,L,NC]
+RewriteRule ^history/org/apex/?$		/history/org/APX	[R=301,L,NC]
+RewriteRule ^history/org/beta/?$		/history/org/BTP	[R=301,L,NC]
+RewriteRule ^history/org/cmutv/?$		/history/org/CMTV	[R=301,L,NC]
+RewriteRule ^history/org/deltaforce/?$	/history/org/DF		[R=301,L,NC]
+RewriteRule ^history/org/fringe/?$		/history/org/FRI	[R=301,L,NC]
+RewriteRule ^history/org/kappa/?$		/history/org/KKG	[R=301,L,NC]
+RewriteRule ^history/org/kapsig/?$		/history/org/KS		[R=301,L,NC]
+RewriteRule ^history/org/kkgzbt/?$		/history/org/KZ		[R=301,L,NC]
+RewriteRule ^history/org/nrotc/?$		/history/org/NR		[R=301,L,NC]
+RewriteRule ^history/org/phidelt/?$		/history/org/PDT	[R=301,L,NC]
+RewriteRule ^history/org/pioneers/?$	/history/org/PIO	[R=301,L,NC]
+RewriteRule ^history/org/pika/?$		/history/org/PKA	[R=301,L,NC]
+RewriteRule ^history/org/phikap/?$		/history/org/PKT	[R=301,L,NC]
+RewriteRule ^history/org/sigep/?$		/history/org/SEP	[R=301,L,NC]
+RewriteRule ^history/org/spirit/?$		/history/org/SPI	[R=301,L,NC]
+RewriteRule ^history/org/sigtau/?$		/history/org/STG	[R=301,L,NC]
+RewriteRule ^history/org/radioclub/?$	/history/org/W3VC	[R=301,L,NC]
+RewriteRule ^history/org/taudeltaphi/?$		/history/org/TDP	[R=301,L,NC]
+RewriteRule ^history/org/betasigmarho/?$	/history/org/BSR	[R=301,L,NC]
+RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 
 
 #### Livestream related links.
@@ -100,9 +100,11 @@ Redirect 301 /raceday/live /live
 # When the store is closed, /merch is handled by the wordpress fallback, and
 # /store redirects to /merch.
 Redirect 302 /store /merch
-Redirect 302 /merch https://www.customink.com/fundraising/baa-fall-beanies
+Redirect 302 /merch https://www.customink.com/fundraising/2024-baa-raceday-shirts-8189
 
-Redirect 302 /auction https://www.32auctions.com/LeadTruck2023
+# Lead Truck Auction or Placeholder
+# Redirect 302 /auction https://www.32auctions.com/LeadTruck2023
+Redirect 302 /auction https://cmubuggy.org/news/auction-coming-soon/
 
 Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
@@ -118,9 +120,13 @@ Redirect 302 /2023interest https://forms.gle/cVePbgEwpaatGuqn8
 Redirect 302 /2023fallgrant https://docs.google.com/forms/d/e/1FAIpQLSefjRHZ-VMTEaNrgTrperVtvxH0iSKObEBLn0cSgmzB_8_Kjw/viewform
 Redirect 302 /2024springgrant https://docs.google.com/forms/d/e/1FAIpQLSdLwjjwJRKyg6qFC4hEMC7kA30dmOhSL9x5jdrh-FdgGNbm5w/viewform
 
-# Volunteer Links (Raceday 2023, Rolls Reporting)
-Redirect 302 /volunteer https://docs.google.com/forms/d/1GMBfdeNFJ0DzMtzlP2Cho52Jya_IKgTOz-k8-u75BF0/viewform
+# Volunteer Links (Raceday 2024)
+Redirect 302 /volunteer https://docs.google.com/forms/d/1sxKG3njTp6VVLkj7pn0VfoqthLRupkXnKR72TT3W0Ng/viewform
+
+# Volunteer Links (Raceday 2023)
 Redirect 302 /broadcast-volunteer https://docs.google.com/forms/d/e/1FAIpQLSfj8vuGN8HjQYOIWG02wGVwh34URDdYqb9vXAYhWQ1biGZoqA/viewform
+
+# Volunteer Links (Rolls Reporting)
 Redirect 302 /F23rollsreporters /rollsreporters
 Redirect 302 /rollsreporters https://docs.google.com/spreadsheets/d/1JGh_IGxl05nmFhDZQKNYxarzjuVqDByIN3MmVvPgHyc/edit
 
@@ -160,7 +166,11 @@ RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC
 RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
 RewriteRule		^history/org[/]*$									index.php?s=history&p=orglist					[NC,L]
 # person needs to have the QSA flag in order to preserve the query string for searches.
+#
+# /history/people is a rewrite since otherwise it goes to /about/people and this
+# seems more reasonable.
 RewriteRule		^history/person[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
+RewriteRule		^history/people[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
 RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
 # record is obsolete, but keep it here to allow any dead links to work.
 RewriteRule		^history/record[/]*$								index.php?s=history&p=toptimes 					[NC,L]
