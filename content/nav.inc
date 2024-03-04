@@ -1,12 +1,23 @@
 <?php
+  // We use active_re at the top level as a regex for URIs that will trigger
+  // that heading to be active.  This is because of awkwardness with how
+  // we handle wordpress, and pages that don't sit comfortably in one section
+  // such as /history/video
+  //
+  // Because these are all paths, we're going to use @ as the character to
+  // surround the regex with.
   $navItems = [
     0 => (object) [
       'label' => 'News',
       'href' => '/news',
+      // /news is the wordpress prefix and we'd rather highlight the correct
+      // section even if we landed at an awkward /news-prefixed uri.
+      'active_re' => '@^/news(?!/(reference|about|history|gallery|membership))@'
     ],
     1 => (object) [
       'label' => 'About Buggy',
       'href' => '/reference',
+      'active_re' => '@^(/news)?/reference@',
       'children' => [
         0 => (object) [
           'label' => 'Overview',
@@ -78,6 +89,7 @@
     2 => (object) [
       'label' => 'About the BAA',
       'href' => '/about',
+      'active_re' => '@^(/news)?/about@',
       'children' => [
         0 => (object) [
           'label' => 'Overview',
@@ -108,6 +120,8 @@
     3 => (object) [
       'label' => 'History',
       'href' => '/history',
+      // All history pages _except_ video.
+      'active_re' => '@^(/news)?/history(?!/video)@',
       'children' => [
         0 => (object) [
           'label' => 'Overview',
@@ -159,6 +173,8 @@
     4 => (object) [
       'label' => 'Gallery',
       'href' => '/gallery',
+      // Really, just /history/video (/gallery doesn't exist)
+      'active_re' => '@^((/news)?(/gallery|/history/video)|/video)@',
       'children' => [
         0 => (object) [
           'label' => 'Photos',
@@ -174,6 +190,7 @@
     5 => (object) [
       'label' => 'Membership',
       'href' => '/membership',
+      'active_re' => '@^(/news)?/membership@',
     ],
   ];
 
@@ -186,10 +203,8 @@
     echo("<li class='nav-item mx-1 {$dropdownClass}'>");
 
     $isActive = false;
-    try {
-      $isActive = str_starts_with($_SERVER['REQUEST_URI'], $navItem->href);
-    } catch (_e) {
-      // Shhhh
+    if (array_key_exists('REQUEST_URI', $_SERVER)) {
+      $isActive = preg_match($navItem->active_re, $_SERVER['REQUEST_URI']);
     }
 
     if ($hasChildren) {
