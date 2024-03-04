@@ -1,18 +1,260 @@
-<ul class="nav <?php echo("$nav_class"); ?>">
-  <!-- TODO: Active tab, better styles -->
-  <li class="nav-item">
-    <a class="nav-link text-dark" href="/news">News</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-dark" href="/reference">What is Buggy?</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-dark " href="/history">History</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-dark" href="/about">About the BAA</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-dark" href="https://cmubuggy.smugmug.com" target="_blank">Gallery</a>
-  </li>
+<?php
+  $navItems = [
+    0 => (object) [
+      'label' => 'News',
+      'href' => '/news',
+    ],
+    1 => (object) [
+      'label' => 'About Buggy',
+      'href' => '/reference',
+      'children' => [
+        0 => (object) [
+          'label' => 'Overview',
+          'href' => '/reference',
+        ],
+        1 => (object) [
+          'label' => 'Who is Involved',
+          'children' => [
+            0 => (object) [
+              'label' => 'Sweepstakes Committee',
+              'href' => '/reference/sweepstakes',
+            ],
+            1 => (object) [
+              'label' => 'Buggy Teams',
+              'href' => '/reference/teams',
+            ],
+          ],
+        ],
+        2 => (object) [
+          'label' => 'About the Race',
+          'children' => [
+            0 => (object) [
+              'label' => 'Buggy, the Vehicle',
+              'href' => '/reference/buggy-the-vehicle',
+            ],
+            1 => (object) [
+              'label' => 'Course',
+              'href' => '/reference/course',
+            ],
+            2 => (object) [
+              'label' => 'Safety',
+              'href' => '/reference/safety',
+            ],
+            3 => (object) [
+              'label' => 'Freerolls',
+              'href' => '/reference/freerolls',
+            ],
+            4 => (object) [
+              'label' => 'Spectating',
+              'href' => '/reference/spectating',
+            ],
+            5 => (object) [
+              'label' => 'Pushing Styles',
+              'href' => '/reference/pushing-styles',
+            ],
+          ],
+        ],
+        3 => (object) [
+          'divider' => true,
+        ],
+        4 => (object) [
+          'label' => 'BAA Endowment Fund',
+          'href' => '/reference/baa-endowment-fund',
+        ],
+        5 => (object) [
+          'label' => 'Starting a Team',
+          'href' => '/reference/new-team',
+        ],
+        6 => (object) [
+          'label' => 'How To Build a Buggy',
+          'href' => '/reference/how-to-build-a-buggy',
+        ],
+        7 => (object) [
+          'label' => 'Sweepstakes Bylaws',
+          'href' => '/reference/sweepstakes-bylaws',
+        ],
+      ]
+    ],
+    2 => (object) [
+      'label' => 'About the BAA',
+      'href' => '/about',
+      'children' => [
+        0 => (object) [
+          'label' => 'Overview',
+          'href' => '/about',
+        ],
+        1 => (object) [
+          'label' => 'Leadership',
+          'href' => '/about/people',
+        ],
+        2 => (object) [
+          'label' => 'Get Involved',
+          'href' => '/about/get-involved',
+        ],
+        3 => (object) [
+          'label' => 'Accomplishments',
+          'href' => '/about/accomplishments',
+        ],
+        4 => (object) [
+          'label' => 'This Website',
+          'href' => '/about/website',
+        ],
+        5 => (object) [
+          'label' => 'Code of Conduct',
+          'href' => '/about/code-of-conduct',
+        ],
+      ],
+    ],
+    3 => (object) [
+      'label' => 'History',
+      'href' => '/history',
+      'children' => [
+        0 => (object) [
+          'label' => 'Overview',
+          'href' => '/history',
+        ],
+        1 => (object) [
+          'divider' => true,
+        ],
+        2 => (object) [
+          'label' => 'Races',
+          'href' => '/history/raceday',
+        ],
+        3 => (object) [
+          'label' => 'Top Times',
+          'href' => '/history/toptimes',
+        ],
+        4 => (object) [
+          'label' => 'Awards',
+          'href' => '/history/award',
+        ],
+        5 => (object) [
+          'divider' => true,
+        ],
+        6 => (object) [
+          'label' => 'Sweepstakes',
+          'href' => '/history/sweepstakes',
+        ],
+        7 => (object) [
+          'label' => 'Organizations',
+          'href' => '/history/org',
+        ],
+        8 => (object) [
+          'divider' => true,
+        ],
+        9 => (object) [
+          'label' => 'Buggies',
+          'href' => '/history/buggy',
+        ],
+        10 => (object) [
+          'label' => 'Buggy Books',
+          'href' => '/history/buggybook',
+        ],
+        11 => (object) [
+          'label' => 'People',
+          'href' => '/history/person',
+        ],
+      ],
+    ],
+    4 => (object) [
+      'label' => 'Gallery',
+      'href' => '/gallery',
+      'children' => [
+        0 => (object) [
+          'label' => 'Photos',
+          'href' => 'https://cmubuggy.smugmug.com',
+          'external' => true,
+        ],
+        1 => (object) [
+          'label' => 'Videos',
+          'href' => '/history/video',
+        ],
+      ],
+    ],
+    5 => (object) [
+      'label' => 'Membership',
+      'href' => '/membership',
+    ],
+  ];
+
+  // Created based on https://stackoverflow.com/a/45755948
+  // Converted <ul>s to <div>s to avoid left indentation
+  function createTopLevelNavItem($navItem) {
+    $hasChildren = property_exists($navItem, 'children');
+
+    $dropdownClass = $hasChildren ? 'dropdown' : '';
+    echo("<li class='nav-item mx-1 {$dropdownClass}'>");
+
+    $isActive = false;
+    try {
+      $isActive = str_starts_with($_SERVER['REQUEST_URI'], $navItem->href);
+    } catch (_e) {
+      // Shhhh
+    }
+
+    if ($hasChildren) {
+      createNavLink(
+        $navItem,
+        'nav-link dropdown-toggle',
+        $isActive,
+        'id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"'
+      );
+    } else {
+      createNavLink($navItem, 'nav-link', $isActive);
+    }
+
+    if ($hasChildren) {
+      createDropdownItems($navItem->children, true);
+    }
+
+    echo('</li>');
+  }
+
+  function createDropdownItems($dropdownItems, $isTopLevel = false) {
+    $dropdownAria = $isTopLevel ? '' : 'aria-labelledby="navbarDropdownMenuLink"';
+    echo("<div class=\"dropdown-menu\" {$dropdownAria}>");
+      foreach($dropdownItems as $dropdownItem) {
+        if (property_exists($dropdownItem, 'divider')) {
+          echo('<div class="dropdown-divider"></div>');
+
+        } else if (property_exists($dropdownItem, 'children')) {
+          echo('<div class="dropdown-submenu">');
+
+          // TODO: show active?
+          createNavLink($dropdownItem, 'dropdown-item dropdown-toggle');
+          createDropdownItems($dropdownItem->children);
+          echo('</div>');
+
+        } else {
+          // TODO: show active?
+          createNavLink($dropdownItem, 'dropdown-item');
+        }
+      }
+    echo("</div>");
+  }
+
+  function createNavLink($dropdownItem, $class = '', $isActive = false, $attributes = '') {
+    $href = property_exists($dropdownItem, 'href') && !property_exists($dropdownItem, 'children')
+      ? "href=\"{$dropdownItem->href}\""
+      : 'href="#"';
+    $target = property_exists($dropdownItem, 'external') ? 'target="_blank"' : '';
+
+    if ($isActive) {
+      $class = $class . ' active';
+    }
+
+    echo("<a class=\"{$class}\" {$href} {$target} {$attributes}>");
+    echo($dropdownItem->label);
+    echo('</a>');
+  }
+?>
+
+<!--
+  Multi-level dropdown implementation from:
+  https://stackoverflow.com/a/45755948
+ -->
+<ul class="navbar-nav <?php echo("$nav_class"); ?>">
+  <?php foreach($navItems as $navItem) createTopLevelNavItem($navItem) ?>
 </ul>
+
+
