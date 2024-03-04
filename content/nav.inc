@@ -174,7 +174,7 @@
       'label' => 'Gallery',
       'href' => '/gallery',
       // Really, just /history/video (/gallery doesn't exist)
-      'active_re' => '@^(/news)?(/gallery|/history/video)@',
+      'active_re' => '@^((/news)?(/gallery|/history/video)|/video)@',
       'children' => [
         0 => (object) [
           'label' => 'Photos',
