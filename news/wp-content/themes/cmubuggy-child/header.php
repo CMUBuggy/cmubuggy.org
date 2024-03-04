@@ -2,7 +2,7 @@
 	include_once('../util.inc');
 
   $SHOW_BREADCRUMBS = true;
-  if (!defined($BREADCRUMB_LIST) || count($BREADCRUMB_LIST) == 0) {
+  if (!isset($BREADCRUMB_LIST) || count($BREADCRUMB_LIST) == 0) {
 	// If someone has set something up before header.php is called, keep using that.
 	$BREADCRUMB_LIST = [["/", "Home"]];  // List of breadcrumb (url, text) pairs.
   }
