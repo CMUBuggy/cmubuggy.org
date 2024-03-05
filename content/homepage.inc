@@ -74,13 +74,13 @@
       <h2>Records</h2>
       <dl class="row">
         <dt class="col-5">Mens</dt>
-        <dd class="col-7"><a href="/history/team/2017.SDC.MA">2:02.16</a></dd>
+        <dd class="col-7 text-right"><a href="/history/team/2017.SDC.MA">2:02.16</a></dd>
 
         <dt class="col-5">Womens</dt>
-        <dd class="col-7"><a href="/history/team/2017.SDC.WA">2:23.27</a></dd>
+        <dd class="col-7 text-right"><a href="/history/team/2017.SDC.WA">2:23.27</a></dd>
 
         <dt class="col-5">All Gender</dt>
-        <dd class="col-7"><a href="/history/team/2023.APX.NA">2:45.58</a></dd>
+        <dd class="col-7 text-right"><a href="/history/team/2023.APX.NA">2:45.58</a></dd>
       </dl>
     </section>
 
