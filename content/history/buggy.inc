@@ -209,7 +209,7 @@ if(empty($image_url)) {
 </ul>
 <div class="tab-content">
   <div class="tab-pane fade show active" id="tab-races" role="tabpanel" aria-labelledby="races-tab">
-    <table class="table">
+    <div class="table-responsive"><table class="table">
       <thead>
         <tr class="text-nowrap">
           <th>Year</th>
@@ -286,7 +286,7 @@ if(empty($image_url)) {
           }
         ?>
       </tbody>
-    </table>
+    </table></div>
   </div>
   <div class="tab-pane fade" id="tab-awards" role="tabpanel" aria-labelledby="awards-tab">
     <div class="table-responsive">
