@@ -12,10 +12,6 @@ function getHistoryBreadcrumbs() {
         "raceday" => ['/history/raceday', "Racedays"],
         "sweepstakes" => ['/history/sweepstakes', "Sweepstakes Committees"],
 
-        // There isn't really a /history/entries page.
-        // Going to use orgs, but could arguably be racedays too.
-        "entry" => ['/history/org', "Organizations"],
-
         // These pages exist, but are the top level and shouldn't get a dedicated breadcrumb.
         // Instead, they just get their title and the History breadcrumb.
         //
@@ -29,17 +25,48 @@ function getHistoryBreadcrumbs() {
         // "toptimes" => ['/history/toptimes', "Top Times"]
     ];
 
+    $CRUMB_CALLBACKS = [
+        "entry" => 'getEntryCrumbs'
+    ];
 
-    if (empty($_GET['p'])) {
+    $page = $_GET['p'];
+    if (empty($page)) {
         // Top level page, no additional crumb.
         return [];
-    } else if (!in_array($_GET['p'], array_keys($CRUMB_MAP))) {
+    } elseif (in_array($page, array_keys($CRUMB_CALLBACKS))) {
+        // Compute additonal crumbs via callback.
+        $ret = array_merge($ret, $CRUMB_CALLBACKS[$page]());
+        return $ret;
+    } else if (!in_array($page, array_keys($CRUMB_MAP))) {
         // Either this is the top page, or it is a subpage that doesn't get a crumb.
         return $ret;
     } else {
-        array_push($ret, $CRUMB_MAP[$_GET['p']]);
+        array_push($ret, $CRUMB_MAP[$page]);
         return $ret;
     }
+}
+
+function getEntryCrumbs() {
+    $urlkey = dieOrGetParam("urlkey");
+
+    // There isn't really a /history/entries page.
+    // Going to use orgs, but could arguably be racedays too.
+    $ret = [['/history/org', "Organizations"]];
+
+    $q = "SELECT e.orgid AS orgid, o.shortname AS name
+            FROM hist_raceentries e
+            LEFT JOIN hist_orgs o ON e.orgid = o.orgid
+            WHERE entryid = ?;";
+
+    global $HISTORY_DATABASE;
+    $result = dbBoundQuery($HISTORY_DATABASE, $q, "s", $urlkey);
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        array_push($ret, ['/history/org/'.$row['orgid'], $row['name']]);
+    }
+
+    // On failure, ignore whatever happened and return just > Organizations without a specific org.
+    return $ret;
 }
 
 function getHistoryPageTitle() {
