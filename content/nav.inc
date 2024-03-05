@@ -295,12 +295,12 @@
     echo($dropdownItem->label);
     echo('</a>');
   }
-?>
 
-<!--
+/*
   Multi-level dropdown implementation from:
   https://stackoverflow.com/a/45755948
- -->
+*/
+?>
 <ul class="navbar-nav <?php echo("$nav_class"); ?>">
   <?php foreach($navItems as $navItem) createTopLevelNavItem($navItem) ?>
 </ul>
