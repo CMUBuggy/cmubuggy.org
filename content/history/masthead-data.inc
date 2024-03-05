@@ -29,7 +29,7 @@ function getHistoryBreadcrumbs() {
         "entry" => 'getEntryCrumbs'
     ];
 
-    $page = $_GET['p'];
+    $page = array_key_exists('p', $_GET) ? $_GET['p'] : "";
     if (empty($page)) {
         // Top level page, no additional crumb.
         return [];
