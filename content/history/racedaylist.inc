@@ -152,5 +152,5 @@ function echoTeamCell($teamkey, $teamname) {
       ?>
     </tbody>
   </table>
-  <span class="small">Note: Years where there are ties (e.g. 1922), will show multiple lines in the table.</span>
+  <span class="small">Note: Years where there are ties in a class (e.g. 1922 Mens), will show multiple lines in the table.</span>
 </div>
