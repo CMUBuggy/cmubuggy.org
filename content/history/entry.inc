@@ -167,19 +167,24 @@ foreach($displayHeatTypes as $ht) {
 
 // Add entry-level metadata here as we have it
 echo("<table>");
-echo("<tr><th>Year:</th><td><a href=\"/history/raceday/".$year."#".$header["classanchor"]."\">".$year."</a></td></tr>");
-echo("<tr><th>Org:</th><td><a href=\"/history/org/".$header["orgid"]."\">".$header["org"]."</a></td></tr>");
-echo("<tr><th>Buggy:</th><td><a href=\"/history/buggy/".$header["buggyid"]."\">".$header["buggy"]."</a></td></tr>");
+echo("<tr><th class=\"pr-3\">Buggy:</th><td><a href=\"/history/buggy/".$header["buggyid"]."\">".$header["buggy"]."</a></td></tr>");
 if (!empty($header["place"])) {
-  echo("<tr><th>Place:</th><td>". $header["place"]."</td></tr>");
+  echo("<tr><th class=\"pr-3\">Place:</th><td>". $header["place"]."</td></tr>");
 }
 if (!empty($header["dq"])) {
-  echo("<tr><th>DQ:</th><td>". $header["dq"]."</td></tr>");
+  echo("<tr><th class=\"pr-3\">DQ:</th><td>". $header["dq"]."</td></tr>");
 }
 if (!empty($header["note"])) {
-  echo("<tr><th>Notes:</th><td>". $header["note"]."</td></tr>");
+  echo("<tr><th class=\"pr-3\">Notes:</th><td>". $header["note"]."</td></tr>");
 }
+echo("<tr><th class=\"pr-3\">See Also:</th><td>");
+echo("<a href=\"/history/raceday/".$year."#".$header["classanchor"]."\">Raceday ".$year."</a>,&nbsp;");
+echo("<a href=\"/history/org/".$header["orgid"]."\">".$header["org"]."</a>");
+echo("</td></tr>");
+
+
 echo("</table>");
+echo("<hr>");
 ?>
 
 <div class="row">
