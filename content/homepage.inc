@@ -70,7 +70,7 @@
 
   </div>
   <div class="col-md-4">
-    <section class="d-lg-none">
+    <section>
       <h2>Records</h2>
       <dl class="row">
         <dt class="col-5">Mens</dt>
