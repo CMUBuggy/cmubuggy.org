@@ -1,9 +1,6 @@
 <nav class="navbar navbar-light navbar-expand bg-light mb-3">
   <ul class="navbar-nav flex-wrap">
     <li class="nav-item">
-      <a class="nav-link" href="/raceday">Raceday Home</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href="/raceday/heats">Heat Schedule</a>
     </li>
     <li class="nav-item">

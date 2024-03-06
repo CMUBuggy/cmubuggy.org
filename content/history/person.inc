@@ -69,7 +69,6 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "s", $urlkey);
 ?>
 
 <?php
-  echo("<h1>".$personName."</h1>");
   if ($awardData->num_rows > 0) {
     echo("<h2>Awards</h2>");
     echo("<ul class=\"list-unstyled\">");

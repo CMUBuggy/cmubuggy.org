@@ -106,9 +106,8 @@
   }
 
   echo("<div class=\"row mb-3\">");
-  echo("<div class=\"col col-sm-8\">");
-  echo("<h1>".$year." ".$orgshortname." Rosters</h1>");
-  echo("<a class=\"btn btn-primary my-2\" href=\"/history/org/".$orgurlkey."\">Org History</a>");
+  echo("<div class=\"col col-sm-8 mt-auto\">");
+  echo("<a class=\"btn btn-primary my-2\" href=\"/history/org/".$orgurlkey."\">Full Org History</a>");
   echo("</div>");
   if (!empty($orgimageurl)) {
     echo("<div class=\"d-none d-sm-flex col-sm-4 align-items-center justify-content-end\">");

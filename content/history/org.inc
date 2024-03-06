@@ -643,17 +643,8 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
   }
 }
 ?>
-<div class="row mb-2">
+<div class="row mb-2 align-items-center">
   <div class="col">
-  <h1>
-  <?php
-      echo($org["longname"]);
-      if ($org["shortname"]) {
-        echo (" <span style=\"font-size:.5em\">(".$org["shortname"].")</span>");
-      }
-  ?>
-  </h1>
-
   <dl class="row">
   <dt class="col-sm-3">Founded</dt><dd class="col-sm-9"><?php echo($org["yearfounded"]); ?></dd>
   <?php
@@ -905,7 +896,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 <?php
   } else { // NOT A RACING ORG - Simpler handling since we only worry about trophies.
 ?>
-  <h2>Trophies <span class="badge badge-primary"><?php echo($trophyCount); ?></span></h2>
+  <h5>Trophies <span class="badge badge-primary"><?php echo($trophyCount); ?></span></h2>
 
   <div class="table-responsive">
     <table class="table">

@@ -1,5 +1,3 @@
-<h1>Racedays</h1>
-
 <?php
 // This query only works for years in one of 3 cases:
 // - No results at all, and there is an entry in the database. (e.g. COVID and War Years)
@@ -154,5 +152,5 @@ function echoTeamCell($teamkey, $teamname) {
       ?>
     </tbody>
   </table>
-  <span class="small">Note: Years where there are ties (e.g. 1922), will show multiple lines in the table.</span>
+  <span class="small">Note: Years where there are ties in a class (e.g. 1922 Mens), will show multiple lines in the table.</span>
 </div>

@@ -30,8 +30,108 @@ body { margin-top: 4.5rem; }
 }
 
 .nobullet { list-style-type: none; }
-.navbar-dark .navbar-toggler { border-color: #fff; }
-.navbar-dark .navbar-toggler-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
+
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.navbar-expand-lg .navbar-collapse {
+  justify-content: end;
+}
+
+.navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: #fff;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link.disabled {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-nav .show > .nav-link,
+.navbar-nav .active > .nav-link,
+.navbar-nav .nav-link.show,
+.navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar .dropdown-toggle::after {
+  margin-left: 0.5em;
+}
+
+/* https://stackoverflow.com/a/45755948 */
+.dropdown-submenu {
+  position: relative;
+}
+
+/* https://stackoverflow.com/a/45755948 */
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 1.5rem;
+  top: .8em;
+}
+
+/* https://stackoverflow.com/a/45755948 */
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}
+
+@media (max-width: 992px) {
+  .navbar-nav {
+    margin-top: 1rem;
+  }
+
+  .navbar-nav .dropdown-menu,
+  .navbar-nav .dropdown-submenu {
+    background-color: inherit;
+    border: none;
+
+    .dropdown-item {
+      color:  rgba(255, 255, 255, 0.8);
+    }
+
+    .dropdown-item:hover, .dropdown-item:focus {
+      color: #16181b;
+      text-decoration: none;
+      background-color: #e9ecef;
+    }
+
+    .dropdown-toggle::after {
+      transform: none;
+    }
+
+    .dropdown-divider {
+      border-top: 1.5px solid rgba(255, 255, 255, 0.5);
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
 .img-fa { width: .875em; margin: .0675em auto; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
 #googlesearch input[type="text"] { background-position: .375rem center !important; }
 .youtube-preview { width: 120px; }
@@ -55,4 +155,12 @@ body { margin-top: 4.5rem; }
     height: 300px;
     max-height: 300px;
   }
+}
+
+.border-2 {
+  border-width: 2px !important;
+}
+
+.border-3 {
+  border-width: 3px !important;
 }
