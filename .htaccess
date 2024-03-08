@@ -130,7 +130,7 @@ Redirect 302 /2024springgrant https://docs.google.com/forms/d/e/1FAIpQLSdLwjjwJR
 Redirect 302 /volunteer https://docs.google.com/forms/d/1sxKG3njTp6VVLkj7pn0VfoqthLRupkXnKR72TT3W0Ng/viewform
 
 # Volunteer Links (Raceday 2023)
-Redirect 302 /broadcast-volunteer https://docs.google.com/forms/d/e/1FAIpQLSfj8vuGN8HjQYOIWG02wGVwh34URDdYqb9vXAYhWQ1biGZoqA/viewform
+Redirect 302 /broadcast-volunteer https://docs.google.com/forms/d/e/1FAIpQLScQb4JgH6NnRhcw8SECXOIw3Qv2YkP8RwR0xGzCWJ3qYJ140A/viewform
 
 # Volunteer Links (Rolls Reporting)
 Redirect 302 /F23rollsreporters /rollsreporters
