@@ -1,7 +1,10 @@
+<?php
+  // When volunteer links are ready, set to true
+  $SHOW_VOLUNTEER_LINKS = true;
+?>
     <div class="card mb-3">
       <h5 class="card-header">Raceday 2024 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
       <div class="card-body text-center">
-
       <div id="countdownCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner w-100">
           <div class="carousel-item active">
@@ -36,17 +39,12 @@
         </a>
       </div>
       <hr>
+<?php if ($SHOW_VOLUNTEER_LINKS) { ?>
+      <p>Our members help make raceday happen.  If you'll be in town, please sign up to help.</p>
+      <a target="_blank" href="/volunteer" class="btn btn-primary">Help Us Out!</a>
+      <a target="_blank" href="/broadcast-volunteer" class="btn btn-primary">Be A Commentator!</a>
+<?php } else { ?>
       <i>Spring Carnival will be here before you know it!</i>
-<?php
-  // When volunteer links are ready, set to true
-  if (false) {
-?>
-        <p>
-        <p>Watch this space for updates as raceday approaches.</p>
-        <p>Our members help make raceday happen.  If you'll be in town, please sign up to help.</p>
-
-        <a target="_blank" href="/volunteer" class="btn btn-primary">Help Us Out!</a>
-        <a target="_blank" href="/broadcast-volunteer" class="btn btn-primary">Be A Commentator!</a>
 <?php } ?>
       </div>
     </div>
