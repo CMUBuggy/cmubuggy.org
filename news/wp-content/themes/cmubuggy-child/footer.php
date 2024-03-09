@@ -5,9 +5,9 @@
 			<?php
 				}
 			?>
-		</div> <!-- col -->
-	</div> <!-- row -->
-</div> <!-- container -->
+		</div> <?php // .col ?>
+	</div> <?php // .row ?>
+</div> <?php // .container ?>
 
 <?php include_once("../content/footer.inc"); ?>
 <?php wp_footer(); ?>

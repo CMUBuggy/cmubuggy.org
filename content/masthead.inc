@@ -1,4 +1,4 @@
-<!-- Breadcrumbs, countdown -->
+<?php // Logo, page title, breadcrumbs, countdown ?>
 <div class="container d-none d-md-flex justify-content-between align-middle my-3">
   <a href="/">
     <img src="/img/logo-2022-white.svg" width=125 alt="CMU Buggy Alumni Assocation logo" class="img-fluid mx-auto d-block">
