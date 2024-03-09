@@ -89,26 +89,37 @@
 ?>
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
-  <!-- OpenGraph Metadata -->
-<?php
-  foreach ($OGMAP as $key => $value) {
-    echo("  <meta property=\"".$key."\" content=\"".$value."\" />\n");
-  }
+  <head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="google-site-verification" content="GXsMGGkXYJADa-Rw8I0azRbCk_ILRSXWwTkiHODCBrw" />
+    <?php
+      // OpenGraph Metadata
+      foreach ($OGMAP as $key => $value) {
+        echo("  <meta property=\"".$key."\" content=\"".$value."\" />\n");
+      }
 
-  // Provides <title>
-  include_once(ROOT_DIR."/content/cssjs.inc");
-?>
-</head>
-<?php
-  include_once("content/pre-content.inc");
-  try {
-    include_once($content);
-  } catch (Exception $e) {}
-  include_once("content/post-content.inc");
-?>
-</body>
+      // Provides <title>
+      include_once(ROOT_DIR."/content/cssjs.inc");
+    ?>
+  </head>
+  <body>
+    <?php include_once("content/pre-content.inc") ?>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg">
+
+          <?php
+            try {
+              include_once($content);
+            } catch (Exception $e) {}
+          ?>
+
+        </div> <?php // .col ?>
+      </div> <?php // .row ?>
+    </div> <?php // .container ?>
+
+    <?php include_once("content/post-content.inc") ?>
+  </body>
 </html>

@@ -3,8 +3,8 @@
 
   $SHOW_BREADCRUMBS = true;
   if (!isset($BREADCRUMB_LIST) || count($BREADCRUMB_LIST) == 0) {
-	// If someone has set something up before header.php is called, keep using that.
-	$BREADCRUMB_LIST = [["/", "Home"]];  // List of breadcrumb (url, text) pairs.
+		// If someone has set something up before header.php is called, keep using that.
+		$BREADCRUMB_LIST = [["/", "Home"]];  // List of breadcrumb (url, text) pairs.
   }
 
   // Determine our title tag for cssjs.inc & title/breadcrumbs for pre-content.inc
@@ -66,7 +66,7 @@ if ( is_singular() ) {
 	?>
 	<style>
 		:root { --wp-margin: 0px; }
-		#masthead { top: var(--wp-margin); }
+		#header { top: var(--wp-margin); }
 		@supports ((postition: -webkit-sticky) or (position: sticky)) {
 			#navigation {
 				top: 3.5rem;
@@ -84,16 +84,22 @@ if ( is_singular() ) {
 		<?php if (is_admin_bar_showing()) { ?>
 			:root { --wp-margin: 32px }
 			@media screen and (max-width: 782px) { :root { --wp-margin: 46px; } }
-			@media screen and (max-width: 600px) { #masthead { position: sticky; margin-top: -4.5rem; top: 0; } }
+			@media screen and (max-width: 600px) { #header { position: sticky; margin-top: -4.5rem; top: 0; } }
 		<?php } ?>
 	</style>
 
 	<?php wp_head(); ?>
 </head>
-<?php
-	include_once('../content/pre-content.inc');
-?>
-<?php if ( ! is_page_template( 'blank-page.php' ) && ! is_page_template( 'blank-page-with-container.php' )) { ?>
-	<div class="row">
-<?php
-	}
+<?php include_once('../content/pre-content.inc') ?>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg">
+
+			<?php
+				if (!is_page_template('blank-page.php') && !is_page_template('blank-page-with-container.php')) {
+			?>
+				<div class="row">
+			<?php
+				}
+			?>
