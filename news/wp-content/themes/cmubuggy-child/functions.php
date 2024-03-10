@@ -1,4 +1,7 @@
 <?php
+// Disable the admin bar, which overlaps our own nav bar.
+add_filter( 'show_admin_bar', '__return_false' );
+
 // Force exact matching instead of prefix matching for /news/... URLs.
 add_filter('strict_redirect_guess_404_permalink', '__return_true');
 
