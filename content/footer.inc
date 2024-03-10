@@ -40,7 +40,6 @@
         <li><a href="https://groups.google.com/g/baa-news">BAA News in your Inbox</a></li>
         <li><a href="https://groups.google.com/g/buggy-watchers">Buggy-Watchers Notification List</a></li>
       </ul>
-      <?php include("googlesearchinput.inc"); ?>
     </div>
   </div>
   <div class="row justify-content-center">
