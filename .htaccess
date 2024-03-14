@@ -93,7 +93,9 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 # 2022 CMUtv Livestream
 # Redirect 302 /live https://livestream.com/cmutvlive/buggy100
 # 2023 CMUtv Livestream
-Redirect 302 /live https://livestream.com/cmutvlive/buggy2023
+# Redirect 302 /live https://livestream.com/cmutvlive/buggy2023
+# 2024 CMUtv Livestream
+Redirect 302 /live https://livestream.com/cmutvlive/buggy2024
 
 # /raceday/live was a nonexistant page that /live pointed at in early 2022,
 # so this ensures we get to a reasonable spot.  Not sure how critical this
