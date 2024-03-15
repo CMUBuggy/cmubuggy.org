@@ -146,8 +146,11 @@ Redirect 302 /timing https://buggy-timing.bubbleapps.io/
 # 2023 BAA Officer voting
 Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd77ejvki5-QnViSls29edardm90FeFVG7MkS4B5ZufuoYHaw/viewform
 
-# Membership Update Forum
+# Membership Update Forum & Giving Links
+# TODO: Giving links are (half) broken as of the giving site update in March 2024.
 Redirect 302 /memberupdate https://docs.google.com/forms/d/e/1FAIpQLSdWXstvHgL3Zt5BzOnL21qkq1VpxUrTYLR3DGYB9KCQD3lMGQ/viewform
+Redirect 302 /baa-gift https://cmu.secure.force.com/pmtx/giftselect?id=a41f4000000eIQ0&appeal=A6775
+Redirect 302 /endowment-gift https://cmu.secure.force.com/pmtx/giftselect?id=a412S0000015Rgt&appeal=A6777
 
 # Rewrite some iOS favicon handling (404 the precompsed icon, push the root apple-touch-icon to favicons/)
 # This is needed so they don't get caught by the /news redirect.
