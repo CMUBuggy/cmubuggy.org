@@ -17,14 +17,14 @@
 
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
-      include("homepage-raceday-countdown.inc");
+      // include("homepage-raceday-countdown.inc");
 
       // Leaderboard (disables via config spreadsheet, but still reads firebase
       // if code is included)
       // include("homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
-      // include("homepage-raceday-infobox.inc");
+      include("homepage-raceday-infobox.inc");
 
       // Results from most recent raceday
       // 2 boxes: Teams that placed & Awards
