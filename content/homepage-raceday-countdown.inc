@@ -1,6 +1,6 @@
 <?php
   // When volunteer links are ready, set to true
-  $SHOW_VOLUNTEER_LINKS = true;
+  $SHOW_VOLUNTEER_LINKS = false;
 ?>
     <div class="card mb-3">
       <h5 class="card-header">Raceday 2024 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
