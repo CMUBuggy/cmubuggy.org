@@ -50,17 +50,26 @@
     padding: 10px;
     font-size: 20px;
     color: #fff;
-    background-color: #27266a;
+    background-color: #00ff00;
 
     counter-reset: place;
+    overflow: hidden;
   }
 
   div.leaderboard-header {
     height: 10%;
+    background-color: #2b3492;
+  }
+
+  span.leaderboard-title {
+    color: #fff;
+    padding-left: 2vw;
+    font-size: 6vh;
   }
 
   div.allresults {
     height: 90%;
+    padding-top: 10px;
   }
 
   div.rr-item {
@@ -73,6 +82,7 @@
 
     border-color: aliceblue;
     background-color: #2b3492;
+    font-size: 4vh;
   }
 
   .race-result [data-place]::before {
@@ -85,6 +95,10 @@
   }
   .race-result.dq [data-place]::before {
     content: 'DQ';
+  }
+
+  .race-result [data-name] {
+    margin-left: 5vw;
   }
 
   @keyframes fadeUp {
@@ -106,7 +120,7 @@
   <div class="rr-item">
     <div class="race-result p-1 mb-1 border rounded" data-id>
       <div class="d-flex justify-content-between" data-place>
-        <div data-name class="ml-5"></div>
+        <div data-name></div>
         <div data-time class="ml-2 text-monospace"></div>
       </div>
       <div class="d-none justify-content-between">
@@ -168,7 +182,7 @@
   <div class="leaderboard-header">
     <img height="95%" src="/img/logos/sweepstakes_logo_notext.svg"
          style="filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
-    <span id="leaderboard-title" class="h2">Leaderboard</span>
+    <span id="leaderboard-title" class="leaderboard-title align-middle">Leaderboard</span>
   </div>
   <div class="allresults" id="results-here"></div>
 </div>

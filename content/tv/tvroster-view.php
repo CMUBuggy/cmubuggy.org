@@ -15,10 +15,6 @@
     width: 100vw;
   }
 
-  hr { 
-    border-top: 4px solid rgba(255,255,255,1);
-  }
-
   * {
     box-sizing: border-box;
   }
@@ -28,15 +24,49 @@
     width: 100%;
 
     padding: 10px;
-    font-size: 20px;
     color: #fff;
-    background-color: #27266a;
 
-    counter-reset: place;
+    background-color: #00ff00;
+    overflow: hidden;
   }
 
-  div.roster-header {
-    height: 10%;
+  div.content-box {
+    background-color: #27266a;
+  }
+
+  span.team-header {
+    font-size: 7vh;
+    font-weight: bold;
+  }
+
+  div.team-member {
+    font-size: 4vh;
+  }
+
+  span.buggy-header {
+    font-size: 5vh;
+    font-weight: bold;
+    align: center;
+  }
+
+  span.buggy-birth {
+    font-size: 3vh;
+    font-weight: bold;
+    align: center;
+  }
+
+  .vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
+  }
+
+  img.blue-border {
+    border: 1px solid #27266a;
+    padding: 0.5rem;
+    background-color: #27266a;
   }
 </style>
 </head>
@@ -67,6 +97,7 @@
                               else 'Unknown' end AS class,
                         Team AS team,
                         b.buggyid AS buggyid, b.name AS buggy,
+                        b.birthyear AS birthyear,
                         b.smugmug_slug AS buggy_smugmug_slug
                     FROM hist_raceentries e
                     LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
@@ -114,31 +145,53 @@
   }
 ?>
 
-<div class="roster-header">
-    <img height="95%" src="/img/logos/sweepstakes_logo_notext.svg"
-         style="filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
-<?php
-  $teamName = $header['org']." ".$header['class']." ".$header['team'];
-  echo "<span class=\"h2\">".$teamName." Roster</span>";
-?>
+<div class="container-fluid vertical-center justify-content-center p-2">
+  <div class="row" style="width:90%">
+    <div class="col-6 my-auto">
+      <div class="row">
+        <div class="col-11 my-1 py-2 content-box rounded-lg">
+        <?php
+          echo "<span class=\"buggy-header\">".$header['buggy']."</span><br>";
+          echo "<span class=\"buggy-birth\">Built: ".$header['birthyear']."</span>";
+        ?>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-11 my-1 p-3 text-center rounded-lg">
+        <?php
+          if (!empty($header["buggy_smugmug_slug"])) {
+            $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "L");
+            echo "<img class=\"img-fluid img-thumbnail blue-border\" src=\"".$buggy_image_url."\">";
+          } else {
+            $buggy_image_url = "/img/logos/sweepstakes_logo_notext.svg";
+            $style = "max-height: 40vh; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);";
+            echo "<div class=\"content-box rounded-lg\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
+          }
+        ?>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 my-auto">
+      <div class="row">
+        <div class="col my-1 content-box rounded-lg">
+        <?php
+          // Team header
+          $teamName = $header['org']." ".$header['class']." ".$header['team'];
+          echo "<span class=\"team-header\">".$teamName."</span>";
+        ?>
+        </div>
+      </div>
+      <?php
+        foreach ($displayRoles as $role) {
+          echo("<div class=\"row\">");
+          echo("<div class=\"col-3 m-1 content-box team-member\"><b>".$role."</b></div>");
+          echo("<div class=\"col-8 m-1 content-box team-member\">".$teamArr[$role]."</div>");
+          echo("</div>");
+        }
+      ?>
+    </div>
   </div>
-
-<?php
-  echo "<hr>";
-  echo "<b>Buggy</b>: ".$header['buggy']."<br>";
-  echo "<hr>";
-
-  foreach ($displayRoles as $role) {
-    echo "<b>".$role."</b>: ".$teamArr[$role]."<br>";
-  }
-
-  echo "<hr>";
-
-  if (!empty($header["buggy_smugmug_slug"])) {
-    $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "S");
-    echo "<img class=\"img-fluid img-thumbnail\" src=\"".$buggy_image_url."\">";
-  }
-?>
+</div>
 
 </div>
 </body>

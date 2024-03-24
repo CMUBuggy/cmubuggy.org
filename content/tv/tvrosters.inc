@@ -1,3 +1,10 @@
+<script>
+  function dopopup(entryid) {
+    // Does not open into same window since we may want to preload several rowsters.
+    window.open("/content/tv/tvroster-view.php?t="+entryid, "_blank", "popup=true,width=960,height=540");
+  }
+</script>
+
 <?php
   // Display an overview of the participants of a given raceday year. More useful for a raceday that
   // hasn't happened yet, rather than one that has already happened.
@@ -64,7 +71,7 @@
       $entriesByOrg[$orgname]["Robotic"] = array();
     }
 
-    $entryString = "<a href=\"/content/tv/tvroster-view.php?t=".$row["entryid"]."\">".$class." ".$row["team"]."</a>";
+    $entryString = "<a href=\"#\" onclick=\"dopopup(&quot;".$row["entryid"]."&quot;)\">".$class." ".$row["team"]."</a>";
     if (!empty($row["buggyname"])) {
       $entryString .= "<span class=\"d-none d-sm-inline\"><br></span>\n";
       $entryString .= "<span class=\"d-sm-none\">(</span>";
