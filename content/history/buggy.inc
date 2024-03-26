@@ -257,7 +257,7 @@ if(empty($image_url)) {
             }
 
             $year = $r["year"];
-            echo("<tr><td><a href=\"/history/".$RACEDAY_URL_PART."/".$year.$r["classanchor"]."\">".$year."</a></td>");
+            echo("<tr><td><a href=\"/history/raceday/".$year.$r["classanchor"]."\">".$year."</a></td>");
 
             echo("<td style=\"white-space: nowrap\">");
             // If the entry org doesn't match the owner org for this buggy,

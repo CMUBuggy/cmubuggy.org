@@ -87,11 +87,10 @@ function echoTeamCell($teamkey, $teamname) {
       <?php
         // Hash mark is optional on the class anchor, will be added if needed.
         function makeYearCell($r, $classAnchor = "") {
-          global $RACEDAY_URL_PART;
           if (!empty($classAnchor) && $classAnchor[0] != "#") {
             $classAnchor = "#".$classAnchor;
           }
-          return "<td><a href=\"/history/".$RACEDAY_URL_PART."/".$r["year"].$classAnchor."\">".$r["year"]."</a></td>";
+          return "<td><a href=\"/history/raceday/".$r["year"].$classAnchor."\">".$r["year"]."</a></td>";
         }
 
         $yearParity = false;

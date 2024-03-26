@@ -1,7 +1,5 @@
 <?php
 function getHistoryBreadcrumbs() {
-    global $RACEDAY_WORD, $RACEDAY_URL_PART;
-
     // Except for the top page, we get a History crumb.
     $ret = [["/history", "History"]];
 
@@ -11,7 +9,7 @@ function getHistoryBreadcrumbs() {
         "buggy" => ['/history/buggy', "Buggies"],
         "org" => ['/history/org', "Organizations"],
         "person" => ['/history/person', "People"],
-        "raceday" => ['/history/'.$RACEDAY_URL_PART, $RACEDAY_WORD."s"],
+        "raceday" => ['/history/raceday', "Racedays"],
         "sweepstakes" => ['/history/sweepstakes', "Sweepstakes Committees"],
 
         // These pages exist, but are the top level and shouldn't get a dedicated breadcrumb.
@@ -72,8 +70,6 @@ function getEntryCrumbs() {
 }
 
 function getHistoryPageTitle() {
-    global $RACEDAY_WORD;
-
     $DEFAULT_TITLE = "History";
 
     // Map subpages to titles.
@@ -83,7 +79,7 @@ function getHistoryPageTitle() {
         "buggylist" => "Buggies",
         "orglist" => "Organizations",
         "personlist" => "People Search",
-        "racedaylist" => $RACEDAY_WORD . "s",
+        "racedaylist" => "Racedays",
         "sweepstakeslist" => "Sweepstakes Committees",
         "toptimes" => "Top Times"
     ];
@@ -127,15 +123,13 @@ function getHistoryPageTitle() {
 }
 
 function getRacedayTitle() {
-    global $RACEDAY_WORD;
-
     if (empty($_GET["year"])) {
         // We should have been sent into racedaylist, not here.  What happened?
         die("Ooops, no year specified!");
     }
 
     $year = $_GET['year'] * 1;
-    return "$RACEDAY_WORD $year";
+    return "Raceday $year";
 }
 
 function getSweepstakesTitle() {
