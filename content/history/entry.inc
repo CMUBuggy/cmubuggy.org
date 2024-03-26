@@ -189,12 +189,14 @@ echo("<hr>");
 
 <div class="row">
   <?php
+    $foundOne = false;
     // Use $displayHeatTypes to force an ordering on the display.
     foreach($displayHeatTypes as $heattype) {
       if (!isset($teamArr[$heattype])) {
         // If we have no data for this heattype, skip it.
         continue;
       }
+      $foundOne = true;
       $team = $teamArr[$heattype];
 
       echo("<div class=\"col-sm\">");
@@ -220,6 +222,10 @@ echo("<hr>");
       echo("</div>");
 
       echo("</div>");
+    }
+
+    if (!$foundOne) {
+      echo("<div class=\"col-sm\"><i>No further race data available.</i></div>");
     }
   ?>
 </div>
