@@ -1,6 +1,6 @@
 <?php
 function getHistoryBreadcrumbs() {
-    global $RACEDAY_WORD;
+    global $RACEDAY_WORD, $RACEDAY_URL_PART;
 
     // Except for the top page, we get a History crumb.
     $ret = [["/history", "History"]];
@@ -11,7 +11,7 @@ function getHistoryBreadcrumbs() {
         "buggy" => ['/history/buggy', "Buggies"],
         "org" => ['/history/org', "Organizations"],
         "person" => ['/history/person', "People"],
-        "raceday" => ['/history/raceday', $RACEDAY_WORD."s"],
+        "raceday" => ['/history/'.$RACEDAY_URL_PART, $RACEDAY_WORD."s"],
         "sweepstakes" => ['/history/sweepstakes', "Sweepstakes Committees"],
 
         // These pages exist, but are the top level and shouldn't get a dedicated breadcrumb.

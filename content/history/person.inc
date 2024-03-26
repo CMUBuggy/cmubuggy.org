@@ -96,7 +96,7 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "s", $urlkey);
     echo("<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Year</th><th>Day</th><th>Team</th><th>Role</th><th>Time</th><th>Place</th><th>DQ/Note</th></tr></thead><tbody>");
     while ($t = $teamData->fetch_assoc()) {
       echo("<tr>");
-      echo("<td><a href=\"/history/raceday/".$t["year"]."#".$t["classanchor"]."\">".$t["year"]."</a></td>");
+      echo("<td><a href=\"/history/".$RACEDAY_URL_PART."/".$t["year"]."#".$t["classanchor"]."\">".$t["year"]."</a></td>");
       echo("<td>".$t["heattype"]."</td>");
       echo("<td><a href=\"/history/team/".$t["entryid"]."\">".$t["orgname"]." ".$t["class"]." ".$t["team"]."</a></td>");
       echo("<td>".$t["role"]."</td>");

@@ -24,14 +24,14 @@
    </div>
    <div class="col">
      <div class="media mb-3">
-        <a href="/history/raceday">
+        <a href="/history/<?php echo($RACEDAY_URL_PART); ?>">
          <span class="fa-layers fa-fw fa-2x mr-2">
           <i class="fas fa-square" style="color: var(--yellow)"></i>
           <i class="fas fa-trophy fa-inverse" data-fa-transform="shrink-8"></i>
          </span>
         </a>
         <div class="media-body">
-          <a href="/history/raceday">Race Results</a> for every year
+          <a href="/history/<?php echo($RACEDAY_URL_PART); ?>">Race Results</a> for every year
         </div>
       </div>
    </div>

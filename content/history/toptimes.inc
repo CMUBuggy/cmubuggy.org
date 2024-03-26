@@ -33,13 +33,14 @@ $top50allgender = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","N","N","N","N");
 $top50robotic = dbBoundQuery($HISTORY_DATABASE,$query,"ssss","R","R","R","R");
 
 function displayTable($teamList, $displayNotes=false){
+  global $RACEDAY_URL_PART;
   echo("<table class=\"table\">");
   $count = 1;
   while ($team = $teamList->fetch_assoc()) {
     $year = $team["year"];
 
     echo("<tr><td>".$count.".</td>");
-    echo("<td><a href=\"/history/raceday/".$year."#".$team["classanchor"]."\">".$year."</a></td>");
+    echo("<td><a href=\"/history/".$RACEDAY_URL_PART."/".$year."#".$team["classanchor"]."\">".$year."</a></td>");
     echo("<td><a href=\"/history/team/".$team["entryid"]."\">".$team["teamname"]."</a></td>");
     echo("<td><a href=\"/history/buggy/".$team["buggyid"]."\">".$team["buggy"]."</a></td>");
     echo("<td>".displayTime($team["time"])."</td>");

@@ -219,7 +219,7 @@
 
   $FIRST_YEAR = 1920;
   if($year > $FIRST_YEAR) {
-    $prevlink = "<a href=\"/history/raceday/".($year - 1)."\">&laquo ".($year - 1)."</a>";
+    $prevlink = "<a href=\"/history/".$RACEDAY_URL_PART."/".($year - 1)."\">&laquo ".($year - 1)."</a>";
   }
 
   // Partial logic to determine if we show the next year _without_ an extra DB query.
@@ -227,7 +227,7 @@
   // If we're looking _at_ last year, only show the next link if it is april or later.
   $lastyear = date("Y") - 1;
   if($year < $lastyear || ($year == $lastyear && date("n") >= 4)) {
-    $nextlink = "<a href=\"/history/raceday/".($year + 1)."\">".($year + 1)." &raquo</a>";
+    $nextlink = "<a href=\"/history/".$RACEDAY_URL_PART."/".($year + 1)."\">".($year + 1)." &raquo</a>";
 
     // We only need the vertical bar if we're putting in next year _and_ we're past 1920.
     if ($year > $FIRST_YEAR) {
