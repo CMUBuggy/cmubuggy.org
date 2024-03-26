@@ -8,6 +8,16 @@
     $s = $_GET["s"];
   }
 
+  /// April 1, 2024
+  date_default_timezone_set('America/New_York');
+  $RACEDAY_WORD = "Raceday";
+  $RACEDAY_URL_PART = "raceday";
+  if (date("m.d") == "04.01") {
+    $RACEDAY_WORD = "Buggy Day";
+    $RACEDAY_URL_PART = "buggyday";
+  }
+  ///
+
   $SHOW_BREADCRUMBS = true;  // False will indicate to hide the breadcrumbs (e.g. home page)
   $BREADCRUMB_LIST = [["/", "Home"]];  // List of breadcrumb (url, text) pairs.
   $BAA_TITLE = "CMU Buggy Alumni Association";  // Used to build titles.

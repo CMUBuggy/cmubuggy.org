@@ -11,7 +11,7 @@
 ?>
 
   <div class="card mb-3">
-      <h5 class="card-header">Raceday 2024 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
+      <h5 class="card-header"><?php echo($RACEDAY_WORD); ?> 2024 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
       <img class="card-img-top" src="<?php echo(makeSmugmugUrl($raceday_images[array_rand($raceday_images)], "M")); ?>">
       <div class="card-body">
 <?php
@@ -21,7 +21,7 @@
   if ($RACEDAY_WEEK) {
 ?>
         <div class="d-flex justify-content-center">
-          <a href="/raceday" class="btn btn-primary m-1">Raceday Schedule</a>
+          <a href="/<?php echo($RACEDAY_URL_PART) ?>" class="btn btn-primary m-1"><?php echo($RACEDAY_WORD); ?> Schedule</a>
           <a href="/live" class="btn btn-info m-1">Livestream</a>
           <a href="/chat" class="btn btn-info m-1">Chat</a>
         </div><div class="d-flex justify-content-center mb-2">
@@ -31,7 +31,7 @@
         </div>
 <?php } ?>
 
-        <p>Our <a href="/raceday">raceday schedule</a> is the place to go for everything you need to know about all the events.</p>
+        <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about all the events.</p>
         <p>Key Events:</p>
         <ul>
           <li>Buggy Showcase: Thursday Apr 11, Noon</li>
@@ -41,7 +41,7 @@
 <?php
   if (!$RACEDAY_WEEK) {
 ?>
-        <p>Our members help make raceday happen.  If you'll be in town, please sign up to help.</p>
+        <p>Our members help make <?php echo($RACEDAY_WORD); ?> happen.  If you'll be in town, please sign up to help.</p>
 
         <a target="_blank" href="/volunteer" class="btn btn-primary">Help Us Out!</a>
         <a target="_blank" href="/broadcast-volunteer" class="btn btn-primary">Be A Commentator!</a>
