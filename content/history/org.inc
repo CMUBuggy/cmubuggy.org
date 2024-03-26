@@ -363,6 +363,7 @@ function addtrophy($year, $awardType, $extra = "") {
 
 // $yearParity is used to stripe the table with alternating background colors.
 function displayraceyear($year, $entry, $yearParity=false) {
+  global $RACEDAY_URL_PART;
   global $classkeys;
 
   $thisYearClasses = array();
@@ -411,7 +412,7 @@ function displayraceyear($year, $entry, $yearParity=false) {
       $cssClass = $cssClass . " table-parity-color year-parity";
     }
 
-    echo("<tr class=\"classRow ".$cssClass."\"><td><a href=\"/history/raceday/".$year.$classAnchor."\">".$year."</a></td>");
+    echo("<tr class=\"classRow ".$cssClass."\"><td><a href=\"/history/".$RACEDAY_URL_PART."/".$year.$classAnchor."\">".$year."</a></td>");
     echo("<td class=\"classCol\">".$class."</td>");
     foreach ($classkeys[$class] as $entrytype) {
       if (isset($entry[$entrytype.".entryid"])) {
