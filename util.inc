@@ -1,8 +1,15 @@
 <?php
-	//session_start();
 	define( 'ROOT_DIR', dirname(__FILE__) );
-	$UTCdiff = -60*60*4;
-	$footermsg = "";
+    date_default_timezone_set('America/New_York');
+
+    /// April 1, 2024
+    $RACEDAY_WORD = "Raceday";
+    $RACEDAY_URL_PART = "raceday";
+    if (date("m.d") == "04.01") {
+      $RACEDAY_WORD = "Buggy Day";
+      $RACEDAY_URL_PART = "buggyday";
+    }
+    ///
 
 	// Renders times in a standardized way.
 	//

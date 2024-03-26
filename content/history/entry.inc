@@ -178,7 +178,7 @@ if (!empty($header["note"])) {
   echo("<tr><th class=\"pr-3\">Notes:</th><td>". $header["note"]."</td></tr>");
 }
 echo("<tr><th class=\"pr-3\">See Also:</th><td>");
-echo("<a href=\"/history/raceday/".$year."#".$header["classanchor"]."\">Raceday ".$year."</a>,&nbsp;");
+echo("<a href=\"/history/".$RACEDAY_URL_PART."/".$year."#".$header["classanchor"]."\">".$RACEDAY_WORD." ".$year."</a>,&nbsp;");
 echo("<a href=\"/history/org/".$header["orgid"]."\">".$header["org"]."</a>");
 echo("</td></tr>");
 
