@@ -1,8 +1,6 @@
 <?php
 function getRacedayBreadcrumbs() {
-    global $RACEDAY_WORD, $RACEDAY_URL_PART;
-
-    $ret = [["/".$RACEDAY_URL_PART, $RACEDAY_WORD]];
+    $ret = [["/raceday", "Raceday"]];
     if (empty($_GET['p'])) {
         // Top Page, no crumb.
         return [];
@@ -17,8 +15,7 @@ function getRacedayBreadcrumbs() {
 }
 
 function getRacedayPageTitle() {
-    global $RACEDAY_WORD;
-    $DEFAULT_TITLE = $RACEDAY_WORD;
+    $DEFAULT_TITLE = "Raceday";
 
     // Map subpages to titles.
     $TITLE_MAP = [

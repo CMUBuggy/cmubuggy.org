@@ -11,8 +11,8 @@
       <div class="media">
         <img class="d-none d-md-inline align-self-center mr-3" style="width:150px; height:150px" src="<?php echo(makeSmugmugUrl("i-JDwvjcL", "Th")); ?>">
         <div class="media-body">
-          <p>Get your <?php echo($RACEDAY_WORD); ?> Gear!</p>
-          <p>Time to show your BAA pride for <?php echo($RACEDAY_WORD); ?>.  Store closes Mar 16, to ensure shipping by first week of April!</p>
+          <p>Get your Raceday Gear!</p>
+          <p>Time to show your BAA pride for Raceday.  Store closes Mar 16, to ensure shipping by first week of April!</p>
           <a target="_blank" href="/merch" class="btn btn-primary">Get My Stuff!</a>
         </div>
       </div>

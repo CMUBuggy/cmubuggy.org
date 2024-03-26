@@ -166,7 +166,7 @@
         ],
         2 => (object) [
           'label' => 'Races',
-          'href' => '/history/'.$RACEDAY_URL_PART,
+          'href' => '/history/raceday',
         ],
         3 => (object) [
           'label' => 'Top Times',

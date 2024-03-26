@@ -65,7 +65,7 @@
         <div class="border-bottom border-2 border-primary my-2 py-2 text-right">
           <span class="my-2"
             title="<?php echo("$timerCount $timerUnit"); ?>">
-            <?php echo($RACEDAY_WORD); ?> 2024 is April 12&ndash;13
+            Raceday 2024 is April 12&ndash;13
           </span>
         </div>
         <div>

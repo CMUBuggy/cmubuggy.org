@@ -24,14 +24,14 @@
    </div>
    <div class="col">
      <div class="media mb-3">
-        <a href="/history/<?php echo($RACEDAY_URL_PART); ?>">
+        <a href="/history/raceday">
          <span class="fa-layers fa-fw fa-2x mr-2">
           <i class="fas fa-square" style="color: var(--yellow)"></i>
           <i class="fas fa-trophy fa-inverse" data-fa-transform="shrink-8"></i>
          </span>
         </a>
         <div class="media-body">
-          <a href="/history/<?php echo($RACEDAY_URL_PART); ?>">Race Results</a> for every year
+          <a href="/history/raceday">Race Results</a> for every year
         </div>
       </div>
    </div>
@@ -130,7 +130,7 @@
          </span>
         </a>
         <div class="media-body">
-          <a href="/history/video">Videos</a> of previous <?php echo($RACEDAY_WORD."s"); ?>
+          <a href="/history/video">Videos</a> of previous Racedays
         </div>
      </div>
    </div>
@@ -143,7 +143,7 @@
          </span>
         </a>
         <div class="media-body">
-          Past <a href="/news/history/raceday-previews"><?php echo($RACEDAY_WORD); ?> Previews and Spotting Guides</a>
+          Past <a href="/news/history/raceday-previews">Raceday Previews and Spotting Guides</a>
         </div>
      </div>
    </div>
