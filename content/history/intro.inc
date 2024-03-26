@@ -130,7 +130,7 @@
          </span>
         </a>
         <div class="media-body">
-          <a href="/history/video">Videos</a> of previous Racedays
+          <a href="/history/video">Videos</a> of previous <?php echo($RACEDAY_WORD."s"); ?>
         </div>
      </div>
    </div>
@@ -143,7 +143,7 @@
          </span>
         </a>
         <div class="media-body">
-          Past <a href="/news/history/raceday-previews">Raceday Previews and Spotting Guides</a>
+          Past <a href="/news/history/raceday-previews"><?php echo($RACEDAY_WORD); ?> Previews and Spotting Guides</a>
         </div>
      </div>
    </div>
