@@ -199,6 +199,7 @@ RewriteRule		^raceday/rosters/([0-9]+)/?$						index.php?s=raceday&p=rosters&yea
 RewriteRule		^raceday/rosters/([0-9]+)/([a-z0-9]+)/?$			index.php?s=raceday&p=rostersorg&year=$1&org=$2	[NC,L]
 # Rosters with no parameter has some current-year based defaulting logic.
 RewriteRule		^raceday/rosters[/]*$								index.php?s=raceday&p=rosters					[NC,L]
+Redirect 302 /raceday/rd24-heats https://docs.google.com/spreadsheets/d/e/2PACX-1vTHgAfJyY9UY6ut6qeAYZ7wmP4DBSPDjm84ckn_ZquDrRxaeCas31xVX-dWZ94iTMTzLR4myDRbwskF/pubhtml
 
 # /tv various database pages for the broadcast
 # Force redirect for the view page so javascript can pick up the type target.
