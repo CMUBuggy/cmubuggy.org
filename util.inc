@@ -5,10 +5,10 @@
     /// April 1, 2024
     $RACEDAY_WORD = "Raceday";
     $RACEDAY_URL_PART = "raceday";
-    if (date("m.d") == "04.01") {
-      $RACEDAY_WORD = "Buggy Day";
-      $RACEDAY_URL_PART = "buggyday";
-    }
+    // if (date("m.d") == "04.01") {
+    //   $RACEDAY_WORD = "Buggy Day";
+    //   $RACEDAY_URL_PART = "buggyday";
+    // }
     ///
 
 	// Renders times in a standardized way.
