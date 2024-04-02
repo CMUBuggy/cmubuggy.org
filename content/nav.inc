@@ -1,160 +1,240 @@
 <?php
+  // Turn this on to enable the raceday menu and merge the About Buggy / About BAA menus
+  // to make room for the additional menu.  Should be done roughly a week before raceday
+  // when content is prepared.
+  $RACEDAY_MENU_ACTIVE = true;
+
+  // These arrays define the structure of the menubar.  We first define the about menus,
+  // and then use array_push to assemble the final menu out of these parts, as well as
+  // the state of $RACEDAY_MENU_ACTIVE.
+  //
   // We use active_re at the top level as a regex for URIs that will trigger
   // that heading to be active.  This is because of awkwardness with how
   // we handle wordpress, and pages that don't sit comfortably in one section
   // such as /history/video
   //
   // Because these are all paths, we're going to use @ as the character to
-  // surround the regex with.
-  $navItems = [
+  // surround the regex with instead of the typical use of /.
+  //
+  // "external" means to open the link in a _blank tab.
+  $ABOUT_BUGGY_SUBMENU = [
     0 => (object) [
-      'label' => 'News',
-      // /news is the wordpress prefix and we'd rather highlight the correct
-      // section even if we landed at an awkward /news-prefixed uri.
-      'active_re' => '@^/news(?!/(reference|about|history|gallery|membership))@',
+      'label' => 'Overview',
+      'href' => '/reference',
+    ],
+    1 => (object) [
+      'label' => 'Who is Involved',
       'children' => [
         0 => (object) [
-          'label' => 'Recent',
-          'href' => '/news',
+          'label' => 'Sweepstakes Committee',
+          'href' => '/reference/sweepstakes',
         ],
         1 => (object) [
-          'label' => 'Subscribe',
-          'href' => 'https://groups.google.com/g/baa-news',
-          'external' => true,
-        ],
-        2 => (object) [
-          'divider' => true,
-        ],
-        // TODO: Dynamically generate category items? Note: This is a subset
-        3 => (object) [
-          'label' => 'Rolls Reports',
-          'href' => '/news/category/rolls-reports/',
-        ],
-        4 => (object) [
-          'label' => 'General Interest Buggy News',
-          'href' => '/news/category/general-interest-buggy-stuff',
-        ],
-        5 => (object) [
-          'label' => 'BAA News',
-          'href' => '/news/category/buggy-alumni-association',
-        ],
-        6 => (object) [
-          'label' => 'Sweepstakes News',
-          'href' => '/news/category/sweepstakes-news',
-        ],
-        7 => (object) [
-          'divider' => true,
-        ],
-        8 => (object) [
-          'label' => 'Index',
-          'href' => '/news/archives/',
+          'label' => 'Buggy Teams',
+          'href' => '/reference/teams',
         ],
       ],
     ],
-    1 => (object) [
-      'label' => 'About Buggy',
-      'active_re' => '@^(/news)?/reference@',
-      'children' => [
-        0 => (object) [
-          'label' => 'Overview',
-          'href' => '/reference',
-        ],
-        1 => (object) [
-          'label' => 'Who is Involved',
-          'children' => [
-            0 => (object) [
-              'label' => 'Sweepstakes Committee',
-              'href' => '/reference/sweepstakes',
-            ],
-            1 => (object) [
-              'label' => 'Buggy Teams',
-              'href' => '/reference/teams',
-            ],
-          ],
-        ],
-        2 => (object) [
-          'label' => 'About the Race',
-          'children' => [
-            0 => (object) [
-              'label' => 'Buggy, the Vehicle',
-              'href' => '/reference/buggy-the-vehicle',
-            ],
-            1 => (object) [
-              'label' => 'Course',
-              'href' => '/reference/course',
-            ],
-            2 => (object) [
-              'label' => 'Safety',
-              'href' => '/reference/safety',
-            ],
-            3 => (object) [
-              'label' => 'Freerolls',
-              'href' => '/reference/freerolls',
-            ],
-            4 => (object) [
-              'label' => 'Spectating',
-              'href' => '/reference/spectating',
-            ],
-            5 => (object) [
-              'label' => 'Pushing Styles',
-              'href' => '/reference/pushing-styles',
-            ],
-          ],
-        ],
-        3 => (object) [
-          'divider' => true,
-        ],
-        4 => (object) [
-          'label' => 'BAA Endowment Fund',
-          'href' => '/reference/baa-endowment-fund',
-        ],
-        5 => (object) [
-          'label' => 'Starting a Team',
-          'href' => '/reference/new-team',
-        ],
-        6 => (object) [
-          'label' => 'How To Build a Buggy',
-          'href' => '/reference/how-to-build-a-buggy',
-        ],
-        7 => (object) [
-          'label' => 'Sweepstakes Bylaws',
-          'href' => '/reference/sweepstakes-bylaws',
-        ],
-      ]
-    ],
     2 => (object) [
-      'label' => 'About the BAA',
-      'active_re' => '@^(/news)?/about@',
+      'label' => 'About the Race',
       'children' => [
         0 => (object) [
-          'label' => 'Overview',
-          'href' => '/about',
+          'label' => 'Buggy, the Vehicle',
+          'href' => '/reference/buggy-the-vehicle',
         ],
         1 => (object) [
-          'label' => 'Leadership',
-          'href' => '/about/people',
+          'label' => 'Course',
+          'href' => '/reference/course',
         ],
         2 => (object) [
-          'label' => 'Get Involved',
-          'href' => '/about/get-involved',
+          'label' => 'Safety',
+          'href' => '/reference/safety',
         ],
         3 => (object) [
-          'label' => 'Accomplishments',
-          'href' => '/about/accomplishments',
+          'label' => 'Freerolls',
+          'href' => '/reference/freerolls',
         ],
         4 => (object) [
-          'label' => 'This Website',
-          'href' => '/about/website',
+          'label' => 'Spectating',
+          'href' => '/reference/spectating',
         ],
         5 => (object) [
-          'label' => 'Code of Conduct',
-          'href' => '/about/code-of-conduct',
+          'label' => 'Pushing Styles',
+          'href' => '/reference/pushing-styles',
         ],
       ],
     ],
     3 => (object) [
+      'divider' => true,
+    ],
+    4 => (object) [
+      'label' => 'BAA Endowment Fund',
+      'href' => '/reference/baa-endowment-fund',
+    ],
+    5 => (object) [
+      'label' => 'Starting a Team',
+      'href' => '/reference/new-team',
+    ],
+    6 => (object) [
+      'label' => 'How To Build a Buggy',
+      'href' => '/reference/how-to-build-a-buggy',
+    ],
+    7 => (object) [
+      'label' => 'Sweepstakes Bylaws',
+      'href' => '/reference/sweepstakes-bylaws',
+    ],
+  ];
+
+  $ABOUT_BAA_SUBMENU = [
+    0 => (object) [
+      'label' => 'Overview',
+      'href' => '/about',
+    ],
+    1 => (object) [
+      'label' => 'Leadership',
+      'href' => '/about/people',
+    ],
+    2 => (object) [
+      'label' => 'Get Involved',
+      'href' => '/about/get-involved',
+    ],
+    3 => (object) [
+      'label' => 'Accomplishments',
+      'href' => '/about/accomplishments',
+    ],
+    4 => (object) [
+      'label' => 'This Website',
+      'href' => '/about/website',
+    ],
+    5 => (object) [
+      'label' => 'Code of Conduct',
+      'href' => '/about/code-of-conduct',
+    ],
+  ];
+
+
+  // The actual full menu
+  $navItems = [];
+  if ($RACEDAY_MENU_ACTIVE) {
+    array_push($navItems, (object) [
+      'label' => 'Raceday',
+      'active_re' => '@^(/news)?/raceday@',
+      'children' => [
+        0 => (object) [
+          'label' => 'Event Schedule',
+          'href' => '/raceday',
+        ],
+        1 => (object) [
+          'divider' => true,
+        ],
+        2 => (object) [
+          'label' => 'Leaderboard',
+          'href' => '/raceday/leaderboard',
+        ],
+        3 => (object) [
+          'label' => 'Heat Schedule',
+          'href' => '/raceday/heats',
+        ],
+        4 => (object) [
+          'label' => 'Rosters',
+          'href' => '/raceday/rosters',
+        ],
+        5 => (object) [
+          'divider' => true,
+        ],
+        6 => (object) [
+          'label' => 'Livestream',
+          'href' => '/live',
+          'external' => true
+        ],
+        7 => (object) [
+          'label' => 'Chat',
+          'href' => '/chat',
+          'external' => true
+        ],
+      ],
+    ]);
+  }
+
+  array_push ($navItems, (object) [
+    'label' => 'News',
+    // /news is the wordpress prefix and we'd rather highlight the correct
+    // section even if we landed at an awkward /news-prefixed uri.
+    'active_re' => '@^/news(?!/(reference|about|history|gallery|membership|raceday))@',
+    'children' => [
+      0 => (object) [
+        'label' => 'Recent',
+        'href' => '/news',
+      ],
+      1 => (object) [
+        'label' => 'Subscribe',
+        'href' => 'https://groups.google.com/g/baa-news',
+        'external' => true,
+      ],
+      2 => (object) [
+        'divider' => true,
+      ],
+      // TODO: Dynamically generate category items? Note: This is a subset
+      3 => (object) [
+        'label' => 'Rolls Reports',
+        'href' => '/news/category/rolls-reports/',
+      ],
+      4 => (object) [
+        'label' => 'General Interest Buggy News',
+        'href' => '/news/category/general-interest-buggy-stuff',
+      ],
+      5 => (object) [
+        'label' => 'BAA News',
+        'href' => '/news/category/buggy-alumni-association',
+      ],
+      6 => (object) [
+        'label' => 'Sweepstakes News',
+        'href' => '/news/category/sweepstakes-news',
+      ],
+      7 => (object) [
+        'divider' => true,
+      ],
+      8 => (object) [
+        'label' => 'Index',
+        'href' => '/news/archives/',
+      ],
+    ],
+  ]);
+
+  // About Menus -- depends on RACEDAY_MENU_ACTIVE
+  if ($RACEDAY_MENU_ACTIVE) {
+    // Merge the menus, we need the space.
+    array_push($navItems, (object) [
+      'label' => 'About',
+      'active_re' => '@^(/news)?/(reference|about)@',
+      'children' => [
+        0 => (object) [
+          'label' => '...Buggy',
+          'children' => $ABOUT_BUGGY_SUBMENU
+        ],
+        1 => (object) [
+          'label' => '...the BAA',
+          'children' => $ABOUT_BAA_SUBMENU
+        ]
+      ]
+    ]);
+  } else {
+    array_push($navItems,
+      (object) [
+        'label' => 'About Buggy',
+        'active_re' => '@^(/news)?/reference@',
+        'children' => $ABOUT_BUGGY_SUBMENU
+      ],
+      (object) [
+        'label' => 'About the BAA',
+        'active_re' => '@^(/news)?/about@',
+        'children' => $ABOUT_BAA_SUBMENU
+      ]);
+  }
+
+  array_push($navItems, (object) [
       'label' => 'History',
-      // All history pages _except_ video.
+      // All history pages _except_ video (which goes to gallery)
       'active_re' => '@^(/news)?/history(?!/video)@',
       'children' => [
         0 => (object) [
@@ -204,7 +284,7 @@
         ],
       ],
     ],
-    4 => (object) [
+    (object) [
       'label' => 'Gallery',
       // Really, just /history/video (/gallery doesn't exist)
       'active_re' => '@^((/news)?(/gallery|/history/video)|/video)@',
@@ -220,12 +300,11 @@
         ],
       ],
     ],
-    5 => (object) [
+    (object) [
       'label' => 'Membership',
       'href' => '/membership',
       'active_re' => '@^(/news)?/membership@',
-    ],
-  ];
+    ]);
 
   // Created based on https://stackoverflow.com/a/45755948
   // Converted <ul>s to <div>s to avoid left indentation
