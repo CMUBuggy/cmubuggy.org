@@ -167,8 +167,8 @@ RewriteRule		^history/buggy/([a-z0-9\-]+)/?$						index.php?s=history&p=buggy&ur
 RewriteRule		^history/org/([a-z0-9]+)/?$							index.php?s=history&p=org&urlkey=$1				[NC,L]
 RewriteRule		^history/person/([a-z0-9]+)/?$						index.php?s=history&p=person&id=$1				[NC,L]
 RewriteRule		^history/raceday/([0-9]+)/?$						index.php?s=history&p=raceday&year=$1			[NC,L]
-# Apr 1 2024
-RewriteRule		^history/buggyday/([0-9]+)/?$						index.php?s=history&p=raceday&year=$1			[NC,L]
+# Apr 1 2024 (now a redirect)
+RewriteRule		^history/buggyday/([0-9]+)/?$						/history/raceday/$1			[R,NC,L]
 RewriteRule		^history/sweepstakes/([0-9]+)/?$					index.php?s=history&p=sweepstakes&year=$1		[NC,L]
 RewriteRule		^history/team/([a-z0-9.]+)/?$						index.php?s=history&p=entry&urlkey=$1			[NC,L]
 
@@ -184,8 +184,8 @@ RewriteRule		^history/org[/]*$									index.php?s=history&p=orglist					[NC,L]
 RewriteRule		^history/person[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
 RewriteRule		^history/people[/]*$								index.php?s=history&p=personlist				[NC,L,QSA]
 RewriteRule		^history/raceday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
-# Apr 1 2024
-RewriteRule		^history/buggyday[/]*$								index.php?s=history&p=racedaylist				[NC,L]
+# Apr 1 2024 (now a redirect)
+RewriteRule		^history/buggyday[/]*$								/history/raceday				[R,NC,L]
 # record is obsolete, but keep it here to allow any dead links to work.
 RewriteRule		^history/record[/]*$								index.php?s=history&p=toptimes 					[NC,L]
 RewriteRule		^history/toptimes[/]*$								index.php?s=history&p=toptimes 					[NC,L]
