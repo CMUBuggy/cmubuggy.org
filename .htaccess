@@ -142,7 +142,10 @@ Redirect 302 /podcast https://linktr.ee/cmubuggy
 Redirect 302 /spotify https://open.spotify.com/show/3wbaYb92dfzuWDUbOOxHWi
 
 # Crowdsourced Timing Tool
-Redirect 302 /timing https://buggy-timing.bubbleapps.io/
+# Legacy App
+# Redirect 302 /timing https://buggy-timing.bubbleapps.io/
+# New Firestore App
+Redirect 302 /timingapp https://buggy-timing-900.web.app/
 
 # 2023 BAA Officer voting
 Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd77ejvki5-QnViSls29edardm90FeFVG7MkS4B5ZufuoYHaw/viewform
