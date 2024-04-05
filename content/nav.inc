@@ -160,7 +160,9 @@
     'label' => 'News',
     // /news is the wordpress prefix and we'd rather highlight the correct
     // section even if we landed at an awkward /news-prefixed uri.
-    'active_re' => '@^/news(?!/(reference|about|history|gallery|membership|raceday))@',
+    //
+    // Buggy history articles are particularly awkward.
+    'active_re' => '@^/news(?!/(reference|about|history|gallery|membership|raceday|[0-9]{4}/[0-9]{2}/100-years-of-buggy-history))@',
     'children' => [
       0 => (object) [
         'label' => 'Recent',
@@ -199,6 +201,7 @@
         'href' => '/news/archives/',
       ],
     ],
+    
   ]);
 
   // About Menus -- depends on RACEDAY_MENU_ACTIVE
@@ -235,50 +238,56 @@
   array_push($navItems, (object) [
       'label' => 'History',
       // All history pages _except_ video (which goes to gallery)
-      'active_re' => '@^(/news)?/history(?!/video)@',
+      //
+      // OR the 100 years of history pages.
+      'active_re' => '@^((/news)?/history(?!/video)|/news/[0-9]{4}/[0-9]{2}/100-years-of-buggy-history)@',
       'children' => [
         0 => (object) [
           'label' => 'Overview',
           'href' => '/history',
         ],
         1 => (object) [
-          'divider' => true,
+          'label' => '100 Years of History',
+          'href' => '/news/2019/09/100-years-of-buggy-history-intro-and-1920/'
         ],
         2 => (object) [
+          'divider' => true,
+        ],
+        3 => (object) [
           'label' => 'Races',
           'href' => '/history/'.$RACEDAY_URL_PART,
         ],
-        3 => (object) [
+        4 => (object) [
           'label' => 'Top Times',
           'href' => '/history/toptimes',
         ],
-        4 => (object) [
+        5 => (object) [
           'label' => 'Awards',
           'href' => '/history/award',
         ],
-        5 => (object) [
+        6 => (object) [
           'divider' => true,
         ],
-        6 => (object) [
+        7 => (object) [
           'label' => 'Sweepstakes',
           'href' => '/history/sweepstakes',
         ],
-        7 => (object) [
+        8 => (object) [
           'label' => 'Organizations',
           'href' => '/history/org',
         ],
-        8 => (object) [
+        9 => (object) [
           'divider' => true,
         ],
-        9 => (object) [
+        10 => (object) [
           'label' => 'Buggies',
           'href' => '/history/buggy',
         ],
-        10 => (object) [
+        11 => (object) [
           'label' => 'Buggy Books',
           'href' => '/history/buggybook',
         ],
-        11 => (object) [
+        12 => (object) [
           'label' => 'People',
           'href' => '/history/person',
         ],
