@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <?php
       // For when the auction goes live (includes a timeout for end of auction)
-      // include("homepage-raceday-auction.inc");
+      include("homepage-raceday-auction.inc");
 
       // Endowment Application Promobox (includes a timeout)
       // include("homepage-endowmentbox.inc");
@@ -34,8 +34,7 @@
       // Should be removed sometime in the fall when it starts to feel stale.
 
       // include("homepage-raceday-results.inc");
-    ?>
-    <?php
+
       // Twitter Embed content
       //
       // Disabled because it is both slow and twitter has broken their API so it is much harder
