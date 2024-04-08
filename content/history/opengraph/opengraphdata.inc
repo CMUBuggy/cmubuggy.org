@@ -139,7 +139,9 @@ function getPersonExtraData($personUrlKey, &$ogMap) {
 
   if ($metaData->num_rows == 1) {
     $org = $metaData->fetch_assoc();
-    $ogMap["og:title"] = "History | Person: ".$org["name"];
+    // Sigh, nicknames.
+    $name = str_replace('"','&quot;',$org["name"]);
+    $ogMap["og:title"] = "History | Person: ".$name;
   } else {
     // Provide a reasonable title if we couldn't find the org.
     $ogMap["og:title"] = "History | Unknown Person";
