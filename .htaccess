@@ -119,9 +119,6 @@ Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
 Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 
-# 2023 Giving Tuesday
-Redirect 302 /givingtuesday https://givingcmuday.cmu.edu/campaigns/uni-buggy-alumni-association
-
 # Survey/Endowment Grant Links (RD 24)
 Redirect 302 /2023membersurvey https://forms.gle/Gnbj4jLNfGatm8hf7
 Redirect 302 /2023designvolunteer https://forms.gle/DhycG2Sydk1rjYaB6
@@ -147,6 +144,11 @@ Redirect 302 /spotify https://open.spotify.com/show/3wbaYb92dfzuWDUbOOxHWi
 # New Firestore App
 Redirect 302 /timingapp https://buggy-timing-900.web.app/
 
+# 2024 Member Preview Link to Truck Weekend Time Sheet
+Redirect 302 /truck24times https://docs.google.com/spreadsheets/d/18EhfvinzOHDm44hKXtO_q9uOKCCDXqEfgRgHqLdqlxU/edit#gid=347337235
+
+# 2023 Giving Tuesday
+Redirect 302 /givingtuesday https://givingcmuday.cmu.edu/campaigns/uni-buggy-alumni-association
 # 2023 BAA Officer voting
 Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd77ejvki5-QnViSls29edardm90FeFVG7MkS4B5ZufuoYHaw/viewform
 
