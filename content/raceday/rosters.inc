@@ -18,6 +18,7 @@
                       case when class = 'M' then 'Mens'
                            when class = 'W' then 'Womens'
                            when class = 'N' then 'All Gender'
+                           when class = 'R' then 'Robotic'
                            else 'Error' end AS class,
                       team,
                       b.name AS buggyname,
@@ -27,7 +28,7 @@
                  LEFT JOIN hist_orgs o ON e.orgid = o.orgid
                  LEFT JOIN orglogos ON e.orgid = orglogos.orgid
                  LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
-                 WHERE year = ? AND class IN ('M','W','N')
+                 WHERE year = ? AND class IN ('M','W','N','R')
                  ORDER BY o.shortname, class, team";
 
   $rosters = dbBoundQuery($HISTORY_DATABASE, $resQuery, "d", $year);
@@ -51,6 +52,7 @@
   $participatingOrgs = array();
   $participatingOrgImages = array();
   $entriesByOrg = array();
+  $haveRobotic = false;
 
   while($row = $rosters->fetch_assoc()) {
     $orgname = $row["orgname"];
@@ -67,6 +69,7 @@
       $entriesByOrg[$orgname]["Mens"] = array();
       $entriesByOrg[$orgname]["Womens"] = array();
       $entriesByOrg[$orgname]["All Gender"] = array();
+      $entriesByOrg[$orgname]["Robotic"] = array();
     }
 
     $entryString = "<a href=\"/history/team/".$row["entryid"]."\">".$class." ".$row["team"]."</a>";
@@ -78,27 +81,55 @@
     }
 
     array_push($entriesByOrg[$orgname][$class], $entryString);
+    if ($class == 'Robotic') {
+      $haveRobotic = true;
+    }
   }
 
   // Second Table, Entries:
+  if ($haveRobotic) {
+    // We have robot entries, need a title for the humans
+    echo("<hr><h3>Organizations</h3>");
+  }
   echo("<div class=\"table-responsive\"><table class=\"table\">");
+  printEntriesForClasses(["Mens", "Womens", "All Gender"]);
+  echo("</table></div>");
 
-  // How gross is this?  In order to put the logos into a reasonable spot and make them dissapear as the
-  // screen gets small, we need to make the "Organization" column responsive and change its colspan as we
-  // do so.  Thus, it looks like we actually have 2 Org columns, but we never show more than one.
-  echo("<tr>");
-  echo("<th class=\"d-none d-md-table-cell\" colspan=2 style=\"text-align: center\">Organization</th>");
-  echo("<th class=\"d-md-none\" style=\"text-align: center\">Organization</th>");
-  echo("<th class=\"d-sm-none\">Teams</th>");
-  echo("<th class=\"d-none d-sm-table-cell\">Mens</th>");
-  echo("<th class=\"d-none d-sm-table-cell\">Womens</th>");
-  echo("<th class=\"d-none d-sm-table-cell\">All Gender</th>");
-  echo("</tr>\n");
+  if ($haveRobotic) {
+    // We have robot entries.
+    echo("<hr><h3>Robotic Organizations</h3>");
+    echo("<div class=\"table-responsive\"><table class=\"table\">");
+    printEntriesForClasses(["Robotic"]);
+    echo("</table></div>");
+  }
 
-  foreach ($entriesByOrg as $orgname => $e) {
+  function printEntriesForClasses($classList) {
+    global $year, $entriesByOrg, $participatingOrgs, $participatingOrgImages;
+
+    // How gross is this?  In order to put the logos into a reasonable spot and make them dissapear as the
+    // screen gets small, we need to make the "Organization" column responsive and change its colspan as we
+    // do so.  Thus, it looks like we actually have 2 Org columns, but we never show more than one.
+    echo("<tr>");
+    echo("<th class=\"d-none d-md-table-cell\" colspan=2 style=\"text-align: center\">Organization</th>");
+    echo("<th class=\"d-md-none\" style=\"text-align: center\">Organization</th>");
+    echo("<th class=\"d-sm-none\">Teams</th>");
+    foreach ($classList as $c) {
+      echo("<th class=\"d-none d-sm-table-cell\">".$c."</th>");
+    }
+    echo("</tr>\n");
+
+    foreach ($entriesByOrg as $orgname => $e) {
       $orgid = $participatingOrgs[$orgname];
 
-      $rows = max(count($e["Mens"]), count($e["Womens"]), count($e["All Gender"]));
+      $rows = 0;
+      foreach ($classList as $c) {
+        $rows = max($rows, count($e[$c]));
+      }
+      if ($rows == 0) {
+        // No relevant classes (e.g. robotic org when printing humans)
+        continue;
+      }
+
       echo("<tr>");
 
       echo("<td class=\"d-none d-md-table-cell align-middle\" rowspan=".$rows.">");
@@ -118,18 +149,18 @@
           echo("<tr>");
         }
         echo("<td class=\"text-nowrap d-sm-none\">\n");
-        displayIfSet($e["Mens"],$i);
-        displayIfSet($e["Womens"], $i);
-        displayIfSet($e["All Gender"], $i);
+        foreach ($classList as $c) {
+          displayIfSet($e[$c], $i);
+        }
         echo("</td>");
 
-        displayColIfSet($e["Mens"], $i);
-        displayColIfSet($e["Womens"], $i);
-        displayColIfSet($e["All Gender"], $i);
+        foreach ($classList as $c) {
+          displayColIfSet($e[$c], $i);
+        }
         echo("</tr>\n");
       }
+    }
   }
-  echo("</table></div>");
 
   function displayIfSet($e, $index) {
     if (isset($e[$index])) {

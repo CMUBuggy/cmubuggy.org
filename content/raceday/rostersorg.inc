@@ -24,10 +24,12 @@
                       case when class = 'M' then 'Mens'
                            when class = 'W' then 'Womens'
                            when class = 'N' then 'All Gender'
+                           when class = 'R' then 'Robotic'
                            else 'Error' end AS class,
                       case when class = 'W' then 1
                            when class = 'M' then 2
                            when class = 'N' then 3
+                           when class = 'R' then 4
                            else -1 end AS classsort,
                       team,
                       b.name AS buggyname,
@@ -45,7 +47,7 @@
                  LEFT JOIN hist_entrypeoplemap m ON m.entryid = e.entryid
                  LEFT JOIN hist_people p ON p.personid = m.personid
                  LEFT JOIN orglogos ol ON o.orgid = ol.orgid
-                 WHERE e.year = ? AND e.orgid = ? AND e.class IN ('M','W','N')
+                 WHERE e.year = ? AND e.orgid = ? AND e.class IN ('M','W','N','R')
                  ORDER BY o.shortname, classsort, team, heattype, position";
 
   $rosters = dbBoundQuery($HISTORY_DATABASE, $resQuery, "ds", $year, $orgurlkey);
