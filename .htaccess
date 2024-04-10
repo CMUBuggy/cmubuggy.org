@@ -112,8 +112,8 @@ Redirect 302 /merch https://www.customink.com/fundraising/2024-baa-raceday-shirt
 
 # Lead Truck Auction or Placeholder
 # Redirect 302 /auction https://www.32auctions.com/LeadTruck2023
-# Redirect 302 /auction https://www.32auctions.com/BuggyLeadTruck2024
-Redirect 302 /auction https://cmubuggy.org/raceday/auction-coming-soon/
+Redirect 302 /auction https://www.32auctions.com/BuggyLeadTruck2024
+# Redirect 302 /auction https://cmubuggy.org/raceday/auction-coming-soon/
 
 Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
