@@ -16,14 +16,14 @@
       <div class="card-body">
 <?php
   // Set this to true the week of raceday itself after confirming the pages are all ready.
-  $RACEDAY_WEEK = false;
+  $RACEDAY_WEEK = true;
 
   if ($RACEDAY_WEEK) {
 ?>
         <div class="d-flex justify-content-center">
           <a href="/<?php echo($RACEDAY_URL_PART) ?>" class="btn btn-primary m-1"><?php echo($RACEDAY_WORD); ?> Schedule</a>
-          <a href="/live" class="btn btn-info m-1">Livestream</a>
-          <a href="/chat" class="btn btn-info m-1">Chat</a>
+          <a href="/live" class="btn btn-info m-1 d-flex align-items-center">Livestream</a>
+          <a href="/chat" class="btn btn-info m-1 d-flex align-items-center">Chat</a>
         </div><div class="d-flex justify-content-center mb-2">
           <a href="/raceday/rosters" class="btn btn-secondary m-1">Rosters</a>
           <a href="/raceday/heats" class="btn btn-secondary m-1">Heats</a>
