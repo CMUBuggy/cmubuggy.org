@@ -153,7 +153,6 @@ Redirect 302 /givingtuesday https://givingcmuday.cmu.edu/campaigns/uni-buggy-alu
 Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd77ejvki5-QnViSls29edardm90FeFVG7MkS4B5ZufuoYHaw/viewform
 
 # Membership Update Forum & Giving Links
-# TODO: Giving links are (half) broken as of the giving site update in March 2024.
 Redirect 302 /memberupdate https://docs.google.com/forms/d/e/1FAIpQLSdWXstvHgL3Zt5BzOnL21qkq1VpxUrTYLR3DGYB9KCQD3lMGQ/viewform
 Redirect 302 /baa-gift https://givenow.cmu.edu/campaigns/42524/donations/new?a=7676936&designation=buggyalumnichapterassociation
 Redirect 302 /endowment-gift https://givenow.cmu.edu/campaigns/42524/donations/new?a=7676936&designation=buggyendowedfund
@@ -165,7 +164,6 @@ RewriteRule		^apple-touch-icon-precomposed.png$	-							[L,R=404]
 
 # top level sections
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
-RewriteRule		^search[/]*$					index.php?s=search				[NC,L]
 
 # history section: specific objects
 RewriteRule		^history/buggy/([a-z0-9\-]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
