@@ -19,7 +19,7 @@
                  LEFT JOIN hist_orgs o ON e.orgid = o.orgid
                  LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
                  WHERE year = ? AND class = ?
-                 ORDER BY place=0, place, prelim=0, prelim, DQ;";
+                 ORDER BY place=0, place, prelim=0, prelim, DQ, team;";
 
   // We could get these all at once instead of 3 different queries and split them locally while maintaining the sort order,
   // but this is slightly simpler to write/understand.
