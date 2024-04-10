@@ -24,7 +24,7 @@
 
       // Leaderboard (disables via config spreadsheet, but still reads firebase
       // if code is included)
-      // include("homepage-raceday-leaderbox.inc");
+      include("homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
       include("homepage-raceday-infobox.inc");
