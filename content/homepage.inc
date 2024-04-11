@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-md-8">
     <?php
+      // Useful to quickly enable in the case of rain on raceday.
+      // include("homepage-raceday-rainout.inc");
+
       // For when the auction goes live (includes a timeout for end of auction)
       include("homepage-raceday-auction.inc");
 
