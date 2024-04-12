@@ -45,9 +45,8 @@
 <?php } ?>
         <p>Key Events:</p>
         <ul>
-          <li>Buggy Showcase: Thursday Apr 11, Noon</li>
-          <li>Preliminary Races: Friday Apr 12, 7:30am-Noon</li>
-          <li>Finals Races: Saturday Apr 13, 8am-Noon</li>
+          <li>Buggy Bash & Lead Truck Auction: Friday Apr 12, 7-9pm.</li>
+          <li>Finals Races: Saturday Apr 13, 7:30am-Noon</li>
         </ul>
 <?php
   if (!$RACEDAY_WEEK) {
