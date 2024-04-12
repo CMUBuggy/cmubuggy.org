@@ -11,7 +11,7 @@
 
   // Guide button only shows if we have a path in this variable.
   // $raceday_guide_file = "";
-  $raceday_guide_file = "/files/raceday-preview/2024PrelimsGuide.pdf";
+  $raceday_guide_file = "/files/raceday-previews/2024PrelimsGuide.pdf";
 ?>
 
   <div class="card mb-3">
