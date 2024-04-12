@@ -7,7 +7,11 @@
                       "i-S2XcWs4", // Pika Women Hill 2
                       "i-RrLG22N", // Apex Tunnel
                       "i-pcRHdjB"  // Robo Chute
-  ]
+  ];
+
+  // Guide button only shows if we have a path in this variable.
+  // $raceday_guide_file = "";
+  $raceday_guide_file = "/files/raceday-preview/2024PrelimsGuide.pdf";
 ?>
 
   <div class="card mb-3">
@@ -21,17 +25,24 @@
   if ($RACEDAY_WEEK) {
 ?>
         <div class="d-flex justify-content-center">
-          <a href="/<?php echo($RACEDAY_URL_PART) ?>" class="btn btn-primary m-1"><?php echo($RACEDAY_WORD); ?> Schedule</a>
+          <a href="/<?php echo($RACEDAY_URL_PART) ?>" class="btn btn-primary m-1 d-flex align-items-center"><?php echo($RACEDAY_WORD); ?> Schedule</a>
           <a href="/live" class="btn btn-info m-1 d-flex align-items-center">Livestream</a>
           <a href="/chat" class="btn btn-info m-1 d-flex align-items-center">Chat</a>
         </div><div class="d-flex justify-content-center mb-2">
-          <a href="/raceday/rosters" class="btn btn-secondary m-1">Rosters</a>
-          <a href="/raceday/heats" class="btn btn-secondary m-1">Heats</a>
-          <a href="/raceday/leaderboard" class="btn btn-secondary m-1">Leaderboard</a>
-        </div>
-<?php } ?>
-
+          <a href="/raceday/rosters" class="btn btn-secondary m-1 d-flex align-items-center">Rosters</a>
+          <a href="/raceday/heats" class="btn btn-secondary m-1 d-flex align-items-center">Heats</a>
+          <a href="/raceday/leaderboard" class="btn btn-secondary m-1 d-flex align-items-center">Leaderboard</a>
+<?php
+          if (!empty($raceday_guide_file)) {
+?>
+            <a href="<?php echo($raceday_guide_file); ?>" class="btn btn-secondary m-1 d-flex align-items-center">Spotting Guide</a>
+<?php
+          }
+        echo("</div><hr>");
+  } else {
+?>
         <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about all the events.</p>
+<?php } ?>
         <p>Key Events:</p>
         <ul>
           <li>Buggy Showcase: Thursday Apr 11, Noon</li>
