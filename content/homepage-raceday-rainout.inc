@@ -7,7 +7,7 @@
   $rainoutreason = "inclement weather.";
 
   // Where will we see you next?
-  $seeyouat = "the Finals Races, tomorrow 7:30am!";
+  $seeyouat = "the Finals Races, Saturday 7:30am!";
   //$seeyouat = "the Awards Ceremony.";
 
   if (time() < $rainoutenddate) {
