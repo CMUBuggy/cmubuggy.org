@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <?php
       // Useful to quickly enable in the case of rain on raceday.
-      include("homepage-raceday-rainout.inc");
+      // include("homepage-raceday-rainout.inc");
 
       // For when the auction goes live (includes a timeout for end of auction)
       // include("homepage-raceday-auction.inc");
@@ -24,7 +24,7 @@
 
       // Leaderboard (disables via config spreadsheet, but still reads firebase
       // if code is included)
-      include("homepage-raceday-leaderbox.inc");
+      // include("homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
       include("homepage-raceday-infobox.inc");
