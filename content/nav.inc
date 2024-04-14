@@ -284,12 +284,19 @@
           'href' => '/history/buggy',
         ],
         11 => (object) [
+          'label' => 'People',
+          'href' => '/history/person',
+        ],
+        12 => (object) [
+          'divider' => true,
+        ],
+        13 => (object) [
           'label' => 'Buggy Books',
           'href' => '/history/buggybook',
         ],
-        12 => (object) [
-          'label' => 'People',
-          'href' => '/history/person',
+        14 => (object) [
+          'label' => 'Raceday Previews',
+          'href' => '/news/history/raceday-previews',
         ],
       ],
     ],
