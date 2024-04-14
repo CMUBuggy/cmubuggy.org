@@ -1,6 +1,6 @@
 <?php
   date_default_timezone_set('America/New_York');
-  $rddate = mktime(7, 30, 0, 4, 12, 2024);
+  $rddate = mktime(7, 30, 0, 4, 4, 2025);
   $currenttime = time();
   $hoursleft = floor(($rddate - $currenttime) / (60 * 60));
   $daysleft = floor($hoursleft / 24);
@@ -65,7 +65,7 @@
         <div class="border-bottom border-2 border-primary my-2 py-2 text-right">
           <span class="my-2"
             title="<?php echo("$timerCount $timerUnit"); ?>">
-            <?php echo($RACEDAY_WORD); ?> 2024 is April 12&ndash;13
+            <?php echo($RACEDAY_WORD); ?> 2025 is April 4&ndash;5
           </span>
         </div>
         <div>
