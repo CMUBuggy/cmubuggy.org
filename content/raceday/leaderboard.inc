@@ -47,7 +47,7 @@
 <div id="results">
   <ul class="nav nav-tabs mb-2" role="tablist">
     <li class="nav-item">
-      <a id="womens-prelims-tab" href="#tab-womens-prelims" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-womens-prelims" aria-selected="true">Women's Prelims</a>
+      <a id="womens-prelims-tab" href="#tab-womens-prelims" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens-prelims" aria-selected="true">Women's Prelims</a>
     </li>
     <li class="nav-item">
       <a id="mens-prelims-tab" href="#tab-mens-prelims" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-mens-prelims" aria-selected="false">Men's Prelims</a>
@@ -65,14 +65,14 @@
       <a id="allgender-finals-tab" href="#tab-allgender-finals" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender-finals" aria-selected="false">All Gender Finals</a>
     </li>
     <li class="nav-item">
-      <a id="exhibitions-tab" href="#tab-exhibitions" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-exhibitions" aria-selected="false">Exhibitions</a>
+      <a id="exhibitions-tab" href="#tab-exhibitions" style="display: none" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-exhibitions" aria-selected="false">Exhibitions</a>
     </li>
   </ul>
 
   <p>Results update automatically. If they stop or you can't see them, <a role="button" href="#" data-iframe>click here</a>.</p>
 
   <div class="tab-content mb-3">
-    <div class="tab-pane fade prelims show active" id="tab-womens-prelims" role="tabpanel" aria-labelledby="womens-prelims-tab">
+    <div class="tab-pane fade prelims" id="tab-womens-prelims" role="tabpanel" aria-labelledby="womens-prelims-tab">
     </div>
     <div class="tab-pane fade prelims" id="tab-mens-prelims" role="tabpanel" aria-labelledby="mens-prelims-tab">
     </div>
@@ -84,7 +84,7 @@
     </div>
     <div class="tab-pane fade prelims" id="tab-allgender-finals" role="tabpanel" aria-labelledby="allgender-finals-tab">
     </div>
-    <div class="tab-pane fade prelims" id="tab-exhibitions" role="tabpanel" aria-labelledby="exhibitions-tab">
+    <div class="tab-pane fade prelims show active" id="tab-exhibitions" role="tabpanel" aria-labelledby="exhibitions-tab">
     </div>
   </div>
 </div>

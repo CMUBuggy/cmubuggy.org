@@ -27,7 +27,7 @@
       // include("homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
-      include("homepage-raceday-infobox.inc");
+      // include("homepage-raceday-infobox.inc");
 
       // Results from most recent raceday
       // 2 boxes: Teams that placed & Awards
@@ -36,7 +36,7 @@
       //
       // Should be removed sometime in the fall when it starts to feel stale.
 
-      // include("homepage-raceday-results.inc");
+      include("homepage-raceday-results.inc");
 
       // Twitter Embed content
       //
@@ -82,7 +82,7 @@
         <dd class="col-7 text-right"><a href="/history/team/2017.SDC.WA">2:23.27</a></dd>
 
         <dt class="col-5">All Gender</dt>
-        <dd class="col-7 text-right"><a href="/history/team/2023.APX.NA">2:45.58</a></dd>
+        <dd class="col-7 text-right"><a href="/history/team/2024.SDC.NA">2:36.27</a></dd>
       </dl>
     </section>
 
