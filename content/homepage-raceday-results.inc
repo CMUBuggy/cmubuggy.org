@@ -73,10 +73,10 @@
       </tr>
     </table>
 <?php
-//    Swap with leaderboard link when results are ready.
-//    <a href="/history/raceday/2024" class="btn btn-primary">Full Results</a>
+//    Use (corrected for DQs) leaderboard until history db is ready for a given year.
+//    <a href="/raceday/leaderboard" class="btn btn-primary">Leaderboard</a>
 ?>
-    <a href="/raceday/leaderboard" class="btn btn-primary">Leaderboard</a>
+    <a href="/history/raceday/2024" class="btn btn-primary">Full Results</a>
     <a href="https://livestream.com/cmutvlive/buggy2024" class="btn btn-info">Video</a>
   </div>
 </div>
