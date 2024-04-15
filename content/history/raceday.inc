@@ -148,9 +148,7 @@
     // for womens run earlier in the morning.  This is also why Exhibitions
     // are on top.  Of course, this doesn't always happen and shouldn't be
     // considered to have been the actual order rolls happened on the day.
-    //
-    // TODO: Confirm placement of All Gender
-    $heattypes = array("E0","W0","W1","M0","M1", "N0", "N1");
+    $heattypes = array("E0","N0","N1","W0","W1","M0","M1");
     $heattypelabels = array("M0"=>"Men's",
                             "M1"=>"Men's Rerolls",
                             "W0"=>"Women's",
