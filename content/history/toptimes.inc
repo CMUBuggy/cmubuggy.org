@@ -13,14 +13,15 @@ $query = "SELECT
                 when T.class = 'R' then 'robotic'
                 else 'unknown' end AS classanchor,
 	         CONCAT(shortname, ' ', T.team) AS teamname,
-           T.note as note,
+           nullif(T.dq, '0') AS dq,
+           T.note AS note,
            b.name AS buggy, b.buggyid AS buggyid,
 	         T.time
     FROM (
-		      SELECT year, entryid, class, orgid, team, buggyid, note, nullif(prelim,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(reroll,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(final,0) as time from hist_raceentries where class = ?
-	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, note, nullif(finalreroll,0) as time from hist_raceentries where class = ?) as T
+		      SELECT year, entryid, class, orgid, team, buggyid, dq, note, nullif(prelim,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, dq, note, nullif(reroll,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, dq, note, nullif(final,0) as time from hist_raceentries where class = ?
+	        UNION ALL SELECT year, entryid, class, orgid, team, buggyid, dq, note, nullif(finalreroll,0) as time from hist_raceentries where class = ?) as T
     LEFT JOIN hist_orgs o on T.orgid = o.orgid
     LEFT JOIN hist_buggies b on T.buggyid = b.buggyid
     WHERE T.time IS NOT NULL
@@ -44,6 +45,8 @@ function displayTable($teamList, $displayNotes=false){
     echo("<td><a href=\"/history/team/".$team["entryid"]."\">".$team["teamname"]."</a></td>");
     echo("<td><a href=\"/history/buggy/".$team["buggyid"]."\">".$team["buggy"]."</a></td>");
     echo("<td>".displayTime($team["time"])."</td>");
+    $dq = empty($team["dq"]) ? "" : "DQ: ".$team["dq"];
+    echo("<td>".$dq."</td>");
     if ($displayNotes) {
       echo("<td>".$team["note"]."</td>");
     }
@@ -55,7 +58,7 @@ function displayTable($teamList, $displayNotes=false){
 }
 ?>
 
-<p><i>Note: This table does not account for DQs.</i></p>
+<p><i>Note: Rank in this table does not account for DQs.</i></p>
 
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
