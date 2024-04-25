@@ -6,11 +6,11 @@
 	                            concat(psf.firstname, ' ', psf.lastname) AS safety, psf.personid AS safetyid,
 	                            concat(phj.firstname, ' ', phj.lastname) AS judge, phj.personid AS judgeid
                   FROM hist_sweepstakes y
-                    LEFT JOIN hist_sweepstakes ch ON ch.year = y.year AND ch.role = 'Sweepstakes Chairman'
+                    LEFT JOIN hist_sweepstakes ch ON ch.year = y.year AND ch.role = 'Sweepstakes Chair'
                       LEFT JOIN hist_people pch ON ch.personid = pch.personid
-	                  LEFT JOIN hist_sweepstakes ac ON ac.year = y.year AND ac.role = 'Assistant Chairman'
+	                  LEFT JOIN hist_sweepstakes ac ON ac.year = y.year AND ac.role = 'Assistant Chair'
                       LEFT JOIN hist_people pac ON ac.personid = pac.personid
-	                  LEFT JOIN hist_sweepstakes sf ON sf.year = y.year AND sf.role = 'Safety Chairman'
+	                  LEFT JOIN hist_sweepstakes sf ON sf.year = y.year AND sf.role = 'Safety Chair'
                       LEFT JOIN hist_people psf ON sf.personid = psf.personid
 	                  LEFT JOIN hist_sweepstakes hj ON hj.year = y.year AND hj.role = 'Head Judge'
                       LEFT JOIN hist_people phj ON hj.personid = phj.personid
