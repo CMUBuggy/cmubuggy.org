@@ -22,7 +22,7 @@ if ($metaData->num_rows == 1) {
   exit(0);
 }
 
-$sweepstakesQuery = "SELECT concat(year, ' ', role) AS roledesc FROM hist_sweepstakes WHERE personid=? ORDER BY year DESC;";
+$sweepstakesQuery = "SELECT concat(year, ' ', role) AS roledesc FROM hist_sweepstakes WHERE personid=? ORDER BY year DESC, role;";
 $sweepstakesData = dbBoundQuery($HISTORY_DATABASE, $sweepstakesQuery, "s", $urlkey);
 
 $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
