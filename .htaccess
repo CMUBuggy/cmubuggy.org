@@ -149,8 +149,8 @@ Redirect 302 /truck24times https://docs.google.com/spreadsheets/d/18EhfvinzOHDm4
 
 # 2023 Giving Tuesday
 Redirect 302 /givingtuesday https://givingcmuday.cmu.edu/campaigns/uni-buggy-alumni-association
-# 2023 BAA Officer voting
-Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd77ejvki5-QnViSls29edardm90FeFVG7MkS4B5ZufuoYHaw/viewform
+# 2024 BAA Officer voting
+Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd-91nSxyE1Hw1bLkNB2bxj6PSN8qPNLYCUaWA4mbYkEWadnQ/viewform
 
 # Membership Update Forum & Giving Links
 Redirect 302 /memberupdate https://docs.google.com/forms/d/e/1FAIpQLSdWXstvHgL3Zt5BzOnL21qkq1VpxUrTYLR3DGYB9KCQD3lMGQ/viewform
