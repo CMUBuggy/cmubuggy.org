@@ -17,7 +17,7 @@
 <?php // WARNING: Update standalone files too if you change CSS versions (notably, in ./tv) ?>
 <!--CSS-->
 <link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2023091303" />
-<link rel="stylesheet" href="/css/cmubuggy-all.css?ver=2024030901" />
+<link rel="stylesheet" href="/css/cmubuggy-all.css?ver=2024070300" />
 
 <!--JS-->
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

@@ -1,4 +1,47 @@
-<?php // Logo, page title, breadcrumbs, countdown ?>
+<?php // Logo, page title, breadcrumbs, countdown
+
+if (!$SHOW_BREADCRUMBS) {
+  // Special homepage hero
+
+  // Note, the "swish" overlay, as an SVG, must:
+  //  - not have width and height attributes on the svg tag
+  //  - have preserveAspectRatio="none" as an attribute on the svg tag.
+
+  //$imageUrl = makeSmugmugUrl("i-MbmV7ks", "X2");
+  // i-HdckVMb Blackbird H2
+  // i-FcQ3Ddm Scorch H2
+  // i-sQhCG45 Barbie Freeroll
+  // i-cmGx3MF Raptor H5
+  // i-qJPW5L3 Emperor H5
+  // i-JJXb8TS Brimstone H5
+  $imageSet = [
+    "i-HdckVMb", // RD24 Blackbird H2
+    "i-FcQ3Ddm", // RD24 Scorch H2
+    "i-sQhCG45", // RD24 Barbie Freeroll
+    "i-cmGx3MF", // RD24 Raptor H5
+    "i-qJPW5L3", // RD24 Emperor H5
+    "i-JJXb8TS"  // RD24 Brimstone H5
+  ];
+  $imageSlug = array_rand($imageSet);
+  $imageUrl = makeSmugmugUrl($imageSet[$imageSlug], "X2");
+
+  // We need to use the style attribute in the hero-content div below.  This is because
+  // it lets us put in a random image.  However, for some reason, we need to include
+  // background-position and background-size as well, otherwise it looks incorrect, even
+  // though they never change.
+?>
+
+<div class="d-flex hero-content"
+     style="background: linear-gradient(rgba(0, 40, 84, 0.35),rgba(0, 40, 84, 0.35)),url('<?php echo($imageUrl); ?>'); background-position: center center; background-size: cover;">
+<div class="mx-auto align-self-center">
+  <h1>CMU Buggy Alumni Association</h1>
+</div>
+<img class="hero-swish" src="../img/swish.svg">
+</div>
+
+<?php } else {
+  // SHOW_BREADCRUMBS.  Not the homepage.
+?>
 <div class="container d-none d-md-flex justify-content-between align-middle my-3">
   <a href="/">
     <img src="/img/logo-2022-white.svg" width=125 alt="CMU Buggy Alumni Assocation logo" class="img-fluid mx-auto d-block">
@@ -56,6 +99,7 @@
   <div class="container d-md-none justify-content-between align-left my-3">
     <h1><?php echo("$BASE_TITLE"); ?></h1>
   </div>
-<?php
+<?php 
   }
+}
 ?>
