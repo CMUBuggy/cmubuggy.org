@@ -29,12 +29,15 @@ if (!$SHOW_BREADCRUMBS) {
   // it lets us put in a random image.  However, for some reason, we need to include
   // background-position and background-size as well, otherwise it looks incorrect, even
   // though they never change.
+
+  // We only display the title on smaller displays where we lose the more complete
+  // name out of the navbar (see pre-content.inc).
 ?>
 
 <div class="d-flex hero-content"
      style="background: linear-gradient(rgba(0, 40, 84, 0.35),rgba(0, 40, 84, 0.35)),url('<?php echo($imageUrl); ?>'); background-position: center center; background-size: cover;">
-<div class="mx-auto align-self-center">
-  <h1>CMU Buggy Alumni Association</h1>
+<div class="d-block d-md-none mx-auto align-self-center">
+  <h2>Buggy Alumni Association</h1>
 </div>
 <img class="hero-swish" src="../img/swish.svg">
 </div>
