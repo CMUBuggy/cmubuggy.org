@@ -82,7 +82,7 @@ body { margin-top: 4.5rem; }
 .hero-content {
   position: relative;
   color: #FFFFFF !important;
-  height: 320px;
+  height: 325px;
   overflow: hidden;
 }
 
@@ -91,7 +91,7 @@ body { margin-top: 4.5rem; }
   bottom: 0;
   left: 0;
   width: 100%;
-  max-height: 60px;
+  max-height: 50px;
   height: auto;
   object-fit: fill
 }
