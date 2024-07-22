@@ -11,7 +11,7 @@
       // include("homepage-endowmentbox.inc");
 
       // Store/Merch Promo Box (times out approximately when store closes)
-      // include("homepage-raceday-merch.inc");
+      include("homepage-raceday-merch.inc");
 
       // -----------------------------------
       // All Announcement Go Above This Line
