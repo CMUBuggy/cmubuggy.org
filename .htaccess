@@ -108,7 +108,7 @@ Redirect 301 /raceday/live /live
 # When the store is closed, /merch is handled by the wordpress fallback, and
 # /store redirects to /merch.
 Redirect 302 /store /merch
-Redirect 302 /merch https://www.customink.com/fundraising/2024-baa-raceday-shirts-8189
+Redirect 302 /merch https://www.customink.com/fundraising/baa-tote-bags
 
 # Lead Truck Auction or Placeholder
 # Redirect 302 /auction https://www.32auctions.com/LeadTruck2023
