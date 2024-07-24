@@ -34,7 +34,7 @@ if (!$SHOW_BREADCRUMBS) {
     "i-L4D74DH", // Spring 2019 Banshee Freeroll *
     "i-fmSthkg", // RD12 Finish Line Malice, Freyja, Rubicon *
     "i-97zjnPp", // RD12 Avarice, Seraph Chute Pass **
-    "i-zkx835f", // RD10 CIA Design Comp *
+    "i-ZGDcZMT", // RD10 CIA Design Comp *
 
     // First 80 Years
     "i-84DBt4q", // 1999 Design Comp
