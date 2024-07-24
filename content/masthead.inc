@@ -58,7 +58,7 @@ if (!$SHOW_BREADCRUMBS) {
 ?>
 
 <div class="d-flex hero-content"
-     style="background: linear-gradient(rgba(0, 40, 84, 0.35),rgba(0, 40, 84, 0.35)),url('<?php echo($imageUrl); ?>'); background-position: center center; background-size: cover;">
+     style="background: linear-gradient(rgba(30, 30, 30, 0.1),rgba(30, 30, 30, 0.2)),url('<?php echo($imageUrl); ?>'); background-position: center center; background-size: cover;">
 <div class="d-block d-md-none mx-auto align-self-center">
   <h2>Buggy Alumni Association</h1>
 </div>
