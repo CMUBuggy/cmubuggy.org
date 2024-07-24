@@ -15,13 +15,36 @@ if (!$SHOW_BREADCRUMBS) {
   // i-qJPW5L3 Emperor H5
   // i-JJXb8TS Brimstone H5
   $imageSet = [
-    "i-HdckVMb", // RD24 Blackbird H2
-    "i-FcQ3Ddm", // RD24 Scorch H2
-    "i-sQhCG45", // RD24 Barbie Freeroll
-    "i-cmGx3MF", // RD24 Raptor H5
-    "i-qJPW5L3", // RD24 Emperor H5
-    "i-JJXb8TS"  // RD24 Brimstone H5
+    // Recent
+    "i-FcQ3Ddm", // RD24 Scorch H2 **
+    "i-sQhCG45", // RD24 Barbie Freeroll **
+    "i-cmGx3MF", // RD24 Raptor H5 *
+    "i-qJPW5L3", // RD24 Emperor H5 *
+    // "i-JJXb8TS", // RD24 Brimstone H5
+    "i-TqZsDd9", // RD24 NAND H2 **
+    "i-JhN2bCm", // RD24 Kraken H5
+
+    "i-fVGB5jN", // RD23 Invicid Freeroll
+    "i-KjbpZrL", // RD23 Firefly Chute **
+    "i-njhFdcR", // RD23 Burnout H4
+    "i-RZDfrmG", // RD23 Firefly Driver *
+    "i-zWnmsKC", // RD23 Insite Freeroll
+
+    // 21st Century
+    "i-L4D74DH", // Spring 2019 Banshee Freeroll *
+    "i-fmSthkg", // RD12 Finish Line Malice, Freyja, Rubicon *
+    "i-97zjnPp", // RD12 Avarice, Seraph Chute Pass **
+    "i-zkx835f", // RD10 CIA Design Comp *
+
+    // First 80 Years
+    "i-84DBt4q", // 1999 Design Comp
+    "i-t4WK95j", // 1985 Starting Line
+    "i-sh86jhG", // 1967 Heat 6 Freeroll
+    "i-LkRG8PN", // 1930s Theta Xi
+    "i-6wp5K7t", // 1920 Start Line
+    "i-297RKdd", // 1920s Fish
   ];
+
   $imageSlug = array_rand($imageSet);
   $imageUrl = makeSmugmugUrl($imageSet[$imageSlug], "X2");
 
