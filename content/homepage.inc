@@ -73,6 +73,15 @@
   </div>
   <div class="col-md-4">
     <section>
+      <h2>Next <?php echo($RACEDAY_WORD) ?></h2>
+      <div class="mb-3">
+        <span title="<?php echo("$timerCount $timerUnit"); ?>">
+          <?php echo($RACEDAY_WORD) ?> 2025 is April 4&ndash;5
+        </span>
+      </div>
+    </section>
+
+    <section>
       <h2>Records</h2>
       <dl class="row">
         <dt class="col-5">Mens</dt>
