@@ -1,4 +1,73 @@
-<?php // Logo, page title, breadcrumbs, countdown ?>
+<?php // Logo, page title, breadcrumbs, countdown
+
+if (!$SHOW_BREADCRUMBS) {
+  // Special homepage hero
+
+  // Note, the "swish" overlay, as an SVG, must:
+  //  - not have width and height attributes on the svg tag
+  //  - have preserveAspectRatio="none" as an attribute on the svg tag.
+
+  //$imageUrl = makeSmugmugUrl("i-MbmV7ks", "X2");
+  // i-HdckVMb Blackbird H2
+  // i-FcQ3Ddm Scorch H2
+  // i-sQhCG45 Barbie Freeroll
+  // i-cmGx3MF Raptor H5
+  // i-qJPW5L3 Emperor H5
+  // i-JJXb8TS Brimstone H5
+  $imageSet = [
+    // Recent
+    "i-FcQ3Ddm", // RD24 Scorch H2 **
+    "i-sQhCG45", // RD24 Barbie Freeroll **
+    "i-cmGx3MF", // RD24 Raptor H5 *
+    "i-qJPW5L3", // RD24 Emperor H5 *
+    // "i-JJXb8TS", // RD24 Brimstone H5
+    "i-TqZsDd9", // RD24 NAND H2 **
+    "i-JhN2bCm", // RD24 Kraken H5
+
+    "i-fVGB5jN", // RD23 Invicid Freeroll
+    "i-KjbpZrL", // RD23 Firefly Chute **
+    "i-njhFdcR", // RD23 Burnout H4
+    "i-RZDfrmG", // RD23 Firefly Driver *
+    "i-zWnmsKC", // RD23 Insite Freeroll
+
+    // 21st Century
+    "i-L4D74DH", // Spring 2019 Banshee Freeroll *
+    "i-fmSthkg", // RD12 Finish Line Malice, Freyja, Rubicon *
+    "i-97zjnPp", // RD12 Avarice, Seraph Chute Pass **
+    "i-ZGDcZMT", // RD10 CIA Design Comp *
+
+    // First 80 Years
+    "i-84DBt4q", // 1999 Design Comp
+    "i-t4WK95j", // 1985 Starting Line
+    "i-sh86jhG", // 1967 Heat 6 Freeroll
+    "i-LkRG8PN", // 1930s Theta Xi
+    "i-6wp5K7t", // 1920 Start Line
+    "i-297RKdd", // 1920s Fish
+  ];
+
+  $imageSlug = array_rand($imageSet);
+  $imageUrl = makeSmugmugUrl($imageSet[$imageSlug], "X2");
+
+  // We need to use the style attribute in the hero-content div below.  This is because
+  // it lets us put in a random image.  However, for some reason, we need to include
+  // background-position and background-size as well, otherwise it looks incorrect, even
+  // though they never change.
+
+  // We only display the title on smaller displays where we lose the more complete
+  // name out of the navbar (see pre-content.inc).
+?>
+
+<div class="d-flex hero-content"
+     style="background: linear-gradient(rgba(30, 30, 30, 0.1),rgba(30, 30, 30, 0.2)),url('<?php echo($imageUrl); ?>'); background-position: center center; background-size: cover;">
+<div class="d-block d-md-none mx-auto align-self-center">
+  <h2>Buggy Alumni Association</h1>
+</div>
+<img class="hero-swish" src="../img/swish.svg">
+</div>
+
+<?php } else {
+  // SHOW_BREADCRUMBS.  Not the homepage.
+?>
 <div class="container d-none d-md-flex justify-content-between align-middle my-3">
   <a href="/">
     <img src="/img/logo-2022-white.svg" width=125 alt="CMU Buggy Alumni Assocation logo" class="img-fluid mx-auto d-block">
@@ -56,6 +125,7 @@
   <div class="container d-md-none justify-content-between align-left my-3">
     <h1><?php echo("$BASE_TITLE"); ?></h1>
   </div>
-<?php
+<?php 
   }
+}
 ?>
