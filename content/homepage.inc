@@ -119,6 +119,6 @@
       </div>
     </section>
 
-    <?php include_once("contentfeed.inc"); ?>
+    <?php include_once("contentfeed_render.inc"); ?>
   </div>
 </div>
