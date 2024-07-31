@@ -31,14 +31,12 @@ $newsitems = array();  // Output: "Recent" news items
 $icon_map = array();  // Output: code for icons used in content feed.
 
 ##NEWS ITEMS##
-$newsSQL = "SELECT wp_posts.post_date,
-                   wp_posts.post_name,
-                   wp_posts.post_title,
-                   wp_posts.post_excerpt,
-                   wp_posts.post_content
+$newsSQL = "SELECT post_date,
+                   post_name,
+                   post_title,
+                   post_excerpt,
+                   post_content
   FROM wp_posts
-  JOIN wp_users
-  ON wp_posts.post_author=wp_users.ID
   WHERE post_status LIKE 'publish'
   AND post_type LIKE 'post'
   and post_date > '$cutoffDate'
