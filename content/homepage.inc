@@ -18,6 +18,9 @@
       // All Standard Boxes Go Below
       // -----------------------------------
 
+      // Handle Left Column Recent News Box Here!
+      // include("homepage-recent-newsbox.inc");
+
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
       // include("homepage-raceday-countdown.inc");
@@ -35,7 +38,6 @@
       // Goes up ASAP after a raceday completes.
       //
       // Should be removed sometime in the fall when it starts to feel stale.
-
       include("homepage-raceday-results.inc");
 
       // Twitter Embed content
