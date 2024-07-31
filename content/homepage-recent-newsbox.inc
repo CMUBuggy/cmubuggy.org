@@ -21,17 +21,17 @@
 ?>
   <div class="col-6">
     <div class="card text-white h-100" style="background-color: var(--gray);">
-      <div class="card-body">
+      <div class="card-body d-flex flex-column">
         <h5 class="card-title mb-2"><?php echo($item["title"]) ?></h5>
 
         <?php
-          echo('<time class="d-block text-right mb-4" datetime="'.date(DATE_RFC3339, $item['timestamp']) . '">' . timeago($item['timestamp']) . '</time>');
+          echo('<time class="d-block text-right mb-4 small" datetime="'.date(DATE_RFC3339, $item['timestamp']) . '">' . timeago($item['timestamp']) . '</time>');
         ?>
 
         <p class="card-text">
           <?php echo($item["excerpt"]) ?>
         </p>
-        <a href="<?php echo($item["rellink"]) ?>" class="btn btn-primary">Read It</a>
+        <a href="<?php echo($item["rellink"]) ?>" class="btn btn-primary mt-auto align-self-end">Read It</a>
       </div>
     </div>
   </div>
