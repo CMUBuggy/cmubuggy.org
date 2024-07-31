@@ -14,7 +14,7 @@ if (!$SHOW_BREADCRUMBS) {
   // i-cmGx3MF Raptor H5
   // i-qJPW5L3 Emperor H5
   // i-JJXb8TS Brimstone H5
-  $imageSet = [
+  $heroImageSet = [
     // Recent
     "i-FcQ3Ddm", // RD24 Scorch H2 **
     "i-sQhCG45", // RD24 Barbie Freeroll **
@@ -45,8 +45,9 @@ if (!$SHOW_BREADCRUMBS) {
     "i-297RKdd", // 1920s Fish
   ];
 
-  $imageSlug = array_rand($imageSet);
-  $imageUrl = makeSmugmugUrl($imageSet[$imageSlug], "X2");
+  $heroImageSlug = array_rand($heroImageSet);
+  $heroImageUrlLarge = makeSmugmugUrl($heroImageSet[$heroImageSlug], "X3");
+  $heroImageUrlSmall = makeSmugmugUrl($heroImageSet[$heroImageSlug], "L");
 
   // We need to use the style attribute in the hero-content div below.  This is because
   // it lets us put in a random image.  However, for some reason, we need to include
@@ -57,13 +58,19 @@ if (!$SHOW_BREADCRUMBS) {
   // name out of the navbar (see pre-content.inc).
 ?>
 
-<div class="d-flex hero-content"
-     style="background: linear-gradient(rgba(30, 30, 30, 0.1),rgba(30, 30, 30, 0.2)),url('<?php echo($imageUrl); ?>'); background-position: center center; background-size: cover;">
-<div class="d-block d-md-none mx-auto align-self-center">
+<div class="d-flex d-md-none hero-content"
+     style="background: linear-gradient(rgba(30, 30, 30, 0.1),rgba(30, 30, 30, 0.2)),url('<?php echo($heroImageUrlSmall); ?>'); background-position: center center; background-size: cover;">
+<div class="mx-auto align-self-center text-center">
   <h2>Buggy Alumni Association</h1>
 </div>
 <img class="hero-swish" src="../img/swish.svg">
 </div>
+
+<div class="d-none d-md-flex hero-content"
+     style="background: linear-gradient(rgba(30, 30, 30, 0.1),rgba(30, 30, 30, 0.2)),url('<?php echo($heroImageUrlLarge); ?>'); background-position: center center; background-size: cover;">
+<img class="hero-swish" src="../img/swish.svg">
+</div>
+
 
 <?php } else {
   // SHOW_BREADCRUMBS.  Not the homepage.
