@@ -8,10 +8,10 @@
       // include("homepage-raceday-auction.inc");
 
       // Endowment Application Promobox (includes a timeout)
-      // include("homepage-endowmentbox.inc");
+      include("homepage-endowmentbox.inc");
 
       // Store/Merch Promo Box (times out approximately when store closes)
-      include("homepage-raceday-merch.inc");
+      // include("homepage-raceday-merch.inc");
 
       // -----------------------------------
       // All Announcement Go Above This Line
