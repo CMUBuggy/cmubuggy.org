@@ -1,4 +1,12 @@
 <?php
+// This file performs the database queries to populate recent activity from
+// various sources, including wordpress (news), and the smugmug activity feeds.
+//
+// It should only run once per page, make sure you include it using the include_once
+// directive.  These next 2 lines will help you find the problem.
+!defined('CONTENT_FEED_FETCHED') || die("Content feed already fetched.  Use include_once?");
+define('CONTENT_FEED_FETCHED', true);
+
 // Front Page Feed Limits:
 // Total Items: 15 (on main page, this lines up nicely with the left nav)
 // Comments: Only 7, regardless of source (avoid talkative photos).
@@ -17,16 +25,18 @@ $cutoff = time()-(60*60*24*$MAX_FEED_DAYS);
 $cutoffDate = date("Y-m-d",$cutoff);
 
 // Our various arrays to track our content.
-$items = array();
-$commentitems = array();
-$newsitems = array();
-$icon_map = array();
+$items = array();  // Output: All content feed items except recent news
+$commentitems = array();  // Temporary: comment items to limit # of comments shown
+$newsitems = array();  // Output: "Recent" news items
+$icon_map = array();  // Output: code for icons used in content feed.
 
 ##NEWS ITEMS##
-$newsSQL = "SELECT wp_posts.ID,wp_posts.post_date,wp_users.display_name,wp_posts.post_name,wp_posts.post_title,wp_posts.comment_count
+$newsSQL = "SELECT post_date,
+                   post_name,
+                   post_title,
+                   post_excerpt,
+                   post_content
   FROM wp_posts
-  JOIN wp_users
-  ON wp_posts.post_author=wp_users.ID
   WHERE post_status LIKE 'publish'
   AND post_type LIKE 'post'
   and post_date > '$cutoffDate'
@@ -46,7 +56,7 @@ if ($newsResults) {
   $icon_map["news"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-warning"></i><i class="fas fa-newspaper fa-inverse" data-fa-transform="shrink-8"></i></span>';
   while ($post = mysqli_fetch_row($newsResults)) {
     //date format: YYYY-MM-DD HH:MM:SS
-    $timestamp = $post[1];
+    $timestamp = $post[0];
     $year = substr($timestamp, 0, 4);
     $month = substr($timestamp, 5, 2);
     $day = substr($timestamp, 8, 2);
@@ -55,10 +65,44 @@ if ($newsResults) {
     $second = substr($timestamp, 17, 2);
     $timestamp = mktime($hour, $minute, $second, $month, $day, $year);
 
+    $excerpt = '';
+    if (empty($post[3])) {
+      // No provided summary.
+      //
+      // This is a bit hacky.  It is based on how WP generates excerpts when one
+      // is not provided.  See wp-includes/formatting.php.
+      //
+      // However, we've simplified many of the more complex things that code deals with.
+      // 
+      // PHP excerpts are 55 words.
+      $NUM_WORDS = 55;
+
+      $text = strip_tags($post[4]);
+      $words_array = preg_split( "/[\n\r\t ]+/", $text, $NUM_WORDS + 1, PREG_SPLIT_NO_EMPTY );
+      $sep         = ' ';
+
+      if (count($words_array) > $NUM_WORDS) {
+        array_pop( $words_array );
+        $text = implode( ' ', $words_array );
+        $excerpt = $text . "...";
+      } else {
+        $excerpt = implode( ' ', $words_array );
+      }
+    } else {
+      // Just use the provided summary
+      $excerpt = $post[3];
+    }
+
     $a = array(
-      "timestamp"=>$timestamp,
-      "content"=>'<a href="/news/'.$post[3].'">'.$post[4].'</a>',
-      "type"=>"news"
+      // These are used for rendering the sidebar
+      "type" => "news",
+      "timestamp" => $timestamp,
+      "content" => '<a href="/news/'.$post[1].'">'.$post[2].'</a>',
+
+      // These are used for rendering outside the sidebar.
+      "rellink" => "/news/".$post[1],
+      "title" => $post[2],
+      "excerpt" => $excerpt
     );
     if ($count <= 2){
       array_push($newsitems,$a);
@@ -230,26 +274,3 @@ if ($smugMugImageResults) {
 uasort($commentitems, "timestamp_sort");
 $items = array_merge($items, array_slice($commentitems, 0, $MAX_FEED_ITEMS_COMMENT));
 ?>
-
-<section>
-  <h2>Recent News</h2>
-  <?php
-    foreach ($newsitems as $item) {
-      echo '<div class="media mb-3">' . $icon_map[$item['type']] . '<div class="media-body">' . $item['content'] . '<time class="d-block text-right text-muted" datetime="' . date(DATE_RFC3339, $item['timestamp']) . '">' . timeago($item['timestamp']) . '</time></div></div>';
-    }
-  ?>
-</section>
-
-<section>
-  <h2>Recent Activity</h2>
-  <?php
-    ##OVERALL DISPLAY##
-    uasort($items, "timestamp_sort");
-    $items = array_slice($items, 0, $MAX_FEED_ITEMS_ALL);
-    foreach ($items as $item) {
-      $media = $icon_map[$item['type']];
-      if (isset($item['media'])) { $media = $item['media']; }
-      echo '<div class="media mb-3">' . $media . '<div class="media-body">' . $item['content'] . '<time class="d-block text-right text-muted" datetime="' . date(DATE_RFC3339, $item['timestamp']) . '">' . timeago($item['timestamp']) . '</time></div></div>';
-    }
-  ?>
-</section>
