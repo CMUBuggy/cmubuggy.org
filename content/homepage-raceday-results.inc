@@ -1,6 +1,6 @@
 <div class="card mb-3">
-  <h5 class="card-header">2024 Race Results</h5>
   <div class="card-body">
+    <h5 class="card-title">2024 Race Results</h5>
     <img class="card-img-top" src="<?php echo(makeSmugmugUrl("i-VvKFQqs")); ?>">
     <table class="table table-sm" style="font-variant-numeric: tabular-nums;">
       <thead>
@@ -82,8 +82,8 @@
 </div>
 
 <div class="card mb-3">
-  <h5 class="card-header">2024 Awards</h5>
   <div class="card-body">
+    <h5 class="card-title">2024 Awards</h5>
     <table class="table table-sm" >
       <tr>
         <th>Design</th>
