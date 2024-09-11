@@ -19,7 +19,7 @@
       // -----------------------------------
 
       // Handle Left Column Recent News Box Here!
-      include("homepage-recent-newsbox.inc");
+      // include("homepage-recent-newsbox.inc");
 
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
