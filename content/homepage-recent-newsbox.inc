@@ -12,6 +12,10 @@
 
   // Because we have displayed the news items in this box, don't let the RHS column show them.
   $newsitems = array();
+
+  if (count($mynewsitems) > 0) {
+    echo("<h2>Recent News</h2>");
+  }
 ?>
 
 <div class="row">
@@ -27,7 +31,7 @@
   <div class="col-md mb-3">
     <div class="card text-white h-100" style="background-color: var(--gray);">
       <div class="card-body d-flex flex-column">
-        <h5 class="card-title mb-2"><?php echo($item["title"]) ?></h5>
+      <a class="text-reset text-decoration-none" href="<?php echo($item["rellink"]) ?>" ><h5 class="card-title mb-2"><?php echo($item["title"]) ?></h5></a>
 
         <?php
           echo('<time class="d-block text-right mb-4 small" datetime="'.date(DATE_RFC3339, $item['timestamp']) . '">' . timeago($item['timestamp']) . '</time>');
