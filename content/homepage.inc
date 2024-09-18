@@ -47,30 +47,14 @@
       if (false) {
         include("homepage-twitterbox.inc");
       }
-    ?>
 
-    <div class="card mb-3">
-      <h5 class="card-header">Chute The Sh!t: The Buggy Podcast</h5>
-      <div class="card-body">
-      <iframe src="https://open.spotify.com/embed-podcast/show/3wbaYb92dfzuWDUbOOxHWi" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      </div>
-    </div>
+  // About Buggy and About the BAA Boxes.
+  include("homepage-aboutboxes.inc");
 
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Buggy Alumni Association</h5>
-        <p>We were founded in 2008 to unite and connect alumni across teams and eras, and to support the coolest sport we know. Join us! We're open to everyone: current students, Pittsburgh locals, enthusiasts of any kind.</p>
-        <a href="/about" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
+  // CTS Box.  Might want to move higher in the list when new episodes are happening.
+  include("homepage-ctsbox.inc");
+?>
 
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Buggy</h5>
-        <p>Buggy (also called "Sweepstakes") is a unique race that has been held on and behind the Carnegie Mellon University campus during the spring carnival since 1920. It is part uphill relay race (in which the baton is a vehicle and driver pushed by runners), and part downhill gravity racing with exciting sharp turns and speeds up to 40mph.</p>
-        <a href="/reference" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
 
   </div>
   <div class="col-md-4">
