@@ -396,7 +396,7 @@
   https://stackoverflow.com/a/45755948
 */
 ?>
-<ul class="navbar-nav <?php echo("$nav_class"); ?>">
+<ul class="navbar-nav">
   <?php foreach($navItems as $navItem) createTopLevelNavItem($navItem) ?>
 </ul>
 
