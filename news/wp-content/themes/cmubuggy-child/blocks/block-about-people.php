@@ -11,19 +11,36 @@
             <small><?php block_field('pronouns'); ?></small>
         </h4>
         <div class="small">
-            c/o <?php block_field('graduation-year'); ?> |
-                 <?php block_field('team-postions'); ?>  |
-                 <?php
-                   $histKey = block_field('history-db-key', false);
-                   if(!empty($histKey)) {
-                     echo("<a href=\"/history/person/".$histKey."\">history</a> |");
-                   }
-                 ?>
-                 <a href="<?php block_field('email'); ?>">email</a>
+            <?php
+               if(!block_value('current-student-toggle')) {
+                 echo("c/o ");
+               }
+               block_field('graduation-year');
+
+               // Yes, this field name was really misspelled in the database too.
+               $teamInfo = block_field('team-postions', false);
+               if(!empty($teamInfo)) {
+                 echo(" | ".$teamInfo);
+               }
+               $histKey = block_field('history-db-key', false);
+               if(!empty($histKey)) {
+                 echo(" | <a href=\"/history/person/".$histKey."\">history</a>");
+               }
+               $emailData = block_field('email', false);
+               if(!empty($emailData)) {
+                 echo(" | <a href=\"".$emailData."\">email</a>");
+               }
+            ?>
 	    </div>
         <br>
         <div><?php block_field('about'); ?></div>
         <br>
+        <?php if (!empty(block_field('student-major', false))) { ?>
+        <div>
+            <small>Major</small><br>
+            <?php block_field('student-major'); ?>
+        </div>
+        <?php } ?>
         <?php if (!empty(block_field('professional-field', false))) { ?>
         <div>
             <small>Profession</small><br>
