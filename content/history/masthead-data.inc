@@ -12,6 +12,7 @@ function getHistoryBreadcrumbs() {
         "org" => ['/history/org', "Organizations"],
         "person" => ['/history/person', "People"],
         "raceday" => ['/history/'.$RACEDAY_URL_PART, $RACEDAY_WORD."s"],
+        "baa" => ['/history/baa', "BAA Boards"],
         "sweepstakes" => ['/history/sweepstakes', "Sweepstakes Committees"],
 
         // These pages exist, but are the top level and shouldn't get a dedicated breadcrumb.
@@ -24,6 +25,7 @@ function getHistoryBreadcrumbs() {
         // "personlist" => ['/history/person', "People"],
         // "racedaylist" => ['/history/raceday', "Racedays"],
         // "sweepstakeslist" => ['/history/sweepstakes', "Sweepstakes Committees"],
+        // "baalist" => ['/history/baa', "BAA Boards"],
         // "toptimes" => ['/history/toptimes', "Top Times"]
     ];
 
@@ -79,6 +81,7 @@ function getHistoryPageTitle() {
     // Map subpages to titles.
     $TITLE_MAP = [
         "awards" => "Awards",
+        "baalist" => "BAA Boards",
         "buggybook" => "Buggy Books",
         "buggylist" => "Buggies",
         "orglist" => "Organizations",
@@ -105,6 +108,7 @@ function getHistoryPageTitle() {
         "org" => 'getOrgTitle',
         "person" => 'getPersonTitle',
         "raceday" => 'getRacedayTitle',
+        "baa" => 'getBAATitle',
         "sweepstakes" => 'getSweepstakesTitle',
     ];
 
@@ -136,6 +140,16 @@ function getRacedayTitle() {
 
     $year = $_GET['year'] * 1;
     return "$RACEDAY_WORD $year";
+}
+
+function getBAATitle() {
+    if (empty($_GET["year"])) {
+        // We should have been sent into baalist, not here.  What happened?
+        die("Ooops, no year specified!");
+    }
+
+    $year = $_GET["year"] * 1;
+    return "$year BAA Board";
 }
 
 function getSweepstakesTitle() {
