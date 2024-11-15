@@ -22,8 +22,15 @@ if ($metaData->num_rows == 1) {
   exit(0);
 }
 
-$sweepstakesQuery = "SELECT concat(year, ' ', role) AS roledesc FROM hist_sweepstakes WHERE personid=? ORDER BY year DESC, role;";
+$sweepstakesQuery = "SELECT concat(year, ' ', role) AS roledesc
+                            FROM hist_sweepstakes WHERE personid=?
+                            ORDER BY year DESC, role;";
 $sweepstakesData = dbBoundQuery($HISTORY_DATABASE, $sweepstakesQuery, "s", $urlkey);
+
+$baaQuery = "SELECT concat(year, ' ', role) AS roledesc
+                            FROM hist_baa WHERE personid=?
+                            ORDER BY year DESC, role;";
+$baaData = dbBoundQuery($HISTORY_DATABASE, $baaQuery, "s", $urlkey);
 
 $teamQuery = "SELECT e.entryid,e.year,heattype,e.orgid,o.shortname AS orgname,
                      case when e.class = 'M' then 'Men\'s'
@@ -83,14 +90,22 @@ $awardData = dbBoundQuery($HISTORY_DATABASE, $awardQuery, "s", $urlkey);
     }
     echo("</ul>");
   }
-  if($sweepstakesData->num_rows > 0) {
-    echo("<h2>Sweepstakes Positions</h2>");
-    echo("<ul class=\"list-unstyled\">");
-    while ($s = $sweepstakesData->fetch_assoc()) {
-      echo("<li>".$s["roledesc"]."</li>");
+
+  // BAA and Sweepstakes are basically identically handled.
+  function showOfficerRoles($org, $orgData) {
+    if($orgData->num_rows > 0) {
+      echo("<h2>".$org." Positions</h2>");
+      echo("<ul class=\"list-unstyled\">");
+      while ($s = $orgData->fetch_assoc()) {
+        echo("<li>".$s["roledesc"]."</li>");
+      }
+      echo("</ul>");
     }
-    echo("</ul>");
   }
+
+  showOfficerRoles('BAA', $baaData);
+  showOfficerRoles('Sweepstakes', $sweepstakesData);
+
   if($teamData->num_rows > 0) {
     echo("<h2>Teams</h2>");
     echo("<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Year</th><th>Day</th><th>Team</th><th>Role</th><th>Time</th><th>Place</th><th>DQ/Note</th></tr></thead><tbody>");
