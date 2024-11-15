@@ -38,7 +38,8 @@ DROP TABLE IF EXISTS hist_buggies,
                      hist_new_raceentries,  # Temporary
                      hist_raceentries,      # Generated
                      hist_entrypeoplemap,   # Generated
-                     hist_sweepstakes;
+                     hist_sweepstakes,
+                     hist_baa;
 
 RENAME TABLE 0buggies TO hist_buggies,
              0orgs TO hist_orgs,
@@ -48,7 +49,8 @@ RENAME TABLE 0buggies TO hist_buggies,
              1orgawards TO hist_orgawards,
              1personawards TO hist_personawards,
              1raceentries TO hist_new_raceentries,   # Will need further processing!
-             1sweepstakes TO hist_sweepstakes;
+             1sweepstakes TO hist_sweepstakes,
+             1baa TO hist_baa;
 
 # Add some indexes that appear to be desirable.
 ALTER TABLE hist_designawards ADD INDEX (buggyid);
@@ -59,6 +61,8 @@ ALTER TABLE hist_orgawards ADD INDEX (orgid);
 ALTER TABLE hist_orgawards ADD INDEX (year, award(20));
 ALTER TABLE hist_sweepstakes ADD INDEX (year, role);
 ALTER TABLE hist_sweepstakes ADD INDEX (personid);
+ALTER TABLE hist_baa ADD INDEX (year, role);
+ALTER TABLE hist_baa ADD INDEX (personid);
 ALTER TABLE hist_personawards ADD INDEX (year, award);
 
 # If you locked the tables, unlock them.
