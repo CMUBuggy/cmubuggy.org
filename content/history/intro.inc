@@ -115,7 +115,7 @@
          </span>
         </a>
         <div class="media-body">
-          <a href="/history/sweepstakes">The people</a> who made Sweepstakes happen
+          <a href="/history/sweepstakes">Sweepstakes Committees</a> and the <a href="/history/baa">BAA Boards</a>
         </div>
       </div>
    </div>
