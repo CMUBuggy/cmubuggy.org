@@ -151,8 +151,18 @@ Redirect 302 /timingapp https://buggy-timing-900.web.app/
 # 2024 Member Preview Link to Truck Weekend Time Sheet
 Redirect 302 /truck24times https://docs.google.com/spreadsheets/d/18EhfvinzOHDm44hKXtO_q9uOKCCDXqEfgRgHqLdqlxU/edit#gid=347337235
 
-# 2023 Giving Tuesday
-Redirect 302 /givingtuesday https://givingcmuday.cmu.edu/campaigns/uni-buggy-alumni-association
+# 2024 Giving Tuesday
+# News Post
+Redirect 302 /givingtuesday-news https://www.givecampus.com/hba30a
+# Web Site Homepage Promo
+Redirect 302 /givingtuesday-web https://www.givecampus.com/7qu3eg
+# Member/Nonmember Direct Email
+Redirect 302 /givingtuesday-mail https://www.givecampus.com/n6iknf
+# Raw Post to Discord Link + All Other Sources
+Redirect 302 /givingtuesday https://www.givecampus.com/e64k2h
+# Other Socials (Insta, Facebook, X)
+Redirect 302 /givingtuesday-baa https://www.givecampus.com/mrzs9f
+
 # 2024 BAA Officer voting
 Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd-91nSxyE1Hw1bLkNB2bxj6PSN8qPNLYCUaWA4mbYkEWadnQ/viewform
 
@@ -186,6 +196,11 @@ RewriteRule		^history/award[/]*$									index.php?s=history&p=awards 					[NC,L
 RewriteRule		^history/buggy[/]*$									index.php?s=history&p=buggylist					[NC,L]
 RewriteRule		^history/buggybook[/]*$								index.php?s=history&p=buggybook					[NC,L]
 RewriteRule		^history/org[/]*$									index.php?s=history&p=orglist					[NC,L]
+
+# /history/buggybooks seems a likely typo and we should
+# redirect it (301) back to /history/buggybook
+RewriteRule		^history/buggybooks[/]*$							/history/buggybook										[R=301,NC,L]
+
 # person needs to have the QSA flag in order to preserve the query string for searches.
 #
 # /history/people is a rewrite since otherwise it goes to /about/people and this
