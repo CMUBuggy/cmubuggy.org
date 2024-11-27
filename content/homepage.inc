@@ -10,6 +10,9 @@
       // Endowment Application Promobox (includes a timeout)
       // include("homepage-endowmentbox.inc");
 
+      // Giving Tuesday Promo Box (has start: Black Friday & end dates: End of GT)
+      include("homepage-givingtuesday.inc");
+
       // Store/Merch Promo Box (times out approximately when store closes)
       // include("homepage-raceday-merch.inc");
 
