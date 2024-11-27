@@ -13,7 +13,7 @@
         <div class="media-body">
           <p>Tired of boring reusable tote bags?
              Worry not! You can now get your groceries in style and support Buggy
-             at the same time!</b>
+             at the same time!</p>
           <p>Store closes August 5!</p>
           <a target="_blank" href="/merch" class="btn btn-primary">Get My Stuff!</a>
         </div>
