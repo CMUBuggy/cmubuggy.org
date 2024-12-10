@@ -72,16 +72,29 @@
       'href' => '/reference/baa-endowment-fund',
     ],
     5 => (object) [
-      'label' => 'Starting a Team',
-      'href' => '/reference/new-team',
+      'label' => 'Sweepstakes Rules',
+      'href' => '/reference/sweepstakes-bylaws',
     ],
     6 => (object) [
-      'label' => 'How To Build a Buggy',
-      'href' => '/reference/how-to-build-a-buggy',
-    ],
-    7 => (object) [
-      'label' => 'Sweepstakes Bylaws',
-      'href' => '/reference/sweepstakes-bylaws',
+      'label' => 'Team Resources',
+      'children' => [
+        0 => (object) [
+          'label' => 'Starting a Team',
+          'href' => '/reference/buggy-team-resources/new-team',
+        ],
+        1 => (object) [
+          'label' => 'How To Build a Buggy',
+          'href' => '/reference/buggy-team-resources/how-to-build-a-buggy',
+        ],
+        2 => (object) [
+          'label' => 'Composites for Buggy',
+          'href' => '/reference/buggy-team-resources/composites-for-buggy',
+        ],
+        3 => (object) [
+          'label' => 'Other',
+          'href' => '/reference/buggy-team-resources',
+        ],
+      ],
     ],
   ];
 
