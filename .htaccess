@@ -121,6 +121,8 @@ Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 
 # Survey/Endowment Grant Links (RD 25)
 Redirect 302 /2024membersurvey https://forms.gle/UD9ZtPENRH96T7Jq8
+Redirect 302 /2024fallgrant https://docs.google.com/forms/d/e/1FAIpQLSduCuASvVKPOt56BWznpaGmQz1E3MyKu6JBLUEd6UrnRkL5nA/viewform?usp=pp_url&entry.1887096768=I+would+like+for+my+proposal+to+be+automatically+submitted+for+an+extension+in+the+spring
+Redirect 302 /2025springgrant https://docs.google.com/forms/d/e/1FAIpQLSevrOjZRSJuOUvmjXXUHNawm3kIV-ZMh3sAPzTBr95MDtIexg/viewform
 
 # Survey/Endowment Grant Links (RD 24)
 Redirect 302 /2023membersurvey https://forms.gle/Gnbj4jLNfGatm8hf7
@@ -128,7 +130,6 @@ Redirect 302 /2023designvolunteer https://forms.gle/DhycG2Sydk1rjYaB6
 Redirect 302 /2023interest https://forms.gle/cVePbgEwpaatGuqn8
 Redirect 302 /2023fallgrant https://docs.google.com/forms/d/e/1FAIpQLSefjRHZ-VMTEaNrgTrperVtvxH0iSKObEBLn0cSgmzB_8_Kjw/viewform
 Redirect 302 /2024springgrant https://docs.google.com/forms/d/e/1FAIpQLSdLwjjwJRKyg6qFC4hEMC7kA30dmOhSL9x5jdrh-FdgGNbm5w/viewform
-Redirect 302 /2024fallgrant https://docs.google.com/forms/d/e/1FAIpQLSduCuASvVKPOt56BWznpaGmQz1E3MyKu6JBLUEd6UrnRkL5nA/viewform?usp=pp_url&entry.1887096768=I+would+like+for+my+proposal+to+be+automatically+submitted+for+an+extension+in+the+spring
 
 # Volunteer Links (Raceday 2024)
 Redirect 302 /volunteer https://docs.google.com/forms/d/1sxKG3njTp6VVLkj7pn0VfoqthLRupkXnKR72TT3W0Ng/viewform
