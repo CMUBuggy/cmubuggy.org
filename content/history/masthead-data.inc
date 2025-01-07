@@ -177,7 +177,7 @@ function commonGetTitle($query, $key){
     $result = dbBoundQuery($HISTORY_DATABASE, $query, "s", $param);
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-        if (!empty($row["title"])) {
+        if (strlen($row["title"]) > 0) {
             return $row["title"];
         }
     }

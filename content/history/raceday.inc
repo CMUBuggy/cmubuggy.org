@@ -119,7 +119,7 @@
         echo("<td>".$r["place"]."</td>");
         echo("<td style=\"white-space: nowrap\"><a href=\"/history/team/".$r["entryid"]."\">".$r["team"]."</a></td>");
 
-        if (!empty($r["buggyname"])) {
+        if (strlen($r["buggyname"]) > 0) {
           echo("<td><a href=\"/history/buggy/".$r["buggyid"]."\">".$r["buggyname"]."</a></td>");
         } else {
           echo("<td></td>");
@@ -130,8 +130,8 @@
         echo("<td>".displayTime($r["final"])."</td>");
         echo("<td>".displayTime($r["finalreroll"])."</td>");
         $notes = $r["note"];
-        if (!empty($r["dq"])) {
-          if (!empty($notes)) {
+        if (strlen($r["dq"]) > 0) {
+          if (strlen($notes) > 0) {
             $notes .= "<br>";
           }
           $notes .= "DQ: ".$r["dq"];

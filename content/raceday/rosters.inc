@@ -73,7 +73,7 @@
     }
 
     $entryString = "<a href=\"/history/team/".$row["entryid"]."\">".$class." ".$row["team"]."</a>";
-    if (!empty($row["buggyname"])) {
+    if (strlen($row["buggyname"]) > 0) {
       $entryString .= "<span class=\"d-none d-sm-inline\"><br></span>\n";
       $entryString .= "<span class=\"d-sm-none\">(</span>";
       $entryString .= "<span class=\"font-italic\"><a href=\"/history/buggy/".$row["buggyid"]."\">".$row["buggyname"]."</a></span>";

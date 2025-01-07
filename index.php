@@ -52,7 +52,7 @@
 
   // If we don't have a base title yet, just use BAA_TITLE.
   // Otherwise, append BAA_TITLE into TITLE_TAG.
-  if (empty($BASE_TITLE)) {
+  if (strlen($BASE_TITLE) == 0) {
     $BASE_TITLE = $BAA_TITLE;
     $TITLE_TAG = $BAA_TITLE;
   } else {
