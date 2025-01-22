@@ -21,19 +21,21 @@
       // All Standard Boxes Go Below
       // -----------------------------------
 
-      // Handle Left Column Recent News Box Here!
-      include("homepage-recent-newsbox.inc");
-
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
-      // include("homepage-raceday-countdown.inc");
+      include("homepage-raceday-countdown.inc");
 
       // Leaderboard (disables via config spreadsheet, but still reads firebase
-      // if code is included)
+      // if code is included, so make sure it is commented out if it isn't raceday)
       // include("homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
       // include("homepage-raceday-infobox.inc");
+
+
+      // Handle Left Column Recent News Box Here!
+      include("homepage-recent-newsbox.inc");
+
 
       // Results from most recent raceday
       // 2 boxes: Teams that placed & Awards
