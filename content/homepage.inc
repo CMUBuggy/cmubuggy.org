@@ -8,7 +8,7 @@
       // include("homepage-raceday-auction.inc");
 
       // Endowment Application Promobox (includes a timeout)
-      include("homepage-endowmentbox.inc");
+      // include("homepage-endowmentbox.inc");
 
       // Giving Tuesday Promo Box (has start: Black Friday & end dates: End of GT)
       // include("homepage-givingtuesday.inc");
