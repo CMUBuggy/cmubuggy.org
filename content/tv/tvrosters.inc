@@ -1,6 +1,6 @@
 <script>
   function dopopup(entryid) {
-    // Does not open into same window since we may want to preload several rowsters.
+    // Does not open into same window since we may want to preload several rosters.
     window.open("/content/tv/tvroster-view.php?t="+entryid, "_blank", "popup=true,width=960,height=540");
   }
 </script>
