@@ -129,6 +129,11 @@
 		return $msg;
 	}
 
+	// Returns true if this is a size that would be valid to send to smugmug.
+	function validSmugmugSize($size) {
+		return in_array($size, ['Ti','Th','S','M','L','XL','X2','X3','X4','X5','4k','5k','O']);
+	}
+
 	// Create a smugmug url for an image given a slug and a size.
 	//
 	// Note that Ti and Th will _crop_ to the correct aspect ratio.
@@ -137,7 +142,7 @@
 	  if(empty($slug)) {
 	 	die("no slug in makeSmugmugUrl");
 	  }
-	  if (!in_array($size, ['Ti','Th','S','M','L','XL','X2','X3','X4','X5','4k','5k','O'])) {
+	  if (!validSmugmugSize($size)) {
 		die("invalid size: '$size' in makeSmugmugUrl");
 	  }		
 	  return "https://photos.smugmug.com/photos/".$slug."/0/".$size."/".$slug."-".$size.".jpg";
