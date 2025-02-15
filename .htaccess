@@ -181,6 +181,10 @@ RewriteRule		^apple-touch-icon-precomposed.png$	-							[L,R=404]
 RewriteRule		^history[/]*$					index.php?s=history				[NC,L]
 
 # history section: specific objects
+#
+# note: for the url keys, be careful about what characters we let through to reduce
+# any potential XSS risk.  Most of our identifiers are alphanumeric at worst anyway.
+# For similar reasons, use care with anything that gets a QSA flag for additional parameters.
 RewriteRule		^history/buggy/([a-z0-9\-]+)/?$						index.php?s=history&p=buggy&urlkey=$1			[NC,L]
 RewriteRule		^history/org/([a-z0-9]+)/?$							index.php?s=history&p=org&urlkey=$1				[NC,L]
 RewriteRule		^history/person/([a-z0-9]+)/?$						index.php?s=history&p=person&id=$1				[NC,L]
@@ -238,6 +242,8 @@ RewriteRule		^tvportal/rosters/([0-9]+)/?$						index.php?s=tvportal&p=tvrosters
 
 # Utility / API
 RewriteRule		^api/buggyimg/([a-z0-9\-]+)/?$						content/api/buggyimg.php?urlkey=$1				[NC,L,QSA]
+RewriteRule		^api/orgbuggylist/([a-z0-9\-]+)/?$					content/api/orgbuggylist.php?urlkey=$1			[NC,L]
+
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
