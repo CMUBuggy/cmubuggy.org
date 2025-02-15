@@ -33,7 +33,7 @@
       unset($b['formerly']);
     }
 
-    // If notes are blank, don't inbclude them.
+    // If notes are blank, don't include them.
     if (array_key_exists('note', $b) && $b['note'] === "") {
       unset($b['note']);
     }
