@@ -51,8 +51,7 @@ console.log("Running for entry: " + entry);
   await page.setViewport({ width: 1920, height: 1080 });
 
   // Open Page
-//  await page.goto('https://cmubuggy.org/content/tv/tvroster-view.php?t='+e);
-  await page.goto('http://192.168.250.40/content/tv/tvroster-view.php?t='+e);
+  await page.goto('https://cmubuggy.org/content/tv/tvroster-view.php?t='+e);
 
   // Obviously this assumes knowledge of the page format.
   await page.evaluate(() => document.body.style.background = 'transparent');
