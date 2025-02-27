@@ -1,3 +1,9 @@
+<?php
+// Generates a roster using profile photos for the TV broadcast.
+//
+// Script to generate the 1920x1080 transparent images for broadcast are in
+// /scripts/tvexport
+ ?>
 <html>
 <head>
 <title>TV Roster View</title>
@@ -34,13 +40,17 @@
     background-color: #27266a;
   }
 
+  div.name-row {
+    height: 7vh;
+  }
+
   span.team-header {
     font-size: 5vh;
     font-weight: bold;
   }
 
-  div.team-member {
-    font-size: 2vh;
+  td.team-name {
+    color: #fff
   }
 
   span.buggy-header {
@@ -95,6 +105,12 @@
   // pusherRoles is just the pushers, since the driver gets their own special box
   $orderedRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
   $pusherRoles = array_slice($orderedRoles, 1, 5);
+  $roleImageURIs = array ("Driver" => "/img/logos/sweepstakes_logo_notext.svg",
+                          "Hill 1" => "/img/logos/sweepstakes_logo_notext.svg",
+                          "Hill 2" => "/img/logos/sweepstakes_logo_notext.svg",
+                          "Hill 3" => "/img/logos/sweepstakes_logo_notext.svg",
+                          "Hill 4" => "/img/logos/sweepstakes_logo_notext.svg",
+                          "Hill 5" => "/img/logos/sweepstakes_logo_notext.svg");
 
   // Nearly identical query to /history/entry.php, except we don't need the video,
   // linking, or timing data.
@@ -183,19 +199,24 @@
   <div class="row" style="height:45vh">
         <div class="h-100 col-6 p-3 my-auto">
           <?php
-            // TODO: Robots with no named safety driver
-
-            echo("<div class=\"row my-auto mx-auto h-100 w-50\"><div class=\"col w-100 p-3\">");
-
             // It would be nice if this could work the same as the pusher photos, but because
             // of the different containers around it, it is easier to just implement it twice
             // to allow us to optimize the formatting separately.
-            echo("<div class=\"row h-75\"><div class=\"col h-100 text-center \">");
-            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" src=\"/files/2025rosterphotos/".$teamIdArr["Driver"].".jpg\">");
-            echo("</div></div>");
-            echo("<div class=\"row h-25\"><div class=\"col content-box team-member rounded-lg my-auto text-center\">");
-            echo("<b>Driver</b><br>".$teamArr["Driver"]);
-            echo("</div></div>");
+
+            // TODO: Robots with no named safety driver
+
+            echo("<div class=\"row my-auto mx-auto h-100 w-50\"><div class=\"col w-100\">");
+
+            // Image Row
+            echo("<div class=\"row h-75\"><div class=\"col h-100 text-center px-0\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
+            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"/files/2025rosterphotos/".$teamIdArr["Driver"].".jpg\">");
+            echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 10px; bottom: 10px; z-index: 3\" src=\"".$roleImageURIs["Driver"]."\">");
+            echo("</div></div></div>");
+
+            // Text Row
+            echo("<div class=\"row h-25 flex-grow-1\">");
+            echo("<div class=\"col p-3 my-auto h3 team-name text-center align-self-center rounded-lg content-box\">".$teamArr["Driver"]."</div>");
+            echo("</div>");
 
             echo("</div></div>");
           ?>
@@ -214,18 +235,22 @@
         </div>
   </div>
 
-  <div class="row h-50" style="height:40vh">
+  <div class="row" style="height:40vh">
     <div class="col my-auto content-box p-2 rounded-lg"><div class="row">
       <?php
         foreach ($pusherRoles as $role) {
-          echo("<div class=\"col-sm\">");
+          echo("<div class=\"col-sm d-flex flex-wrap\">");
 
-          echo("<div class=\"row\"><div class=\"col\">");
-          echo("<img class=\"img-fluid h-100\" src=\"/files/2025rosterphotos/".$teamIdArr[$role].".jpg\">");
-          echo("</div></div>");
-          echo("<div class=\"row\"><div class=\"col team-member\">");
-          echo("<b>".$role."</b>:<br>".$teamArr[$role]);
-          echo("</div></div>");
+          // Image Row
+          echo("<div class=\"row\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
+          echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"/files/2025rosterphotos/".$teamIdArr[$role].".jpg\">");
+          echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 3px; bottom: 3px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
+          echo("</div></div></div>");
+
+          // Text Row
+          echo("<div class=\"row flex-grow-1 name-row\">");
+          echo("<div class=\"col my-auto h3 team-name text-center align-self-center\">".$teamArr[$role]."</div>");
+          echo("</div>");
 
           echo("</div>");
         }
