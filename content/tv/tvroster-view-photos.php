@@ -92,7 +92,9 @@
   }
 
   // Constants to provide an ordered list of the roles want to display.
-  $displayRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
+  // pusherRoles is just the pushers, since the driver gets their own special box
+  $orderedRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
+  $pusherRoles = array_slice($orderedRoles, 1, 5);
 
   // Nearly identical query to /history/entry.php, except we don't need the video,
   // linking, or timing data.
@@ -138,7 +140,7 @@
   // as unknown by default.  This also fills in anyone missing as unknown.
   $teamArr = array();
   $teamIdArr = array();
-  foreach ($displayRoles as $role) {
+  foreach ($orderedRoles as $role) {
     $teamArr[$role] = "<i>Unknown</i>";
   }
 
@@ -153,22 +155,52 @@
     $teamArr[$role] = $r["personname"];
     $teamIdArr[$role] = $r["personid"];
   }
+
+  // TODO: check for missing photos, if any photos are missing, revert
+  // to names only (2 columns, 3 names each, below centered buggy photo)
+
+  // Note: Total page only allocates 95vh (not 100), so we can get a
+  // transparent border around it.
 ?>
 
 <div class="container-fluid vertical-center justify-content-center p-2">
 <div class="container-fluid h-100">
-  <div class="row" style="width:90%; height:50vh">
+  <div class="row content-box rounded-lg" style="height:10vh">
     <div class="col-6 my-auto">
-      <div class="row">
-        <div class="col-11 my-1 py-2 content-box rounded-lg">
+        <?php
+          // Team header
+          $teamName = $header['org']." ".$header['class']." ".$header['team'];
+          echo "<span class=\"team-header\">".$teamName."</span>";
+        ?>
+    </div>
+    <div class="col-6 my-auto text-right">
         <?php
           echo "<span class=\"buggy-header\">".$header['buggy']."</span><br>";
           echo "<span class=\"buggy-birth\">Built: ".$header['birthyear']."</span>";
         ?>
+    </div>
+  </div>
+  <div class="row" style="height:45vh">
+        <div class="h-100 col-6 p-3 my-auto">
+          <?php
+            // TODO: Robots with no named safety driver
+
+            echo("<div class=\"row my-auto mx-auto h-100 w-50\"><div class=\"col w-100 p-3\">");
+
+            // It would be nice if this could work the same as the pusher photos, but because
+            // of the different containers around it, it is easier to just implement it twice
+            // to allow us to optimize the formatting separately.
+            echo("<div class=\"row h-75\"><div class=\"col h-100 text-center \">");
+            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" src=\"/files/2025rosterphotos/".$teamIdArr["Driver"].".jpg\">");
+            echo("</div></div>");
+            echo("<div class=\"row h-25\"><div class=\"col content-box team-member rounded-lg my-auto text-center\">");
+            echo("<b>Driver</b><br>".$teamArr["Driver"]);
+            echo("</div></div>");
+
+            echo("</div></div>");
+          ?>
         </div>
-      </div>
-      <div class="row h-75">
-        <div class="h-100 col-11 my-1 p-3 text-center rounded-lg">
+        <div class="h-100 col-6 my-1 p-3 text-center rounded-lg">
         <?php
           if (!empty($header["buggy_smugmug_slug"])) {
             $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "L");
@@ -180,32 +212,21 @@
           }
         ?>
         </div>
-      </div>
-    </div>
-    <div class="col-6 my-auto">
-      <div class="row">
-        <div class="col my-1 content-box rounded-lg text-center">
-        <?php
-          // Team header
-          $teamName = $header['org']." ".$header['class']." ".$header['team'];
-          echo "<span class=\"team-header\">".$teamName."</span>";
-        ?>
-        </div>
-      </div>
-    </div>
   </div>
 
-  <div class="row h-50" style="width:90%">
+  <div class="row h-50" style="height:40vh">
     <div class="col my-auto content-box p-2 rounded-lg"><div class="row">
       <?php
-        foreach ($displayRoles as $role) {
+        foreach ($pusherRoles as $role) {
           echo("<div class=\"col-sm\">");
+
           echo("<div class=\"row\"><div class=\"col\">");
-          echo("<img class=\"img-fluid\" src=\"/files/2025rosterphotos/".$teamIdArr[$role].".jpg\">");
+          echo("<img class=\"img-fluid h-100\" src=\"/files/2025rosterphotos/".$teamIdArr[$role].".jpg\">");
           echo("</div></div>");
           echo("<div class=\"row\"><div class=\"col team-member\">");
           echo("<b>".$role."</b>:<br>".$teamArr[$role]);
           echo("</div></div>");
+
           echo("</div>");
         }
       ?>
