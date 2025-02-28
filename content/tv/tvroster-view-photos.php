@@ -3,6 +3,11 @@
 //
 // Script to generate the 1920x1080 transparent images for broadcast are in
 // /scripts/tvexport
+
+// Paths to where the images are
+$PEOPLE_IMAGE_URI="/files/2025rosterphotos/";
+$PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
+
  ?>
 <html>
 <head>
@@ -42,6 +47,15 @@
 
   div.name-row {
     height: 7vh;
+  }
+
+  div.text-team-role {
+    font-size: 3vh;
+    font-weight: bold;
+  }
+
+  div.text-team-member {
+    font-size: 4vh;
   }
 
   span.team-header {
@@ -165,13 +179,33 @@
     $teamArr["Driver"] = "<i>Robotic Buggy</i>";
   }
 
+  // Map of Role -> Image Path that are missing
+  $missingImageRoles = array();
+
   // Now, populate the people on the team.
   while($r = $teamResults->fetch_assoc()) {
     $role = $r["position"];
     $teamArr[$role] = $r["personname"];
     $teamIdArr[$role] = $r["personid"];
+
+    // TODO: Assumes all files lowercased and jpg
+    $image_path = $PEOPLE_IMAGE_PATH_PREFIX.$teamIdArr[$role].".jpg";
+    if (!file_exists($image_path)) {
+      $missingImageRoles[$role] = $image_path;
+    }
   }
 
+  $HAVE_IMAGES = true;
+  if (count($missingImageRoles) > 0) {
+    $HAVE_IMAGES = false;
+
+    // Log what images are missing into the generated html, for debugging purposes.
+    echo("\n\n<!-- did not find all image files, reverting to text only -->\n");
+    foreach ($missingImageRoles as $role => $path) {
+      echo("<!-- missing image: ".$role." -> ".$path." -->\n");
+    }
+    echo("\n");
+  }
   // TODO: check for missing photos, if any photos are missing, revert
   // to names only (2 columns, 3 names each, below centered buggy photo)
 
@@ -197,6 +231,9 @@
     </div>
   </div>
   <div class="row" style="height:45vh">
+<?php
+        if($HAVE_IMAGES) {
+?>
         <div class="h-100 col-6 p-3 my-auto">
           <?php
             // It would be nice if this could work the same as the pusher photos, but because
@@ -209,7 +246,7 @@
 
             // Image Row
             echo("<div class=\"row h-75\"><div class=\"col h-100 text-center px-0\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"/files/2025rosterphotos/".$teamIdArr["Driver"].".jpg\">");
+            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdArr["Driver"].".jpg\">");
             echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 10px; bottom: 10px; z-index: 3\" src=\"".$roleImageURIs["Driver"]."\">");
             echo("</div></div></div>");
 
@@ -222,7 +259,15 @@
           ?>
         </div>
         <div class="h-100 col-6 my-1 p-3 text-center rounded-lg">
+<?php
+        } else { // HAVE_IMAGES
+          // we need to start the div for the buggy image differently, so it centers when
+          // we do not have images.
+?>
+        <div class="h-100 col my-1 p-3 text-center rounded-lg">
         <?php
+        } // HAVE_IMAGES
+
           if (!empty($header["buggy_smugmug_slug"])) {
             $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "L");
             echo "<img class=\"h-100 img-fluid img-thumbnail blue-border\" src=\"".$buggy_image_url."\">";
@@ -236,26 +281,40 @@
   </div>
 
   <div class="row" style="height:40vh">
-    <div class="col my-auto content-box p-2 rounded-lg"><div class="row">
       <?php
-        foreach ($pusherRoles as $role) {
-          echo("<div class=\"col-sm d-flex flex-wrap\">");
+        if ($HAVE_IMAGES) {
+          echo("<div class=\"col my-auto content-box p-2 rounded-lg\"><div class=\"row\">");
+          foreach ($pusherRoles as $role) {
+            echo("<div class=\"col-sm d-flex flex-wrap\">");
 
-          // Image Row
-          echo("<div class=\"row\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-          echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"/files/2025rosterphotos/".$teamIdArr[$role].".jpg\">");
-          echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 3px; bottom: 3px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
-          echo("</div></div></div>");
+            // Image Row
+            echo("<div class=\"row\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
+            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdArr[$role].".jpg\">");
+            echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 3px; bottom: 3px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
+            echo("</div></div></div>");
 
-          // Text Row
-          echo("<div class=\"row flex-grow-1 name-row\">");
-          echo("<div class=\"col my-auto h3 team-name text-center align-self-center\">".$teamArr[$role]."</div>");
-          echo("</div>");
+            // Text Row
+            echo("<div class=\"row flex-grow-1 name-row\">");
+            echo("<div class=\"col my-auto h3 team-name text-center align-self-center\">".$teamArr[$role]."</div>");
+            echo("</div>");
 
-          echo("</div>");
+            echo("</div>");
+          }
+          echo("</div></div>");
+        } else {
+          // DO NOT HAVE IMAGES
+          echo("<div class=\"col my-auto p-2\"><div class=\"row\">");
+          foreach ($orderedRoles as $role) {
+            echo("<div class=\"col-4 my-2\">");
+            // This inner div creats the background
+            echo("<div class=\"d-flex flex-column mx-2 h-100 justify-content-center p-2 content-box rounded-lg\">");
+            echo("<div class=\"text-center text-team-role\">".$role."</div>");
+            echo("<div class=\"text-center text-team-member\">". $teamArr[$role]."</div>");
+            echo("</div></div>");
+          }
+          echo("</div></div>");
         }
       ?>
-    </div></div>
   </div>
 </div>
 </div>
