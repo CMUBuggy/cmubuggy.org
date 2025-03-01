@@ -170,6 +170,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
   // as unknown by default.  This also fills in anyone missing as unknown.
   $teamArr = array();
   $teamIdArr = array();
+  $teamIdImageType = array();
   foreach ($orderedRoles as $role) {
     $teamArr[$role] = "<i>Unknown</i>";
   }
@@ -177,20 +178,31 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
   // Robots get a special driver default.
   if ($header["class"] == 'Robotic') {
     $teamArr["Driver"] = "<i>Robotic Buggy</i>";
+    $teamIdArr["Driver"] = "robot-driver";
+    $teamIdImageType["Driver"] = "svg";
   }
 
   // Map of Role -> Image Path that are missing
   $missingImageRoles = array();
 
   // Now, populate the people on the team.
+  $filetypes = array("jpg","png","svg"); // Try these types in order.
   while($r = $teamResults->fetch_assoc()) {
     $role = $r["position"];
     $teamArr[$role] = $r["personname"];
     $teamIdArr[$role] = $r["personid"];
 
-    // TODO: Assumes all files lowercased and jpg
-    $image_path = $PEOPLE_IMAGE_PATH_PREFIX.$teamIdArr[$role].".jpg";
-    if (!file_exists($image_path)) {
+    // TODO: Assumes all files lowercased
+    $foundFileType = false;
+    foreach ($filetypes as $ext) {
+      $image_path = $PEOPLE_IMAGE_PATH_PREFIX.$teamIdArr[$role].".".$ext;
+      if (file_exists($image_path)) {
+        $teamIdImageType[$role] = $ext;
+        $foundFileType = true;
+        break;
+      }
+    }
+    if (!$foundFileType) {
       $missingImageRoles[$role] = $image_path;
     }
   }
@@ -206,8 +218,6 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
     }
     echo("\n");
   }
-  // TODO: check for missing photos, if any photos are missing, revert
-  // to names only (2 columns, 3 names each, below centered buggy photo)
 
   // Note: Total page only allocates 95vh (not 100), so we can get a
   // transparent border around it.
@@ -246,7 +256,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
             // Image Row
             echo("<div class=\"row h-75\"><div class=\"col h-100 text-center px-0\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdArr["Driver"].".jpg\">");
+            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdArr["Driver"].".".$teamIdImageType["Driver"]."\">");
             echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 10px; bottom: 10px; z-index: 3\" src=\"".$roleImageURIs["Driver"]."\">");
             echo("</div></div></div>");
 
@@ -289,7 +299,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
             // Image Row
             echo("<div class=\"row\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdArr[$role].".jpg\">");
+            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdArr[$role].".".$teamIdImageType[$role]."\">");
             echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 3px; bottom: 3px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
             echo("</div></div></div>");
 
