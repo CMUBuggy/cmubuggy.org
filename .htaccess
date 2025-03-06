@@ -23,9 +23,17 @@ RedirectMatch 301 (?i)/join/?$ /membership
 Redirect 301 /admin /news/wp-admin
 # /gallery-2021 was a temporary thing while we migrated to smugmug.
 Redirect 301 /gallery-2021 /smugmug
-
+# /about/code-of-conduct got revised to /about/our-rules when we moved
+# the bylaws and constitution to be the same place.
+Redirect 301 /about/code-of-conduct /about/our-rules
 # Some old links pointed at /resources before it got merged with the reference section.
-Redirect 302 /resources /reference
+Redirect 301 /resources /reference
+
+# Several pages used to be top level links served by wordpress that have moved one level
+# down for breadcrumb reasons.  Wordpress canonicalization sometimes will save us but isn't
+# reliable (and tends to add /news also) so make sure they go where we want.
+Redirect 301 /video /history/video
+Redirect 301 /seniors /membership/seniors
 
 # Things that are obsolete and didn't survive the mysql/php upgrades in 2023.
 # 302 because they _might_ come back...
@@ -36,12 +44,6 @@ Redirect 302 /resources /reference
 # RewriteRule ^(gallery/var/albums/.*)	$1	[L,NC]
 RewriteRule ^gallery/?		/news/obsolete	[R,L,NC]
 RewriteRule ^forum/?		/news/obsolete	[R,L,NC]
-
-# Several pages used to be top level links served by wordpress that have moved one level
-# down for breadcrumb reasons.  Wordpress canonicalization sometimes will save us but isn't
-# reliable (and tends to add /news also) so make sure they go where we want.
-Redirect 301 /video /history/video
-Redirect 301 /seniors /membership/seniors
 
 # First pass at dealing with legacy org ids, which we need to get out
 # of search engines by redirecting them.  Preferably should be done
