@@ -26,6 +26,7 @@ Redirect 301 /gallery-2021 /smugmug
 # /about/code-of-conduct got revised to /about/our-rules when we moved
 # the bylaws and constitution to be the same place.
 Redirect 301 /about/code-of-conduct /about/our-rules
+Redirect 302 /news/about/code-of-conduct /about/our-rules
 # Some old links pointed at /resources before it got merged with the reference section.
 Redirect 301 /resources /reference
 
