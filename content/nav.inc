@@ -120,8 +120,8 @@
       'href' => '/about/website',
     ],
     5 => (object) [
-      'label' => 'Code of Conduct',
-      'href' => '/about/code-of-conduct',
+      'label' => 'Our Rules',
+      'href' => '/about/our-rules',
     ],
   ];
 
@@ -310,6 +310,13 @@
         14 => (object) [
           'label' => 'Raceday Previews',
           'href' => '/news/history/raceday-previews',
+        ],
+        15 => (object) [
+          'divider' => true,
+        ],
+        16 => (object) [
+          'label' => 'BAA Leadership',
+          'href' => '/history/baa',
         ],
       ],
     ],
