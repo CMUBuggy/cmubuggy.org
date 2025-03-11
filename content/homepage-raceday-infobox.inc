@@ -1,27 +1,36 @@
 <?php
-  // Pick one single random image for this box - no carousel currently.
-  $raceday_images = [ "i-HDjQKn8", // Spirit B Mens Hill 1
-                      "i-QrjFLMV", // DG Insite Drops
-                      "i-SNt258X", // SigNu/Spirit Womens Hill 1
-                      "i-9ZPTkPs", // Krait Freeroll
-                      "i-S2XcWs4", // Pika Women Hill 2
-                      "i-RrLG22N", // Apex Tunnel
-                      "i-pcRHdjB"  // Robo Chute
+  // Pick one single random image for this box - no carousel to speed loading and
+  // show larger images.
+  $raceday_images = [ "i-bqX7K5z", // Group Photo
+                      "i-9WCDKch", // CIA/APEX Design Comp Buggies
+                      "i-vZ9M6wp", // Barbie Chute                      
+                      "i-rnVkqnL", // Womens Heat 3 Hill 1
+                      "i-5bg2V9b", // Hydra Driver
+                      "i-wBjfzW6", // Broadcasters
+                      "i-L2VRdkL", // Invicid Chute
+                      "i-F7jPsff", // Spectators
+
+                      "i-6qzDGX8", // SDC First Place All Gender
+                      "i-3Bwj8jV", // CIA First Place Mens
+                      "i-DrKbQbg", // CIA First Place Womens
   ];
 
+  $CURRENT_YEAR = date("Y");
+
+  // Set this to true the week of raceday itself after confirming the pages are all ready.
+  $RACEDAY_WEEK = false;
+
   // Guide button only shows if we have a path in this variable.
-  // $raceday_guide_file = "";
-  $raceday_guide_file = "/files/raceday-previews/2024FinalsGuide.pdf";
+  $raceday_guide_file = "";
+  // $raceday_guide_file = "/files/raceday-previews/2024FinalsGuide.pdf";
+
 ?>
 
   <div class="card mb-3">
-      <h5 class="card-header"><?php echo($RACEDAY_WORD); ?> 2024 is <?php echo($timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
+      <h5 class="card-header"><?php echo($RACEDAY_WORD." ".$CURRENT_YEAR." is ".$timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
       <img class="card-img-top" src="<?php echo(makeSmugmugUrl($raceday_images[array_rand($raceday_images)], "M")); ?>">
       <div class="card-body">
 <?php
-  // Set this to true the week of raceday itself after confirming the pages are all ready.
-  $RACEDAY_WEEK = true;
-
   if ($RACEDAY_WEEK) {
 ?>
         <div class="d-flex justify-content-center">
@@ -45,8 +54,9 @@
 <?php } ?>
         <p>Key Events:</p>
         <ul>
-          <li>Buggy Bash & Lead Truck Auction: Friday Apr 12, 7-9pm.</li>
-          <li>Finals Races: Saturday Apr 13, 7:30am-Noon</li>
+          <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
+          <li>Preliminary Races: Friday Apr 4, 8am-1pm</li>
+          <li>Finals Races: Saturday Apr 5, 8am-Noon</li>
         </ul>
 <?php
   if (!$RACEDAY_WEEK) {
