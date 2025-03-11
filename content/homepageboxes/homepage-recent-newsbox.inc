@@ -1,7 +1,10 @@
 <?php
   // This requires the contentfeed fetching to be done, so we load that using
   // include_once.  It should only run once, of course.
-  include_once("contentfeed_fetch.inc");
+  //
+  // Because we execute in the context of index.php, this include needs to be relative /,
+  // not relative to our current file location.
+  include_once("content/contentfeed_fetch.inc");
   $MAX_RECENT_NEWS = 2;
 
   // Sanity check!
