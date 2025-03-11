@@ -2,40 +2,42 @@
   <div class="col-md-8">
     <?php
       // Useful to quickly enable in the case of rain on raceday.
-      // include("homepage-raceday-rainout.inc");
+      // include("homepageboxes/homepage-raceday-rainout.inc");
 
       // For when the auction goes live (includes a timeout for end of auction)
-      // include("homepage-raceday-auction.inc");
+      // include("homepageboxes/homepage-raceday-auction.inc");
 
       // Endowment Application Promobox (includes a timeout)
-      // include("homepage-endowmentbox.inc");
+      // include("homepageboxes/homepage-endowmentbox.inc");
 
       // Giving Tuesday Promo Box (has start: Black Friday & end dates: End of GT)
-      // include("homepage-givingtuesday.inc");
+      // include("homepageboxes/homepage-givingtuesday.inc");
 
       // Store/Merch Promo Box (times out approximately when store closes)
-      // include("homepage-raceday-merch.inc");
+      // include("homepageboxes/homepage-merchbox.inc");
 
       // -----------------------------------
       // All Announcement Go Above This Line
-      // All Standard Boxes Go Below
+      // All Raceday Boxes Next
       // -----------------------------------
 
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
-      // include("homepage-raceday-countdown.inc");
+      // include("homepageboxes/homepage-raceday-countdown.inc");
 
       // Leaderboard (disables via config spreadsheet, but still reads firebase
       // if code is included, so make sure it is commented out if it isn't raceday)
-      // include("homepage-raceday-leaderbox.inc");
+      // include("homepageboxes/homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
-      include("homepage-raceday-infobox.inc");
+      include("homepageboxes/homepage-raceday-infobox.inc");
 
+      // -----------------------------------
+      // All Long Running Boxes Go Below
+      // -----------------------------------
 
       // Handle Left Column Recent News Box Here!
-      include("homepage-recent-newsbox.inc");
-
+      include("homepageboxes/homepage-recent-newsbox.inc");
 
       // Results from most recent raceday
       // 2 boxes: Teams that placed & Awards
@@ -43,21 +45,20 @@
       // Goes up ASAP after a raceday completes.
       //
       // Should be removed sometime in the fall when it starts to feel stale.
-      // include("homepage-raceday-results.inc");
+      // include("homepageboxes/homepage-raceday-results.inc");
 
       // Twitter Embed content
       //
       // Disabled because it is both slow and twitter has broken their API so it is much harder
       // for us to use.  Can be reenabled if we need for, say, raceday.
-      if (false) {
-        include("homepage-twitterbox.inc");
-      }
+      //
+      // include("homepageboxes/homepage-twitterbox.inc");
 
-  // About Buggy and About the BAA Boxes.
-  include("homepage-aboutboxes.inc");
+      // About Buggy and About the BAA Boxes.
+      include("homepageboxes/homepage-aboutboxes.inc");
 
-  // CTS Box.  Might want to move higher in the list when new episodes are happening.
-  include("homepage-ctsbox.inc");
+      // CTS Box.  Might want to move higher in the list when new episodes are happening.
+      include("homepageboxes/homepage-ctsbox.inc");
 ?>
 
 
