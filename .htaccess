@@ -209,6 +209,9 @@ RewriteRule		^history/org[/]*$									index.php?s=history&p=orglist					[NC,L]
 # redirect it (301) back to /history/buggybook
 RewriteRule		^history/buggybooks[/]*$							/history/buggybook										[R=301,NC,L]
 
+# /history/buggies is probably just looking for the list of buggies
+RewriteRule		^history/buggies[/]*$							/history/buggy										[R=301,NC,L]
+
 # person needs to have the QSA flag in order to preserve the query string for searches.
 #
 # /history/people is a rewrite since otherwise it goes to /about/people and this
