@@ -1,7 +1,7 @@
 <?php
 
 $FIRST_YEAR = 1965;
-$LAST_YEAR = 2023;
+$LAST_YEAR = 2024;
 
 // Years in the above range which lack a buggy book (e.g. covid)
 $SKIP_YEARS = [2020, 2021];
