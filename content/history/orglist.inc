@@ -33,7 +33,7 @@
 
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
-    <a id="active-tab" href="#tab-active" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-active" aria-selected="true">Active Racing Orgs <span class="badge badge-primary"><?php echo(countOrgs(1,1)); ?></span></a>
+    <a id="active-tab" href="#tab-active" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-active" aria-selected="true">Racing Orgs <span class="badge badge-primary"><?php echo(countOrgs(1,1)); ?></span></a>
   </li>
   <li class="nav-item">
     <a id="past-tab" href="#tab-past" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-past" aria-selected="false">Past Racing Orgs <span class="badge badge-primary"><?php echo(countOrgs(0,1)); ?></span></a>
