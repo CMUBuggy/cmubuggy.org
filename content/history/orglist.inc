@@ -41,6 +41,9 @@
   <li class="nav-item">
     <a id="support-tab" href="#tab-support" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-support" aria-selected="false">Support Orgs <span class="badge badge-primary"><?php echo(countOrgs(1,0)); ?></span></a>
   </li>
+  <li class="nav-item">
+    <a id="support-past-tab" href="#tab-support-past" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-support-past" aria-selected="false">Past Support Orgs <span class="badge badge-primary"><?php echo(countOrgs(0,0)); ?></span></a>
+  </li>
 </ul>
 <div class="tab-content">
   <div class="tab-pane fade show active" id="tab-active" role="tabpanel" aria-labelledby="active-tab">
@@ -64,6 +67,14 @@
     <ul class="list-unstyled">
       <?php
         echoOrgs(1, 0);
+      ?>
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="tab-support-past" role="tabpanel" aria-labelledby="support-past-tab">
+    <h1>Past Support Organizations</h1>
+    <ul class="list-unstyled">
+      <?php
+        echoOrgs(0, 0);
       ?>
     </ul>
   </div>
