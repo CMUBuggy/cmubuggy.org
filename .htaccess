@@ -153,8 +153,9 @@ Redirect 302 /spotify https://open.spotify.com/show/3wbaYb92dfzuWDUbOOxHWi
 # New Firestore App
 Redirect 302 /timingapp https://buggy-timing-900.web.app/
 
-# 2024 Member Preview Link to Truck Weekend Time Sheet
+# Member Preview Link to Truck Weekend Time Sheet
 Redirect 302 /truck24times https://docs.google.com/spreadsheets/d/18EhfvinzOHDm44hKXtO_q9uOKCCDXqEfgRgHqLdqlxU/edit#gid=347337235
+Redirect 302 /truck25times https://docs.google.com/spreadsheets/d/1iFwkSQrl8uU5pEsoPZhtw2daWNo390tcvV5akFGqoCo/edit?gid=347337235
 
 # 2024 Giving Tuesday
 # News Post
