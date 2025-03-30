@@ -120,6 +120,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
   $orderedRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
   $pusherRoles = array_slice($orderedRoles, 1, 5);
   $roleImageURIs = array ("Driver" => "/img/logos/sweepstakes_logo_notext.svg",
+                                      // e.g. "/img/tvlogos/driver-icon.png",
                           "Hill 1" => "/img/logos/sweepstakes_logo_notext.svg",
                           "Hill 2" => "/img/logos/sweepstakes_logo_notext.svg",
                           "Hill 3" => "/img/logos/sweepstakes_logo_notext.svg",
@@ -170,7 +171,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
   // as unknown by default.  This also fills in anyone missing as unknown.
   $teamArr = array();
   $teamIdArr = array();
-  $teamIdImageType = array();
+  $teamIdImageFile = array();
   foreach ($orderedRoles as $role) {
     $teamArr[$role] = "<i>Unknown</i>";
   }
@@ -179,7 +180,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
   if ($header["class"] == 'Robotic') {
     $teamArr["Driver"] = "<i>Robotic Buggy</i>";
     $teamIdArr["Driver"] = "robot-driver";
-    $teamIdImageType["Driver"] = "svg";
+    $teamIdImageFile["Driver"] = "robot-driver.svg";
   }
 
   // Map of Role -> Image Path that are missing
@@ -197,13 +198,14 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
     foreach ($filetypes as $ext) {
       $image_path = $PEOPLE_IMAGE_PATH_PREFIX.$teamIdArr[$role].".".$ext;
       if (file_exists($image_path)) {
-        $teamIdImageType[$role] = $ext;
+        $teamIdImageFile[$role] = $teamIdArr[$role].".".$ext;
         $foundFileType = true;
         break;
       }
     }
     if (!$foundFileType) {
       $missingImageRoles[$role] = $image_path;
+      // TODO: Add a placeholder image to $teamIdImageFile
     }
   }
 
@@ -212,7 +214,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
     $HAVE_IMAGES = false;
 
     // Log what images are missing into the generated html, for debugging purposes.
-    echo("\n\n<!-- did not find all image files, reverting to text only -->\n");
+    echo("\n\n<!-- did not find enough image files, reverting to text only -->\n");
     foreach ($missingImageRoles as $role => $path) {
       echo("<!-- missing image: ".$role." -> ".$path." -->\n");
     }
@@ -256,7 +258,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
             // Image Row
             echo("<div class=\"row h-75\"><div class=\"col h-100 text-center px-0\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdArr["Driver"].".".$teamIdImageType["Driver"]."\">");
+            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdImageFile["Driver"]."\">");
             echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 10px; bottom: 10px; z-index: 3\" src=\"".$roleImageURIs["Driver"]."\">");
             echo("</div></div></div>");
 
@@ -299,7 +301,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
             // Image Row
             echo("<div class=\"row\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdArr[$role].".".$teamIdImageType[$role]."\">");
+            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdImageFile[$role]."\">");
             echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 3px; bottom: 3px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
             echo("</div></div></div>");
 
