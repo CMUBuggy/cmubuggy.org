@@ -86,10 +86,6 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 #
 # cmubuggy.org/live: This is the link that is directly mentioned in the
 # toolbar of the /raceday pages. This should _always_ be a 302 redirect.
-#
-# On non-raceday, /live can be redirected to our own wordpress page.
-# /raceday/livestream is the wordpress embedded livestream page
-# Redirect 302 /live /raceday/livestream
 
 # On Raceday, we should redirect /live to the site of the stream itself.
 #
@@ -98,7 +94,12 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 # 2023 CMUtv Livestream
 # Redirect 302 /live https://livestream.com/cmutvlive/buggy2023
 # 2024 CMUtv Livestream
-Redirect 302 /live https://livestream.com/cmutvlive/buggy2024
+# Redirect 302 /live https://livestream.com/cmutvlive/buggy2024
+# 2025 (2 different links)
+# Day 1
+Redirect 302 /live https://www.youtube.com/live/Z0IWXqoaLpk
+# Day 2
+# Redirect 302 /live https://www.youtube.com/live/qeC1cDllS8M
 
 # /raceday/live was a nonexistant page that /live pointed at in early 2022,
 # so this ensures we get to a reasonable spot.  Not sure how critical this
