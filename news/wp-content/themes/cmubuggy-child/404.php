@@ -13,20 +13,22 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'wp-bootstrap-starter' ); ?></h1>
-				</header><!-- .page-header -->
+                           <div class="row">
+                           <div class="col-sm-3">
+                             <img src="/img/tool-schenley-right.png" class="img-fluid">
+                           </div>
+                           <div class="col-sm-9">
+                             <header class="page-header">
+				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'wp-bootstrap-starter' ); ?></h1>
+                             </header><!-- .page-header -->
 
-				<div class="page-content">
+			     <div class="page-content">
 					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'wp-bootstrap-starter' ); ?></p>
-
 					<?php
 						get_search_form();
-
-
 					?>
-
-				</div><!-- .page-content -->
+			     </div><!-- .page-content -->
+                           </div></div><!-- col-9, row -->
 			</section><!-- .error-404 -->
 
 		</main><!-- #main -->
