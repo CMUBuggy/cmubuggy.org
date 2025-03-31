@@ -1,7 +1,7 @@
 <?php
-  // Time out shortly before auction end. (2024: 9pm Apr 11)
+  // Time out shortly before auction end. (2025: 9pm Apr 3)
   // (default timezone already set in pre-content.inc)
-  $auctionenddate = mktime(20, 59, 0, 4, 11, 2024);
+  $auctionenddate = mktime(20, 59, 0, 4, 3, 2025);
 
   $auctionType = "Prelim";
   //$auctionType = "Finals";
