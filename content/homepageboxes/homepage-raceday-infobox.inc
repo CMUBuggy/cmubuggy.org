@@ -23,8 +23,8 @@
   // set to true when the speepstakes-published public heat schedule is ready.
   // (you also need to update the relevant wordpress page with that link)
   //
-  // only matters if RACEDAY_WEEK=turned
-  $HEATS_READY = false;
+  // only matters if RACEDAY_WEEK=true
+  $HEATS_READY = true;
 
   // Guide button only shows if we have a path in this variable.
   $raceday_guide_file = "";
