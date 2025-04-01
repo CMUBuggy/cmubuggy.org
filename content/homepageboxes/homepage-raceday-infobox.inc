@@ -18,7 +18,13 @@
   $CURRENT_YEAR = date("Y");
 
   // Set this to true the week of raceday itself after confirming the pages are all ready.
-  $RACEDAY_WEEK = false;
+  $RACEDAY_WEEK = true;
+
+  // set to true when the speepstakes-published public heat schedule is ready.
+  // (you also need to update the relevant wordpress page with that link)
+  //
+  // only matters if RACEDAY_WEEK=turned
+  $HEATS_READY = false;
 
   // Guide button only shows if we have a path in this variable.
   $raceday_guide_file = "";
@@ -39,7 +45,9 @@
           <a href="/chat" class="btn btn-info m-1 d-flex align-items-center">Chat</a>
         </div><div class="d-flex justify-content-center mb-2">
           <a href="/raceday/rosters" class="btn btn-secondary m-1 d-flex align-items-center">Rosters</a>
+<?php if ($HEATS_READY) { ?>
           <a href="/raceday/heats" class="btn btn-secondary m-1 d-flex align-items-center">Heats</a>
+<?php } ?>
           <a href="/raceday/leaderboard" class="btn btn-secondary m-1 d-flex align-items-center">Leaderboard</a>
 <?php
           if (!empty($raceday_guide_file)) {
