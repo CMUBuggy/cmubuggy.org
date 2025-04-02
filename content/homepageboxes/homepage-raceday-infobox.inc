@@ -23,7 +23,7 @@
   // set to true when the DB update with the current rosters is available.
   //
   // only matters if RACEDAY_WEEK=true
-  $ROSTERS_READY = false;
+  $ROSTERS_READY = true;
 
   // set to true when the sweepstakes-published public heat schedule is ready.
   // (you also need to update the relevant wordpress page with that link)
