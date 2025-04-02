@@ -33,7 +33,7 @@
 
   // Guide button only shows if we have a path in this variable.
   $raceday_guide_file = "";
-  // $raceday_guide_file = "/files/raceday-previews/2024FinalsGuide.pdf";
+  //$raceday_guide_file = "/files/raceday-previews/2024FinalsGuide.pdf";
 
 ?>
 
@@ -48,14 +48,18 @@
           <a href="/<?php echo($RACEDAY_URL_PART) ?>" class="btn btn-primary m-1 d-flex align-items-center"><?php echo($RACEDAY_WORD); ?> Schedule</a>
           <a href="/live" class="btn btn-info m-1 d-flex align-items-center">Livestream</a>
           <a href="/chat" class="btn btn-info m-1 d-flex align-items-center">Chat</a>
+          <a href="/raceday/faq" class="btn btn-info m-1 d-flex align-items-center">FAQ</a>
         </div><div class="d-flex justify-content-center mb-2">
+
 <?php if ($ROSTERS_READY) { ?>
           <a href="/raceday/rosters" class="btn btn-secondary m-1 d-flex align-items-center">Rosters</a>
 <?php }
       if ($HEATS_READY) { ?>
           <a href="/raceday/heats" class="btn btn-secondary m-1 d-flex align-items-center">Heats</a>
 <?php } ?>
+
           <a href="/raceday/leaderboard" class="btn btn-secondary m-1 d-flex align-items-center">Leaderboard</a>
+
 <?php
           if (!empty($raceday_guide_file)) {
 ?>
