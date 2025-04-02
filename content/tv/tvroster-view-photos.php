@@ -198,19 +198,19 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
     foreach ($filetypes as $ext) {
       $image_path = $PEOPLE_IMAGE_PATH_PREFIX.$teamIdArr[$role].".".$ext;
       if (file_exists($image_path)) {
-        $teamIdImageFile[$role] = $teamIdArr[$role].".".$ext;
+        $teamIdImageFile[$role] = $PEOPLE_IMAGE_URI.$teamIdArr[$role].".".$ext;
         $foundFileType = true;
         break;
       }
     }
     if (!$foundFileType) {
       $missingImageRoles[$role] = $image_path;
-      // TODO: Add a placeholder image to $teamIdImageFile
+      $teamIdImageFile[$role] = "/img/logos/sweepstakes_logo_notext.svg";
     }
   }
 
   $HAVE_IMAGES = true;
-  if (count($missingImageRoles) > 0) {
+  if (count($missingImageRoles) > 4) {
     $HAVE_IMAGES = false;
 
     // Log what images are missing into the generated html, for debugging purposes.
@@ -258,7 +258,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
             // Image Row
             echo("<div class=\"row h-75\"><div class=\"col h-100 text-center px-0\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdImageFile["Driver"]."\">");
+            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"".$teamIdImageFile["Driver"]."\">");
             echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 10px; bottom: 10px; z-index: 3\" src=\"".$roleImageURIs["Driver"]."\">");
             echo("</div></div></div>");
 
@@ -301,7 +301,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
             // Image Row
             echo("<div class=\"row\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"".$PEOPLE_IMAGE_URI.$teamIdImageFile[$role]."\">");
+            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"".$teamIdImageFile[$role]."\">");
             echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 3px; bottom: 3px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
             echo("</div></div></div>");
 
