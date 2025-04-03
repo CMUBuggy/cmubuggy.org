@@ -165,6 +165,10 @@
           'href' => '/chat',
           'external' => true
         ],
+        8 => (object) [
+          'label' => 'FAQ',
+          'href' => '/raceday/faq',
+        ],
       ],
     ]);
   }
