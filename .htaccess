@@ -84,8 +84,8 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 
 #### Livestream related links.
 #
-# cmubuggy.org/live: This is the link that is directly mentioned in the
-# toolbar of the /raceday pages. This should _always_ be a 302 redirect.
+# cmubuggy.org/live: This is the link that is directly mentioned on the home page
+# for raceday. This should _always_ be a 302 redirect.
 
 # On Raceday, we should redirect /live to the site of the stream itself.
 #
@@ -241,6 +241,12 @@ RewriteRule		^raceday/rosters/([0-9]+)/([a-z0-9]+)/?$			index.php?s=raceday&p=ro
 # Rosters with no parameter has some current-year based defaulting logic.
 RewriteRule		^raceday/rosters[/]*$								index.php?s=raceday&p=rosters					[NC,L]
 
+# Helper raceday links because people sometimes expect them to exist.
+Redirect 302 /leaderboard /raceday/leaderboard
+Redirect 302 /rosters /raceday/rosters
+Redirect 302 /heats /raceday/heats
+
+# Direct links to annual published heat schedule by sweepstakes.
 Redirect 302 /raceday/rd24-heats https://docs.google.com/spreadsheets/d/e/2PACX-1vTHgAfJyY9UY6ut6qeAYZ7wmP4DBSPDjm84ckn_ZquDrRxaeCas31xVX-dWZ94iTMTzLR4myDRbwskF/pubhtml
 Redirect 302 /raceday/rd25-heats https://docs.google.com/spreadsheets/d/e/2PACX-1vSJd6rPt-bSpjVw1vQfrbU6Ms_WfRb2u-yjyeohINSpOXerl9pd5K5xv3FSwl2O1EX-vq0pb3nXWQ6o/pubhtml?gid=480588153&single=true
 
