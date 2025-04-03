@@ -2,7 +2,7 @@
   // Turn this on to enable the raceday menu and merge the About Buggy / About BAA menus
   // to make room for the additional menu.  Should be done roughly a week before raceday
   // when content is prepared.
-  $RACEDAY_MENU_ACTIVE = false;
+  $RACEDAY_MENU_ACTIVE = true;
 
   // These arrays define the structure of the menubar.  We first define the about menus,
   // and then use array_push to assemble the final menu out of these parts, as well as
