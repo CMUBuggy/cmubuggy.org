@@ -71,7 +71,11 @@
 ?>
         <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about all the events.</p>
 <?php } ?>
-        <p>Key Events:  Friday Races Start Time: <b>Not before 10am</b> (<a href="https://cmubuggy.org/news/2025/04/raceday-2024-friday-april-4-delayed-start/">Learn More</a>)</p>
+        <p>Key Events:</p>
+        <ul>
+          <li>Mens &amp; Womens Finals: Saturday Apr 5, 8am-Noon</li>
+        </ul>
+        <p><i>Any changes due to weather overnight will be published in our <a href="/news">news feed</a> as we become aware</i></p>
 <?php
 //        <ul>
 //          <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
