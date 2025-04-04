@@ -5,7 +5,7 @@
       // include("homepageboxes/homepage-raceday-rainout.inc");
 
       // For when the auction goes live (includes a timeout for end of auction)
-      include("homepageboxes/homepage-raceday-auction.inc");
+      // include("homepageboxes/homepage-raceday-auction.inc");
 
       // Endowment Application Promobox (includes a timeout)
       // include("homepageboxes/homepage-endowmentbox.inc");
@@ -27,7 +27,7 @@
 
       // Leaderboard (disables via config spreadsheet, but still reads firebase
       // if code is included, so make sure it is commented out if it isn't raceday)
-      // include("homepageboxes/homepage-raceday-leaderbox.inc");
+      include("homepageboxes/homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
       include("homepageboxes/homepage-raceday-infobox.inc");
