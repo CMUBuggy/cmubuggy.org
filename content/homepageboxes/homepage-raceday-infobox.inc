@@ -71,12 +71,14 @@
 ?>
         <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about all the events.</p>
 <?php } ?>
-        <p>Key Events:</p>
-        <ul>
-          <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
-          <li>Preliminary Races: Friday Apr 4, 8am-1pm</li>
-          <li>Finals Races: Saturday Apr 5, 8am-Noon</li>
-        </ul>
+        <p>Key Events:  Friday Races Start Time: <b>Not before 10am</b> (<a href="https://cmubuggy.org/news/2025/04/raceday-2024-friday-april-4-delayed-start/">Learn More</a>)</p>
+<?php
+//        <ul>
+//          <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
+//          <li>Preliminary Races: Friday Apr 4, 8am-1pm</li>
+//         <li>Finals Races: Saturday Apr 5, 8am-Noon</li>
+//        </ul>
+?>
 <?php
   if (!$RACEDAY_WEEK) {
 ?>
