@@ -71,11 +71,8 @@
 ?>
         <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about all the events.</p>
 <?php } ?>
-        <p>Key Events:</p>
-        <ul>
-          <li>Mens &amp; Womens Finals: Saturday Apr 5: <b>RACES ARE DELAYED</b></li>
-        </ul>
-        <p><i>Any changes due to weather overnight will be published in our <a href="/news">news feed</a> as we become aware</i></p>
+
+        <p><i>Any schedule updates will be published in our <a href="/news">news feed</a> as we become aware</i></p>
 <?php
 //        <ul>
 //          <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
