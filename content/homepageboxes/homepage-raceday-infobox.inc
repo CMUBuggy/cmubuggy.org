@@ -73,7 +73,7 @@
 <?php } ?>
         <p>Key Events:</p>
         <ul>
-          <li>Mens &amp; Womens Finals: Saturday Apr 5, 8am-Noon</li>
+          <li>Mens &amp; Womens Finals: Saturday Apr 5, 8:30am-1:30pm</li>
         </ul>
         <p><i>Any changes due to weather overnight will be published in our <a href="/news">news feed</a> as we become aware</i></p>
 <?php
