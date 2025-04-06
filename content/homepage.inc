@@ -45,7 +45,7 @@
       // Goes up ASAP after a raceday completes.
       //
       // Should be removed sometime in the fall when it starts to feel stale.
-      // include("homepageboxes/homepage-raceday-results.inc");
+      include("homepageboxes/homepage-raceday-results.inc");
 
       // Twitter Embed content
       //
@@ -83,7 +83,7 @@
         <dd class="col-7 text-right"><a href="/history/team/2017.SDC.WA">2:23.27</a></dd>
 
         <dt class="col-5">All Gender</dt>
-        <dd class="col-7 text-right"><a href="/history/team/2024.SDC.NA">2:36.27</a></dd>
+        <dd class="col-7 text-right"><a href="/history/team/2025.SDC.NA">2:25.62</a></dd>
       </dl>
     </section>
 
