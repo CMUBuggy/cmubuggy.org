@@ -17,8 +17,17 @@
 
   $CURRENT_YEAR = date("Y");
 
+  $COUNTDOWN_STRING = $RACEDAY_WORD." ".$CURRENT_YEAR." is ".$timerSmallWord." ".$timerCount." ".$timerUnit;
+
+  // Bonus Raceday
+  $COUNTDOWN_STRING = "Raceday 2025 is ongoing";
+
   // Set this to true the week of raceday itself after confirming the pages are all ready.
   $RACEDAY_WEEK = true;
+
+  // Hack for RD2025
+  // $SHOW_SCHEDULE = true;
+  $SHOW_SCHEDULE = false;
 
   // set to true when the DB update with the current rosters is available.
   //
@@ -29,23 +38,25 @@
   // (you also need to update the relevant wordpress page with that link)
   //
   // only matters if RACEDAY_WEEK=true
-  $HEATS_READY = true;
+  $HEATS_READY = false;
 
   // Guide button only shows if we have a path in this variable.
   // $raceday_guide_file = "";
-  $raceday_guide_file = "/files/raceday-previews/2025PrelimsGuide.pdf";
+  // $raceday_guide_file = "/files/raceday-previews/2025PrelimsGuide.pdf";
 
 ?>
 
   <div class="card mb-3">
-      <h5 class="card-header"><?php echo($RACEDAY_WORD." ".$CURRENT_YEAR." is ".$timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
+      <h5 class="card-header"><?php echo($COUNTDOWN_STRING); ?>!</h5>
       <img class="card-img-top" src="<?php echo(makeSmugmugUrl($raceday_images[array_rand($raceday_images)], "M")); ?>">
       <div class="card-body">
 <?php
   if ($RACEDAY_WEEK) {
 ?>
         <div class="d-flex justify-content-center">
+<?php if ($SHOW_SCHEDULE) { ?>
           <a href="/<?php echo($RACEDAY_URL_PART) ?>" class="btn btn-primary m-1 d-flex align-items-center"><?php echo($RACEDAY_WORD); ?> Schedule</a>
+<?php } ?>
           <a href="/live" class="btn btn-info m-1 d-flex align-items-center">Livestream</a>
           <a href="/chat" class="btn btn-info m-1 d-flex align-items-center">Chat</a>
           <a href="/raceday/faq" class="btn btn-info m-1 d-flex align-items-center">FAQ</a>
@@ -72,8 +83,11 @@
         <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about all the events.</p>
 <?php } ?>
 
-        <p><i>Any schedule updates will be published in our <a href="/news">news feed</a> as we become aware</i></p>
+        <p>Mens and Womens races <a href="https://cmubuggy.org/news/2025/04/raceday-2025-to-continue-next-weekend-volunteers-needed/">have been scheduled</a>
+           for April 12 and 13.  We need your help! <a href="/volunteer">Please Volunteer!</a>
 <?php
+//        <p><i>Any schedule updates will be published in our <a href="/news">news feed</a> as we become aware</i></p>
+//
 //        <ul>
 //          <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
 //          <li>Preliminary Races: Friday Apr 4, 8am-1pm</li>
