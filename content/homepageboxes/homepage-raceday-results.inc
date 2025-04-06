@@ -111,6 +111,16 @@
         <td><a href="/history/org/SPI">Spirit</a></td>
       </tr>
       <tr>
+        <th>Children's Choice</th>
+        <td>
+          <ol style="margin: 0; padding: 0 0 0 1.25em;">
+            <li><a href="/history/org/SPI">Spirit</a></li>
+            <li><a href="/history/org/SEP">SigEp</a></li>
+            <li><a href="/history/org/APX">Apex</a></li>
+          </ol>
+        </td>
+      </tr>
+      <tr>
         <th>Chair of the Year</th>
         <td><a href="/history/person/Slgreen">Sam Green</a> - <a href="/history/org/APX">Apex</a></td>
       </tr>
