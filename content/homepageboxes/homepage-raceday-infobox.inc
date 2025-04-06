@@ -41,7 +41,7 @@
   $HEATS_READY = false;
 
   // Guide button only shows if we have a path in this variable.
-  // $raceday_guide_file = "";
+  $raceday_guide_file = "";
   // $raceday_guide_file = "/files/raceday-previews/2025PrelimsGuide.pdf";
 
 ?>
@@ -72,7 +72,7 @@
           <a href="/raceday/leaderboard" class="btn btn-secondary m-1 d-flex align-items-center">Leaderboard</a>
 
 <?php
-          if (!empty($raceday_guide_file)) {
+          if ($raceday_guide_file != "") {
 ?>
             <a href="<?php echo($raceday_guide_file); ?>" class="btn btn-secondary m-1 d-flex align-items-center">Spotting Guide</a>
 <?php
