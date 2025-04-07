@@ -1,18 +1,21 @@
 <?php
   // Pick one single random image for this box - no carousel to speed loading and
   // show larger images.
-  $raceday_images = [ "i-bqX7K5z", // Group Photo
-                      "i-9WCDKch", // CIA/APEX Design Comp Buggies
-                      "i-vZ9M6wp", // Barbie Chute                      
-                      "i-rnVkqnL", // Womens Heat 3 Hill 1
-                      "i-5bg2V9b", // Hydra Driver
-                      "i-wBjfzW6", // Broadcasters
-                      "i-L2VRdkL", // Invicid Chute
-                      "i-F7jPsff", // Spectators
+  $raceday_images = [ "i-bqX7K5z", // 2024 Group Photo
+                      "i-h4h997L", // 2025 SDC Design Comp Buggies
+                      "i-CqnSVb3", // 2025 Spirit Design Comp Buggies
+                      "i-xT7Nf9f", // 2025 Design Comp Overhead
 
-                      "i-6qzDGX8", // SDC First Place All Gender
-                      "i-3Bwj8jV", // CIA First Place Mens
-                      "i-DrKbQbg", // CIA First Place Womens
+                      "i-L2VRdkL", // 2024 Invicid Chute
+                      "i-F7jPsff", // 2024 Spectators
+                      "i-5bg2V9b", // 2024 Hydra Driver
+                      "i-wBjfzW6", // 2024 Broadcasters
+                      "i-dGV79CH", // 2025 AG 2 Hill 2 Zuke Insite
+                      "i-Pb6sL4V", // 2025 SDC AG Finish Paranoia
+
+                      "i-6qzDGX8", // 2024 SDC First Place All Gender
+                      "i-3Bwj8jV", // 2024 CIA First Place Mens
+                      "i-DrKbQbg", // 2024 CIA First Place Womens
   ];
 
   $CURRENT_YEAR = date("Y");
