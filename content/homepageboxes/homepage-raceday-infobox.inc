@@ -13,7 +13,7 @@
                       "i-dGV79CH", // 2025 AG 2 Hill 2 Zuke Insite
                       "i-Pb6sL4V", // 2025 SDC AG Finish Paranoia
 
-                      "i-6qzDGX8", // 2024 SDC First Place All Gender
+                      "i-cRqwQnk", // 2025 SDC First Place All Gender
                       "i-3Bwj8jV", // 2024 CIA First Place Mens
                       "i-DrKbQbg", // 2024 CIA First Place Womens
   ];
