@@ -30,7 +30,9 @@
 
   // Hack for RD2025
   // $SHOW_SCHEDULE = true;
+  // $SHOW_BONUS = false;
   $SHOW_SCHEDULE = false;
+  $SHOW_BONUS = true;
 
   // set to true when the DB update with the current rosters is available.
   //
@@ -60,6 +62,9 @@
 <?php if ($SHOW_SCHEDULE) { ?>
           <a href="/<?php echo($RACEDAY_URL_PART) ?>" class="btn btn-primary m-1 d-flex align-items-center"><?php echo($RACEDAY_WORD); ?> Schedule</a>
 <?php } ?>
+<?php if ($SHOW_BONUS) { ?>
+          <a href="/raceday/bonus-raceday" class="btn btn-primary m-1 d-flex align-items-center">Bonus Raceday Info</a>
+<?php } ?>
           <a href="/live" class="btn btn-info m-1 d-flex align-items-center">Livestream</a>
           <a href="/chat" class="btn btn-info m-1 d-flex align-items-center">Chat</a>
           <a href="/raceday/faq" class="btn btn-info m-1 d-flex align-items-center">FAQ</a>
@@ -86,8 +91,7 @@
         <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about all the events.</p>
 <?php } ?>
 
-        <p>Mens and Womens races <a href="https://cmubuggy.org/news/2025/04/raceday-2025-to-continue-next-weekend-volunteers-needed/">have been scheduled</a>
-           for April 12 and 13.  We need your help! <a href="/volunteer">Please Volunteer!</a>
+        <p class="text-center">Any time sensitive updates about the bonus April 12 and April 13 races will be posted <a href="/raceday/bonus-raceday">here</a>.</p>
 <?php
 //        <p><i>Any schedule updates will be published in our <a href="/news">news feed</a> as we become aware</i></p>
 //
