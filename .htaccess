@@ -95,11 +95,15 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 # Redirect 302 /live https://livestream.com/cmutvlive/buggy2023
 # 2024 CMUtv Livestream
 # Redirect 302 /live https://livestream.com/cmutvlive/buggy2024
-# 2025 (2 different links)
+# 2025 (4 different links)
 # Day 1
-Redirect 302 /live https://www.youtube.com/live/Z0IWXqoaLpk
+# Redirect 302 /live https://www.youtube.com/live/Z0IWXqoaLpk
 # Day 2 - no content
 # Redirect 302 /live https://www.youtube.com/live/qeC1cDllS8M
+# Bonus Day 1
+Redirect 302 /live https://www.youtube.com/live/4ZnXRSiNjjE
+# Bonus Day 2
+# Redirect 302 /live https://www.youtube.com/live/Qwrwghs5WWQ
 
 # /raceday/live was a nonexistant page that /live pointed at in early 2022,
 # so this ensures we get to a reasonable spot.  Not sure how critical this
