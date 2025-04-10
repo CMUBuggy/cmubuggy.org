@@ -49,19 +49,19 @@
   //
   // Note that we only fetch exhibitions if there is a video to go with them, since we have nothing to display otherwise.
   $heatQuery = "SELECT number, isfinals, isreroll, h.class,
-      concat(o1.shortname, ' ', e1.team) AS team1, e1.entryid AS teamid1, e1.DQ AS dq1,
+      o1.shortname AS sn1, e1.team AS t1, e1.entryid AS teamid1, e1.DQ AS dq1, e1.class AS oclass1,
       case when isfinals = 0 and isreroll = 0 then e1.prelim
            when isfinals = 0 and isreroll = 1 then e1.reroll
            when isfinals = 1 and isreroll = 0 then e1.final
            when isfinals = 1 and isreroll = 1 and e1.finalreroll > 0 then e1.finalreroll
            when isfinals = 1 and isreroll = 1 and e1.finalreroll <= 0 then e1.reroll end AS timesec1,
-      concat(o2.shortname, ' ', e2.team) AS team2, e2.entryid AS teamid2, e2.DQ AS dq2,
+      o2.shortname AS sn2, e2.team AS t2, e2.entryid AS teamid2, e2.DQ AS dq2, e2.class AS oclass2,
       case when isfinals = 0 and isreroll = 0 then e2.prelim
            when isfinals = 0 and isreroll = 1 then e2.reroll
            when isfinals = 1 and isreroll = 0 then e2.final
            when isfinals = 1 and isreroll = 1 and e2.finalreroll > 0 then e2.finalreroll
            when isfinals = 1 and isreroll = 1 and e2.finalreroll <= 0 then e2.reroll end AS timesec2,
-      concat(o3.shortname, ' ', e3.team) AS team3, e3.entryid AS teamid3, e3.DQ AS dq3,
+      o3.shortname AS sn3, e3.team AS t3, e3.entryid AS teamid3, e3.DQ AS dq3, e3.class AS oclass3,
       case when isfinals = 0 and isreroll = 0 then e3.prelim
            when isfinals = 0 and isreroll = 1 then e3.reroll
            when isfinals = 1 and isreroll = 0 then e3.final
@@ -89,11 +89,25 @@
 
   $pheatsArr = array();
   $fheatsArr = array();
-
   // Split up the heat data into class/reroll/prelim/final buckets.
   // We are assuming the sort order is maintained here.
   while ($h = $heatData->fetch_assoc()) {
     $heattype = $h["class"] . $h["isreroll"];
+    if ($h["class"] == 'Z') {
+      // Mixed Class heats need to include the origin class of the entry.
+      $classMap = array("M" => "Men's",
+                        "W" => "Women's",
+                        "R" => "Robotic",
+                        "N" => "All Gender");
+
+      $h["team1"] = empty($h["sn1"]) ? "" : $h["sn1"]." ".$classMap[$h["oclass1"]]." ".$h["t1"];
+      $h["team2"] = empty($h["sn2"]) ? "" : $h["sn2"]." ".$classMap[$h["oclass2"]]." ".$h["t2"];
+      $h["team3"] = empty($h["sn3"]) ? "" : $h["sn3"]." ".$classMap[$h["oclass3"]]." ".$h["t3"];
+    } else {
+      $h["team1"] = empty($h["sn1"]) ? "" : $h["sn1"]." ".$h["t1"];
+      $h["team2"] = empty($h["sn2"]) ? "" : $h["sn2"]." ".$h["t2"];
+      $h["team3"] = empty($h["sn3"]) ? "" : $h["sn3"]." ".$h["t3"];
+    }
     if ($h["isfinals"] == 1) {
       $fheatsArr[$heattype][$h["number"]] = $h;
     } else {
@@ -148,13 +162,15 @@
     // for womens run earlier in the morning.  This is also why Exhibitions
     // are on top.  Of course, this doesn't always happen and shouldn't be
     // considered to have been the actual order rolls happened on the day.
-    $heattypes = array("E0","N0","N1","W0","W1","M0","M1");
+    $heattypes = array("E0","N0","N1","W0","W1","M0","M1","Z0","Z1");
     $heattypelabels = array("M0"=>"Men's",
                             "M1"=>"Men's Rerolls",
                             "W0"=>"Women's",
                             "W1"=>"Women's Rerolls",
                             "N0"=>"All Gender",
                             "N1"=>"All Gender Rerolls",
+                            "Z0"=>"Mixed Class",
+                            "Z1"=>"Mixed Class Rerolls",
                             "E0"=>"Exhibitions");
     foreach($heattypes as $type){
       if(isset($heatArr[$type])){
