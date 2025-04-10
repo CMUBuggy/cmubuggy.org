@@ -170,7 +170,7 @@
                             "N0"=>"All Gender",
                             "N1"=>"All Gender Rerolls",
                             "Z0"=>"Mixed Class",
-                            "Z1"=>"Mixed Class Rerolls",                            
+                            "Z1"=>"Mixed Class Rerolls",
                             "E0"=>"Exhibitions");
     foreach($heattypes as $type){
       if(isset($heatArr[$type])){
