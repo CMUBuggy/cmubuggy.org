@@ -27,10 +27,10 @@
 
       // Leaderboard (disables via config spreadsheet, but still reads firebase
       // if code is included, so make sure it is commented out if it isn't raceday)
-      include("homepageboxes/homepage-raceday-leaderbox.inc");
+      // include("homepageboxes/homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
-      include("homepageboxes/homepage-raceday-infobox.inc");
+      // include("homepageboxes/homepage-raceday-infobox.inc");
 
       // -----------------------------------
       // All Long Running Boxes Go Below
@@ -68,7 +68,7 @@
       <h2>Next <?php echo($RACEDAY_WORD) ?></h2>
       <div class="mb-3">
         <span title="<?php echo("$timerCount $timerUnit"); ?>">
-          <?php echo($RACEDAY_WORD) ?> 2025 is April 4&ndash;5
+          <?php echo($RACEDAY_WORD) ?> 2026 is April 9&ndash;11
         </span>
       </div>
     </section>
