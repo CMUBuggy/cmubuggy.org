@@ -16,19 +16,26 @@ if (!$SHOW_BREADCRUMBS) {
   // i-JJXb8TS Brimstone H5
   $heroImageSet = [
     // Recent
-    "i-FcQ3Ddm", // RD24 Scorch H2 **
+    "i-KN7KtHM", // RD25 Short Circut + NAND Freeroll
+    "i-MR587jb", // RD25 AG Hill 1 PiKA/Fringe
+    "i-V2KnfXf", // RD25 Lust Freeroll ***
+    "i-4hw35W8", // RD25 Driver Exhibition H2
+    // "i-L3fp2qB", // RD25 Spirit H2
+    "i-tz6FdLf", // RD25 Driver Team (?)
+
+    //"i-FcQ3Ddm", // RD24 Scorch H2 **
     "i-sQhCG45", // RD24 Barbie Freeroll **
     "i-cmGx3MF", // RD24 Raptor H5 *
     "i-qJPW5L3", // RD24 Emperor H5 *
-    // "i-JJXb8TS", // RD24 Brimstone H5
-    "i-TqZsDd9", // RD24 NAND H2 **
-    "i-JhN2bCm", // RD24 Kraken H5
+    /// "i-JJXb8TS", // RD24 Brimstone H5
+    // "i-TqZsDd9", // RD24 NAND H2 **
+    // "i-JhN2bCm", // RD24 Kraken H5
 
     "i-fVGB5jN", // RD23 Invicid Freeroll
-    "i-KjbpZrL", // RD23 Firefly Chute **
-    "i-njhFdcR", // RD23 Burnout H4
+    // "i-KjbpZrL", // RD23 Firefly Chute **
+    // "i-njhFdcR", // RD23 Burnout H4
     "i-RZDfrmG", // RD23 Firefly Driver *
-    "i-zWnmsKC", // RD23 Insite Freeroll
+    "i-zWnmsKC", // RD23 Insite Freeroll *
 
     // 21st Century
     "i-L4D74DH", // Spring 2019 Banshee Freeroll *
