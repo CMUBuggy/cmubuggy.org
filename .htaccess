@@ -239,7 +239,16 @@ RewriteRule		^history/sweepstakes[/]*$							index.php?s=history&p=sweepstakesli
 RewriteRule		^history/team[/]*$									index.php?s=history&p=orglist					[NC,L]
 
 # /raceday section
-RewriteRule		^raceday/leaderboard/?$								index.php?s=raceday&p=leaderboard				[NC,L]
+
+#
+# CMU appears to have decided that the leaderboard is what they use for "final results" (because it updates first).
+# (this page: https://www.cmu.edu/engage/alumni/events/campus/spring-carnival/highlights.html)
+# For various reasons (cost, speed, completeness of data) we'd rather them look at the DB, and it is easier for us to put in a redirect
+# until we get close in to the following year.  :(
+#
+Redirect 302 /raceday/leaderboard /history/raceday/2025
+# RewriteRule		^raceday/leaderboard/?$								index.php?s=raceday&p=leaderboard				[NC,L]
+
 RewriteRule		^raceday/rosters/([0-9]+)/?$						index.php?s=raceday&p=rosters&year=$1			[NC,L]
 RewriteRule		^raceday/rosters/([0-9]+)/([a-z0-9]+)/?$			index.php?s=raceday&p=rostersorg&year=$1&org=$2	[NC,L]
 # Rosters with no parameter has some current-year based defaulting logic.
