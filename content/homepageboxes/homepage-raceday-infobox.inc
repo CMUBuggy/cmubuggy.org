@@ -18,21 +18,17 @@
                       "i-DrKbQbg", // 2024 CIA First Place Womens
   ];
 
+  // Assumes we only run this in the actual year of raceday.
   $CURRENT_YEAR = date("Y");
 
+  // Can be used to override the countdown in the card header.
   $COUNTDOWN_STRING = $RACEDAY_WORD." ".$CURRENT_YEAR." is ".$timerSmallWord." ".$timerCount." ".$timerUnit;
 
-  // Bonus Raceday
-  $COUNTDOWN_STRING = "Raceday 2025 is ongoing";
-
   // Set this to true the week of raceday itself after confirming the pages are all ready.
-  $RACEDAY_WEEK = true;
+  $RACEDAY_WEEK = false;
 
-  // Hack for RD2025
-  // $SHOW_SCHEDULE = true;
-  // $SHOW_BONUS = false;
-  $SHOW_SCHEDULE = false;
-  $SHOW_BONUS = true;
+  // Set this when the schedule link is ready.
+  $SHOW_SCHEDULE = true;
 
   // set to true when the DB update with the current rosters is available.
   //
@@ -60,12 +56,7 @@
   if ($RACEDAY_WEEK) {
 ?>
         <div class="d-flex justify-content-center">
-<?php if ($SHOW_SCHEDULE) { ?>
           <a href="/<?php echo($RACEDAY_URL_PART) ?>" class="btn btn-primary m-1 d-flex align-items-center"><?php echo($RACEDAY_WORD); ?> Schedule</a>
-<?php } ?>
-<?php if ($SHOW_BONUS) { ?>
-          <a href="/raceday/bonus-raceday" class="btn btn-primary m-1 d-flex align-items-center">Bonus Raceday Info</a>
-<?php } ?>
           <a href="/live" class="btn btn-info m-1 d-flex align-items-center">Livestream</a>
           <a href="/chat" class="btn btn-info m-1 d-flex align-items-center">Chat</a>
           <a href="/raceday/faq" class="btn btn-info m-1 d-flex align-items-center">FAQ</a>
@@ -89,19 +80,16 @@
         echo("</div><hr>");
   } else {
 ?>
-        <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about all the events.</p>
+        <p>Our <a href="/<?php echo($RACEDAY_URL_PART) ?>"><?php echo($RACEDAY_WORD); ?> schedule</a> is the place to go for everything you need to know about what is happening.</p>
 <?php } ?>
 
-        <p class="text-center">Any time sensitive updates about the bonus April 12 and April 13 races will be posted <a href="/raceday/bonus-raceday">here</a>.</p>
-<?php
-//        <p><i>Any schedule updates will be published in our <a href="/news">news feed</a> as we become aware</i></p>
-//
-//        <ul>
-//          <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
-//          <li>Preliminary Races: Friday Apr 4, 8am-1pm</li>
-//         <li>Finals Races: Saturday Apr 5, 8am-Noon</li>
-//        </ul>
-?>
+      <p>Key Events:</p>
+      <ul>
+        <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
+        <li>Preliminary Races: Friday Apr 4, 8am-1pm</li>
+        <li>Finals Races: Saturday Apr 5, 8am-Noon</li>
+      </ul>
+
 <?php
   if (!$RACEDAY_WEEK) {
 ?>
