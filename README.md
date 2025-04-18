@@ -35,3 +35,5 @@ Refinements were made in an un-managed and as-needed basis for 2+ years.
 A major overhaul of the site was "completed" just in time for raceday 2011.  This version of the site was committed to the repo in the summer of 2011 to allow greater community involvement in coding the site.
 
 In early 2022, a massive revamp of the history database and schema was completed by Jeremy Tuttle, and the web site code was updated to match by Rob Siemborski.
+
+In late 2023, in collaboration with students in 67-240, several navigational and appearance redesigns were considered, and the results of this work were deployed during 2024.
