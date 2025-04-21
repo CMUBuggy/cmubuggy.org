@@ -1,4 +1,4 @@
-// Puppeteer script to generate roster slides with transparent backgrounds
+// Puppeteer script to generate tv slides with transparent backgrounds
 // from the CMUBuggy TV Portal.
 //
 // Requires Docker for the puppeteer executions.
@@ -9,6 +9,11 @@
 // How to run (single entry)
 //
 // docker run -i --init --cap-add=SYS_ADMIN -v .:/out --rm ghcr.io/puppeteer/puppeteer:latest node -e "$(cat ./makeslide.js)" -- YYYY.ORG.CT
+//
+// You can optionally specfiy a type of data before the key.  For example:
+// node -e "$(cat ./makeslide.js)" -- roster-view YYYY.ORG.CT
+// node -e "$(cat ./makeslide.js)" -- roster-view-photos YYYY.ORG.CT
+// node -e "$(cat ./makeslide.js)" -- heat-view YYYY-FXM##
 //
 // To get list of entries from the database:
 // mysql [[-u USERNAME -p DBNAME]] -s -r -e 'SELECT entryid FROM hist_raceentries WHERE year=YYYY;'
@@ -32,13 +37,25 @@ const puppeteer = require('puppeteer');
 
 // slice 1, since we only get node and not the eval or --.
 const args = process.argv.slice(1);
-if (args.length != 1) {
-    console.error(process.argv);
-    console.error ("Must supply an entry id such as 2023.FRI.MD");
-    exit();
-}
+let entry = "";
+let query = "roster-view"
 
-const entry = args[0];
+if (args.length == 2) {
+    // 2 args are [file type] [key]
+    const valid = ["roster-view","roster-view-photos","heat-view"];
+    if (!valid.includes(args[0])) {
+      console.error(args[0] + " not valid.  Expected roster-view, roster-view-photos, or heat-view.")
+      exit();
+    }
+    query = args[0];
+    entry = args[1];
+} else if (args.length != 1) {
+    console.error(process.argv);
+    console.error ("Must supply a key such as 2023.FRI.MD or 2023-FXM01");
+    exit();
+} else {
+    entry = args[0];
+}
 
 console.log("Running for entry: " + entry);
 
@@ -51,7 +68,9 @@ console.log("Running for entry: " + entry);
   await page.setViewport({ width: 1920, height: 1080 });
 
   // Open Page
-  await page.goto('https://cmubuggy.org/content/tv/tvroster-view.php?t='+e);
+  const url = 'https://cmubuggy.org/content/tv/tv'+query+'.php?t='+e;
+  console.log('Using: ' + url);
+  await page.goto(url);
 
   // Obviously this assumes knowledge of the page format.
   await page.evaluate(() => document.body.style.background = 'transparent');
