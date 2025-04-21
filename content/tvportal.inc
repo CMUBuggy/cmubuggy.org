@@ -9,6 +9,7 @@
 <ul>
   <li><a href="/tvportal/leaderboard">Leaderboard Views</li>
   <li><a href="/tvportal/rosters">Roster Views</li>
+  <li><a href="/tvportal/heats">Heat Labels</li>
 </ul>
 
 <?php

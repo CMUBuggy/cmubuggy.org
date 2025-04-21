@@ -109,7 +109,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
   include_once("../../util.inc");
 
   if (!isset($_GET["t"])) {
-    // Redirects should prevent this and send invalid urls elsewhere, but you never know...
+    // Note: this page is not protected by redirects!
     die("Oops! No entry provided.");
   } else {
     $urlkey = $_GET["t"];

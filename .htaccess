@@ -270,6 +270,8 @@ RewriteRule		^tvportal[/]*$										index.php?s=tvportal							[NC,L]
 RewriteRule		^tvportal/leaderboard/?$							index.php?s=tvportal&p=tvlb						[NC,L]
 RewriteRule     ^tvportal/rosters[/]*$								index.php?s=tvportal&p=tvrosters				[NC,L]
 RewriteRule		^tvportal/rosters/([0-9]+)/?$						index.php?s=tvportal&p=tvrosters&year=$1		[NC,L]
+RewriteRule     ^tvportal/heats[/]*$								index.php?s=tvportal&p=tvheats					[NC,L]
+RewriteRule		^tvportal/heats/([0-9]+)/?$							index.php?s=tvportal&p=tvheats&year=$1			[NC,L]
 
 # Utility / API
 RewriteRule		^api/buggyimg/([a-z0-9\-]+)/?$						content/api/buggyimg.php?urlkey=$1				[NC,L,QSA]
