@@ -39,6 +39,12 @@
     font-weight: bold;
   }
 
+  div.reroll {
+    font-size: 3vh;
+    font-weight: bold;
+    font-style: italic;
+  }
+
   .vertical-center {
     min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
     min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -119,6 +125,11 @@
     $classtext2 = getClassString($heat["oclass2"]);
     $classtext3 = getClassString($heat["oclass3"]);
   }
+
+  $rerolltext="";
+  if ($heat["isreroll"] == 1) {
+    $rerolltext = "Reroll";
+  }
 ?>
 
 <div class="container-fluid p-2">
@@ -139,7 +150,7 @@
         <div class="col-3 my-auto team-header">
           <?php echo($heat["sn3"]." ".$classtext3.$heat["t3"]); ?>
         </div>
-        <div class="col-1 my-auto"></div>
+        <div class="col-1 my-auto reroll"><?php echo($rerolltext); ?></div>
       </div>
     </div>
   </div>
