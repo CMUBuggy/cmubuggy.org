@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <?php
       // Useful to quickly enable in the case of rain on raceday.
-      include("homepageboxes/homepage-raceday-rainout.inc");
+      // include("homepageboxes/homepage-raceday-rainout.inc");
 
       // For when the auction goes live (includes a timeout for end of auction)
       // include("homepageboxes/homepage-raceday-auction.inc");
@@ -68,7 +68,7 @@
       <h2>Next <?php echo($RACEDAY_WORD) ?></h2>
       <div class="mb-3">
         <span title="<?php echo("$timerCount $timerUnit"); ?>">
-          <?php echo($RACEDAY_WORD) ?> 2026 is April 9&ndash;11
+          <?php echo($RACEDAY_NEXT_TEXT) ?>
         </span>
       </div>
     </section>

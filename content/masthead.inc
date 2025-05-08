@@ -89,9 +89,8 @@ if (!$SHOW_BREADCRUMBS) {
 
   <div class="ml-3 flex-grow-1 d-flex flex-column ">
     <div class="border-bottom border-2 border-primary my-2 py-2 text-right">
-      <span class="my-2"
-        title="<?php echo("$timerCount $timerUnit"); ?>">
-        Raceday 2026 is April 9&ndash;11
+      <span class="my-2" title="<?php echo("$timerCount $timerUnit"); ?>">
+          <?php echo($RACEDAY_NEXT_TEXT); ?>
       </span>
     </div>
     <div>
