@@ -9,7 +9,9 @@
     //   $RACEDAY_WORD = "Buggy Day";
     //   $RACEDAY_URL_PART = "buggyday";
     // }
-    ///
+
+    // String for use where we need to say the next raceday dates.
+    $RACEDAY_NEXT_TEXT = $RACEDAY_WORD . " 2026 is April 9&ndash;11";
 
 	// Renders times in a standardized way.
 	//
