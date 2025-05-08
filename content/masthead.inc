@@ -91,7 +91,7 @@ if (!$SHOW_BREADCRUMBS) {
     <div class="border-bottom border-2 border-primary my-2 py-2 text-right">
       <span class="my-2"
         title="<?php echo("$timerCount $timerUnit"); ?>">
-        Raceday 2025 is April 4&ndash;5
+        Raceday 2026 is April 9&ndash;11
       </span>
     </div>
     <div>
