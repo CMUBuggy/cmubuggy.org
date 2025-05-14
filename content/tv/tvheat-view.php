@@ -67,68 +67,84 @@
   include_once("../../dbconfig.inc");
   include_once("../../util.inc");
 
-  if (!isset($_GET["t"])) {
+  $lane1out = $lane2out = $lane3out = "";
+  $rerolltext = "";
+
+  if (isset($_GET["l1"]) || isset($_GET["l2"]) || isset($_GET["l3"]) || isset($_GET["rr"])) {
+    // Manual Mode.
+    function escapeIfParameterSet($param) {
+      if (isset($_GET[$param])) {
+        return htmlspecialchars($_GET[$param]);
+      } else {
+        return "";
+      }
+    }
+    $lane1out = escapeIfParameterSet("l1");
+    $lane2out = escapeIfParameterSet("l2");
+    $lane3out = escapeIfParameterSet("l3");
+    $rerolltext = escapeIfParameterSet("rr");
+  } else if (!isset($_GET["t"])) {
     // Note: this page is not protected by redirects!
     die("Oops! No heat provided.");
   } else {
+    // Database Mode
     $urlkey = $_GET["t"];
-  }
 
-  // Constants to provide an ordered list of the roles want to display.
-  $displayRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
+    // Nearly identical query to /history/entry.php, except we don't need the video,
+    // linking, or timing data.
+    $heatQuery = "SELECT number, isreroll, h.class AS heatclass,
+        o1.shortname AS sn1, e1.team AS t1, e1.entryid AS teamid1, e1.class AS oclass1,
+        o2.shortname AS sn2, e2.team AS t2, e2.entryid AS teamid2, e2.class AS oclass2,
+        o3.shortname AS sn3, e3.team AS t3, e3.entryid AS teamid3, e3.class AS oclass3
+      FROM hist_heats h
+      LEFT JOIN hist_raceentries e1 ON concat(h.year, '.', Lane1) = e1.entryid LEFT JOIN hist_orgs o1 ON e1.orgid = o1.orgid
+      LEFT JOIN hist_raceentries e2 ON concat(h.year, '.', Lane2) = e2.entryid LEFT JOIN hist_orgs o2 ON e2.orgid = o2.orgid
+      LEFT JOIN hist_raceentries e3 ON concat(h.year, '.', Lane3) = e3.entryid LEFT JOIN hist_orgs o3 ON e3.orgid = o3.orgid
+      WHERE h.heatid = ?";
+    $heatResults = dbBoundQuery($HISTORY_DATABASE, $heatQuery, "s", $urlkey);
 
-  // Nearly identical query to /history/entry.php, except we don't need the video,
-  // linking, or timing data.
-  $heatQuery = "SELECT number, isreroll, h.class AS heatclass,
-      o1.shortname AS sn1, e1.team AS t1, e1.entryid AS teamid1, e1.class AS oclass1,
-      o2.shortname AS sn2, e2.team AS t2, e2.entryid AS teamid2, e2.class AS oclass2,
-      o3.shortname AS sn3, e3.team AS t3, e3.entryid AS teamid3, e3.class AS oclass3
-    FROM hist_heats h
-    LEFT JOIN hist_raceentries e1 ON concat(h.year, '.', Lane1) = e1.entryid LEFT JOIN hist_orgs o1 ON e1.orgid = o1.orgid
-    LEFT JOIN hist_raceentries e2 ON concat(h.year, '.', Lane2) = e2.entryid LEFT JOIN hist_orgs o2 ON e2.orgid = o2.orgid
-    LEFT JOIN hist_raceentries e3 ON concat(h.year, '.', Lane3) = e3.entryid LEFT JOIN hist_orgs o3 ON e3.orgid = o3.orgid
-    WHERE h.heatid = ?";
-  $heatResults = dbBoundQuery($HISTORY_DATABASE, $heatQuery, "s", $urlkey);
-
-  if ($heatResults->num_rows != 1) {
-    echo("I'm sorry, I couldn't make sense of the entry descriptor: " . $urlkey);
-    exit(0);
-  } else {
-    $heat = $heatResults->fetch_assoc();
-  }
-
-  function getClassString($class) {
-    $classMap = array(
-      "M" => "Mens",
-      "N" => "All Gender",
-      "W" => "Womens",
-      "R" => "Robotic",
-      "Z" => "Mixed"
-    );
-
-    if (empty($class)) {
-      return "";
-    }
-
-    if (array_key_exists($class, $classMap)) {
-      return $classMap[$class]." ";
+    if ($heatResults->num_rows != 1) {
+      echo("I'm sorry, I couldn't make sense of the entry descriptor: " . $urlkey);
+      exit(0);
     } else {
-      return "Unknown ";
+      $heat = $heatResults->fetch_assoc();
     }
-  }
 
-  $classtext1 = "";
-  $classtext2 = "";
-  $classtext3 = "";
-  if ($heat["heatclass"] == 'Z') {
-    $classtext1 = getClassString($heat["oclass1"]);
-    $classtext2 = getClassString($heat["oclass2"]);
-    $classtext3 = getClassString($heat["oclass3"]);
-  }
+    function getClassString($class) {
+      $classMap = array(
+        "M" => "Mens",
+        "N" => "All Gender",
+        "W" => "Womens",
+        "R" => "Robotic",
+        "Z" => "Mixed"
+      );
 
-  $rerolltext="";
-  if ($heat["isreroll"] == 1) {
-    $rerolltext = "Reroll";
+      if (empty($class)) {
+        return "";
+      }
+
+      if (array_key_exists($class, $classMap)) {
+        return $classMap[$class]." ";
+      } else {
+        return "Unknown ";
+      }
+    }
+
+    $classtext1 = $classtext2 = $classtext3 = "";
+
+    if ($heat["heatclass"] == 'Z') {
+      $classtext1 = getClassString($heat["oclass1"]);
+      $classtext2 = getClassString($heat["oclass2"]);
+      $classtext3 = getClassString($heat["oclass3"]);
+    }
+
+    if ($heat["isreroll"] == 1) {
+      $rerolltext = "Reroll";
+    }
+
+    $lane1out = $heat["sn1"]." ".$classtext1.$heat["t1"];
+    $lane2out = $heat["sn2"]." ".$classtext1.$heat["t2"];
+    $lane3out = $heat["sn3"]." ".$classtext1.$heat["t3"];
   }
 ?>
 
@@ -141,15 +157,9 @@
                style="filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
         </div>
         <div class="col-1 my-auto"></div>
-        <div class="col-3 my-auto team-header">
-          <?php echo($heat["sn1"]." ".$classtext1.$heat["t1"]); ?>
-        </div>
-        <div class="col-3 my-auto team-header">
-          <?php echo($heat["sn2"]." ".$classtext2.$heat["t2"]); ?>
-        </div>
-        <div class="col-3 my-auto team-header">
-          <?php echo($heat["sn3"]." ".$classtext3.$heat["t3"]); ?>
-        </div>
+        <div class="col-3 my-auto team-header"><?php echo($lane1out); ?></div>
+        <div class="col-3 my-auto team-header"><?php echo($lane2out); ?></div>
+        <div class="col-3 my-auto team-header"><?php echo($lane3out); ?></div>
         <div class="col-1 my-auto reroll"><?php echo($rerolltext); ?></div>
       </div>
     </div>

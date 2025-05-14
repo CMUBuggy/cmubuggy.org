@@ -1,7 +1,27 @@
 <script>
-  function dopopup(heatid) {
-    // Does not open into same window since we may want to preload several rosters.
+  function doheatpopup(heatid) {
+    // Does not open into same window since we may want to preload several heats.
     window.open("/content/tv/tvheat-view.php?t="+heatid, "_blank", "popup=true,width=960,height=540");
+  }
+  function domanualpopup(l1,l2,l3,rr) {
+    // Does not open into same window since we may want to preload several banners.
+    console.error("test");
+    console.error(rr);
+    let params = "l1="+encodeURI(l1)+"&"+
+                 "l2="+encodeURI(l2)+"&"+
+                 "l3="+encodeURI(l3)+"&"+
+                 "rr="+encodeURI(rr);
+    window.open("/content/tv/tvheat-view.php?"+params, "_blank", "popup=true,width=960,height=540");
+  }
+  function rendermanual() {
+    let form = document.getElementById("manualmode");
+    console.log("zzzz:" + form.elements["special"].value);
+    domanualpopup(
+      form.elements["l1"].value,
+      form.elements["l2"].value,
+      form.elements["l3"].value,
+      form.elements["special"].value
+    );
   }
 </script>
 
@@ -49,14 +69,26 @@
       die("Sorry, we don't have data for ".$year.".");
     }
   }
+?>
 
+<b>Manual Mode:</b>
+<form id="manualmode">
+  Lane 1: <input type="text" name="l1"><br>
+  Lane 2: <input type="text" name="l2"><br>
+  Lane 3: <input type="text" name="l3"><br>
+  Reroll/Special: <input type="text" name="special"><br>
+  <button type="button" onclick="rendermanual();">Render</button>
+</form>
+<hr>
+
+<?php
   // We first run through the results to identify all the participating orgs and teams, and
   // link the teams to the orgs.
 
   echo("<ul>");
   while($row = $heatData->fetch_assoc()) {
     echo("<li>");
-    echo("<a href=\"#\" onclick=\"dopopup(&quot;".$row["heatid"]."&quot;)\">");
+    echo("<a href=\"#\" onclick=\"doheatpopup(&quot;".$row["heatid"]."&quot;)\">");
     echo($classMap[$row["heatclass"]]." ".$row["number"]);
     if ($row["isfinals"] || $row["isreroll"]) {
       $heatspecial = "";
