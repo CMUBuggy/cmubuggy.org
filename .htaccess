@@ -174,8 +174,8 @@ Redirect 302 /givingtuesday https://www.givecampus.com/e64k2h
 # Other Socials (Insta, Facebook, X)
 Redirect 302 /givingtuesday-baa https://www.givecampus.com/mrzs9f
 
-# 2024 BAA Officer voting
-Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSd-91nSxyE1Hw1bLkNB2bxj6PSN8qPNLYCUaWA4mbYkEWadnQ/viewform
+# 2025 BAA Officer voting
+Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLScPsSAk10xiEbU0Su5DawpxSSZVT1SMRDA0q1QGJR59DE5_pQ/viewform
 
 # Membership Update Forum & Giving Links
 Redirect 302 /memberupdate https://docs.google.com/forms/d/e/1FAIpQLSdWXstvHgL3Zt5BzOnL21qkq1VpxUrTYLR3DGYB9KCQD3lMGQ/viewform
