@@ -128,6 +128,9 @@ Redirect 302 /chat https://discord.gg/PUwuUuj
 Redirect 302 /poster100 https://bookstore.web.cmu.edu/MerchDetail?MerchID=1647483
 Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 
+# Survey/Endowment Grant Links (RD 26)
+Redirect 302 /2025fallgrant https://docs.google.com/forms/d/e/1FAIpQLSf6UEVgxjj_hyo_cIZOfbUsbirLT3wr4dSZZysahUBDWGFmGg/viewform?usp=pp_url&entry.1887096768=I+would+like+for+my+proposal+to+be+automatically+submitted+for+an+extension+in+the+spring
+
 # Survey/Endowment Grant Links (RD 25)
 Redirect 302 /2024membersurvey https://forms.gle/UD9ZtPENRH96T7Jq8
 Redirect 302 /2024fallgrant https://docs.google.com/forms/d/e/1FAIpQLSduCuASvVKPOt56BWznpaGmQz1E3MyKu6JBLUEd6UrnRkL5nA/viewform?usp=pp_url&entry.1887096768=I+would+like+for+my+proposal+to+be+automatically+submitted+for+an+extension+in+the+spring
