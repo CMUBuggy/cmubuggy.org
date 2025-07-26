@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-md-8">
     <?php
+      // MOTD Box -- Should be the very first thing.  Does a database read and will show only if
+      // a message is configured.
+      include ("homepageboxes/homepage-motd.inc");
+
       // Useful to quickly enable in the case of rain on raceday.
       // include("homepageboxes/homepage-raceday-rainout.inc");
 
