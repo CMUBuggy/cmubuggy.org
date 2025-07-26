@@ -39,6 +39,9 @@ news/wp-content/*
 !news/wp-content/themes
 news/wp-content/themes/*
 !news/wp-content/themes/cmubuggy-child
+!news/wp-content/plugins
+news/wp-content/plugins/*
+!news/wp-content/plugins/cmubuggy-motd
 
 .DS_Store
 __pycache__
