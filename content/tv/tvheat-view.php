@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>TV Heat View</title>
-<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2023091303" />
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2025073100" />
 
 <style>
   html,

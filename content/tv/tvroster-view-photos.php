@@ -12,7 +12,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 <html>
 <head>
 <title>TV Roster View</title>
-<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2023091303" />
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2025073100" />
 
 <style>
   html,
