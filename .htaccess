@@ -145,8 +145,10 @@ Redirect 302 /2023fallgrant https://docs.google.com/forms/d/e/1FAIpQLSefjRHZ-VMT
 Redirect 302 /2024springgrant https://docs.google.com/forms/d/e/1FAIpQLSdLwjjwJRKyg6qFC4hEMC7kA30dmOhSL9x5jdrh-FdgGNbm5w/viewform
 
 # Volunteer Links (Raceday & Bonus Raceday 2025)
-Redirect 302 /volunteer https://docs.google.com/forms/d/e/1FAIpQLScn8Cs6CVzRP_ON5Zka2NJvV2PvnKr3rYyv59YxF9lbZVmGOg/viewform
-Redirect 302 /broadcast-volunteer https://docs.google.com/forms/d/e/1FAIpQLSdF1Y3JFKUsOfcpcsA0B_10lonbKMyeXCKT_9mazY1OaHh5HA/viewform
+# Redirect 302 /volunteer https://docs.google.com/forms/d/e/1FAIpQLScn8Cs6CVzRP_ON5Zka2NJvV2PvnKr3rYyv59YxF9lbZVmGOg/viewform
+# Redirect 302 /broadcast-volunteer https://docs.google.com/forms/d/e/1FAIpQLSdF1Y3JFKUsOfcpcsA0B_10lonbKMyeXCKT_9mazY1OaHh5HA/viewform
+# Mini-Raceday 2025
+Redirect 302 /volunteer https://forms.gle/xjNEM2hFPqdSTwza9
 
 # Volunteer Links (Rolls Reporting)
 Redirect 302 /F23rollsreporters /rollsreporters
