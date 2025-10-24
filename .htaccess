@@ -105,6 +105,9 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 # Bonus Day 2
 Redirect 302 /live https://www.youtube.com/live/Qwrwghs5WWQ
 
+# Fall 25 Buggy Rewatch Event
+Redirect 302 /rewatch2525 https://youtube.com/live/DeYWaVsIs60
+
 # /raceday/live was a nonexistant page that /live pointed at in early 2022,
 # so this ensures we get to a reasonable spot.  Not sure how critical this
 # is to maintain, using a 301 to strongly transfer it though.
