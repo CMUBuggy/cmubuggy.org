@@ -18,7 +18,7 @@
       // include("homepageboxes/homepage-givingtuesday.inc");
 
       // Store/Merch Promo Box (times out approximately when store closes)
-      // include("homepageboxes/homepage-merchbox.inc");
+      include("homepageboxes/homepage-merchbox.inc");
 
       // -----------------------------------
       // All Announcement Go Above This Line
