@@ -1,7 +1,7 @@
 <?php
   // Time out the merch box when the sale closes.
   // (default timezone already set in pre-content.inc)
-  $merchenddate = mktime(23, 59, 0, 3, 9, 2025);
+  $merchenddate = mktime(23, 59, 0, 11, 8, 2025);
 
   if (time() < $merchenddate) {
 ?>
@@ -10,12 +10,11 @@
     <div class="card-body">
       <div class="media">
         <img class="d-none d-md-inline align-self-center mr-3" style="width:150px; height:150px"
-             src="<?php echo(makeSmugmugUrl("i-JDwvjcL", "Th")); ?>">
+             src="<?php echo(makeSmugmugUrl("i-vkrsvHT", "Th")); ?>">
         <div class="media-body">
-          <p>Get your Raceday Gear!</p>
-          <p>Make sure you're ready to show your buggy pride on Raceday, wearing a new
-             BAA Raceday tshirt!</p>
-          <p>Get your orders in before March 10.  Delivery expected by March 26.</p>
+          <p>Be warm in style!</p>
+          <p>Show your buggy pride and stay warm with these amazing sweatshirts!</p>
+          <p>Get your orders in before November 9.  Delivery expected before the holidays.</p>
           <a target="_blank" href="/merch" class="btn btn-primary">Get My Stuff!</a>
         </div>
       </div>
