@@ -49,7 +49,7 @@
       // Goes up ASAP after a raceday completes.
       //
       // Should be removed sometime in the fall when it starts to feel stale.
-      include("homepageboxes/homepage-raceday-results.inc");
+      // include("homepageboxes/homepage-raceday-results.inc");
 
       // Twitter Embed content
       //
