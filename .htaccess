@@ -103,7 +103,11 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 # Bonus Day 1
 # Redirect 302 /live https://www.youtube.com/live/4ZnXRSiNjjE
 # Bonus Day 2
-Redirect 302 /live https://www.youtube.com/live/Qwrwghs5WWQ
+# Redirect 302 /live https://www.youtube.com/live/Qwrwghs5WWQ
+#
+# RD26
+# Mini-Raceday (Nov 8)
+Redirect 302 /live https://www.youtube.com/live/DCVFWIeocGI
 
 # Fall 25 Buggy Rewatch Event
 Redirect 302 /rewatch2025 https://youtube.com/live/DeYWaVsIs60
