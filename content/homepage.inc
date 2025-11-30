@@ -18,7 +18,7 @@
       // include("homepageboxes/homepage-givingtuesday.inc");
 
       // Store/Merch Promo Box (times out approximately when store closes)
-      include("homepageboxes/homepage-merchbox.inc");
+      // include("homepageboxes/homepage-merchbox.inc");
 
       // -----------------------------------
       // All Announcement Go Above This Line
@@ -26,7 +26,7 @@
       // -----------------------------------
 
       // Mini Raceday Highlights
-      include ("homepageboxes/homepage-miniraceday-infobox.inc");
+      // include ("homepageboxes/homepage-miniraceday-infobox.inc");
 
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
