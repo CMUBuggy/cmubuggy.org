@@ -15,7 +15,7 @@
       // include("homepageboxes/homepage-endowmentbox.inc");
 
       // Giving Tuesday Promo Box (has start: Black Friday & end dates: End of GT)
-      // include("homepageboxes/homepage-givingtuesday.inc");
+      include("homepageboxes/homepage-givingtuesday.inc");
 
       // Store/Merch Promo Box (times out approximately when store closes)
       // include("homepageboxes/homepage-merchbox.inc");

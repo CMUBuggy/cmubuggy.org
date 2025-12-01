@@ -1,8 +1,11 @@
 <?php
   // Time out the merch box when the sale closes.
   // (default timezone already set in pre-content.inc)
-  $gtstartdate = mktime(0, 0, 0, 11, 29, 2024);  // Thanksgiving Friday
-  $gtenddate = mktime(3, 00, 0, 12, 4, 2024);
+  //
+  // IMPORTANT: REVIEW TEXT AND DATES BELOW (e.g. "Raceday 2026")
+  //
+  $gtstartdate = mktime(0, 0, 0, 11, 30, 2025);  // Thanksgiving Friday
+  $gtenddate = mktime(3, 00, 0, 12, 3, 2025);  // Midnight PT Giving Tuesday
   $gtnow = time();
 
   if ($gtnow > $gtstartdate && $gtnow < $gtenddate) {
@@ -15,9 +18,9 @@
         <div class="media-body">
           <p>The end of November brings the holiday season and Carnegie Mellon's Giving Tuesday!
           </p>
-          <p>Until Tuesday, December 3, you can power up the BAA and play a part in making buggy
+          <p>Through Tuesday, you can power up the BAA and play a part in making buggy
           more engaging for students, alumni, and fans.  Your gift will enable the BAA to
-          support an event we all love, and make you a BAA member for Raceday 2025!
+          support an event we all love, and make you a BAA member for <?php echo($RACEDAY_WORD); ?> 2026!
           </p>
           <a target="_blank" href="/givingtuesday-web" class="btn btn-primary">Give Now!</a>
         </div>
