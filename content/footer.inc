@@ -35,7 +35,7 @@
         <a href="https://google.com/preferences/source?q=https://cmubuggy.org/">
           <span class="fa-layers fa-2x fa-fw">
             <i class="fas fa-square" style="color: #3C4043;"></i>
-            <i class="fab fa-google fa-inverse" title="Spotify" data-fa-transform="shrink-6"></i>
+            <i class="fab fa-google fa-inverse" title="Google Preferred Sources" data-fa-transform="shrink-6"></i>
           </span>
         </a>
       </div>
