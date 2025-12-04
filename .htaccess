@@ -178,15 +178,20 @@ Redirect 302 /truck25times https://docs.google.com/spreadsheets/d/1iFwkSQrl8uU5p
 # Giving Tuesday
 # If CMU doesn't give us specific links, just use cmubuggy.org/baa-gift
 # News Post
-Redirect 302 /givingtuesday-news https://www.givecampus.com/s/h7z1h1
+#Redirect 302 /givingtuesday-news https://www.givecampus.com/s/h7z1h1
+Redirect 302 /givingtuesday-news https://cmubuggy.org/baa-gift
 # Web Site Homepage Promo
-Redirect 302 /givingtuesday-web https://www.givecampus.com/s/micrpb
+#Redirect 302 /givingtuesday-web https://www.givecampus.com/s/micrpb
+Redirect 302 /givingtuesday-web https://cmubuggy.org/baa-gift
 # Member/Nonmember Direct Email
-Redirect 302 /givingtuesday-mail https://www.givecampus.com/s/x24j8r
+#Redirect 302 /givingtuesday-mail https://www.givecampus.com/s/x24j8r
+Redirect 302 /givingtuesday-mail https://cmubuggy.org/baa-gift
 # Raw Post to Discord Link + All Other Sources
-Redirect 302 /givingtuesday https://www.givecampus.com/s/rsuikf
+#Redirect 302 /givingtuesday https://www.givecampus.com/s/rsuikf
+Redirect 302 /givingtuesday https://cmubuggy.org/baa-gift
 # Other Socials (Insta, Facebook, X)
-Redirect 302 /givingtuesday-baa https://www.givecampus.com/s/xsp5tm
+#Redirect 302 /givingtuesday-baa https://www.givecampus.com/s/xsp5tm
+Redirect 302 /givingtuesday-baa https://cmubuggy.org/baa-gift
 
 # 2025 BAA Officer voting
 Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLScPsSAk10xiEbU0Su5DawpxSSZVT1SMRDA0q1QGJR59DE5_pQ/viewform
