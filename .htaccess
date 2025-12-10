@@ -18,6 +18,10 @@ RewriteEngine On    # Turn on the rewriting engine
 
 # Old URLs with new homes - 301 (perm) redirect
 # Better for SEO: https://developers.google.com/search/docs/advanced/crawling/301-redirects
+#
+# For most things we use 302 (temp) redirects so we can reclaim them easily
+# should we need to.
+
 # In ancient times we used /Join instead of /join, so we need to be case-insensitve.
 RedirectMatch 301 (?i)/join/?$ /membership
 Redirect 301 /admin /news/wp-admin
@@ -81,7 +85,6 @@ RewriteRule ^history/org/taudeltaphi/?$		/history/org/TDP	[R=301,L,NC]
 RewriteRule ^history/org/betasigmarho/?$	/history/org/BSR	[R=301,L,NC]
 RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 
-
 #### Livestream related links.
 #
 # cmubuggy.org/live: This is the link that is directly mentioned on the home page
@@ -117,8 +120,9 @@ Redirect 302 /rewatch2025 https://youtube.com/live/DeYWaVsIs60
 # is to maintain, using a 301 to strongly transfer it though.
 Redirect 301 /raceday/live /live
 
-# We use 302 (temp) redirects for things that are hosted off site so we can
-# reclaim them easily we need to.
+# YouTube Shortlinks
+Redirect 302 /yt https://youtube.com/cmubuggy
+Redirect 302 /yt/intro https://www.youtube.com/watch?v=TPKQenBolWY
 
 # When the store is closed, /merch is handled by the wordpress fallback, and
 # /store redirects to /merch.
