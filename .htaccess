@@ -143,6 +143,7 @@ Redirect 302 /smugmug https://cmubuggy.smugmug.com/
 # Survey/Endowment Grant Links (RD 26)
 Redirect 302 /2025membersurvey https://docs.google.com/forms/d/e/1FAIpQLSf6McuuycAoM7wgUDIVZd6XqWFqh_6G85G4UZir7HT4yO_IcA/viewform?usp=dialog
 Redirect 302 /2025fallgrant https://docs.google.com/forms/d/e/1FAIpQLSf6UEVgxjj_hyo_cIZOfbUsbirLT3wr4dSZZysahUBDWGFmGg/viewform?usp=pp_url&entry.1887096768=I+would+like+for+my+proposal+to+be+automatically+submitted+for+an+extension+in+the+spring
+Redirect 302 /2026springgrant https://docs.google.com/forms/d/e/1FAIpQLSehGdlpi6FaVejzifdu6FlrFV_L5ywT7FTfy7BuoocGyze5vQ/viewform
 
 # Survey/Endowment Grant Links (RD 25)
 Redirect 302 /2024membersurvey https://forms.gle/UD9ZtPENRH96T7Jq8
