@@ -7,7 +7,7 @@
   }
 
   // When volunteer links are ready, set to true
-  $SHOW_VOLUNTEER_LINKS = true;
+  $SHOW_VOLUNTEER_LINKS = false;
   $CURRENT_YEAR = date("Y");
 ?>
     <div class="card mb-3">
@@ -16,19 +16,24 @@
       <div id="countdownCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner w-100">
 <?php
-          show_countdown_carousel_image("i-bqX7K5z", "Group Photo", true);
+          // These should be from the previous year as much as possible.
+          show_countdown_carousel_image("i-HvfRZRR", "RD25 Raptor Blackbird Start", true);
+          show_countdown_carousel_image("i-Vzb9Jw9", "RD25 CIA/Apex Design Comp Buggies");
+          show_countdown_carousel_image("i-spkzb3B", "BRD25 Baltic and Jaeger");
+          show_countdown_carousel_image("i-VcbDn9w", "BRD25 Apex WA 12 Transition");
+          show_countdown_carousel_image("i-wBjfzW6", "RD24 Broadcasters");
+          show_countdown_carousel_image("i-4HNrBpz", "RD25 Loading Streak");
+          show_countdown_carousel_image("i-xs5NtTP", "RD25 Lead Truck");
+          show_countdown_carousel_image("i-F7jPsff", "RD24 Spectators");
+          show_countdown_carousel_image("i-X6DjTrH", "RD25 TV Truck");
+          show_countdown_carousel_image("i-pZ6VgMc", "BRD25 Paranoia Monument");
+          show_countdown_carousel_image("i-9mtDxkR", "RD25 DG Finish");
 
-          show_countdown_carousel_image("i-9WCDKch", "CIA/APEX Design Comp Buggies");
-          show_countdown_carousel_image("i-vZ9M6wp", "Barbie Chute");
-          show_countdown_carousel_image("i-rnVkqnL", "Womens Heat 3 Hill 1");
-          show_countdown_carousel_image("i-5bg2V9b", "Hydra Driver");
-          show_countdown_carousel_image("i-wBjfzW6", "Broadcasters");
-          show_countdown_carousel_image("i-L2VRdkL", "Invicid Chute");
-          show_countdown_carousel_image("i-F7jPsff", "Spectators");
+          show_countdown_carousel_image("i-jx7VfXp/A", "BRD25 Group Photo");
 
-          show_countdown_carousel_image("i-6qzDGX8", "SDC First Place All Gender");
-          show_countdown_carousel_image("i-3Bwj8jV", "CIA First Place Mens");
-          show_countdown_carousel_image("i-DrKbQbg", "CIA First Place Womens");
+          show_countdown_carousel_image("i-cRqwQnk", "RD25 SDC First Place All Gender");
+          show_countdown_carousel_image("i-Jj3mtxb", "BRD25 CIA First Place Mens");
+          show_countdown_carousel_image("i-HckbSP7", "BRD25 SDC First Place Womens");
 ?>
         </div>
         <a class="carousel-control-prev" href="#countdownCarousel" role="button" data-slide="prev">
