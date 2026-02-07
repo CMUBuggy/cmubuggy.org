@@ -1,7 +1,7 @@
 <footer class="container text-center text-muted small py-4">
   <hr>
   <div class="row justify-content-around align-items-center py-2">
-    <div>
+    <div class="col">
       <h4><a href="/membership" class="btn btn-primary"><b>Join our Community</b></a></h4>
 
       <div class="my-3 text-center text-muted">
@@ -40,7 +40,7 @@
         </a>
       </div>
     </div>
-    <div>
+    <div class="col">
       <ul class="list-unstyled">
         <li><a href="/about/get-involved">Volunteer / Get Involved</button></li>
         <li><a href="https://groups.google.com/g/baa-news">BAA News in your Inbox</a></li>

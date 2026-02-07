@@ -88,7 +88,7 @@ if (!$SHOW_BREADCRUMBS) {
   </a>
 
   <div class="ml-3 flex-grow-1 d-flex flex-column ">
-    <div class="border-bottom border-2 border-primary my-2 py-2 text-right">
+    <div class="border-bottom border-2 border-primary my-2 py-2 text-end">
       <span class="my-2" title="<?php echo("$timerCount $timerUnit"); ?>">
           <?php echo($RACEDAY_NEXT_TEXT); ?>
       </span>

@@ -12,7 +12,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 <html>
 <head>
 <title>TV Roster View</title>
-<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2025073100" />
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2026020600" />
 
 <style>
   html,
@@ -235,7 +235,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
           echo "<span class=\"team-header\">".$teamName."</span>";
         ?>
     </div>
-    <div class="col-6 my-auto text-right">
+    <div class="col-6 my-auto text-end">
         <?php
           echo "<span class=\"buggy-header\">".$header['buggy']."</span><br>";
           echo "<span class=\"buggy-birth\">Built: ".$header['birthyear']."</span>";

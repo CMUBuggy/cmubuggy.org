@@ -204,6 +204,6 @@
   <h5 class="card-header" id="leaderboard-header">Leaderboard</h5>
   <div class="card-body">
     <div id="leaderboard-body" class="tab-pane"></div>
-    <div class="text-right"><small><a href="/raceday/leaderboard" class="card-link">Full View</a></small></div>
+    <div class="text-end"><small><a href="/raceday/leaderboard" class="card-link">Full View</a></small></div>
   </div>
 </div>
