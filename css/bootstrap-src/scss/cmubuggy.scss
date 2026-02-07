@@ -1,9 +1,16 @@
 // Custom.scss for cmubuggy.org
 // This uses "Option A": Import all of bootstrap, for simplicity sake.
 //
-// It assumes bootstrap (4.1) has been installed in ../bootstrap-4.1.0
+// Now updated for Bootstrap 5!
 //
-// See: https://getbootstrap.com/docs/4.1/getting-started/theming/
+// This was originally based on:
+//   https://getbootstrap.com/docs/4.1/getting-started/theming/
+// (when we used Bootstrap 4)
+
+// Bootstrap 5 changed the link underline default, we will go back
+// to the no-underline except on hover version.
+$link-decoration: none;
+$link-hover-decoration: underline;
 
 // Our replacements for some but not all default bootstrap colors.
 //
