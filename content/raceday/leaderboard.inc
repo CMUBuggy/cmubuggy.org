@@ -47,25 +47,25 @@
 <div id="results">
   <ul class="nav nav-tabs mb-2" role="tablist">
     <li class="nav-item">
-      <a id="womens-prelims-tab" href="#tab-womens-prelims" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens-prelims" aria-selected="true">Women's Prelims</a>
+      <a id="womens-prelims-tab" href="#tab-womens-prelims" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-womens-prelims" aria-selected="true">Women's Prelims</a>
     </li>
     <li class="nav-item">
-      <a id="mens-prelims-tab" href="#tab-mens-prelims" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-mens-prelims" aria-selected="false">Men's Prelims</a>
+      <a id="mens-prelims-tab" href="#tab-mens-prelims" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-mens-prelims" aria-selected="false">Men's Prelims</a>
     </li>
     <li class="nav-item">
-      <a id="allgender-prelims-tab" href="#tab-allgender-prelims" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender-prelims" aria-selected="false">All Gender Prelims</a>
+      <a id="allgender-prelims-tab" href="#tab-allgender-prelims" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-allgender-prelims" aria-selected="false">All Gender Prelims</a>
     </li>
     <li class="nav-item">
-      <a id="womens-finals-tab" href="#tab-womens-finals" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens-finals" aria-selected="false">Women's Finals</a>
+      <a id="womens-finals-tab" href="#tab-womens-finals" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-womens-finals" aria-selected="false">Women's Finals</a>
     </li>
     <li class="nav-item">
-      <a id="mens-finals-tab" href="#tab-mens-finals" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-mens-finals" aria-selected="false">Men's Finals</span></a>
+      <a id="mens-finals-tab" href="#tab-mens-finals" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-mens-finals" aria-selected="false">Men's Finals</span></a>
     </li>
     <li class="nav-item">
-      <a id="allgender-finals-tab" href="#tab-allgender-finals" style="display: none" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender-finals" aria-selected="false">All Gender Finals</a>
+      <a id="allgender-finals-tab" href="#tab-allgender-finals" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-allgender-finals" aria-selected="false">All Gender Finals</a>
     </li>
     <li class="nav-item">
-      <a id="exhibitions-tab" href="#tab-exhibitions" style="display: none" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-exhibitions" aria-selected="false">Exhibitions</a>
+      <a id="exhibitions-tab" href="#tab-exhibitions" style="display: none" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="tab-exhibitions" aria-selected="false">Exhibitions</a>
     </li>
   </ul>
 

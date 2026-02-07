@@ -62,13 +62,13 @@ function displayTable($teamList, $displayNotes=false){
 
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
-    <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a></li>
+    <a id="mens-tab" href="#tab-mens" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a></li>
   <li class="nav-item">
-    <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a></li>
+    <a id="womens-tab" href="#tab-womens" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a></li>
   <li class="nav-item">
-    <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a></li>
+    <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a></li>
   <li class="nav-item">
-    <a id="robotic-tab" href="#tab-robotic" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-robotic" aria-selected="false">Robotic</a></li>
+    <a id="robotic-tab" href="#tab-robotic" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-robotic" aria-selected="false">Robotic</a></li>
   </ul>
 
 

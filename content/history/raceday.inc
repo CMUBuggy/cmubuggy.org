@@ -261,32 +261,32 @@
 <ul class="nav nav-tabs mb-2" role="tablist">
   <?php if ($mensResults->num_rows > 0) { // should effecitvely always be true, but you never know... ?>
   <li class="nav-item">
-    <a id="mens-tab" href="#tab-mens" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a>
+    <a id="mens-tab" href="#tab-mens" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="tab-mens" aria-selected="true">Men's</a>
   </li>
   <?php } ?>
   <?php if ($womensResults->num_rows > 0) { // safer alternative to "year >= 1979" ?>
     <li class="nav-item">
-      <a id="womens-tab" href="#tab-womens" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a>
+      <a id="womens-tab" href="#tab-womens" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-womens" aria-selected="false">Women's</a>
     </li>
   <?php } ?>
   <?php if ($allgenderResults->num_rows > 0) { ?>
     <li class="nav-item">
-      <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a>
+      <a id="allgender-tab" href="#tab-allgender" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-allgender" aria-selected="false">All Gender</a>
     </li>
   <?php } ?>
   <?php if ($roboticResults->num_rows > 0) { ?>
     <li class="nav-item">
-      <a id="robotic-tab" href="#tab-robotic" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-robotic" aria-selected="false">Robotic</a>
+      <a id="robotic-tab" href="#tab-robotic" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-robotic" aria-selected="false">Robotic</a>
     </li>
   <?php } ?>
   <?php if (count($pheatsArr) > 0) { ?>
     <li class="nav-item">
-      <a id="prelimheats-tab" href="#tab-prelimheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-prelimheats" aria-selected="false">Prelim Heats</a>
+      <a id="prelimheats-tab" href="#tab-prelimheats" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-prelimheats" aria-selected="false">Prelim Heats</a>
     </li>
   <?php } ?>
   <?php if (count($fheatsArr) > 0) { ?>
     <li class="nav-item">
-      <a id="finalsheats-tab" href="#tab-finalsheats" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-finalsheats" aria-selected="false">Finals Heats</a>
+      <a id="finalsheats-tab" href="#tab-finalsheats" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-finalsheats" aria-selected="false">Finals Heats</a>
     </li>
   <?php } ?>
 </ul>
