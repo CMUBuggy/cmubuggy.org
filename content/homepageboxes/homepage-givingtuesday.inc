@@ -13,9 +13,9 @@
   <div class="card mb-3">
     <h5 class="card-header">Giving Tuesday</h5>
     <div class="card-body">
-      <div class="media">
-        <img class="d-none d-md-inline align-self-center mr-3" style="width:150px; height: 150px" src="<?php echo(makeSmugmugUrl("i-kh37xmt", "Th")); ?>">
-        <div class="media-body">
+      <div class="d-flex"><div class="flex-shrink-0">
+        <img class="d-none d-md-inline align-self-center" style="width:150px; height: 150px" src="<?php echo(makeSmugmugUrl("i-kh37xmt", "Th")); ?>">
+        </div><div class="flex-grow-1 ps-3">
           <p>The end of November brings the holiday season and Carnegie Mellon's Giving Tuesday!
           </p>
           <p>Through Tuesday, you can power up the BAA and play a part in making buggy

@@ -54,8 +54,8 @@
 <template id="raceResult">
   <div class="race-result p-3 mb-1 border rounded" data-id>
     <div class="d-flex justify-content-between" data-place>
-      <div data-name class="ml-5"></div>
-      <div data-time class="ml-2 text-monospace"></div>
+      <div data-name class="ms-5"></div>
+      <div data-time class="ms-2 text-monospace"></div>
     </div>
   </div>
 </template>

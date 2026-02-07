@@ -15,9 +15,9 @@
   <div class="card mb-3">
     <h5 class="card-header">Buggy Enhancement Grant Applications Open!</h5>
     <div class="card-body">
-      <div class="media">
-        <img class="d-none d-md-inline-flex align-self-center mr-3" src="<?php echo(makeSmugmugUrl($ENDOWMENT_IMAGE_SLUG,"Th")); ?>">
-        <div class="media-body align-self-center">
+      <div class="d-flex"><div class="flex-shrink-0">
+        <img class="d-none d-md-inline-flex align-self-center" src="<?php echo(makeSmugmugUrl($ENDOWMENT_IMAGE_SLUG,"Th")); ?>">
+        </div><div class="flex-grow-1 ps-3 align-self-center">
           <p>Applications for Buggy Enhancement Grants are open now until <?php echo($END_DATE_TEXT); ?>.</p>
           <a target="_blank" href="<?php echo($GRANT_APPLICATION_LINK); ?>" class="btn btn-primary">Apply Now</a>
           <a target="_blank" href="<?php echo($GRANT_ANNOUNCEMENT_LINK); ?>" class="btn btn-info">Learn More</a>

@@ -87,7 +87,7 @@ if (!$SHOW_BREADCRUMBS) {
     <img src="/img/logo-2022-white.svg" width=125 alt="CMU Buggy Alumni Assocation logo" class="img-fluid mx-auto d-block">
   </a>
 
-  <div class="ml-3 flex-grow-1 d-flex flex-column ">
+  <div class="ms-3 flex-grow-1 d-flex flex-column ">
     <div class="border-bottom border-2 border-primary my-2 py-2 text-end">
       <span class="my-2" title="<?php echo("$timerCount $timerUnit"); ?>">
           <?php echo($RACEDAY_NEXT_TEXT); ?>

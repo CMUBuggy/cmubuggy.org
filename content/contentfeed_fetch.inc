@@ -53,7 +53,7 @@ try {
 
 $count = 1;
 if ($newsResults) {
-  $icon_map["news"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-warning"></i><i class="fas fa-newspaper fa-inverse" data-fa-transform="shrink-8"></i></span>';
+  $icon_map["news"] = '<span class="fa-layers fa-fw fa-2x"><i class="fas fa-square text-warning"></i><i class="fas fa-newspaper fa-inverse" data-fa-transform="shrink-8"></i></span>';
   while ($post = mysqli_fetch_row($newsResults)) {
     //date format: YYYY-MM-DD HH:MM:SS
     $timestamp = $post[0];
@@ -131,7 +131,7 @@ if ($FORUM_FEED_ENABLED) {
 $forumClusterItems = array();
 
 if ($forumResults) {
-  $icon_map["forum"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-comments fa-inverse" data-fa-transform="shrink-8"></i></span>';
+  $icon_map["forum"] = '<span class="fa-layers fa-fw fa-2x"><i class="fas fa-square text-muted"></i><i class="fas fa-comments fa-inverse" data-fa-transform="shrink-8"></i></span>';
   while ($post = mysqli_fetch_row($forumResults)) {
     $clusterKey = $post[4].date("md",$post[1]);
     $threadtitle = $post[3];
@@ -175,7 +175,7 @@ try {
 $ncommentClusterItems = array();
 
 if ($ncommentResults) {
-  $icon_map["ncomment"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-newspaper fa-inverse" data-fa-transform="shrink-8"></i><i class="fas fa-comment" data-fa-transform="shrink-10 right-6 down-6"></i></span>';
+  $icon_map["ncomment"] = '<span class="fa-layers fa-fw fa-2x"><i class="fas fa-square text-muted"></i><i class="fas fa-newspaper fa-inverse" data-fa-transform="shrink-8"></i><i class="fas fa-comment" data-fa-transform="shrink-10 right-6 down-6"></i></span>';
   while ($post = mysqli_fetch_row($ncommentResults)) {
     $timestamp = $post[1];
     $year = substr($timestamp, 0, 4);
@@ -218,7 +218,7 @@ $smugMugCommentSQL = "SELECT comment_url, author, created_at
 $smugMugCommentResults = dbQuery($HISTORY_DATABASE, $smugMugCommentSQL);
 
 if ($smugMugCommentResults) {
-  $icon_map["icomment"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-muted"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i><i class="fas fa-comment" data-fa-transform="shrink-10 right-6 down-6"></i></span>';
+  $icon_map["icomment"] = '<span class="fa-layers fa-fw fa-2x"><i class="fas fa-square text-muted"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i><i class="fas fa-comment" data-fa-transform="shrink-10 right-6 down-6"></i></span>';
   while($row = $smugMugCommentResults->fetch_assoc()) {
     $timestamp = $row["created_at"];
     $year = substr($timestamp, 0, 4);
@@ -247,7 +247,7 @@ $smugMugImageSQL = "SELECT gallery_url, gallery_name, count(photo_id) AS photo_c
 $smugMugImageResults = dbQuery($HISTORY_DATABASE, $smugMugImageSQL);
 
 if ($smugMugImageResults) {
-  $icon_map["smugmug_img"] = '<span class="fa-layers fa-fw fa-2x mr-2"><i class="fas fa-square text-success"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i></span>';
+  $icon_map["smugmug_img"] = '<span class="fa-layers fa-fw fa-2x"><i class="fas fa-square text-success"></i><i class="fas fa-image fa-inverse" data-fa-transform="shrink-8"></i></span>';
   while($row = $smugMugImageResults->fetch_assoc()) {
     $timestamp = $row["created"];
     $year = substr($timestamp, 0, 4);

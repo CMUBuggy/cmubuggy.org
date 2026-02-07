@@ -97,20 +97,20 @@
     <section>
       <h2>Get Involved</h2>
       <div class="d-flex mb-3"><div class="flex-shrink-0">
-        <span class="align-self-center fa-layers fa-fw fa-2x mr-2">
+        <span class="align-self-center fa-layers fa-fw fa-2x">
           <i class="fas fa-square text-muted"></i>
           <i class="fas fa-graduation-cap fa-inverse" data-fa-transform="shrink-8"></i>
         </span>
-        </div><div class="flex-grow-1 pl-3">
+        </div><div class="flex-grow-1 ps-3">
           <a href="/seniors">Seniors!</a> Get your first year of membership free!
         </div>
       </div>
       <div class="d-flex mb-3"><div class="flex-shrink-0">
-        <span class="align-self-center fa-layers fa-fw fa-2x mr-2">
+        <span class="align-self-center fa-layers fa-fw fa-2x">
           <i class="fas fa-square text-muted"></i>
           <i class="fab fa-discord fa-inverse" data-fa-transform="shrink-8"></i>
         </span>
-        </div><div class="flex-grow-1- pl-3">
+        </div><div class="flex-grow-1 ps-3">
           Hang out with us on the BAA <a target="_blank" href="/chat">Discord</a>.
         </div>
       </div>

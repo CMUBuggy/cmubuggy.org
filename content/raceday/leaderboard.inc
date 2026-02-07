@@ -92,12 +92,12 @@
 <template id="raceResult">
   <div class="race-result p-3 mb-1 border rounded" data-id>
     <div class="d-flex justify-content-between" data-place>
-      <div data-name class="ml-5"></div>
-      <div data-time class="ml-2 text-monospace"></div>
+      <div data-name class="ms-5"></div>
+      <div data-time class="ms-2 text-monospace"></div>
     </div>
     <div class="d-flex justify-content-between">
-      <div data-note class="ml-5 mt-1 text-dark"></div>
-      <em><div data-speed class="ml-2"></div></em>
+      <div data-note class="ms-5 mt-1 text-dark"></div>
+      <em><div data-speed class="ms-2"></div></em>
     </div>
   </div>
 </template>
