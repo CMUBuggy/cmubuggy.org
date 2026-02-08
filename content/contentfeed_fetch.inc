@@ -93,14 +93,16 @@ if ($newsResults) {
       $excerpt = $post[3];
     }
 
+    $rellink = "/news/".$year."/".$month."/".$post[1];
+
     $a = array(
       // These are used for rendering the sidebar
       "type" => "news",
       "timestamp" => $timestamp,
-      "content" => '<a href="/news/'.$post[1].'">'.$post[2].'</a>',
+      "content" => '<a href="'.$rellink.'">'.$post[2].'</a>',
 
       // These are used for rendering outside the sidebar.
-      "rellink" => "/news/".$post[1],
+      "rellink" => $rellink,
       "title" => $post[2],
       "excerpt" => $excerpt
     );
