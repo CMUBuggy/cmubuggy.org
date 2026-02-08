@@ -52,7 +52,7 @@
     <div class="text-center">
       <span class="text-nowrap">CMU Buggy Alumni Association</span> &copy;2008&ndash;<?php echo date('Y'); ?><br>
       <a href="mailto:admin@cmubuggy.org">admin@cmubuggy.org</a>
-      <hr width="50%">
+      <hr width="50%" class="mx-auto">
       <i>While we are proud members of the CMU family, this website is managed by private individuals who are not employees of CMU.<br>
          Carnegie Mellon University has no role in the creation of this website or any of the content.</i>
     </div>
