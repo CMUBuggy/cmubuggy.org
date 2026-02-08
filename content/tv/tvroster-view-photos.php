@@ -227,7 +227,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
 <div class="container-fluid vertical-center justify-content-center p-2">
 <div class="container-fluid h-100">
-  <div class="row content-box rounded-lg" style="height:10vh">
+  <div class="row content-box rounded-2" style="height:10vh">
     <div class="col-6 my-auto">
         <?php
           // Team header
@@ -264,19 +264,19 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
             // Text Row
             echo("<div class=\"row h-25 flex-grow-1\">");
-            echo("<div class=\"col p-3 my-auto h3 team-name text-center align-self-center rounded-lg content-box\">".$teamArr["Driver"]."</div>");
+            echo("<div class=\"col p-3 my-auto h3 team-name text-center align-self-center rounded-2 content-box\">".$teamArr["Driver"]."</div>");
             echo("</div>");
 
             echo("</div></div>");
           ?>
         </div>
-        <div class="h-100 col-6 my-1 p-3 text-center rounded-lg">
+        <div class="h-100 col-6 my-1 p-3 text-center rounded-2">
 <?php
         } else { // HAVE_IMAGES
           // we need to start the div for the buggy image differently, so it centers when
           // we do not have images.
 ?>
-        <div class="h-100 col my-1 p-3 text-center rounded-lg">
+        <div class="h-100 col my-1 p-3 text-center rounded-2">
         <?php
         } // HAVE_IMAGES
 
@@ -286,7 +286,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
           } else {
             $buggy_image_url = "/img/logos/sweepstakes_logo_notext.svg";
             $style = "max-height: 40vh; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);";
-            echo "<div class=\"content-box rounded-lg\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
+            echo "<div class=\"content-box rounded-2\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
           }
         ?>
         </div>
@@ -295,7 +295,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
   <div class="row" style="height:40vh">
       <?php
         if ($HAVE_IMAGES) {
-          echo("<div class=\"col my-auto content-box p-2 rounded-lg\"><div class=\"row\">");
+          echo("<div class=\"col my-auto content-box p-2 rounded-2\"><div class=\"row\">");
           foreach ($pusherRoles as $role) {
             echo("<div class=\"col-sm d-flex flex-wrap\">");
 
@@ -319,7 +319,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
           foreach ($orderedRoles as $role) {
             echo("<div class=\"col-4 my-2\">");
             // This inner div creats the background
-            echo("<div class=\"d-flex flex-column mx-2 h-100 justify-content-center p-2 content-box rounded-lg\">");
+            echo("<div class=\"d-flex flex-column mx-2 h-100 justify-content-center p-2 content-box rounded-2\">");
             echo("<div class=\"text-center text-team-role\">".$role."</div>");
             echo("<div class=\"text-center text-team-member\">". $teamArr[$role]."</div>");
             echo("</div></div>");
