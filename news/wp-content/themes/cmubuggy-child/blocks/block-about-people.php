@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="col-sm-9">
-        <h5 class="font-weight-normal text-dark"><?php block_field('title'); ?></h5>
+        <h5 class="fw-normal text-dark"><?php block_field('title'); ?></h5>
         <h4>
             <?php block_field('name'); ?>
             <small><?php block_field('pronouns'); ?></small>
