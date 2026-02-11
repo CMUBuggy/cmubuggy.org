@@ -60,7 +60,6 @@
   </div>
 </template>
 
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 <script>
   // Initialize Firebase
