@@ -18,7 +18,8 @@ $metaDataQuery = "SELECT case when isgreek = 1 then greekname else longname end 
                          orgurl,
                          yearfounded,
                          note,
-                         orglogos.image_url AS image_url
+                         orglogos.image_url AS image_url,
+                         o.orgid AS canonical_orgid
                     FROM hist_orgs o
                     LEFT JOIN orglogos ON o.orgid = orglogos.orgid
                     WHERE o.orgid=?;";
@@ -33,6 +34,9 @@ if ($metaData->num_rows == 1) {
   echo("I'm sorry, I seem to be confused and think there are more than one org called: " . $orgUrlKey);
   exit(0);
 }
+
+// Canonicalize the URL key, now that we know it is good.  This keeps cache file names consistent.
+$orgUrlKey=$org['canonical_orgid'];
 
 // Arrays we use for tracking to later summarize.
 $trophyCount = 0;
