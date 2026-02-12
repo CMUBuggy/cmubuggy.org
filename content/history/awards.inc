@@ -123,13 +123,13 @@
 ?>
 <ul class="nav nav-tabs mb-2" role="tablist">
   <li class="nav-item">
-    <a id="designcomp-tab" href="#tab-designcomp" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-designcomp" aria-selected="true">Design Competition</a>
+    <a id="designcomp-tab" href="#tab-designcomp" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="tab-designcomp" aria-selected="true">Design Competition</a>
   </li>
   <li class="nav-item">
-    <a id="orgawards-tab" href="#tab-orgawards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-orgawards" aria-selected="false">Organization Awards</a>
+    <a id="orgawards-tab" href="#tab-orgawards" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-orgawards" aria-selected="false">Organization Awards</a>
   </li>
   <li class="nav-item">
-    <a id="personawards-tab" href="#tab-personawards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-personawards" aria-selected="false">Individual Awards</a>
+    <a id="personawards-tab" href="#tab-personawards" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-personawards" aria-selected="false">Individual Awards</a>
   </li>
 </ul>
 

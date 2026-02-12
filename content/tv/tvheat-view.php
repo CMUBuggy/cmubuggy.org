@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>TV Heat View</title>
-<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2025073100" />
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2026020601" />
 
 <style>
   html,
@@ -151,7 +151,7 @@
 <div class="container-fluid p-2">
   <div class="row mx-auto" style="width:95%; height:9vh;">
     <div class="col" style="height:100%">
-      <div class="row content-box rounded-lg" style="height:100%">
+      <div class="row content-box rounded-2" style="height:100%">
         <div class="col-1 my-auto">
         <img height="95%" src="/img/logos/sweepstakes_logo_notext.svg" class="py-1"
                style="filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">

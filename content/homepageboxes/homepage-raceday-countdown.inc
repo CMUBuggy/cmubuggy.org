@@ -13,7 +13,7 @@
     <div class="card mb-3">
       <h5 class="card-header"><?php echo($RACEDAY_WORD." ".$CURRENT_YEAR." is ".$timerSmallWord." ".$timerCount." ".$timerUnit); ?>!</h5>
       <div class="card-body text-center">
-      <div id="countdownCarousel" class="carousel slide" data-ride="carousel">
+      <div id="countdownCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner w-100">
 <?php
           // These should be from the previous year as much as possible.
@@ -36,11 +36,11 @@
           show_countdown_carousel_image("i-HckbSP7", "BRD25 SDC First Place Womens");
 ?>
         </div>
-        <a class="carousel-control-prev" href="#countdownCarousel" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#countdownCarousel" role="button" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" style="filter: invert(100%)" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#countdownCarousel" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#countdownCarousel" role="button" data-bs-slide="next">
           <span class="carousel-control-next-icon" style="filter: invert(100%)" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>

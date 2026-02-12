@@ -690,22 +690,22 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 <?php if ($org["isracingorg"] == 1) { ?>
   <ul class="nav nav-tabs mb-2" role="tablist">
     <li class="nav-item">
-      <a id="raceresults-tab" href="#tab-raceresults" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-raceresults" aria-selected="true">Race Results</a>
+      <a id="raceresults-tab" href="#tab-raceresults" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="tab-raceresults" aria-selected="true">Race Results</a>
     </li>
     <?php if ($hasRecords) { ?>
     <li class="nav-item">
-      <a id="records-tab" href="#tab-records" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-records" aria-selected="false">Records</a>
+      <a id="records-tab" href="#tab-records" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-records" aria-selected="false">Records</a>
     </li>
     <?php } ?>
     <li class="nav-item">
-      <a id="buggies-tab" href="#tab-buggies" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-buggies" aria-selected="false">Buggies <span class="badge badge-primary"><?php echo($buggyList->num_rows); ?></span></a>
+      <a id="buggies-tab" href="#tab-buggies" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-buggies" aria-selected="false">Buggies <span class="badge bg-primary"><?php echo($buggyList->num_rows); ?></span></a>
     </li>
     <li class="nav-item">
-      <a id="trophies-tab" href="#tab-trophies" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-trophies" aria-selected="false">Trophies <span class="badge badge-primary"><?php echo($trophyCount); ?></span></a>
+      <a id="trophies-tab" href="#tab-trophies" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-trophies" aria-selected="false">Trophies <span class="badge bg-primary"><?php echo($trophyCount); ?></span></a>
     </li>
     <?php if ($trendableOrg) { ?>
       <li class="nav-item">
-        <a id="trends-tab" href="#tab-trends" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-trends" aria-selected="false">Trends</a>
+        <a id="trends-tab" href="#tab-trends" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-trends" aria-selected="false">Trends</a>
       </li>
     <?php } ?>
   </ul>
@@ -897,7 +897,7 @@ function graphtrends($entrytypes, $firstyear, $lastyear) {
 <?php
   } else { // NOT A RACING ORG - Simpler handling since we only worry about trophies.
 ?>
-  <h5>Trophies <span class="badge badge-primary"><?php echo($trophyCount); ?></span></h2>
+  <h5>Trophies <span class="badge bg-primary"><?php echo($trophyCount); ?></span></h2>
 
   <div class="table-responsive">
     <table class="table">

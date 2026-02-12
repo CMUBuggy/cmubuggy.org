@@ -364,7 +364,7 @@
         $navItem,
         'nav-link dropdown-toggle',
         $isActive,
-        'id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"'
+        'id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"'
       );
     } else {
       createNavLink($navItem, 'nav-link', $isActive);

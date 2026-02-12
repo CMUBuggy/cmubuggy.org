@@ -201,10 +201,10 @@ if(empty($image_url)) {
 
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
-    <a id="races-tab" href="#tab-races" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-races" aria-selected="true">Races <span class="badge badge-primary"><?php echo($raceData->num_rows); ?></span></a>
+    <a id="races-tab" href="#tab-races" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="tab-races" aria-selected="true">Races <span class="badge bg-primary"><?php echo($raceData->num_rows); ?></span></a>
   </li>
   <li class="nav-item">
-    <a id="awards-tab" href="#tab-awards" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab-awards" aria-selected="false">Awards <span class="badge badge-primary"><?php echo(count($filteredAwards)); ?></span></a>
+    <a id="awards-tab" href="#tab-awards" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-awards" aria-selected="false">Awards <span class="badge bg-primary"><?php echo(count($filteredAwards)); ?></span></a>
   </li>
 </ul>
 <div class="tab-content">

@@ -54,13 +54,12 @@
 <template id="raceResult">
   <div class="race-result p-3 mb-1 border rounded" data-id>
     <div class="d-flex justify-content-between" data-place>
-      <div data-name class="ml-5"></div>
-      <div data-time class="ml-2 text-monospace"></div>
+      <div data-name class="ms-5"></div>
+      <div data-time class="ms-2 text-monospace"></div>
     </div>
   </div>
 </template>
 
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 <script>
   // Initialize Firebase
@@ -204,6 +203,6 @@
   <h5 class="card-header" id="leaderboard-header">Leaderboard</h5>
   <div class="card-body">
     <div id="leaderboard-body" class="tab-pane"></div>
-    <div class="text-right"><small><a href="/raceday/leaderboard" class="card-link">Full View</a></small></div>
+    <div class="text-end"><small><a href="/raceday/leaderboard" class="card-link">Full View</a></small></div>
   </div>
 </div>

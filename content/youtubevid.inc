@@ -17,7 +17,7 @@ if($video){
   }
 ?>
 
-  <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#youtube-<?php echo $id; ?>">
+  <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#youtube-<?php echo $id; ?>">
   <?php
     if($showthumbnail) {
       $title = $video["title"];
@@ -34,7 +34,7 @@ if($video){
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="title-<?php echo $id; ?>"><?php echo $video["title"]; ?></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
         </div>
         <div class="modal-body">
           <div class="embed-responsive embed-responsive-16by9">

@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>TV Roster View</title>
-<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2025073100" />
+<link rel="stylesheet" href="/css/cmubuggy-bootstrap.css?ver=2026020601" />
 
 <style>
   html,
@@ -149,7 +149,7 @@
   <div class="row" style="width:90%">
     <div class="col-6 my-auto">
       <div class="row">
-        <div class="col-11 my-1 py-2 content-box rounded-lg">
+        <div class="col-11 my-1 py-2 content-box rounded-2">
         <?php
           echo "<span class=\"buggy-header\">".$header['buggy']."</span><br>";
           echo "<span class=\"buggy-birth\">Built: ".$header['birthyear']."</span>";
@@ -157,7 +157,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-11 my-1 p-3 text-center rounded-lg">
+        <div class="col-11 my-1 p-3 text-center rounded-2">
         <?php
           if (!empty($header["buggy_smugmug_slug"])) {
             $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "L");
@@ -165,7 +165,7 @@
           } else {
             $buggy_image_url = "/img/logos/sweepstakes_logo_notext.svg";
             $style = "max-height: 40vh; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);";
-            echo "<div class=\"content-box rounded-lg\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
+            echo "<div class=\"content-box rounded-2\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
           }
         ?>
         </div>
@@ -173,7 +173,7 @@
     </div>
     <div class="col-6 my-auto">
       <div class="row">
-        <div class="col my-1 content-box rounded-lg">
+        <div class="col my-1 content-box rounded-2">
         <?php
           // Team header
           $teamName = $header['org']." ".$header['class']." ".$header['team'];

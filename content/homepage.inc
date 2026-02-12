@@ -84,33 +84,33 @@
       <h2>Records</h2>
       <dl class="row">
         <dt class="col-5">Mens</dt>
-        <dd class="col-7 text-right"><a href="/history/team/2017.SDC.MA">2:02.16</a></dd>
+        <dd class="col-7 text-end"><a href="/history/team/2017.SDC.MA">2:02.16</a></dd>
 
         <dt class="col-5">Womens</dt>
-        <dd class="col-7 text-right"><a href="/history/team/2017.SDC.WA">2:23.27</a></dd>
+        <dd class="col-7 text-end"><a href="/history/team/2017.SDC.WA">2:23.27</a></dd>
 
         <dt class="col-5">All Gender</dt>
-        <dd class="col-7 text-right"><a href="/history/team/2025.SDC.NA">2:25.62</a></dd>
+        <dd class="col-7 text-end"><a href="/history/team/2025.SDC.NA">2:25.62</a></dd>
       </dl>
     </section>
 
     <section>
       <h2>Get Involved</h2>
-      <div class="media mb-3">
-        <span class="align-self-center fa-layers fa-fw fa-2x mr-2">
+      <div class="d-flex mb-3"><div class="flex-shrink-0">
+        <span class="align-self-center fa-layers fa-fw fa-2x">
           <i class="fas fa-square text-muted"></i>
           <i class="fas fa-graduation-cap fa-inverse" data-fa-transform="shrink-8"></i>
         </span>
-        <div class="media-body">
+        </div><div class="flex-grow-1 ps-3">
           <a href="/seniors">Seniors!</a> Get your first year of membership free!
         </div>
       </div>
-      <div class="media mb-3">
-        <span class="align-self-center fa-layers fa-fw fa-2x mr-2">
+      <div class="d-flex mb-3"><div class="flex-shrink-0">
+        <span class="align-self-center fa-layers fa-fw fa-2x">
           <i class="fas fa-square text-muted"></i>
           <i class="fab fa-discord fa-inverse" data-fa-transform="shrink-8"></i>
         </span>
-        <div class="media-body">
+        </div><div class="flex-grow-1 ps-3">
           Hang out with us on the BAA <a target="_blank" href="/chat">Discord</a>.
         </div>
       </div>

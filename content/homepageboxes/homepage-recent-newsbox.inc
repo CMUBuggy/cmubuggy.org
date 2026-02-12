@@ -32,12 +32,12 @@
   // The margin (mb-3) has to be added on the columns instead of on the row for this reason.
 ?>
   <div class="col-md mb-3">
-    <div class="card text-white h-100" style="background-color: var(--gray);">
+    <div class="card text-white h-100" style="background-color: var(--bs-gray);">
       <div class="card-body d-flex flex-column">
       <a class="text-reset text-decoration-none" href="<?php echo($item["rellink"]) ?>" ><h5 class="card-title mb-2"><?php echo($item["title"]) ?></h5></a>
 
         <?php
-          echo('<time class="d-block text-right mb-4 small" datetime="'.date(DATE_RFC3339, $item['timestamp']) . '">' . timeago($item['timestamp']) . '</time>');
+          echo('<time class="d-block text-end mb-4 small" datetime="'.date(DATE_RFC3339, $item['timestamp']) . '">' . timeago($item['timestamp']) . '</time>');
         ?>
 
         <p class="card-text"><?php echo($item["excerpt"]) ?></p>
