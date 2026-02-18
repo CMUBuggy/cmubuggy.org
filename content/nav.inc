@@ -325,16 +325,21 @@
       ],
     ],
     (object) [
-      'label' => 'Gallery',
+      'label' => 'Galleries',
       // Really, just /history/video (/gallery doesn't exist)
       'active_re' => '@^((/news)?(/gallery|/history/video)|/video)@',
       'children' => [
         0 => (object) [
+          'label' => 'Chute The Sh!t (Podcast)',
+          'href' => 'https://cmubuggy.org/spotify',
+          'external' => true,
+        ],
+        1 => (object) [
           'label' => 'Photos',
           'href' => 'https://cmubuggy.smugmug.com',
           'external' => true,
         ],
-        1 => (object) [
+        2 => (object) [
           'label' => 'Videos',
           'href' => '/history/video',
         ],
