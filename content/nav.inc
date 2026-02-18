@@ -331,7 +331,7 @@
       'children' => [
         0 => (object) [
           'label' => 'Chute The Sh!t (Podcast)',
-          'href' => 'https://cmubuggy.org/spotify',
+          'href' => 'https://cmubuggy.org/podcast',
           'external' => true,
         ],
         1 => (object) [
