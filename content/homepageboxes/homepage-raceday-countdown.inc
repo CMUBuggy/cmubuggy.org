@@ -7,7 +7,7 @@
   }
 
   // When volunteer links are ready, set to true
-  $SHOW_VOLUNTEER_LINKS = false;
+  $SHOW_VOLUNTEER_LINKS = true;
   $CURRENT_YEAR = date("Y");
 ?>
     <div class="card mb-3">
