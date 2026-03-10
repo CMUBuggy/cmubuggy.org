@@ -30,14 +30,14 @@
 
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
-      include("homepageboxes/homepage-raceday-countdown.inc");
+      // include("homepageboxes/homepage-raceday-countdown.inc");
 
       // Leaderboard (disables via config spreadsheet, but still reads firebase
       // if code is included, so make sure it is commented out if it isn't raceday)
       // include("homepageboxes/homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
-      // include("homepageboxes/homepage-raceday-infobox.inc");
+      include("homepageboxes/homepage-raceday-infobox.inc");
 
       // -----------------------------------
       // All Long Running Boxes Go Below

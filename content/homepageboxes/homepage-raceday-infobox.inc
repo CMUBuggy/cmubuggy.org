@@ -1,21 +1,25 @@
 <?php
   // Pick one single random image for this box - no carousel to speed loading and
   // show larger images.
-  $raceday_images = [ "i-bqX7K5z", // 2024 Group Photo
+  $raceday_images = [ "i-jx7VfXp", // 2025 Group Photo
                       "i-h4h997L", // 2025 SDC Design Comp Buggies
                       "i-CqnSVb3", // 2025 Spirit Design Comp Buggies
                       "i-xT7Nf9f", // 2025 Design Comp Overhead
 
-                      "i-L2VRdkL", // 2024 Invicid Chute
+                      "i-spkzb3B", // 2025 Baltic and Jaeger
+                      "i-pZ6VgMc", // 2025 Paranoia Monument
                       "i-F7jPsff", // 2024 Spectators
+                      "i-4HNrBpz", // 2025 Loading Streak
                       "i-5bg2V9b", // 2024 Hydra Driver
-                      "i-wBjfzW6", // 2024 Broadcasters
                       "i-dGV79CH", // 2025 AG 2 Hill 2 Zuke Insite
                       "i-Pb6sL4V", // 2025 SDC AG Finish Paranoia
 
+                      "i-wBjfzW6", // 2024 Broadcasters
+                      "i-X6DjTrH", // 2025 TV Truck
+
                       "i-cRqwQnk", // 2025 SDC First Place All Gender
-                      "i-3Bwj8jV", // 2024 CIA First Place Mens
-                      "i-DrKbQbg", // 2024 CIA First Place Womens
+                      "i-Jj3mtxb", // 2025 CIA First Place Mens
+                      "i-HckbSP7", // 2025 SDC First Place Womens
   ];
 
   // Assumes we only run this in the actual year of raceday.
@@ -33,14 +37,15 @@
   // set to true when the DB update with the current rosters is available.
   //
   // only matters if RACEDAY_WEEK=true
-  $ROSTERS_READY = true;
+  $ROSTERS_READY = false;
+  // $ROSTERS_READY = true;
 
   // set to true when the sweepstakes-published public heat schedule is ready.
   // (you also need to update the relevant wordpress page with that link)
   //
   // only matters if RACEDAY_WEEK=true
-  // $HEATS_READY = false;
-  $HEATS_READY = true;
+  $HEATS_READY = false;
+  // $HEATS_READY = true;
 
   // Guide button only shows if we have a path in this variable.
   $raceday_guide_file = "";
@@ -85,9 +90,9 @@
 
       <p>Key Events:</p>
       <ul>
-        <li>Buggy Showcase: Thursday Apr 3, Noon-2pm</li>
-        <li>Preliminary Races: Friday Apr 4, 8am-1pm</li>
-        <li>Finals Races: Saturday Apr 5, 8am-Noon</li>
+        <li>Buggy Showcase: Thursday Apr 9, Noon-2:45pm</li>
+        <li>Preliminary Races: Friday Apr 10, Approx 8am-1pm</li>
+        <li>Finals Races: Saturday Apr 11, Approx 8am-Noon</li>
       </ul>
 
 <?php
