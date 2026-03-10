@@ -119,7 +119,7 @@ Redirect 302 /live https://cmubuggy.org/news/raceday/buggy-livestream/
 Redirect 302 /rewatch2025 https://youtube.com/live/DeYWaVsIs60
 
 # Meet an Alumni Form
-Redirect 302 /meetanalum https://docs.google.com/forms/d/e/1FAIpQLSeVjJEP5JdRKVxgYkvv_UfC369-P9tNz8GNnkepQ8I8PqTWCA/viewform
+RedirectMatch 302 (?i)^/meetanalum/?$ https://docs.google.com/forms/d/e/1FAIpQLSeVjJEP5JdRKVxgYkvv_UfC369-P9tNz8GNnkepQ8I8PqTWCA/viewform
 
 # /raceday/live was a nonexistant page that /live pointed at in early 2022,
 # so this ensures we get to a reasonable spot.  Not sure how critical this
