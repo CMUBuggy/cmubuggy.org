@@ -54,9 +54,9 @@ Redirect 301 /seniors /membership/seniors
 #
 # As of 2026, things have been gone for long enough that more redirects are probably appropriate, and
 # /forum seems to be getting crawled unreasonably hard, so we should 404 everything but the top link.
-RewriteRule ^gallery/?          /smugmug        [R,L,NC]
-RewriteRule ^forum/(.*)\.php$   -               [R=404,L,NC]
-RewriteRule ^forum/?            /news/obsolete  [R,L,NC]
+RewriteRule ^gallery($|/|/.*)	/smugmug		[R,L,NC]
+RewriteRule ^forum/(.*)\.php$	-				[R=404,L,NC]
+RewriteRule ^forum($|/|/.*)		/news/obsolete	[R,L,NC]
 
 # First pass at dealing with legacy org ids, which we need to get out
 # of search engines by redirecting them.  Preferably should be done
