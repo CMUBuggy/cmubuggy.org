@@ -23,10 +23,7 @@ get_header(); ?>
                              </header><!-- .page-header -->
 
 			     <div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'wp-bootstrap-starter' ); ?></p>
-					<?php
-						get_search_form();
-					?>
+					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links in the menu above?', 'wp-bootstrap-starter' ); ?></p>
 			     </div><!-- .page-content -->
                            </div></div><!-- col-9, row -->
 			</section><!-- .error-404 -->
