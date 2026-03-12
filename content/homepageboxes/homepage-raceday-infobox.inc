@@ -98,10 +98,14 @@
 <?php
   if (!$RACEDAY_WEEK) {
 ?>
+        <hr class="w-50 mx-auto">
+
         <p>Our members help make <?php echo($RACEDAY_WORD); ?> happen.  If you'll be in town, please sign up to help.</p>
 
-        <a target="_blank" href="/volunteer" class="btn btn-primary">Help Us Out!</a>
-        <a target="_blank" href="/broadcast-volunteer" class="btn btn-primary">Be A Commentator!</a>
+        <div class="text-center">
+          <a target="_blank" href="/volunteer" class="btn btn-primary">Help Us Out!</a>
+          <a target="_blank" href="/broadcast-volunteer" class="btn btn-primary">Be A Commentator!</a>
+        </div>
 <?php } ?>
       </div>
     </div>
