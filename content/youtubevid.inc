@@ -37,7 +37,7 @@ if($video){
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
         </div>
         <div class="modal-body">
-          <div class="embed-responsive embed-responsive-16by9">
+          <div class="embed-responsive embed-responsive-16by9 text-center">
             <div id="player-<?php echo $id; ?>" data-video-id="<?php echo $id; ?>"<?php echo $dataVideoStart.$dataVideoEnd; ?> class="embed-responsive-item"></div>
           </div>
         </div>
