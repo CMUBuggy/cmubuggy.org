@@ -99,29 +99,34 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 # for raceday. This should _always_ be a 302 redirect.
 
 # Default redirect outside of events.
-Redirect 302 /live https://cmubuggy.org/news/raceday/buggy-livestream/
+# Redirect 302 /live https://cmubuggy.org/news/raceday/buggy-livestream/
 
 # On Raceday, we should redirect /live to the site of the stream itself.
-#
+
 # 2022 CMUtv Livestream
 # Redirect 302 /live https://livestream.com/cmutvlive/buggy100
+
 # 2023 CMUtv Livestream
 # Redirect 302 /live https://livestream.com/cmutvlive/buggy2023
+
 # 2024 CMUtv Livestream
 # Redirect 302 /live https://livestream.com/cmutvlive/buggy2024
-# 2025 (4 different links)
-# Day 1
+
+# 2025 Day 1
 # Redirect 302 /live https://www.youtube.com/live/Z0IWXqoaLpk
-# Day 2 - no content
+# 2025 Day 2 - no content
 # Redirect 302 /live https://www.youtube.com/live/qeC1cDllS8M
-# Bonus Day 1
+# 2025 Bonus Day 1
 # Redirect 302 /live https://www.youtube.com/live/4ZnXRSiNjjE
-# Bonus Day 2
+# 2025 Bonus Day 2
 # Redirect 302 /live https://www.youtube.com/live/Qwrwghs5WWQ
-#
-# RD26
-# Mini-Raceday (Nov 8)
+
+# 2026 Mini-Raceday (Nov 8)
 # Redirect 302 /live https://www.youtube.com/live/DCVFWIeocGI
+# 2026 Day 1
+Redirect 302 /live https://youtube.com/live/Q704MqFilUk
+# 2026 Day 2
+# Redirect 302 /live https://youtube.com/live/aysbxZngikU
 
 # Fall 25 Buggy Rewatch Event
 Redirect 302 /rewatch2025 https://youtube.com/live/DeYWaVsIs60
