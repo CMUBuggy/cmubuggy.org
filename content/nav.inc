@@ -91,7 +91,10 @@
           'href' => '/reference/buggy-team-resources/composites-for-buggy',
         ],
         3 => (object) [
-          'label' => 'Other',
+          'divider' => true,
+        ],
+        4 => (object) [
+          'label' => 'Full Resource List',
           'href' => '/reference/buggy-team-resources',
         ],
       ],
