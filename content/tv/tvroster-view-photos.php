@@ -8,7 +8,15 @@
 $PEOPLE_IMAGE_URI="/files/2025rosterphotos/";
 $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
- ?>
+// If this is not an empty string, serve images from this path off of the current server
+// instead of sending to smugmug.
+//
+// Can help with cors issues in OBS.
+//
+// example: "/files/2025buggyphotos"
+$LOCAL_BUGGY_IMAGES="";
+
+?>
 <html>
 <head>
 <title>TV Roster View</title>
@@ -119,13 +127,12 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
   // pusherRoles is just the pushers, since the driver gets their own special box
   $orderedRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
   $pusherRoles = array_slice($orderedRoles, 1, 5);
-  $roleImageURIs = array ("Driver" => "/img/logos/sweepstakes_logo_notext.svg",
-                                      // e.g. "/img/tvlogos/driver-icon.png",
-                          "Hill 1" => "/img/logos/sweepstakes_logo_notext.svg",
-                          "Hill 2" => "/img/logos/sweepstakes_logo_notext.svg",
-                          "Hill 3" => "/img/logos/sweepstakes_logo_notext.svg",
-                          "Hill 4" => "/img/logos/sweepstakes_logo_notext.svg",
-                          "Hill 5" => "/img/logos/sweepstakes_logo_notext.svg");
+  $roleImageURIs = array ("Driver" => "/img/tvlogos/drive.svg",
+                          "Hill 1" => "/img/tvlogos/one.svg",
+                          "Hill 2" => "/img/tvlogos/two.svg",
+                          "Hill 3" => "/img/tvlogos/three.svg",
+                          "Hill 4" => "/img/tvlogos/four.svg",
+                          "Hill 5" => "/img/tvlogos/five.svg");
 
   // Nearly identical query to /history/entry.php, except we don't need the video,
   // linking, or timing data.
@@ -205,7 +212,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
     }
     if (!$foundFileType) {
       $missingImageRoles[$role] = $image_path;
-      $teamIdImageFile[$role] = "/img/logos/sweepstakes_logo_notext.svg";
+      $teamIdImageFile[$role] = "/img/logos/sweepstakes_logo_notext_white.svg";
     }
   }
 
@@ -281,11 +288,16 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
         } // HAVE_IMAGES
 
           if (!empty($header["buggy_smugmug_slug"])) {
-            $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "L");
+            $buggy_image_url = "";
+            if ($LOCAL_BUGGY_IMAGES != "") {
+              $buggy_image_url = $LOCAL_BUGGY_IMAGES . "/" . $header["buggy_smugmug_slug"] . "-L.jpg";
+            } else {
+              $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "L");
+            }
             echo "<img class=\"h-100 img-fluid img-thumbnail blue-border\" src=\"".$buggy_image_url."\">";
           } else {
-            $buggy_image_url = "/img/logos/sweepstakes_logo_notext.svg";
-            $style = "max-height: 40vh; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);";
+            $buggy_image_url = "/img/logos/sweepstakes_logo_notext_white.svg";
+            $style = "max-height: 40vh;";
             echo "<div class=\"content-box rounded-2\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
           }
         ?>
@@ -301,7 +313,7 @@ $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 
             // Image Row
             echo("<div class=\"row\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1\" src=\"".$teamIdImageFile[$role]."\">");
+            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1; aspect-ratio: 1\" src=\"".$teamIdImageFile[$role]."\">");
             echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 3px; bottom: 3px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
             echo("</div></div></div>");
 
