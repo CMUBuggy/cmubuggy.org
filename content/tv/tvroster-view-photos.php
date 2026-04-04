@@ -249,7 +249,7 @@ $LOCAL_BUGGY_IMAGES="";
         ?>
     </div>
   </div>
-  <div class="row" style="height:45vh">
+  <div class="row" style="height:43vh">
 <?php
         if($HAVE_IMAGES) {
 ?>
@@ -265,8 +265,8 @@ $LOCAL_BUGGY_IMAGES="";
 
             // Image Row
             echo("<div class=\"row h-75\"><div class=\"col h-100 text-center px-0\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border\" style=\"z-index: 1\" src=\"".$teamIdImageFile["Driver"]."\">");
-            echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 10px; bottom: 10px; z-index: 3\" src=\"".$roleImageURIs["Driver"]."\">");
+            echo("<img class=\"mw-100 mh-100 img-thumbnail blue-border rounded\" style=\"z-index: 1\" src=\"".$teamIdImageFile["Driver"]."\">");
+            echo("<img class=\"position-absolute\" style=\"max-width: 15%; left: 11px; bottom: 11px; z-index: 3\" src=\"".$roleImageURIs["Driver"]."\">");
             echo("</div></div></div>");
 
             // Text Row
@@ -297,24 +297,24 @@ $LOCAL_BUGGY_IMAGES="";
             echo "<img class=\"h-100 img-fluid img-thumbnail blue-border\" src=\"".$buggy_image_url."\">";
           } else {
             $buggy_image_url = "/img/logos/sweepstakes_logo_notext_white.svg";
-            $style = "max-height: 40vh;";
+            $style = "max-height: 42vh;";
             echo "<div class=\"content-box rounded-2\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
           }
         ?>
         </div>
   </div>
 
-  <div class="row" style="height:40vh">
+  <div class="row mt-2 mb-5" style="height: 42vh">
       <?php
         if ($HAVE_IMAGES) {
-          echo("<div class=\"col my-auto content-box p-2 rounded-2\"><div class=\"row\">");
+          echo("<div class=\"col my-auto content-box px-2 py-1 rounded-2\"><div class=\"row\">");
           foreach ($pusherRoles as $role) {
             echo("<div class=\"col-sm d-flex flex-wrap\">");
 
             // Image Row
-            echo("<div class=\"row\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
-            echo("<img class=\"img-fluid position-relative\" style=\"z-index: 1; aspect-ratio: 1\" src=\"".$teamIdImageFile[$role]."\">");
-            echo("<img class=\"position-absolute\" style=\"max-width: 20%; left: 3px; bottom: 3px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
+            echo("<div class=\"row py-1\"><div class=\"col\"><div class=\"mw-100 h-100 d-inline-block position-relative\">");
+            echo("<img class=\"img-fluid position-relative rounded\" style=\"z-index: 1; aspect-ratio: 1\" src=\"".$teamIdImageFile[$role]."\">");
+            echo("<img class=\"position-absolute\" style=\"max-width: 17%; left: 8px; bottom: 8px; z-index: 3\" src=\"".$roleImageURIs[$role]."\">");
             echo("</div></div></div>");
 
             // Text Row
