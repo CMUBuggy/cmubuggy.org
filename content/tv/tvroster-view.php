@@ -84,6 +84,14 @@
     $urlkey = $_GET["t"];
   }
 
+  // If this is not an empty string, serve images from this path off of the current server
+  // instead of sending to smugmug.
+  //
+  // Can help with cors issues in OBS.
+  //
+  // example: "/files/2025buggyphotos"
+  $LOCAL_BUGGY_IMAGES="";
+
   // Constants to provide an ordered list of the roles want to display.
   $displayRoles = array("Driver", "Hill 1", "Hill 2", "Hill 3", "Hill 4", "Hill 5");
 
@@ -160,11 +168,15 @@
         <div class="col-11 my-1 p-3 text-center rounded-2">
         <?php
           if (!empty($header["buggy_smugmug_slug"])) {
-            $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "L");
+            if ($LOCAL_BUGGY_IMAGES != "") {
+              $buggy_image_url = $LOCAL_BUGGY_IMAGES . "/" . $header["buggy_smugmug_slug"] . "-L.jpg";
+            } else {
+              $buggy_image_url = makeSmugmugUrl($header["buggy_smugmug_slug"], "L");
+            }
             echo "<img class=\"img-fluid img-thumbnail blue-border\" src=\"".$buggy_image_url."\">";
           } else {
-            $buggy_image_url = "/img/logos/sweepstakes_logo_notext.svg";
-            $style = "max-height: 40vh; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);";
+            $buggy_image_url = "/img/logos/sweepstakes_logo_notext_white.svg";
+            $style = "max-height: 40vh;";
             echo "<div class=\"content-box rounded-2\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
           }
         ?>
