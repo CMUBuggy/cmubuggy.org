@@ -249,10 +249,10 @@ $LOCAL_BUGGY_IMAGES="";
         ?>
     </div>
   </div>
-  <div class="row" style="height:43vh">
 <?php
         if($HAVE_IMAGES) {
 ?>
+      <div class="row" style="height:43vh">
         <div class="h-100 col-6 p-3 my-auto">
           <?php
             // It would be nice if this could work the same as the pusher photos, but because
@@ -279,11 +279,12 @@ $LOCAL_BUGGY_IMAGES="";
         </div>
         <div class="h-100 col-6 my-1 p-3 text-center rounded-2">
 <?php
-        } else { // HAVE_IMAGES
+        } else { // we do not HAVE_IMAGES
           // we need to start the div for the buggy image differently, so it centers when
-          // we do not have images.
+          // we do not have images.  We also use more space for the buggy image.
 ?>
-        <div class="h-100 col my-1 p-3 text-center rounded-2">
+      <div class="row" style="height:50vh">
+        <div class="h-100 col mt-1 px-3 pt-3 text-center rounded-2">
         <?php
         } // HAVE_IMAGES
 
@@ -296,18 +297,20 @@ $LOCAL_BUGGY_IMAGES="";
             }
             echo "<img class=\"h-100 img-fluid img-thumbnail blue-border\" src=\"".$buggy_image_url."\">";
           } else {
+            // No Buggy Image?  Should really never have to run for actual rosters.
+
             $buggy_image_url = "/img/logos/sweepstakes_logo_notext_white.svg";
-            $style = "max-height: 42vh;";
+            $style = "max-height: 43vh;";
             echo "<div class=\"content-box rounded-2\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
           }
         ?>
         </div>
   </div>
 
-  <div class="row mt-2 mb-5" style="height: 42vh">
       <?php
         if ($HAVE_IMAGES) {
-          echo("<div class=\"col my-auto content-box px-2 py-1 rounded-2\"><div class=\"row\">");
+          echo("<div class=\"row mt-2 mb-5\" style=\"height: 42vh\">");
+          echo("  <div class=\"col my-auto content-box px-2 py-1 rounded-2\"><div class=\"row\">");
           foreach ($pusherRoles as $role) {
             echo("<div class=\"col-sm d-flex flex-wrap\">");
 
@@ -327,7 +330,8 @@ $LOCAL_BUGGY_IMAGES="";
           echo("</div></div>");
         } else {
           // DO NOT HAVE IMAGES
-          echo("<div class=\"col my-auto p-2\"><div class=\"row\">");
+          echo("<div class=\"row mt-2 mb-5\" style=\"height: 35vh\">");
+          echo("  <div class=\"col my-auto p-2\"><div class=\"row\">");
           foreach ($orderedRoles as $role) {
             echo("<div class=\"col-4 my-2\">");
             // This inner div creats the background

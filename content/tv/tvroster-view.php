@@ -175,6 +175,8 @@
             }
             echo "<img class=\"img-fluid img-thumbnail blue-border\" src=\"".$buggy_image_url."\">";
           } else {
+            // No Buggy Image?  Should really never have to run for actual rosters.
+
             $buggy_image_url = "/img/logos/sweepstakes_logo_notext_white.svg";
             $style = "max-height: 40vh;";
             echo "<div class=\"content-box rounded-2\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
