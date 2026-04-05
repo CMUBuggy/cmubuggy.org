@@ -143,8 +143,8 @@
     }
 
     $lane1out = $heat["sn1"]." ".$classtext1.$heat["t1"];
-    $lane2out = $heat["sn2"]." ".$classtext1.$heat["t2"];
-    $lane3out = $heat["sn3"]." ".$classtext1.$heat["t3"];
+    $lane2out = $heat["sn2"]." ".$classtext2.$heat["t2"];
+    $lane3out = $heat["sn3"]." ".$classtext3.$heat["t3"];
   }
 ?>
 
