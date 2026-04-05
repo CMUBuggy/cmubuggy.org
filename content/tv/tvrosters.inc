@@ -1,7 +1,9 @@
 <script>
-  function dopopup(entryid) {
+  function dopopup(entryid,linksuffix="") {
     // Does not open into same window since we may want to preload several rosters.
-    window.open("/content/tv/tvroster-view.php?t="+entryid, "_blank", "popup=true,width=960,height=540");
+    //
+    // Linksuffix lets us reuse this for -photos links.
+    window.open("/content/tv/tvroster-view" + linksuffix + ".php?t=" + entryid, "_blank", "popup=true,width=960,height=540");
   }
 </script>
 
@@ -72,6 +74,7 @@
     }
 
     $entryString = "<a href=\"#\" onclick=\"dopopup(&quot;".$row["entryid"]."&quot;)\">".$class." ".$row["team"]."</a>";
+    $entryString .= "&nbsp;(<a href=\"#\" onclick=\"dopopup(&quot;".$row["entryid"]."&quot;,&quot;-photos&quot;)\">P</a>)";
     if (!empty($row["buggyname"])) {
       $entryString .= "<span class=\"d-none d-sm-inline\"><br></span>\n";
       $entryString .= "<span class=\"d-sm-none\">(</span>";
