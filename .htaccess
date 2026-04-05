@@ -202,6 +202,7 @@ Redirect 302 /timingapp https://buggy-timing-900.web.app/
 # Member Preview Link to Truck Weekend Time Sheet
 Redirect 302 /truck24times https://docs.google.com/spreadsheets/d/18EhfvinzOHDm44hKXtO_q9uOKCCDXqEfgRgHqLdqlxU/edit#gid=347337235
 Redirect 302 /truck25times https://docs.google.com/spreadsheets/d/1iFwkSQrl8uU5pEsoPZhtw2daWNo390tcvV5akFGqoCo/edit?gid=347337235
+Redirect 302 /racedaypreview26times https://docs.google.com/spreadsheets/d/1U3RdVn6kbyjYk4m2rtEO0hbbfeCcD6YYlCNoRyDQQ9Q/edit?gid=0#gid=0
 
 # Giving Tuesday
 # If CMU doesn't give us specific links, just use cmubuggy.org/baa-gift
