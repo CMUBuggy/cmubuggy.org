@@ -184,6 +184,7 @@ $LOCAL_BUGGY_IMAGES="";
   $teamIdImageFile = array();
   foreach ($orderedRoles as $role) {
     $teamArr[$role] = "<i>Unknown</i>";
+    $teamIdImageFile[$role] = $DEFAULT_PROFILE_IMAGE;
   }
 
   // Robots get their org logo as a default, if it exists.
@@ -195,8 +196,6 @@ $LOCAL_BUGGY_IMAGES="";
     $teamIdArr["Driver"] = "robot-driver";
     if (!empty($header["image_url"])) {
       $teamIdImageFile["Driver"] = $header["image_url"];
-    } else {
-      $teamIdImageFile["Driver"] = $DEFAULT_PROFILE_IMAGE;
     }
   }
 
@@ -204,8 +203,10 @@ $LOCAL_BUGGY_IMAGES="";
   $missingImageRoles = array();
 
   // Now, populate the people on the team.
+  $rolesFound = 0;
   $filetypes = array("jpg","png","svg"); // Try these types in order.
   while($r = $teamResults->fetch_assoc()) {
+    $rolesFound++;
     $role = $r["position"];
     $teamArr[$role] = $r["personname"];
     $teamIdArr[$role] = $r["personid"];
@@ -221,19 +222,21 @@ $LOCAL_BUGGY_IMAGES="";
       }
     }
     if (!$foundFileType) {
-      $missingImageRoles[$role] = $image_path;
-      $teamIdImageFile[$role] = $DEFAULT_PROFILE_IMAGE;
+      $missingImageRoles[$role] = $teamIdArr[$role];
     }
   }
 
   $HAVE_IMAGES = true;
-  if (count($missingImageRoles) > 4) {
+  // If we only have one image for all our known people, that's not enough.
+  // Fall back to the text-only view.
+  if (($rolesFound - count($missingImageRoles)) <= 1) {
     $HAVE_IMAGES = false;
 
     // Log what images are missing into the generated html, for debugging purposes.
     echo("\n\n<!-- did not find enough image files, reverting to text only -->\n");
+    echo("\n\n<!-- found ".$rolesFound." roles -->\n");
     foreach ($missingImageRoles as $role => $path) {
-      echo("<!-- missing image: ".$role." -> ".$path." -->\n");
+      echo("<!-- missing image: ".$role.": ".$path." -->\n");
     }
     echo("\n");
   }
