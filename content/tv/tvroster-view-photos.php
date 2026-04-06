@@ -7,6 +7,7 @@
 // Paths to where the images are
 $PEOPLE_IMAGE_URI="/files/2025rosterphotos/";
 $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
+$DEFAULT_PROFILE_IMAGE = "/img/logos/sweepstakes_logo_notext_white.svg";
 
 // If this is not an empty string, serve images from this path off of the current server
 // instead of sending to smugmug.
@@ -145,10 +146,12 @@ $LOCAL_BUGGY_IMAGES="";
                         Team AS team,
                         b.buggyid AS buggyid, b.name AS buggy,
                         b.birthyear AS birthyear,
-                        b.smugmug_slug AS buggy_smugmug_slug
+                        b.smugmug_slug AS buggy_smugmug_slug,
+                        ol.image_url AS image_url
                     FROM hist_raceentries e
                     LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
                     LEFT JOIN hist_orgs o ON e.orgid = o.orgid
+                    LEFT JOIN orglogos ol ON e.orgid = ol.orgid
                     WHERE entryid = ?;";
   $headerResults = dbBoundQuery($HISTORY_DATABASE, $headerQuery, "s", $urlkey);
 
@@ -183,11 +186,18 @@ $LOCAL_BUGGY_IMAGES="";
     $teamArr[$role] = "<i>Unknown</i>";
   }
 
-  // Robots get a special driver default.
+  // Robots get their org logo as a default, if it exists.
+  //
+  // TODO this is a bit of a hack, since not all logos will look right on a blue background,
+  // but it appears to work for Robobuggy at least.
   if ($header["class"] == 'Robotic') {
     $teamArr["Driver"] = "<i>Robotic Buggy</i>";
     $teamIdArr["Driver"] = "robot-driver";
-    $teamIdImageFile["Driver"] = "robot-driver.svg";
+    if (!empty($header["image_url"])) {
+      $teamIdImageFile["Driver"] = $header["image_url"];
+    } else {
+      $teamIdImageFile["Driver"] = $DEFAULT_PROFILE_IMAGE;
+    }
   }
 
   // Map of Role -> Image Path that are missing
@@ -212,7 +222,7 @@ $LOCAL_BUGGY_IMAGES="";
     }
     if (!$foundFileType) {
       $missingImageRoles[$role] = $image_path;
-      $teamIdImageFile[$role] = "/img/logos/sweepstakes_logo_notext_white.svg";
+      $teamIdImageFile[$role] = $DEFAULT_PROFILE_IMAGE;
     }
   }
 
@@ -299,7 +309,7 @@ $LOCAL_BUGGY_IMAGES="";
           } else {
             // No Buggy Image?  Should really never have to run for actual rosters.
 
-            $buggy_image_url = "/img/logos/sweepstakes_logo_notext_white.svg";
+            $buggy_image_url = $DEFAULT_PROFILE_IMAGE;
             $style = "max-height: 43vh;";
             echo "<div class=\"content-box rounded-2\"><img class=\"img-fluid\" style=\"" . $style . "\" src=\"".$buggy_image_url."\"></div>";
           }
