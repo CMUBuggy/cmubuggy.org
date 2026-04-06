@@ -29,7 +29,7 @@
   $COUNTDOWN_STRING = $RACEDAY_WORD." ".$CURRENT_YEAR." is ".$timerSmallWord." ".$timerCount." ".$timerUnit;
 
   // Set this to true the week of raceday itself after confirming the pages are all ready.
-  $RACEDAY_WEEK = false;
+  $RACEDAY_WEEK = true;
 
   // Set this when the schedule link is ready.
   $SHOW_SCHEDULE = true;
@@ -44,8 +44,8 @@
   // (you also need to update the relevant wordpress page with that link)
   //
   // only matters if RACEDAY_WEEK=true
-  $HEATS_READY = false;
-  // $HEATS_READY = true;
+  // $HEATS_READY = false;
+  $HEATS_READY = true;
 
   // Guide button only shows if we have a path in this variable.
   $raceday_guide_file = "";
