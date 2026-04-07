@@ -91,7 +91,7 @@
       <p>Key Events:</p>
       <ul>
         <li>Buggy Showcase: Thursday Apr 9, Noon-2:45pm</li>
-        <li>Preliminary Races: Friday Apr 10, Approx 8am-1pm</li>
+        <li>Preliminary Races: Friday Apr 10, Approx 7:40am-1pm</li>
         <li>Finals Races: Saturday Apr 11, Approx 8am-Noon</li>
       </ul>
 
