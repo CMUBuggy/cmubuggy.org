@@ -1,12 +1,15 @@
 <?php
-  // Time out shortly before auction end. (2025: 9pm Apr 3)
+  // Time out shortly before auction end. (2026: 9pm Apr 9)
   // (default timezone already set in pre-content.inc)
-  $auctionenddate = mktime(20, 59, 0, 4, 3, 2025);
+  //
+  // Also we support a start date if needed.
+  $auctionstartdate = mktime(12, 59, 0, 4, 7, 2026);
+  $auctionenddate = mktime(20, 59, 0, 4, 9, 2026);
 
   $auctionType = "Prelim";
   //$auctionType = "Finals";
 
-  if (time() < $auctionenddate) {
+  if (time() > $auctionstartdate && time() < $auctionenddate) {
 ?>
     <div class="card mb-3">
       <h5 class="card-header"><?php echo($auctionType) ?> Lead Truck Auction!</h5>
