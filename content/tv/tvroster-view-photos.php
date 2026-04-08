@@ -5,7 +5,7 @@
 // /scripts/tvexport
 
 // Paths to where the images are
-$PEOPLE_IMAGE_URI="/files/2025rosterphotos/";
+$PEOPLE_IMAGE_URI="/files/2026rosterphotos/";
 $PEOPLE_IMAGE_PATH_PREFIX="../..".$PEOPLE_IMAGE_URI;
 $DEFAULT_PROFILE_IMAGE = "/img/logos/sweepstakes_logo_notext_white.svg";
 
