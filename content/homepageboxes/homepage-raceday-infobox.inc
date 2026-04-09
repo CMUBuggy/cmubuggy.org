@@ -48,8 +48,8 @@
   $HEATS_READY = true;
 
   // Guide button only shows if we have a path in this variable.
-  $raceday_guide_file = "";
-  // $raceday_guide_file = "/files/raceday-previews/2025PrelimsGuide.pdf";
+  // $raceday_guide_file = "";
+  $raceday_guide_file = "/files/raceday-previews/2026PrelimsGuide.pdf";
 
 ?>
 
