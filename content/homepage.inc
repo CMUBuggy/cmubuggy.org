@@ -37,7 +37,7 @@
       // include("homepageboxes/homepage-raceday-leaderbox.inc");
 
       // Full Raceday Infobox
-      include("homepageboxes/homepage-raceday-infobox.inc");
+      // include("homepageboxes/homepage-raceday-infobox.inc");
 
       // -----------------------------------
       // All Long Running Boxes Go Below
@@ -52,7 +52,7 @@
       // Goes up ASAP after a raceday completes.
       //
       // Should be removed sometime in the fall when it starts to feel stale.
-      // include("homepageboxes/homepage-raceday-results.inc");
+      include("homepageboxes/homepage-raceday-results.inc");
 
       // Twitter Embed content
       //
