@@ -77,8 +77,8 @@
     <a href="/raceday/leaderboard" class="btn btn-primary">Leaderboard</a>
 <?php
 //    <a href="/history/raceday/2026" class="btn btn-primary">Full Results</a>
-//    <a href="https://www.youtube.com/playlist?list=PLDEsVCo4xx6W1dlRSGdgud7oeiWtDJuPQ" class="btn btn-info">Video</a>
 ?>
+    <a href="https://www.youtube.com/watch?v=aysbxZngikU&list=PLDEsVCo4xx6XI_lEJRnPfWs5-L4pAwomI" class="btn btn-info">Video</a>
   </div>
 </div>
 
