@@ -73,11 +73,13 @@
     </table>
 <?php
 //    Use (corrected for DQs) leaderboard until history db is ready for a given year.
+//<a href="/raceday/leaderboard" class="btn btn-primary">Leaderboard</a>
 ?>
-    <a href="/raceday/leaderboard" class="btn btn-primary">Leaderboard</a>
+    
 <?php
-//    <a href="/history/raceday/2026" class="btn btn-primary">Full Results</a>
+//   Place to leave the commented out full results between raceday and DB update 
 ?>
+    <a href="/history/raceday/2026" class="btn btn-primary">Full Results</a>
     <a href="https://www.youtube.com/watch?v=aysbxZngikU&list=PLDEsVCo4xx6XI_lEJRnPfWs5-L4pAwomI" class="btn btn-info">Video</a>
   </div>
 </div>
