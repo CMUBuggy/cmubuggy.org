@@ -52,14 +52,14 @@
    </div>
    <div class="col">
      <div class="d-flex mb-3"><div class="flex-shrink-0">
-        <a href="/history/award">
+        <a href="/history/awards">
          <span class="fa-layers fa-fw fa-2x">
           <i class="fas fa-square" style="color: var(--bs-green)"></i>
           <i class="fas fa-award fa-inverse" data-fa-transform="shrink-8"></i>
          </span>
         </a>
         </div><div class="flex-grow-1 ps-3">
-          <a href="/history/award">Awards</a> for the Design Competition and Organizations
+          <a href="/history/awards">Awards</a> for the Design Competition and Organizations
         </div>
       </div>
    </div>
