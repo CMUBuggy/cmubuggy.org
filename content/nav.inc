@@ -283,7 +283,7 @@
         ],
         5 => (object) [
           'label' => 'Awards',
-          'href' => '/history/award',
+          'href' => '/history/awards',
         ],
         6 => (object) [
           'divider' => true,
