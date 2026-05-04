@@ -154,7 +154,7 @@
             function echoDesignCompCell($d, $prefix) {
               if ($d[$prefix."id"]) {
                 $tooltip = $d[$prefix."birth"] ? "title=\"Built ".$d[$prefix."birth"]."\" " : "";
-                echo("<td><a ".$tooltip."href=\"./buggy/".$d[$prefix."id"]."\">".$d[$prefix]."</a></td>");
+                echo("<td><a ".$tooltip."href=\"/history/buggy/".$d[$prefix."id"]."\">".$d[$prefix]."</a></td>");
               } else {
                 echo("<td>".$d[$prefix]."</td>");
               }
@@ -231,7 +231,7 @@
               if (array_key_exists($type, $o)) {
                 foreach (array_keys($o[$type]) as $item) {
                   if (!$first) { echo (", "); }
-                  echo("<a href=\"./org/".$item."\">".$o[$type][$item]."</a>");
+                  echo("<a href=\"/history/org/".$item."\">".$o[$type][$item]."</a>");
                   $first = false;
                 }
               }
@@ -276,8 +276,8 @@
             function echoHillOne($prefix, $personId, $name, $teamId, $team, $time) {
               echo("<span class=\"d-none d-sm-inline\">".$prefix."</span>");
               echo("<span class=\"d-inline d-sm-none\">".$prefix[0]."</span>");
-              echo(": <a href=\"./person/".$personId."\">".$name."</a><br>");
-              echo("<ul class=\"mb-0 nobullet\"><li><a href=\"./team/".$teamId."\">".$team."</a>");
+              echo(": <a href=\"/history/person/".$personId."\">".$name."</a><br>");
+              echo("<ul class=\"mb-0 nobullet\"><li><a href=\"/history/team/".$teamId."\">".$team."</a>");
               if (!empty($time)) {
                 echo(" (".$time."s)");
               }
@@ -310,9 +310,9 @@
                 // Hill 1 award ties as well (which currently are handled poorly anyway).
                 if (array_key_exists($year, $chairAwardTable)) {
                   foreach($chairAwardTable[$year] as $c) {
-                    echo("<a href=\"./person/".$c["chairid"]."\">".$c["chair"]."</a> ");
+                    echo("<a href=\"/history/person/".$c["chairid"]."\">".$c["chair"]."</a> ");
                     echo("<ul class=\"mb-0 nobullet\">");
-                    echo("<li><a href=\"./org/".$c["chairorgid"]."\">".$c["chairorg"]."</a></li>");
+                    echo("<li><a href=\"/history/org/".$c["chairorgid"]."\">".$c["chairorg"]."</a></li>");
                     if ($c["award"] == 'ChairHon') {
                       echo("<li class=\"font-italic\">Honorable Mention</li>");
                     }
