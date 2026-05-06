@@ -223,10 +223,8 @@ Redirect 302 /givingtuesday https://cmubuggy.org/baa-gift
 #Redirect 302 /givingtuesday-baa https://www.givecampus.com/s/xsp5tm
 Redirect 302 /givingtuesday-baa https://cmubuggy.org/baa-gift
 
-# 2025 BAA Officer voting
-Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLScPsSAk10xiEbU0Su5DawpxSSZVT1SMRDA0q1QGJR59DE5_pQ/viewform
-
 # 2026 BAA Officer voting
+Redirect 302 /vote https://docs.google.com/forms/d/e/1FAIpQLSeyNnK4x8TjpJynQGoR0zpzdhN3_l_YDg-a_RPcE8LPalalkQ/viewform
 Redirect 302 /nominate https://docs.google.com/forms/d/e/1FAIpQLSdVTxOlFDjtSPRvpS4fh42HseOGIV_7ZMxNLDWsmxZPTFV46A/viewform
 
 # Membership Update Forum & Giving Links
