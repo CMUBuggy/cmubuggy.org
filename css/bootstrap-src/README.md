@@ -2,7 +2,7 @@
 
 This directory contains the necessary tools to regenerate the bootstrap-derived `/css/cmubuggy-bootstrap.css` file.
 
-Bootstrap is available at http://getbootstrap.com.  We currently use the somewhat ancient version 4.1.0.  See [the documetation for that version](https://getbootstrap.com/docs/4.1/getting-started/introduction/).
+Bootstrap is available at http://getbootstrap.com.  We currently use 5.3.8.
 
 ## Key Notes
 
