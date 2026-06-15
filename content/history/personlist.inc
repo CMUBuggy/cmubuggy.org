@@ -5,7 +5,7 @@
 
   $doSearch = !empty($_GET['term']);
 
-  $MAX_RESULTS = 25;
+  $MAX_RESULTS = 250;
   $personList = array();
   $searchError = "";
   if ($doSearch) {
