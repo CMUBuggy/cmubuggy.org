@@ -267,7 +267,7 @@
           'href' => '/history',
         ],
         1 => (object) [
-          'label' => '100 Years of History',
+          'label' => '100+ Years of History',
           'href' => '/news/2019/09/100-years-of-buggy-history-intro-and-1920/'
         ],
         2 => (object) [
