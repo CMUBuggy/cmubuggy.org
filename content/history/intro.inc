@@ -18,7 +18,7 @@
          </span>
         </a>
         </div><div class="flex-grow-1 ps-3">
-          Our <a href="/news/2019/09/100-years-of-buggy-history-intro-and-1920/">100 Years of Buggy</a> blog series
+          Our <a href="/news/2019/09/100-years-of-buggy-history-intro-and-1920/">100+ Years of Buggy</a> blog series
         </div>
      </div>
    </div>
