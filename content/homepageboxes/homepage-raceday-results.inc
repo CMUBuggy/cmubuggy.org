@@ -93,7 +93,7 @@
         <td>
           <ol style="margin: 0; padding: 0 0 0 1.25em;">
             <li><a href="/history/buggy/kerosene">Kerosene</a> - <a href="/history/org/APX">Apex</a></li>
-            <li><a href="/history/buggy/nb2026">Beetle</a> - <a href="/history/org/FRI">Fringe</a></li>
+            <li><a href="/history/buggy/beetle">Beetle</a> - <a href="/history/org/FRI">Fringe</a></li>
             <li><a href="/history/buggy/paranoia">Paranoia</a> - <a href="/history/org/SDC">SDC</a></li>
           </ol>
         </td>
@@ -104,7 +104,7 @@
       </tr>
       <tr>
         <th>People's Choice</th>
-        <td><a href="/history/buggy/nb2026">Beetle</a> - <a href="/history/org/FRI">Fringe</a></td>
+        <td><a href="/history/buggy/beetle">Beetle</a> - <a href="/history/org/FRI">Fringe</a></td>
       </tr>
       <tr>
         <th>Tom Wood<br>Spirit of Buggy</th>
