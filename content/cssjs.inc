@@ -38,5 +38,5 @@
 
 <script defer src="https://www.youtube.com/iframe_api"></script>
 
-<script defer src="/js/cmubuggy-all.js?ver=2022042000" type="text/javascript"></script>
+<script defer src="/js/cmubuggy-all.js?ver=2026063000" type="text/javascript"></script>
 <!--END CSSJS-->
