@@ -8,7 +8,7 @@ if (!isset($_GET["urlkey"])) {
 }
 
 // To fetch the videos requires a somwhat complex join against all possible lanes in the heats table.
-// This, combined with the fact that we need 2 bits of video data for each of (up to) 4 heats makes this a bit
+// This, combined with the fact that we need 3 bits of video data for each of (up to) 4 heats makes this a bit
 // less readable than it could be.
 $headerQuery = "SELECT e.year, o.orgid, o.shortname AS org,
                        case when e.Class = 'M' then 'Men\'s'
@@ -25,10 +25,10 @@ $headerQuery = "SELECT e.year, o.orgid, o.shortname AS org,
                        Prelim, Reroll AS 'Prelim Reroll', Final, FinalReroll AS 'Final Reroll',
                        b.buggyid AS buggyid, b.name AS buggy,
                        nullif(e.place,0) AS place, e.dq, e.note,
-                       vp.youtubeid AS pyoutubeid, vp.title AS ptitle,
-                       vr.youtubeid AS ryoutubeid, vr.title AS rtitle,
-                       vf.youtubeid AS fyoutubeid, vf.title AS ftitle,
-                       vfr.youtubeid AS fryoutubeid, vfr.title AS frtitle
+                       vp.youtubeid AS pyoutubeid, vp.title AS ptitle, vp.startoffset AS pstartoffset,
+                       vr.youtubeid AS ryoutubeid, vr.title AS rtitle, vr.startoffset AS rstartoffset,
+                       vf.youtubeid AS fyoutubeid, vf.title AS ftitle, vf.startoffset AS fstartoffset,
+                       vfr.youtubeid AS fryoutubeid, vfr.title AS frtitle, vfr.startoffset AS frstartoffset
                   FROM hist_raceentries e
                   LEFT JOIN hist_buggies b ON e.buggyid = b.buggyid
                   LEFT JOIN hist_orgs o ON e.orgid = o.orgid
@@ -83,6 +83,9 @@ foreach ($heatTypeVideoPrefix as $type => $vp) {
       "youtubeid" => $header[$vp."youtubeid"],
       "title" => $header[$vp."title"]
     );
+    if (!empty($header[$vp."startoffset"])) {
+      $videomap[$type]["start"] = $header[$vp."startoffset"];
+    }
   }
 }
 
