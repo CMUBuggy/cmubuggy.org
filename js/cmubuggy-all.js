@@ -24,10 +24,13 @@ $(document)
 .on('show.bs.modal', '[id^="youtube-"]', function (e) {
   var $playerDiv = $('div[id^="player-"]', this);
   if ($playerDiv.length == 0) return;
-  var $playerParams = { videoId: $playerDiv.data('videoId'), playerVars: {} };
+  var $playerParams = { videoId: $playerDiv.data('videoId'), playerVars: {}, events: {} };
 
   if (typeof $playerDiv.data('videoStart') !== "undefined") {
     $playerParams["playerVars"]["start"] = $playerDiv.data('videoStart');
+    $playerParams["events"]["onReady"] = function(event) {
+      event.target.seekTo($playerDiv.data('videoStart'), true);
+    }
   }
   if (typeof $playerDiv.data('videoEnd') !== "undefined") {
     $playerParams["playerVars"]["end"] = $playerDiv.data('videoEnd');
@@ -36,7 +39,13 @@ $(document)
   $(this).data('player', new YT.Player($playerDiv.attr('id'), $playerParams));
 })
 .on('hide.bs.modal', '[id^="youtube-"]', function (e) {
+  // Stop playback.
   $(this).data('player').stopVideo();
+
+  // Clean up the player so that we start at the right place again if we are reopened.
+  var player = $(this).data('player');
+  player.destroy();
+  $(this).removeData("player");
 });
 
 function onYouTubeIframeAPIReady() {}
