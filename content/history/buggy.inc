@@ -50,10 +50,10 @@ $raceQuery = "SELECT e.year,
                      nullif(place,0) AS Place,
                      Prelim, Reroll, Final, FinalReroll,
                      case when DQ <> '0' then DQ else null end AS DQ,
-                     vp.youtubeid AS pyoutubeid, vp.title AS ptitle,
-                     vr.youtubeid AS ryoutubeid, vr.title AS rtitle,
-                     vf.youtubeid AS fyoutubeid, vf.title AS ftitle,
-                     vfr.youtubeid AS fryoutubeid, vfr.title AS frtitle,
+                     vp.youtubeid AS pyoutubeid, vp.title AS ptitle, vp.startoffset AS pstartoffset,
+                     vr.youtubeid AS ryoutubeid, vr.title AS rtitle, vr.startoffset AS rstartoffset,
+                     vf.youtubeid AS fyoutubeid, vf.title AS ftitle, vf.startoffset AS fstartoffset,
+                     vfr.youtubeid AS fryoutubeid, vfr.title AS frtitle, vfr.startoffset AS frstartoffset,
                      e.note
                 FROM hist_raceentries e
                 LEFT JOIN hist_orgs borrower ON borrower.orgid=e.orgid
@@ -236,6 +236,9 @@ if(empty($image_url)) {
                   "title" => $r[$vp."title"],
                   "nothumbnail" => "Video" // there just isn't enough room for thumbnails on this page.
                 );
+                if (!empty($r[$vp."startoffset"])) {
+                  $videomap[$type]["start"] = $r[$vp."startoffset"];
+                }
               }
             }
 
