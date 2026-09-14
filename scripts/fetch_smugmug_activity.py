@@ -184,6 +184,8 @@ def fetch_recent_photos():
                 print(e)
 
         url = _get_next_url_from_xml_root(xml_root)
+        if url is None:
+            break
 
     # Photos are read in reverse chronologically, so reverse the order
     recent_photos.reverse()
