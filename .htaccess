@@ -229,7 +229,7 @@ Redirect 302 /nominate https://docs.google.com/forms/d/e/1FAIpQLSdVTxOlFDjtSPRvp
 
 # Membership Update Forum & Giving Links
 Redirect 302 /memberupdate https://docs.google.com/forms/d/e/1FAIpQLSdWXstvHgL3Zt5BzOnL21qkq1VpxUrTYLR3DGYB9KCQD3lMGQ/viewform
-Redirect 302 /baa-gift https://givenow.cmu.edu/campaigns/42524/donations/new?a=7676936&designation=buggyalumnichapterassociation
+Redirect 302 /baa-gift https://givenow.cmu.edu/campaigns/42524/donations/new?a=7676936&designation=buggyalumniassociation
 Redirect 302 /endowment-gift https://givenow.cmu.edu/campaigns/42524/donations/new?a=7676936&designation=buggyendowedfund
 
 # Rewrite some iOS favicon handling (404 the precompsed icon, push the root apple-touch-icon to favicons/)
