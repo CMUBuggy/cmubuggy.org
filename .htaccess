@@ -143,7 +143,7 @@ Redirect 301 /raceday/live /live
 RedirectMatch 302 ^/yt/?$ https://youtube.com/cmubuggy
 Redirect 302 /yt/intro https://youtube.com/watch?v=TPKQenBolWY
 Redirect 302 /yt/topdqs https://youtube.com/watch?v=YOtm5MMWZFA
-Redirect 302 /yt/091926 https://youtube.com/watch?v=zQxW4xFIsGM
+Redirect 302 /yt/091926 https://youtube.com/watch?v=IjwotQtj-8s
 
 # When the store is closed, /merch is handled by the wordpress fallback, and
 # /store redirects to /merch.
