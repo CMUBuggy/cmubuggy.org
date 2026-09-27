@@ -47,10 +47,10 @@
 <div id="results">
   <ul class="nav nav-tabs mb-2" role="tablist">
     <li class="nav-item">
-      <a id="womens-prelims-tab" href="#tab-womens-prelims" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-womens-prelims" aria-selected="true">Women's Prelims</a>
+      <a id="womens-prelims-tab" href="#tab-womens-prelims" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-womens-prelims" aria-selected="true">Women's Prelims</a>
     </li>
     <li class="nav-item">
-      <a id="mens-prelims-tab" href="#tab-mens-prelims" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-mens-prelims" aria-selected="false">Men's Prelims</a>
+      <a id="mens-prelims-tab" href="#tab-mens-prelims" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-mens-prelims" aria-selected="false">Men's Prelims</a>
     </li>
     <li class="nav-item">
       <a id="allgender-prelims-tab" href="#tab-allgender-prelims" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-allgender-prelims" aria-selected="false">All Gender Prelims</a>
@@ -65,7 +65,10 @@
       <a id="allgender-finals-tab" href="#tab-allgender-finals" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-allgender-finals" aria-selected="false">All Gender Finals</a>
     </li>
     <li class="nav-item">
-      <a id="exhibitions-tab" href="#tab-exhibitions" style="display: none" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="tab-exhibitions" aria-selected="false">Exhibitions</a>
+      <a id="exhibitions-tab" href="#tab-exhibitions" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-exhibitions" aria-selected="false">Exhibitions</a>
+    </li>
+    <li class="nav-item">
+      <a id="miniraceday-tab" href="#tab-miniraceday" style="display: none" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="tab-miniraceday" aria-selected="false">Mini-Raceday</a>
     </li>
   </ul>
 
@@ -84,7 +87,9 @@
     </div>
     <div class="tab-pane fade prelims" id="tab-allgender-finals" role="tabpanel" aria-labelledby="allgender-finals-tab">
     </div>
-    <div class="tab-pane fade prelims show active" id="tab-exhibitions" role="tabpanel" aria-labelledby="exhibitions-tab">
+    <div class="tab-pane fade prelims" id="tab-exhibitions" role="tabpanel" aria-labelledby="exhibitions-tab">
+    </div>
+    <div class="tab-pane fade prelims" id="tab-miniraceday" role="tabpanel" aria-labelledby="miniraceday-tab">
     </div>
   </div>
 </div>
@@ -116,21 +121,80 @@
   firebase.initializeApp(config);
 
   // Determine which tabs are visible.
+  //
+  // Only done at load, and only if we haven't been hased to a particular tab.
+  // (hashing to a tab is handled in cmubuggy-all.js)
+  var setDefaultTabDone = window.location.hash ? true : false;
   var visibleconfigref = firebase.database().ref("config").orderByChild('time_sort');
   visibleconfigref.on('value', function (snapshot) {
+    var visibleTabCount = 0;
+    var lastVisibleTab = 'NONE';
+    var defaultTab = 'exhibitions';
     snapshot.forEach(function (child) {
+      // console.info('config for key ' + child.key)
+
       if (child.key == 'CURRENT_TAB') {
-        // not currently relevant in this view
+        // tells us who is active, defaults to exhibitions.
+        // only once per load.
+        if (setDefaultTabDone) {
+          console.info('CURRENT_TAB ignored: not initial load or on a hashed page')
+          return;
+        }
+
+        var activeTab = defaultTab;
+        if (child.val() != 'NONE') {
+          activeTab = child.val().replace('_', '-');
+        }
+
+        console.info('config to current tab ' + activeTab);
+        defaultTab = activeTab;
+
         return;
+      } else {
+        // visibility, generally.
+        var nameStyle = child.key.replace('_', '-');
+        var button = document.querySelector('#' + nameStyle + '-tab');
+
+        var tabVisible = child.val();
+        var displaySetting = tabVisible == true ? 'block' : 'none';
+        button.style.display = displaySetting;
+
+        if (tabVisible) {
+          visibleTabCount++;
+          lastVisibleTab = nameStyle;
+        } else {
+          // invisible tabs shouldn't be shown or active.
+          var tab = document.getElementById('tab-' + nameStyle);
+          button.classList.remove('active');
+          tab.classList.remove('show');
+          tab.classList.remove('active');
+        }
+
+        console.info("%s set to %s", nameStyle, displaySetting);
       }
-      var nameStyle = child.key.replace('_', '-');
-      var button = document.querySelector('#' + nameStyle + '-tab');
-
-      var displaySetting = child.val() == true ? 'block' : 'none';
-      button.style.display = displaySetting;
-
-      console.debug("%s set to %s", nameStyle, displaySetting);
     })
+
+    function configureActive(name) {
+      var button = document.getElementById(name + '-tab');
+      var tab = document.getElementById('tab-' + name);
+      button.classList.add('active');
+      tab.classList.add('show');
+      tab.classList.add('active');
+    }
+
+    if (visibleTabCount == 1) {
+      // Only one visible tab, make sure it is active, EVEN IF NOT THE FIRST LOAD.
+
+      console.info('only one tab: ' + lastVisibleTab);
+      configureActive(lastVisibleTab);
+      setDefaultTabDone = true;
+    } else if (!setDefaultTabDone) {
+      // If more than one tab, prefer the configured default tab.
+
+      console.info('configuring default tab: ' + defaultTab)
+      configureActive(defaultTab);
+      setDefaultTabDone = true;
+    }
   });
 
   var raceResult = document.querySelector('#raceResult');
@@ -195,7 +259,7 @@
 
   ['womens_prelims', 'mens_prelims', 'allgender_prelims',
    'womens_finals', 'mens_finals', 'allgender_finals',
-   'exhibitions'].forEach(function (type) {
+   'exhibitions', 'miniraceday'].forEach(function (type) {
     var ref = firebase.database().ref(type).orderByChild('time_sort'),
       tab = document.querySelector('#tab-' + type.replace('_', '-'));
     ref.on('child_added', function (snapshot, previousChildKey) {
