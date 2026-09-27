@@ -6,7 +6,7 @@
    }
    ['womens_prelims', 'mens_prelims', 'allgender_prelims',
     'womens_finals', 'mens_finals', 'allgender_finals',
-    'exhibitions'].forEach(function(type) {
+    'exhibitions', 'miniraceday'].forEach(function(type) {
         document.write("<li><a href=\"#\" onclick=\"dopopup(&quot;" + type + "&quot;)\">" + type + "</a></li>");
    });
 </script>

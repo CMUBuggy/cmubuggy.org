@@ -82,7 +82,8 @@
     'womens_finals' : "Women's Finals",
     'mens_finals': "Men's Finals",
     'allgender_finals': "All Gender Finals",
-    'exhibitions': "Exhibitions"
+    'exhibitions': "Exhibitions",
+    'miniraceday': "Mini-Raceday"
   }
 
   // Currently filled in state
