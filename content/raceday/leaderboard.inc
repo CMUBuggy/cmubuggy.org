@@ -127,8 +127,7 @@
   var setDefaultTabDone = window.location.hash ? true : false;
   var visibleconfigref = firebase.database().ref("config").orderByChild('time_sort');
   visibleconfigref.on('value', function (snapshot) {
-    var visibleTabCount = 0;
-    var lastVisibleTab = 'NONE';
+    var visibleTabs = [];
     var defaultTab = 'exhibitions';
     snapshot.forEach(function (child) {
       // console.info('config for key ' + child.key)
@@ -160,8 +159,7 @@
         button.style.display = displaySetting;
 
         if (tabVisible) {
-          visibleTabCount++;
-          lastVisibleTab = nameStyle;
+          visibleTabs.push(nameStyle);
         } else {
           // invisible tabs shouldn't be shown or active.
           var tab = document.getElementById('tab-' + nameStyle);
@@ -182,14 +180,26 @@
       tab.classList.add('active');
     }
 
-    if (visibleTabCount == 1) {
+    if (visibleTabs.length == 1) {
       // Only one visible tab, make sure it is active, EVEN IF NOT THE FIRST LOAD.
 
-      console.info('only one tab: ' + lastVisibleTab);
-      configureActive(lastVisibleTab);
+      console.info('only one tab: ' + visibleTabs[0]);
+      configureActive(visibleTabs[0]);
       setDefaultTabDone = true;
     } else if (!setDefaultTabDone) {
       // If more than one tab, prefer the configured default tab.
+      // Unless it isn't in the list (e.g. the exhibitions default
+      // with exhibitions disabled), in which case, just take the
+      // first tab.
+
+      if (!visibleTabs.includes(defaultTab)) {
+        // Our default isn't in the array, use the first thing.
+        if (visibleTabs.length == 0) {
+          console.error("no visible tabs");
+        }
+        console.info('configured default tab not present');
+        defaultTab = visibleTabs[0];
+      }
 
       console.info('configuring default tab: ' + defaultTab)
       configureActive(defaultTab);
