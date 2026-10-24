@@ -23,7 +23,7 @@
         <a href="https://instagram.com/cmubuggy" style="text-decoration: none">
           <i class="fab fa-2x fa-fw fa-instagram-square" title="Instagram" style="color: #e1306c;"></i>
         </a>
-        <a href="https://www.youtube.com/user/CMUbuggy" style="text-decoration: none">
+        <a href="https://www.youtube.com/@CMUbuggy" style="text-decoration: none">
           <i class="fab fa-2x fa-fw fa-youtube-square" title="Youtube" style="color: #ff0000;"></i>
         </a>
         <a href="/spotify">
