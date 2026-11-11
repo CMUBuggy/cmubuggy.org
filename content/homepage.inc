@@ -27,6 +27,7 @@
 
       // Mini Raceday Highlights
       // include ("homepageboxes/homepage-miniraceday-infobox.inc");
+      include ("homepageboxes/homepage-miniraceday-minibox.inc");
 
       // Include at most one of the next two (probably starting around Mid-Feb).
       // The countdown one is short with less detail.
