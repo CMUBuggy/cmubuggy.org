@@ -126,7 +126,15 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 # 2026 Day 1
 # Redirect 302 /live https://youtube.com/live/Q704MqFilUk
 # 2026 Day 2
-Redirect 302 /live https://youtube.com/live/aysbxZngikU
+# Redirect 302 /live https://youtube.com/live/aysbxZngikU
+
+# MRD 2026 Day 1
+Redirect 302 /livesat https://www.youtube.com/watch?v=KyFNyw55mc4
+# MRD 2026 Day 2
+Redirect 302 /livesun https://www.youtube.com/watch?v=opW0KSraMtk
+# MRD 2026
+Redirect 302 /live /livesat
+
 
 # Fall 25 Buggy Rewatch Event
 Redirect 302 /rewatch2025 https://youtube.com/live/DeYWaVsIs60
