@@ -285,7 +285,15 @@ if(empty($image_url)) {
               }
               echo("</td>");
             }
-            echo("<td>".$r["DQ"]." ".$r["note"]."</td></tr>");
+            echo("<td>");
+            echo($r["note"]);
+            if (strlen($r["DQ"]> 0)) {
+              if (strlen($r["note"]) > 0) {
+                echo("<br>");
+              }
+              echo("DQ: " . $r["DQ"]);
+            }
+            echo("</td></tr>");
           }
         ?>
       </tbody>
