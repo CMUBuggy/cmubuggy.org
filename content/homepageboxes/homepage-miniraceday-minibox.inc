@@ -13,8 +13,8 @@
       <img class="rounded mx-auto d-block" alt="Helios gets a good shove off of Hill 2"
              src="<?php echo(makeSmugmugUrl("i-3WndZm6", "S")); ?>">
       <hr width="30%" class="mx-auto">
-      <p>Mini-Raceday will happen, weather permitting, starting approximately 7:30 am on
-         November 14 &amp; 15, 2026.</p>
+      <p>Mini-Raceday will happen, weather permitting, starting approximately 7:15 am on
+         November 15, 2026.</p>
       <div class="d-flex justify-content-center mb-2">
         <a href="/raceday/leaderboard" class="btn btn-primary m-1 d-flex align-items-center">Leaderboard</a>
 <?php
