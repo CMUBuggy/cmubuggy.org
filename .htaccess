@@ -99,7 +99,7 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 # for raceday. This should _always_ be a 302 redirect.
 
 # Default redirect outside of events.
-# Redirect 302 /live https://cmubuggy.org/news/raceday/buggy-livestream/
+Redirect 302 /live https://cmubuggy.org/news/raceday/buggy-livestream/
 
 # On Raceday, we should redirect /live to the site of the stream itself.
 
@@ -130,10 +130,10 @@ RewriteRule ^history/org/pilam/?$		/history/org/PLP	[R=301,L,NC]
 
 # MRD 2026 Day 1 - Canceled
 # Redirect 302 /livesat https://www.youtube.com/watch?v=KyFNyw55mc4
-# MRD 2026 Day 2
-Redirect 302 /livesun https://www.youtube.com/watch?v=opW0KSraMtk
+# MRD 2026 Day 2 - Canceled
+# Redirect 302 /livesun https://www.youtube.com/watch?v=opW0KSraMtk
 # MRD 2026
-Redirect 302 /live /livesun
+# Redirect 302 /live /livesun
 
 
 # Fall 25 Buggy Rewatch Event
