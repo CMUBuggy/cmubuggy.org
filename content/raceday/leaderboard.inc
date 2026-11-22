@@ -8,7 +8,8 @@
   }
 
   .prelims .race-result,
-  .finals .race-result {
+  .finals .race-result,
+  .agfinals .race-result {
     background-color: #b6d7a8 !important;
   }
 
