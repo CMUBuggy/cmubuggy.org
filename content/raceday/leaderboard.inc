@@ -13,7 +13,8 @@
   }
 
   .prelims .race-result:nth-child(n+11),
-  .finals .race-result:nth-child(n+7) {
+  .finals .race-result:nth-child(n+7),
+  .agfinals .race-result:nth-child(n+4) {
     background-color: #efefef !important;
   }
 
@@ -85,7 +86,7 @@
     </div>
     <div class="tab-pane fade finals" id="tab-mens-finals" role="tabpanel" aria-labelledby="mens-finals-tab">
     </div>
-    <div class="tab-pane fade prelims" id="tab-allgender-finals" role="tabpanel" aria-labelledby="allgender-finals-tab">
+    <div class="tab-pane fade agfinals" id="tab-allgender-finals" role="tabpanel" aria-labelledby="allgender-finals-tab">
     </div>
     <div class="tab-pane fade prelims" id="tab-exhibitions" role="tabpanel" aria-labelledby="exhibitions-tab">
     </div>
